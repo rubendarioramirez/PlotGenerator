@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Plot story assistant</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--<string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>-->
+    <string name="banner_ad_unit_id">ca-app-pub-6696437403163667/5982516625</string>
+
+    <string name="home_title">Tu compañero\n de escritura</string>
+
+    <!--Tabs-->
+    <string name="home_tab">Principal</string>
+    <string name="trigger_tab">Disparadores</string>
+    <string name="hero_journey_tab">El camino del heroe</string>
+
+
+
+</resources>
