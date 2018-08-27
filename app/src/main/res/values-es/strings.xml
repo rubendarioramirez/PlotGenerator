@@ -28,45 +28,45 @@
     <string name="hj_act2">Acto 2: Iniciación</string>
     <string name="hj_act3">Acto 3: El Retorno</string>
 
-    <string name="hj_title1">The call to adventure</string>
-    <string name="hj_title2">Refusal of the call</string>
-    <string name="hj_title3">Supernatural Aid</string>
-    <string name="hj_title4">The crossing of the First Threshold</string>
-    <string name="hj_title5">Belly of the whale</string>
-    <string name="hj_title6">The road of Trails</string>
-    <string name="hj_title7">The meeting with the Goddess</string>
-    <string name="hj_title8">Woman as Temptress</string>
-    <string name="hj_title9">Atonement with the father</string>
+    <string name="hj_title1">La llamada a la aventura</string>
+    <string name="hj_title2">Rechazo a la llamada</string>
+    <string name="hj_title3">Ayuda supernatural</string>
+    <string name="hj_title4">El cruce del primer limite</string>
+    <string name="hj_title5">El estomago de la ballena</string>
+    <string name="hj_title6">El camino de las pruebas</string>
+    <string name="hj_title7">La reunion con la diosa</string>
+    <string name="hj_title8">La mujer como tentación</string>
+    <string name="hj_title9">La expiación con el padre</string>
     <string name="hj_title10">Apotheosis</string>
-    <string name="hj_title11">The Ultimate Boon</string>
-    <string name="hj_title12">Refusal of the return</string>
-    <string name="hj_title13">The magic flight</string>
-    <string name="hj_title14">Rescue from without</string>
-    <string name="hj_title15">The crossing of the return threshold</string>
-    <string name="hj_title16">Master of two worlds</string>
+    <string name="hj_title11">La ultima bendición</string>
+    <string name="hj_title12">El rechazo a la vuelta</string>
+    <string name="hj_title13">El vuelo magico</string>
+    <string name="hj_title14">El rescate</string>
+    <string name="hj_title15">El cruce del limite de retorno</string>
+    <string name="hj_title16">Maestro de los dos mundos</string>
 
-    <string name="hj_desc1">The hero is presented with a problem, challenge or adventure.
-The hero must face beginning of change.  This call must be accepted, this can happen willingly,
-reluctantly, consciously or accidentally</string>
-    <string name="hj_desc2">The hero doesn’t accept the call right away. This can happen for all sorts of reasons, such as being unwilling, being in denial or being kept from being able to respond.
-The hero finds motivation and or opportunity to answer the call.</string>
-    <string name="hj_desc3">The hero is now committed to the quest (consciously or unconsciously) and his guide/ helper becomes known.
-Often, the mentor will present the hero with a talisman or artifact to aid him later in the quest.</string>
-    <string name="hj_desc4">The hero crosses into the field of adventure, leaving behind all that is known and stepping into the unknown. Here, the limits, rules and limits are not yet known.
-There is no going back, this is where the adventure gets going.</string>
-    <string name="hj_desc5">The belly of the whale represents the final separation from the known world of the hero. In this stage, he shows willingness to undergo change and adaptation.</string>
-    <string name="hj_desc6">This is a series of tests, tasks and ordeals that the hero must undergo in order to begin his transformation. Often the tests occur in threes and the hero usually fails one ore more.
-Sometimes, the heroes lose their mentor in this stage (e.g. LOTR and Star Wars).</string>
-    <string name="hj_desc7">The hero experiences a love that is all-powerful, encompassing and unconditional.</string>
-    <string name="hj_desc8">The hero faces temptation (physical or pleasurable) which make lead him to stray from his mission or even abandon it. This temptation does not necessary come from a woman.</string>
-    <string name="hj_desc9">The hero confronts the ultimate power in his life. This is the centre point of the story. All previous steps have brought him here and the steps to come move him away.</string>
-    <string name="hj_desc10">There is a period of rest, peace and fulfilment before the hero begins his journey home.</string>
-    <string name="hj_desc11">The achievement of the goal or quest. The hero gets what he came for.</string>
-    <string name="hj_desc12">The hero may not want to return to the ordinary world.</string>
-    <string name="hj_desc13">Sometimes the hero must escape with the artifact he came for (e.g. the holy grail) and others come after him to claim it back. In this case, the journey back can be just as dangerous and full of adventure.</string>
-    <string name="hj_desc14">The hero often has (and needs) guides and helpers, sometimes the helpers are the one that need to bring him back to every day life. Especially if the hero has been severely wounded.</string>
-    <string name="hj_desc15">Now that he gained all this knowledge and experience, he needs to retain it and integrate it into his human life and or share it with the world.</string>
-    <string name="hj_desc16">This step occurs if the hero is a transcendental hero such as Jesus or Buddha. If the hero is human, this may be simply achieving a balance between the material and spiritual world. The hero becomes comfortable and competent in both the inner and outer world.</string>
+    <string name="hj_desc1">Al heroe se le presenta un desafio o una aventura.
+El heroe debe afrontar el comienzo del cambio. Esta llamada debe ser aceptada. Puede ocurrir de forma voluntaria,
+        sin quererlo o de forma accidental.</string>
+    <string name="hj_desc2">El heroe no acepta la llamada inmediatamente. Esto puede ocurrir por varias razones, puede ser por falta de motivación, puede ocurrir por simple rechazo o por no poder responder.
+El heroe encuentra la motivación y la oportunidad para responder a llamada.</string>
+    <string name="hj_desc3">El heroe ahora esta comprometido con la aventura (Conciente o inconcientemente) y su guia/tutor ahora es conocido.
+A menudo, el mentor le dara al heroe un artefacto o talisman que puede ser usado luego.</string>
+    <string name="hj_desc4">El heroe finalmente cruza al terreno de la aventura, dejando detras todo aquello que conocia y adentrandose en lo desconocido. Aqui, los limites, reglas y bordes aun no son conocidos.
+No hay vuelta atras, aqui la aventura solo puede continuar.</string>
+    <string name="hj_desc5">El estomago de la ballena representa la ultima separacion, el ultimo resto que quedaba del mundo conocido del heroe y su mundo especial. En esta etapa, el heroe muestra signos de motivacion y aceptacion.</string>
+    <string name="hj_desc6">Esta es una serie de pruebas, tareas y odiseas que el heroe debe recorrer para comenzar el camino del cambio. A menudo las pruebas llegan de a tres y generalmente el heroe fallara alguna o mas.
+A veces, el heroe puede incluso perder a su mentor en esta etapa (Ejemplo: LOTR and Star Wars).</string>
+    <string name="hj_desc7">El hereo experimenta un amor todo poderoso, que lo encamina y es incondicional.</string>
+    <string name="hj_desc8">El heroe experimenta la tentacion (Fisica o espiritual) que lo hace distraerse de camino o incluso abandonarlo. Esta tentacion no necesariamente viene de una mujer.</string>
+    <string name="hj_desc9">El hereo confronta con el poder maximo en su vida. Esto el centro de la historia, el arco maximo. Todos los pasos previos lo prepararon y lo trajeron hasta aqui.</string>
+    <string name="hj_desc10">Existe un periodo de descanzo y paz antes de que el heroe deba volver a su casa.</string>
+    <string name="hj_desc11">Cumplir con el objetivo y la prueba ultima. Para esto el heroe transito todo su camino.</string>
+    <string name="hj_desc12">Es posible que el heroe no quiera volver a su mundo ordinario.</string>
+    <string name="hj_desc13">A veces el heroe debe escapar con el objeto que vino a buscar (Ejemplo El santo grial) y otros lo perseguiran para recuperarlo. En este caso, la aventura de vuelta puede ser tan peligrosa como el viaje de ida y lleno de aventuras.</string>
+    <string name="hj_desc14">El heroe generalmente tiene (Y necesita) guias y ayudantes, a veces son esos ayudantes los que lo traen de nuevo a su mundo ordinario. Especialmente si el heroe ha sido gravemente herido.</string>
+    <string name="hj_desc15">Ahora que el heroe ha ganado tanta experiencia y sabiduria, tiene que retenerla y usarla en su vida cotidiana, incluso compartirla con el mundo.</string>
+    <string name="hj_desc16">Este paso ocurre si el heroe es trascendental como Jesus o Buddha. Si el heroe es humano, esto solamente es un simple balance entre el mundo espiritual y el mundo real. El hereo ahora esta a gusto en su mundo ordinario pero tambien en su mundo especial.</string>
 
 
 </resources>
