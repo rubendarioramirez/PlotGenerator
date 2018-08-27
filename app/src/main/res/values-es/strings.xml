@@ -11,13 +11,62 @@
     <!--<string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>-->
     <string name="banner_ad_unit_id">ca-app-pub-6696437403163667/5982516625</string>
 
-    <string name="home_title">Tu compañero\n de escritura</string>
 
     <!--Tabs-->
-    <string name="home_tab">Principal</string>
     <string name="trigger_tab">Disparadores</string>
-    <string name="hero_journey_tab">El camino del heroe</string>
 
+    <!--HOME Strings-->
+    <string name="home_title">Tu compañero\n de escritura</string>
+    <string name="home_tab">Principal</string>
+    <string name="home_header">Enfocate en escribir...</string>
+    <string name="home_desc">Si amas escribir, entonces estas en el lugar correcto.\nHice esta aplicación porque amo escribir, y por eso se lo que es estar bloqueado, perdido o simplemente perder el foco.\nEn realidad, hice esta aplicación para mi, pero creo que puede ayudarte también.\nHay dos cosas que te pueden interesar por el momento.\n\nDisparadores, cuando estes perdido o no sepas como empezar, dales una mirada. \nA veces una simple oración puede hacer volar tu imaginación. Y no te preocupes, voy a poner nuevos todas las semanas.\n\nEl camino del heroe. Si no lo leiste, deberias correr a hacerlo! El hero de las mil caras es el legado que Joseph Campbell le dejo a los escritores. \nSin embargo, si queres refrescar la memoria, o si queres ir derecho a lo que significa, mira la seccion El camino del heroe, contiene todo lo que tenes que saber para comenzar o pulir tu historia.\n\nFeliz escritura!</string>
+
+
+    <!--Journey Strings-->
+    <string name="hero_journey_tab">El camino del heroe</string>
+    <string name="hj_act1">Acto 1: La Partida</string>
+    <string name="hj_act2">Acto 2: Iniciación</string>
+    <string name="hj_act3">Acto 3: El Retorno</string>
+
+    <string name="hj_title1">The call to adventure</string>
+    <string name="hj_title2">Refusal of the call</string>
+    <string name="hj_title3">Supernatural Aid</string>
+    <string name="hj_title4">The crossing of the First Threshold</string>
+    <string name="hj_title5">Belly of the whale</string>
+    <string name="hj_title6">The road of Trails</string>
+    <string name="hj_title7">The meeting with the Goddess</string>
+    <string name="hj_title8">Woman as Temptress</string>
+    <string name="hj_title9">Atonement with the father</string>
+    <string name="hj_title10">Apotheosis</string>
+    <string name="hj_title11">The Ultimate Boon</string>
+    <string name="hj_title12">Refusal of the return</string>
+    <string name="hj_title13">The magic flight</string>
+    <string name="hj_title14">Rescue from without</string>
+    <string name="hj_title15">The crossing of the return threshold</string>
+    <string name="hj_title16">Master of two worlds</string>
+
+    <string name="hj_desc1">The hero is presented with a problem, challenge or adventure.
+The hero must face beginning of change.  This call must be accepted, this can happen willingly,
+reluctantly, consciously or accidentally</string>
+    <string name="hj_desc2">The hero doesn’t accept the call right away. This can happen for all sorts of reasons, such as being unwilling, being in denial or being kept from being able to respond.
+The hero finds motivation and or opportunity to answer the call.</string>
+    <string name="hj_desc3">The hero is now committed to the quest (consciously or unconsciously) and his guide/ helper becomes known.
+Often, the mentor will present the hero with a talisman or artifact to aid him later in the quest.</string>
+    <string name="hj_desc4">The hero crosses into the field of adventure, leaving behind all that is known and stepping into the unknown. Here, the limits, rules and limits are not yet known.
+There is no going back, this is where the adventure gets going.</string>
+    <string name="hj_desc5">The belly of the whale represents the final separation from the known world of the hero. In this stage, he shows willingness to undergo change and adaptation.</string>
+    <string name="hj_desc6">This is a series of tests, tasks and ordeals that the hero must undergo in order to begin his transformation. Often the tests occur in threes and the hero usually fails one ore more.
+Sometimes, the heroes lose their mentor in this stage (e.g. LOTR and Star Wars).</string>
+    <string name="hj_desc7">The hero experiences a love that is all-powerful, encompassing and unconditional.</string>
+    <string name="hj_desc8">The hero faces temptation (physical or pleasurable) which make lead him to stray from his mission or even abandon it. This temptation does not necessary come from a woman.</string>
+    <string name="hj_desc9">The hero confronts the ultimate power in his life. This is the centre point of the story. All previous steps have brought him here and the steps to come move him away.</string>
+    <string name="hj_desc10">There is a period of rest, peace and fulfilment before the hero begins his journey home.</string>
+    <string name="hj_desc11">The achievement of the goal or quest. The hero gets what he came for.</string>
+    <string name="hj_desc12">The hero may not want to return to the ordinary world.</string>
+    <string name="hj_desc13">Sometimes the hero must escape with the artifact he came for (e.g. the holy grail) and others come after him to claim it back. In this case, the journey back can be just as dangerous and full of adventure.</string>
+    <string name="hj_desc14">The hero often has (and needs) guides and helpers, sometimes the helpers are the one that need to bring him back to every day life. Especially if the hero has been severely wounded.</string>
+    <string name="hj_desc15">Now that he gained all this knowledge and experience, he needs to retain it and integrate it into his human life and or share it with the world.</string>
+    <string name="hj_desc16">This step occurs if the hero is a transcendental hero such as Jesus or Buddha. If the hero is human, this may be simply achieving a balance between the material and spiritual world. The hero becomes comfortable and competent in both the inner and outer world.</string>
 
 
 </resources>
