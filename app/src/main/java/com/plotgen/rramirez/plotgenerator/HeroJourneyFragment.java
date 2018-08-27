@@ -74,7 +74,7 @@ public class HeroJourneyFragment extends Fragment {
         });
 
 
-
+        //TODO add dual language here or even read from excel
         //set up the recycler view with the adapter
         RecyclerView recyclerView = myFragmentView.findViewById(R.id.rv_herojourney);
         final Adapter_herojourney adapter = new Adapter_herojourney(this.getActivity(),mlist);
