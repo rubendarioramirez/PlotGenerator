@@ -12,7 +12,7 @@
     <string name="banner_ad_unit_id">ca-app-pub-6696437403163667/5982516625</string>
 
 
-    <string name="trigger_tab">Prompts</string>
+    <string name="trigger_tab">Writing Prompts</string>
     <string name="character_tab">Characters</string>
 
 
@@ -26,6 +26,12 @@
     <!--Projects String-->
     <string name="projects_tab">Projects</string>
     <string name="add_projects_btn">Add project</string>
+
+    <!--Character String-->
+    <string name="character_list_tab">Characters</string>
+    <string name="add_character_btn">Add Character</string>
+
+
 
     <!--Journey Strings-->
     <string name="hero_journey_tab">The hero journey</string>

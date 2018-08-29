@@ -105,21 +105,25 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_home) {
             // Handle the home action
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.addToBackStack(null);
             ft .replace(R.id.flMain,new HomeFragment());
             ft.commit();
 
         } else if (id == R.id.nav_genre) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft .replace(R.id.flMain,new HeroJourneyFragment());
+            ft.addToBackStack(null);
             ft.commit();
         } else if (id == R.id.nav_trigger) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft .replace(R.id.flMain,new TriggerFragment());
+            ft.addToBackStack(null);
             ft.commit();
         }
         else if (id == R.id.nav_char) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft .replace(R.id.flMain,new ProjectFragment());
+            ft.addToBackStack(null);
             ft.commit();
         }
 

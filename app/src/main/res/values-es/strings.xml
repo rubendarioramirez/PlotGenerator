@@ -19,10 +19,6 @@
 
 
 
-
-
-
-
     <!--HOME Strings-->
     <string name="home_title">Tu compañero\n de escritura</string>
     <string name="home_tab">Principal</string>
@@ -33,6 +29,10 @@
     <string name="projects_tab">Proyectos</string>
     <string name="add_projects_btn">Agregar proyecto</string>
 
+
+    <!--Character String-->
+    <string name="character_list_tab">Personajes</string>
+    <string name="add_character_btn">Agregar Personaje</string>
 
 
     <!--Journey Strings-->

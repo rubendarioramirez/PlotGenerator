@@ -64,10 +64,11 @@ public class ProjectFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putString("project_name",itemsAdapter.getItem(position).toString());
                 //Send it to the next fragment
-                CharacterFragment nextFragment = new CharacterFragment();
+                CharListFragment nextFragment = new CharListFragment();
                 nextFragment.setArguments(bundle);
                 //Make the transaction
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.addToBackStack(null);
                 transaction.replace(R.id.flMain,nextFragment);
                 transaction.commit();
             }
