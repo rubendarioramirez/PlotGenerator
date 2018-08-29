@@ -7,7 +7,6 @@
     tools:layout_editor_absoluteY="25dp"
     tools:layout_editor_absoluteX="0dp">
 
-    <!-- TODO: Update blank fragment layout -->
 
     <Button
         android:id="@+id/add_project_btn"

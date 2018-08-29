@@ -6,8 +6,6 @@
 
     <string name="action_settings">Settings</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <!--<string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>-->
     <string name="banner_ad_unit_id">ca-app-pub-6696437403163667/5982516625</string>
 
@@ -15,9 +13,6 @@
     <!--Tabs-->
     <string name="trigger_tab">Disparadores</string>
     <string name="character_tab">Personajes</string>
-
-
-
 
     <!--HOME Strings-->
     <string name="home_title">Tu compañero\n de escritura</string>
@@ -33,6 +28,20 @@
     <!--Character String-->
     <string name="character_list_tab">Personajes</string>
     <string name="add_character_btn">Agregar Personaje</string>
+    <!--Add character-->
+    <string name="character_add_name">Nombre</string>
+    <string name="character_add_profession">Profesion</string>
+    <string name="character_add_age">Edad</string>
+    <string name="character_add_defmoment">Momento decisivo</string>
+    <string name="character_add_desire">¿Qué quiere?</string>
+    <string name="character_add_need">¿Qué necesita?</string>
+    <string name="character_add_role">Rol</string>
+    <string name="character_add_placebirth">Lugar de nacimiento</string>
+    <string name="character_save_btn">Guardar</string>
+
+    <!--Subtitles-->
+    <string name="character_basic_tv">Basico</string>
+    <string name="character_story_tv">Historia</string>
 
 
     <!--Journey Strings-->

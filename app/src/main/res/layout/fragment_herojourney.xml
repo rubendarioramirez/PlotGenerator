@@ -6,7 +6,6 @@
 
     tools:context="com.plotgen.rramirez.plotgenerator.HeroJourneyFragment">
 
-    <!-- TODO: Update blank fragment layout -->
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_herojourney"

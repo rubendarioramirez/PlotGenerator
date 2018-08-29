@@ -40,7 +40,6 @@ public class ProjectFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //TODO change action bar for strings, to be able to translate
         ((MainActivity)getActivity()).setActionBarTitle(getString(R.string.projects_tab));
         // Inflate the layout for this fragment
 
@@ -109,7 +108,7 @@ public class ProjectFragment extends Fragment {
         SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PROJECT, et.getText().toString());
-        long newRowId = database.insert(mySQLiteDBHelper.CHARACTER_TABLE_NAME, null, values);
+        long newRowId = database.insert(mySQLiteDBHelper.CHARACTER_TABLE_PROJECT, null, values);
 
         Toast.makeText(this.getContext(), "The new Row Id is " + newRowId, Toast.LENGTH_LONG).show();
 
@@ -120,7 +119,7 @@ public class ProjectFragment extends Fragment {
     public ArrayList<String> getProjects(Context context){
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        Cursor cursor = sqLiteDatabase.query(mySQLiteDBHelper.CHARACTER_TABLE_NAME, null, null, null, null, null, null);
+        Cursor cursor = sqLiteDatabase.query(mySQLiteDBHelper.CHARACTER_TABLE_PROJECT, null, null, null, null, null, null);
         cursor.moveToFirst();
         ArrayList<String> projects_list = new ArrayList<String>();
         while(!cursor.isAfterLast()) {

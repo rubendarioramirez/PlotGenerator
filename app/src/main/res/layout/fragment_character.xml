@@ -3,98 +3,160 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.plotgen.rramirez.plotgenerator.CharacterFragment">
-
-    <!-- TODO: Update blank fragment layout -->
+    tools:context="com.plotgen.rramirez.plotgenerator.CharacterFragment"
+    tools:layout_editor_absoluteY="25dp"
+    tools:layout_editor_absoluteX="0dp">
 
     <Button
         android:id="@+id/submit"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:text="Save"
+        android:layout_marginStart="8dp"
+        android:text="@string/character_save_btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.968"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
-
-    <EditText
-        android:id="@+id/nameEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="71dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.149"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
-
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Profession"
-        app:layout_constraintLeft_toLeftOf="@+id/nameEditText"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        app:layout_constraintRight_toRightOf="@+id/nameEditText"
-        android:layout_marginTop="23dp"
-        app:layout_constraintTop_toBottomOf="@+id/nameEditText"
-        tools:layout_constraintLeft_creator="1"
-        app:layout_constraintHorizontal_bias="0.0" />
-
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Desire"
-        app:layout_constraintLeft_toLeftOf="@+id/editText2"
-        tools:layout_constraintTop_creator="1"
-        android:layout_marginTop="28dp"
-        app:layout_constraintTop_toBottomOf="@+id/editText2"
-        android:layout_marginLeft="0dp" />
-
-    <EditText
-        android:id="@+id/editText4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Age"
-        app:layout_constraintLeft_toLeftOf="@+id/editText3"
-        tools:layout_constraintTop_creator="1"
-        android:layout_marginTop="39dp"
-        app:layout_constraintTop_toBottomOf="@+id/editText3"
-        android:layout_marginLeft="0dp" />
+        app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
         android:id="@+id/project_name_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:text="project name"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="459dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="project name"
-        app:layout_constraintBottom_toTopOf="@+id/nameEditText"
-        app:layout_constraintHorizontal_bias="0.066"
+        app:layout_constraintBottom_toTopOf="@+id/submit"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.473" />
+        app:layout_constraintTop_toBottomOf="@+id/project_name_tv"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/character_basic_tv"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/nameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="12dp"
+                android:ems="8"
+                android:inputType="textPersonName"
+                android:text="@string/character_add_name"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/age_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="27dp"
+                android:ems="8"
+                android:inputType="textPersonName"
+                android:text="@string/character_add_age"
+                android:textSize="14sp"/>
+
+            <EditText
+                android:id="@+id/profession_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="27dp"
+                android:ems="8"
+                android:inputType="textPersonName"
+                android:text="@string/character_add_profession"
+                android:textSize="14sp"/>
+
+            <EditText
+                android:id="@+id/placebirth_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="27dp"
+                android:ems="8"
+                android:inputType="textPersonName"
+                android:text="@string/character_add_placebirth"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/textView2_"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/character_story_tv"
+                android:layout_marginTop="27dp"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/role_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="12dp"
+                android:ems="8"
+                android:inputType="textPersonName"
+                android:text="@string/character_add_role"
+                android:textSize="14sp"/>
+
+            <EditText
+                android:id="@+id/defmoment_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="27dp"
+                android:ems="8"
+                android:inputType="textPersonName"
+                android:text="@string/character_add_defmoment"
+                android:textSize="14sp"/>
+
+
+            <EditText
+                android:id="@+id/desire_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="27dp"
+                android:ems="8"
+                android:inputType="textPersonName"
+                android:text="@string/character_add_desire"
+                android:textSize="14sp"/>
+
+            <EditText
+                android:id="@+id/need_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="27dp"
+                android:layout_marginBottom="60dp"
+                android:ems="8"
+                android:inputType="textPersonName"
+                android:text="@string/character_add_need"
+                android:textSize="14sp"/>
+
+        </LinearLayout>
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>

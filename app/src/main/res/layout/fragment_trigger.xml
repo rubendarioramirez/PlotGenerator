@@ -9,8 +9,6 @@
     tools:layout_editor_absoluteX="0dp">
 
 
-    <!-- TODO: Update blank fragment layout -->
-
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_list"
