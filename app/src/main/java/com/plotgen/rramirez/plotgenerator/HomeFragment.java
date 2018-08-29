@@ -28,7 +28,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        ((MainActivity)getActivity()).setActionBarTitle("Home");
+        ((MainActivity)getActivity()).setActionBarTitle(getString(R.string.home_tab));
         View myFragmentView =   inflater.inflate(R.layout.fragment_home, container, false);
 
         //textDescription = myFragmentView.findViewById(R.id.homeDescription);

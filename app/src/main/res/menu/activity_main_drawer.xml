@@ -16,6 +16,12 @@
             android:icon="@drawable/ic_book_black"
             android:title="@string/hero_journey_tab" />
 
+        <item
+            android:id="@+id/nav_char"
+            android:icon="@drawable/writer_icon"
+            android:title="@string/character_tab" />
+
+
     </group>
 
 

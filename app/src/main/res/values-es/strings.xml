@@ -14,12 +14,25 @@
 
     <!--Tabs-->
     <string name="trigger_tab">Disparadores</string>
+    <string name="character_tab">Personajes</string>
+
+
+
+
+
+
+
 
     <!--HOME Strings-->
     <string name="home_title">Tu compañero\n de escritura</string>
     <string name="home_tab">Principal</string>
     <string name="home_header">Enfocate en escribir...</string>
     <string name="home_desc">Si amas escribir, entonces estas en el lugar correcto.\nHice esta aplicación porque amo escribir, y por eso se lo que es estar bloqueado, perdido o simplemente perder el foco.\nEn realidad, hice esta aplicación para mi, pero creo que puede ayudarte también.\nHay dos cosas que te pueden interesar por el momento.\n\nDisparadores, cuando estes perdido o no sepas como empezar, dales una mirada. \nA veces una simple oración puede hacer volar tu imaginación. Y no te preocupes, voy a poner nuevos todas las semanas.\n\nEl camino del heroe. Si no lo leiste, deberias correr a hacerlo! El hero de las mil caras es el legado que Joseph Campbell le dejo a los escritores. \nSin embargo, si queres refrescar la memoria, o si queres ir derecho a lo que significa, mira la seccion El camino del heroe, contiene todo lo que tenes que saber para comenzar o pulir tu historia.\n\nFeliz escritura!</string>
+
+    <!--Projects String-->
+    <string name="projects_tab">Proyectos</string>
+    <string name="add_projects_btn">Agregar proyecto</string>
+
 
 
     <!--Journey Strings-->

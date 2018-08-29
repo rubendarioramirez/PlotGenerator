@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity
 //        });
 
 
+
+
         //Init the ads
         MobileAds.initialize(this, "ca-app-pub-6696437403163667~6953226633");
 
@@ -113,6 +115,11 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_trigger) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft .replace(R.id.flMain,new TriggerFragment());
+            ft.commit();
+        }
+        else if (id == R.id.nav_char) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft .replace(R.id.flMain,new ProjectFragment());
             ft.commit();
         }
 

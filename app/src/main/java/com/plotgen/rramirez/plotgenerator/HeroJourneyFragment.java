@@ -43,7 +43,7 @@ public class HeroJourneyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        ((MainActivity)getActivity()).setActionBarTitle("Hero Journey");
+        ((MainActivity)getActivity()).setActionBarTitle(getString(R.string.hero_journey_tab));
 
         View myFragmentView =  inflater.inflate(R.layout.fragment_herojourney, container, false);
         mAdView = (AdView) myFragmentView.findViewById(R.id.adView);

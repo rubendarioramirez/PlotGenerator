@@ -51,13 +51,12 @@ public class TriggerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        ((MainActivity)getActivity()).setActionBarTitle("Triggers");
+        ((MainActivity)getActivity()).setActionBarTitle(getString(R.string.trigger_tab));
 
         View myFragmentView = inflater.inflate(R.layout.fragment_trigger, container, false);
 
 
         //Get device lang
-        Log.v("this app", Locale.getDefault().getDisplayLanguage());
         if (Locale.getDefault().getLanguage()=="es"){
             databaseToUse = "triggers_es";
         }
@@ -99,7 +98,6 @@ public class TriggerFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {;
 
                 for (DataSnapshot childSnap : dataSnapshot.getChildren()){
-                    Log.v("tmz",""+ childSnap.getValue(String.class)); //displays the key for the node
                     trigger_list.add(childSnap.getValue(String.class));
                 }
                 for(int i=0;i<trigger_list.size();i++){
