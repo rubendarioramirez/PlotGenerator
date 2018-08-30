@@ -25,7 +25,7 @@ import java.util.ArrayList;
  */
 public class CharListFragment extends Fragment {
 
-    TextView project_list_tv;
+    TextView project_list_tv, empty_character_tv;
     Button add_character_btn;
     ListView character_list_lv;
     ArrayList<String> project_list_array;
@@ -42,7 +42,7 @@ public class CharListFragment extends Fragment {
         // Inflate the layout for this fragment
         ((MainActivity)getActivity()).setActionBarTitle(getString(R.string.character_list_tab));
         //Get the data from the previous fragment
-        String project_name_text = this.getArguments().getString("project_name");
+        final String project_name_text = this.getArguments().getString("project_name");
         final View myFragmentView =   inflater.inflate(R.layout.fragment_char_list, container, false);
 
 
@@ -50,7 +50,7 @@ public class CharListFragment extends Fragment {
         project_list_tv = myFragmentView.findViewById(R.id.project_list_tv);
         add_character_btn = myFragmentView.findViewById(R.id.add_character_btn);
         character_list_lv = myFragmentView.findViewById(R.id.character_list_lv);
-
+        empty_character_tv= myFragmentView.findViewById(R.id.empty_character_tv);
 
         project_list_tv.setText(project_name_text);
 
@@ -59,11 +59,25 @@ public class CharListFragment extends Fragment {
         project_list_array = getProjects(myFragmentView.getContext(), project_name_text.toString());
         itemsAdapter = new ArrayAdapter<String>(myFragmentView.getContext(), android.R.layout.simple_list_item_1, project_list_array);
         character_list_lv.setAdapter(itemsAdapter);
+        character_list_lv.setEmptyView(empty_character_tv);
+        //When the item is click
         character_list_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
-                Log.v("THIS APP", "ITEM CLICK AT POSITION " + itemsAdapter.getItem(position));
+
+                Bundle bundle = new Bundle();
+                bundle.putString("char_name",itemsAdapter.getItem(position));
+                bundle.putString("project_name",project_name_text.toString());
+                //Send it to the next fragment
+                CharacterFragment nextFragment = new CharacterFragment();
+                nextFragment.setArguments(bundle);
+                //Make the transaction
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.addToBackStack(null);
+                transaction.replace(R.id.flMain,nextFragment);
+                transaction.commit();
+
             }
         });
 

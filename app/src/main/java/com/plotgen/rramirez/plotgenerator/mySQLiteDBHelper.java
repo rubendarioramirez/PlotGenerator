@@ -6,8 +6,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class mySQLiteDBHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 2;
-    //TODO Change the name of DB for production database
-    public static final String DATABASE_NAME = "new_database";
+    //public static final String DATABASE_NAME = "test_database";
+    public static final String DATABASE_NAME = "production_database";
     public static final String CHARACTER_TABLE_CHARACTER = "character";
     public static final String CHARACTER_TABLE_PROJECT = "projectname";
     public static final String CHARACTER_COLUMN_ID = "_id";
@@ -16,7 +16,6 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
     public static final String CHARACTER_COLUMN_NICKNAME = "nickname";
     public static final String CHARACTER_COLUMN_AGE = "age";
     public static final String CHARACTER_COLUMN_GENDER = "gender";
-    public static final String CHARACTER_COLUMN_Pbirth = "place of birth";
     public static final String CHARACTER_COLUMN_DESIRE = "desire";
     public static final String CHARACTER_COLUMN_JOB = "profession";
     public static final String CHARACTER_COLUMN_ROLE = "role";
@@ -37,7 +36,6 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
                 CHARACTER_COLUMN_NICKNAME + " TEXT, " +
                 CHARACTER_COLUMN_AGE + " INT UNSIGNED, " +
                 CHARACTER_COLUMN_GENDER + " TEXT, " +
-                CHARACTER_COLUMN_Pbirth + " TEXT, " +
                 CHARACTER_COLUMN_DESIRE + " TEXT, " +
                 CHARACTER_COLUMN_ROLE + " TEXT, " +
                 CHARACTER_COLUMN_DEFMOMENT + " TEXT, " +

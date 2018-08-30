@@ -12,7 +12,7 @@
 
     <!--Tabs-->
     <string name="trigger_tab">Disparadores</string>
-    <string name="character_tab">Personajes</string>
+    <string name="character_tab">Taller</string>
 
     <!--HOME Strings-->
     <string name="home_title">Tu compañero\n de escritura</string>
@@ -32,6 +32,7 @@
     <string name="character_add_name">Nombre</string>
     <string name="character_add_profession">Profesion</string>
     <string name="character_add_age">Edad</string>
+    <string name="character_add_gender">Sexo</string>
     <string name="character_add_defmoment">Momento decisivo</string>
     <string name="character_add_desire">¿Qué quiere?</string>
     <string name="character_add_need">¿Qué necesita?</string>

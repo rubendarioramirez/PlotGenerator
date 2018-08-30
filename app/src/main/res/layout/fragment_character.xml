@@ -41,17 +41,17 @@
 
     <ScrollView
         android:layout_width="0dp"
-        android:layout_height="459dp"
+        android:layout_height="0dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toTopOf="@+id/submit"
+        app:layout_constraintTop_toBottomOf="@+id/project_name_tv"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/project_name_tv"
         app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
@@ -84,7 +84,17 @@
                 android:ems="8"
                 android:inputType="textPersonName"
                 android:text="@string/character_add_age"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/gender_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="27dp"
+                android:ems="8"
+                android:inputType="textPersonName"
+                android:text="@string/character_add_gender"
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/profession_edit_text"
@@ -94,7 +104,7 @@
                 android:ems="8"
                 android:inputType="textPersonName"
                 android:text="@string/character_add_profession"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/placebirth_edit_text"
@@ -104,14 +114,14 @@
                 android:ems="8"
                 android:inputType="textPersonName"
                 android:text="@string/character_add_placebirth"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/textView2_"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/character_story_tv"
                 android:layout_marginTop="27dp"
+                android:text="@string/character_story_tv"
                 android:textSize="18sp" />
 
             <EditText
@@ -122,7 +132,7 @@
                 android:ems="8"
                 android:inputType="textPersonName"
                 android:text="@string/character_add_role"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/defmoment_edit_text"
@@ -132,7 +142,7 @@
                 android:ems="8"
                 android:inputType="textPersonName"
                 android:text="@string/character_add_defmoment"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
 
 
             <EditText
@@ -143,18 +153,18 @@
                 android:ems="8"
                 android:inputType="textPersonName"
                 android:text="@string/character_add_desire"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/need_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="27dp"
                 android:layout_marginBottom="60dp"
+                android:layout_marginTop="27dp"
                 android:ems="8"
                 android:inputType="textPersonName"
                 android:text="@string/character_add_need"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
 
         </LinearLayout>
     </ScrollView>

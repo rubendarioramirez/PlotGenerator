@@ -11,7 +11,7 @@
 
 
     <string name="trigger_tab">Writing Prompts</string>
-    <string name="character_tab">Characters</string>
+    <string name="character_tab">Workshop</string>
 
 
     <!--HOME Strings-->
@@ -24,14 +24,21 @@
     <!--Projects String-->
     <string name="projects_tab">Projects</string>
     <string name="add_projects_btn">Add project</string>
+    <!--TODO Add also in spanish-->
+    <string name="projects_empty_text">Seems that you don\'t have any project yet.
+    Please go ahead and create a new one to get started.</string>
 
     <!--Character String-->
     <string name="character_list_tab">Characters</string>
+    <string name="character_empty_text">Seems that you don\'t have any character yet.
+    Please go ahead and create a new one to get started.</string>
+
     <string name="add_character_btn">Add Character</string>
     <!--Add character-->
     <string name="character_add_name">Name</string>
     <string name="character_add_profession">Profession</string>
     <string name="character_add_age">Age</string>
+    <string name="character_add_gender">Gender</string>
     <string name="character_add_role">Role</string>
     <string name="character_add_placebirth">Place of Birth</string>
     <string name="character_add_defmoment">Defining moment</string>
@@ -43,8 +50,6 @@
     <!--Subtitles-->
     <string name="character_basic_tv">Basic</string>
     <string name="character_story_tv">Story</string>
-
-
 
 
     <!--Journey Strings-->
@@ -93,6 +98,9 @@ Sometimes, the heroes lose their mentor in this stage (e.g. LOTR and Star Wars).
     <string name="hj_desc14">The hero often has (and needs) guides and helpers, sometimes the helpers are the one that need to bring him back to every day life. Especially if the hero has been severely wounded.</string>
     <string name="hj_desc15">Now that he gained all this knowledge and experience, he needs to retain it and integrate it into his human life and or share it with the world.</string>
     <string name="hj_desc16">This step occurs if the hero is a transcendental hero such as Jesus or Buddha. If the hero is human, this may be simply achieving a balance between the material and spiritual world. The hero becomes comfortable and competent in both the inner and outer world.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

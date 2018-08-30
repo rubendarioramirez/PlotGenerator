@@ -22,6 +22,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 
@@ -31,6 +33,7 @@ public class ProjectFragment extends Fragment {
     ListView project_lv;
     ArrayList<String> project_list_array;
     ArrayAdapter<String> itemsAdapter;
+    TextView empty_project_tv;
 
     public ProjectFragment() {
         // Required empty public constructor
@@ -48,11 +51,13 @@ public class ProjectFragment extends Fragment {
 
         addProject = myFragmentView.findViewById(R.id.add_project_btn);
         project_lv  = myFragmentView.findViewById(R.id.project_lv);
+        empty_project_tv = myFragmentView.findViewById(R.id.empty_project_tv);
         final EditText et = new EditText(myFragmentView.getContext());
 
         project_list_array = getProjects(myFragmentView.getContext());
         itemsAdapter = new ArrayAdapter<String>(myFragmentView.getContext(), android.R.layout.simple_list_item_1, project_list_array);
         project_lv.setAdapter(itemsAdapter);
+        project_lv.setEmptyView(empty_project_tv);
 
         project_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -77,6 +82,7 @@ public class ProjectFragment extends Fragment {
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(myFragmentView.getContext());
         // set prompts.xml to alertdialog builder
+        alertDialogBuilder.setTitle(getString(R.string.add_projects_btn));
         alertDialogBuilder.setView(et);
 
         // set dialog message
@@ -109,8 +115,6 @@ public class ProjectFragment extends Fragment {
         ContentValues values = new ContentValues();
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PROJECT, et.getText().toString());
         long newRowId = database.insert(mySQLiteDBHelper.CHARACTER_TABLE_PROJECT, null, values);
-
-        Toast.makeText(this.getContext(), "The new Row Id is " + newRowId, Toast.LENGTH_LONG).show();
 
         project_list_array.add(et.getText().toString());
 
