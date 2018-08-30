@@ -13,8 +13,10 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +31,9 @@ public class CharacterFragment extends Fragment {
     public EditText nameEditText, profession_edit_text, desire_edit_text, age_edit_text, gender_edit_text, placebirth_edit_text, role_edit_text, defmoment_edit_text,need_edit_text;
     public TextView project_name_tv;
     public Button submit;
+    public Spinner gender_spinner;
     ArrayList<String> char_description;
+
 
     public CharacterFragment() {
         // Required empty public constructor
@@ -47,11 +51,22 @@ public class CharacterFragment extends Fragment {
         final String name_text = this.getArguments().getString("char_name");
 
 
+        //Gender spinner functions
+        gender_spinner = myFragmentView.findViewById(R.id.gender_spinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(myFragmentView.getContext(),
+                R.array.gender_spinner_array, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        gender_spinner.setAdapter(adapter);
+
+
+
         //Declare all the elements
         project_name_tv = myFragmentView.findViewById(R.id.project_name_tv);
         nameEditText = myFragmentView.findViewById(R.id.nameEditText);
         age_edit_text = myFragmentView.findViewById(R.id.age_edit_text);
-        gender_edit_text = myFragmentView.findViewById(R.id.gender_edit_text);
         profession_edit_text = myFragmentView.findViewById(R.id.profession_edit_text);
         placebirth_edit_text = myFragmentView.findViewById(R.id.placebirth_edit_text);
         role_edit_text= myFragmentView.findViewById(R.id.role_edit_text);
@@ -66,7 +81,7 @@ public class CharacterFragment extends Fragment {
         project_name_tv.setText(project_name_text);
 
 
-        if (name_text == null){
+        if (name_text == null){ //If it's in create new character mode
             Log.v("this app", "creation mode");
             submit.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -79,13 +94,22 @@ public class CharacterFragment extends Fragment {
             char_description = getDescription(myFragmentView.getContext(), name_text.toString());
             nameEditText.setText(char_description.get(0));
             age_edit_text.setText(char_description.get(1));
-            gender_edit_text.setText(char_description.get(2));
             placebirth_edit_text.setText(char_description.get(3));
             profession_edit_text.setText(char_description.get(4));
             desire_edit_text.setText(char_description.get(5));
             role_edit_text.setText(char_description.get(6));
             defmoment_edit_text.setText(char_description.get(7));
             need_edit_text.setText(char_description.get(8));
+
+
+            //Set the proper spinner value
+            String gender = char_description.get(2);
+            if(gender.equals("Masculino") || gender.equals("Male")){
+                gender_spinner.setSelection(1);
+            } else {
+                gender_spinner.setSelection(2);
+            }
+
 
             submit.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -111,7 +135,7 @@ public class CharacterFragment extends Fragment {
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_JOB, profession_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_DESIRE, desire_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_AGE, age_edit_text.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_GENDER, gender_edit_text.getText().toString());
+        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_GENDER, gender_spinner.getSelectedItem().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_ROLE, role_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_DEFMOMENT, defmoment_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_NEED, need_edit_text.getText().toString());
@@ -134,7 +158,7 @@ public class CharacterFragment extends Fragment {
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_JOB, profession_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_DESIRE, desire_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_AGE, age_edit_text.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_GENDER, gender_edit_text.getText().toString());
+        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_GENDER, gender_spinner.getSelectedItem().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_ROLE, role_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_DEFMOMENT, defmoment_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_NEED, need_edit_text.getText().toString());

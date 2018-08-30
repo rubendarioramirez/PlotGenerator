@@ -82,19 +82,28 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="27dp"
                 android:ems="8"
-                android:inputType="textPersonName"
+                android:inputType="number"
                 android:text="@string/character_add_age"
                 android:textSize="14sp" />
 
-            <EditText
-                android:id="@+id/gender_edit_text"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+            <!--<EditText-->
+                <!--android:id="@+id/gender_edit_text"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_marginTop="27dp"-->
+                <!--android:ems="8"-->
+                <!--android:inputType="textPersonName"-->
+                <!--android:text="@string/character_add_gender"-->
+                <!--android:textSize="14sp" />-->
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/gender_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="27dp"
-                android:ems="8"
-                android:inputType="textPersonName"
-                android:text="@string/character_add_gender"
-                android:textSize="14sp" />
+                android:textSize="14sp" >
+            </android.support.v7.widget.AppCompatSpinner>
+
 
             <EditText
                 android:id="@+id/profession_edit_text"

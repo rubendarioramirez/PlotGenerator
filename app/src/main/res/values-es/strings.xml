@@ -23,16 +23,27 @@
     <!--Projects String-->
     <string name="projects_tab">Proyectos</string>
     <string name="add_projects_btn">Agregar proyecto</string>
+    <string name="projects_empty_text">Parece que aun no tienes ningun proyecto.
+    Por favor crea uno para comenzar.</string>
 
 
     <!--Character String-->
+    <string name="character_bio_title">Biografia</string>
     <string name="character_list_tab">Personajes</string>
+    <string name="character_empty_text">Parece que aun no tienes ningun personaje.
+    Por favor, crea uno para comenzar.</string>
+
     <string name="add_character_btn">Agregar Personaje</string>
     <!--Add character-->
     <string name="character_add_name">Nombre</string>
     <string name="character_add_profession">Profesion</string>
     <string name="character_add_age">Edad</string>
     <string name="character_add_gender">Sexo</string>
+    <string-array name="gender_spinner_array">
+        <item>Sexo</item>
+        <item>Masculino</item>
+        <item>Femenino</item>
+    </string-array>
     <string name="character_add_defmoment">Momento decisivo</string>
     <string name="character_add_desire">¿Qué quiere?</string>
     <string name="character_add_need">¿Qué necesita?</string>

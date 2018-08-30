@@ -70,7 +70,7 @@ public class CharListFragment extends Fragment {
                 bundle.putString("char_name",itemsAdapter.getItem(position));
                 bundle.putString("project_name",project_name_text.toString());
                 //Send it to the next fragment
-                CharacterFragment nextFragment = new CharacterFragment();
+                BioFragment nextFragment = new BioFragment();
                 nextFragment.setArguments(bundle);
                 //Make the transaction
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -80,8 +80,6 @@ public class CharListFragment extends Fragment {
 
             }
         });
-
-
 
 
 
