@@ -50,6 +50,7 @@
     <string name="character_add_role">Rol</string>
     <string name="character_add_placebirth">Lugar de nacimiento</string>
     <string name="character_save_btn">Guardar</string>
+    <string name="character_random_btn">Generar</string>
 
     <!--Subtitles-->
     <string name="character_basic_tv">Basico</string>

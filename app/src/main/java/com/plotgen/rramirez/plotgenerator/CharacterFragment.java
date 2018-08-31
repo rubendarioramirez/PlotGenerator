@@ -20,7 +20,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.commons.lang3.text.WordUtils;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
 
 
 /**
@@ -28,9 +32,9 @@ import java.util.ArrayList;
  */
 public class CharacterFragment extends Fragment {
 
-    public EditText nameEditText, profession_edit_text, desire_edit_text, age_edit_text, gender_edit_text, placebirth_edit_text, role_edit_text, defmoment_edit_text,need_edit_text;
+    public EditText nameEditText, profession_edit_text, desire_edit_text, age_edit_text, placebirth_edit_text, role_edit_text, defmoment_edit_text,need_edit_text;
     public TextView project_name_tv;
-    public Button submit;
+    public Button submit, random_gen_char_btn;
     public Spinner gender_spinner;
     ArrayList<String> char_description;
 
@@ -41,11 +45,11 @@ public class CharacterFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         ((MainActivity)getActivity()).setActionBarTitle(getString(R.string.character_tab));
-        View myFragmentView = inflater.inflate(R.layout.fragment_character, container, false);
+        final View myFragmentView = inflater.inflate(R.layout.fragment_character, container, false);
 
         final String project_name_text = this.getArguments().getString("project_name");
         final String name_text = this.getArguments().getString("char_name");
@@ -75,6 +79,7 @@ public class CharacterFragment extends Fragment {
         need_edit_text= myFragmentView.findViewById(R.id.need_edit_text);
         //Save button action
         submit =  myFragmentView.findViewById(R.id.submit);
+        random_gen_char_btn = myFragmentView.findViewById(R.id.random_gen_char_btn);
 
 
         //Set the title
@@ -82,10 +87,8 @@ public class CharacterFragment extends Fragment {
 
 
         if (name_text == null){ //If it's in create new character mode
-            Log.v("this app", "creation mode");
             submit.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    // Perform action on click
                     saveToDB();
                 }
             });
@@ -101,7 +104,6 @@ public class CharacterFragment extends Fragment {
             defmoment_edit_text.setText(char_description.get(7));
             need_edit_text.setText(char_description.get(8));
 
-
             //Set the proper spinner value
             String gender = char_description.get(2);
             if(gender.equals("Masculino") || gender.equals("Male")){
@@ -110,23 +112,103 @@ public class CharacterFragment extends Fragment {
                 gender_spinner.setSelection(2);
             }
 
-
             submit.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     // Perform action on click
                     updateDB(name_text.toString(), project_name_text.toString());
                 }
             });
-
-
         }
 
+        //Random generation
+        random_gen_char_btn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Perform action on click
+                ArrayList<String> info = generateBIO(myFragmentView.getContext());
+
+                nameEditText.setText(info.get(0));
+                placebirth_edit_text.setText(info.get(1));
+                age_edit_text.setText(info.get(2));
+                gender_spinner.setSelection(Integer.valueOf(info.get(3)));
+                profession_edit_text.setText(info.get(4));
+                desire_edit_text.setText(info.get(5));
+                defmoment_edit_text.setText("Randomly generated");
+                need_edit_text.setText("Randomly generated");
+
+            }
+        });
 
 
 
 
         return myFragmentView;
     }
+
+
+    private ArrayList<String> generateBIO(Context context){
+
+        ArrayList<String> male_names = new ArrayList<String>(100);
+        ArrayList<String> female_names = new ArrayList<String>(100);
+        ArrayList<String> last_name = new ArrayList<String>(100);
+        ArrayList<String> placeOfBirth = new ArrayList<String>(100);
+        ArrayList<String> profession = new ArrayList<String>(100);
+        ArrayList<String> desire = new ArrayList<String>();
+        ArrayList<String> bio = new ArrayList<String>();
+        String selectedName;
+
+
+        male_names.addAll(Arrays.asList("James", "John", "Robert", "Michael", "William", "David", "Richard","Joseph", "Thomas", "Charles", "Christopher", "Daniel", "Matthew", "Anthony", "Donald", "Mark", "Paul", "Steven", "Andrew", "Kenneth", "George", "Joshua", "Kevin", "Brian", "Edward", "Ronald", "Timothy", "Jason", "Jeffrey", "Ryan", "Jacob", "Gary", "Nicholas", "Eric", "Stephen", "Jonathan", "Larry","Justin", "Scott", "Brandon","Frank", "Benjamin","Gregory" ,"Raymond" ,"Samuel", "Patrick", "Alexander" ,"Jack"));
+        female_names.addAll(Arrays.asList("Mary", "Patricia","Jennifer", "Linda", "Elizabeth", "Barbara", "Susan", "Jessica", "Sarah", "Margaret", "Karen", "Nancy", "Lisa", "Betty", "Dorothy", "Sandra", "Ashley", "Kimberly", "Donna", "Emily", "Carol", "Michelle", "Amanda", "Melissa", "Deborah", "Stephanie", "Rebecca", "Laura", "Helen", "Sharon", "Cynthia", "Kathleen", "Amy", "Shirley", "Angela", "Anna", "Ruth", "Brenda", "Pamela", "Nicole", "Katherine", "Samantha", "Christine", "Catherine", "Virginia", "Debra", "Rachel", "Janet", "Emma", "Carolyn", "Maria", "Heather", "Diane", "Julie", "Joyce", "Evelyn", "Joan", "Victoria", "Kelly", "Christina", "Lauren", "Frances", "Martha", "Judith", "Cheryl", "Megan", "Andrea", "Olivia", "Ann", "Jean", "Alice", "Jacqueline", "Hannah", "Doris", "Kathryn", "Gloria", "Teresa", "Sara", "Janice", "Marie", "Julia", "Grace", "Judy", "Theresa", "Beverly", "Denise", "Marilyn", "Amber", "Danielle", "Rose", "Brittany", "Diana", "Abigail", "Natalie", "Jane", "Lori", "Alexis", "Tiffany", "Kayla"));
+        last_name.addAll(Arrays.asList("SMITH", "JOHNSON", "WILLIAMS", "JONES", "BROWN", "DAVIS", "MILLER", "WILSON", "MOORE", "TAYLOR", "ANDERSON", "THOMAS", "JACKSON", "WHITE", "HARRIS", "MARTIN", "THOMPSON", "GARCIA", "MARTINEZ", "ROBINSON", "CLARK", "RODRIGUEZ", "LEWIS", "LEE", "WALKER", "HALL", "ALLEN", "YOUNG", "HERNANDEZ", "KING", "WRIGHT", "LOPEZ", "HILL","SCOTT", "GREEN", "ADAMS", "BAKER", "GONZALEZ", "NELSON", "CARTER", "MITCHELL", "PEREZ", "ROBERTS", "TURNER", "PHILLIPS", "CAMPBELL", "PARKER", "EVANS", "EDWARDS", "COLLINS", "STEWART", "SANCHEZ", "MORRIS", "ROGERS", "REED", "COOK", "MORGAN", "BELL", "MURPHY", "BAILEY", "RIVERA", "COOPER", "RICHARDSON"));
+        placeOfBirth.addAll(Arrays.asList(context.getResources().getStringArray(R.array.placebirth_array)));
+        profession.addAll(Arrays.asList(context.getResources().getStringArray(R.array.profession_array)));
+        desire.addAll(Arrays.asList(context.getResources().getStringArray(R.array.desire_array)));
+
+        //Generate the new random Instance
+        Random r = new Random();
+
+        //Gender randomizer
+        int gender = (r.nextInt(2) + 1);
+
+        //NAME RANDOMIZER
+        int index = (r.nextInt(male_names.size()));
+        int index2 = (r.nextInt(female_names.size()));
+        int index3 = (r.nextInt(last_name.size()));
+        //Depending the gender which name to pick
+        if(gender == 1) {
+            selectedName = male_names.get(index);
+        } else {
+            selectedName = female_names.get(index2);
+        }
+        String selectedLastName =last_name.get(index3).toLowerCase();
+        String completeName = selectedName + " " + WordUtils.capitalize(selectedLastName);
+
+        //Place of birth
+        int index4 = (r.nextInt(placeOfBirth.size()));
+        String placeBirth = placeOfBirth.get(index4);
+
+        //Age randomizer
+        int age = (r.nextInt(80) + 12);
+
+        //Profession
+        int index5 = (r.nextInt(profession.size()));
+        String job = profession.get(index5);
+
+        //Desire
+        int index6 = (r.nextInt(desire.size()));
+        String wish = desire.get(index6);
+
+        //Fill the list
+        bio.add(completeName);
+        bio.add(placeBirth);
+        bio.add(String.valueOf(age));
+        bio.add(String.valueOf(gender));
+        bio.add(job);
+        bio.add(wish);
+        return bio;
+
+    }
+
 
     private void saveToDB() {
         SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
@@ -194,7 +276,6 @@ public class CharacterFragment extends Fragment {
         cursor.close();
         return char_list;
     }
-
 
 
     public void fragmentTransition(){

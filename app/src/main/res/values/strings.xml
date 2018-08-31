@@ -37,6 +37,56 @@
     <!--Add character-->
     <string name="character_add_name">Name</string>
     <string name="character_add_profession">Profession</string>
+    <string-array name="profession_array">
+        <item>Retail salespersons</item>
+        <item>Cashier</item>
+        <item>Office clerk</item>
+        <item>Nurse</item>
+        <item>Waiter</item>
+        <item>Customer Service representative</item>
+        <item>Janitor</item>
+        <item>Cleaner</item>
+        <item>Secretary</item>
+        <item>Store clerk</item>
+        <item>General manager</item>
+        <item>Operation manager</item>
+        <item>Auditing clerk</item>
+        <item>Truck driver</item>
+        <item>Sale representative</item>
+        <item>Teacher</item>
+        <item>Teacher assistant</item>
+        <item>Repair worker</item>
+        <item>Accountant</item>
+        <item>Security Guard</item>
+        <item>Receptionist</item>
+        <item>Information clerk</item>
+        <item>Restaurant cook</item>
+        <item>Housekeeping</item>
+        <item>Construction laborer</item>
+        <item>Police officer</item>
+        <item>Sheriff</item>
+        <item>Carpenter</item>
+        <item>Fireman</item>
+        <item>Merchant</item>
+        <item>Sailor</item>
+        <item>Ship Captain</item>
+        <item>Mechanic</item>
+        <item>Programmer</item>
+        <item>IT consultant</item>
+        <item>Lawyer</item>
+        <item>Fortune teller</item>
+        <item>Fast food cook</item>
+        <item>Electrician</item>
+        <item>Dish washer</item>
+        <item>Bartender</item>
+        <item>Inspector</item>
+        <item>Tester</item>
+        <item>Human resource manager</item>
+        <item>Machinist</item>
+        <item>Hairdresser</item>
+        <item>Postal service mail carrier</item>
+        <item>Dental assistant</item>
+    </string-array>
     <string name="character_add_age">Age</string>
     <string name="character_add_gender">Gender</string>
     <string-array name="gender_spinner_array">
@@ -46,16 +96,81 @@
     </string-array>
     <string name="character_add_role">Role</string>
     <string name="character_add_placebirth">Place of Birth</string>
+    <string-array name="placebirth_array">
+        <item>London</item>
+        <item>France</item>
+        <item>New York</item>
+        <item>Washington DC</item>
+        <item>Madrid</item>
+        <item>Barcelona</item>
+        <item>Marocoo</item>
+        <item>Dubai</item>
+        <item>Singapore</item>
+        <item>Berlin</item>
+        <item>Montreal</item>
+        <item>Buenos Aires</item>
+        <item>Moscow</item>
+        <item>Munich</item>
+        <item>Mumbai</item>
+        <item>Dublin</item>
+        <item>Chennai</item>
+        <item>Los Angeles</item>
+        <item>Prague</item>
+    </string-array>
     <string name="character_add_defmoment">Defining moment</string>
     <string name="character_add_desire">What he/she wants?</string>
+    <string-array name="desire_array">
+        <item>be loved</item>
+        <item>be fear</item>
+        <item>be accepted</item>
+        <item>be rich</item>
+        <item>achieve perfection</item>
+        <item>apology</item>
+        <item>avoid conflict</item>
+        <item>avoid pain</item>
+        <item>be acknowledged</item>
+        <item>be bad</item>
+        <item>be good</item>
+        <item>be normal</item>
+        <item>be remembered</item>
+        <item>be respected</item>
+        <item>be someone else</item>
+        <item>be special</item>
+        <item>be beauty</item>
+        <item>being strong</item>
+        <item>cheat death</item>
+        <item>comfort</item>
+        <item>face fears</item>
+        <item>fame</item>
+        <item>fortune</item>
+        <item>find a purpose</item>
+        <item>find adventure</item>
+        <item>fit in</item>
+        <item>freedom</item>
+        <item>independence</item>
+        <item>get somewhere</item>
+        <item>leave town</item>
+        <item>glory</item>
+        <item>revange</item>
+        <item>justice</item>
+        <item>knowledge</item>
+        <item>not be lonely</item>
+        <item>power</item>
+        <item>redemption</item>
+        <item>repay a debt</item>
+        <item>safety</item>
+        <item>stand out</item>
+        <item>to die</item>
+        <item>to survive</item>
+    </string-array>
     <string name="character_add_need">What he/she needs?</string>
     <string name="character_save_btn">Save</string>
+    <string name="character_random_btn">Generate</string>
 
 
     <!--Subtitles-->
     <string name="character_basic_tv">Basic</string>
     <string name="character_story_tv">Story</string>
-
 
     <!--Journey Strings-->
     <string name="hero_journey_tab">The hero journey</string>
