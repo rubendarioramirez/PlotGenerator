@@ -96,16 +96,6 @@
                 android:text="@string/character_add_age"
                 android:textSize="14sp" />
 
-            <!--<EditText-->
-            <!--android:id="@+id/gender_edit_text"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_marginTop="27dp"-->
-            <!--android:ems="8"-->
-            <!--android:inputType="textPersonName"-->
-            <!--android:text="@string/character_add_gender"-->
-            <!--android:textSize="14sp" />-->
-
             <android.support.v7.widget.AppCompatSpinner
                 android:id="@+id/gender_spinner"
                 android:layout_width="wrap_content"
@@ -132,6 +122,44 @@
                 android:ems="8"
                 android:inputType="textPersonName"
                 android:text="@string/character_add_placebirth"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="27dp"
+                android:text="@string/character_personality_tv"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/trait_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="12dp"
+                android:ems="8"
+                android:inputType="textPersonName"
+                android:text="@string/character_add_trait"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/trait_2_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="12dp"
+                android:ems="8"
+                android:inputType="textPersonName"
+                android:text="@string/character_add_trait"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/trait_3_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="12dp"
+                android:ems="8"
+                android:inputType="textPersonName"
+                android:text="@string/character_add_trait"
                 android:textSize="14sp" />
 
             <TextView

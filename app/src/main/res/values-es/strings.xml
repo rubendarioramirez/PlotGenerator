@@ -15,10 +15,12 @@
     <string name="character_tab">Taller</string>
 
     <!--HOME Strings-->
-    <string name="home_title">Tu compañero\n de escritura</string>
+    <string name="home_title">La unica cosa que realmente\n sabemos
+        sobre la naturaleza humana,\n es que cambia.\n\nOscar Wilde</string>
     <string name="home_tab">Principal</string>
     <string name="home_header">Enfocate en escribir...</string>
-    <string name="home_desc">Si amas escribir, entonces estas en el lugar correcto.\nHice esta aplicación porque amo escribir, y por eso se lo que es estar bloqueado, perdido o simplemente perder el foco.\nEn realidad, hice esta aplicación para mi, pero creo que puede ayudarte también.\nHay dos cosas que te pueden interesar por el momento.\n\nDisparadores, cuando estes perdido o no sepas como empezar, dales una mirada. \nA veces una simple oración puede hacer volar tu imaginación. Y no te preocupes, voy a poner nuevos todas las semanas.\n\nEl camino del heroe. Si no lo leiste, deberias correr a hacerlo! El hero de las mil caras es el legado que Joseph Campbell le dejo a los escritores. \nSin embargo, si queres refrescar la memoria, o si queres ir derecho a lo que significa, mira la seccion El camino del heroe, contiene todo lo que tenes que saber para comenzar o pulir tu historia.\n\nFeliz escritura!</string>
+    <string name="home_desc">Si amas escribir, entonces estas en el lugar correcto.\nHice esta aplicación porque amo escribir, y por eso se lo que es estar bloqueado, perdido o simplemente perder el foco.\nEn realidad, hice esta aplicación para mi, pero creo que puede ayudarte también.\nHay tres cosas que te pueden interesar por el momento.\n\nDisparadores, cuando estes perdido o no sepas como empezar, dales una mirada. \nA veces una simple oración puede hacer volar tu imaginación. Y no te preocupes, voy a poner nuevos todas las semanas.\n\nEl camino del heroe. Si no lo leiste, deberias correr a hacerlo! El hero de las mil caras es el legado que Joseph Campbell le dejo a los escritores. \nSin embargo, si queres refrescar la memoria, o si queres ir derecho a lo que significa, mira la seccion El camino del heroe, contiene todo lo que tenes que saber para comenzar o pulir tu historia.
+        \n\nPor ultimo pero no menos importante, el TALLER. Ahi podes crear tu novela o guion, crear personajes (tantos como sea necesario) y no te preocupes si estas bloqueado, el generador de personajes te tiene cubierto. \n\nFeliz escritura!</string>
 
     <!--Projects String-->
     <string name="projects_tab">Proyectos</string>
@@ -35,8 +37,59 @@
 
     <string name="add_character_btn">Agregar Personaje</string>
     <!--Add character-->
+    <string name="character_personality_tv">Personalidad</string>
     <string name="character_add_name">Nombre</string>
     <string name="character_add_profession">Profesion</string>
+    <string-array name="profession_array">
+        <item>Vendedor</item>
+        <item>Cajero</item>
+        <item>Oficinista</item>
+        <item>Enfermero</item>
+        <item>Mozo</item>
+        <item>representante de atencion al publico</item>
+        <item>Bedel</item>
+        <item>Personal de limpieza</item>
+        <item>Secretario</item>
+        <item>Ayudante de una tienda</item>
+        <item>Gerente general</item>
+        <item>Gerente de operaciones</item>
+        <item>Personal de auditoria</item>
+        <item>Conductor de camión</item>
+        <item>Representante de ventas</item>
+        <item>Profesor</item>
+        <item>Asistente de profesor</item>
+        <item>Reparaciones</item>
+        <item>Contador</item>
+        <item>Guardia de seguridad</item>
+        <item>Recepcionista</item>
+        <item>Atencion al publico</item>
+        <item>Cocinero de restaurant</item>
+        <item>Mucama</item>
+        <item>Trabajador de construccion</item>
+        <item>Oficial de policia</item>
+        <item>Sheriff</item>
+        <item>Carpintero</item>
+        <item>Bombero</item>
+        <item>Mercader</item>
+        <item>Navegante</item>
+        <item>Capitan de barco</item>
+        <item>Mecanico</item>
+        <item>Programador</item>
+        <item>Consultor de IT</item>
+        <item>Abogado</item>
+        <item>Tarotista</item>
+        <item>Cocinero de fast food</item>
+        <item>Electricista</item>
+        <item>Lavaplatos</item>
+        <item>Barman</item>
+        <item>Inspector</item>
+        <item>Tester</item>
+        <item>Gerente de recursos humanos</item>
+        <item>Maquinista</item>
+        <item>Estilista</item>
+        <item>Cartero</item>
+        <item>Dentista</item>
+    </string-array>
     <string name="character_add_age">Edad</string>
     <string name="character_add_gender">Sexo</string>
     <string-array name="gender_spinner_array">
@@ -44,11 +97,161 @@
         <item>Masculino</item>
         <item>Femenino</item>
     </string-array>
-    <string name="character_add_defmoment">Momento decisivo</string>
+    <string name="character_add_defmoment">Momento de su infancia</string>
+    <string-array name="defmoment_array">
+        <item>sus padres fueron asesinados</item>
+        <item>sufrio una gran predida</item>
+        <item>viajo a un pais desconocido</item>
+        <item>se perdio</item>
+        <item>prescencio un asesinato</item>
+        <item>encontro un artefacto misterioso</item>
+        <item>esconde un gran secreto</item>
+        <item>sus padres se divorciaron</item>
+        <item>en el colegio le hacian bullying</item>
+        <item>tuvo un accidente automovilistico</item>
+        <item>sufrio un gran accidente</item>
+        <item>fue adoptado</item>
+        <item>se mudo de su ciudad, lejos de sus amigos</item>
+        <item>no tuvo amigos</item>
+        <item>estuvo paralizado</item>
+    </string-array>
     <string name="character_add_desire">¿Qué quiere?</string>
+    <string-array name="desire_array">
+        <item>ser amado</item>
+        <item>ser temido</item>
+        <item>ser aceptado</item>
+        <item>ser rico</item>
+        <item>alcanzar la perfección</item>
+        <item>arrepentirse</item>
+        <item>evitar conflictos</item>
+        <item>evitar el dolor</item>
+        <item>ser reconocido</item>
+        <item>ser malo</item>
+        <item>ser bueno</item>
+        <item>ser normal</item>
+        <item>ser recordado</item>
+        <item>ser respetado</item>
+        <item>ser alguien mas</item>
+        <item>ser especial</item>
+        <item>ser hermoso</item>
+        <item>ser fuerte</item>
+        <item>esquivar la muerte</item>
+        <item>comfort</item>
+        <item>enfrentar sus miedos</item>
+        <item>fama</item>
+        <item>fortuna</item>
+        <item>encontrar un proposito</item>
+        <item>encontrar adventura</item>
+        <item>encajar</item>
+        <item>libertad</item>
+        <item>independencia</item>
+        <item>irse</item>
+        <item>dejar la ciudad</item>
+        <item>alcanzar la gloria</item>
+        <item>vengarse</item>
+        <item>justicia</item>
+        <item>conocimiento</item>
+        <item>no estar solo</item>
+        <item>poder</item>
+        <item>redempcion</item>
+        <item>pagar una deuda</item>
+        <item>seguridad</item>
+        <item>resaltar</item>
+        <item>morirse</item>
+        <item>sobrevivir</item>
+    </string-array>
     <string name="character_add_need">¿Qué necesita?</string>
+    <string-array name="need_array">
+        <item>ser aceptado</item>
+        <item>ser amado</item>
+        <item>confiar en los demas</item>
+        <item>escapar</item>
+        <item>ser reconocido</item>
+        <item>confrontar sus miedos</item>
+        <item>ponerse firme</item>
+        <item>aceptar la realidad</item>
+        <item>amar a su familia</item>
+        <item>volver a su casa</item>
+        <item>encontrar el amor</item>
+        <item>confiar nuevamente</item>
+        <item>ser responsable</item>
+        <item>crecer</item>
+        <item>madurar</item>
+        <item>cruzar sus limites</item>
+        <item>dejar de aceptar el status-quo</item>
+    </string-array>
+
     <string name="character_add_role">Rol</string>
     <string name="character_add_placebirth">Lugar de nacimiento</string>
+    <string name="character_add_trait">Atributo</string>
+    <string-array name="trait_array">
+        <item>Conciente</item>
+        <item>Ambicioso</item>
+        <item>Altruista</item>
+        <item>Candido</item>
+        <item>Con confianza</item>
+        <item>Calmo</item>
+        <item>Valiente</item>
+        <item>Dependiente</item>
+        <item>Determinado</item>
+        <item>Facil de llevar</item>
+        <item>Creativo</item>
+        <item>Etico</item>
+        <item>Justo</item>
+        <item>Devoto</item>
+        <item>Maternal</item>
+        <item>Inocente</item>
+        <item>Bueno</item>
+        <item>Amoroso</item>
+        <item>Desinteresado</item>
+        <item>Sincero</item>
+        <item>Listo</item>
+        <item>Inteligente</item>
+        <item>Leal</item>
+        <item>Maduro</item>
+        <item>Modesto</item>
+        <item>Paciente</item>
+        <item>Ingenioso</item>
+        <item>Serio</item>
+        <item>Divertido</item>
+        <item>Respetuoso</item>
+        <item>Responsable</item>
+        <item>Trabajador</item>
+        <item>Animado</item>
+        <item>Cauto</item>
+        <item>Atento</item>
+        <item>Mente abierta</item>
+        <item>Obediente</item>
+        <item>Optimista</item>
+        <item>Organizado</item>
+        <item>Social</item>
+        <item>Fuerte</item>
+        <item>Duro</item>
+        <item>Buen lider</item>
+        <item>Buen amigo</item>
+        <item>Inpredecible</item>
+    </string-array>
+    <string-array name="placebirth_array">
+        <item>Londres</item>
+        <item>Francia</item>
+        <item>New York</item>
+        <item>Washington DC</item>
+        <item>Madrid</item>
+        <item>Barcelona</item>
+        <item>Marruecos</item>
+        <item>Dubai</item>
+        <item>Singapore</item>
+        <item>Berlin</item>
+        <item>Montreal</item>
+        <item>Buenos Aires</item>
+        <item>Moscu</item>
+        <item>Munich</item>
+        <item>Mumbai</item>
+        <item>Dublin</item>
+        <item>Chennai</item>
+        <item>Los Angeles</item>
+        <item>Praga</item>
+    </string-array>
     <string name="character_save_btn">Guardar</string>
     <string name="character_random_btn">Generar</string>
 
@@ -103,5 +306,10 @@ A veces, el heroe puede incluso perder a su mentor en esta etapa (Ejemplo: LOTR 
     <string name="hj_desc15">Ahora que el heroe ha ganado tanta experiencia y sabiduria, tiene que retenerla y usarla en su vida cotidiana, incluso compartirla con el mundo.</string>
     <string name="hj_desc16">Este paso ocurre si el heroe es trascendental como Jesus o Buddha. Si el heroe es humano, esto solamente es un simple balance entre el mundo espiritual y el mundo real. El hereo ahora esta a gusto en su mundo ordinario pero tambien en su mundo especial.</string>
 
+    <!--Rate app-->
+    <string name="rate_app">Ayudame a mejorar!</string>
+    <string name="rate_app_des">No es facil hacer una app. Sobretodo hacerlo gratis.\nMe ayudaria mucho si pusieras feedback en Playstore. De esta manera mas gente puede verla y disfrutarla.</string>
+    <string name="rate_submit">Dar feedback!</string>
+    <string name="rate_cancel">No todavia</string>
 
 </resources>

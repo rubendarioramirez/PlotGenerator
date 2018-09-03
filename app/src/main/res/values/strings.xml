@@ -15,10 +15,11 @@
 
 
     <!--HOME Strings-->
-    <string name="home_title">Your writing\n companion</string>
+    <string name="home_title">The only thing that one\n really knows about human nature\n is that it changes.\n\nOscar Wilde</string>
     <string name="home_tab">Home</string>
     <string name="home_header">Focus on writing...</string>
-    <string name="home_desc">If you love to write, then you\'re in the right place.\nI made this app because I also love writing as well but I know the struggle with writer\'s block, being lost or just losing focus.\nActually, I did this app for me but I believe it can also help you.\nThere are two things at the moment that you may find interesting.\n\nWriting prompts, whenever you\'re lost or you don\'t know how to start or how to continue, check them out. \nA simple sentence that will let your imagination fly away. And don\'t worry I\'ll post new ones weekly.\n\nThe Hero Journey. If you didn\'t read it, go running to get it! That\'s Joseph Campbell legacy for writers. \nHowever if you did read it and you want a refreshment, or you just want to go to the meat, check out The Hero Journey section, it contains all you have to know for your hero and it\'s journey.\n\nHave a great writing!</string>
+    <string name="home_desc">If you love to write, then you\'re in the right place.\nI made this app because I also love writing as well but I know the struggle with writer\'s block, being lost or just losing focus.\nActually, I did this app for me but I believe it can also help you.\nThere are three things at the moment that you may find interesting.\n\nWriting prompts, whenever you\'re lost or you don\'t know how to start or how to continue, check them out. \nA simple sentence that will let your imagination fly away. And don\'t worry I\'ll post new ones weekly.\n\nThe Hero Journey. If you didn\'t read it, go running to get it! That\'s Joseph Campbell legacy for writers. \nHowever if you did read it and you want a refreshment, or you just want to go to the meat, check out The Hero Journey section, it contains all you have to know for your hero and it\'s journey.
+        \n\nLast but not least, check out the workshop. It contains what you need to track and develop your characters. Create a project, then add characters and don\t worry if you are a bit block. I got your back with the generator function, that will generate traits, desires and needs for you.\n\nHave a great writing!</string>
 
 
     <!--Projects String-->
@@ -96,6 +97,54 @@
     </string-array>
     <string name="character_add_role">Role</string>
     <string name="character_add_placebirth">Place of Birth</string>
+    <string name="character_add_trait">Trait</string>
+    <string-array name="trait_array">
+        <item>Aware</item>
+        <item>Ambitious</item>
+        <item>Altruistic</item>
+        <item>Candid</item>
+        <item>Confident</item>
+        <item>Calm</item>
+        <item>Brave</item>
+        <item>Dependable</item>
+        <item>Determined</item>
+        <item>Easy-going</item>
+        <item>Creative</item>
+        <item>Ethical</item>
+        <item>Fair</item>
+        <item>Devoted</item>
+        <item>Maternal</item>
+        <item>Inocent</item>
+        <item>Kind</item>
+        <item>Loving</item>
+        <item>Selfless</item>
+        <item>Sincere</item>
+        <item>Smart</item>
+        <item>Inteligent</item>
+        <item>Loyal</item>
+        <item>Mature</item>
+        <item>Modest</item>
+        <item>Patient</item>
+        <item>Witty</item>
+        <item>Serious</item>
+        <item>Fun</item>
+        <item>Respectful</item>
+        <item>Responsable</item>
+        <item>Hardworking</item>
+        <item>Cheerful</item>
+        <item>Cautious</item>
+        <item>Helpful</item>
+        <item>Open-minded</item>
+        <item>Obedient</item>
+        <item>Optimistic</item>
+        <item>Organized</item>
+        <item>Social</item>
+        <item>Strong</item>
+        <item>Tough</item>
+        <item>Good leader</item>
+        <item>Good Friend</item>
+        <item>Unpredictable</item>
+    </string-array>
     <string-array name="placebirth_array">
         <item>London</item>
         <item>France</item>
@@ -117,7 +166,24 @@
         <item>Los Angeles</item>
         <item>Prague</item>
     </string-array>
-    <string name="character_add_defmoment">Defining moment</string>
+    <string name="character_add_defmoment">Childhood moment</string>
+    <string-array name="defmoment_array">
+        <item>parents got killed</item>
+        <item>a big loss</item>
+        <item>a trip to a foreing country</item>
+        <item>got lost</item>
+        <item>witness a murder</item>
+        <item>found an artifact</item>
+        <item>hide a big secret</item>
+        <item>parents divorced</item>
+        <item>was bullied at school</item>
+        <item>had a car accident</item>
+        <item>had a big accident</item>
+        <item>was adopted</item>
+        <item>moved to another city</item>
+        <item>had no friends</item>
+        <item>was paralyzed</item>
+    </string-array>
     <string name="character_add_desire">What he/she wants?</string>
     <string-array name="desire_array">
         <item>be loved</item>
@@ -164,6 +230,27 @@
         <item>to survive</item>
     </string-array>
     <string name="character_add_need">What he/she needs?</string>
+    <string-array name="need_array">
+        <item>be accepted</item>
+        <item>be loved</item>
+        <item>trust others</item>
+        <item>runaway</item>
+        <item>be acknowledged</item>
+        <item>fight back</item>
+        <item>confront fears</item>
+        <item>stand his ground</item>
+        <item>accept reality</item>
+        <item>love his family</item>
+        <item>come back home</item>
+        <item>find love</item>
+        <item>trust again</item>
+        <item>be responsable</item>
+        <item>grow up</item>
+        <item>mature</item>
+        <item>push his limits</item>
+        <item>stop accepting the status-quo</item>
+    </string-array>
+
     <string name="character_save_btn">Save</string>
     <string name="character_random_btn">Generate</string>
 
@@ -171,6 +258,8 @@
     <!--Subtitles-->
     <string name="character_basic_tv">Basic</string>
     <string name="character_story_tv">Story</string>
+    <string name="character_personality_tv">Personality</string>
+
 
     <!--Journey Strings-->
     <string name="hero_journey_tab">The hero journey</string>
@@ -219,4 +308,10 @@ Sometimes, the heroes lose their mentor in this stage (e.g. LOTR and Star Wars).
     <string name="hj_desc15">Now that he gained all this knowledge and experience, he needs to retain it and integrate it into his human life and or share it with the world.</string>
     <string name="hj_desc16">This step occurs if the hero is a transcendental hero such as Jesus or Buddha. If the hero is human, this may be simply achieving a balance between the material and spiritual world. The hero becomes comfortable and competent in both the inner and outer world.</string>
 
+
+    <!--Rate app-->
+    <string name="rate_app">Help me improve it!</string>
+    <string name="rate_app_des">It\'s not easy to make an app. Even harder if it\'s for free. If you liked it!\nHelp me spread it by rating it.</string>
+    <string name="rate_submit">Rate it!</string>
+    <string name="rate_cancel">Not yet</string>
 </resources>

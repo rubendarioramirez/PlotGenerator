@@ -1,15 +1,18 @@
 package com.plotgen.rramirez.plotgenerator;
 
 
+import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,24 +21,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.apache.commons.lang3.text.WordUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.ListIterator;
 import java.util.Random;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class CharacterFragment extends Fragment {
 
-    public EditText nameEditText, profession_edit_text, desire_edit_text, age_edit_text, placebirth_edit_text, role_edit_text, defmoment_edit_text,need_edit_text;
+    public EditText nameEditText, profession_edit_text, desire_edit_text, age_edit_text, placebirth_edit_text, role_edit_text, defmoment_edit_text,need_edit_text, trait_edit_text, trait2_edit_text,trait3_edit_text;
     public TextView project_name_tv;
     public Button submit, random_gen_char_btn;
     public Spinner gender_spinner;
+    public static boolean rated;
     ArrayList<String> char_description;
 
 
@@ -77,6 +78,9 @@ public class CharacterFragment extends Fragment {
         defmoment_edit_text= myFragmentView.findViewById(R.id.defmoment_edit_text);
         desire_edit_text = myFragmentView.findViewById(R.id.desire_edit_text);
         need_edit_text= myFragmentView.findViewById(R.id.need_edit_text);
+        trait_edit_text= myFragmentView.findViewById(R.id.trait_edit_text);
+        trait2_edit_text= myFragmentView.findViewById(R.id.trait_2_edit_text);
+        trait3_edit_text= myFragmentView.findViewById(R.id.trait_3_edit_text);
         //Save button action
         submit =  myFragmentView.findViewById(R.id.submit);
         random_gen_char_btn = myFragmentView.findViewById(R.id.random_gen_char_btn);
@@ -103,6 +107,10 @@ public class CharacterFragment extends Fragment {
             role_edit_text.setText(char_description.get(6));
             defmoment_edit_text.setText(char_description.get(7));
             need_edit_text.setText(char_description.get(8));
+            trait_edit_text.setText(char_description.get(9));
+            trait2_edit_text.setText(char_description.get(10));
+            trait3_edit_text.setText(char_description.get(11));
+
 
             //Set the proper spinner value
             String gender = char_description.get(2);
@@ -118,6 +126,10 @@ public class CharacterFragment extends Fragment {
                     updateDB(name_text.toString(), project_name_text.toString());
                 }
             });
+
+            if(!rated) {
+                showRateDialogForRate(myFragmentView.getContext());
+            }
         }
 
         //Random generation
@@ -132,8 +144,12 @@ public class CharacterFragment extends Fragment {
                 gender_spinner.setSelection(Integer.valueOf(info.get(3)));
                 profession_edit_text.setText(info.get(4));
                 desire_edit_text.setText(info.get(5));
-                defmoment_edit_text.setText("Randomly generated");
-                need_edit_text.setText("Randomly generated");
+                defmoment_edit_text.setText(info.get(6));
+                trait_edit_text.setText(info.get(7));
+                trait2_edit_text.setText(info.get(8));
+                trait3_edit_text.setText(info.get(9));
+                need_edit_text.setText(info.get(10));
+
 
             }
         });
@@ -153,6 +169,9 @@ public class CharacterFragment extends Fragment {
         ArrayList<String> placeOfBirth = new ArrayList<String>(100);
         ArrayList<String> profession = new ArrayList<String>(100);
         ArrayList<String> desire = new ArrayList<String>();
+        ArrayList<String> moment = new ArrayList<String>();
+        ArrayList<String> traits = new ArrayList<String>();
+        ArrayList<String> needs = new ArrayList<String>();
         ArrayList<String> bio = new ArrayList<String>();
         String selectedName;
 
@@ -163,6 +182,9 @@ public class CharacterFragment extends Fragment {
         placeOfBirth.addAll(Arrays.asList(context.getResources().getStringArray(R.array.placebirth_array)));
         profession.addAll(Arrays.asList(context.getResources().getStringArray(R.array.profession_array)));
         desire.addAll(Arrays.asList(context.getResources().getStringArray(R.array.desire_array)));
+        moment.addAll(Arrays.asList(context.getResources().getStringArray(R.array.defmoment_array)));
+        traits.addAll(Arrays.asList(context.getResources().getStringArray(R.array.trait_array)));
+        needs.addAll(Arrays.asList(context.getResources().getStringArray(R.array.need_array)));
 
         //Generate the new random Instance
         Random r = new Random();
@@ -198,6 +220,22 @@ public class CharacterFragment extends Fragment {
         int index6 = (r.nextInt(desire.size()));
         String wish = desire.get(index6);
 
+        //Moment
+        int index7 = (r.nextInt(moment.size()));
+        String defmoment = moment.get(index7);
+
+        //Traits
+        int index8 = (r.nextInt(traits.size()));
+        int index9 = (r.nextInt(traits.size()));
+        int index10 = (r.nextInt(traits.size()));
+        String trait1 = traits.get(index8);
+        String trait2 = traits.get(index9);
+        String trait3 = traits.get(index10);
+
+        //Moment
+        int index11 = (r.nextInt(needs.size()));
+        String need =needs.get(index11);
+
         //Fill the list
         bio.add(completeName);
         bio.add(placeBirth);
@@ -205,6 +243,11 @@ public class CharacterFragment extends Fragment {
         bio.add(String.valueOf(gender));
         bio.add(job);
         bio.add(wish);
+        bio.add(defmoment);
+        bio.add(trait1);
+        bio.add(trait2);
+        bio.add(trait3);
+        bio.add(need);
         return bio;
 
     }
@@ -223,6 +266,9 @@ public class CharacterFragment extends Fragment {
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_NEED, need_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PLACEBIRTH, placebirth_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PROJECT, project_name_tv.getText().toString());
+        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_TRAIT1, trait_edit_text.getText().toString());
+        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_TRAIT2, trait2_edit_text.getText().toString());
+        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_TRAIT3, trait3_edit_text.getText().toString());
 
 
         long newRowId = database.insert(mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER, null, values);
@@ -246,6 +292,9 @@ public class CharacterFragment extends Fragment {
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_NEED, need_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PLACEBIRTH, placebirth_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PROJECT, project_name);
+        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_TRAIT1, trait_edit_text.getText().toString());
+        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_TRAIT2, trait2_edit_text.getText().toString());
+        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_TRAIT3, trait3_edit_text.getText().toString());
         database.update(mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER, values,   "name = ?", new String[]{name_text.toString()});
 
         //Come back to previous fragment
@@ -271,6 +320,9 @@ public class CharacterFragment extends Fragment {
             char_list.add(cursor.getString(cursor.getColumnIndex("role")));
             char_list.add(cursor.getString(cursor.getColumnIndex("defmoment")));
             char_list.add(cursor.getString(cursor.getColumnIndex("need")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("trait1")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("trait2")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("trait3")));
             cursor.moveToNext();
         }
         cursor.close();
@@ -289,6 +341,38 @@ public class CharacterFragment extends Fragment {
         transaction.replace(R.id.flMain,nextFragment);
         transaction.commit();
 
+    }
+
+    public static void showRateDialogForRate(final Context context) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context)
+                .setTitle(context.getString(R.string.rate_app))
+                .setMessage(context.getString(R.string.rate_app_des))
+                .setPositiveButton(context.getString(R.string.rate_submit), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (context != null) {
+                            ////////////////////////////////
+                            Uri uri = Uri.parse("market://details?id=" + context.getPackageName());
+                            Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+                            // To count with Play market backstack, After pressing back button,
+                            // to taken back to our application, we need to add following flags to intent.
+                            goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
+                                    Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET |
+                                    Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                            rated = true;
+                            try {
+                                context.startActivity(goToMarket);
+                            } catch (ActivityNotFoundException e) {
+                                context.startActivity(new Intent(Intent.ACTION_VIEW,
+                                        Uri.parse("http://play.google.com/store/apps/details?id=" + context.getPackageName())));
+                            }
+
+
+                        }
+                    }
+                })
+                .setNegativeButton( context.getString(R.string.rate_cancel), null);
+        builder.show();
     }
 
 

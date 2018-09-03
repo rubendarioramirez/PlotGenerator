@@ -22,6 +22,9 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
     public static final String CHARACTER_COLUMN_DEFMOMENT = "defmoment";
     public static final String CHARACTER_COLUMN_NEED = "need";
     public static final String CHARACTER_COLUMN_PLACEBIRTH = "placebirth";
+    public static final String CHARACTER_COLUMN_TRAIT1 = "trait1";
+    public static final String CHARACTER_COLUMN_TRAIT2  = "trait2";
+    public static final String CHARACTER_COLUMN_TRAIT3 = "trait3";
 
     public mySQLiteDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -41,6 +44,9 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
                 CHARACTER_COLUMN_DEFMOMENT + " TEXT, " +
                 CHARACTER_COLUMN_NEED + " TEXT, " +
                 CHARACTER_COLUMN_PLACEBIRTH + " TEXT, " +
+                CHARACTER_COLUMN_TRAIT1 + " TEXT, " +
+                CHARACTER_COLUMN_TRAIT2 + " TEXT, " +
+                CHARACTER_COLUMN_TRAIT3 + " TEXT, " +
                 CHARACTER_COLUMN_JOB + " TEXT " + ")");
 
         sqLiteDatabase.execSQL("CREATE TABLE " + CHARACTER_TABLE_PROJECT + " (" +

@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import org.apache.commons.lang3.text.WordUtils;
+
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -60,12 +62,17 @@ public class BioFragment extends Fragment {
         String desire = char_description.get(5);
         String moment = char_description.get(7);
         String need = char_description.get(8);
+        String trait1 = char_description.get(9);
+        String trait2 = char_description.get(10);
+        String trait3 = char_description.get(11);
 
 
         //Get device lang
         if (Locale.getDefault().getLanguage()=="es"){
-            intro_tv.setText(name + " tiene " + age + " años. Nacio en " + placebirth +".\n Y trabaja de " + job + " siempre ha querido " + desire +
-                    "\nPero es esolo que realmente quiere? o en realidad necesita " + need + "...\n Sin duda su momento definitorio en la vida fue " + moment  );
+            intro_tv.setText(name + " tiene " + age + " años.\nNacio en " + placebirth +".\nTrabaja de " + job +
+                    "\n\nEn su mente desea " + desire + "\nPero es eso lo que necesita? o en realidad lo que necesita es " + need +
+                    "?\n\n De su infancia sabemos que " + moment +
+                    "\n\nSus amigos dicen que es " + trait1 + ", " + trait2 + " y " + trait3  );
         }
         else {
             //Get gender article
@@ -78,12 +85,11 @@ public class BioFragment extends Fragment {
                 gender_article_posesive = "her";
             }
 
-            intro_tv.setText(name + " is " + age + " years old. Born in " + placebirth +".\n And working as " + job + " always wanted to " + desire +
-                    "\nBut is that what " + gender_article + " really wants? or " + gender_article + " actually needs " + need + "...\n" + gender_article_posesive +" most defining moment its clearly when " + moment  );
+            intro_tv.setText(name + " is " + age + " years old. \nBorn in " + placebirth +".\n  Works as " + job + ".\n\n " + "In " + gender_article_posesive + " mind " + gender_article + " wants to " + desire +
+                    "\nBut is that what " + gender_article + " really wants? or " + gender_article + " actually needs to " + need + "...\n\n  About " +gender_article_posesive+" childhood we know that "+ gender_article + " " + moment
+                    + "\n\nAlso " +  gender_article_posesive  + " friends says that " + gender_article + " is " + trait1 + ", " + trait2 + " and " + trait3 );
 
         }
-
-
 
 
         character_bio_edit_btn.setOnClickListener(new View.OnClickListener()   {
@@ -130,6 +136,9 @@ public class BioFragment extends Fragment {
             char_list.add(cursor.getString(cursor.getColumnIndex("role")));
             char_list.add(cursor.getString(cursor.getColumnIndex("defmoment")));
             char_list.add(cursor.getString(cursor.getColumnIndex("need")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("trait1")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("trait2")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("trait3")));
             cursor.moveToNext();
         }
         cursor.close();
