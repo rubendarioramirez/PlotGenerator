@@ -7,13 +7,32 @@ package com.plotgen.rramirez.plotgenerator;
 public class item_herojourney {
 
     int background;
-    String herojourney_title, herojourney_act, herojourney_desc;
+    String herojourney_title, herojourney_act, herojourney_desc, herojourneyProject, herojourneyChar;
 
-    public item_herojourney(int background, String herojourney_title, String herojourney_act, String herojourney_desc) {
+    public item_herojourney(int background, String herojourney_title, String herojourney_act, String herojourney_desc, String herojourneyProject, String herojourneyChar) {
         this.background = background;
         this.herojourney_title = herojourney_title;
         this.herojourney_act = herojourney_act;
         this.herojourney_desc = herojourney_desc;
+        this.herojourneyChar = herojourneyChar;
+        this.herojourneyProject = herojourneyProject;
+
+    }
+
+    public String getHerojourneyProject() {
+        return herojourneyProject;
+    }
+
+    public void setHerojourneyProject(String herojourneyProject) {
+        this.herojourneyProject = herojourneyProject;
+    }
+
+    public String getHerojourneyChar() {
+        return herojourneyChar;
+    }
+
+    public void setHerojourneyChar(String herojourneyChar) {
+        this.herojourneyChar = herojourneyChar;
     }
 
     public int getBackground() {

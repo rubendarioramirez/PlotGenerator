@@ -59,17 +59,17 @@ public class HeroJourneyFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {;
 
                 for (DataSnapshot childSnap : dataSnapshot.getChildren()){
-                    Log.v("tmz",""+ childSnap.getValue(String.class)); //displays the key for the node
+//                    Log.v("tmz",""+ childSnap.getValue(String.class)); //displays the key for the node
                     String data = childSnap.getValue(String.class);
                     String[] data_split = data.split(",");
-                    Log.v("tmz",""+ data_split[0] + data_split[2]);
+//                    Log.v("tmz",""+ data_split[0] + data_split[2]);
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
+//                Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
 
@@ -77,22 +77,22 @@ public class HeroJourneyFragment extends Fragment {
         //set up the recycler view with the adapter
         RecyclerView recyclerView = myFragmentView.findViewById(R.id.rv_herojourney);
         final Adapter_herojourney adapter = new Adapter_herojourney(this.getActivity(),mlist);
-        mlist.add(new item_herojourney(R.drawable.hero, (String) getString(R.string.hj_title1), (String) getString(R.string.hj_act1), (String) getString(R.string.hj_desc1)));
-        mlist.add(new item_herojourney(R.drawable.hero2, (String) getString(R.string.hj_title2), (String) getString(R.string.hj_act1), (String) getString(R.string.hj_desc2)));
-        mlist.add(new item_herojourney(R.drawable.hero, (String) getString(R.string.hj_title3), (String) getString(R.string.hj_act1), (String) getString(R.string.hj_desc3)));
-        mlist.add(new item_herojourney(R.drawable.hero2, (String) getString(R.string.hj_title4), (String) getString(R.string.hj_act1), (String) getString(R.string.hj_desc4)));
-        mlist.add(new item_herojourney(R.drawable.hero, (String) getString(R.string.hj_title5), (String) getString(R.string.hj_act2), (String) getString(R.string.hj_desc5)));
-        mlist.add(new item_herojourney(R.drawable.hero2, (String) getString(R.string.hj_title6), (String) getString(R.string.hj_act2), (String) getString(R.string.hj_desc6)));
-        mlist.add(new item_herojourney(R.drawable.hero, (String) getString(R.string.hj_title7), (String) (String) getString(R.string.hj_act2), (String) getString(R.string.hj_desc7)));
-        mlist.add(new item_herojourney(R.drawable.hero2, (String) getString(R.string.hj_title8), (String) (String) getString(R.string.hj_act2), (String) getString(R.string.hj_desc8)));
-        mlist.add(new item_herojourney(R.drawable.hero, (String) getString(R.string.hj_title9), (String) (String) getString(R.string.hj_act2), (String) getString(R.string.hj_desc9)));
-        mlist.add(new item_herojourney(R.drawable.hero2, (String) getString(R.string.hj_title10), (String) (String) getString(R.string.hj_act2), (String) getString(R.string.hj_desc10)));
-        mlist.add(new item_herojourney(R.drawable.hero, (String) getString(R.string.hj_title11), (String) (String) getString(R.string.hj_act2), (String) getString(R.string.hj_desc11)));
-        mlist.add(new item_herojourney(R.drawable.hero2, (String) getString(R.string.hj_title12), (String) getString(R.string.hj_act3), (String) getString(R.string.hj_desc12)));
-        mlist.add(new item_herojourney(R.drawable.hero, (String) getString(R.string.hj_title13), (String) getString(R.string.hj_act3), (String) getString(R.string.hj_desc13)));
-        mlist.add(new item_herojourney(R.drawable.hero2, (String) getString(R.string.hj_title14), (String) getString(R.string.hj_act3), (String) getString(R.string.hj_desc14)));
-        mlist.add(new item_herojourney(R.drawable.hero, (String) getString(R.string.hj_title15), (String) getString(R.string.hj_act3), (String) getString(R.string.hj_desc15)));
-        mlist.add(new item_herojourney(R.drawable.hero2, (String) getString(R.string.hj_title16), (String) getString(R.string.hj_act3), (String) getString(R.string.hj_desc16)));
+        mlist.add(new item_herojourney(R.drawable.hero, (String) getString(R.string.hj_title1), (String) getString(R.string.hj_act1), (String) getString(R.string.hj_desc1),(String) "dumi", (String) "dumi"));
+        mlist.add(new item_herojourney(R.drawable.hero2, (String) getString(R.string.hj_title2), (String) getString(R.string.hj_act1), (String) getString(R.string.hj_desc2),(String) "dumi", (String) "dumi"));
+        mlist.add(new item_herojourney(R.drawable.hero, (String) getString(R.string.hj_title3), (String) getString(R.string.hj_act1), (String) getString(R.string.hj_desc3),(String) "dumi", (String) "dumi"));
+        mlist.add(new item_herojourney(R.drawable.hero2, (String) getString(R.string.hj_title4), (String) getString(R.string.hj_act1), (String) getString(R.string.hj_desc4),(String) "dumi", (String) "dumi"));
+        mlist.add(new item_herojourney(R.drawable.hero, (String) getString(R.string.hj_title5), (String) getString(R.string.hj_act2), (String) getString(R.string.hj_desc5),(String) "dumi", (String) "dumi"));
+        mlist.add(new item_herojourney(R.drawable.hero2, (String) getString(R.string.hj_title6), (String) getString(R.string.hj_act2), (String) getString(R.string.hj_desc6),(String) "dumi", (String) "dumi"));
+        mlist.add(new item_herojourney(R.drawable.hero, (String) getString(R.string.hj_title7), (String) (String) getString(R.string.hj_act2), (String) getString(R.string.hj_desc7),(String) "dumi", (String) "dumi"));
+        mlist.add(new item_herojourney(R.drawable.hero2, (String) getString(R.string.hj_title8), (String) (String) getString(R.string.hj_act2), (String) getString(R.string.hj_desc8),(String) "dumi", (String) "dumi"));
+        mlist.add(new item_herojourney(R.drawable.hero, (String) getString(R.string.hj_title9), (String) (String) getString(R.string.hj_act2), (String) getString(R.string.hj_desc9),(String) "dumi", (String) "dumi"));
+        mlist.add(new item_herojourney(R.drawable.hero2, (String) getString(R.string.hj_title10), (String) (String) getString(R.string.hj_act2), (String) getString(R.string.hj_desc10),(String) "dumi", (String) "dumi"));
+        mlist.add(new item_herojourney(R.drawable.hero, (String) getString(R.string.hj_title11), (String) (String) getString(R.string.hj_act2), (String) getString(R.string.hj_desc11),(String) "dumi", (String) "dumi"));
+        mlist.add(new item_herojourney(R.drawable.hero2, (String) getString(R.string.hj_title12), (String) getString(R.string.hj_act3), (String) getString(R.string.hj_desc12),(String) "dumi", (String) "dumi"));
+        mlist.add(new item_herojourney(R.drawable.hero, (String) getString(R.string.hj_title13), (String) getString(R.string.hj_act3), (String) getString(R.string.hj_desc13),(String) "dumi", (String) "dumi"));
+        mlist.add(new item_herojourney(R.drawable.hero2, (String) getString(R.string.hj_title14), (String) getString(R.string.hj_act3), (String) getString(R.string.hj_desc14),(String) "dumi", (String) "dumi"));
+        mlist.add(new item_herojourney(R.drawable.hero, (String) getString(R.string.hj_title15), (String) getString(R.string.hj_act3), (String) getString(R.string.hj_desc15),(String) "dumi", (String) "dumi"));
+        mlist.add(new item_herojourney(R.drawable.hero2, (String) getString(R.string.hj_title16), (String) getString(R.string.hj_act3), (String) getString(R.string.hj_desc16),(String) "dumi", (String) "dumi"));
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));

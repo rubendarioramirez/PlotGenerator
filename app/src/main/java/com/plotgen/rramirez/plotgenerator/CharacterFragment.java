@@ -26,7 +26,6 @@ import org.apache.commons.lang3.text.WordUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.ListIterator;
 import java.util.Random;
 
 
@@ -69,7 +68,7 @@ public class CharacterFragment extends Fragment {
 
 
         //Declare all the elements
-        project_name_tv = myFragmentView.findViewById(R.id.project_name_tv);
+        project_name_tv = myFragmentView.findViewById(R.id.char_template_title);
         nameEditText = myFragmentView.findViewById(R.id.nameEditText);
         age_edit_text = myFragmentView.findViewById(R.id.age_edit_text);
         profession_edit_text = myFragmentView.findViewById(R.id.profession_edit_text);
@@ -82,7 +81,7 @@ public class CharacterFragment extends Fragment {
         trait2_edit_text= myFragmentView.findViewById(R.id.trait_2_edit_text);
         trait3_edit_text= myFragmentView.findViewById(R.id.trait_3_edit_text);
         //Save button action
-        submit =  myFragmentView.findViewById(R.id.submit);
+        submit =  myFragmentView.findViewById(R.id.char_template_submit);
         random_gen_char_btn = myFragmentView.findViewById(R.id.random_gen_char_btn);
 
 

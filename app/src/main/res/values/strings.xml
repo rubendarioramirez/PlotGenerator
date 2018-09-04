@@ -15,7 +15,7 @@
 
 
     <!--HOME Strings-->
-    <string name="home_title">The only thing that one\n really knows about human nature\n is that it changes.\n\nOscar Wilde</string>
+    <string name="home_title">The only thing that one\n really knows about human nature\n is that it changes.\n      Oscar Wilde</string>
     <string name="home_tab">Home</string>
     <string name="home_header">Focus on writing...</string>
     <string name="home_desc">If you love to write, then you\'re in the right place.\nI made this app because I also love writing as well but I know the struggle with writer\'s block, being lost or just losing focus.\nActually, I did this app for me but I believe it can also help you.\nThere are three things at the moment that you may find interesting.\n\nWriting prompts, whenever you\'re lost or you don\'t know how to start or how to continue, check them out. \nA simple sentence that will let your imagination fly away. And don\'t worry I\'ll post new ones weekly.\n\nThe Hero Journey. If you didn\'t read it, go running to get it! That\'s Joseph Campbell legacy for writers. \nHowever if you did read it and you want a refreshment, or you just want to go to the meat, check out The Hero Journey section, it contains all you have to know for your hero and it\'s journey.
@@ -314,4 +314,31 @@ Sometimes, the heroes lose their mentor in this stage (e.g. LOTR and Star Wars).
     <string name="rate_app_des">It\'s not easy to make an app. Even harder if it\'s for free. If you liked it!\nHelp me spread it by rating it.</string>
     <string name="rate_submit">Rate it!</string>
     <string name="rate_cancel">Not yet</string>
+
+
+    <!--Challenge fragment-->
+    <string name="challenge_answer_placeholder">Answer...</string>
+    <string name="challenge_nochallenge_placeholder">You have no challenges yet for this character.</string>
+    <string name="challenge_action_bar">Challenges</string>
+    <string name="challenge_1_title">Challenge I</string>
+    <string name="challenge_1_desc">Elevator Challenge</string>
+    <string name="challenge_1_desc_long">How does your character reacts in a crisis?\n
+    Let\'s put him on a elevator with a random stranger. It doesn\'t matter who.\n
+    Suddenly the elevator gets stuck and they\'re both trap inside.\n How does he reacts? Is he calm? Does he panic?
+    \nTake the time you need to answer.
+    \nThis exercise will allow you to reflect about your character, how he behaves in limit situations.</string>
+
+    <string name="challenge_1_q1">What is his first reaction?</string>
+    <string name="challenge_1_q2">Will he wait to be rescued?</string>
+    <string name="challenge_1_q3">The person next to him suddenly panics. Will your character call him down? Will he panic as well?</string>
+    <string name="challenge_1_q4">After more than an hour trapped in the elevator suddendly there is a slit open. Come, says the voice, but I can take only one
+        \nthe other should wait until more help comes. Will your character goes first?</string>
+    <string name="challenge_2_title">Challenge II</string>
+    <string name="challenge_2_desc">Coming soon</string>
+    <string name="challenge_2_desc_long">I\m currently working on more challenges. Don\'t hesitate to contact me with suggestions</string>
+
+
+
+
+
 </resources>

@@ -20,11 +20,4 @@
         android:scaleType="centerCrop"
         android:src="@drawable/writer_icon" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="@string/home_title"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
 </LinearLayout>

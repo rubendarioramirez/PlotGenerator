@@ -16,7 +16,7 @@
 
     <!--HOME Strings-->
     <string name="home_title">La unica cosa que realmente\n sabemos
-        sobre la naturaleza humana,\n es que cambia.\n\nOscar Wilde</string>
+        sobre la naturaleza humana,\n es que cambia.\n      Oscar Wilde</string>
     <string name="home_tab">Principal</string>
     <string name="home_header">Enfocate en escribir...</string>
     <string name="home_desc">Si amas escribir, entonces estas en el lugar correcto.\nHice esta aplicación porque amo escribir, y por eso se lo que es estar bloqueado, perdido o simplemente perder el foco.\nEn realidad, hice esta aplicación para mi, pero creo que puede ayudarte también.\nHay tres cosas que te pueden interesar por el momento.\n\nDisparadores, cuando estes perdido o no sepas como empezar, dales una mirada. \nA veces una simple oración puede hacer volar tu imaginación. Y no te preocupes, voy a poner nuevos todas las semanas.\n\nEl camino del heroe. Si no lo leiste, deberias correr a hacerlo! El hero de las mil caras es el legado que Joseph Campbell le dejo a los escritores. \nSin embargo, si queres refrescar la memoria, o si queres ir derecho a lo que significa, mira la seccion El camino del heroe, contiene todo lo que tenes que saber para comenzar o pulir tu historia.
@@ -311,5 +311,29 @@ A veces, el heroe puede incluso perder a su mentor en esta etapa (Ejemplo: LOTR 
     <string name="rate_app_des">No es facil hacer una app. Sobretodo hacerlo gratis.\nMe ayudaria mucho si pusieras feedback en Playstore. De esta manera mas gente puede verla y disfrutarla.</string>
     <string name="rate_submit">Dar feedback!</string>
     <string name="rate_cancel">No todavia</string>
+
+    <!--Challenge fragment-->
+    <string name="challenge_answer_placeholder">Respuesta...</string>
+    <string name="challenge_nochallenge_placeholder">Aun no tienes desafios para este personaje.</string>
+    <string name="challenge_action_bar">Desafios</string>
+    <string name="challenge_1_title">Desafio I</string>
+    <string name="challenge_1_desc">Desafio del ascensor</string>
+    <string name="challenge_1_desc_long">Como reaccionaria tu personaje en una crisis?\n
+    Pongamoslo en un elevador con un extraño. No importa con quien.\n
+    De pronto el ascensor se queda atascado y ambos estan atrapados.\n Como reacciona? Estara calmado? Entrara en panico?
+    \nTomate tu tiempo para constar.
+    \nEste ejercicio te permitira reflexionar sobre tu personaje y conocer como actua en situaciones limites.</string>
+
+    <string name="challenge_1_q1">Cual es su primera reaccion?</string>
+    <string name="challenge_1_q2">Esperara a ser rescatado?</string>
+    <string name="challenge_1_q3">La persona que esta con el de pronto entra en panico. Tu personaje lo calmaria? O entraria en panico tambien?</string>
+    <string name="challenge_1_q4">Luego de estar atrapados por mas de una hora, repentinamente una voz les habla. Hey, aqui arriba. Puedo sacar a uno, pero el otro debera esperar la ayuda...
+        \nIria tu personaje primero o dejaria a su compañero?</string>
+    <string name="challenge_2_title">Desafio II</string>
+    <string name="challenge_2_desc">Muy pronto</string>
+    <string name="challenge_2_desc_long">Actualmente estoy trabajando en mas desafios. No dudes en enviarme tus sugerencias.</string>
+
+
+
 
 </resources>

@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class mySQLiteDBHelper extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
     //public static final String DATABASE_NAME = "test_database";
     public static final String DATABASE_NAME = "production_database";
     public static final String CHARACTER_TABLE_CHARACTER = "character";
@@ -25,6 +25,12 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
     public static final String CHARACTER_COLUMN_TRAIT1 = "trait1";
     public static final String CHARACTER_COLUMN_TRAIT2  = "trait2";
     public static final String CHARACTER_COLUMN_TRAIT3 = "trait3";
+    public static final String CHARACTER_COLUMN_EIR = "elevator_initial_reaction";
+    public static final String CHARACTER_COLUMN_EWR = "elevator_wait_rescue";
+    public static final String CHARACTER_COLUMN_EHP = "elevator_help_partner";
+    public static final String CHARACTER_COLUMN_EEF = "elevator_escape_first";
+    public static final String CHARACTER_COLUMN_ENOTES = "elevator_notes";
+
 
     public mySQLiteDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -47,6 +53,11 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
                 CHARACTER_COLUMN_TRAIT1 + " TEXT, " +
                 CHARACTER_COLUMN_TRAIT2 + " TEXT, " +
                 CHARACTER_COLUMN_TRAIT3 + " TEXT, " +
+                CHARACTER_COLUMN_EIR + " TEXT, " +
+                CHARACTER_COLUMN_EWR + " TEXT, " +
+                CHARACTER_COLUMN_EHP + " TEXT, " +
+                CHARACTER_COLUMN_EEF + " TEXT, " +
+                CHARACTER_COLUMN_ENOTES + " TEXT, " +
                 CHARACTER_COLUMN_JOB + " TEXT " + ")");
 
         sqLiteDatabase.execSQL("CREATE TABLE " + CHARACTER_TABLE_PROJECT + " (" +
