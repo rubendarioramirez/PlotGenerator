@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +24,7 @@ import java.util.Locale;
  */
 public class BioFragment extends Fragment {
 
-    TextView title, intro_tv,character_bio_challenge;
+    TextView title, intro_tv,character_bio_challenge, character_bio_challenge_2;
     ArrayList<String> char_description;
     ImageButton character_bio_edit_btn;
     Button character_bio_challenge_btn;
@@ -48,6 +49,7 @@ public class BioFragment extends Fragment {
         title = myFragmentView.findViewById(R.id.character_bio_name_title);
         intro_tv = myFragmentView.findViewById(R.id.character_bio_intro);
         character_bio_challenge = myFragmentView.findViewById(R.id.character_bio_challenge);
+        character_bio_challenge_2 = myFragmentView.findViewById(R.id.character_bio_challenge_2);
         character_bio_edit_btn = myFragmentView.findViewById(R.id.character_bio_edit_btn);
         character_bio_challenge_btn = myFragmentView.findViewById(R.id.bio_fragment_challenge_btn);
 
@@ -67,11 +69,16 @@ public class BioFragment extends Fragment {
         String trait1 = char_description.get(9);
         String trait2 = char_description.get(10);
         String trait3 = char_description.get(11);
+        //First challenge
         String firstReaction = char_description.get(12);
         String waitRescue = char_description.get(13);
         String helpPartner = char_description.get(14);
         String escapeFirst = char_description.get(15);
-
+        //Second challenge
+        String challenge2_q1 = char_description.get(16);
+        String challenge2_q2 = char_description.get(17);
+        String challenge2_q3 = char_description.get(18);
+        String challenge2_q4 = char_description.get(19);
 
         //Get device lang
         if (Locale.getDefault().getLanguage()=="es"){
@@ -81,12 +88,24 @@ public class BioFragment extends Fragment {
                     "\n\nSus amigos dicen que es " + trait1 + ", " + trait2 + " y " + trait3  );
 
             if(firstReaction != null) {
-                character_bio_challenge.setText("Sobre el desafio del elevador podemos decir que:\n\n"
-                        + "Cual seria su primera reaccion de quedarse atrapado? " + firstReaction +
-                        "\n\nEsperaria a ser rescatado? " + waitRescue +
-                        "\n\nSi la persona que esta con el entrara en panico. Lo ayudaria? " + helpPartner
-                        + "\n\nFinalmente, si solo uno pudiese escapar, quien iria primero? " + escapeFirst);
+                StringBuffer sb=new StringBuffer();
+                sb.append("<b>Sobre el desafio del elevador</b>  podemos decir que: <br>");
+                sb.append("<br><i>Cual seria su primera reaccion de quedarse atrapado? </i><br> " + firstReaction);
+                sb.append("<br><i>Esperaria a ser rescatado? </i><br> " + waitRescue);
+                sb.append("<br><i>Si la persona que esta con el entrara en panico. Lo ayudaria? </i><br> " + helpPartner);
+                sb.append("<br><i>Finalmente, si solo uno pudiese escapar, quien iria primero? </i><br> " + escapeFirst);
+                character_bio_challenge.setText(Html.fromHtml(sb.toString()));
             }
+            if(challenge2_q1 !=null){
+                StringBuffer sb=new StringBuffer();
+                sb.append("<b>La mentira que cree tu personaje</b> es la base para su arco de cambio. Esto es todo lo que esta mal en su mundo. Una vez que sabes que esta mal, es el principio de poder arreglarlo. <br>");
+                sb.append("<br><b>Sobre las preguntas: </b><i> Cual es el concepto errado que tiene sobre el o sobre el mundo?</i><br>" + challenge2_q1 + "<br>");
+                sb.append("<br><i>Su mentira hace que sea miserable cuando la historia comienza? De ser asi, como?</i><br>" + challenge2_q2+ "<br>");
+                sb.append("<br><i>Si no, va a hacer el plot inicial que se sienta incomodo?</i><br>" + challenge2_q3+ "<br>");
+                sb.append("<br><i>Cuales son los sintomas de la mentira de tu personaje?</i><br>" + challenge2_q4+ "<br>");
+                character_bio_challenge_2.setText(Html.fromHtml(sb.toString()));
+            }
+
         }
         else {
             //Get gender article
@@ -104,12 +123,24 @@ public class BioFragment extends Fragment {
                     + "\n\nAlso " +  gender_article_posesive  + " friends says that " + gender_article + " is " + trait1 + ", " + trait2 + " and " + trait3);
 
             if(firstReaction != null) {
-                character_bio_challenge.setText("About the elevator challenge we could say that:\n"
-                        + "What will be " + gender_article_posesive + " first reacion if gets stuck in a elevator? " + firstReaction +
-                        "\n\nWill " + gender_article + " wait to be rescued? " + waitRescue +
-                        "\n\nIf the person next to " + gender_article_posesive + " has a panic attack, what will happen? " + helpPartner
-                        + "\n\nLastly in the eventuality that just one can escape and the other should wait, what will " + gender_article + " do? " + escapeFirst);
+                StringBuffer sb=new StringBuffer();
+                sb.append("<b>About the elevator challenge</b> we could say that: <br>");
+                sb.append("<br><i>What will be his first reaction if gets stuck in a elevator?</i><br> " + firstReaction);
+                sb.append("<br><i>Will your character wait to be rescued?</i><br> " + waitRescue);
+                sb.append("<br><i>If the person next to your character has a panic attack. What will happen?</i><br> " + helpPartner);
+                sb.append("<br><i>Lastly in the eventuality that just one can escape and the other should wait, what will your character do?</i><br> " + escapeFirst);
+                character_bio_challenge.setText(Html.fromHtml(sb.toString()));
             }
+            if(challenge2_q1 !=null){
+                StringBuffer sb=new StringBuffer();
+                sb.append("<b>The Lie Your Character Believes</b> is the foundation for his character arc. This is what’s wrong in his world. Once you know what’s wrong, you then get to set about figuring out how to make it right. <br>");
+                sb.append("<br><b>When asked: </b> <i>What misconception does your protagonist have about himself of the world, you concluded that... </i><br>" + challenge2_q1 + "<br>");
+                sb.append("<br><i>Is the lie making his life miserable when the story starts? If so, how? </i><br>" + challenge2_q2+ "<br>");
+                sb.append("<br><i>If not, will the inciting event make him uncomfortable? </i><br>" + challenge2_q3+ "<br>");
+                sb.append("<br><i>What are the symptoms of your character\'s lie? </i><br>" + challenge2_q4+ "<br>");
+                character_bio_challenge_2.setText(Html.fromHtml(sb.toString()));
+            }
+
         }
 
 
@@ -183,10 +214,17 @@ public class BioFragment extends Fragment {
             char_list.add(cursor.getString(cursor.getColumnIndex("trait1")));
             char_list.add(cursor.getString(cursor.getColumnIndex("trait2")));
             char_list.add(cursor.getString(cursor.getColumnIndex("trait3")));
+            //First challenge
             char_list.add(cursor.getString(cursor.getColumnIndex("elevator_initial_reaction")));
             char_list.add(cursor.getString(cursor.getColumnIndex("elevator_wait_rescue")));
             char_list.add(cursor.getString(cursor.getColumnIndex("elevator_help_partner")));
             char_list.add(cursor.getString(cursor.getColumnIndex("elevator_escape_first")));
+            //Second Challenge
+            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_2_q1")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_2_q2")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_2_q3")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_2_q4")));
+
             cursor.moveToNext();
         }
         cursor.close();

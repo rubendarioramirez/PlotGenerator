@@ -316,6 +316,8 @@ A veces, el heroe puede incluso perder a su mentor en esta etapa (Ejemplo: LOTR 
     <string name="challenge_answer_placeholder">Respuesta...</string>
     <string name="challenge_nochallenge_placeholder">Aun no tienes desafios para este personaje.</string>
     <string name="challenge_action_bar">Desafios</string>
+
+    <!--Primer desafio-->
     <string name="challenge_1_title">Desafio I</string>
     <string name="challenge_1_desc">Desafio del ascensor</string>
     <string name="challenge_1_desc_long">Como reaccionaria tu personaje en una crisis?\n
@@ -323,16 +325,25 @@ A veces, el heroe puede incluso perder a su mentor en esta etapa (Ejemplo: LOTR 
     De pronto el ascensor se queda atascado y ambos estan atrapados.\n Como reacciona? Estara calmado? Entrara en panico?
     \nTomate tu tiempo para constar.
     \nEste ejercicio te permitira reflexionar sobre tu personaje y conocer como actua en situaciones limites.</string>
-
     <string name="challenge_1_q1">Cual es su primera reaccion?</string>
     <string name="challenge_1_q2">Esperara a ser rescatado?</string>
     <string name="challenge_1_q3">La persona que esta con el de pronto entra en panico. Tu personaje lo calmaria? O entraria en panico tambien?</string>
     <string name="challenge_1_q4">Luego de estar atrapados por mas de una hora, repentinamente una voz les habla. Hey, aqui arriba. Puedo sacar a uno, pero el otro debera esperar la ayuda...
         \nIria tu personaje primero o dejaria a su compañero?</string>
-    <string name="challenge_2_title">Desafio II</string>
-    <string name="challenge_2_desc">Muy pronto</string>
-    <string name="challenge_2_desc_long">Actualmente estoy trabajando en mas desafios. No dudes en enviarme tus sugerencias.</string>
 
+    <!--Segundo desafio-->
+    <string name="challenge_2_title">Desafio II</string>
+    <string name="challenge_2_desc">Cual es la mentira?</string>
+    <string name="challenge_2_desc_long">El arco de cambio se trata de la mentira que tu personaje cree. Su vida puede ser genial u horrenda. Pero, acechando en la superfice de su vida, ahi esta la mentira.
+Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenzar con algo que le falte en su vida, alguna razon que haga su cambio necesario.</string>
+    <string name="challenge_2_q1">Cual es el concepto errado que tiene sobre el o sobre el mundo?</string>
+    <string name="challenge_2_q2">Esta mentira hace su vida miserable cuando comienza la historia? De ser asi, como?</string>
+    <string name="challenge_2_q3">Si no fuese, durante el plot inicial vemos como su mentira lo pone incomodo?</string>
+    <string name="challenge_2_q4">Cuales son los sintomas de la mentira de tu personaje?</string>
+
+    <string name="challenge_3_title">Desafio III</string>
+    <string name="challenge_3_desc">Muy pronto</string>
+    <string name="challenge_3_desc_long">Actualmente estoy trabajando en mas desafios. No dudes en enviarme tus sugerencias.</string>
 
 
 

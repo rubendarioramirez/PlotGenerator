@@ -5,13 +5,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class mySQLiteDBHelper extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
     //public static final String DATABASE_NAME = "test_database";
     public static final String DATABASE_NAME = "production_database";
     public static final String CHARACTER_TABLE_CHARACTER = "character";
     public static final String CHARACTER_TABLE_PROJECT = "projectname";
     public static final String CHARACTER_COLUMN_ID = "_id";
     public static final String CHARACTER_COLUMN_PROJECT = "project";
+    //Character BIO
     public static final String CHARACTER_COLUMN_NAME = "name";
     public static final String CHARACTER_COLUMN_NICKNAME = "nickname";
     public static final String CHARACTER_COLUMN_AGE = "age";
@@ -25,11 +26,17 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
     public static final String CHARACTER_COLUMN_TRAIT1 = "trait1";
     public static final String CHARACTER_COLUMN_TRAIT2  = "trait2";
     public static final String CHARACTER_COLUMN_TRAIT3 = "trait3";
+    //Challenge I old naming.
     public static final String CHARACTER_COLUMN_EIR = "elevator_initial_reaction";
     public static final String CHARACTER_COLUMN_EWR = "elevator_wait_rescue";
     public static final String CHARACTER_COLUMN_EHP = "elevator_help_partner";
     public static final String CHARACTER_COLUMN_EEF = "elevator_escape_first";
     public static final String CHARACTER_COLUMN_ENOTES = "elevator_notes";
+    //Challenge II.
+    public static final String CHARACTER_COLUMN_C2Q1 = "challenge_2_q1";
+    public static final String CHARACTER_COLUMN_C2Q2 = "challenge_2_q2";
+    public static final String CHARACTER_COLUMN_C2Q3 = "challenge_2_q3";
+    public static final String CHARACTER_COLUMN_C2Q4 = "challenge_2_q4";
 
 
     public mySQLiteDBHelper(Context context) {
@@ -58,7 +65,11 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
                 CHARACTER_COLUMN_EHP + " TEXT, " +
                 CHARACTER_COLUMN_EEF + " TEXT, " +
                 CHARACTER_COLUMN_ENOTES + " TEXT, " +
-                CHARACTER_COLUMN_JOB + " TEXT " + ")");
+                CHARACTER_COLUMN_JOB + " TEXT," +
+                CHARACTER_COLUMN_C2Q1 + " TEXT, " +
+                CHARACTER_COLUMN_C2Q2 + " TEXT, " +
+                CHARACTER_COLUMN_C2Q3 + " TEXT, " +
+                CHARACTER_COLUMN_C2Q4 + " TEXT " + ")");
 
         sqLiteDatabase.execSQL("CREATE TABLE " + CHARACTER_TABLE_PROJECT + " (" +
                 CHARACTER_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +

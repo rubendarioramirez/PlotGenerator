@@ -15,8 +15,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 
 
@@ -58,6 +58,7 @@ public class CharListFragment extends Fragment {
         //Display the adapter
         project_list_array = getProjects(myFragmentView.getContext(), project_name_text.toString());
         itemsAdapter = new ArrayAdapter<String>(myFragmentView.getContext(), android.R.layout.simple_list_item_1, project_list_array);
+
         character_list_lv.setAdapter(itemsAdapter);
         character_list_lv.setEmptyView(empty_character_tv);
         //When the item is click

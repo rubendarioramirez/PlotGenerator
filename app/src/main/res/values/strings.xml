@@ -8,6 +8,8 @@
 
     <!--<string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>-->
     <string name="banner_ad_unit_id">ca-app-pub-6696437403163667/5982516625</string>
+    <string name="interstitial_plot_gen">ca-app-pub-6696437403163667/3046586854</string>
+
 
 
     <string name="trigger_tab">Writing Prompts</string>
@@ -320,6 +322,8 @@ Sometimes, the heroes lose their mentor in this stage (e.g. LOTR and Star Wars).
     <string name="challenge_answer_placeholder">Answer...</string>
     <string name="challenge_nochallenge_placeholder">You have no challenges yet for this character.</string>
     <string name="challenge_action_bar">Challenges</string>
+
+    <!--First challenge-->
     <string name="challenge_1_title">Challenge I</string>
     <string name="challenge_1_desc">Elevator Challenge</string>
     <string name="challenge_1_desc_long">How does your character reacts in a crisis?\n
@@ -327,16 +331,24 @@ Sometimes, the heroes lose their mentor in this stage (e.g. LOTR and Star Wars).
     Suddenly the elevator gets stuck and they\'re both trap inside.\n How does he reacts? Is he calm? Does he panic?
     \nTake the time you need to answer.
     \nThis exercise will allow you to reflect about your character, how he behaves in limit situations.</string>
-
     <string name="challenge_1_q1">What is his first reaction?</string>
     <string name="challenge_1_q2">Will he wait to be rescued?</string>
     <string name="challenge_1_q3">The person next to him suddenly panics. Will your character call him down? Will he panic as well?</string>
     <string name="challenge_1_q4">After more than an hour trapped in the elevator suddendly there is a slit open. Come, says the voice, but I can take only one
         \nthe other should wait until more help comes. Will your character goes first?</string>
+    <!--Second challenge-->
     <string name="challenge_2_title">Challenge II</string>
-    <string name="challenge_2_desc">Coming soon</string>
-    <string name="challenge_2_desc_long">I\m currently working on more challenges. Don\'t hesitate to contact me with suggestions</string>
+    <string name="challenge_2_desc">What\'s the lie?</string>
+    <string name="challenge_2_desc_long">The Change Arc is all about the Lie Your Character Believes. His life may be horrible, or his life may seem pretty great. But, festering under the surface, is the Lie.
+In order for your character to evolve in a positive way, he has to start out with something lacking in his life, some reason that makes the change necessary. </string>
+    <string name="challenge_2_q1">What misconception does your protagonist have about himself or the world?</string>
+    <string name="challenge_2_q2">Is the Lie making his life miserable when the story opens? If so, how?</string>
+    <string name="challenge_2_q3">If not, will the Inciting Event and/or the First Plot Point begin to make him uncomfortable as a result of his Lie?</string>
+    <string name="challenge_2_q4">What are the symptoms of your character’s Lie?</string>
 
+    <string name="challenge_3_title">Challenge III</string>
+    <string name="challenge_3_desc">Coming soon</string>
+    <string name="challenge_3_desc_long">I\m currently working on more challenges. Don\'t hesitate to contact me with suggestions</string>
 
 
 
