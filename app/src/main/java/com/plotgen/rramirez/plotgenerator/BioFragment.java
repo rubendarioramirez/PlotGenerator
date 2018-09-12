@@ -53,10 +53,8 @@ public class BioFragment extends Fragment {
         character_bio_edit_btn = myFragmentView.findViewById(R.id.character_bio_edit_btn);
         character_bio_challenge_btn = myFragmentView.findViewById(R.id.bio_fragment_challenge_btn);
 
-        //Set title
-        title.setText(char_name.toString());
-        //Set the narrative
 
+        //Set the narrative
         char_description = getDescription(myFragmentView.getContext(), char_name.toString());
         String name = char_description.get(0);
         String age = char_description.get(1);
@@ -64,6 +62,7 @@ public class BioFragment extends Fragment {
         String placebirth = char_description.get(3);
         String job = char_description.get(4);
         String desire = char_description.get(5);
+        String role = char_description.get(6);
         String moment = char_description.get(7);
         String need = char_description.get(8);
         String trait1 = char_description.get(9);
@@ -79,6 +78,10 @@ public class BioFragment extends Fragment {
         String challenge2_q2 = char_description.get(17);
         String challenge2_q3 = char_description.get(18);
         String challenge2_q4 = char_description.get(19);
+
+        //Set title
+        title.setText(char_name.toString() + "\n " + role);
+
 
         //Get device lang
         if (Locale.getDefault().getLanguage()=="es"){

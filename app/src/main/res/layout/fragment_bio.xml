@@ -28,6 +28,7 @@
                 android:id="@+id/character_bio_intro"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="24sp"
                 android:text="His name is Rambo, he is XX years "
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -79,23 +80,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/writting" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/character_bio_title"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        android:textColor="@color/light_font"
-        app:layout_constraintBottom_toBottomOf="@+id/background_char_bio"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/character_bio_name_title"
-        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/character_bio_name_title"
@@ -105,8 +89,17 @@
         android:layout_marginRight="8dp"
         android:layout_marginTop="44dp"
         android:text="Rambo"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:fontFamily="serif"
+        android:shadowColor="@color/text_shadow"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="2"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
         android:textColor="@color/light_font"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:gravity="center_horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -132,6 +125,7 @@
 
     <Button
         android:id="@+id/bio_fragment_challenge_btn"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"

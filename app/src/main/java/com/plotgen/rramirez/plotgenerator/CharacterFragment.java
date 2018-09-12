@@ -31,10 +31,10 @@ import java.util.Random;
 
 public class CharacterFragment extends Fragment {
 
-    public EditText nameEditText, profession_edit_text, desire_edit_text, age_edit_text, placebirth_edit_text, role_edit_text, defmoment_edit_text,need_edit_text, trait_edit_text, trait2_edit_text,trait3_edit_text;
+    public EditText nameEditText, profession_edit_text, desire_edit_text, age_edit_text, placebirth_edit_text, defmoment_edit_text,need_edit_text, trait_edit_text, trait2_edit_text,trait3_edit_text;
     public TextView project_name_tv;
     public Button submit, random_gen_char_btn;
-    public Spinner gender_spinner;
+    public Spinner gender_spinner, role_spinner;
     public static boolean rated;
     ArrayList<String> char_description;
 
@@ -65,6 +65,16 @@ public class CharacterFragment extends Fragment {
         // Apply the adapter to the spinner
         gender_spinner.setAdapter(adapter);
 
+        //Role spinner functions
+        role_spinner = myFragmentView.findViewById(R.id.role_spinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> role_adapter = ArrayAdapter.createFromResource(myFragmentView.getContext(),
+                R.array.char_guide_types_titles, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        role_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        role_spinner.setAdapter(role_adapter);
+
 
 
         //Declare all the elements
@@ -73,7 +83,6 @@ public class CharacterFragment extends Fragment {
         age_edit_text = myFragmentView.findViewById(R.id.age_edit_text);
         profession_edit_text = myFragmentView.findViewById(R.id.profession_edit_text);
         placebirth_edit_text = myFragmentView.findViewById(R.id.placebirth_edit_text);
-        role_edit_text= myFragmentView.findViewById(R.id.role_edit_text);
         defmoment_edit_text= myFragmentView.findViewById(R.id.defmoment_edit_text);
         desire_edit_text = myFragmentView.findViewById(R.id.desire_edit_text);
         need_edit_text= myFragmentView.findViewById(R.id.need_edit_text);
@@ -103,7 +112,6 @@ public class CharacterFragment extends Fragment {
             placebirth_edit_text.setText(char_description.get(3));
             profession_edit_text.setText(char_description.get(4));
             desire_edit_text.setText(char_description.get(5));
-            role_edit_text.setText(char_description.get(6));
             defmoment_edit_text.setText(char_description.get(7));
             need_edit_text.setText(char_description.get(8));
             trait_edit_text.setText(char_description.get(9));
@@ -118,6 +126,33 @@ public class CharacterFragment extends Fragment {
             } else {
                 gender_spinner.setSelection(2);
             }
+
+            //Set the proper spinner value
+            String role = char_description.get(6);
+            if(role.equals("Protagonist") || role.equals("Protagonista")){
+                role_spinner.setSelection(0);
+            } else if(role.equals("Protagonist's Helper") || role.equals("Ayudante de protagonista")) {
+                role_spinner.setSelection(1);
+            } else if(role.equals("Sidekick") || role.equals("Escudero")) {
+                role_spinner.setSelection(2);
+            }else if(role.equals("Guardian") || role.equals("Guardian")) {
+                role_spinner.setSelection(3);
+            } else if(role.equals("Mentor") || role.equals("Mentor")) {
+                role_spinner.setSelection(4);
+            }else if(role.equals("Impact") || role.equals("De Impacto")) {
+                role_spinner.setSelection(5);
+            }else if(role.equals("Antagonist") || role.equals("Antagonista")) {
+                role_spinner.setSelection(6);
+            }else if(role.equals("Antagonist's Helper") || role.equals("Ayudante de Antagonista")) {
+                role_spinner.setSelection(7);
+            }else if(role.equals("Skeptic") || role.equals("Esceptico")) {
+                role_spinner.setSelection(8);
+            }else if(role.equals("Obstacle") || role.equals("Obstaculo")) {
+                role_spinner.setSelection(9);
+            } else{
+                role_spinner.setSelection(10);
+            }
+
 
             submit.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -260,7 +295,7 @@ public class CharacterFragment extends Fragment {
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_DESIRE, desire_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_AGE, age_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_GENDER, gender_spinner.getSelectedItem().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_ROLE, role_edit_text.getText().toString());
+        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_ROLE, role_spinner.getSelectedItem().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_DEFMOMENT, defmoment_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_NEED, need_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PLACEBIRTH, placebirth_edit_text.getText().toString());
@@ -286,7 +321,7 @@ public class CharacterFragment extends Fragment {
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_DESIRE, desire_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_AGE, age_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_GENDER, gender_spinner.getSelectedItem().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_ROLE, role_edit_text.getText().toString());
+        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_ROLE, role_spinner.getSelectedItem().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_DEFMOMENT, defmoment_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_NEED, need_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PLACEBIRTH, placebirth_edit_text.getText().toString());

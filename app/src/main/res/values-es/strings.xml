@@ -36,6 +36,7 @@
     Por favor, crea uno para comenzar.</string>
 
     <string name="add_character_btn">Agregar Personaje</string>
+    <string name="guide_character_btn">Guide</string>
     <!--Add character-->
     <string name="character_personality_tv">Personalidad</string>
     <string name="character_add_name">Nombre</string>
@@ -345,6 +346,34 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="challenge_3_desc">Muy pronto</string>
     <string name="challenge_3_desc_long">Actualmente estoy trabajando en mas desafios. No dudes en enviarme tus sugerencias.</string>
 
+    <!--GUIDE ME Strings-->
+    <string name="char_guide_title">Roles de personajes tipicos</string>
+    <string-array name="char_guide_types_titles">
+        <item>Protagonista</item>
+        <item>Ayudante de protagonista</item>
+        <item>Escudero</item>
+        <item>Guardian</item>
+        <item>Mentor</item>
+        <item>De Impacto</item>
+        <item>Antagonista</item>
+        <item>Ayudante de Antagonista</item>
+        <item>Esceptico</item>
+        <item>Obstaculo</item>
+        <item>Meta</item>
+    </string-array>
+    <string-array name="char_guide_types_desc">
+        <item>Es el personaje principal de la trama, al que le ocurren las cosas, el que conduce la acción desde el comienzo al final del libro o de la película, por ejemplo. Todas las historias tienen al menos un personaje protagonista y, por lo general, este actúa movido por un objetivo o meta.</item>
+        <item>Aunque a priori pueda parecer lo mismo que el anterior (el escudero es un sub-tipo de ayudante de protagonista), el ayudante no siempre tiene tanto peso como el escudero y su función es la de ofrecer ayuda al protagonista para conseguir sus objetivos en la historia, nada más (el escudero, en cambio, le ofrece protección y fidelidad más allá de la trama principal).</item>
+        <item>Si bien no aparece en todas las historias, el escudero es habitual en obras de géneros muy variados. Se trata del personaje que acompaña al protagonista en sus aventuras o derroteros, ayudándolo siempre que lo necesite y ofreciéndole apoyo moral. El escudero, además, suele tener devoción por el protagonista y haría lo que fuese por él.</item>
+        <item>Tampoco es un personaje obligatorio ni principal, pero aparece en muchas obras literarias. Se trata de aquel ser que custodia algo (generalmente algo importante, relacionado con el objetivo del protagonista en la historia) y se comporta como un obstáculo a vencer para alcanzar la meta.</item>
+        <item>Otro personaje no obligatorio pero con mucha fuerza para una historia. Es Yoda en La Guerra de las Galaxias, o el Abate Faria en El Conde de Montecristo. Un personaje que guía y transforma al protagonista (el héroe) para que esté más preparado en la batalla final en la que tendrá que luchar por sus objetivos.</item>
+        <item>El personaje de impacto es un personaje secundario (no obligatorio) con una aparición breve en escena, pero determinante. Se trata de un personaje que, en un momento concreto de la historia, da al protagonista el empujoncito que necesita para seguir adelante; o bien le ofrece una clave que usará después (en el clímax, por ejemplo) para resolver algo, para encontrar el valor que necesita, etc.</item>
+        <item>En el lado opuesto de la baraja nos encontramos con un personaje principal cuyos objetivos son diametralmente opuestos a los del protagonista: el antagonista o villano de la historia. Esto no quiere decir que el antagonista haya de ser malo por la fuerza, en absoluto. Lo que ocurre es que estos personajes tienen objetivos distintos y cada uno de ellos luchará con todas sus fuerzas por alcanzarlos. Con este choque de objetivos surge el conflicto principal de la historia.</item>
+        <item>Al igual que el protagonista, el antagonista también puede tener sus ayudantes. Es decir, personajes que sirven al antagonista para lograr su objetivo, en contraposición con el objetivo del protagonista. No son personajes obligatorios, por supuesto, pero pueden resultar muy útiles a la hora de montar una trama.</item>
+        <item>El personaje escéptico es aquel que no cree en los objetivos del protagonista y está convencido de su fracaso. Es lo opuesto al escudero, aunque tampoco pone trabas al protagonista; solo lo desmoraliza con su actitud.</item>
+        <item>Estos personajes son similares a los ayudantes del antagonista pero con algunas variantes: para empezar, más que personajes son comodines, figuras que aparecen brevemente en la historia para poner trabas al personaje en su busca por alcanzar la meta.</item>
+        <item>A veces la meta perseguida en la trama puede tratarse de otro personaje. Por ejemplo, alguien ha sido secuestrado y el protagonista tiene que encontrarlo a toda costa. Este personaje desaparecido, si no cumple otra función, podría considerarse un personaje meta</item>
+    </string-array>
 
 
 </resources>

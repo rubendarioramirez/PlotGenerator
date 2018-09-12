@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.constraint.solver.widgets.Guideline;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -26,7 +27,7 @@ import java.util.ArrayList;
 public class CharListFragment extends Fragment {
 
     TextView project_list_tv, empty_character_tv;
-    Button add_character_btn;
+    Button add_character_btn, guide_character_btn;
     ListView character_list_lv;
     ArrayList<String> project_list_array;
     ArrayAdapter<String> itemsAdapter;
@@ -49,6 +50,7 @@ public class CharListFragment extends Fragment {
         //Declare elements
         project_list_tv = myFragmentView.findViewById(R.id.project_list_tv);
         add_character_btn = myFragmentView.findViewById(R.id.add_character_btn);
+        guide_character_btn = myFragmentView.findViewById(R.id.guide_character_btn);
         character_list_lv = myFragmentView.findViewById(R.id.character_list_lv);
         empty_character_tv= myFragmentView.findViewById(R.id.empty_character_tv);
 
@@ -92,6 +94,19 @@ public class CharListFragment extends Fragment {
                 //Send it to the next fragment
                 CharacterFragment nextFragment = new CharacterFragment();
                 nextFragment.setArguments(bundle);
+                //Make the transaction
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.addToBackStack(null);
+                transaction.replace(R.id.flMain,nextFragment);
+                transaction.commit();
+            }
+        });
+
+        //Click on Add character
+        guide_character_btn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //Send it to the next fragment
+                CharGuideFragment nextFragment = new CharGuideFragment();
                 //Make the transaction
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.addToBackStack(null);
