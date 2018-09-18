@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -19,6 +22,7 @@ import java.util.Arrays;
 public class CharGuideFragment extends Fragment {
 
     TextView char_guide_content_tv;
+    private AdView mAdView;
 
     public CharGuideFragment() {
         // Required empty public constructor
@@ -31,6 +35,10 @@ public class CharGuideFragment extends Fragment {
         // Inflate the layout for this fragment
         ((MainActivity)getActivity()).setActionBarTitle("Roles");
         View myFragmentView =  inflater.inflate(R.layout.fragment_char_guide, container, false);
+        mAdView = (AdView) myFragmentView.findViewById(R.id.adView_charguide);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
 
         char_guide_content_tv = myFragmentView.findViewById(R.id.char_guide_content_tv);
 

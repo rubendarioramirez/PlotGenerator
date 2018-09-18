@@ -68,6 +68,7 @@ public class BioFragment extends Fragment {
         String trait1 = char_description.get(9);
         String trait2 = char_description.get(10);
         String trait3 = char_description.get(11);
+        String notes = char_description.get(20);
         //First challenge
         String firstReaction = char_description.get(12);
         String waitRescue = char_description.get(13);
@@ -88,7 +89,8 @@ public class BioFragment extends Fragment {
             intro_tv.setText(name + " tiene " + age + " años.\nNacio en " + placebirth +".\nTrabaja de " + job +
                     "\n\nEn su mente desea " + desire + "\nPero es eso lo que necesita? o en realidad lo que necesita es " + need +
                     "?\n\n De su infancia sabemos que " + moment +
-                    "\n\nSus amigos dicen que es " + trait1 + ", " + trait2 + " y " + trait3  );
+                    "\n\nSus amigos dicen que es " + trait1 + ", " + trait2 + " y " + trait3 +
+                       "\n\nNotas \n" +  notes);
 
             if(firstReaction != null) {
                 StringBuffer sb=new StringBuffer();
@@ -123,7 +125,8 @@ public class BioFragment extends Fragment {
 
             intro_tv.setText(name + " is " + age + " years old. \nBorn in " + placebirth +".\n  Works as " + job + ".\n\n " + "In " + gender_article_posesive + " mind " + gender_article + " wants to " + desire +
                     "\nBut is that what " + gender_article + " really wants? or " + gender_article + " actually needs to " + need + "...\n\n  About " +gender_article_posesive+" childhood we know that "+ gender_article + " " + moment
-                    + "\n\nAlso " +  gender_article_posesive  + " friends says that " + gender_article + " is " + trait1 + ", " + trait2 + " and " + trait3);
+                    + "\n\nAlso " +  gender_article_posesive  + " friends says that " + gender_article + " is " + trait1 + ", " + trait2 + " and " + trait3 +
+                    "\n\nNotes \n" +  notes);
 
             if(firstReaction != null) {
                 StringBuffer sb=new StringBuffer();
@@ -227,6 +230,8 @@ public class BioFragment extends Fragment {
             char_list.add(cursor.getString(cursor.getColumnIndex("challenge_2_q2")));
             char_list.add(cursor.getString(cursor.getColumnIndex("challenge_2_q3")));
             char_list.add(cursor.getString(cursor.getColumnIndex("challenge_2_q4")));
+
+            char_list.add(cursor.getString(cursor.getColumnIndex("elevator_notes")));
 
             cursor.moveToNext();
         }

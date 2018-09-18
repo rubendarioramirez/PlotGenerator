@@ -121,8 +121,9 @@ public class CharListFragment extends Fragment {
     public ArrayList<String> getProjects(Context context, String project_name){
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        String query = "SELECT * FROM " + mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER + " WHERE project = " + "'" + project_name + "'";
-        Cursor cursor = sqLiteDatabase.rawQuery(query,null);
+//        String query = "SELECT * FROM " + mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER + " WHERE project = " + "'" + project_name + "'";
+        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER  + " WHERE project = ?";
+        Cursor cursor = sqLiteDatabase.rawQuery(query,new String[]{project_name});
         cursor.moveToFirst();
         ArrayList<String> projects_list = new ArrayList<String>();
         while(!cursor.isAfterLast()) {

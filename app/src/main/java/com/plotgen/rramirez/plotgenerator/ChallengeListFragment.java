@@ -11,6 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +24,7 @@ import java.util.List;
 public class ChallengeListFragment extends Fragment {
 
     List<item_herojourney> mlist = new ArrayList<>();
+    private AdView mAdView;
 
     public ChallengeListFragment() {
         // Required empty public constructor
@@ -37,6 +41,9 @@ public class ChallengeListFragment extends Fragment {
         // Inflate the layout for this fragment
         View myFragmentView =  inflater.inflate(R.layout.fragment_challenge, container, false);
 
+        mAdView = (AdView) myFragmentView.findViewById(R.id.adView_challenge_list);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         RecyclerView recyclerView = myFragmentView.findViewById(R.id.rv_challenge_fragment);
         final Adapter_herojourney adapter = new Adapter_herojourney(this.getActivity(),mlist);

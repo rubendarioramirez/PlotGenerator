@@ -56,10 +56,10 @@ public class MainActivity extends AppCompatActivity
 
         //Launch HOME first
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft .replace(R.id.flMain,new HomeFragment());
+        ft .replace(R.id.flMain,new ProjectFragment());
         ft.commit();
         //Set home as selected
-        navigationView.setCheckedItem(R.id.nav_home);
+        navigationView.setCheckedItem(R.id.nav_char);
     }
 
     public void setActionBarTitle(String title){
@@ -109,15 +109,16 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
-            // Handle the home action
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.addToBackStack(null);
-            ft .replace(R.id.flMain,new HomeFragment());
-            mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
-            ft.commit();
-
-        } else if (id == R.id.nav_genre) {
+//        if (id == R.id.nav_home) {
+//            // Handle the home action
+//            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//            ft.addToBackStack(null);
+//            ft .replace(R.id.flMain,new HomeFragment());
+//            mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
+//            ft.commit();
+//
+//        } else
+            if (id == R.id.nav_genre) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft .replace(R.id.flMain,new HeroJourneyFragment());
             ft.addToBackStack(null);

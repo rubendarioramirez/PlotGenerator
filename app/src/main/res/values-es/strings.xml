@@ -36,7 +36,7 @@
     Por favor, crea uno para comenzar.</string>
 
     <string name="add_character_btn">Agregar Personaje</string>
-    <string name="guide_character_btn">Guide</string>
+    <string name="guide_character_btn">Guia</string>
     <!--Add character-->
     <string name="character_personality_tv">Personalidad</string>
     <string name="character_add_name">Nombre</string>
@@ -259,6 +259,7 @@
     <!--Subtitles-->
     <string name="character_basic_tv">Basico</string>
     <string name="character_story_tv">Historia</string>
+    <string name="character_notes_tv">Notas</string>
 
 
     <!--Journey Strings-->

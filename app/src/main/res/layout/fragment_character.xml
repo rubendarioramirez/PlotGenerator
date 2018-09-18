@@ -83,7 +83,7 @@
                 android:layout_marginTop="12dp"
                 android:ems="8"
                 android:inputType="textPersonName"
-                android:text="@string/character_add_name"
+                android:hint="@string/character_add_name"
                 android:textSize="14sp" />
 
             <EditText
@@ -93,7 +93,7 @@
                 android:layout_marginTop="27dp"
                 android:ems="8"
                 android:inputType="number"
-                android:text="@string/character_add_age"
+                android:hint="@string/character_add_age"
                 android:textSize="14sp" />
 
             <android.support.v7.widget.AppCompatSpinner
@@ -111,7 +111,7 @@
                 android:layout_marginTop="27dp"
                 android:ems="8"
                 android:inputType="textPersonName"
-                android:text="@string/character_add_profession"
+                android:hint="@string/character_add_profession"
                 android:textSize="14sp" />
 
             <EditText
@@ -121,7 +121,7 @@
                 android:layout_marginTop="27dp"
                 android:ems="8"
                 android:inputType="textPersonName"
-                android:text="@string/character_add_placebirth"
+                android:hint="@string/character_add_placebirth"
                 android:textSize="14sp" />
 
             <TextView
@@ -139,7 +139,7 @@
                 android:layout_marginTop="12dp"
                 android:ems="8"
                 android:inputType="textPersonName"
-                android:text="@string/character_add_trait"
+                android:hint="@string/character_add_trait"
                 android:textSize="14sp" />
 
             <EditText
@@ -149,7 +149,7 @@
                 android:layout_marginTop="12dp"
                 android:ems="8"
                 android:inputType="textPersonName"
-                android:text="@string/character_add_trait"
+                android:hint="@string/character_add_trait"
                 android:textSize="14sp" />
 
             <EditText
@@ -159,7 +159,7 @@
                 android:layout_marginTop="12dp"
                 android:ems="8"
                 android:inputType="textPersonName"
-                android:text="@string/character_add_trait"
+                android:hint="@string/character_add_trait"
                 android:textSize="14sp" />
 
             <TextView
@@ -185,7 +185,7 @@
                 android:layout_marginTop="27dp"
                 android:ems="8"
                 android:inputType="textPersonName"
-                android:text="@string/character_add_defmoment"
+                android:hint="@string/character_add_defmoment"
                 android:textSize="14sp" />
 
 
@@ -196,19 +196,39 @@
                 android:layout_marginTop="27dp"
                 android:ems="8"
                 android:inputType="textPersonName"
-                android:text="@string/character_add_desire"
+                android:hint="@string/character_add_desire"
                 android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/need_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="60dp"
+
                 android:layout_marginTop="27dp"
                 android:ems="8"
                 android:inputType="textPersonName"
-                android:text="@string/character_add_need"
+                android:hint="@string/character_add_need"
                 android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="27dp"
+                android:text="@string/character_notes_tv"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/notes_edit_text"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="60dp"
+                android:layout_marginTop="27dp"
+                android:ems="8"
+                android:layout_height="150dp"
+                android:inputType="text|textMultiLine"
+                android:hint="@string/character_notes_tv"
+                android:textSize="14sp" />
+
 
         </LinearLayout>
     </ScrollView>

@@ -12,6 +12,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,6 +24,7 @@ public class ChallengeTemplateFragment extends Fragment {
 
     TextView charTemplateTitle, question1Title, question1, question2Title, question2, question3Title, question3, question4Title, question4;
     Button charTemplateSubmit;
+    private AdView mAdView;
 
     public ChallengeTemplateFragment() {
         // Required empty public constructor
@@ -73,6 +77,12 @@ public class ChallengeTemplateFragment extends Fragment {
                     updateDB(char_name.toString(), project_name.toString(), challenge_number.toString());
                 }
             });
+
+        //Init the ad
+        mAdView = (AdView) myFragmentView.findViewById(R.id.adView_challenge_template);
+        //Display the ad
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         return myFragmentView;
     }

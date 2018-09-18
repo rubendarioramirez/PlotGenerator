@@ -22,6 +22,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -34,6 +37,7 @@ public class ProjectFragment extends Fragment {
     ArrayList<String> project_list_array;
     ArrayAdapter<String> itemsAdapter;
     TextView empty_project_tv;
+    private AdView mAdView;
 
     public ProjectFragment() {
         // Required empty public constructor
@@ -104,6 +108,12 @@ public class ProjectFragment extends Fragment {
                 alertDialog.show();
             }
         });
+
+
+        mAdView = (AdView) myFragmentView.findViewById(R.id.adView_project_frag);
+        //Display the ad
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
 
         return myFragmentView;

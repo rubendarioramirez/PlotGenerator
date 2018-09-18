@@ -31,7 +31,7 @@ import java.util.Random;
 
 public class CharacterFragment extends Fragment {
 
-    public EditText nameEditText, profession_edit_text, desire_edit_text, age_edit_text, placebirth_edit_text, defmoment_edit_text,need_edit_text, trait_edit_text, trait2_edit_text,trait3_edit_text;
+    public EditText nameEditText, profession_edit_text, desire_edit_text, age_edit_text, placebirth_edit_text, defmoment_edit_text,need_edit_text, trait_edit_text, trait2_edit_text,trait3_edit_text, notes_edit_text;
     public TextView project_name_tv;
     public Button submit, random_gen_char_btn;
     public Spinner gender_spinner, role_spinner;
@@ -89,6 +89,7 @@ public class CharacterFragment extends Fragment {
         trait_edit_text= myFragmentView.findViewById(R.id.trait_edit_text);
         trait2_edit_text= myFragmentView.findViewById(R.id.trait_2_edit_text);
         trait3_edit_text= myFragmentView.findViewById(R.id.trait_3_edit_text);
+        notes_edit_text= myFragmentView.findViewById(R.id.notes_edit_text);
         //Save button action
         submit =  myFragmentView.findViewById(R.id.char_template_submit);
         random_gen_char_btn = myFragmentView.findViewById(R.id.random_gen_char_btn);
@@ -117,6 +118,7 @@ public class CharacterFragment extends Fragment {
             trait_edit_text.setText(char_description.get(9));
             trait2_edit_text.setText(char_description.get(10));
             trait3_edit_text.setText(char_description.get(11));
+            notes_edit_text.setText(char_description.get(12));
 
 
             //Set the proper spinner value
@@ -303,6 +305,7 @@ public class CharacterFragment extends Fragment {
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_TRAIT1, trait_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_TRAIT2, trait2_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_TRAIT3, trait3_edit_text.getText().toString());
+        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_ENOTES, notes_edit_text.getText().toString());
 
 
         long newRowId = database.insert(mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER, null, values);
@@ -329,6 +332,7 @@ public class CharacterFragment extends Fragment {
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_TRAIT1, trait_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_TRAIT2, trait2_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_TRAIT3, trait3_edit_text.getText().toString());
+        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_ENOTES, notes_edit_text.getText().toString());
         database.update(mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER, values,   "name = ?", new String[]{name_text.toString()});
 
         //Come back to previous fragment
@@ -357,6 +361,7 @@ public class CharacterFragment extends Fragment {
             char_list.add(cursor.getString(cursor.getColumnIndex("trait1")));
             char_list.add(cursor.getString(cursor.getColumnIndex("trait2")));
             char_list.add(cursor.getString(cursor.getColumnIndex("trait3")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("elevator_notes")));
             cursor.moveToNext();
         }
         cursor.close();
