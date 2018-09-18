@@ -47,6 +47,7 @@ public class ChallengeListFragment extends Fragment {
 
         RecyclerView recyclerView = myFragmentView.findViewById(R.id.rv_challenge_fragment);
         final Adapter_herojourney adapter = new Adapter_herojourney(this.getActivity(),mlist);
+        mlist.clear();
         mlist.add(new item_herojourney(R.drawable.typewriter, (String) getString(R.string.challenge_1_title), (String) getString(R.string.challenge_1_desc), (String) getString(R.string.challenge_1_desc_long),(String) char_name, (String) project_name));
         mlist.add(new item_herojourney(R.drawable.typewriter, (String) getString(R.string.challenge_2_title), (String) getString(R.string.challenge_2_desc), (String) getString(R.string.challenge_2_desc_long),(String) char_name, (String) project_name));
         mlist.add(new item_herojourney(R.drawable.typewriter, (String) getString(R.string.challenge_3_title), (String) getString(R.string.challenge_3_desc), (String) getString(R.string.challenge_3_desc_long),(String) char_name, (String) project_name));

@@ -68,9 +68,12 @@ public class CharListFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
+                //Get the name that was touched
+                String[] charNameRaw = itemsAdapter.getItem(position).split(" - ");
+                String charName = charNameRaw[0];
 
                 Bundle bundle = new Bundle();
-                bundle.putString("char_name",itemsAdapter.getItem(position));
+                bundle.putString("char_name",charName);
                 bundle.putString("project_name",project_name_text.toString());
                 //Send it to the next fragment
                 BioFragment nextFragment = new BioFragment();
@@ -127,7 +130,9 @@ public class CharListFragment extends Fragment {
         cursor.moveToFirst();
         ArrayList<String> projects_list = new ArrayList<String>();
         while(!cursor.isAfterLast()) {
-            projects_list.add(cursor.getString(cursor.getColumnIndex("name")));
+            String charname = cursor.getString(cursor.getColumnIndex("name"));
+            String charRole = cursor.getString(cursor.getColumnIndex("role"));
+            projects_list.add(charname + " - " + charRole);
             cursor.moveToNext();
         }
         cursor.close();

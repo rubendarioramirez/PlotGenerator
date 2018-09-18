@@ -56,10 +56,6 @@ public class ChallengeTemplateFragment extends Fragment {
 
         charTemplateTitle.setText(char_name);
         //Set titles for challenge one
-        question1.setText(getString(R.string.challenge_answer_placeholder));
-        question2.setText(getString(R.string.challenge_answer_placeholder));
-        question3.setText(getString(R.string.challenge_answer_placeholder));
-        question4.setText(getString(R.string.challenge_answer_placeholder));
         if(challenge_number.equals("Challenge I") || challenge_number.equals("Desafio I")) {
             question1Title.setText(getString(R.string.challenge_1_q1));
             question2Title.setText(getString(R.string.challenge_1_q2));
