@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -24,7 +25,7 @@ import java.util.Locale;
  */
 public class BioFragment extends Fragment {
 
-    TextView title, intro_tv,character_bio_challenge, character_bio_challenge_2;
+    TextView title, role_subtitle, intro_tv,character_bio_challenge, character_bio_challenge_2;
     ArrayList<String> char_description;
     ImageButton character_bio_edit_btn;
     Button character_bio_challenge_btn;
@@ -47,6 +48,7 @@ public class BioFragment extends Fragment {
 
         //Bind the elements
         title = myFragmentView.findViewById(R.id.character_bio_name_title);
+        role_subtitle=myFragmentView.findViewById(R.id.character_bio_role_title);
         intro_tv = myFragmentView.findViewById(R.id.character_bio_intro);
         character_bio_challenge = myFragmentView.findViewById(R.id.character_bio_challenge);
         character_bio_challenge_2 = myFragmentView.findViewById(R.id.character_bio_challenge_2);
@@ -81,8 +83,9 @@ public class BioFragment extends Fragment {
         String challenge2_q4 = char_description.get(19);
 
         //Set title
-        title.setText(char_name.toString() + "\n " + role);
-
+//        title.setText(char_name.toString() + "\n " + role);
+        title.setText(char_name.toString() );
+        role_subtitle.setText(role.toString());
 
         //Get device lang
         if (Locale.getDefault().getLanguage()=="es"){
@@ -94,20 +97,20 @@ public class BioFragment extends Fragment {
 
             if(firstReaction != null) {
                 StringBuffer sb=new StringBuffer();
-                sb.append("<b>Sobre el desafio del elevador</b>  podemos decir que: <br>");
-                sb.append("<br><i>Cual seria su primera reaccion de quedarse atrapado? </i><br> " + firstReaction);
-                sb.append("<br><i>Esperaria a ser rescatado? </i><br> " + waitRescue);
-                sb.append("<br><i>Si la persona que esta con el entrara en panico. Lo ayudaria? </i><br> " + helpPartner);
-                sb.append("<br><i>Finalmente, si solo uno pudiese escapar, quien iria primero? </i><br> " + escapeFirst);
+                sb.append("<b>El desafio del elevador:</b>");
+                sb.append("<br><i><b>Cual seria su primera reaccion de quedarse atrapado? </b></i><br> " + firstReaction);
+                sb.append("<br><i><b>Esperaria a ser rescatado? </b></i><br> " + waitRescue);
+                sb.append("<br><i><b>Si la persona que esta con el entrara en panico. Lo ayudaria? </b></i><br> " + helpPartner);
+                sb.append("<br><i><b>Finalmente, si solo uno pudiese escapar, quien iria primero? </b></i><br> " + escapeFirst);
                 character_bio_challenge.setText(Html.fromHtml(sb.toString()));
             }
             if(challenge2_q1 !=null){
                 StringBuffer sb=new StringBuffer();
-                sb.append("<b>La mentira que cree tu personaje</b> es la base para su arco de cambio. Esto es todo lo que esta mal en su mundo. Una vez que sabes que esta mal, es el principio de poder arreglarlo. <br>");
-                sb.append("<br><b>Sobre las preguntas: </b><i> Cual es el concepto errado que tiene sobre el o sobre el mundo?</i><br>" + challenge2_q1 + "<br>");
-                sb.append("<br><i>Su mentira hace que sea miserable cuando la historia comienza? De ser asi, como?</i><br>" + challenge2_q2+ "<br>");
-                sb.append("<br><i>Si no, va a hacer el plot inicial que se sienta incomodo?</i><br>" + challenge2_q3+ "<br>");
-                sb.append("<br><i>Cuales son los sintomas de la mentira de tu personaje?</i><br>" + challenge2_q4+ "<br>");
+                sb.append("<br><br><b>La mentira que cree tu personaje:</b> Es la base para su arco de cambio. Esto es todo lo que esta mal en su mundo. Una vez que sabes que esta mal, es el principio de poder arreglarlo. <br>");
+                sb.append("<br><i><b>Cual es el concepto errado que tiene sobre el o sobre el mundo?</b></i><br>" + challenge2_q1 + "<br>");
+                sb.append("<br><i><b>Su mentira hace que sea miserable cuando la historia comienza? De ser asi, como?</b></i><br>" + challenge2_q2+ "<br>");
+                sb.append("<br><i><b>Si no, va a hacer el plot inicial que se sienta incomodo?</b></i><br>" + challenge2_q3+ "<br>");
+                sb.append("<br><i><b>Cuales son los sintomas de la mentira de tu personaje?</b></i><br>" + challenge2_q4+ "<br>");
                 character_bio_challenge_2.setText(Html.fromHtml(sb.toString()));
             }
 
@@ -124,26 +127,26 @@ public class BioFragment extends Fragment {
             }
 
             intro_tv.setText(name + " is " + age + " years old. \nBorn in " + placebirth +".\n  Works as " + job + ".\n\n " + "In " + gender_article_posesive + " mind " + gender_article + " wants to " + desire +
-                    "\nBut is that what " + gender_article + " really wants? or " + gender_article + " actually needs to " + need + "...\n\n  About " +gender_article_posesive+" childhood we know that "+ gender_article + " " + moment
+                    "\nBut is that what " + gender_article + " really wants? or " + gender_article + " actually needs to " + need + "?...\n\n  About " +gender_article_posesive+" childhood we know that "+ gender_article + " " + moment
                     + "\n\nAlso " +  gender_article_posesive  + " friends says that " + gender_article + " is " + trait1 + ", " + trait2 + " and " + trait3 +
                     "\n\nNotes \n" +  notes);
 
             if(firstReaction != null) {
                 StringBuffer sb=new StringBuffer();
-                sb.append("<b>About the elevator challenge</b> we could say that: <br>");
-                sb.append("<br><i>What will be his first reaction if gets stuck in a elevator?</i><br> " + firstReaction);
-                sb.append("<br><i>Will your character wait to be rescued?</i><br> " + waitRescue);
-                sb.append("<br><i>If the person next to your character has a panic attack. What will happen?</i><br> " + helpPartner);
-                sb.append("<br><i>Lastly in the eventuality that just one can escape and the other should wait, what will your character do?</i><br> " + escapeFirst);
+                sb.append("<b>The elevator challenge:</b>");
+                sb.append("<br><i><b>What will be his first reaction if gets stuck in a elevator?</b></i><br> " + firstReaction);
+                sb.append("<br><i><b>Will your character wait to be rescued?</b></i><br> " + waitRescue);
+                sb.append("<br><i><b>If the person next to your character has a panic attack. What will happen?</b></i><br> " + helpPartner);
+                sb.append("<br><i><b>Lastly in the eventuality that just one can escape and the other should wait, what will your character do?</b></i><br> " + escapeFirst);
                 character_bio_challenge.setText(Html.fromHtml(sb.toString()));
             }
             if(challenge2_q1 !=null){
                 StringBuffer sb=new StringBuffer();
-                sb.append("<b>The Lie Your Character Believes</b> is the foundation for his character arc. This is what’s wrong in his world. Once you know what’s wrong, you then get to set about figuring out how to make it right. <br>");
-                sb.append("<br><b>When asked: </b> <i>What misconception does your protagonist have about himself of the world, you concluded that... </i><br>" + challenge2_q1 + "<br>");
-                sb.append("<br><i>Is the lie making his life miserable when the story starts? If so, how? </i><br>" + challenge2_q2+ "<br>");
-                sb.append("<br><i>If not, will the inciting event make him uncomfortable? </i><br>" + challenge2_q3+ "<br>");
-                sb.append("<br><i>What are the symptoms of your character\'s lie? </i><br>" + challenge2_q4+ "<br>");
+                sb.append("<br><br><b>The Lie Your Character Believes</b> is the foundation for his character arc. This is what’s wrong in his world. Once you know what’s wrong, you then get to set about figuring out how to make it right. <br>");
+                sb.append("<br><i><b>What misconception does your protagonist have about himself of the world? </b></i><br>" + challenge2_q1 + "<br>");
+                sb.append("<br><i><b>Is the lie making his life miserable when the story starts? If so, how? </b></i><br>" + challenge2_q2+ "<br>");
+                sb.append("<br><i><b>If not, will the inciting event make him uncomfortable? </b></i><br>" + challenge2_q3+ "<br>");
+                sb.append("<br><i><b>What are the symptoms of your character\'s lie? </b></i><br>" + challenge2_q4+ "<br>");
                 character_bio_challenge_2.setText(Html.fromHtml(sb.toString()));
             }
 

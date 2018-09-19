@@ -33,10 +33,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="36sp"
+                    android:fontFamily="@font/typewcond_bold"
                     android:gravity="center_vertical|center_horizontal"
                     android:text="@string/char_guide_title"
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                    android:textSize="30sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -46,9 +48,10 @@
                     android:layout_marginLeft="8sp"
                     android:layout_marginRight="8sp"
                     android:layout_marginTop="48sp"
+                    android:fontFamily="@font/typewcond_regular"
                     android:text="aaaa"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textSize="18sp" />
+                    android:textSize="24sp" />
             </LinearLayout>
         </ScrollView>
 

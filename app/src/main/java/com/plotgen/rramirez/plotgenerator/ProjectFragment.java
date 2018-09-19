@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,7 +51,6 @@ public class ProjectFragment extends Fragment {
         ((MainActivity)getActivity()).setActionBarTitle(getString(R.string.projects_tab));
         // Inflate the layout for this fragment
 
-
         final View myFragmentView = inflater.inflate(R.layout.fragment_project, container, false);
 
         addProject = myFragmentView.findViewById(R.id.add_project_btn);
@@ -72,13 +72,7 @@ public class ProjectFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putString("project_name",itemsAdapter.getItem(position).toString());
                 //Send it to the next fragment
-                CharListFragment nextFragment = new CharListFragment();
-                nextFragment.setArguments(bundle);
-                //Make the transaction
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.addToBackStack(null);
-                transaction.replace(R.id.flMain,nextFragment);
-                transaction.commit();
+                changeFragment(bundle);
             }
         });
 
@@ -144,6 +138,15 @@ public class ProjectFragment extends Fragment {
         return projects_list;
     }
 
+    private void changeFragment(Bundle bundle){
+        CharListFragment nextFragment = new CharListFragment();
+        nextFragment.setArguments(bundle);
+        //Make the transaction
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.addToBackStack(null);
+        transaction.replace(R.id.flMain,nextFragment);
+        transaction.commit();
+    }
 
 
 
