@@ -7,10 +7,12 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -37,7 +39,7 @@ public class CharacterFragment extends Fragment {
     public TextView project_name_tv;
     public Button submit, random_gen_char_btn;
     public Spinner gender_spinner, role_spinner;
-    public static boolean rated;
+    public static int rated;
     ArrayList<String> char_description;
     private FirebaseAnalytics mFirebaseAnalytics;
 
@@ -58,7 +60,9 @@ public class CharacterFragment extends Fragment {
 
         final String project_name_text = this.getArguments().getString("project_name");
         final String name_text = this.getArguments().getString("char_name");
-
+        //Get if rated already
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(myFragmentView.getContext());
+        rated = preferences.getInt("rated",0);
 
         //Gender spinner functions
         gender_spinner = myFragmentView.findViewById(R.id.gender_spinner);
@@ -168,7 +172,7 @@ public class CharacterFragment extends Fragment {
                 }
             });
 
-            if(!rated) {
+            if(rated == 0) {
                 showRateDialogForRate(myFragmentView.getContext());
             }
         }
@@ -320,7 +324,6 @@ public class CharacterFragment extends Fragment {
         params.putString("Character", "completed");
         mFirebaseAnalytics.logEvent("character_created",params);
 
-
         //Come back to previous fragment
         fragmentTransition();
 
@@ -409,7 +412,10 @@ public class CharacterFragment extends Fragment {
                             goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
                                     Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET |
                                     Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-                            rated = true;
+                            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+                            SharedPreferences.Editor editor = preferences.edit();
+                            editor.putInt("rated", 1);
+                            editor.apply();
                             try {
                                 context.startActivity(goToMarket);
                             } catch (ActivityNotFoundException e) {
