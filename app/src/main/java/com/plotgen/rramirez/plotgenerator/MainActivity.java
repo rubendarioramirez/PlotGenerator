@@ -1,5 +1,8 @@
 package com.plotgen.rramirez.plotgenerator;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.design.widget.NavigationView;
@@ -16,7 +19,13 @@ import android.view.View;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class MainActivity extends AppCompatActivity
@@ -32,18 +41,13 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-
         //Init the ads
         MobileAds.initialize(this, "ca-app-pub-6696437403163667~6953226633");
 
         //Interstitial
         mInterstitialAd = new InterstitialAd(this);
-//        mInterstitialAd.setAdUnitId("ca-app-pub-6696437403163667/3046586854");
         mInterstitialAd.setAdUnitId(getString(R.string.interstitial_plot_gen));
-
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
-
         // Obtain the FirebaseAnalytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
@@ -62,7 +66,30 @@ public class MainActivity extends AppCompatActivity
         ft.commit();
         //Set home as selected
         navigationView.setCheckedItem(R.id.nav_char);
+
+
+        //Notification manager if device is OREO or below
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel mChannel =
+                    new NotificationChannel(Constants.CHANNEL_ID,Constants.CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH);
+
+            mChannel.setDescription(Constants.CHANNEL_DESCRIPTION);
+            mChannel.enableLights(true);
+            mChannel.setLightColor(Color.RED);
+
+            mNotificationManager.createNotificationChannel(mChannel);
+
+        }
+
+
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
 
     public void setActionBarTitle(String title){
         getSupportActionBar().setTitle(title);
@@ -97,11 +124,6 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -110,17 +132,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-//        if (id == R.id.nav_home) {
-//            // Handle the home action
-//            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//            ft.addToBackStack(null);
-//            ft .replace(R.id.flMain,new HomeFragment());
-//            mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
-//            ft.commit();
-//
-//        } else
-            if (id == R.id.nav_genre) {
+        if (id == R.id.nav_genre) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft .replace(R.id.flMain,new HeroJourneyFragment());
             ft.addToBackStack(null);
@@ -140,45 +152,26 @@ public class MainActivity extends AppCompatActivity
             mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
             ft.commit();
         }
+ else if (id == R.id.nav_writting_challenge) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft .replace(R.id.flMain,new weeklyWriting());
+            ft.addToBackStack(null);
+            mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
+            ft.commit();
+        }
+        // else if (id == R.id.nav_home) {
+//            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//            ft .replace(R.id.flMain,new HomeFragment());
+//            ft.addToBackStack(null);
+//            mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
+//            ft.commit();
+//        }
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        if (hasFocus) {
-            hideSystemUI();
-        }
-    }
 
-    private void hideSystemUI() {
-        // Enables regular immersive mode.
-        // For "lean back" mode, remove SYSTEM_UI_FLAG_IMMERSIVE.
-        // Or for "sticky immersive," replace it with SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-        View decorView = getWindow().getDecorView();
-        decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_IMMERSIVE
-                        // Set the content to appear under the system bars so that the
-                        // content doesn't resize when the system bars hide and show.
-                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        // Hide the nav bar and status bar
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN);
-    }
-
-    // Shows the system bars by removing all the flags
-// except for the ones that make the content appear under the system bars.
-    private void showSystemUI() {
-        View decorView = getWindow().getDecorView();
-        decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-    }
 
 }

@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 
 /**
@@ -25,6 +26,7 @@ public class ChallengeTemplateFragment extends Fragment {
     TextView charTemplateTitle, question1Title, question1, question2Title, question2, question3Title, question3, question4Title, question4;
     Button charTemplateSubmit;
     private AdView mAdView;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     public ChallengeTemplateFragment() {
         // Required empty public constructor
@@ -37,6 +39,10 @@ public class ChallengeTemplateFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View myFragmentView = inflater.inflate(R.layout.fragment_challenge_template, container, false);
+
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(myFragmentView.getContext());
+
 
         final String project_name  = this.getArguments().getString("char_name");
         final String char_name = this.getArguments().getString("project_name");
@@ -71,6 +77,11 @@ public class ChallengeTemplateFragment extends Fragment {
                 public void onClick(View v) {
                     // Perform action on click
                     updateDB(char_name.toString(), project_name.toString(), challenge_number.toString());
+
+                    //Log challenges updated
+                    Bundle params = new Bundle();
+                    params.putString("Challenge", "completed");
+                    mFirebaseAnalytics.logEvent("challenge_completed",params);
                 }
             });
 

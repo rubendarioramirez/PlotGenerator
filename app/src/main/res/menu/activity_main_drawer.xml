@@ -9,7 +9,7 @@
 
         <item
             android:id="@+id/nav_char"
-            android:icon="@drawable/writer_icon"
+            android:icon="@drawable/ic_character_black"
             android:title="@string/character_tab" />
 
         <item
@@ -21,6 +21,11 @@
             android:id="@+id/nav_genre"
             android:icon="@drawable/ic_book_black"
             android:title="@string/hero_journey_tab" />
+
+        <item
+            android:id="@+id/nav_writting_challenge"
+            android:icon="@drawable/writer_icon"
+            android:title="@string/writing_challenge_tab" />
 
 
 

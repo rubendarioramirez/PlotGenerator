@@ -22,6 +22,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import org.apache.commons.lang3.text.WordUtils;
 
 import java.util.ArrayList;
@@ -37,7 +39,7 @@ public class CharacterFragment extends Fragment {
     public Spinner gender_spinner, role_spinner;
     public static boolean rated;
     ArrayList<String> char_description;
-
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     public CharacterFragment() {
         // Required empty public constructor
@@ -50,6 +52,9 @@ public class CharacterFragment extends Fragment {
         // Inflate the layout for this fragment
         ((MainActivity)getActivity()).setActionBarTitle(getString(R.string.character_tab));
         final View myFragmentView = inflater.inflate(R.layout.fragment_character, container, false);
+
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(myFragmentView.getContext());
 
         final String project_name_text = this.getArguments().getString("project_name");
         final String name_text = this.getArguments().getString("char_name");
@@ -309,6 +314,12 @@ public class CharacterFragment extends Fragment {
 
 
         long newRowId = database.insert(mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER, null, values);
+
+        //Log challenges updated
+        Bundle params = new Bundle();
+        params.putString("Character", "completed");
+        mFirebaseAnalytics.logEvent("character_created",params);
+
 
         //Come back to previous fragment
         fragmentTransition();

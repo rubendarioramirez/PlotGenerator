@@ -13,6 +13,7 @@
 
     <string name="trigger_tab">Writing Prompts</string>
     <string name="character_tab">Workshop</string>
+    <string name="writing_challenge_tab">Weekly writing Challenge</string>
 
 
     <!--HOME Strings-->
@@ -379,6 +380,9 @@ In order for your character to evolve in a positive way, he has to start out wit
         <item>These kind of characters are somehow similar to the Antagonist\'s helpers however they act more like jokers, characters that will pop up briefly to complicate or deviate the protagonist from his objective.</item>
         <item>Sometimes the goal of a Protagonist can be another character. For instance, somebody has been kidnapped and the protagonist has to find him. This character if he doesn't have any other function or role in the play, it can be consider the goal</item>
     </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
