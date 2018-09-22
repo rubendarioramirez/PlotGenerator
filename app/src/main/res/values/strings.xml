@@ -12,7 +12,7 @@
 
 
     <string name="trigger_tab">Writing Prompts</string>
-    <string name="character_tab">Workshop</string>
+    <string name="character_tab">Character Workshop</string>
     <string name="writing_challenge_tab">Weekly writing Challenge</string>
 
 
@@ -173,7 +173,7 @@
     <string-array name="defmoment_array">
         <item>parents got killed</item>
         <item>a big loss</item>
-        <item>a trip to a foreing country</item>
+        <item>had a trip to a foreing country</item>
         <item>got lost</item>
         <item>witness a murder</item>
         <item>found an artifact</item>

@@ -8,8 +8,9 @@ android {
         applicationId "com.plotgen.rramirez.plotgenerator"
         minSdkVersion 15
         targetSdkVersion 26
-        versionCode 14
-        versionName "1.8"
+        versionCode 15
+        versionName "1.9"
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         lintOptions {
             checkReleaseBuilds false
@@ -47,6 +48,7 @@ dependencies {
     implementation 'com.crashlytics.sdk.android:crashlytics:2.9.5'
     implementation 'com.google.firebase:firebase-auth:16.0.3'
     implementation 'com.google.android.gms:play-services-auth:16.0.0'
+    implementation 'com.android.support:multidex:1.0.3'
 }
 
 apply plugin: 'com.google.gms.google-services'
