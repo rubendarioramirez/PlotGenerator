@@ -2,6 +2,7 @@ package com.plotgen.rramirez.plotgenerator;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -16,6 +17,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.android.billingclient.api.BillingClient;
+import com.android.billingclient.api.BillingClientStateListener;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.AdRequest;

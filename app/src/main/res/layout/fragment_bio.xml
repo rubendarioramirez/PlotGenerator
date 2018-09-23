@@ -153,12 +153,31 @@
         android:background="@drawable/roundcorner"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="@+id/background_char_bio"
-        app:layout_constraintHorizontal_bias="0.942"
+        app:layout_constraintHorizontal_bias="0.974"
         app:layout_constraintLeft_toLeftOf="@+id/background_char_bio"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.076"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@android:drawable/ic_menu_edit" />
+
+    <ImageButton
+        android:id="@+id/character_bio_share_btn"
+        style="@style/Widget.AppCompat.ImageButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/roundcorner"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@+id/background_char_bio"
+        app:layout_constraintHorizontal_bias="0.808"
+        app:layout_constraintLeft_toLeftOf="@+id/background_char_bio"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@android:drawable/ic_menu_share" />
 
     <Button
         android:id="@+id/bio_fragment_challenge_btn"

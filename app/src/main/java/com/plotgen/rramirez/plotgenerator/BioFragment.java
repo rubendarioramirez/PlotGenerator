@@ -2,6 +2,7 @@ package com.plotgen.rramirez.plotgenerator;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -16,6 +17,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -27,9 +30,11 @@ public class BioFragment extends Fragment {
 
     TextView title, role_subtitle, intro_tv,character_bio_challenge, character_bio_challenge_2;
     ArrayList<String> char_description;
-    ImageButton character_bio_edit_btn;
+    ImageButton character_bio_edit_btn, character_bio_share_btn;
     Button character_bio_challenge_btn;
     String gender_article, gender_article_posesive;
+    private FirebaseAnalytics mFirebaseAnalytics;
+
 
     public BioFragment() {
         // Required empty public constructor
@@ -44,7 +49,10 @@ public class BioFragment extends Fragment {
         final String char_name = this.getArguments().getString("char_name");
         final String project_name = this.getArguments().getString("project_name");
 
-        View myFragmentView = inflater.inflate(R.layout.fragment_bio, container, false);
+        final View myFragmentView = inflater.inflate(R.layout.fragment_bio, container, false);
+
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(myFragmentView.getContext());
 
         //Bind the elements
         title = myFragmentView.findViewById(R.id.character_bio_name_title);
@@ -53,6 +61,7 @@ public class BioFragment extends Fragment {
         character_bio_challenge = myFragmentView.findViewById(R.id.character_bio_challenge);
         character_bio_challenge_2 = myFragmentView.findViewById(R.id.character_bio_challenge_2);
         character_bio_edit_btn = myFragmentView.findViewById(R.id.character_bio_edit_btn);
+        character_bio_share_btn = myFragmentView.findViewById(R.id.character_bio_share_btn);
         character_bio_challenge_btn = myFragmentView.findViewById(R.id.bio_fragment_challenge_btn);
 
 
@@ -64,7 +73,7 @@ public class BioFragment extends Fragment {
         String placebirth = char_description.get(3);
         String job = char_description.get(4);
         String desire = char_description.get(5);
-        String role = char_description.get(6);
+        final String role = char_description.get(6);
         String moment = char_description.get(7);
         String need = char_description.get(8);
         String trait1 = char_description.get(9);
@@ -196,11 +205,38 @@ public class BioFragment extends Fragment {
             }
         });
 
+        character_bio_share_btn.setOnClickListener(new View.OnClickListener()   {
+            public void onClick(View v)  {
+                try {
+                    String allbody = intro_tv.getText().toString() + " \n" +  character_bio_challenge.getText().toString() + " \n" + character_bio_challenge_2.getText().toString();
+                    String char_role = project_name + ": " + char_name + " - " + role;
+                    SHARE(myFragmentView,allbody.toString(), char_role);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
 
         return myFragmentView;
     }
 
+    public void SHARE(View view, String body, String char_name) {
+
+        // Do something in response to button
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, char_name);
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, body);
+        startActivity(Intent.createChooser(sharingIntent,  "share"));
+
+        //Log challenges updated
+        Bundle params = new Bundle();
+        params.putString("Share", "completed");
+        mFirebaseAnalytics.logEvent("share_completed",params);
+
+
+    }
 
 
     public ArrayList<String> getDescription(Context context, String char_name){

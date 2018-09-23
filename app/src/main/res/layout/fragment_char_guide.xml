@@ -13,7 +13,7 @@
         android:layout_height="0dp"
         android:background="#dfdddd"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/adView_charguide"
+        app:layout_constraintBottom_toBottomOf="@+id/adView_charguide"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -59,7 +59,7 @@
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView_charguide"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:adSize="BANNER"
         app:adUnitId="@string/banner_ad_unit_id"
