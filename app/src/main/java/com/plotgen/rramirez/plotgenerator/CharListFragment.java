@@ -2,6 +2,7 @@ package com.plotgen.rramirez.plotgenerator;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -109,7 +110,7 @@ public class CharListFragment extends Fragment {
         guide_character_btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //Send it to the next fragment
-                CharGuideFragment nextFragment = new CharGuideFragment();
+                GuideListFragment nextFragment = new GuideListFragment();
                 //Make the transaction
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.addToBackStack(null);

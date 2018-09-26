@@ -358,8 +358,8 @@ public class CharacterFragment extends Fragment {
     public ArrayList<String> getDescription(Context context, String char_name){
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        String query = "SELECT * FROM " + mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER + " WHERE name = " + "'" + char_name + "'";
-        Cursor cursor = sqLiteDatabase.rawQuery(query,null);
+        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER  + " WHERE name = ?";
+        Cursor cursor = sqLiteDatabase.rawQuery(query,new String[]{char_name});
         cursor.moveToFirst();
         ArrayList<String> char_list = new ArrayList<String>();
         while(!cursor.isAfterLast()) {

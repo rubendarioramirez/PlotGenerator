@@ -9,7 +9,6 @@
     <!--<string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>-->
     <string name="banner_ad_unit_id">ca-app-pub-6696437403163667/5982516625</string>
 
-
     <!--Tabs-->
     <string name="trigger_tab">Disparadores Creativos</string>
     <string name="character_tab">Taller de personajes</string>
@@ -350,6 +349,11 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
 
     <!--GUIDE ME Strings-->
     <string name="char_guide_title">Roles de personajes tipicos</string>
+    <string name="roles_title">Roles de personajes tipicos</string>
+    <string name="roles_desc">Roles</string>
+    <string name="roles_desc_long">Imagina la historia como un motor, contiene engranajes que deben trabajar juntos para que el motor se mueva. Los personajes de una historia no son diferentes a eso.
+        Cada personaje en tu historia tiene un rol que hace que la historia se mueva, del protagonista al antagonista, pero eso no es todo. Que pasa con el ayudante? O los mentores? Lee este apartado para entender mas como funcionan los distintos roles en tu historia</string>
+
     <string-array name="char_guide_types_titles">
         <item>Protagonista</item>
         <item>Ayudante de protagonista</item>
@@ -376,6 +380,67 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
         <item>Estos personajes son similares a los ayudantes del antagonista pero con algunas variantes: para empezar, más que personajes son comodines, figuras que aparecen brevemente en la historia para poner trabas al personaje en su busca por alcanzar la meta.</item>
         <item>A veces la meta perseguida en la trama puede tratarse de otro personaje. Por ejemplo, alguien ha sido secuestrado y el protagonista tiene que encontrarlo a toda costa. Este personaje desaparecido, si no cumple otra función, podría considerarse un personaje meta</item>
     </string-array>
+
+    <string name="lajos_character_title">Personajes 3D - Lajos Egri</string>
+    <string name="lajos_character_desc">Personajes Tridimensionales</string>
+    <string name="lajos_character_long">Todos los objetos tienen tres dimensiones: profundidad, alto, ancho. Los seres humanos tienen tres dimensiones adicionales:
+        Fisiologia; Sociologia; Psicologia. Sin conocer estas tres dimensiones no podemos apreciar al ser humano. No es suficiente en tu estudio del hombre, saber si es rudo, amable, religioso, ateo, moral, degenerado. Debes saber por qué</string>
+    <string name="lajos_text">Lajos Egri en su libro "El Arte de la escritura dramatica" escribio tres categorias (De ahi las tres dimensiones que tiene un personaje).\nObserva las siguientes:\n\n
+    Fisiologia\n
+    1.Sexo\n
+    2.Edad\n
+    3.Altura &amp; Peso\n
+    4.Color de peol, ojos, piel\n
+    5.Postura\n
+    6.Apariencia: apuesto, sobre- o bajo peso, limpio, prolijo, placentero, desprolijo. Forma de la cabeza, cara, miembros.\n
+    7.Defectos: deformidades, anormalidades, marcas de nacimiento. Enfermedades.\n
+    8.Herencia.\n
+    \n
+    Sociologia\n
+    1.Clase: Baja, Media, Alta.\n
+    2.Ocupacion: tipo de trabajo, horas de trabajo, salario, condiciones de trabajo, sindicado o no, actitud hacia las organizaciones, como encaja en su trabajo.\n
+    3.Educacion: cantidad, tipo de colegios, marcas, temas favoritos, sus peores temas, aptitudes.\n
+    4.Vida en casa: Viven sus padres, cuanto ganan, es huerfano, sus padres estan separados o divorciado, habitos de sus padres, desarollo mental de sus padres, vicios de sus padres, negligencias. Estado civil de tu personaje.\n
+    5.Religion\n
+    6.Raza, Nacionalidad\n
+    7.Lugar en la comunidad: Lider entre sus amigos, clubs, deportes.\n
+    8.Afiliacion politica\n
+    9.Divertimetnos, hobbies: Libros, diarios, revistas que lee.\n
+    \n
+    Psicologia\n
+    1.Vida sexual, standards morales\n
+    2.Premisa personal, ambicion\n
+    3.Frustraciones, decepciones mas grandes\n
+    4.Temperamento: Colerico, Facil, Pesimista, Optimista.\n
+    5.Actitud en la vida: Resignado, Militante, Derrotado.\n
+    6.Complejos: Obsesiones, Inhibiciones, Supersticiones, Fobias.\n
+    7.Extrovertido, Introvertido, ambivertido/bipolar.\n
+    8.Habilidades: Idiomas, Talentos.\n
+    9.Cualidades: Imaginacion, Juicios, Gustos.\n
+    10.I.Q.\n\n\n
+    </string>
+
+
+    <string name="change_arc_title">Arco de cambio - K.M Weiland</string>
+    <string name="change_arc_desc">Como crear arcos de personaje?</string>
+    <string name="change_arc_desc_long">Aristoteles escribio que la historia era solo acerca de los eventos y acciones, sin embargo hoy sabemos que es mucho mas que eso. La historia es como los personajes reaccionan a los eventos. Responderia de la misma manera Indiana Jones a una traicion que Cara cortada? podemos asumir que lo que le parece exitante a Batman sea aburrido para Francis Underwood? Los personajes en la misma situacion pueden responder de formas distintas</string>
+    <string-array name="change_arc_array_titles">
+        <item>El Arco Positivo</item>
+        <item>El Arco Plano</item>
+        <item>El Arco Negativo</item>
+    </string-array>
+    <string-array name="change_arc_array_desc">
+        <item>Este es el mas popular y resonante arco. El protagonista comienza con distintos niveles de disconfort y rechazo a lo que le ocurre. En el curso de la historia, el sera forzado a cambiar sus creencias y pensamientos sobre el mundo y si mismo, hasta que finalmente conquista sus demonios interiores (y, como resultado, su antagonista tambien) al final de su arco, termina cambiando en una forma positiva.</item>
+        <item>Muchas historias populares cubren personajes que estan basicamente ya completos. Ya son heroes y no requiren ningun tipo de crecimiento personal ni fuerza interna para derrotar al antagonista.
+            Estos personajes no sufren ningun tipo de cambio en sus arcos, por lo cual se consideran planos.
+           A veces estos personajes son los catalizadores de cambio en la historia del mundo alrededor de ellos. Entonces vemos cambios prominentes en los personajes mas pequeños.</item>
+        <item>El arco de cambio negativo ofrece, discutiblemente, mas variantes y combinaciones que los demas arcos. Sin embargo, en su nivel mas basico, el Arco Negativo es solo un arco positivo invertido de cabeza.
+           En vez de un personaje que crece de sus culpas para ser mejor, Este arco presenta al personaje que termina siendo peor de lo que era al comenzar la historia.</item>
+    </string-array>
+
+
+    <string name="weekly_challenge_title_default">Sin conexion</string>
+    <string name="weekly_challenge_desc_default">Si ves este texto es que no tienes acceso a internet. Comprueba tu conexion y vuelve a ingresar</string>
 
 
 </resources>

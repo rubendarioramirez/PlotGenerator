@@ -352,6 +352,11 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="challenge_3_desc_long">I\m currently working on more challenges. Don\'t hesitate to contact me with suggestions</string>
 
     <!--GUIDE ME Strings-->
+    <!--GUIDE ROLES-->
+    <string name="roles_title">Typical Character Roles</string>
+    <string name="roles_desc">Roles</string>
+    <string name="roles_desc_long">Picture your story as an engine, it contains gears and cogs that needs to work together for your engine to move. Characters in a story are no different.
+        Each character in your story has to have a role that moves the story forward, from the protagonist to the antogonist, but that\'s not all. What about the sidekicks? Or the Mentors? Dive in here to learn more about character roles</string>
     <string name="char_guide_title">Typical character roles</string>
     <string-array name="char_guide_types_titles">
         <item>Protagonist</item>
@@ -380,8 +385,71 @@ In order for your character to evolve in a positive way, he has to start out wit
         <item>Sometimes the goal of a Protagonist can be another character. For instance, somebody has been kidnapped and the protagonist has to find him. This character if he doesn't have any other function or role in the play, it can be consider the goal</item>
     </string-array>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="lajos_character_title">3D Characters - Lajos Egri</string>
+    <string name="lajos_character_desc">Tridimensional characters</string>
+    <string name="lajos_character_long">Every object has three dimensions: depth, height, width. Human beings have an additional three dimensions:
+        physiology; sociology; psychology. Without a knowledge of these three dimensions we cannot appraise a human being. It is not enough, in your study of a man, to know if he is rude, polite, religious, atheistic, moral, degenerate. You must know why</string>
+    <string name="lajos_text">There is only one realm in which characters defy natural laws and remain the same–the realm of bar writing.\nLajos Egri\n\n
+        A real an compelling character will always have three dimensions, failing to do so, will result in a unrealistic, uncompelling character whose purpose is just to be there as a filler.\n
+    Not all characters have to have three dimensions is true, but at least you have to focus on the main ones.\n\n
+        Lajos Egri on his book "The Art of Dramatic Writing" wrote down three categories (hence the three dimensions) that your character has to have.\nTake a look below:\n\n
+    Physiology\n
+    1.Sex\n
+    2.Age\n
+    3.Height &amp; Weight\n
+    4.Colour of hair, eyes, skin\n
+    5.Posture\n
+    6.Appearance: good-looking, over- or underweight, clean, neat, pleasant, untidy. Shape of head, face, limbs.\n
+    7.Defects: deformities, abnormalities, birthmarks. Diseases.\n
+    8.Heredity.\n
+    \n
+    Sociology\n
+    1.Class: lower, middle, upper.\n
+    2.Occupation: type of work, hours of work, income, condition of work, union or nonunion, attitude towards organisation, suitability for work.\n
+    3.Education: amount, kind of schools, marks, favourite subjects, poorest subjects, aptitudes.\n
+    4.Home life: parents living, earning power, orphan, parents separated or divorced, parents’ habits, parents’ mental development, parents’ vices, neglect. Character’s marital status.\n
+    5.Religion\n
+    6.Race, nationality\n
+    7.Place in community: leader among friends, clubs, sports.\n
+    8.Political affiliations\n
+    9.Amusements, hobbies: books, newspapers, magazines he reads.\n
+    \n
+    Psychology\n
+    1.Sex life, moral standards\n
+    2.Personal premise, ambition\n
+    3.Frustrations, chief disappointments\n
+    4.Temperament: choleric, easygoing, pessimistic, optimistic.\n
+    5.Attitude towards life: resigned, militant, defeatist.\n
+    6.Complexes: obsessions, inhibitions, superstitions, phobias.\n
+    7.Extrovert, introvert, ambivert.\n
+    8.Abilities: languages, talents.\n
+    9.Qualities: imagination, judgement, taste, poise.\n
+    10.I.Q.\n\n\n
+    </string>
+
+
+    <string name="change_arc_title">Change Arc - K.M Weiland</string>
+    <string name="change_arc_desc">How to create character\'s arcs?</string>
+    <string name="change_arc_desc_long">Aristotle wrote that story was all about plot, however today we know that plot is all about how characters react to it. Will Indiana Jones react the same to a betrayal than Scarface? Can we assume that what\'s exciting for Batman
+    maybe boring for Francis Underwood? Characters in same situations react completely differently\nDive in this section to learn more about how characters react to situations and how they change accordingly</string>
+    <string-array name="change_arc_array_titles">
+        <item>The Positive Arc</item>
+        <item>The Flat Arc</item>
+        <item>The Negative Arc</item>
+    </string-array>
+    <string-array name="change_arc_array_desc">
+        <item>This is the most popular and often the most resonant character arc. The protagonist will start out with varying levels of personal unfulfillment and denial. Over the course of the story, he will be forced to challenge his beliefs about himself and the world, until finally he conquers his inner demons (and, as a result, probably his outer antagonists as well) and ends his arc having changed in a positive way.</item>
+        <item>Many popular stories feature characters who are already essentially complete unto themselves. They’re already heroes and don’t require any noticeable personal growth to gain the inner strength to defeat the external antagonists. These characters experience little to no change over the course of the story, making their arcs static or “flat.” Sometimes these characters are the catalysts for change in the story world around them, so that we find more prominent growth arcs in the minor characters.</item>
+        <item>Negative character arcs offer, arguably, more variations that either of the other arcs. However, at their most basic level, the Negative Arc is just a Change Arc flipped on its head. Instead of a character who grows out of his faults into a better person, the Negative Arc presents a character who ends up in a worse state than that in which he began the story.</item>
+    </string-array>
+
+    <string name="weekly_challenge_title_default">No Connection</string>
+    <string name="weekly_challenge_desc_default">If you see this text means you have no internet connection. Please check your internet and re-enter this section</string>
+
+
+
+
 
 
 </resources>

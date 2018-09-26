@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,6 +37,7 @@ public class weeklyWriting extends Fragment {
     private AdView mAdView;
     private String databaseToUse;
     ArrayList data_list;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
 
     public weeklyWriting() {
@@ -49,6 +51,14 @@ public class weeklyWriting extends Fragment {
         ((MainActivity)getActivity()).setActionBarTitle(getString(R.string.writing_challenge_tab));
         // Inflate the layout for this fragment
         View myFragmentView = inflater.inflate(R.layout.fragment_weekly_writing, container, false);
+
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(myFragmentView.getContext());
+        //Log challenges updated
+        Bundle params = new Bundle();
+        params.putString("WeeklyWriting", "opened");
+        mFirebaseAnalytics.logEvent("weekly_writing",params);
+
 
         //Define ads
         mAdView = (AdView) myFragmentView.findViewById(R.id.adView_writing_challenge);

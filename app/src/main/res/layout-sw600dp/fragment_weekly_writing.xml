@@ -61,7 +61,7 @@
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/typewcond_bold"
                     android:gravity="center_horizontal"
-                    android:text="TextView"
+                    android:text="@string/weekly_challenge_title_default"
                     android:textColor="@color/common_google_signin_btn_text_dark_pressed"
                     android:textSize="48sp"
                  />
@@ -78,7 +78,7 @@
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/typewcond_regular"
                     android:gravity="center_horizontal"
-                    android:text="TextView"
+                    android:text="@string/weekly_challenge_desc_default"
                     android:textColor="#ffffff"
                     android:textSize="32sp"
                    />

@@ -96,7 +96,7 @@ public class Adapter_herojourney extends RecyclerView.Adapter<Adapter_herojourne
                 transaction.replace(R.id.flMain,nextFragment);
                 transaction.commit();
             } else if (clicked.equals("Challenge II") || clicked.equals("Desafio II")){
-//Send it to the next fragment
+                //Send it to the next fragment
                 Bundle bundle = new Bundle();
                 bundle.putString("char_name",charName);
                 bundle.putString("project_name",projectName);
@@ -104,6 +104,33 @@ public class Adapter_herojourney extends RecyclerView.Adapter<Adapter_herojourne
                 //Send it to the next fragment
                 ChallengeTemplateFragment nextFragment = new ChallengeTemplateFragment();
                 nextFragment.setArguments(bundle);
+                //Make the transaction
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+                transaction.addToBackStack(null);
+                transaction.replace(R.id.flMain,nextFragment);
+                transaction.commit();
+            } else if (clicked.equals("Typical Character Roles") || clicked.equals("Roles de personajes tipicos")){
+                //Send it to the next fragment
+                GuideRoleFragment nextFragment = new GuideRoleFragment();
+                //Make the transaction
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+                transaction.addToBackStack(null);
+                transaction.replace(R.id.flMain,nextFragment);
+                transaction.commit();
+            }else if (clicked.equals("3D Characters - Lajos Egri") || clicked.equals("Personajes 3D - Lajos Egri")){
+                //Send it to the next fragment
+                GuideLajosFragment nextFragment = new GuideLajosFragment();
+                //Make the transaction
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+                transaction.addToBackStack(null);
+                transaction.replace(R.id.flMain,nextFragment);
+                transaction.commit();
+            }else if (clicked.equals("Change Arc - K.M Weiland") || clicked.equals("Arco de cambio - K.M Weiland")){
+                //Send it to the next fragment
+                GuideWeilandFragment nextFragment = new GuideWeilandFragment();
                 //Make the transaction
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
                 FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();

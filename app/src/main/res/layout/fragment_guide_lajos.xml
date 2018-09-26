@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CharGuideFragment">
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".GuideLajosFragment">
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="#dfdddd"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@+id/adView_charguide"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ScrollView
-            android:id="@+id/lalal"
+            android:id="@+id/lalala"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -29,20 +27,20 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/char_guide_title_tv"
+                    android:id="@+id/guide_lajos_title_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="36sp"
                     android:fontFamily="@font/typewcond_bold"
                     android:gravity="center_vertical|center_horizontal"
-                    android:text="@string/char_guide_title"
+                    android:text="@string/lajos_character_title"
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="30sp"
+                    android:textSize="27sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/char_guide_content_tv"
+                    android:id="@+id/guide_lajos_content_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8sp"
@@ -58,7 +56,7 @@
     </LinearLayout>
 
     <com.google.android.gms.ads.AdView
-        android:id="@+id/adView_charguide"
+        android:id="@+id/adView_guide_lajos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:adSize="BANNER"
@@ -66,4 +64,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"></com.google.android.gms.ads.AdView>
+
 </android.support.constraint.ConstraintLayout>
