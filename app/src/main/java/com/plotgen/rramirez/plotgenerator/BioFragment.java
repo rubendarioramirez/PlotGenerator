@@ -28,7 +28,7 @@ import java.util.Locale;
  */
 public class BioFragment extends Fragment {
 
-    TextView title, role_subtitle, intro_tv,character_bio_challenge, character_bio_challenge_2;
+    TextView title, role_subtitle, intro_tv,character_bio_challenge, character_bio_challenge_2,character_bio_challenge_3,character_bio_challenge_4;
     ArrayList<String> char_description;
     ImageButton character_bio_edit_btn, character_bio_share_btn;
     Button character_bio_challenge_btn;
@@ -60,6 +60,8 @@ public class BioFragment extends Fragment {
         intro_tv = myFragmentView.findViewById(R.id.character_bio_intro);
         character_bio_challenge = myFragmentView.findViewById(R.id.character_bio_challenge);
         character_bio_challenge_2 = myFragmentView.findViewById(R.id.character_bio_challenge_2);
+        character_bio_challenge_3 = myFragmentView.findViewById(R.id.character_bio_challenge_3);
+        character_bio_challenge_4 = myFragmentView.findViewById(R.id.character_bio_challenge_4);
         character_bio_edit_btn = myFragmentView.findViewById(R.id.character_bio_edit_btn);
         character_bio_share_btn = myFragmentView.findViewById(R.id.character_bio_share_btn);
         character_bio_challenge_btn = myFragmentView.findViewById(R.id.bio_fragment_challenge_btn);
@@ -79,7 +81,7 @@ public class BioFragment extends Fragment {
         String trait1 = char_description.get(9);
         String trait2 = char_description.get(10);
         String trait3 = char_description.get(11);
-        String notes = char_description.get(20);
+        String notes = char_description.get(28);
         //First challenge
         String firstReaction = char_description.get(12);
         String waitRescue = char_description.get(13);
@@ -90,7 +92,18 @@ public class BioFragment extends Fragment {
         String challenge2_q2 = char_description.get(17);
         String challenge2_q3 = char_description.get(18);
         String challenge2_q4 = char_description.get(19);
+        //Third challenge
+        String challenge3_q1 = char_description.get(20);
+        String challenge3_q2 = char_description.get(21);
+        String challenge3_q3 = char_description.get(22);
+        String challenge3_q4 = char_description.get(23);
+        //Fourth challenge
+        String challenge4_q1 = char_description.get(24);
+        String challenge4_q2 = char_description.get(25);
+        String challenge4_q3 = char_description.get(26);
+        String challenge4_q4 = char_description.get(27);
 
+        //TODO : check if the update works fine.
         //Set title
 //        title.setText(char_name.toString() + "\n " + role);
         title.setText(char_name.toString() );
@@ -121,6 +134,24 @@ public class BioFragment extends Fragment {
                 sb.append("<br><i><b>Si no, va a hacer el plot inicial que se sienta incomodo?</b></i><br>" + challenge2_q3+ "<br>");
                 sb.append("<br><i><b>Cuales son los sintomas de la mentira de tu personaje?</b></i><br>" + challenge2_q4+ "<br>");
                 character_bio_challenge_2.setText(Html.fromHtml(sb.toString()));
+            }
+            if(challenge3_q1 !=null){
+                StringBuffer sb=new StringBuffer();
+                sb.append("<br><br><b>Su historia</b> Por qué tu personaje es quien es?.<br>");
+                sb.append("<br><i><b>Su familia </b></i><br>" + challenge3_q1 + "<br>");
+                sb.append("<br><i><b>Su mejor momento de la infancia? </b></i><br>" + challenge3_q2+ "<br>");
+                sb.append("<br><i><b>Su peor momento de la infancia? </b></i><br>" + challenge3_q3+ "<br>");
+                sb.append("<br><i><b>Tenia amigos? Que decian sus amigos de el?</b></i><br>" + challenge3_q4+ "<br>");
+                character_bio_challenge_3.setText(Html.fromHtml(sb.toString()));
+            }
+            if(challenge4_q1 !=null){
+                StringBuffer sb=new StringBuffer();
+                sb.append("<br><br><b>Como luce?</b> En un mundo perfecto, como nos vemos no deberia interferir en quienes somos. Pero no estamos en un mundo perfecto.<br>");
+                sb.append("<br><i><b>Como es tu personaje en cinco palabras.</b></i><br>" + challenge4_q1 + "<br>");
+                sb.append("<br><i><b>Marcas de nacimiento? Tatuajes?</b></i><br>" + challenge4_q2+ "<br>");
+                sb.append("<br><i><b>Alguna condicion medica? Alergias?</b></i><br>" + challenge4_q3+ "<br>");
+                sb.append("<br><i><b>Su postura y aparariencia? </b></i><br>" + challenge4_q4+ "<br>");
+                character_bio_challenge_4.setText(Html.fromHtml(sb.toString()));
             }
 
         }
@@ -157,6 +188,24 @@ public class BioFragment extends Fragment {
                 sb.append("<br><i><b>If not, will the inciting event make him uncomfortable? </b></i><br>" + challenge2_q3+ "<br>");
                 sb.append("<br><i><b>What are the symptoms of your character\'s lie? </b></i><br>" + challenge2_q4+ "<br>");
                 character_bio_challenge_2.setText(Html.fromHtml(sb.toString()));
+            }
+            if(challenge3_q1 !=null){
+                StringBuffer sb=new StringBuffer();
+                sb.append("<br><br><b>Backstory</b> Why is your character who he is?.<br>");
+                sb.append("<br><i><b>His family </b></i><br>" + challenge3_q1 + "<br>");
+                sb.append("<br><i><b>Best childhood moment? </b></i><br>" + challenge3_q2+ "<br>");
+                sb.append("<br><i><b>Worst childhood moment? </b></i><br>" + challenge3_q3+ "<br>");
+                sb.append("<br><i><b>Did he had any friends? What do they say about him?</b></i><br>" + challenge3_q4+ "<br>");
+                character_bio_challenge_3.setText(Html.fromHtml(sb.toString()));
+            }
+            if(challenge4_q1 !=null){
+                StringBuffer sb=new StringBuffer();
+                sb.append("<br><br><b>How he looks?</b> In a perfect world, how you look shouldn\'t affect who you\'re. But guess what? This is not a perfect world.<br>");
+                sb.append("<br><i><b>How your character looks in five words.</b></i><br>" + challenge4_q1 + "<br>");
+                sb.append("<br><i><b>Birthmarks? Tattoos?</b></i><br>" + challenge4_q2+ "<br>");
+                sb.append("<br><i><b>Medical conditions? Allergies?</b></i><br>" + challenge4_q3+ "<br>");
+                sb.append("<br><i><b>About his posture and appearance? </b></i><br>" + challenge4_q4+ "<br>");
+                character_bio_challenge_4.setText(Html.fromHtml(sb.toString()));
             }
 
         }
@@ -269,6 +318,16 @@ public class BioFragment extends Fragment {
             char_list.add(cursor.getString(cursor.getColumnIndex("challenge_2_q2")));
             char_list.add(cursor.getString(cursor.getColumnIndex("challenge_2_q3")));
             char_list.add(cursor.getString(cursor.getColumnIndex("challenge_2_q4")));
+            //Third Challenge
+            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_3_q1")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_3_q2")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_3_q3")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_3_q4")));
+            //Fourth Challenge
+            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_4_q1")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_4_q2")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_4_q3")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_4_q4")));
 
             char_list.add(cursor.getString(cursor.getColumnIndex("elevator_notes")));
 

@@ -19,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +39,7 @@ public class ProjectFragment extends Fragment {
     ArrayList<String> project_list_array;
     ArrayAdapter<String> itemsAdapter;
     TextView empty_project_tv;
+
     private AdView mAdView;
 
     public ProjectFragment() {
@@ -113,6 +115,8 @@ public class ProjectFragment extends Fragment {
         return myFragmentView;
 
     }
+
+
 
     private void saveToDB(TextView et) {
         SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();

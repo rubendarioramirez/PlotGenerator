@@ -17,8 +17,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.android.billingclient.api.BillingClient;
-import com.android.billingclient.api.BillingClientStateListener;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.InterstitialAd;
@@ -49,7 +47,8 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         //Init the ads
-        MobileAds.initialize(this, "ca-app-pub-6696437403163667~6953226633");
+//        MobileAds.initialize(this, "ca-app-pub-6696437403163667~6953226633");
+        MobileAds.initialize(this, "ca-app-pub-6493977652279663~1385558778");
 
         //Interstitial
         mInterstitialAd = new InterstitialAd(this);

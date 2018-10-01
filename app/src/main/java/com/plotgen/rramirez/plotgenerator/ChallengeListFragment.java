@@ -51,6 +51,8 @@ public class ChallengeListFragment extends Fragment {
         mlist.add(new item_herojourney(R.drawable.typewriter, (String) getString(R.string.challenge_1_title), (String) getString(R.string.challenge_1_desc), (String) getString(R.string.challenge_1_desc_long),(String) char_name, (String) project_name));
         mlist.add(new item_herojourney(R.drawable.typewriter, (String) getString(R.string.challenge_2_title), (String) getString(R.string.challenge_2_desc), (String) getString(R.string.challenge_2_desc_long),(String) char_name, (String) project_name));
         mlist.add(new item_herojourney(R.drawable.typewriter, (String) getString(R.string.challenge_3_title), (String) getString(R.string.challenge_3_desc), (String) getString(R.string.challenge_3_desc_long),(String) char_name, (String) project_name));
+        mlist.add(new item_herojourney(R.drawable.typewriter, (String) getString(R.string.challenge_4_title), (String) getString(R.string.challenge_4_desc), (String) getString(R.string.challenge_4_desc_long),(String) char_name, (String) project_name));
+        mlist.add(new item_herojourney(R.drawable.typewriter, (String) getString(R.string.challenge_5_title), (String) getString(R.string.challenge_5_desc), (String) getString(R.string.challenge_5_desc_long),(String) char_name, (String) project_name));
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 

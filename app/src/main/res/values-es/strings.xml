@@ -6,8 +6,6 @@
 
     <string name="action_settings">Settings</string>
 
-    <!--<string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>-->
-    <string name="banner_ad_unit_id">ca-app-pub-6696437403163667/5982516625</string>
 
     <!--Tabs-->
     <string name="trigger_tab">Disparadores Creativos</string>
@@ -25,6 +23,7 @@
     <!--Projects String-->
     <string name="projects_tab">Proyectos</string>
     <string name="add_projects_btn">Agregar proyecto</string>
+    <string name="edit_projects_btn">Editar proyecto</string>
     <string name="projects_empty_text">Parece que aun no tienes ningun proyecto.
     Por favor crea uno para comenzar.</string>
 
@@ -233,25 +232,95 @@
         <item>Inpredecible</item>
     </string-array>
     <string-array name="placebirth_array">
-        <item>Londres</item>
-        <item>Francia</item>
-        <item>New York</item>
-        <item>Washington DC</item>
-        <item>Madrid</item>
-        <item>Barcelona</item>
-        <item>Marruecos</item>
-        <item>Dubai</item>
-        <item>Singapore</item>
-        <item>Berlin</item>
-        <item>Montreal</item>
-        <item>Buenos Aires</item>
-        <item>Moscu</item>
-        <item>Munich</item>
-        <item>Mumbai</item>
-        <item>Dublin</item>
-        <item>Chennai</item>
-        <item>Los Angeles</item>
-        <item>Praga</item>
+        <item>São Paulo - Brazil</item>
+        <item>Bombay - India</item>
+        <item>JAKARTA - Indonesia</item>
+        <item>Karachi - Pakistan</item>
+        <item>MOSKVA (Moscow) - Rusia</item>
+        <item>Istanbul - Turkey</item>
+        <item>MEXICO DF - Mexico</item>
+        <item>Shanghai - China</item>
+        <item>TOKYO	- Japon</item>
+        <item>New York (NY) - USA</item>
+        <item>BANGKOK - Thailandia</item>
+        <item>BEIJING - China</item>
+        <item>Delhi - India</item>
+        <item>LONDON - UK</item>
+        <item>HongKong - China</item>
+        <item>CAIRO - Egipto</item>
+        <item>TEHRAN - Iran</item>
+        <item>BOGOTA - Colombia</item>
+        <item>Bandung - Indonesia</item>
+        <item>Tianjin - China</item>
+        <item>LIMA - Peru</item>
+        <item>Rio de Janeiro - Brazil</item>
+        <item>Lahore - Pakistan</item>
+        <item>SANTIAGO - Chile</item>
+        <item>St Petersburg - Rusia</item>
+        <item>Shenyang - China</item>
+        <item>Calcutta - India</item>
+        <item>Wuhan - China</item>
+        <item>Sydney - Australia</item>
+        <item>Guangzhou	- China</item>
+        <item>SINGAPORE - Singapore</item>
+        <item>Madras - India</item>
+        <item>BAGHDAD - Iraq</item>
+        <item>Pusan - Korea del Sure</item>
+        <item>Los Angeles (CA) - USA</item>
+        <item>Yokohama - Japon</item>
+        <item>DHAKA - Bangladesh</item>
+        <item>BERLIN - Alemania</item>
+        <item>Alexandria - Egipto</item>
+        <item>Bangalore - India</item>
+        <item>Hyderabad - India</item>
+        <item>Ho Chi Minh City - Vietnam</item>
+        <item>Hanoi - Vietnam</item>
+        <item>Haerbin - China</item>
+        <item>ANKARA - Turkey</item>
+        <item>BUENOS AIRES - Argentina</item>
+        <item>Chengdu	- China</item>
+        <item>Ahmedabad	- India</item>
+        <item>Casablanca - Marruecos</item>
+        <item>Chicago (IL) - USA</item>
+        <item>Xian - China</item>
+        <item>MADRID - España</item>
+        <item>Barcelona - España</item>
+        <item>PYONGYANG - Korea del Norte</item>
+        <item>Nanjing - China</item>
+        <item>KINSHASA - Congo (Zaire)</item>
+        <item>ROMA - Italia</item>
+        <item>Taipei - Taiwan</item>
+        <item>Osaka - Japon</item>
+        <item>KIEV - Ukrania</item>
+        <item>YANGON - Myanmar</item>
+        <item>Toronto - Canada</item>
+        <item>Taegu - Korea del Sur</item>
+        <item>ADDIS ABABA - Ethopia</item>
+        <item>Jinan - China</item>
+        <item>Salvador - Brazil</item>
+        <item>Inchon - Korea del Sur</item>
+        <item>Giza - Egipto</item>
+        <item>Changchun - China</item>
+        <item>Havanna - Cuba</item>
+        <item>Nagoya - Japon</item>
+        <item>Belo Horizonte - Brazil</item>
+        <item>PARIS - Francia</item>
+        <item>TASHKENT - Uzbekistan</item>
+        <item>Cali - Colombia</item>
+        <item>Guayaquil - Ecuador</item>
+        <item>Taiyuan - China</item>
+        <item>BRASILIA - Brazil</item>
+        <item>BUCURESTI	- Rumania</item>
+        <item>Faisalabad - Pakistan</item>
+        <item>Quezon City - Filipinas</item>
+        <item>Houston (TX) - USA</item>
+        <item>Abidjan - Costa de Marfil</item>
+        <item>Mashhad - Iran</item>
+        <item>Medellín - Colombia</item>
+        <item>Kanpur - India</item>
+        <item>BUDAPEST - Hungaria</item>
+        <item>CARACAS - Venezuela</item>
+        <item>Praga - Republica Checa</item>
     </string-array>
     <string name="character_save_btn">Guardar</string>
     <string name="character_random_btn">Generar</string>
@@ -343,9 +412,32 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="challenge_2_q3">Si no fuese, durante el plot inicial vemos como su mentira lo pone incomodo?</string>
     <string name="challenge_2_q4">Cuales son los sintomas de la mentira de tu personaje?</string>
 
+
     <string name="challenge_3_title">Desafio III</string>
-    <string name="challenge_3_desc">Muy pronto</string>
-    <string name="challenge_3_desc_long">Actualmente estoy trabajando en mas desafios. No dudes en enviarme tus sugerencias.</string>
+    <string name="challenge_3_desc">Historia</string>
+    <string name="challenge_3_desc_long">Quien es tu personaje es muy importante, cual es su trabajo, cuales son sus pasiones, etc. Quien sera en el futuro, es lo esencial de la historia, por eso la contamos. Pero entonces, que pasa con su pasado? Su pasado explica el por qué es como es. Se divorciaron sus padres? Quizas su madre era alcoholica? Puede algo de eso afectar quien sera? Sumergite en este desafio para desarrollar un personaje realmente tridimensional.</string>
+    <string name="challenge_3_q1">Describe brevemente su familia mas cercana, madre, padre, hermanos?. Todos viven? Sus padres estan divorciados? Fueron una familia feliz quizas?</string>
+    <string name="challenge_3_q2">Cual es su mejor recuerdo de la infancia?</string>
+    <string name="challenge_3_q3">Cual es su peor recuerdo de la infancia?</string>
+    <string name="challenge_3_q4">Tenia amigos de pequeño? Como lo describirian sus amigos? Si no tenia amigos, por que?</string>
+
+
+    <string name="challenge_4_title">Desafio IV</string>
+    <string name="challenge_4_desc">Como luce?</string>
+    <string name="challenge_4_desc_long">Lajos Egri decia que como te ves, determina quien seras. No te parece? Imaginate que tu personaje estuvo paralizado cuando era pequeño, debido a esto pasaba sus dias en la cama y jamas pudo jugar con los demas niños, por lo tanto se volco a la lectura ya que no tenia otra cosa para hacer. No crees que cuando sea un adulto esto podria afectar quien es? Quizas mas introvertido pero altamente inteligente?</string>
+    <string name="challenge_4_q1">Tomate un momento para reflexionar. Escribi cinco adjetivos que describan a tu personaje fisicamente</string>
+    <string name="challenge_4_q2">Tiene alguna marca de nacimiento? Tatuajes quizas que lo hagan unico? </string>
+    <string name="challenge_4_q3">Alguna condicion medica? Alergias? Algo que se manifieste fisicamente incluso si pueda estar oculto debajo de su ropa?</string>
+    <string name="challenge_4_q4">Considera por un segundo su postura, podrias describirla? Ademas, su apariencia? Es limpio? Es prolijo? Dirias que apesar de todo es atractivo?</string>
+
+
+    <string name="challenge_5_title">Desafio V</string>
+    <string name="challenge_5_desc">Muy pronto</string>
+    <string name="challenge_5_desc_long">Actualmente estoy trabajando en mas desafios. No dudes en enviarme tus sugerencias.</string>
+
+
+
+
 
     <!--GUIDE ME Strings-->
     <string name="char_guide_title">Roles de personajes tipicos</string>
@@ -390,7 +482,7 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
     1.Sexo\n
     2.Edad\n
     3.Altura &amp; Peso\n
-    4.Color de peol, ojos, piel\n
+    4.Color de pelo, ojos, piel\n
     5.Postura\n
     6.Apariencia: apuesto, sobre- o bajo peso, limpio, prolijo, placentero, desprolijo. Forma de la cabeza, cara, miembros.\n
     7.Defectos: deformidades, anormalidades, marcas de nacimiento. Enfermedades.\n

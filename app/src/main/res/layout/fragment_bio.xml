@@ -69,6 +69,27 @@
                 android:text=""
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textSize="22sp" />
+            <TextView
+                android:id="@+id/character_bio_challenge_3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="22dp"
+                android:fontFamily="@font/typewcond_regular"
+                android:gravity="left"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textSize="22sp" />
+            <TextView
+                android:id="@+id/character_bio_challenge_4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="22dp"
+                android:fontFamily="@font/typewcond_regular"
+                android:gravity="left"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textSize="22sp" />
+
 
 
         </LinearLayout>

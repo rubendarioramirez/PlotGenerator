@@ -72,6 +72,16 @@ public class ChallengeTemplateFragment extends Fragment {
             question2Title.setText(getString(R.string.challenge_2_q2));
             question3Title.setText(getString(R.string.challenge_2_q3));
             question4Title.setText(getString(R.string.challenge_2_q4));
+        }else if(challenge_number.equals("Challenge III") || challenge_number.equals("Desafio III")){
+            question1Title.setText(getString(R.string.challenge_3_q1));
+            question2Title.setText(getString(R.string.challenge_3_q2));
+            question3Title.setText(getString(R.string.challenge_3_q3));
+            question4Title.setText(getString(R.string.challenge_3_q4));
+        }else if(challenge_number.equals("Challenge IV") || challenge_number.equals("Desafio IV")){
+            question1Title.setText(getString(R.string.challenge_4_q1));
+            question2Title.setText(getString(R.string.challenge_4_q2));
+            question3Title.setText(getString(R.string.challenge_4_q3));
+            question4Title.setText(getString(R.string.challenge_4_q4));
         }
             charTemplateSubmit.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -108,7 +118,18 @@ public class ChallengeTemplateFragment extends Fragment {
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C2Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C2Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C2Q4, question4.getText().toString());
+        }else if(challenge_number.equals("Challenge III") || challenge_number.equals("Desafio III")){
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C3Q1, question1.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C3Q2, question2.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C3Q3, question3.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C3Q4, question4.getText().toString());
+        }else if(challenge_number.equals("Challenge IV") || challenge_number.equals("Desafio IV")){
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C4Q1, question1.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C4Q2, question2.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C4Q3, question3.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C4Q4, question4.getText().toString());
         }
+
         database.update(mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER, values,   "name = ?", new String[]{char_name});
 
         //Come back to previous fragment

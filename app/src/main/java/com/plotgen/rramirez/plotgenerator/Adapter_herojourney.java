@@ -110,6 +110,36 @@ public class Adapter_herojourney extends RecyclerView.Adapter<Adapter_herojourne
                 transaction.addToBackStack(null);
                 transaction.replace(R.id.flMain,nextFragment);
                 transaction.commit();
+            } else if (clicked.equals("Challenge III") || clicked.equals("Desafio III")){
+                //Send it to the next fragment
+                Bundle bundle = new Bundle();
+                bundle.putString("char_name",charName);
+                bundle.putString("project_name",projectName);
+                bundle.putString("challenge_number",clicked.toString());
+                //Send it to the next fragment
+                ChallengeTemplateFragment nextFragment = new ChallengeTemplateFragment();
+                nextFragment.setArguments(bundle);
+                //Make the transaction
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+                transaction.addToBackStack(null);
+                transaction.replace(R.id.flMain,nextFragment);
+                transaction.commit();
+            } else if (clicked.equals("Challenge IV") || clicked.equals("Desafio IV")){
+                    //Send it to the next fragment
+                    Bundle bundle = new Bundle();
+                    bundle.putString("char_name",charName);
+                    bundle.putString("project_name",projectName);
+                    bundle.putString("challenge_number",clicked.toString());
+                    //Send it to the next fragment
+                    ChallengeTemplateFragment nextFragment = new ChallengeTemplateFragment();
+                    nextFragment.setArguments(bundle);
+                    //Make the transaction
+                    AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                    FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+                    transaction.addToBackStack(null);
+                    transaction.replace(R.id.flMain,nextFragment);
+                    transaction.commit();
             } else if (clicked.equals("Typical Character Roles") || clicked.equals("Roles de personajes tipicos")){
                 //Send it to the next fragment
                 GuideRoleFragment nextFragment = new GuideRoleFragment();

@@ -7,8 +7,8 @@
     <string name="action_settings">Settings</string>
 
     <!--<string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>-->
-    <string name="banner_ad_unit_id">ca-app-pub-6696437403163667/5982516625</string>
-    <string name="interstitial_plot_gen">ca-app-pub-6696437403163667/3046586854</string>
+    <string name="banner_ad_unit_id">ca-app-pub-6493977652279663/1193987081</string>
+    <string name="interstitial_plot_gen">ca-app-pub-6493977652279663/4941660400</string>
 
     <string name="trigger_tab">Writing Prompts</string>
     <string name="character_tab">Character Workshop</string>
@@ -26,6 +26,7 @@
     <!--Projects String-->
     <string name="projects_tab">Projects</string>
     <string name="add_projects_btn">Add project</string>
+    <string name="edit_projects_btn">Edit project</string>
     <string name="projects_empty_text">Seems that you don\'t have any project yet.
     Please go ahead and create a new one to get started.</string>
 
@@ -148,25 +149,95 @@
         <item>Unpredictable</item>
     </string-array>
     <string-array name="placebirth_array">
-        <item>London</item>
-        <item>France</item>
-        <item>New York</item>
-        <item>Washington DC</item>
-        <item>Madrid</item>
-        <item>Barcelona</item>
-        <item>Marocoo</item>
-        <item>Dubai</item>
-        <item>Singapore</item>
-        <item>Berlin</item>
-        <item>Montreal</item>
-        <item>Buenos Aires</item>
-        <item>Moscow</item>
-        <item>Munich</item>
-        <item>Mumbai</item>
-        <item>Dublin</item>
-        <item>Chennai</item>
-        <item>Los Angeles</item>
-        <item>Prague</item>
+        <item>São Paulo - Brazil</item>
+        <item>Bombay - India</item>
+        <item>JAKARTA - Indonesia</item>
+        <item>Karachi - Pakistan</item>
+        <item>MOSKVA (Moscow) - Russia</item>
+        <item>Istanbul - Turkey</item>
+        <item>MEXICO (Mexico City) - Mexico</item>
+        <item>Shanghai - China</item>
+        <item>TOKYO	- Japan</item>
+        <item>New York (NY) - USA</item>
+        <item>BANGKOK - Thailand</item>
+        <item>BEIJING - China</item>
+        <item>Delhi - India</item>
+        <item>LONDON - UK</item>
+        <item>HongKong - China</item>
+        <item>CAIRO - Egypt</item>
+        <item>TEHRAN - Iran</item>
+        <item>BOGOTA - Colombia</item>
+        <item>Bandung - Indonesia</item>
+        <item>Tianjin - China</item>
+        <item>LIMA - Peru</item>
+        <item>Rio de Janeiro - Brazil</item>
+        <item>Lahore - Pakistan</item>
+        <item>SANTIAGO - Chile</item>
+        <item>St Petersburg - Russia</item>
+        <item>Shenyang - China</item>
+        <item>Calcutta - India</item>
+        <item>Wuhan - China</item>
+        <item>Sydney - Australia</item>
+        <item>Guangzhou	- China</item>
+        <item>SINGAPORE - Singapore</item>
+        <item>Madras - India</item>
+        <item>BAGHDAD - Iraq</item>
+        <item>Pusan - South Korea</item>
+        <item>Los Angeles (CA) - USA</item>
+        <item>Yokohama - Japan</item>
+        <item>DHAKA - Bangladesh</item>
+        <item>BERLIN - Germany</item>
+        <item>Alexandria - Egypt</item>
+        <item>Bangalore - India</item>
+        <item>Hyderabad - India</item>
+        <item>Ho Chi Minh City - Vietnam</item>
+        <item>Hanoi - Vietnam</item>
+        <item>Haerbin - China</item>
+        <item>ANKARA - Turkey</item>
+        <item>BUENOS AIRES - Argentina</item>
+        <item>Chengdu	- China</item>
+        <item>Ahmedabad	- India</item>
+        <item>Casablanca - Morocco</item>
+        <item>Chicago (IL) - USA</item>
+        <item>Xian - China</item>
+        <item>MADRID - Spain</item>
+        <item>Barcelona - Spain</item>
+        <item>PYONGYANG - NorthKorea</item>
+        <item>Nanjing - China</item>
+        <item>KINSHASA - Congo (Zaire)</item>
+        <item>ROMA - Italy</item>
+        <item>Taipei - Taiwan</item>
+        <item>Osaka - Japan</item>
+        <item>KIEV - Ukraine</item>
+        <item>YANGON - Myanmar</item>
+        <item>Toronto - Canada</item>
+        <item>Taegu - South Korea</item>
+        <item>ADDIS ABABA - Ethopia</item>
+        <item>Jinan - China</item>
+        <item>Salvador - Brazil</item>
+        <item>Inchon - South Korea</item>
+        <item>Giza - Egypt</item>
+        <item>Changchun - China</item>
+        <item>Havanna - Cuba</item>
+        <item>Nagoya - Japan</item>
+        <item>Belo Horizonte - Brazil</item>
+        <item>PARIS - France</item>
+        <item>TASHKENT - Uzbekistan</item>
+        <item>Cali - Colombia</item>
+        <item>Guayaquil - Ecuador</item>
+        <item>Taiyuan - China</item>
+        <item>BRASILIA - Brazil</item>
+        <item>BUCURESTI	- Romania</item>
+        <item>Faisalabad - Pakistan</item>
+        <item>Quezon City - Philippines</item>
+        <item>Houston (TX) - USA</item>
+        <item>Abidjan - Côte d’Ivorie</item>
+        <item>Mashhad - Iran</item>
+        <item>Medellín - Colombia</item>
+        <item>Kanpur - India</item>
+        <item>BUDAPEST - Hungary</item>
+        <item>CARACAS - Venezuela</item>
+        <item>Prague - Czech Republic</item>
     </string-array>
     <string name="character_add_defmoment">Childhood moment</string>
     <string-array name="defmoment_array">
@@ -346,10 +417,28 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="challenge_2_q2">Is the Lie making his life miserable when the story opens? If so, how?</string>
     <string name="challenge_2_q3">If not, will the Inciting Event and/or the First Plot Point begin to make him uncomfortable as a result of his Lie?</string>
     <string name="challenge_2_q4">What are the symptoms of your character’s Lie?</string>
-
+    <!--Third challenge-->
     <string name="challenge_3_title">Challenge III</string>
-    <string name="challenge_3_desc">Coming soon</string>
-    <string name="challenge_3_desc_long">I\m currently working on more challenges. Don\'t hesitate to contact me with suggestions</string>
+    <string name="challenge_3_desc">Backstory - Find the why!</string>
+    <string name="challenge_3_desc_long">Who is your character today is very important, what\'s his job, what\'s his passion, etc. Who will he be is the meat of your story. That\'s what you\'re telling it. So what about his past? His past is why he is like this. Were his parents divorce? Perhaps his mother was an alcoholic, did his brother died in a tragic accident? Life events shape who we are. Dive in this challenge to fully develop your three-dimensional character.</string>
+    <string name="challenge_3_q1">Describe briefly his close family, mother, father, siblings?. Are they all alive? Are the parents divorced? Happy family perhaps?</string>
+    <string name="challenge_3_q2">What\'s his best childhood memory?</string>
+    <string name="challenge_3_q3">What\'s his worst childhood memory?</string>
+    <string name="challenge_3_q4">Did he had any friends when he was a child? How his friends back them will describe him? If he had no friends, why was it?</string>
+    <!--Fourth Challenge-->
+    <string name="challenge_4_title">Challenge IV</string>
+    <string name="challenge_4_desc">How he looks?</string>
+    <string name="challenge_4_desc_long">Lajos Egri said that part of who you are, it\'s due to how you look. You don\'t believe it? Imagine your character was paralyzed when he was a kid, because of that he was all day long in his bed, so he couldn\'t do much as other kids, like playing outside. At the end he spent most of his time reading and learning new stuff. Odd for a normal kid, but the only life your character knew. Will he be different than other adults when he grows up? A bit smarter perhaps? Dive in to discover how your character looks like</string>
+    <string name="challenge_4_q1">Take a moment to reflect. Jot down 5 adjectives that will describe your character physically</string>
+    <string name="challenge_4_q2">Does he has any birth mark? Tattoos perhaps that will make him unique? </string>
+    <string name="challenge_4_q3">There is any medical condition? Allergies? Something that manifest physically even if he can hide under his clothes?</string>
+    <string name="challenge_4_q4">Consider his posture a little bit, can you describe it? Also, what about his appearance? Is he neat? Is he tidy? Will you say he is overall good looking?</string>
+
+    <!--Coming soon challenge-->
+    <string name="challenge_5_title">Challenge V</string>
+    <string name="challenge_5_desc">Coming soon</string>
+    <string name="challenge_5_desc_long">I\m currently working on more challenges. Don\'t hesitate to contact me with suggestions</string>
+
 
     <!--GUIDE ME Strings-->
     <!--GUIDE ROLES-->
@@ -387,7 +476,7 @@ In order for your character to evolve in a positive way, he has to start out wit
 
 
     <string name="lajos_character_title">3D Characters - Lajos Egri</string>
-    <string name="lajos_character_desc">Tridimensional characters</string>
+    <string name="lajos_character_desc">Three-Dimensional characters</string>
     <string name="lajos_character_long">Every object has three dimensions: depth, height, width. Human beings have an additional three dimensions:
         physiology; sociology; psychology. Without a knowledge of these three dimensions we cannot appraise a human being. It is not enough, in your study of a man, to know if he is rude, polite, religious, atheistic, moral, degenerate. You must know why</string>
     <string name="lajos_text">There is only one realm in which characters defy natural laws and remain the same–the realm of bar writing.\nLajos Egri\n\n
