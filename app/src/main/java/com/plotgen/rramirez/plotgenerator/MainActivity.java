@@ -155,27 +155,27 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_genre) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft .replace(R.id.flMain,new HeroJourneyFragment());
-            ft.addToBackStack(null);
+//            ft.addToBackStack(null);
             mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
             ft.commit();
         } else if (id == R.id.nav_trigger) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft .replace(R.id.flMain,new TriggerFragment());
-            ft.addToBackStack(null);
+//            ft.addToBackStack(null);
             mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
             ft.commit();
         }
         else if (id == R.id.nav_char) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft .replace(R.id.flMain,new ProjectFragment());
-            ft.addToBackStack(null);
+//            ft.addToBackStack(null);
             mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
             ft.commit();
         }
  else if (id == R.id.nav_writting_challenge) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft .replace(R.id.flMain,new weeklyWriting());
-            ft.addToBackStack(null);
+//            ft.addToBackStack(null);
             mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
             ft.commit();
         }

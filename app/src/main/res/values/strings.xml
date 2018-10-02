@@ -27,6 +27,8 @@
     <string name="projects_tab">Projects</string>
     <string name="add_projects_btn">Add project</string>
     <string name="edit_projects_btn">Edit project</string>
+    <string name="delete_project_btn">Are you sure you want to delete this project?</string>
+    <string name="delete_project_btn_message">All characters associated to it will be deleted</string>
     <string name="projects_empty_text">Seems that you don\'t have any project yet.
     Please go ahead and create a new one to get started.</string>
 
@@ -37,6 +39,7 @@
     Please go ahead and create a new one to get started.</string>
 
     <string name="add_character_btn">Add Character</string>
+    <string name="delete_character_btn">Are you sure you want to delete this character?</string>
     <string name="guide_character_btn">Guide me</string>
     <!--Add character-->
     <string name="character_add_name">Name</string>
@@ -467,7 +470,7 @@ In order for your character to evolve in a positive way, he has to start out wit
         <item>It\'s not a mandatory character neither the main one, however it shows up in many novels. Is the one that keeps somethings, it guards it (normally something pretty important and related to the protagonist goal) he will behave as an obstacle for the protagonist to reach his goal.</item>
         <item>Another not mandatory character however very strong when it\'s present. He is the Yoda of Star Wars, or the priest in Count of Montecristo. A character that will guide and transform the protagonist (The Hero) so he will be ready for the final battle, the one that he will have to fight to reach his objetives.</item>
         <item>The impact character is a secondary character with a brief show in the scene, but very important. Is about the character that in a given moment of the play, will give the protagonist the final push to keep going; or he may even give him a clue that he can use later (In the climax for instance) to solve something, to find the value he needs, or the clue to find the murder.</item>
-        <item>In the other side of the table, we find a character that it's the exact opposite of the protagonist: The Antagonist or Villain of the story. This doesn\'t mean that the antagonist is always bad. However he has a complete opposite goal than the protagonist and he will fight till the end to reach it. With this clash of goals is where you find your conflict.</item>
+        <item>In the other side of the table, we find a character that it\'s the exact opposite of the protagonist: The Antagonist or Villain of the story. This doesn\'t mean that the antagonist is always bad. However he has a complete opposite goal than the protagonist and he will fight till the end to reach it. With this clash of goals is where you find your conflict.</item>
         <item>Just as the protagonist, the Antagonist can have his helper. Better said, Characters that helps the Antagonist to reach his objectives. These are not mandatory characters, of course, but they can be very useful to create your plot.</item>
         <item>The skeptic character is the one that doesn\'t believe in the objectives of the protagonist. We could say, the opposite of the sidekick, he doesn\'t really put obstacles on the protagonist however he will try to demoralize him.</item>
         <item>These kind of characters are somehow similar to the Antagonist\'s helpers however they act more like jokers, characters that will pop up briefly to complicate or deviate the protagonist from his objective.</item>
@@ -477,13 +480,8 @@ In order for your character to evolve in a positive way, he has to start out wit
 
     <string name="lajos_character_title">3D Characters - Lajos Egri</string>
     <string name="lajos_character_desc">Three-Dimensional characters</string>
-    <string name="lajos_character_long">Every object has three dimensions: depth, height, width. Human beings have an additional three dimensions:
-        physiology; sociology; psychology. Without a knowledge of these three dimensions we cannot appraise a human being. It is not enough, in your study of a man, to know if he is rude, polite, religious, atheistic, moral, degenerate. You must know why</string>
-    <string name="lajos_text">There is only one realm in which characters defy natural laws and remain the same–the realm of bar writing.\nLajos Egri\n\n
-        A real an compelling character will always have three dimensions, failing to do so, will result in a unrealistic, uncompelling character whose purpose is just to be there as a filler.\n
-    Not all characters have to have three dimensions is true, but at least you have to focus on the main ones.\n\n
-        Lajos Egri on his book "The Art of Dramatic Writing" wrote down three categories (hence the three dimensions) that your character has to have.\nTake a look below:\n\n
-    Physiology\n
+    <string name="lajos_character_long">Every object has three dimensions: depth, height, width. Human beings have an additional three dimensions:physiology; sociology; psychology. Without a knowledge of these three dimensions we cannot appraise a human being. It is not enough, in your study of a man, to know if he is rude, polite, religious, atheistic, moral, degenerate. You must know why</string>
+    <string name="lajos_text">There is only one realm in which characters defy natural laws and remain the same–the realm of bar writing.\n- Lajos Egri -\n\nA real an compelling character will always have three dimensions, failing to do so, will result in a unrealistic, uncompelling character whose purpose is just to be there as a filler.\nNot all characters have to have three dimensions is true, but at least you have to focus on the main ones.\n\nLajos Egri on his book "The Art of Dramatic Writing" wrote down three categories (hence the three dimensions) that your character has to have.\nTake a look below:\n\nPhysiology\n
     1.Sex\n
     2.Age\n
     3.Height &amp; Weight\n
@@ -492,8 +490,7 @@ In order for your character to evolve in a positive way, he has to start out wit
     6.Appearance: good-looking, over- or underweight, clean, neat, pleasant, untidy. Shape of head, face, limbs.\n
     7.Defects: deformities, abnormalities, birthmarks. Diseases.\n
     8.Heredity.\n
-    \n
-    Sociology\n
+    \nSociology\n
     1.Class: lower, middle, upper.\n
     2.Occupation: type of work, hours of work, income, condition of work, union or nonunion, attitude towards organisation, suitability for work.\n
     3.Education: amount, kind of schools, marks, favourite subjects, poorest subjects, aptitudes.\n
@@ -503,8 +500,7 @@ In order for your character to evolve in a positive way, he has to start out wit
     7.Place in community: leader among friends, clubs, sports.\n
     8.Political affiliations\n
     9.Amusements, hobbies: books, newspapers, magazines he reads.\n
-    \n
-    Psychology\n
+    \nPsychology\n
     1.Sex life, moral standards\n
     2.Personal premise, ambition\n
     3.Frustrations, chief disappointments\n

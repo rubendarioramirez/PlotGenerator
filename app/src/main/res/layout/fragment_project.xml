@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.plotgen.rramirez.plotgenerator.ProjectFragment"
-    android:background="#ffffff"
+    android:background="@color/background"
     tools:layout_editor_absoluteY="25dp"
     tools:layout_editor_absoluteX="0dp">
 
@@ -68,6 +68,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
+        android:textColor="@color/content"
         android:text="@string/projects_empty_text"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"

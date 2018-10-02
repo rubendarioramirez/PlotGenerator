@@ -34,6 +34,7 @@ public class CharListFragment extends Fragment {
 
     TextView project_list_tv, empty_character_tv;
     Button add_character_btn, guide_character_btn;
+    ImageButton charlist_project_delete_btn;
     ListView character_list_lv;
     ArrayList<String> project_list_array;
     ArrayAdapter<String> itemsAdapter;
@@ -59,6 +60,7 @@ public class CharListFragment extends Fragment {
         guide_character_btn = myFragmentView.findViewById(R.id.guide_character_btn);
         character_list_lv = myFragmentView.findViewById(R.id.character_list_lv);
         empty_character_tv= myFragmentView.findViewById(R.id.empty_character_tv);
+        charlist_project_delete_btn = myFragmentView.findViewById(R.id.charlist_project_delete_btn);
         project_list_tv.setText(project_name_text);
 
 
@@ -124,6 +126,28 @@ public class CharListFragment extends Fragment {
         });
 
 
+
+        android.support.v7.app.AlertDialog.Builder alertDialogBuilder = new android.support.v7.app.AlertDialog.Builder(myFragmentView.getContext());
+        // set prompts.xml to alertdialog builder
+        alertDialogBuilder.setTitle(getString(R.string.delete_project_btn));
+        alertDialogBuilder.setMessage(getString(R.string.delete_project_btn_message));
+        // set dialog message
+        alertDialogBuilder.setCancelable(true).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                deleteFromDB(project_name_text);
+            }
+        });
+        // create alert dialog
+        final android.support.v7.app.AlertDialog alertDialog = alertDialogBuilder.create();
+
+        //Click on Delete Button
+        charlist_project_delete_btn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                alertDialog.show();
+            }
+        });
+
+
         return myFragmentView;
     }
 
@@ -144,5 +168,25 @@ public class CharListFragment extends Fragment {
         cursor.close();
         return projects_list;
     }
+
+    private void deleteFromDB(String project_name) {
+        SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
+        database.delete(mySQLiteDBHelper.CHARACTER_TABLE_PROJECT,  "project = ?", new String[]{project_name});
+        //Come back to previous fragment
+        fragmentTransition();
+
+    }
+
+    public void fragmentTransition(){
+        //Send it to the next fragment
+        ProjectFragment nextFragment = new ProjectFragment();
+        //Make the transaction
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.flMain,nextFragment);
+        transaction.commit();
+
+    }
+
+
 
 }

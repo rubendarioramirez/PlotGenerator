@@ -103,11 +103,15 @@ public class BioFragment extends Fragment {
         String challenge4_q3 = char_description.get(26);
         String challenge4_q4 = char_description.get(27);
 
-        //TODO : check if the update works fine.
-        //Set title
-//        title.setText(char_name.toString() + "\n " + role);
+        //Titles
         title.setText(char_name.toString() );
         role_subtitle.setText(role.toString());
+
+        //Remove challenges textView if they're empty
+        character_bio_challenge_2.setVisibility(View.INVISIBLE);
+        character_bio_challenge_3.setVisibility(View.INVISIBLE);
+        character_bio_challenge_4.setVisibility(View.INVISIBLE);
+
 
         //Get device lang
         if (Locale.getDefault().getLanguage()=="es"){
@@ -128,29 +132,32 @@ public class BioFragment extends Fragment {
             }
             if(challenge2_q1 !=null){
                 StringBuffer sb=new StringBuffer();
-                sb.append("<br><br><b>La mentira que cree tu personaje:</b> Es la base para su arco de cambio. Esto es todo lo que esta mal en su mundo. Una vez que sabes que esta mal, es el principio de poder arreglarlo. <br>");
+                sb.append("<br><b>La mentira que cree tu personaje:</b> Es la base para su arco de cambio. Esto es todo lo que esta mal en su mundo. Una vez que sabes que esta mal, es el principio de poder arreglarlo. <br>");
                 sb.append("<br><i><b>Cual es el concepto errado que tiene sobre el o sobre el mundo?</b></i><br>" + challenge2_q1 + "<br>");
                 sb.append("<br><i><b>Su mentira hace que sea miserable cuando la historia comienza? De ser asi, como?</b></i><br>" + challenge2_q2+ "<br>");
                 sb.append("<br><i><b>Si no, va a hacer el plot inicial que se sienta incomodo?</b></i><br>" + challenge2_q3+ "<br>");
-                sb.append("<br><i><b>Cuales son los sintomas de la mentira de tu personaje?</b></i><br>" + challenge2_q4+ "<br>");
+                sb.append("<br><i><b>Cuales son los sintomas de la mentira de tu personaje?</b></i><br>" + challenge2_q4);
+                character_bio_challenge_2.setVisibility(View.VISIBLE);
                 character_bio_challenge_2.setText(Html.fromHtml(sb.toString()));
             }
             if(challenge3_q1 !=null){
                 StringBuffer sb=new StringBuffer();
-                sb.append("<br><br><b>Su historia</b> Por qué tu personaje es quien es?.<br>");
+                sb.append("<br><b>Su historia</b> Por qué tu personaje es quien es?.<br>");
                 sb.append("<br><i><b>Su familia </b></i><br>" + challenge3_q1 + "<br>");
                 sb.append("<br><i><b>Su mejor momento de la infancia? </b></i><br>" + challenge3_q2+ "<br>");
                 sb.append("<br><i><b>Su peor momento de la infancia? </b></i><br>" + challenge3_q3+ "<br>");
-                sb.append("<br><i><b>Tenia amigos? Que decian sus amigos de el?</b></i><br>" + challenge3_q4+ "<br>");
+                sb.append("<br><i><b>Tenia amigos? Que decian sus amigos de el?</b></i><br>" + challenge3_q4);
+                character_bio_challenge_3.setVisibility(View.VISIBLE);
                 character_bio_challenge_3.setText(Html.fromHtml(sb.toString()));
             }
             if(challenge4_q1 !=null){
                 StringBuffer sb=new StringBuffer();
-                sb.append("<br><br><b>Como luce?</b> En un mundo perfecto, como nos vemos no deberia interferir en quienes somos. Pero no estamos en un mundo perfecto.<br>");
+                sb.append("<br><b>Como luce?</b> En un mundo perfecto, como nos vemos no deberia interferir en quienes somos. Pero no estamos en un mundo perfecto.<br>");
                 sb.append("<br><i><b>Como es tu personaje en cinco palabras.</b></i><br>" + challenge4_q1 + "<br>");
                 sb.append("<br><i><b>Marcas de nacimiento? Tatuajes?</b></i><br>" + challenge4_q2+ "<br>");
                 sb.append("<br><i><b>Alguna condicion medica? Alergias?</b></i><br>" + challenge4_q3+ "<br>");
-                sb.append("<br><i><b>Su postura y aparariencia? </b></i><br>" + challenge4_q4+ "<br>");
+                sb.append("<br><i><b>Su postura y aparariencia? </b></i><br>" + challenge4_q4);
+                character_bio_challenge_4.setVisibility(View.VISIBLE);
                 character_bio_challenge_4.setText(Html.fromHtml(sb.toString()));
             }
 
@@ -174,7 +181,7 @@ public class BioFragment extends Fragment {
             if(firstReaction != null) {
                 StringBuffer sb=new StringBuffer();
                 sb.append("<b>The elevator challenge:</b>");
-                sb.append("<br><i><b>What will be his first reaction if gets stuck in a elevator?</b></i><br> " + firstReaction);
+                sb.append("<br><i><b>What will be his first reaction if he gets stuck in a elevator?</b></i><br> " + firstReaction);
                 sb.append("<br><i><b>Will your character wait to be rescued?</b></i><br> " + waitRescue);
                 sb.append("<br><i><b>If the person next to your character has a panic attack. What will happen?</b></i><br> " + helpPartner);
                 sb.append("<br><i><b>Lastly in the eventuality that just one can escape and the other should wait, what will your character do?</b></i><br> " + escapeFirst);
@@ -182,29 +189,32 @@ public class BioFragment extends Fragment {
             }
             if(challenge2_q1 !=null){
                 StringBuffer sb=new StringBuffer();
-                sb.append("<br><br><b>The Lie Your Character Believes</b> is the foundation for his character arc. This is what’s wrong in his world. Once you know what’s wrong, you then get to set about figuring out how to make it right. <br>");
+                sb.append("<br><b>The Lie Your Character Believes</b> is the foundation for his character arc. This is what’s wrong in his world. Once you know what’s wrong, you then get to set about figuring out how to make it right. <br>");
                 sb.append("<br><i><b>What misconception does your protagonist have about himself of the world? </b></i><br>" + challenge2_q1 + "<br>");
                 sb.append("<br><i><b>Is the lie making his life miserable when the story starts? If so, how? </b></i><br>" + challenge2_q2+ "<br>");
                 sb.append("<br><i><b>If not, will the inciting event make him uncomfortable? </b></i><br>" + challenge2_q3+ "<br>");
-                sb.append("<br><i><b>What are the symptoms of your character\'s lie? </b></i><br>" + challenge2_q4+ "<br>");
+                sb.append("<br><i><b>What are the symptoms of your character\'s lie? </b></i><br>" + challenge2_q4);
+                character_bio_challenge_2.setVisibility(View.VISIBLE);
                 character_bio_challenge_2.setText(Html.fromHtml(sb.toString()));
             }
             if(challenge3_q1 !=null){
                 StringBuffer sb=new StringBuffer();
-                sb.append("<br><br><b>Backstory</b> Why is your character who he is?.<br>");
+                sb.append("<br><b>Backstory</b> Why is your character who he is?.<br>");
                 sb.append("<br><i><b>His family </b></i><br>" + challenge3_q1 + "<br>");
                 sb.append("<br><i><b>Best childhood moment? </b></i><br>" + challenge3_q2+ "<br>");
                 sb.append("<br><i><b>Worst childhood moment? </b></i><br>" + challenge3_q3+ "<br>");
-                sb.append("<br><i><b>Did he had any friends? What do they say about him?</b></i><br>" + challenge3_q4+ "<br>");
+                sb.append("<br><i><b>Did he had any friends? What do they say about him?</b></i><br>" + challenge3_q4);
+                character_bio_challenge_3.setVisibility(View.VISIBLE);
                 character_bio_challenge_3.setText(Html.fromHtml(sb.toString()));
             }
             if(challenge4_q1 !=null){
                 StringBuffer sb=new StringBuffer();
-                sb.append("<br><br><b>How he looks?</b> In a perfect world, how you look shouldn\'t affect who you\'re. But guess what? This is not a perfect world.<br>");
+                sb.append("<br><b>How he looks?</b> In a perfect world, how you look shouldn\'t affect who you\'re. But guess what? This is not a perfect world.<br>");
                 sb.append("<br><i><b>How your character looks in five words.</b></i><br>" + challenge4_q1 + "<br>");
                 sb.append("<br><i><b>Birthmarks? Tattoos?</b></i><br>" + challenge4_q2+ "<br>");
                 sb.append("<br><i><b>Medical conditions? Allergies?</b></i><br>" + challenge4_q3+ "<br>");
-                sb.append("<br><i><b>About his posture and appearance? </b></i><br>" + challenge4_q4+ "<br>");
+                sb.append("<br><i><b>About his posture and appearance? </b></i><br>" + challenge4_q4);
+                character_bio_challenge_4.setVisibility(View.VISIBLE);
                 character_bio_challenge_4.setText(Html.fromHtml(sb.toString()));
             }
 
@@ -223,7 +233,6 @@ public class BioFragment extends Fragment {
                     nextFragment.setArguments(bundle);
                     //Make the transaction
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.addToBackStack(null);
                     transaction.replace(R.id.flMain,nextFragment);
                     transaction.commit();
 
@@ -244,7 +253,6 @@ public class BioFragment extends Fragment {
                     nextFragment.setArguments(bundle);
                     //Make the transaction
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.addToBackStack(null);
                     transaction.replace(R.id.flMain,nextFragment);
                     transaction.commit();
 

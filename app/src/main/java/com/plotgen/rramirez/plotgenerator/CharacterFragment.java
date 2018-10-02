@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -38,6 +39,7 @@ public class CharacterFragment extends Fragment {
     public EditText nameEditText, profession_edit_text, desire_edit_text, age_edit_text, placebirth_edit_text, defmoment_edit_text,need_edit_text, trait_edit_text, trait2_edit_text,trait3_edit_text, notes_edit_text;
     public TextView project_name_tv;
     public Button submit, random_gen_char_btn;
+    public ImageButton delete_btn;
     public Spinner gender_spinner, role_spinner;
     public static int rated;
     ArrayList<String> char_description;
@@ -102,7 +104,8 @@ public class CharacterFragment extends Fragment {
         //Save button action
         submit =  myFragmentView.findViewById(R.id.char_template_submit);
         random_gen_char_btn = myFragmentView.findViewById(R.id.random_gen_char_btn);
-
+        //Detele button
+        delete_btn = myFragmentView.findViewById(R.id.char_edit_delete_btn);
 
         //Set the title
         project_name_tv.setText(project_name_text);
@@ -114,7 +117,9 @@ public class CharacterFragment extends Fragment {
                     saveToDB();
                 }
             });
+            delete_btn.setVisibility(View.INVISIBLE);
         } else { //If it's in update mode
+            delete_btn.setVisibility(View.VISIBLE);
             //database getter
             char_description = getDescription(myFragmentView.getContext(), name_text.toString());
             nameEditText.setText(char_description.get(0));
@@ -199,6 +204,26 @@ public class CharacterFragment extends Fragment {
             }
         });
 
+
+        android.support.v7.app.AlertDialog.Builder alertDialogBuilder = new android.support.v7.app.AlertDialog.Builder(myFragmentView.getContext());
+        // set prompts.xml to alertdialog builder
+        alertDialogBuilder.setTitle(getString(R.string.delete_character_btn));
+        // set dialog message
+        alertDialogBuilder.setCancelable(true).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                deleteFromDB(name_text);
+            }
+        });
+        // create alert dialog
+        final android.support.v7.app.AlertDialog alertDialog = alertDialogBuilder.create();
+
+        //Delete
+        delete_btn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                alertDialog.show();
+
+            }
+        });
 
 
 
@@ -323,6 +348,19 @@ public class CharacterFragment extends Fragment {
         Bundle params = new Bundle();
         params.putString("Character", "completed");
         mFirebaseAnalytics.logEvent("character_created",params);
+
+        //Come back to previous fragment
+        fragmentTransition();
+
+    }
+
+    private void deleteFromDB(String name_char) {
+        SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
+        database.delete(mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER,  "name = ?", new String[]{name_char});
+        //Log challenges updated
+        Bundle params = new Bundle();
+        params.putString("Character", "deleted");
+        mFirebaseAnalytics.logEvent("character_deleted",params);
 
         //Come back to previous fragment
         fragmentTransition();

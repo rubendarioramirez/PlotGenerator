@@ -1,7 +1,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#ffffff"
+    android:background="@color/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.plotgen.rramirez.plotgenerator.BioFragment">
@@ -34,6 +34,7 @@
                 android:fontFamily="@font/typewcond_regular"
                 android:text="His name is Rambo, he is XX years "
                 android:textAlignment="center"
+                android:textColor="@color/content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textSize="22sp" />
 
@@ -45,6 +46,8 @@
                 android:fontFamily="@font/typewcond_bold"
                 android:gravity="center"
                 android:text="@string/challenge_action_bar"
+                android:textColor="@color/headline"
+                android:elevation="30dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textSize="32sp" />
 
@@ -56,39 +59,47 @@
                 android:fontFamily="@font/typewcond_regular"
                 android:gravity="left"
                 android:text="@string/challenge_nochallenge_placeholder"
+                android:textColor="@color/content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textSize="22sp" />
+                android:background="@color/content_lighter"
+                 />
 
             <TextView
                 android:id="@+id/character_bio_challenge_2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="22dp"
+                android:layout_marginTop="12dp"
                 android:fontFamily="@font/typewcond_regular"
                 android:gravity="left"
                 android:text=""
+                android:textColor="@color/content"
+                android:background="@color/content_lighter"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textSize="22sp" />
+                 />
             <TextView
                 android:id="@+id/character_bio_challenge_3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="22dp"
+                android:layout_marginTop="12dp"
                 android:fontFamily="@font/typewcond_regular"
                 android:gravity="left"
                 android:text=""
+                android:textColor="@color/content"
+                android:background="@color/content_lighter"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textSize="22sp" />
+                 />
             <TextView
                 android:id="@+id/character_bio_challenge_4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="22dp"
+                android:layout_marginTop="12dp"
                 android:fontFamily="@font/typewcond_regular"
                 android:gravity="left"
+                android:textColor="@color/content"
+                android:background="@color/content_lighter"
                 android:text=""
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textSize="22sp" />
+                />
 
 
 
@@ -125,6 +136,7 @@
         android:shadowDy="1"
         android:shadowRadius="2"
         android:text="Rambo"
+        android:elevation="21dp"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
         android:textColor="@color/light_font"
@@ -150,6 +162,7 @@
         android:shadowDy="1"
         android:shadowRadius="2"
         android:text="Role"
+        android:elevation="21dp"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
         android:textColor="@color/light_font"
@@ -171,7 +184,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/roundcorner"
+        android:background="@color/content_lighter"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="@+id/background_char_bio"
         app:layout_constraintHorizontal_bias="0.974"
@@ -179,6 +192,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
+        android:elevation="21dp"
         app:srcCompat="@android:drawable/ic_menu_edit" />
 
     <ImageButton
@@ -190,8 +204,9 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/roundcorner"
         android:scaleType="centerCrop"
+        android:elevation="21dp"
+        android:background="@color/content_lighter"
         app:layout_constraintBottom_toBottomOf="@+id/background_char_bio"
         app:layout_constraintHorizontal_bias="0.808"
         app:layout_constraintLeft_toLeftOf="@+id/background_char_bio"

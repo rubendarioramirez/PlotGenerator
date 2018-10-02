@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".ChallengeTemplateFragment">
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="25dp">
@@ -48,8 +49,9 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="project name"
+        android:textColor="@color/headline"
         android:textAlignment="center"
-        android:textSize="24sp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -79,8 +81,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:textColor="@color/content"
                 android:text="question 1 Title"
-                android:textSize="18sp" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <EditText
                 android:id="@+id/char_template_q1_et"
@@ -89,16 +92,18 @@
                 android:layout_marginTop="12dp"
                 android:ems="8"
                 android:inputType="textPersonName"
+                android:textColor="@color/content"
                 android:hint="@string/challenge_answer_placeholder"
-                android:textSize="14sp" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:id="@+id/char_template_question2_title"
                 android:layout_marginTop="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/content"
                 android:text="question 1 Title"
-                android:textSize="18sp" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <EditText
                 android:id="@+id/char_template_q2_et"
@@ -107,8 +112,9 @@
                 android:layout_marginTop="12dp"
                 android:ems="8"
                 android:inputType="textPersonName"
+                android:textColor="@color/content"
                 android:hint="@string/challenge_answer_placeholder"
-                android:textSize="14sp" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
 
             <TextView
@@ -116,8 +122,9 @@
                 android:layout_marginTop="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/content"
                 android:text="question 1 Title"
-                android:textSize="18sp" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <EditText
                 android:id="@+id/char_template_q3_et"
@@ -126,8 +133,9 @@
                 android:layout_marginTop="12dp"
                 android:ems="8"
                 android:inputType="textPersonName"
+                android:textColor="@color/content"
                 android:hint="@string/challenge_answer_placeholder"
-                android:textSize="14sp" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
             android:id="@+id/char_template_question4_title"
@@ -135,7 +143,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="question 1 Title"
-            android:textSize="18sp" />
+            android:textColor="@color/content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <EditText
                 android:id="@+id/char_template_q4_et"
@@ -144,8 +153,9 @@
                 android:layout_marginTop="12dp"
                 android:ems="8"
                 android:inputType="textPersonName"
+                android:textColor="@color/content"
                 android:hint="@string/challenge_answer_placeholder"
-                android:textSize="14sp" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
 
 

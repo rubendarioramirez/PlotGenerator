@@ -12,7 +12,7 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#dfdddd"
+        android:background="@color/background"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/adView_charguide"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,9 +37,8 @@
                     android:fontFamily="@font/typewcond_bold"
                     android:gravity="center_vertical|center_horizontal"
                     android:text="@string/char_guide_title"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="30sp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textColor="@color/headline"
                     android:textStyle="bold" />
 
                 <TextView
@@ -50,9 +49,9 @@
                     android:layout_marginRight="8sp"
                     android:layout_marginTop="48sp"
                     android:fontFamily="@font/typewcond_regular"
+                    android:textColor="@color/content"
                     android:text="aaaa"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textSize="24sp" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
             </LinearLayout>
         </ScrollView>
 

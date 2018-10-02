@@ -24,6 +24,8 @@
     <string name="projects_tab">Proyectos</string>
     <string name="add_projects_btn">Agregar proyecto</string>
     <string name="edit_projects_btn">Editar proyecto</string>
+    <string name="delete_project_btn">Estas seguro que deseas eliminar este proyecto?</string>
+    <string name="delete_project_btn_message">Todos los personajes asociados se perderan</string>
     <string name="projects_empty_text">Parece que aun no tienes ningun proyecto.
     Por favor crea uno para comenzar.</string>
 
@@ -35,6 +37,7 @@
     Por favor, crea uno para comenzar.</string>
 
     <string name="add_character_btn">Agregar Personaje</string>
+    <string name="delete_character_btn">Estas seguro que quieres borrar este personaje?</string>
     <string name="guide_character_btn">Guia</string>
     <!--Add character-->
     <string name="character_personality_tv">Personalidad</string>

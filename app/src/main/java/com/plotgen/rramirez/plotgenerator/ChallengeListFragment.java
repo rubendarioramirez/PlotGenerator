@@ -42,7 +42,9 @@ public class ChallengeListFragment extends Fragment {
         View myFragmentView =  inflater.inflate(R.layout.fragment_challenge, container, false);
 
         mAdView = (AdView) myFragmentView.findViewById(R.id.adView_challenge_list);
-        AdRequest adRequest = new AdRequest.Builder().build();
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
+                .build();
         mAdView.loadAd(adRequest);
 
         RecyclerView recyclerView = myFragmentView.findViewById(R.id.rv_challenge_fragment);

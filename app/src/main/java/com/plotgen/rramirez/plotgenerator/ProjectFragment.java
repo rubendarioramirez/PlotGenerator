@@ -59,7 +59,6 @@ public class ProjectFragment extends Fragment {
         project_lv  = myFragmentView.findViewById(R.id.project_lv);
         empty_project_tv = myFragmentView.findViewById(R.id.empty_project_tv);
         final EditText et = new EditText(myFragmentView.getContext());
-
         project_list_array = getProjects(myFragmentView.getContext());
         itemsAdapter = new ArrayAdapter<String>(myFragmentView.getContext(), android.R.layout.simple_list_item_1, project_list_array);
         project_lv.setAdapter(itemsAdapter);
@@ -88,9 +87,10 @@ public class ProjectFragment extends Fragment {
         // set dialog message
         alertDialogBuilder.setCancelable(true).setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                saveToDB(et);
-                itemsAdapter.notifyDataSetChanged();
-
+                if(et.getText().toString() != " ") {
+                    saveToDB(et);
+                    itemsAdapter.notifyDataSetChanged();
+                }
             }
         });
         // create alert dialog
@@ -108,8 +108,11 @@ public class ProjectFragment extends Fragment {
 
         mAdView = (AdView) myFragmentView.findViewById(R.id.adView_project_frag);
         //Display the ad
-        AdRequest adRequest = new AdRequest.Builder().build();
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
+                .build();
         mAdView.loadAd(adRequest);
+
 
 
         return myFragmentView;
@@ -135,12 +138,16 @@ public class ProjectFragment extends Fragment {
         cursor.moveToFirst();
         ArrayList<String> projects_list = new ArrayList<String>();
         while(!cursor.isAfterLast()) {
+//            projects_list.add(cursor.getString(cursor.getColumnIndex("_id")));
             projects_list.add(cursor.getString(cursor.getColumnIndex("project")));
+//            projects_list.add(cursor.getString(cursor.getColumnIndex("_id")) + "_" + cursor.getString(cursor.getColumnIndex("project")));
             cursor.moveToNext();
         }
         cursor.close();
         return projects_list;
     }
+
+
 
     private void changeFragment(Bundle bundle){
         CharListFragment nextFragment = new CharListFragment();
@@ -151,6 +158,8 @@ public class ProjectFragment extends Fragment {
         transaction.replace(R.id.flMain,nextFragment);
         transaction.commit();
     }
+
+
 
 
 
