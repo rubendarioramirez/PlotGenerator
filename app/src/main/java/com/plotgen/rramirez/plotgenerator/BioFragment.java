@@ -30,8 +30,7 @@ public class BioFragment extends Fragment {
 
     TextView title, role_subtitle, intro_tv,character_bio_challenge, character_bio_challenge_2,character_bio_challenge_3,character_bio_challenge_4;
     ArrayList<String> char_description;
-    ImageButton character_bio_edit_btn, character_bio_share_btn;
-    Button character_bio_challenge_btn;
+    ImageButton character_bio_edit_btn, character_bio_share_btn, guide_btn,character_bio_challenge_btn;
     String gender_article, gender_article_posesive;
     private FirebaseAnalytics mFirebaseAnalytics;
 
@@ -50,7 +49,7 @@ public class BioFragment extends Fragment {
         final String project_name = this.getArguments().getString("project_name");
 
         final View myFragmentView = inflater.inflate(R.layout.fragment_bio, container, false);
-
+        ((MainActivity)getActivity()).setActionBarTitle(getString(R.string.character_list_tab));
         // Obtain the FirebaseAnalytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(myFragmentView.getContext());
 
@@ -65,6 +64,7 @@ public class BioFragment extends Fragment {
         character_bio_edit_btn = myFragmentView.findViewById(R.id.character_bio_edit_btn);
         character_bio_share_btn = myFragmentView.findViewById(R.id.character_bio_share_btn);
         character_bio_challenge_btn = myFragmentView.findViewById(R.id.bio_fragment_challenge_btn);
+        guide_btn = myFragmentView.findViewById(R.id.guide_btn);
 
 
         //Set the narrative
@@ -78,7 +78,7 @@ public class BioFragment extends Fragment {
         final String role = char_description.get(6);
         String moment = char_description.get(7);
         String need = char_description.get(8);
-        String trait1 = char_description.get(9);
+        final String trait1 = char_description.get(9);
         String trait2 = char_description.get(10);
         String trait3 = char_description.get(11);
         String notes = char_description.get(28);
@@ -157,6 +157,7 @@ public class BioFragment extends Fragment {
                 sb.append("<br><i><b>Marcas de nacimiento? Tatuajes?</b></i><br>" + challenge4_q2+ "<br>");
                 sb.append("<br><i><b>Alguna condicion medica? Alergias?</b></i><br>" + challenge4_q3+ "<br>");
                 sb.append("<br><i><b>Su postura y aparariencia? </b></i><br>" + challenge4_q4);
+                sb.append("<br><br><br>");
                 character_bio_challenge_4.setVisibility(View.VISIBLE);
                 character_bio_challenge_4.setText(Html.fromHtml(sb.toString()));
             }
@@ -214,6 +215,7 @@ public class BioFragment extends Fragment {
                 sb.append("<br><i><b>Birthmarks? Tattoos?</b></i><br>" + challenge4_q2+ "<br>");
                 sb.append("<br><i><b>Medical conditions? Allergies?</b></i><br>" + challenge4_q3+ "<br>");
                 sb.append("<br><i><b>About his posture and appearance? </b></i><br>" + challenge4_q4);
+                sb.append("<br><br><br>");
                 character_bio_challenge_4.setVisibility(View.VISIBLE);
                 character_bio_challenge_4.setText(Html.fromHtml(sb.toString()));
             }
@@ -232,13 +234,30 @@ public class BioFragment extends Fragment {
                     CharacterFragment nextFragment = new CharacterFragment();
                     nextFragment.setArguments(bundle);
                     //Make the transaction
-                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.replace(R.id.flMain,nextFragment);
+                    FragmentTransaction transaction = getFragmentManager()
+                            .beginTransaction()
+                            .setCustomAnimations( R.anim.slide_up, 0, 0, R.anim.slide_down);
+                    transaction.add(R.id.flMain,nextFragment);
+                    transaction.addToBackStack(null);
                     transaction.commit();
 
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+            }
+        });
+
+        guide_btn.setOnClickListener(new View.OnClickListener()   {
+            public void onClick(View v)  {
+                //Send it to the next fragment
+                GuideListFragment nextFragment = new GuideListFragment();
+                //Make the transaction
+                FragmentTransaction transaction = getFragmentManager()
+                        .beginTransaction()
+                        .setCustomAnimations( R.anim.slide_up, 0, 0, R.anim.slide_down);
+                transaction.add(R.id.flMain,nextFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
 
@@ -252,8 +271,11 @@ public class BioFragment extends Fragment {
                     ChallengeListFragment nextFragment = new ChallengeListFragment();
                     nextFragment.setArguments(bundle);
                     //Make the transaction
-                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.replace(R.id.flMain,nextFragment);
+                    FragmentTransaction transaction = getFragmentManager()
+                            .beginTransaction()
+                            .setCustomAnimations( R.anim.slide_up, 0, 0, R.anim.slide_down);
+                    transaction.add(R.id.flMain,nextFragment);
+                    transaction.addToBackStack(null);
                     transaction.commit();
 
                 } catch (Exception e) {
@@ -276,6 +298,13 @@ public class BioFragment extends Fragment {
 
 
         return myFragmentView;
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity)getActivity()).setActionBarTitle(getString(R.string.character_list_tab));
     }
 
     public void SHARE(View view, String body, String char_name) {

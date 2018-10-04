@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.constraint.solver.widgets.Guideline;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
@@ -24,6 +25,10 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import java.util.ArrayList;
 
 
@@ -33,11 +38,11 @@ import java.util.ArrayList;
 public class CharListFragment extends Fragment {
 
     TextView project_list_tv, empty_character_tv;
-    Button add_character_btn, guide_character_btn;
     ImageButton charlist_project_delete_btn;
     ListView character_list_lv;
     ArrayList<String> project_list_array;
     ArrayAdapter<String> itemsAdapter;
+    private AdView mAdView;
 
     public CharListFragment() {
         // Required empty public constructor
@@ -53,15 +58,22 @@ public class CharListFragment extends Fragment {
         final String project_name_text = this.getArguments().getString("project_name");
         final View myFragmentView =   inflater.inflate(R.layout.fragment_char_list, container, false);
 
-
         //Declare elements
         project_list_tv = myFragmentView.findViewById(R.id.project_list_tv);
-        add_character_btn = myFragmentView.findViewById(R.id.add_character_btn);
-        guide_character_btn = myFragmentView.findViewById(R.id.guide_character_btn);
         character_list_lv = myFragmentView.findViewById(R.id.character_list_lv);
         empty_character_tv= myFragmentView.findViewById(R.id.empty_character_tv);
         charlist_project_delete_btn = myFragmentView.findViewById(R.id.charlist_project_delete_btn);
         project_list_tv.setText(project_name_text);
+
+
+
+        //Display the ad
+        mAdView = (AdView) myFragmentView.findViewById(R.id.adView_char_list);
+        //Display the ad
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
+                .build();
+        mAdView.loadAd(adRequest);
 
 
         //Display the adapter
@@ -87,6 +99,7 @@ public class CharListFragment extends Fragment {
                 nextFragment.setArguments(bundle);
                 //Make the transaction
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
                 transaction.addToBackStack(null);
                 transaction.replace(R.id.flMain,nextFragment);
                 transaction.commit();
@@ -95,10 +108,10 @@ public class CharListFragment extends Fragment {
         });
 
 
-
-        //Click on Add character
-        add_character_btn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+        FloatingActionButton fab = (FloatingActionButton) myFragmentView.findViewById(R.id.add_character_btn);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 Bundle bundle = new Bundle();
                 bundle.putString("project_name",project_list_tv.getText().toString());
                 //Send it to the next fragment
@@ -111,20 +124,6 @@ public class CharListFragment extends Fragment {
                 transaction.commit();
             }
         });
-
-        //Click on Add character
-        guide_character_btn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //Send it to the next fragment
-                GuideListFragment nextFragment = new GuideListFragment();
-                //Make the transaction
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.addToBackStack(null);
-                transaction.replace(R.id.flMain,nextFragment);
-                transaction.commit();
-            }
-        });
-
 
 
         android.support.v7.app.AlertDialog.Builder alertDialogBuilder = new android.support.v7.app.AlertDialog.Builder(myFragmentView.getContext());

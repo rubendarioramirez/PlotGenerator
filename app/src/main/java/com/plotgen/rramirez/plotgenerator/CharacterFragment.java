@@ -13,6 +13,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -38,8 +39,7 @@ public class CharacterFragment extends Fragment {
 
     public EditText nameEditText, profession_edit_text, desire_edit_text, age_edit_text, placebirth_edit_text, defmoment_edit_text,need_edit_text, trait_edit_text, trait2_edit_text,trait3_edit_text, notes_edit_text;
     public TextView project_name_tv;
-    public Button submit, random_gen_char_btn;
-    public ImageButton delete_btn;
+    public ImageButton delete_btn,random_gen_char_btn;
     public Spinner gender_spinner, role_spinner;
     public static int rated;
     ArrayList<String> char_description;
@@ -53,8 +53,7 @@ public class CharacterFragment extends Fragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        ((MainActivity)getActivity()).setActionBarTitle(getString(R.string.character_tab));
+
         final View myFragmentView = inflater.inflate(R.layout.fragment_character, container, false);
 
         // Obtain the FirebaseAnalytics instance.
@@ -101,8 +100,9 @@ public class CharacterFragment extends Fragment {
         trait2_edit_text= myFragmentView.findViewById(R.id.trait_2_edit_text);
         trait3_edit_text= myFragmentView.findViewById(R.id.trait_3_edit_text);
         notes_edit_text= myFragmentView.findViewById(R.id.notes_edit_text);
-        //Save button action
-        submit =  myFragmentView.findViewById(R.id.char_template_submit);
+        //Save button
+        FloatingActionButton fab = (FloatingActionButton) myFragmentView.findViewById(R.id.char_template_submit);
+        //Generate button
         random_gen_char_btn = myFragmentView.findViewById(R.id.random_gen_char_btn);
         //Detele button
         delete_btn = myFragmentView.findViewById(R.id.char_edit_delete_btn);
@@ -112,13 +112,17 @@ public class CharacterFragment extends Fragment {
 
 
         if (name_text == null){ //If it's in create new character mode
-            submit.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
                     saveToDB();
                 }
             });
             delete_btn.setVisibility(View.INVISIBLE);
+            // Inflate the layout for this fragment
+            ((MainActivity)getActivity()).setActionBarTitle(getString(R.string.character_create));
         } else { //If it's in update mode
+            ((MainActivity)getActivity()).setActionBarTitle(getString(R.string.character_update));
             delete_btn.setVisibility(View.VISIBLE);
             //database getter
             char_description = getDescription(myFragmentView.getContext(), name_text.toString());
@@ -170,13 +174,12 @@ public class CharacterFragment extends Fragment {
             }
 
 
-            submit.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    // Perform action on click
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
                     updateDB(name_text.toString(), project_name_text.toString());
                 }
             });
-
             if(rated == 0) {
                 showRateDialogForRate(myFragmentView.getContext());
             }

@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
@@ -34,7 +35,6 @@ import java.util.ArrayList;
 
 public class ProjectFragment extends Fragment {
 
-    Button addProject;
     ListView project_lv;
     ArrayList<String> project_list_array;
     ArrayAdapter<String> itemsAdapter;
@@ -55,7 +55,6 @@ public class ProjectFragment extends Fragment {
 
         final View myFragmentView = inflater.inflate(R.layout.fragment_project, container, false);
 
-        addProject = myFragmentView.findViewById(R.id.add_project_btn);
         project_lv  = myFragmentView.findViewById(R.id.project_lv);
         empty_project_tv = myFragmentView.findViewById(R.id.empty_project_tv);
         final EditText et = new EditText(myFragmentView.getContext());
@@ -68,7 +67,6 @@ public class ProjectFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
-                //Log.v("THIS APP", "ITEM CLICK AT POSITION " + itemsAdapter.getItem(position));
                 //Bundle the project INFO
                 Bundle bundle = new Bundle();
                 bundle.putString("project_name",itemsAdapter.getItem(position).toString());
@@ -95,18 +93,18 @@ public class ProjectFragment extends Fragment {
         });
         // create alert dialog
         final AlertDialog alertDialog = alertDialogBuilder.create();
-
-        //On click show the dialog
-        addProject.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // Perform action on click
-                // show it
+        FloatingActionButton fab = (FloatingActionButton) myFragmentView.findViewById(R.id.add_project_btn);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 alertDialog.show();
             }
         });
 
 
-        mAdView = (AdView) myFragmentView.findViewById(R.id.adView_project_frag);
+
+
+    mAdView = (AdView) myFragmentView.findViewById(R.id.adView_project_frag);
         //Display the ad
         AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
@@ -138,9 +136,7 @@ public class ProjectFragment extends Fragment {
         cursor.moveToFirst();
         ArrayList<String> projects_list = new ArrayList<String>();
         while(!cursor.isAfterLast()) {
-//            projects_list.add(cursor.getString(cursor.getColumnIndex("_id")));
             projects_list.add(cursor.getString(cursor.getColumnIndex("project")));
-//            projects_list.add(cursor.getString(cursor.getColumnIndex("_id")) + "_" + cursor.getString(cursor.getColumnIndex("project")));
             cursor.moveToNext();
         }
         cursor.close();
@@ -154,8 +150,9 @@ public class ProjectFragment extends Fragment {
         nextFragment.setArguments(bundle);
         //Make the transaction
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.addToBackStack(null);
+        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
         transaction.replace(R.id.flMain,nextFragment);
+        transaction.addToBackStack(null);
         transaction.commit();
     }
 

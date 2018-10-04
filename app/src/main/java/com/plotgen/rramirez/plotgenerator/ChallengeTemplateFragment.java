@@ -4,6 +4,7 @@ package com.plotgen.rramirez.plotgenerator;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -24,7 +25,6 @@ public class ChallengeTemplateFragment extends Fragment {
 
 
     TextView charTemplateTitle, question1Title, question1, question2Title, question2, question3Title, question3, question4Title, question4;
-    Button charTemplateSubmit;
     private AdView mAdView;
     private FirebaseAnalytics mFirebaseAnalytics;
 
@@ -48,6 +48,10 @@ public class ChallengeTemplateFragment extends Fragment {
         final String char_name = this.getArguments().getString("project_name");
         final String challenge_number = this.getArguments().getString("challenge_number");
 
+
+        //Save button
+        FloatingActionButton fab = (FloatingActionButton) myFragmentView.findViewById(R.id.challenge_template_submit);
+
         charTemplateTitle = myFragmentView.findViewById(R.id.char_template_title);
         question1Title = myFragmentView.findViewById(R.id.char_template_question1_title);
         question1 = myFragmentView.findViewById(R.id.char_template_q1_et);
@@ -57,7 +61,7 @@ public class ChallengeTemplateFragment extends Fragment {
         question3 = myFragmentView.findViewById(R.id.char_template_q3_et);
         question4Title = myFragmentView.findViewById(R.id.char_template_question4_title);
         question4 = myFragmentView.findViewById(R.id.char_template_q4_et);
-        charTemplateSubmit = myFragmentView.findViewById(R.id.char_template_submit);
+
         ((MainActivity)getActivity()).setActionBarTitle(project_name);
 
         charTemplateTitle.setText(char_name);
@@ -83,22 +87,26 @@ public class ChallengeTemplateFragment extends Fragment {
             question3Title.setText(getString(R.string.challenge_4_q3));
             question4Title.setText(getString(R.string.challenge_4_q4));
         }
-            charTemplateSubmit.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    // Perform action on click
-                    updateDB(char_name.toString(), project_name.toString(), challenge_number.toString());
 
-                    //Log challenges updated
-                    Bundle params = new Bundle();
-                    params.putString("Challenge", "completed");
-                    mFirebaseAnalytics.logEvent("challenge_completed",params);
-                }
-            });
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Perform action on click
+                updateDB(char_name.toString(), project_name.toString(), challenge_number.toString());
+
+                //Log challenges updated
+                Bundle params = new Bundle();
+                params.putString("Challenge", "completed");
+                mFirebaseAnalytics.logEvent("challenge_completed",params);
+            }
+        });
 
         //Init the ad
         mAdView = (AdView) myFragmentView.findViewById(R.id.adView_challenge_template);
         //Display the ad
-        AdRequest adRequest = new AdRequest.Builder().build();
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
+                .build();
         mAdView.loadAd(adRequest);
 
         return myFragmentView;
@@ -149,4 +157,6 @@ public class ChallengeTemplateFragment extends Fragment {
         transaction.commit();
 
     }
+
+
 }

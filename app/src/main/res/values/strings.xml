@@ -12,6 +12,8 @@
 
     <string name="trigger_tab">Writing Prompts</string>
     <string name="character_tab">Character Workshop</string>
+    <string name="character_create">Create Character</string>
+    <string name="character_update">Edit Character</string>
     <string name="writing_challenge_tab">Weekly writing Challenge</string>
 
 

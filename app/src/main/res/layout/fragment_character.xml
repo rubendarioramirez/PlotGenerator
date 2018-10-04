@@ -8,31 +8,7 @@
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="25dp">
 
-    <Button
-        android:id="@+id/char_template_submit"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginRight="8dp"
-        android:text="@string/character_save_btn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/random_gen_char_btn" />
 
-    <Button
-        android:id="@+id/random_gen_char_btn"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:text="@string/character_random_btn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/char_template_submit"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/char_template_title"
@@ -53,10 +29,11 @@
         android:id="@+id/scrollView3"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/char_template_submit"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -83,8 +60,8 @@
                 android:layout_marginTop="12dp"
                 android:ems="8"
                 android:hint="@string/character_add_name"
-                android:textColor="@color/content"
                 android:inputType="textPersonName"
+                android:textColor="@color/content"
                 android:textSize="14sp" />
 
             <EditText
@@ -94,8 +71,8 @@
                 android:layout_marginTop="27dp"
                 android:ems="8"
                 android:hint="@string/character_add_age"
-                android:textColor="@color/content"
                 android:inputType="number"
+                android:textColor="@color/content"
                 android:textSize="14sp" />
 
             <android.support.v7.widget.AppCompatSpinner
@@ -114,8 +91,8 @@
                 android:layout_marginTop="27dp"
                 android:ems="8"
                 android:hint="@string/character_add_profession"
-                android:textColor="@color/content"
                 android:inputType="textPersonName"
+                android:textColor="@color/content"
                 android:textSize="14sp" />
 
             <EditText
@@ -125,8 +102,8 @@
                 android:layout_marginTop="27dp"
                 android:ems="8"
                 android:hint="@string/character_add_placebirth"
-                android:textColor="@color/content"
                 android:inputType="textPersonName"
+                android:textColor="@color/content"
                 android:textSize="14sp" />
 
             <TextView
@@ -145,8 +122,8 @@
                 android:layout_marginTop="12dp"
                 android:ems="8"
                 android:hint="@string/character_add_trait"
-                android:textColor="@color/content"
                 android:inputType="textPersonName"
+                android:textColor="@color/content"
                 android:textSize="14sp" />
 
             <EditText
@@ -154,10 +131,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="12dp"
-                android:textColor="@color/content"
                 android:ems="8"
                 android:hint="@string/character_add_trait"
                 android:inputType="textPersonName"
+                android:textColor="@color/content"
                 android:textSize="14sp" />
 
             <EditText
@@ -167,8 +144,8 @@
                 android:layout_marginTop="12dp"
                 android:ems="8"
                 android:hint="@string/character_add_trait"
-                android:textColor="@color/content"
                 android:inputType="textPersonName"
+                android:textColor="@color/content"
                 android:textSize="14sp" />
 
             <TextView
@@ -196,8 +173,9 @@
                 android:layout_marginTop="27dp"
                 android:ems="8"
                 android:hint="@string/character_add_defmoment"
+                android:inputType="textMultiLine"
                 android:textColor="@color/content"
-                android:inputType="textPersonName"
+
                 android:textSize="14sp" />
 
 
@@ -208,7 +186,7 @@
                 android:layout_marginTop="27dp"
                 android:ems="8"
                 android:hint="@string/character_add_desire"
-                android:inputType="textPersonName"
+                android:inputType="textMultiLine"
                 android:textColor="@color/content"
                 android:textSize="14sp" />
 
@@ -216,11 +194,11 @@
                 android:id="@+id/need_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textColor="@color/content"
                 android:layout_marginTop="27dp"
                 android:ems="8"
                 android:hint="@string/character_add_need"
-                android:inputType="textPersonName"
+                android:inputType="textMultiLine"
+                android:textColor="@color/content"
                 android:textSize="14sp" />
 
             <TextView
@@ -240,8 +218,8 @@
                 android:layout_marginTop="27dp"
                 android:ems="8"
                 android:hint="@string/character_notes_tv"
-                android:textColor="@color/content"
                 android:inputType="text|textMultiLine"
+                android:textColor="@color/content"
                 android:textSize="14sp" />
 
 
@@ -256,12 +234,51 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:background="#00000000"
         android:src="@android:drawable/ic_menu_delete"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.974"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/char_template_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:elevation="10dp"
+        android:src="@android:drawable/ic_menu_save"
+        app:borderWidth="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.973"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <ImageButton
+        android:id="@+id/random_gen_char_btn"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:background="#00000000"
+        android:elevation="10dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/random_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/scrollView3"
+        app:layout_constraintEnd_toStartOf="@+id/char_template_submit"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </android.support.constraint.ConstraintLayout>

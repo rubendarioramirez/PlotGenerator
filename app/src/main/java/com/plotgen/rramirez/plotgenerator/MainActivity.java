@@ -58,7 +58,10 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onAdClosed() {
                 // Load the next interstitial.
-                mInterstitialAd.loadAd(new AdRequest.Builder().build());
+                mInterstitialAd.loadAd(new AdRequest.Builder()
+                        .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
+                        .build());
+
             }
 
         });

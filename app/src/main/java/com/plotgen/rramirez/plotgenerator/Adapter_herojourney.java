@@ -92,6 +92,7 @@ public class Adapter_herojourney extends RecyclerView.Adapter<Adapter_herojourne
                 //Make the transaction
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
                 FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
                 transaction.addToBackStack(null);
                 transaction.replace(R.id.flMain,nextFragment);
                 transaction.commit();
@@ -107,6 +108,7 @@ public class Adapter_herojourney extends RecyclerView.Adapter<Adapter_herojourne
                 //Make the transaction
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
                 FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
                 transaction.addToBackStack(null);
                 transaction.replace(R.id.flMain,nextFragment);
                 transaction.commit();
@@ -122,6 +124,7 @@ public class Adapter_herojourney extends RecyclerView.Adapter<Adapter_herojourne
                 //Make the transaction
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
                 FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
                 transaction.addToBackStack(null);
                 transaction.replace(R.id.flMain,nextFragment);
                 transaction.commit();
@@ -137,36 +140,40 @@ public class Adapter_herojourney extends RecyclerView.Adapter<Adapter_herojourne
                     //Make the transaction
                     AppCompatActivity activity = (AppCompatActivity) view.getContext();
                     FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+                    transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
                     transaction.addToBackStack(null);
                     transaction.replace(R.id.flMain,nextFragment);
                     transaction.commit();
             } else if (clicked.equals("Typical Character Roles") || clicked.equals("Roles de personajes tipicos")){
-                //Send it to the next fragment
-                GuideRoleFragment nextFragment = new GuideRoleFragment();
-                //Make the transaction
-                AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-                transaction.addToBackStack(null);
-                transaction.replace(R.id.flMain,nextFragment);
-                transaction.commit();
+                    //Send it to the next fragment
+                    GuideRoleFragment nextFragment = new GuideRoleFragment();
+                    //Make the transaction
+                    AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                    FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+                    transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
+                    transaction.addToBackStack(null);
+                    transaction.replace(R.id.flMain,nextFragment);
+                    transaction.commit();
             }else if (clicked.equals("3D Characters - Lajos Egri") || clicked.equals("Personajes 3D - Lajos Egri")){
-                //Send it to the next fragment
-                GuideLajosFragment nextFragment = new GuideLajosFragment();
-                //Make the transaction
-                AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-                transaction.addToBackStack(null);
-                transaction.replace(R.id.flMain,nextFragment);
-                transaction.commit();
+                    //Send it to the next fragment
+                    GuideLajosFragment nextFragment = new GuideLajosFragment();
+                    //Make the transaction
+                    AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                    FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+                    transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
+                    transaction.addToBackStack(null);
+                    transaction.replace(R.id.flMain,nextFragment);
+                    transaction.commit();
             }else if (clicked.equals("Change Arc - K.M Weiland") || clicked.equals("Arco de cambio - K.M Weiland")){
-                //Send it to the next fragment
-                GuideWeilandFragment nextFragment = new GuideWeilandFragment();
-                //Make the transaction
-                AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-                transaction.addToBackStack(null);
-                transaction.replace(R.id.flMain,nextFragment);
-                transaction.commit();
+                    //Send it to the next fragment
+                    GuideWeilandFragment nextFragment = new GuideWeilandFragment();
+                    //Make the transaction
+                    AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                    FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+                    transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
+                    transaction.addToBackStack(null);
+                    transaction.replace(R.id.flMain,nextFragment);
+                    transaction.commit();
             }
 
 
