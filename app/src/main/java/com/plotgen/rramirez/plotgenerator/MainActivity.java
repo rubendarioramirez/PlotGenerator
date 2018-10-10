@@ -3,8 +3,10 @@ package com.plotgen.rramirez.plotgenerator;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,19 +17,17 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.ads.reward.RewardItem;
+import com.google.android.gms.ads.reward.RewardedVideoAd;
+import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 import com.google.firebase.analytics.FirebaseAnalytics;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+
 
 import java.util.Random;
 
@@ -47,8 +47,9 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         //Init the ads
-//        MobileAds.initialize(this, "ca-app-pub-6696437403163667~6953226633");
-        MobileAds.initialize(this, "ca-app-pub-6493977652279663~1385558778");
+        MobileAds.initialize(this, getString(R.string.ad_account_id));
+        //TEST ACCOUNT
+//        MobileAds.initialize(this, "cca-app-pub-3940256099942544/5224354917");
 
         //Interstitial
         mInterstitialAd = new InterstitialAd(this);
@@ -65,6 +66,9 @@ public class MainActivity extends AppCompatActivity
             }
 
         });
+
+
+
         // Obtain the FirebaseAnalytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
@@ -158,37 +162,29 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_genre) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft .replace(R.id.flMain,new HeroJourneyFragment());
-//            ft.addToBackStack(null);
             mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
             ft.commit();
         } else if (id == R.id.nav_trigger) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft .replace(R.id.flMain,new TriggerFragment());
-//            ft.addToBackStack(null);
             mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
             ft.commit();
         }
         else if (id == R.id.nav_char) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft .replace(R.id.flMain,new ProjectFragment());
-//            ft.addToBackStack(null);
             mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
             ft.commit();
         }
- else if (id == R.id.nav_writting_challenge) {
+        else if (id == R.id.nav_writting_challenge) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft .replace(R.id.flMain,new weeklyWriting());
-//            ft.addToBackStack(null);
             mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
             ft.commit();
-        }
-        // else if (id == R.id.nav_home) {
-//            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//            ft .replace(R.id.flMain,new HomeFragment());
-//            ft.addToBackStack(null);
-//            mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
-//            ft.commit();
-//        }
+
+            }
+
+
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -196,5 +192,10 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+
+//    @Override
+//    public void onRewarded(RewardItem rewardItem) {
+//        Utils.saveOnSharePreg(getApplicationContext(),"weekly_challenge_visit",rewardItem.getAmount());
+//    }
 
 }

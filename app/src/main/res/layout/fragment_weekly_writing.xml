@@ -7,25 +7,6 @@
     android:background="@color/background"
     tools:context=".weeklyWriting">
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adView_writing_challenge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginStart="4dp"
-        app:adSize="BANNER"
-        app:adUnitId="@string/banner_ad_unit_id"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_constraintBottom_creator="1"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1"></com.google.android.gms.ads.AdView>
-
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -36,7 +17,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/adView_writing_challenge"
+        app:layout_constraintBottom_toTopOf="@+id/weekly_challenge_ad_desc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -62,9 +43,8 @@
                     android:fontFamily="@font/typewcond_bold"
                     android:gravity="center_horizontal"
                     android:text="@string/weekly_challenge_title_default"
-                    android:textColor="@color/headline"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                 />
+                    android:textColor="@color/headline" />
 
                 <TextView
                     android:id="@+id/writing_challenge_desc"
@@ -79,11 +59,48 @@
                     android:fontFamily="@font/typewcond_regular"
                     android:gravity="center_horizontal"
                     android:text="@string/weekly_challenge_desc_default"
-                    android:textColor="@color/content"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                   />
+                    android:textColor="@color/content" />
+
             </LinearLayout>
         </ScrollView>
+
+
     </LinearLayout>
+
+    <Button
+        android:id="@+id/weekly_challenge_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@color/colorAccent"
+        android:elevation="10dp"
+        android:text="View ad"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button.Colored"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/weekly_challenge_ad_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:gravity="center_horizontal"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:fontFamily="@font/typewcond_regular"
+        android:textColor="@color/content"
+        app:layout_constraintBottom_toTopOf="@+id/weekly_challenge_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

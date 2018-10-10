@@ -43,6 +43,7 @@ public class GuideListFragment extends Fragment {
         mlist.add(new item_herojourney(R.drawable.typewriter, (String) getString(R.string.roles_title), (String) getString(R.string.roles_desc), (String) getString(R.string.roles_desc_long),(String) "dumi", (String) "dumi"));
         mlist.add(new item_herojourney(R.drawable.typewriter, (String) getString(R.string.lajos_character_title), (String) getString(R.string.lajos_character_desc), (String) getString(R.string.lajos_character_long),(String) "dumi", (String) "dumi"));
         mlist.add(new item_herojourney(R.drawable.typewriter, (String) getString(R.string.change_arc_title), (String) getString(R.string.change_arc_desc), (String) getString(R.string.change_arc_desc_long),(String) "dumi", (String) "dumi"));
+        mlist.add(new item_herojourney(R.drawable.typewriter, (String) getString(R.string.antagonist_guide_title), (String) getString(R.string.antagonist_guide_desc), (String) getString(R.string.antagonist_guide_desc_long),(String) "dumi", (String) "dumi"));
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));

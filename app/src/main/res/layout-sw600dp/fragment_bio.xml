@@ -11,12 +11,13 @@
         android:id="@+id/scrollView2"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/bio_fragment_challenge_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/background_char_bio">
@@ -34,21 +35,20 @@
                 android:fontFamily="@font/typewcond_regular"
                 android:text="His name is Rambo, he is XX years "
                 android:textAlignment="center"
-                android:textColor="@color/content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                />
+                android:textColor="@color/content" />
 
             <TextView
                 android:id="@+id/placeholder"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="22dp"
+                android:elevation="30dp"
                 android:fontFamily="@font/typewcond_bold"
                 android:gravity="center"
-                android:textColor="@color/headline"
-                android:elevation="30dp"
                 android:text="@string/challenge_action_bar"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                android:textColor="@color/headline"
                 android:textSize="36sp" />
 
             <TextView
@@ -56,46 +56,61 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="22dp"
+                android:background="@color/content_lighter"
                 android:fontFamily="@font/typewcond_regular"
                 android:gravity="left"
                 android:text="@string/challenge_nochallenge_placeholder"
-                android:textColor="@color/content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:background="@color/content_lighter" />
+                android:textColor="@color/content" />
 
             <TextView
                 android:id="@+id/character_bio_challenge_2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="22dp"
+                android:background="@color/content_lighter"
                 android:fontFamily="@font/typewcond_regular"
                 android:gravity="left"
                 android:text=""
-                android:textColor="@color/content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:background="@color/content_lighter" />
+                android:textColor="@color/content" />
+
             <TextView
                 android:id="@+id/character_bio_challenge_3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="22dp"
+                android:background="@color/content_lighter"
                 android:fontFamily="@font/typewcond_regular"
                 android:gravity="left"
                 android:text=""
-                android:textColor="@color/content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:background="@color/content_lighter" />
+                android:textColor="@color/content" />
+
             <TextView
                 android:id="@+id/character_bio_challenge_4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="22dp"
+                android:background="@color/content_lighter"
                 android:fontFamily="@font/typewcond_regular"
                 android:gravity="left"
                 android:text=""
-                android:textColor="@color/content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:background="@color/content_lighter" />
+                android:textColor="@color/content" />
+
+            <TextView
+                android:id="@+id/character_bio_challenge_5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="12dp"
+                android:background="@color/content_lighter"
+                android:fontFamily="@font/typewcond_regular"
+                android:gravity="left"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/content" />
+
 
 
         </LinearLayout>

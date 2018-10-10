@@ -86,6 +86,11 @@ public class ChallengeTemplateFragment extends Fragment {
             question2Title.setText(getString(R.string.challenge_4_q2));
             question3Title.setText(getString(R.string.challenge_4_q3));
             question4Title.setText(getString(R.string.challenge_4_q4));
+        }else if(challenge_number.equals("Challenge V") || challenge_number.equals("Desafio V")){
+            question1Title.setText(getString(R.string.challenge_5_q1));
+            question2Title.setText(getString(R.string.challenge_5_q2));
+            question3Title.setText(getString(R.string.challenge_5_q3));
+            question4Title.setText(getString(R.string.challenge_5_q4));
         }
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -136,6 +141,11 @@ public class ChallengeTemplateFragment extends Fragment {
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C4Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C4Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C4Q4, question4.getText().toString());
+        }else if(challenge_number.equals("Challenge V") || challenge_number.equals("Desafio V")){
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C5Q1, question1.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C5Q2, question2.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C5Q3, question3.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C5Q4, question4.getText().toString());
         }
 
         database.update(mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER, values,   "name = ?", new String[]{char_name});

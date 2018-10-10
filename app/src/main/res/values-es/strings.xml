@@ -9,6 +9,55 @@
 
     <!--Tabs-->
     <string name="trigger_tab">Disparadores Creativos</string>
+    <string-array name="triggers_list">
+        <item>No le dijo a nadie a donde se dirigia.</item>
+        <item>Abrio la carta y rapidamente la tiro al fuego.</item>
+        <item>El ladrillo estaba visiblemente flojo.</item>
+        <item>Solia ser una calle bastante ocupada, pero ese día estaba desierta.</item>
+        <item>La llave ya no abria la puerta.</item>
+        <item>Corrio mas rapido de lo que jamas hubiese pensado.</item>
+        <item>No tuvo tiempo de empacar.</item>
+        <item>Los buenos amigos no te dejan atras. Creo que no era su amigo despues de todo...</item>
+        <item>No pude jurarle, jamas jure. Ni siquiera entonces...</item>
+        <item>No hace falta ser Sherlock Holmes para darse cuenta que...</item>
+        <item>Eso no había sido parte del trato, pero ya era tarde para volver atras...</item>
+        <item>Claramente no era un animal, pero tampoco una persona.</item>
+        <item>Los escuche en el piso de abajo.</item>,
+        <item>Era tarde y el rio comenzaba a salirse de su cauce.</item>
+        <item>Fue la primera vez que tomo un arma, sin embargo había algo natural en toda la situación.</item>
+        <item>Espero, pero nadie aparecio.</item>
+        <item>Miro alrededor para asegurarse que nadie este mirando, entonces puso el USB en su bolsillo.</item>
+        <item>Era la quinta vez que la misma señora llamaba por telefono. No había ninguna mujer con ese nombre ahi, ¿Por qué insistia?</item>
+        <item>Nunca habia sentido tanto frio como hasta ese dia...</item>
+        <item>Miro su rifle, lleno de polvo otra vez sobre su cama...</item>
+        <item>Realmente no sabia quien era. Aunque pensandolo bien, tampoco me hubiese importado.</item>
+        <item>No hay mal que por bien no venga? Ja, a veces hay males que vienen por males.</item>
+        <item>Ese no era el trato que habiamos firmado, pero ya no había vuelta atras.</item>
+        <item>Solo queria darle un susto...</item>
+        <item>Los escuche en el piso de abajo.</item>ß
+        <item>La vi bajar del bus, como todos los dias. Salvo que esta vez si me atreví a hablarle.</item>
+        <item>Quien soy? Quienes son ellos...</item>
+        <item>Peor que un barco hundiendose, es ser el unico sobreviviente.</item>
+        <item>Parecia una gripe, estabamos seguros que lo era. El unico problema es que nos equivocamos.</item>
+        <item>Me gustaria decir que amarla era dejarla ir. Pero yo la amaba y no podia dejarla.</item>
+        <item>Seriamos Romeo Y Julieta si sus padres me odiaran. Pero no.</item>
+        <item>Era muy inteligente como para enamorarse de mi. Realmente no se como ocurrio.</item>
+        <item>Hubiese llamado a la policia. El problema es que yo era la policia.</item>
+        <item>La peor crisis financiera que habia visto. Y la habiamos causado nosotros mismos.</item>
+        <item>No sabia que era veneno. Bueno, si sabia. Solo que no crei que...</item>
+        <item>Caer en prision ya era rutina. Aunque en esa prision exactamente, bueno. No era tan rutinario.</item>
+        <item>No era mi primer robo, ni mi primer fracaso. Solo que esta vez, lo que estaba en juego era ella y no yo.</item>
+        <item>Le prometi no decir nada, dejar que me cuente. En su segunda oración ya no pude cumplir el trato.</item>
+        <item>La luz comenzaba a apagarse.</item>
+        <item>Casi nos ahogamos, pero no me importo.</item>
+        <item>Fue la primera vez que maneje un camion, y crei que seria la ultima.</item>
+        <item>El jefe de policía me miro por un segundo, ambos sabiamos pero ninguno dijo nada.</item>
+        <item>Ese fue el primer día que la extrañe.</item>
+        <item>No me molesto que me deje por otra mujer, pero tenia que ser por mi hermana?</item>
+    </string-array>
+
+
+
     <string name="character_tab">Taller de personajes</string>
     <string name="character_create">Crear Personaje</string>
     <string name="character_update">Editar Personaje</string>
@@ -336,6 +385,45 @@
     <string name="character_notes_tv">Notas</string>
 
 
+    <!--BIOGRAPHY TEXT-->
+
+
+
+    <!--Challenge I BIO-->
+    <string name="challenge_1_bio_title">El desafio del elevador:</string>
+    <string name="challenge_1_bio_desc_1">Cual seria su primera reaccion de quedarse atrapado?</string>
+    <string name="challenge_1_bio_desc_2">Esperaria a ser rescatado?</string>
+    <string name="challenge_1_bio_desc_3">Si la persona que esta con el entrara en panico. Lo ayudaria?</string>
+    <string name="challenge_1_bio_desc_4">Finalmente, si solo uno pudiese escapar, quien iria primero?</string>
+    <!--Challenge II BIO-->
+    <string name="challenge_2_bio_title">La mentira que cree tu personaje:</string>
+    <string name="challenge_2_bio_subtitle">Es la base para su arco de cambio. Esto es todo lo que esta mal en su mundo. Una vez que sabes que esta mal, es el principio de poder arreglarlo.</string>
+    <string name="challenge_2_bio_desc_1">Cual es el concepto errado que tiene sobre el o sobre el mundo?</string>
+    <string name="challenge_2_bio_desc_2">Su mentira hace que sea miserable cuando la historia comienza? De ser asi, como?</string>
+    <string name="challenge_2_bio_desc_3">Si no, va a hacer el plot inicial que se sienta incomodo?</string>
+    <string name="challenge_2_bio_desc_4">Cuales son los sintomas de la mentira de tu personaje?</string>
+    <!--Challenge III BIO-->
+    <string name="challenge_3_bio_title">Su historia</string>
+    <string name="challenge_3_bio_subtitle">Por qué tu personaje es quien es?</string>
+    <string name="challenge_3_bio_desc_1">Su familia</string>
+    <string name="challenge_3_bio_desc_2">Su mejor momento de la infancia?</string>
+    <string name="challenge_3_bio_desc_3">Su peor momento de la infancia?</string>
+    <string name="challenge_3_bio_desc_4">Tenia amigos? Que decian sus amigos de el?</string>
+    <!--Challenge IV BIO-->
+    <string name="challenge_4_bio_title">Como luce?</string>
+    <string name="challenge_4_bio_subtitle">En un mundo perfecto, como nos vemos no deberia interferir en quienes somos. Pero no vivimos en un mundo perfecto.</string>
+    <string name="challenge_4_bio_desc_1">Como es tu personaje en cinco palabras.</string>
+    <string name="challenge_4_bio_desc_2">Marcas de nacimiento? Tatuajes?</string>
+    <string name="challenge_4_bio_desc_3">Alguna condicion medica? Alergias?</string>
+    <string name="challenge_4_bio_desc_4">Su postura y aparariencia? </string>
+    <!--Challenge V BIO-->
+    <string name="challenge_5_bio_title">Cuando esta bajo presión</string>
+    <string name="challenge_5_bio_subtitle">tu personaje puede reaccionar de distintas maneras, como elige actuar cuando alguien que ama esta en problemas?</string>
+    <string name="challenge_5_bio_desc_1">Como reaccionaria si alguien que ama esta en problemas?</string>
+    <string name="challenge_5_bio_desc_2">Se atreveria a matar?</string>
+    <string name="challenge_5_bio_desc_3">Cree que el fin justifica los medios?</string>
+    <string name="challenge_5_bio_desc_4">Ok, si no cruzara sus propios limites, como resolveria este problema?</string>
+
     <!--Journey Strings-->
     <string name="hero_journey_tab">El camino del heroe</string>
     <string name="hj_act1">Acto 1: La Partida</string>
@@ -406,7 +494,6 @@ A veces, el heroe puede incluso perder a su mentor en esta etapa (Ejemplo: LOTR 
     <string name="challenge_1_q3">La persona que esta con el de pronto entra en panico. Tu personaje lo calmaria? O entraria en panico tambien?</string>
     <string name="challenge_1_q4">Luego de estar atrapados por mas de una hora, repentinamente una voz les habla. Hey, aqui arriba. Puedo sacar a uno, pero el otro debera esperar la ayuda...
         \nIria tu personaje primero o dejaria a su compañero?</string>
-
     <!--Segundo desafio-->
     <string name="challenge_2_title">Desafio II</string>
     <string name="challenge_2_desc">Cual es la mentira?</string>
@@ -416,8 +503,7 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="challenge_2_q2">Esta mentira hace su vida miserable cuando comienza la historia? De ser asi, como?</string>
     <string name="challenge_2_q3">Si no fuese, durante el plot inicial vemos como su mentira lo pone incomodo?</string>
     <string name="challenge_2_q4">Cuales son los sintomas de la mentira de tu personaje?</string>
-
-
+    <!--Tercer desafio-->
     <string name="challenge_3_title">Desafio III</string>
     <string name="challenge_3_desc">Historia</string>
     <string name="challenge_3_desc_long">Quien es tu personaje es muy importante, cual es su trabajo, cuales son sus pasiones, etc. Quien sera en el futuro, es lo esencial de la historia, por eso la contamos. Pero entonces, que pasa con su pasado? Su pasado explica el por qué es como es. Se divorciaron sus padres? Quizas su madre era alcoholica? Puede algo de eso afectar quien sera? Sumergite en este desafio para desarrollar un personaje realmente tridimensional.</string>
@@ -425,8 +511,7 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="challenge_3_q2">Cual es su mejor recuerdo de la infancia?</string>
     <string name="challenge_3_q3">Cual es su peor recuerdo de la infancia?</string>
     <string name="challenge_3_q4">Tenia amigos de pequeño? Como lo describirian sus amigos? Si no tenia amigos, por que?</string>
-
-
+    <!--Cuarto desafio-->
     <string name="challenge_4_title">Desafio IV</string>
     <string name="challenge_4_desc">Como luce?</string>
     <string name="challenge_4_desc_long">Lajos Egri decia que como te ves, determina quien seras. No te parece? Imaginate que tu personaje estuvo paralizado cuando era pequeño, debido a esto pasaba sus dias en la cama y jamas pudo jugar con los demas niños, por lo tanto se volco a la lectura ya que no tenia otra cosa para hacer. No crees que cuando sea un adulto esto podria afectar quien es? Quizas mas introvertido pero altamente inteligente?</string>
@@ -434,14 +519,18 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="challenge_4_q2">Tiene alguna marca de nacimiento? Tatuajes quizas que lo hagan unico? </string>
     <string name="challenge_4_q3">Alguna condicion medica? Alergias? Algo que se manifieste fisicamente incluso si pueda estar oculto debajo de su ropa?</string>
     <string name="challenge_4_q4">Considera por un segundo su postura, podrias describirla? Ademas, su apariencia? Es limpio? Es prolijo? Dirias que apesar de todo es atractivo?</string>
-
-
+    <!--Quinto desafio-->
     <string name="challenge_5_title">Desafio V</string>
-    <string name="challenge_5_desc">Muy pronto</string>
-    <string name="challenge_5_desc_long">Actualmente estoy trabajando en mas desafios. No dudes en enviarme tus sugerencias.</string>
+    <string name="challenge_5_desc">Poner a prueba los limites.</string>
+    <string name="challenge_5_desc_long">Si el carbon y los diamantes son basicamente la misma cosa, que hace a uno tan comun y al otro tan raro y hermoso?\n Presion.\nEsto mismo es verdad para los personajes, Quieres saber si tu personaje es uno mas del monton o el heroe que tu historia necesita? Solo falta aplicarle la presion necesaria y vas a descubrir de que esta hecho.</string>
+    <string name="challenge_5_q1">Como reaccionaria si alguien que ama esta en peligro?</string>
+    <string name="challenge_5_q2">Seria capaz de matar? </string>
+    <string name="challenge_5_q3">Diria tu personaje que el fin justifica los medios cuando se trata de proteger a quien ama?</string>
+    <string name="challenge_5_q4">Supongamos que no cruzara sus limites para salvar a alguien que quiere, sea por miedo o por valores morales. Como resolveria esta situacion sin dejar de ser quien es?</string>
 
-
-
+    <string name="challenge_6_title">Desafio V</string>
+    <string name="challenge_6_desc">Muy pronto</string>
+    <string name="challenge_6_desc_long">Actualmente estoy trabajando en mas desafios. No dudes en enviarme tus sugerencias.</string>
 
 
     <!--GUIDE ME Strings-->
@@ -536,8 +625,35 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
     </string-array>
 
 
+    <string name="antagonist_guide_title">Anatomia del Antagonista perfecto</string>
+    <string name="antagonist_guide_desc">De que estan hechos los antagonistas?</string>
+    <string name="antagonist_guide_desc_long">Lajos Egri describe en su libro "El arte de la escritura dramatica" la importancia de la union de opuestos. Esto quiere decir, que si Batman quiere orden, entonces el Guason quiere caos, Si Gandalf desea paz, entonces Sauron quiere guerra.
+    La Union de opuestos, se refiere a que tanto el protagonista como el antagonista quieren exactamente lo opuesto y es por eso que entran en conflicto. Si este concepto no se aplica, el resultado es amenudo un antagonista aburrido o poco creible. Lee este capitulo para entender mejor como se hacen los antagonistas.</string>
+    <string-array name="antagonist_guide_array_titles">
+        <item>Los Antagonistas son lo opuesto a tu protagonista.</item>
+        <item>Los Antagonistas son complejos.</item>
+        <item>Los Antagonistas son oponentes duros</item>
+        <item>Los Antagonistas tienen un motivo claro</item>
+    </string-array>
+    <string-array name="antagonist_guide_array_desc">
+        <item>A menudo en literatura, el antagonista es simplemente lo contrario del protagonista. Por ejemplo, si tu protagonista es alocado y explosivo, entonces el antagonista es calmado y en control de sus emociones. El contraste entre estos dos ayuda a crear momentos mas realistas y emocionantes.\n
+        Pero su oposición no es meramente en las tacticas para lograr sus objetivos, sino que va mas alla y su oposición radica en lo mas pronfudo de sus naturalezas. La batalla que se gesta al comienzo de tu historia no puede ser evitada.</item>
+        <item>Por mas que sea tentador, no hagas de tu antagonista el perfecto ejemplo de la maldad. Por qué no? Porque es aburrido y poco realista. Cuantas personas has conocido en tu vida que sean puramente malvadas? Probablemente cero, aun cuando conozcas personas malas. No importa que tan mala sea una persona, siempre tiene rasgos que lo hacen humano y bondadoso.\n
+        Dale a tu antagonista algunas cualidades buenas que pueda mostrar en algunas escenas o capitulos. Esto creara un fuerte contraste entre lo que hace y quien es, haciendolo mas creible y quizas hasta entendible para el espectador/lector.\n
+        Para darle mas profundidad a tu antagonista, explora su trasfondo. Fue alguna vez una buena persona? Siempre tuvo estas tendencias malvadas? Que lo hizo tan malvado? Agregarle capas de profundidad a tu antagonista haran que tu audiencía realmente crea lo que esta ocurriendo.</item>
+        <item>No hay obra si tu antagonista no es por lo menos tan fuerte como el protagonista. De hecho, muchas obras comienza de la manera opuesta, Es el protagonista el que debe crecer y hacerse fuerte para enfrentar al ya poderoso antagonista. Fallar al tener un antagonista que este a la altura del protagonista genera falta de empatia y falta de interes en los espectadores. A nadie le interesa ver una pelea donde ya se conoce al ganador.
+        A menudo es util hacer que tu protagonista pierda algunas batallas contra el antagonista hasta que pueda madurar y crecer (Interna o externamente) para finalmente derrotarlo en la batalla final.</item>
+        <item>Cual es el objectivo de tu antagonista? Cual es el motivo para hacer tanto daño? No basta con solo explicar que toda esa maldad es producto de su naturaleza malvada. La gente no hace cosas malas solo porque si. Generalmente hay una razon para su forma de ser. Encontra la motivación de tu antagonista para hacer lo que hace y obtendras tu antagonista perfecto.\n
+        Por qué quiere la bruja mala destruir la raza humana? Quizas porque los humanos la expulsaron de su casa miles de años atras y ahora no ve mas salida que destruirlos. Esto no hace a la bruja menos malvada, pero si mas creible.</item>
+    </string-array>
+
     <string name="weekly_challenge_title_default">Sin conexion</string>
     <string name="weekly_challenge_desc_default">Si ves este texto es que no tienes acceso a internet. Comprueba tu conexion y vuelve a ingresar</string>
+    <string name="weekly_challenge_view_ad_btn">Ver anuncio</string>
+    <string name="weekly_challenge_view_ad_desc">Para poder participar me veo obligado a mostrarte un anuncio. Es la unica manera de mantener esta app gratis</string>
+    <string name="weekly_challenge_submit_btn">Participar</string>
+    <string name="weekly_challenge_email_desc">No te olvides de agregar tu nombre si deseas ser nombrado. Y gracias por participar!</string>
+
 
 
 </resources>

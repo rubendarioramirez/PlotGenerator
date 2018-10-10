@@ -28,7 +28,7 @@ import java.util.Locale;
  */
 public class BioFragment extends Fragment {
 
-    TextView title, role_subtitle, intro_tv,character_bio_challenge, character_bio_challenge_2,character_bio_challenge_3,character_bio_challenge_4;
+    TextView title, role_subtitle, intro_tv,character_bio_challenge, character_bio_challenge_2,character_bio_challenge_3,character_bio_challenge_4,character_bio_challenge_5;
     ArrayList<String> char_description;
     ImageButton character_bio_edit_btn, character_bio_share_btn, guide_btn,character_bio_challenge_btn;
     String gender_article, gender_article_posesive;
@@ -61,6 +61,7 @@ public class BioFragment extends Fragment {
         character_bio_challenge_2 = myFragmentView.findViewById(R.id.character_bio_challenge_2);
         character_bio_challenge_3 = myFragmentView.findViewById(R.id.character_bio_challenge_3);
         character_bio_challenge_4 = myFragmentView.findViewById(R.id.character_bio_challenge_4);
+        character_bio_challenge_5 = myFragmentView.findViewById(R.id.character_bio_challenge_5);
         character_bio_edit_btn = myFragmentView.findViewById(R.id.character_bio_edit_btn);
         character_bio_share_btn = myFragmentView.findViewById(R.id.character_bio_share_btn);
         character_bio_challenge_btn = myFragmentView.findViewById(R.id.bio_fragment_challenge_btn);
@@ -81,7 +82,7 @@ public class BioFragment extends Fragment {
         final String trait1 = char_description.get(9);
         String trait2 = char_description.get(10);
         String trait3 = char_description.get(11);
-        String notes = char_description.get(28);
+        String notes = char_description.get(32);
         //First challenge
         String firstReaction = char_description.get(12);
         String waitRescue = char_description.get(13);
@@ -102,6 +103,11 @@ public class BioFragment extends Fragment {
         String challenge4_q2 = char_description.get(25);
         String challenge4_q3 = char_description.get(26);
         String challenge4_q4 = char_description.get(27);
+        //Fifth challenge
+        String challenge5_q1 = char_description.get(28);
+        String challenge5_q2 = char_description.get(29);
+        String challenge5_q3 = char_description.get(30);
+        String challenge5_q4 = char_description.get(31);
 
         //Titles
         title.setText(char_name.toString() );
@@ -121,47 +127,6 @@ public class BioFragment extends Fragment {
                     "\n\nSus amigos dicen que es " + trait1 + ", " + trait2 + " y " + trait3 +
                        "\n\nNotas \n" +  notes);
 
-            if(firstReaction != null) {
-                StringBuffer sb=new StringBuffer();
-                sb.append("<b>El desafio del elevador:</b>");
-                sb.append("<br><i><b>Cual seria su primera reaccion de quedarse atrapado? </b></i><br> " + firstReaction);
-                sb.append("<br><i><b>Esperaria a ser rescatado? </b></i><br> " + waitRescue);
-                sb.append("<br><i><b>Si la persona que esta con el entrara en panico. Lo ayudaria? </b></i><br> " + helpPartner);
-                sb.append("<br><i><b>Finalmente, si solo uno pudiese escapar, quien iria primero? </b></i><br> " + escapeFirst);
-                character_bio_challenge.setText(Html.fromHtml(sb.toString()));
-            }
-            if(challenge2_q1 !=null){
-                StringBuffer sb=new StringBuffer();
-                sb.append("<br><b>La mentira que cree tu personaje:</b> Es la base para su arco de cambio. Esto es todo lo que esta mal en su mundo. Una vez que sabes que esta mal, es el principio de poder arreglarlo. <br>");
-                sb.append("<br><i><b>Cual es el concepto errado que tiene sobre el o sobre el mundo?</b></i><br>" + challenge2_q1 + "<br>");
-                sb.append("<br><i><b>Su mentira hace que sea miserable cuando la historia comienza? De ser asi, como?</b></i><br>" + challenge2_q2+ "<br>");
-                sb.append("<br><i><b>Si no, va a hacer el plot inicial que se sienta incomodo?</b></i><br>" + challenge2_q3+ "<br>");
-                sb.append("<br><i><b>Cuales son los sintomas de la mentira de tu personaje?</b></i><br>" + challenge2_q4);
-                character_bio_challenge_2.setVisibility(View.VISIBLE);
-                character_bio_challenge_2.setText(Html.fromHtml(sb.toString()));
-            }
-            if(challenge3_q1 !=null){
-                StringBuffer sb=new StringBuffer();
-                sb.append("<br><b>Su historia</b> Por qué tu personaje es quien es?.<br>");
-                sb.append("<br><i><b>Su familia </b></i><br>" + challenge3_q1 + "<br>");
-                sb.append("<br><i><b>Su mejor momento de la infancia? </b></i><br>" + challenge3_q2+ "<br>");
-                sb.append("<br><i><b>Su peor momento de la infancia? </b></i><br>" + challenge3_q3+ "<br>");
-                sb.append("<br><i><b>Tenia amigos? Que decian sus amigos de el?</b></i><br>" + challenge3_q4);
-                character_bio_challenge_3.setVisibility(View.VISIBLE);
-                character_bio_challenge_3.setText(Html.fromHtml(sb.toString()));
-            }
-            if(challenge4_q1 !=null){
-                StringBuffer sb=new StringBuffer();
-                sb.append("<br><b>Como luce?</b> En un mundo perfecto, como nos vemos no deberia interferir en quienes somos. Pero no estamos en un mundo perfecto.<br>");
-                sb.append("<br><i><b>Como es tu personaje en cinco palabras.</b></i><br>" + challenge4_q1 + "<br>");
-                sb.append("<br><i><b>Marcas de nacimiento? Tatuajes?</b></i><br>" + challenge4_q2+ "<br>");
-                sb.append("<br><i><b>Alguna condicion medica? Alergias?</b></i><br>" + challenge4_q3+ "<br>");
-                sb.append("<br><i><b>Su postura y aparariencia? </b></i><br>" + challenge4_q4);
-                sb.append("<br><br><br>");
-                character_bio_challenge_4.setVisibility(View.VISIBLE);
-                character_bio_challenge_4.setText(Html.fromHtml(sb.toString()));
-            }
-
         }
         else {
             //Get gender article
@@ -178,50 +143,59 @@ public class BioFragment extends Fragment {
                     "\nBut is that what " + gender_article + " really wants? or " + gender_article + " actually needs to " + need + "?...\n\n  About " +gender_article_posesive+" childhood we know that "+ gender_article + " " + moment
                     + "\n\nAlso " +  gender_article_posesive  + " friends says that " + gender_article + " is " + trait1 + ", " + trait2 + " and " + trait3 +
                     "\n\nNotes \n" +  notes);
-
-            if(firstReaction != null) {
-                StringBuffer sb=new StringBuffer();
-                sb.append("<b>The elevator challenge:</b>");
-                sb.append("<br><i><b>What will be his first reaction if he gets stuck in a elevator?</b></i><br> " + firstReaction);
-                sb.append("<br><i><b>Will your character wait to be rescued?</b></i><br> " + waitRescue);
-                sb.append("<br><i><b>If the person next to your character has a panic attack. What will happen?</b></i><br> " + helpPartner);
-                sb.append("<br><i><b>Lastly in the eventuality that just one can escape and the other should wait, what will your character do?</b></i><br> " + escapeFirst);
-                character_bio_challenge.setText(Html.fromHtml(sb.toString()));
-            }
-            if(challenge2_q1 !=null){
-                StringBuffer sb=new StringBuffer();
-                sb.append("<br><b>The Lie Your Character Believes</b> is the foundation for his character arc. This is what’s wrong in his world. Once you know what’s wrong, you then get to set about figuring out how to make it right. <br>");
-                sb.append("<br><i><b>What misconception does your protagonist have about himself of the world? </b></i><br>" + challenge2_q1 + "<br>");
-                sb.append("<br><i><b>Is the lie making his life miserable when the story starts? If so, how? </b></i><br>" + challenge2_q2+ "<br>");
-                sb.append("<br><i><b>If not, will the inciting event make him uncomfortable? </b></i><br>" + challenge2_q3+ "<br>");
-                sb.append("<br><i><b>What are the symptoms of your character\'s lie? </b></i><br>" + challenge2_q4);
-                character_bio_challenge_2.setVisibility(View.VISIBLE);
-                character_bio_challenge_2.setText(Html.fromHtml(sb.toString()));
-            }
-            if(challenge3_q1 !=null){
-                StringBuffer sb=new StringBuffer();
-                sb.append("<br><b>Backstory</b> Why is your character who he is?.<br>");
-                sb.append("<br><i><b>His family </b></i><br>" + challenge3_q1 + "<br>");
-                sb.append("<br><i><b>Best childhood moment? </b></i><br>" + challenge3_q2+ "<br>");
-                sb.append("<br><i><b>Worst childhood moment? </b></i><br>" + challenge3_q3+ "<br>");
-                sb.append("<br><i><b>Did he had any friends? What do they say about him?</b></i><br>" + challenge3_q4);
-                character_bio_challenge_3.setVisibility(View.VISIBLE);
-                character_bio_challenge_3.setText(Html.fromHtml(sb.toString()));
-            }
-            if(challenge4_q1 !=null){
-                StringBuffer sb=new StringBuffer();
-                sb.append("<br><b>How he looks?</b> In a perfect world, how you look shouldn\'t affect who you\'re. But guess what? This is not a perfect world.<br>");
-                sb.append("<br><i><b>How your character looks in five words.</b></i><br>" + challenge4_q1 + "<br>");
-                sb.append("<br><i><b>Birthmarks? Tattoos?</b></i><br>" + challenge4_q2+ "<br>");
-                sb.append("<br><i><b>Medical conditions? Allergies?</b></i><br>" + challenge4_q3+ "<br>");
-                sb.append("<br><i><b>About his posture and appearance? </b></i><br>" + challenge4_q4);
-                sb.append("<br><br><br>");
-                character_bio_challenge_4.setVisibility(View.VISIBLE);
-                character_bio_challenge_4.setText(Html.fromHtml(sb.toString()));
-            }
-
         }
 
+        if(firstReaction != null) {
+            StringBuffer sb=new StringBuffer();
+            sb.append("<b>" + getString(R.string.challenge_1_bio_title) + "</b>");
+            sb.append("<br><i><b>" + getString(R.string.challenge_1_bio_desc_1) + "</b></i><br> " + firstReaction);
+            sb.append("<br><i><b>"+ getString(R.string.challenge_1_bio_desc_2) +"</b></i><br> " + waitRescue);
+            sb.append("<br><i><b>"+ getString(R.string.challenge_1_bio_desc_3) +"</b></i><br> " + helpPartner);
+            sb.append("<br><i><b>"+ getString(R.string.challenge_1_bio_desc_4) +"</b></i><br> " + escapeFirst);
+            character_bio_challenge.setText(Html.fromHtml(sb.toString()));
+        }
+        if(challenge2_q1 !=null){
+            StringBuffer sb=new StringBuffer();
+            sb.append("<br><b>"+getString(R.string.challenge_2_bio_title) +"</b> "+getString(R.string.challenge_2_bio_subtitle) +" <br>");
+            sb.append("<br><i><b>" + getString(R.string.challenge_2_bio_desc_1) +"</b></i><br>" + challenge2_q1 + "<br>");
+            sb.append("<br><i><b>" + getString(R.string.challenge_2_bio_desc_2) + "</b></i><br>" + challenge2_q2+ "<br>");
+            sb.append("<br><i><b>"+ getString(R.string.challenge_2_bio_desc_3) +"</b></i><br>" + challenge2_q3+ "<br>");
+            sb.append("<br><i><b>"+ getString(R.string.challenge_2_bio_desc_4) +"</b></i><br>" + challenge2_q4);
+            character_bio_challenge_2.setVisibility(View.VISIBLE);
+            character_bio_challenge_2.setText(Html.fromHtml(sb.toString()));
+        }
+        if(challenge3_q1 !=null){
+            StringBuffer sb=new StringBuffer();
+            sb.append("<br><b>"+getString(R.string.challenge_3_bio_title) +"</b> "+getString(R.string.challenge_3_bio_subtitle) +" <br>");
+            sb.append("<br><i><b>" + getString(R.string.challenge_3_bio_desc_1) +"</b></i><br>" + challenge3_q1 + "<br>");
+            sb.append("<br><i><b>" + getString(R.string.challenge_3_bio_desc_2) + "</b></i><br>" + challenge3_q2+ "<br>");
+            sb.append("<br><i><b>"+ getString(R.string.challenge_3_bio_desc_3) +"</b></i><br>" + challenge3_q3+ "<br>");
+            sb.append("<br><i><b>"+ getString(R.string.challenge_3_bio_desc_4) +"</b></i><br>" + challenge3_q4);
+            character_bio_challenge_3.setVisibility(View.VISIBLE);
+            character_bio_challenge_3.setText(Html.fromHtml(sb.toString()));
+        }
+        if(challenge4_q1 !=null){
+            StringBuffer sb=new StringBuffer();
+            sb.append("<br><b>"+getString(R.string.challenge_4_bio_title) +"</b> "+getString(R.string.challenge_4_bio_subtitle) +" <br>");
+            sb.append("<br><i><b>" + getString(R.string.challenge_4_bio_desc_1) +"</b></i><br>" + challenge4_q1 + "<br>");
+            sb.append("<br><i><b>" + getString(R.string.challenge_4_bio_desc_2) + "</b></i><br>" + challenge4_q2+ "<br>");
+            sb.append("<br><i><b>"+ getString(R.string.challenge_4_bio_desc_3) +"</b></i><br>" + challenge4_q3+ "<br>");
+            sb.append("<br><i><b>"+ getString(R.string.challenge_4_bio_desc_4) +"</b></i><br>" + challenge4_q4);
+            sb.append("<br><br><br>");
+            character_bio_challenge_4.setVisibility(View.VISIBLE);
+            character_bio_challenge_4.setText(Html.fromHtml(sb.toString()));
+        }
+        if(challenge5_q1 !=null){
+            StringBuffer sb=new StringBuffer();
+            sb.append("<br><b>"+getString(R.string.challenge_5_bio_title) +"</b> "+getString(R.string.challenge_5_bio_subtitle) +" <br>");
+            sb.append("<br><i><b>" + getString(R.string.challenge_5_bio_desc_1) +"</b></i><br>" + challenge5_q1 + "<br>");
+            sb.append("<br><i><b>" + getString(R.string.challenge_5_bio_desc_2) + "</b></i><br>" + challenge5_q2+ "<br>");
+            sb.append("<br><i><b>"+ getString(R.string.challenge_5_bio_desc_3) +"</b></i><br>" + challenge5_q3+ "<br>");
+            sb.append("<br><i><b>"+ getString(R.string.challenge_5_bio_desc_4) +"</b></i><br>" + challenge5_q4);
+            sb.append("<br><br><br>");
+            character_bio_challenge_5.setVisibility(View.VISIBLE);
+            character_bio_challenge_5.setText(Html.fromHtml(sb.toString()));
+        }
 
 
         character_bio_edit_btn.setOnClickListener(new View.OnClickListener()   {
@@ -287,7 +261,7 @@ public class BioFragment extends Fragment {
         character_bio_share_btn.setOnClickListener(new View.OnClickListener()   {
             public void onClick(View v)  {
                 try {
-                    String allbody = intro_tv.getText().toString() + " \n" +  character_bio_challenge.getText().toString() + " \n" + character_bio_challenge_2.getText().toString();
+                    String allbody = intro_tv.getText().toString() + " \n" +  character_bio_challenge.getText().toString() + " \n" + character_bio_challenge_2.getText().toString() + " \n" + character_bio_challenge_3.getText().toString() + " \n" + character_bio_challenge_4.getText().toString()+ " \n" + character_bio_challenge_5.getText().toString();
                     String char_role = project_name + ": " + char_name + " - " + role;
                     SHARE(myFragmentView,allbody.toString(), char_role);
                 } catch (Exception e) {
@@ -365,6 +339,11 @@ public class BioFragment extends Fragment {
             char_list.add(cursor.getString(cursor.getColumnIndex("challenge_4_q2")));
             char_list.add(cursor.getString(cursor.getColumnIndex("challenge_4_q3")));
             char_list.add(cursor.getString(cursor.getColumnIndex("challenge_4_q4")));
+            //Fifth Challenge
+            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_5_q1")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_5_q2")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_5_q3")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_5_q4")));
 
             char_list.add(cursor.getString(cursor.getColumnIndex("elevator_notes")));
 

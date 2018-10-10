@@ -6,8 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class mySQLiteDBHelper extends SQLiteOpenHelper {
-//    private static final int DATABASE_VERSION = 4;
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 6;
     //public static final String DATABASE_NAME = "test_database";
     public static final String DATABASE_NAME = "production_database";
     public static final String CHARACTER_TABLE_CHARACTER = "character";
@@ -49,6 +48,11 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
     public static final String CHARACTER_COLUMN_C4Q2 = "challenge_4_q2";
     public static final String CHARACTER_COLUMN_C4Q3 = "challenge_4_q3";
     public static final String CHARACTER_COLUMN_C4Q4 = "challenge_4_q4";
+    //Challenge V.
+    public static final String CHARACTER_COLUMN_C5Q1 = "challenge_5_q1";
+    public static final String CHARACTER_COLUMN_C5Q2 = "challenge_5_q2";
+    public static final String CHARACTER_COLUMN_C5Q3 = "challenge_5_q3";
+    public static final String CHARACTER_COLUMN_C5Q4 = "challenge_5_q4";
 
     public mySQLiteDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -88,8 +92,11 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
                 CHARACTER_COLUMN_C4Q1 + " TEXT, " +
                 CHARACTER_COLUMN_C4Q2 + " TEXT, " +
                 CHARACTER_COLUMN_C4Q3 + " TEXT, " +
-                CHARACTER_COLUMN_C4Q4 + " TEXT "
-                +")");
+                CHARACTER_COLUMN_C4Q4 + " TEXT, " +
+                CHARACTER_COLUMN_C5Q1 + " TEXT, " +
+                CHARACTER_COLUMN_C5Q2 + " TEXT, " +
+                CHARACTER_COLUMN_C5Q3 + " TEXT, " +
+                CHARACTER_COLUMN_C5Q4 + " TEXT " + ")");
 
         sqLiteDatabase.execSQL("CREATE TABLE " + CHARACTER_TABLE_PROJECT + " (" +
                 CHARACTER_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -111,6 +118,12 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
                 sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_4_q2 TEXT");
                 sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_4_q3 TEXT");
                 sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_4_q4 TEXT");
+
+            case 6:
+                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_5_q1 TEXT");
+                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_5_q2 TEXT");
+                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_5_q3 TEXT");
+                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_5_q4 TEXT");
         }
 
 

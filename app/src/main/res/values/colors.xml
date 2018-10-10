@@ -20,4 +20,20 @@
     <color name="text_shadow_white">#383737</color>
 
 
+    <!--<color name="color_trigger_1">#F26609</color>-->
+    <!--<color name="color_trigger_2">#F27A18</color>-->
+    <!--<color name="color_trigger_3">#ED9A25</color>-->
+    <!--<color name="color_trigger_4">#FFAF30</color>-->
+    <!--<color name="color_trigger_5">#FFC05D</color>-->
+
+
+    <color name="color_trigger_1">#5f5f8c</color>
+    <color name="color_trigger_2">#52527b</color>
+    <color name="color_trigger_3">#373753</color>
+    <color name="color_trigger_4">#28283d</color>
+    <color name="color_trigger_5">#13131d</color>
+
+
+
+
 </resources>

@@ -6,11 +6,66 @@
 
     <string name="action_settings">Settings</string>
 
-    <!--<string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>-->
+
+    <string name="ad_account_id">ca-app-pub-6493977652279663~1385558778</string>
     <string name="banner_ad_unit_id">ca-app-pub-6493977652279663/1193987081</string>
     <string name="interstitial_plot_gen">ca-app-pub-6493977652279663/4941660400</string>
+    <string name="reward_ad_plot_gen">ca-app-pub-6493977652279663/1348881823</string>
 
     <string name="trigger_tab">Writing Prompts</string>
+    <string-array name="triggers_list">
+        <item>He didn\’t tell anyone where he was going.</item>
+        <item>He opened the letter and quickly threw it in the fire.</item>
+        <item>The brick in the wall of the old house was loose.</item>
+        <item>The normally busy street was empty.</item>
+        <item>The key would no longer open the door.</item>
+        <item>It was two in the morning as he lay there listening to the sounds.</item>
+        <item>More people crammed into the stadium.</item>
+        <item>Five old pennies in a velvet bag.</item>
+        <item>He ran, faster than he ever believed possible.</item>
+        <item>Those were screams, but certainly not humans</item>
+        <item>She waited but nobody came.</item>
+        <item>High up on top of a green mountain.</item>
+        <item>It was the first time he holds a gun, but somehow it didn\'t feel strange.</item>,
+        <item>His glare was harsh as he stared at the boy.</item>
+        <item>The river was beginning to break it\'s banks.</item>
+        <item>She wouldn\’t even have time to pack.</item>
+        <item>The house looked different with new windows and doors.</item>
+        <item>The man tried to blend into the darkness, but she could see him.</item>
+        <item>That wasn\'t an animal, but a person either.</item>
+        <item>I\'m sure what I saw. I just can’t explain it.</item>
+        <item>Is not that I don\'t believe him. It just that I don\’t care.</item>
+        <item>It was dead way before I arrive.</item>
+        <item>Right now, I\'m more afraid of living than dying.</item>
+        <item>That\'s not the deal we sign up for. But we had no way to go back.</item>
+        <item>I never thought I would forgive</item>
+        <item>I hear them downstairs...</item>
+        <item>There is something sweet about knowing you\'re going to die...</item>
+        <item>True friends don\'t leave you behind. I guess I wasn\'t a true friend after all.</item>
+        <item>I didn\'t take a Sherlock Holmes to realise that the knife was gone.</item>
+        <item>I don\'t believe in angels. Well, I didn\'t until then...</item>
+        <item>I don\'t swear, I do never do. Not even then.</item>
+        <item>He check around to make sure nobody was watching. Then he put the USB in the pocket...</item>
+        <item>He looked at his rifle. It was long time since the last time...</item>
+        <item>Worse than a sunken ship. Is to be the only survivor.</item>
+        <item>I looked like a flu. We were sure it was a flu. The only problem was that I wasn\'t.</item>
+        <item>We were at war, a war we will lose. But you know, we were taught to fight to fight just to stand our ground, victory was a detail.</item>
+        <item>It was the worst financial crisis I ever saw. And I saw many.</item>
+        <item>I would have shot him on the spot. Except I got no bullets.</item>
+        <item>Wait. Is that a flashlight?</item>
+        <item>I didn\'t choose this profession. The profession chose me.</item>
+        <item>Being in Africa at 42 degrees, wasn\'t the problem. The guy chasing me, certainly was.</item>
+        <item>Hired as a private investigator. My first big deal and it was a complete misunderstanding.</item>
+        <item>I would have call the police, except that I was the police, and I have no clue what to do.</item>
+        <item>The light was fading.</item>
+        <item>We almost drowned but I didn\'t care.</item>
+        <item>It was the first time I drove a truck, and I thought it would be also the last.</item>
+        <item>The sheriff stare at me for a second. I knew he knew, but neither of us said anything.</item>
+        <item>That day I missed her for first time.</item>
+        <item>It wasn't a problem that she left with another women, but it has to be my sister?</item>
+    </string-array>
+
+
     <string name="character_tab">Character Workshop</string>
     <string name="character_create">Create Character</string>
     <string name="character_update">Edit Character</string>
@@ -39,6 +94,46 @@
     <string name="character_list_tab">Characters</string>
     <string name="character_empty_text">Seems that you don\'t have any character yet.
     Please go ahead and create a new one to get started.</string>
+
+
+    <!--BIOGRAPHY TEXT-->
+
+
+    <!--Challenge I BIO-->
+    <string name="challenge_1_bio_title">The elevator challenge:</string>
+    <string name="challenge_1_bio_desc_1">What will be his first reaction if he gets stuck in a elevator?</string>
+    <string name="challenge_1_bio_desc_2">Will your character wait to be rescued?</string>
+    <string name="challenge_1_bio_desc_3">If the person next to your character has a panic attack. What will happen?</string>
+    <string name="challenge_1_bio_desc_4">Lastly in the eventuality that just one can escape and the other should wait, what will your character do?</string>
+    <!--Challenge II BIO-->
+    <string name="challenge_2_bio_title">The Lie Your Character Believes</string>
+    <string name="challenge_2_bio_subtitle">is the foundation for his character arc. This is what\’s wrong in his world. Once you know what\’s wrong, you then get to set about figuring out how to make it right. </string>
+    <string name="challenge_2_bio_desc_1">What misconception does your protagonist have about himself of the world?</string>
+    <string name="challenge_2_bio_desc_2">Is the lie making his life miserable when the story starts? If so, how?</string>
+    <string name="challenge_2_bio_desc_3">If not, will the inciting event make him uncomfortable?</string>
+    <string name="challenge_2_bio_desc_4">What are the symptoms of your character\'s lie? </string>
+    <!--Challenge III BIO-->
+    <string name="challenge_3_bio_title">Backstory</string>
+    <string name="challenge_3_bio_subtitle">Why is your character who he is?</string>
+    <string name="challenge_3_bio_desc_1">His family</string>
+    <string name="challenge_3_bio_desc_2">Best childhood moment?</string>
+    <string name="challenge_3_bio_desc_3">Worst childhood moment?</string>
+    <string name="challenge_3_bio_desc_4">Did he had any friends? What do they say about him?</string>
+    <!--Challenge IV BIO-->
+    <string name="challenge_4_bio_title">How he looks?</string>
+    <string name="challenge_4_bio_subtitle">In a perfect world, how you look shouldn\'t affect who you\'re. But guess what? This is not a perfect world.</string>
+    <string name="challenge_4_bio_desc_1">How your character looks in five words.</string>
+    <string name="challenge_4_bio_desc_2">Birthmarks? Tattoos?</string>
+    <string name="challenge_4_bio_desc_3">Medical conditions? Allergies?</string>
+    <string name="challenge_4_bio_desc_4">About his posture and appearance?</string>
+    <!--Challenge V BIO-->
+    <string name="challenge_5_bio_title">When under pressure</string>
+    <string name="challenge_5_bio_subtitle">Your character can react in different ways, how he chooses to act when somebody he loves is in danger?</string>
+    <string name="challenge_5_bio_desc_1">How would he react if somebody he loves is in danger?</string>
+    <string name="challenge_5_bio_desc_2">Will he kill?</string>
+    <string name="challenge_5_bio_desc_3">Does he believes that the end justify the means?</string>
+    <string name="challenge_5_bio_desc_4">Ok, he doesnt cross his own limits. how does he reacts then?</string>
+
 
     <string name="add_character_btn">Add Character</string>
     <string name="delete_character_btn">Are you sure you want to delete this character?</string>
@@ -438,14 +533,20 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="challenge_4_q2">Does he has any birth mark? Tattoos perhaps that will make him unique? </string>
     <string name="challenge_4_q3">There is any medical condition? Allergies? Something that manifest physically even if he can hide under his clothes?</string>
     <string name="challenge_4_q4">Consider his posture a little bit, can you describe it? Also, what about his appearance? Is he neat? Is he tidy? Will you say he is overall good looking?</string>
-
-    <!--Coming soon challenge-->
+    <!--Fifth Challenge-->
     <string name="challenge_5_title">Challenge V</string>
-    <string name="challenge_5_desc">Coming soon</string>
-    <string name="challenge_5_desc_long">I\m currently working on more challenges. Don\'t hesitate to contact me with suggestions</string>
+    <string name="challenge_5_desc">Test the limits.</string>
+    <string name="challenge_5_desc_long">If coal and diamonds are basically the same thing, what make the coal so common and the diamond so rare?\n Pressure.\nSame is true in characters, do you want to know if your character is just one more in the crowd or is he the unique hero your story needs? Let\'s put pressure on him and find out who he really is.</string>
+    <string name="challenge_5_q1">How would he react if someone he cares about is in danger?</string>
+    <string name="challenge_5_q2">Will he be able to kill? </string>
+    <string name="challenge_5_q3">Will your character say that the end justify the means when it\'s about protecting a loved one?</string>
+    <string name="challenge_5_q4">Let\'s says he doesn\'t dare to cross his own limits to save the life a person he cares. What within his limits/boundaries will he do to solve the situation?</string>
+    <!--Coming soon challenge-->
+    <string name="challenge_6_title">Challenge VI</string>
+    <string name="challenge_6_desc">Coming soon</string>
+    <string name="challenge_6_desc_long">I\m currently working on more challenges. Don\'t hesitate to contact me with suggestions</string>
 
 
-    <!--GUIDE ME Strings-->
     <!--GUIDE ROLES-->
     <string name="roles_title">Typical Character Roles</string>
     <string name="roles_desc">Roles</string>
@@ -531,12 +632,33 @@ In order for your character to evolve in a positive way, he has to start out wit
         <item>Negative character arcs offer, arguably, more variations that either of the other arcs. However, at their most basic level, the Negative Arc is just a Change Arc flipped on its head. Instead of a character who grows out of his faults into a better person, the Negative Arc presents a character who ends up in a worse state than that in which he began the story.</item>
     </string-array>
 
+    <string name="antagonist_guide_title">The anatomy of the perfect Antagonist</string>
+    <string name="antagonist_guide_desc">How antagonists are made?</string>
+    <string name="antagonist_guide_desc_long">Lajos Egri discuss in his book "The art of dramatic writing" the importance of Unity of Opposites. Meaning that if Batman wants order then the Joker wants chaos, if Gandalf wants peace, then Sauron wants war.
+    Unity of opposites refers to the fact that both, the protagonist and the antagonist wants the exactly opposite and that\'s why they clash. Failing to apply this concept in your antagonist will make him boring or not realistic. Dig in to understand better how a good antagonists are made.</string>
+    <string-array name="antagonist_guide_array_titles">
+        <item>Antagonists are the exact opposite of your protagonist</item>
+        <item>Antagonists are complex</item>
+        <item>Antagonists are tough opponents</item>
+        <item>The Antagonist has a strong motive</item>
+    </string-array>
+    <string-array name="antagonist_guide_array_desc">
+        <item>Quite often in literature, the antagonist is simply the opposite of the hero/protagonist. For example, if your protagonist is brash and hotheaded, then the antagonist is calm and very much in control of their emotions. The contrast between the two helps to create a compelling conflict and makes interactions more interesting.\n
+        But beware, their opposition is not just in their tactics to reach their goals, it's deeper than that, it goes all the way to their nature, in a way that the ultimate battle among them it's unavoidable since the first line of your story.</item>
+        <item>As tempting as it might be, do not make your antagonist the epitome of evil. Why not? Because it\'s boring and unrealistic. How many people have you met in your life that are absolutely evil? Probably zero. No matter how wicked someone is, you can always find some redeeming quality in their character.\n
+        Give your antagonist some good qualities and show them in a positive light during some scenes/chapters. This will create a sharp contrast when they inevitably act upon their evil desires and whatever they do will seem even more terrible than it would have if you had portrayed them as a purely evil being.\n
+        To give your antagonist even more depth, explore their background. Was he once a good person? Had he always have evil tendencies? What happened to him to be so hateful? Adding those layers to your antagonist will allow your reading be also compelled about your antagonist and truly believe your play.</item>
+        <item>There is no play if your antagonist is not at least as strong as your protagonist. In fact, many great plays starts from the other end, it\'s the protagonist who has to grow their skills in order to match the evil antagonist. Failing to have a powerful antagonist in your play will result in a boring clash and a boring play as there is no actual challenge for the protagonist.
+        Make youre antagonist perform truly despicable actions and if possible you may also want your protagonist to lose a couple of battles before the last one, when he show us how far he went to defeat the antagonist.</item>
+        <item>What\'s the goal of your antagonist? What is the purpose behind all of the trouble that they are causing? Don\'t be tempted to explain that their wicked deeds are simply a product of their evil nature. People don\'t just randomly do bad things. They usually have a reason for their actions. Come up with a strong motivation and your character becomes that much more believable.</item>
+    </string-array>
+
     <string name="weekly_challenge_title_default">No Connection</string>
     <string name="weekly_challenge_desc_default">If you see this text means you have no internet connection. Please check your internet and re-enter this section</string>
-
-
-
-
+    <string name="weekly_challenge_view_ad_btn">View ad</string>
+    <string name="weekly_challenge_view_ad_desc">To keep this app free, in order to participate, I\'ve to ask you to watch a quick ad.</string>
+    <string name="weekly_challenge_submit_btn">Participate</string>
+    <string name="weekly_challenge_email_desc">Don\'t forget to add your name if you want to be named. And thanks for participating!</string>
 
 
 </resources>
