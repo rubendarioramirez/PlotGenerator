@@ -45,7 +45,7 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
     private String databaseToUse;
     ArrayList data_list;
     private FirebaseAnalytics mFirebaseAnalytics;
-    public int can_submit;
+    public int can_submit = 1;
     private RewardedVideoAd mRewardedVideoAd;
 
 

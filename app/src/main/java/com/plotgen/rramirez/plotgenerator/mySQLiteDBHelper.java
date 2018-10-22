@@ -6,13 +6,20 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class mySQLiteDBHelper extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 6;
+//    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 7;
     //public static final String DATABASE_NAME = "test_database";
     public static final String DATABASE_NAME = "production_database";
     public static final String CHARACTER_TABLE_CHARACTER = "character";
     public static final String CHARACTER_TABLE_PROJECT = "projectname";
     public static final String CHARACTER_COLUMN_ID = "_id";
     public static final String CHARACTER_COLUMN_PROJECT = "project";
+
+    public static final String PROJECT_COLUMN_ID = "_id";
+    public static final String PROJECT_COLUMN_PROJECT = "project";
+    public static final String PROJECT_COLUMN_GENRE = "genre";
+    public static final String PROJECT_COLUMN_PLOT = "plot";
+
     //Character BIO
     public static final String CHARACTER_COLUMN_NAME = "name";
     public static final String CHARACTER_COLUMN_NICKNAME = "nickname";
@@ -99,15 +106,15 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
                 CHARACTER_COLUMN_C5Q4 + " TEXT " + ")");
 
         sqLiteDatabase.execSQL("CREATE TABLE " + CHARACTER_TABLE_PROJECT + " (" +
-                CHARACTER_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                CHARACTER_COLUMN_PROJECT + " TEXT " + ")");
+                PROJECT_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                PROJECT_COLUMN_PROJECT + " TEXT, " +
+                PROJECT_COLUMN_GENRE + " TEXT, " +
+                PROJECT_COLUMN_PLOT + " TEXT " + ")");
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-//        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + CHARACTER_TABLE_CHARACTER);
-//        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + CHARACTER_TABLE_PROJECT);
         switch(i1) {
             case 5:
                 sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_3_q1 TEXT");
@@ -124,9 +131,12 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
                 sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_5_q2 TEXT");
                 sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_5_q3 TEXT");
                 sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_5_q4 TEXT");
+
+            case 7:
+                sqLiteDatabase.execSQL("ALTER TABLE projectname ADD COLUMN genre TEXT");
+                sqLiteDatabase.execSQL("ALTER TABLE projectname ADD COLUMN plot TEXT");
+
         }
 
-
-        //onCreate(sqLiteDatabase);
     }
 }

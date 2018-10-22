@@ -73,6 +73,10 @@
 
     <!--Projects String-->
     <string name="projects_tab">Proyectos</string>
+    <string name="project_name">Nombre del proyecto</string>
+    <string name="project_genre">Genero</string>
+    <string name="project_summary">Resumen del Plot</string>
+
     <string name="add_projects_btn">Agregar proyecto</string>
     <string name="edit_projects_btn">Editar proyecto</string>
     <string name="delete_project_btn">Estas seguro que deseas eliminar este proyecto?</string>
@@ -150,6 +154,7 @@
         <item>Sexo</item>
         <item>Masculino</item>
         <item>Femenino</item>
+        <item>Transsexual</item>
     </string-array>
     <string name="character_add_defmoment">Momento de su infancia</string>
     <string-array name="defmoment_array">
@@ -386,6 +391,20 @@
 
 
     <!--BIOGRAPHY TEXT-->
+    <string name="age_bio_1">tiene</string>
+    <string name="age_bio_2">años.</string>
+    <string name="placebirth_bio">Nacio en</string>
+    <string name="job_bio">Trabaja de </string>
+    <string name="male_desire_bio">En su mente quiere </string>
+    <string name="male_need_bio">Pero es eso lo que realmente quiere? O en realidad necesita </string>
+    <string name="male_moment_bio">De su infancia sabemos que </string>
+    <string name="male_trait_bio">Sus amigos dicen que </string>
+    <string name="notes_bio">Notas</string>
+
+    <string name="female_desire_bio">En su mente ella quiere </string>
+    <string name="female_need_bio">pero es eso lo que realmente quiere? O en realidad necesita </string>
+    <string name="female_moment_bio">De su infancia sabemos que</string>
+    <string name="female_trait_bio">Sus amigas dicen que es</string>
 
 
 
@@ -571,7 +590,7 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="lajos_character_desc">Personajes Tridimensionales</string>
     <string name="lajos_character_long">Todos los objetos tienen tres dimensiones: profundidad, alto, ancho. Los seres humanos tienen tres dimensiones adicionales:
         Fisiologia; Sociologia; Psicologia. Sin conocer estas tres dimensiones no podemos apreciar al ser humano. No es suficiente en tu estudio del hombre, saber si es rudo, amable, religioso, ateo, moral, degenerado. Debes saber por qué</string>
-    <string name="lajos_text">Lajos Egri en su libro "El Arte de la escritura dramatica" escribio tres categorias (De ahi las tres dimensiones que tiene un personaje).\nObserva las siguientes:\n\n
+    <string name="lajos_text">Lajos Egri en su libro "El Arte de la escritura dramatica" describio tres categorias (De ahi las tres dimensiones que tiene un personaje).\nObserva las siguientes:\n\n
     Fisiologia\n
     1.Sexo\n
     2.Edad\n
@@ -653,7 +672,7 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="weekly_challenge_view_ad_desc">Para poder participar me veo obligado a mostrarte un anuncio. Es la unica manera de mantener esta app gratis</string>
     <string name="weekly_challenge_submit_btn">Participar</string>
     <string name="weekly_challenge_email_desc">No te olvides de agregar tu nombre si deseas ser nombrado. Y gracias por participar!</string>
-
+    <string name="female_notes_bio">Notas</string>
 
 
 </resources>

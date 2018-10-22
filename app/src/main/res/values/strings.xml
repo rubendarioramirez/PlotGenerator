@@ -7,10 +7,10 @@
     <string name="action_settings">Settings</string>
 
 
-    <string name="ad_account_id">ca-app-pub-6493977652279663~1385558778</string>
-    <string name="banner_ad_unit_id">ca-app-pub-6493977652279663/1193987081</string>
-    <string name="interstitial_plot_gen">ca-app-pub-6493977652279663/4941660400</string>
-    <string name="reward_ad_plot_gen">ca-app-pub-6493977652279663/1348881823</string>
+    <string name="ad_account_id" translatable="false">ca-app-pub-6493977652279663~1385558778</string>
+    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-6493977652279663/1193987081</string>
+    <string name="interstitial_plot_gen" translatable="false">ca-app-pub-6493977652279663/4941660400</string>
+    <string name="reward_ad_plot_gen" translatable="false">ca-app-pub-6493977652279663/1348881823</string>
 
     <string name="trigger_tab">Writing Prompts</string>
     <string-array name="triggers_list">
@@ -62,7 +62,7 @@
         <item>It was the first time I drove a truck, and I thought it would be also the last.</item>
         <item>The sheriff stare at me for a second. I knew he knew, but neither of us said anything.</item>
         <item>That day I missed her for first time.</item>
-        <item>It wasn't a problem that she left with another women, but it has to be my sister?</item>
+        <item>It wasn\'t a problem that she left with another women, but it has to be my sister?</item>
     </string-array>
 
 
@@ -82,6 +82,19 @@
 
     <!--Projects String-->
     <string name="projects_tab">Projects</string>
+    <string name="project_name">Project Name</string>
+    <string name="project_genre">Genre</string>
+    <string-array name="genres_array">
+        <item>Horror</item>
+        <item>Romance</item>
+        <item>Drama</item>
+        <item>Sci-Fiction</item>
+    </string-array>
+
+
+    <string name="project_summary">Plot Summary</string>
+
+
     <string name="add_projects_btn">Add project</string>
     <string name="edit_projects_btn">Edit project</string>
     <string name="delete_project_btn">Are you sure you want to delete this project?</string>
@@ -94,10 +107,22 @@
     <string name="character_list_tab">Characters</string>
     <string name="character_empty_text">Seems that you don\'t have any character yet.
     Please go ahead and create a new one to get started.</string>
-
-
     <!--BIOGRAPHY TEXT-->
+    <string name="age_bio_1">is</string>
+    <string name="age_bio_2">years old.</string>
+    <string name="placebirth_bio">Born in</string>
+    <string name="job_bio">Works as</string>
+    <string name="male_desire_bio">In his mind he wants </string>
+    <string name="male_need_bio">But is that what he really wants? Or he actually needs</string>
+    <string name="male_moment_bio">About his childhood we know that he</string>
+    <string name="male_trait_bio">Also his friends says that he is</string>
+    <string name="notes_bio">Notes</string>
 
+    <string name="female_desire_bio">In her mind she wants </string>
+    <string name="female_need_bio">But is that what she really wants? Or she actually needs</string>
+    <string name="female_moment_bio">About her childhood we know that she</string>
+    <string name="female_trait_bio">Also her friends says that she is</string>
+    <string name="female_notes_bio">Notes</string>
 
     <!--Challenge I BIO-->
     <string name="challenge_1_bio_title">The elevator challenge:</string>
@@ -197,6 +222,7 @@
         <item>Gender</item>
         <item>Male</item>
         <item>Female</item>
+        <item>Transsexual</item>
     </string-array>
     <string name="character_add_role">Role</string>
     <string name="character_add_placebirth">Place of Birth</string>
@@ -359,69 +385,69 @@
     </string-array>
     <string name="character_add_desire">What he/she wants?</string>
     <string-array name="desire_array">
-        <item>be loved</item>
-        <item>be fear</item>
-        <item>be accepted</item>
-        <item>be rich</item>
-        <item>achieve perfection</item>
-        <item>apology</item>
-        <item>avoid conflict</item>
-        <item>avoid pain</item>
-        <item>be acknowledged</item>
-        <item>be bad</item>
-        <item>be good</item>
-        <item>be normal</item>
-        <item>be remembered</item>
-        <item>be respected</item>
-        <item>be someone else</item>
-        <item>be special</item>
-        <item>be beauty</item>
-        <item>being strong</item>
-        <item>cheat death</item>
+        <item>to be loved</item>
+        <item>to be fear</item>
+        <item>to be accepted</item>
+        <item>to be rich</item>
+        <item>to achieve perfection</item>
+        <item>to apology</item>
+        <item>to avoid conflict</item>
+        <item>to avoid pain</item>
+        <item>to be acknowledged</item>
+        <item>to be bad</item>
+        <item>to be good</item>
+        <item>to be normal</item>
+        <item>to be remembered</item>
+        <item>to be respected</item>
+        <item>to be someone else</item>
+        <item>to be special</item>
+        <item>to be beauty</item>
+        <item>to be strong</item>
+        <item>to cheat death</item>
         <item>comfort</item>
-        <item>face fears</item>
+        <item>to face fears</item>
         <item>fame</item>
         <item>fortune</item>
-        <item>find a purpose</item>
-        <item>find adventure</item>
-        <item>fit in</item>
+        <item>to find a purpose</item>
+        <item>to find adventure</item>
+        <item>to fit in</item>
         <item>freedom</item>
         <item>independence</item>
-        <item>get somewhere</item>
-        <item>leave town</item>
+        <item>to get somewhere</item>
+        <item>to leave town</item>
         <item>glory</item>
         <item>revange</item>
         <item>justice</item>
         <item>knowledge</item>
-        <item>not be lonely</item>
+        <item>to not be lonely</item>
         <item>power</item>
         <item>redemption</item>
-        <item>repay a debt</item>
+        <item>to repay a debt</item>
         <item>safety</item>
-        <item>stand out</item>
+        <item>to stand out</item>
         <item>to die</item>
         <item>to survive</item>
     </string-array>
     <string name="character_add_need">What he/she needs?</string>
     <string-array name="need_array">
-        <item>be accepted</item>
-        <item>be loved</item>
-        <item>trust others</item>
-        <item>runaway</item>
-        <item>be acknowledged</item>
-        <item>fight back</item>
-        <item>confront fears</item>
-        <item>stand his ground</item>
-        <item>accept reality</item>
-        <item>love his family</item>
-        <item>come back home</item>
-        <item>find love</item>
-        <item>trust again</item>
-        <item>be responsable</item>
-        <item>grow up</item>
-        <item>mature</item>
-        <item>push his limits</item>
-        <item>stop accepting the status-quo</item>
+        <item>to be accepted</item>
+        <item>to be loved</item>
+        <item>to trust others</item>
+        <item>to runaway</item>
+        <item>to be acknowledged</item>
+        <item>to fight back</item>
+        <item>to confront fears</item>
+        <item>to stand his ground</item>
+        <item>to accept reality</item>
+        <item>to love his family</item>
+        <item>to come back home</item>
+        <item>to find love</item>
+        <item>to trust again</item>
+        <item>to be responsable</item>
+        <item>to grow up</item>
+        <item>to mature</item>
+        <item>to push his limits</item>
+        <item>to stop accepting the status-quo</item>
     </string-array>
 
     <string name="character_save_btn">Save</string>
@@ -577,7 +603,7 @@ In order for your character to evolve in a positive way, he has to start out wit
         <item>Just as the protagonist, the Antagonist can have his helper. Better said, Characters that helps the Antagonist to reach his objectives. These are not mandatory characters, of course, but they can be very useful to create your plot.</item>
         <item>The skeptic character is the one that doesn\'t believe in the objectives of the protagonist. We could say, the opposite of the sidekick, he doesn\'t really put obstacles on the protagonist however he will try to demoralize him.</item>
         <item>These kind of characters are somehow similar to the Antagonist\'s helpers however they act more like jokers, characters that will pop up briefly to complicate or deviate the protagonist from his objective.</item>
-        <item>Sometimes the goal of a Protagonist can be another character. For instance, somebody has been kidnapped and the protagonist has to find him. This character if he doesn't have any other function or role in the play, it can be consider the goal</item>
+        <item>Sometimes the goal of a Protagonist can be another character. For instance, somebody has been kidnapped and the protagonist has to find him. This character if he doesn\'t have any other function or role in the play, it can be consider the goal</item>
     </string-array>
 
 
@@ -644,7 +670,7 @@ In order for your character to evolve in a positive way, he has to start out wit
     </string-array>
     <string-array name="antagonist_guide_array_desc">
         <item>Quite often in literature, the antagonist is simply the opposite of the hero/protagonist. For example, if your protagonist is brash and hotheaded, then the antagonist is calm and very much in control of their emotions. The contrast between the two helps to create a compelling conflict and makes interactions more interesting.\n
-        But beware, their opposition is not just in their tactics to reach their goals, it's deeper than that, it goes all the way to their nature, in a way that the ultimate battle among them it's unavoidable since the first line of your story.</item>
+        But beware, their opposition is not just in their tactics to reach their goals, it\'s deeper than that, it goes all the way to their nature, in a way that the ultimate battle among them it\'s unavoidable since the first line of your story.</item>
         <item>As tempting as it might be, do not make your antagonist the epitome of evil. Why not? Because it\'s boring and unrealistic. How many people have you met in your life that are absolutely evil? Probably zero. No matter how wicked someone is, you can always find some redeeming quality in their character.\n
         Give your antagonist some good qualities and show them in a positive light during some scenes/chapters. This will create a sharp contrast when they inevitably act upon their evil desires and whatever they do will seem even more terrible than it would have if you had portrayed them as a purely evil being.\n
         To give your antagonist even more depth, explore their background. Was he once a good person? Had he always have evil tendencies? What happened to him to be so hateful? Adding those layers to your antagonist will allow your reading be also compelled about your antagonist and truly believe your play.</item>
@@ -659,6 +685,9 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="weekly_challenge_view_ad_desc">To keep this app free, in order to participate, I\'ve to ask you to watch a quick ad.</string>
     <string name="weekly_challenge_submit_btn">Participate</string>
     <string name="weekly_challenge_email_desc">Don\'t forget to add your name if you want to be named. And thanks for participating!</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

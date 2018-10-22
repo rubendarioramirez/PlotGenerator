@@ -22,6 +22,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,7 +58,7 @@ public class ProjectFragment extends Fragment {
 
         project_lv  = myFragmentView.findViewById(R.id.project_lv);
         empty_project_tv = myFragmentView.findViewById(R.id.empty_project_tv);
-        final EditText et = new EditText(myFragmentView.getContext());
+
         project_list_array = getProjects(myFragmentView.getContext());
         itemsAdapter = new ArrayAdapter<String>(myFragmentView.getContext(), android.R.layout.simple_list_item_1, project_list_array);
         project_lv.setAdapter(itemsAdapter);
@@ -76,28 +77,18 @@ public class ProjectFragment extends Fragment {
         });
 
 
-
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(myFragmentView.getContext());
-        // set prompts.xml to alertdialog builder
-        alertDialogBuilder.setTitle(getString(R.string.add_projects_btn));
-        alertDialogBuilder.setView(et);
-
-        // set dialog message
-        alertDialogBuilder.setCancelable(true).setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                if(et.getText().toString() != " ") {
-                    saveToDB(et);
-                    itemsAdapter.notifyDataSetChanged();
-                }
-            }
-        });
-        // create alert dialog
-        final AlertDialog alertDialog = alertDialogBuilder.create();
         FloatingActionButton fab = (FloatingActionButton) myFragmentView.findViewById(R.id.add_project_btn);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                alertDialog.show();
+//                alertDialog.show();
+                Project_detailsFragment nextFragment = new Project_detailsFragment();
+                //Make the transaction
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
+                transaction.replace(R.id.flMain,nextFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
 
@@ -114,18 +105,6 @@ public class ProjectFragment extends Fragment {
 
 
         return myFragmentView;
-
-    }
-
-
-
-    private void saveToDB(TextView et) {
-        SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PROJECT, et.getText().toString());
-        long newRowId = database.insert(mySQLiteDBHelper.CHARACTER_TABLE_PROJECT, null, values);
-
-        project_list_array.add(et.getText().toString());
 
     }
 

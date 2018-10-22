@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +51,7 @@ public class ChallengeTemplateFragment extends Fragment {
 
 
         //Save button
-        FloatingActionButton fab = (FloatingActionButton) myFragmentView.findViewById(R.id.challenge_template_submit);
+        FloatingActionButton fab = myFragmentView.findViewById(R.id.challenge_template_submit);
 
         charTemplateTitle = myFragmentView.findViewById(R.id.char_template_title);
         question1Title = myFragmentView.findViewById(R.id.char_template_question1_title);
@@ -105,6 +106,7 @@ public class ChallengeTemplateFragment extends Fragment {
                 mFirebaseAnalytics.logEvent("challenge_completed",params);
             }
         });
+
 
         //Init the ad
         mAdView = (AdView) myFragmentView.findViewById(R.id.adView_challenge_template);

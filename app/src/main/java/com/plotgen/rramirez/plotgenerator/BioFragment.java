@@ -118,32 +118,24 @@ public class BioFragment extends Fragment {
         character_bio_challenge_3.setVisibility(View.INVISIBLE);
         character_bio_challenge_4.setVisibility(View.INVISIBLE);
 
+        StringBuffer bio_text=new StringBuffer();
+        bio_text.append(name + " " + getString(R.string.age_bio_1) + "<br> " + age + " " + getString(R.string.age_bio_2) + "<br>");
+        bio_text.append(getString(R.string.placebirth_bio) +"<br> " + placebirth+"<br>");
+        bio_text.append(getString(R.string.job_bio) + " " + job + "<br>");
 
-        //Get device lang
-        if (Locale.getDefault().getLanguage()=="es"){
-            intro_tv.setText(name + " tiene " + age + " años.\nNacio en " + placebirth +".\nTrabaja de " + job +
-                    "\n\nEn su mente desea " + desire + "\nPero es eso lo que necesita? o en realidad lo que necesita es " + need +
-                    "?\n\n De su infancia sabemos que " + moment +
-                    "\n\nSus amigos dicen que es " + trait1 + ", " + trait2 + " y " + trait3 +
-                       "\n\nNotas \n" +  notes);
-
+        if(gender.equals("Masculino") || gender.equals("Male")) {
+            bio_text.append(getString(R.string.male_desire_bio) + " " + desire + "<br>");
+            bio_text.append(getString(R.string.male_need_bio) + " " + need + "?<br>");
+            bio_text.append(getString(R.string.male_moment_bio) + " " + moment + "<br>");
+            bio_text.append(getString(R.string.male_trait_bio) + " " + trait1 + ", " + trait2 + ", " + trait3 + "<br><br>");
+        } else {
+            bio_text.append(getString(R.string.female_desire_bio) + " " + desire + "<br>");
+            bio_text.append(getString(R.string.female_need_bio) + " " + need + "?<br>");
+            bio_text.append(getString(R.string.female_moment_bio) + " " + moment + "<br>");
+            bio_text.append(getString(R.string.female_trait_bio) + " " + trait1 + ", " + trait2 + ", " + trait3 + "<br><br>");
         }
-        else {
-            //Get gender article
-            if(gender.equals("Masculino") || gender.equals("Male")) {
-                gender_article = "he";
-                gender_article_posesive = "his";
-
-            } else{
-                gender_article = "she";
-                gender_article_posesive = "her";
-            }
-
-            intro_tv.setText(name + " is " + age + " years old. \nBorn in " + placebirth +".\n  Works as " + job + ".\n\n " + "In " + gender_article_posesive + " mind " + gender_article + " wants to " + desire +
-                    "\nBut is that what " + gender_article + " really wants? or " + gender_article + " actually needs to " + need + "?...\n\n  About " +gender_article_posesive+" childhood we know that "+ gender_article + " " + moment
-                    + "\n\nAlso " +  gender_article_posesive  + " friends says that " + gender_article + " is " + trait1 + ", " + trait2 + " and " + trait3 +
-                    "\n\nNotes \n" +  notes);
-        }
+        bio_text.append(getString(R.string.notes_bio) +"<br> " +  notes );
+        intro_tv.setText(Html.fromHtml(bio_text.toString()));
 
         if(firstReaction != null) {
             StringBuffer sb=new StringBuffer();

@@ -143,8 +143,10 @@ public class CharacterFragment extends Fragment {
             String gender = char_description.get(2);
             if(gender.equals("Masculino") || gender.equals("Male")){
                 gender_spinner.setSelection(1);
-            } else {
+            } else if (gender.equals("Female") || gender.equals("Femenino")){
                 gender_spinner.setSelection(2);
+            } else {
+                gender_spinner.setSelection(3);
             }
 
             //Set the proper spinner value
