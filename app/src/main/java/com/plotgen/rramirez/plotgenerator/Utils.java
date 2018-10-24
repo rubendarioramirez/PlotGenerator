@@ -78,6 +78,11 @@ public class Utils {
         return projects_list;
     }
 
+    public static void deleteFromDB(Context context, String project_name) {
+        SQLiteDatabase database = new mySQLiteDBHelper(context).getWritableDatabase();
+        database.delete(mySQLiteDBHelper.CHARACTER_TABLE_PROJECT,  "project = ?", new String[]{project_name});
+    }
+
 
     public static void loadAd(AdView mAdView){
         //Display the ad

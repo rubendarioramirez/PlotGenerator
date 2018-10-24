@@ -150,13 +150,7 @@ public class CharListFragment extends Fragment {
         return myFragmentView;
     }
 
-    private void deleteFromDB(String project_name) {
-        SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
-        database.delete(mySQLiteDBHelper.CHARACTER_TABLE_PROJECT,  "project = ?", new String[]{project_name});
-        //Come back to previous fragment
-        fragmentTransition();
 
-    }
 
     public void fragmentTransition(){
         //Send it to the next fragment

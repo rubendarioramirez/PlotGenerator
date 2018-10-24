@@ -44,6 +44,8 @@ public class Project_detailsFragment extends Fragment {
 
         project_name_et = myFragmentView.findViewById(R.id.project_name_et);
         project_plot_et = myFragmentView.findViewById(R.id.project_plot_et);
+        FloatingActionButton fab_save = myFragmentView.findViewById(R.id.project_add_submit);
+        final FloatingActionButton fab_delete = myFragmentView.findViewById(R.id.project_detail_delete);
 
         //Role spinner functions
         project_genre_spinner = myFragmentView.findViewById(R.id.project_genre_spinner);
@@ -69,25 +71,35 @@ public class Project_detailsFragment extends Fragment {
 
 
 
-        FloatingActionButton fab = (FloatingActionButton) myFragmentView.findViewById(R.id.project_add_submit);
-        fab.setOnClickListener(new View.OnClickListener() {
+
+        fab_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(updateMode)
                 {
                     updateDB();
+                    fab_delete.setVisibility(View.INVISIBLE);
                 }
                 else {
                     saveToDB(project_name_et, project_plot_et, project_genre_spinner);
+                    fab_delete.setVisibility(View.VISIBLE);
                 }
-
                 ProjectFragment nextFragment = new ProjectFragment();
                 //Make the transaction
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_from_right);
-                transaction.replace(R.id.flMain,nextFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
+                Utils.changeFragment(nextFragment,transaction,"","");
+            }
+        });
+
+
+        fab_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Utils.deleteFromDB(view.getContext(),project_name_text);
+                ProjectFragment nextFragment = new ProjectFragment();
+                //Make the transaction
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                Utils.changeFragment(nextFragment,transaction,"","");
             }
         });
 
