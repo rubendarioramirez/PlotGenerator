@@ -2,11 +2,8 @@ package com.plotgen.rramirez.plotgenerator;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,19 +14,13 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
-
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.reward.RewardItem;
-import com.google.android.gms.ads.reward.RewardedVideoAd;
-import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 import com.google.firebase.analytics.FirebaseAnalytics;
-
-
 import java.util.Random;
+import com.google.android.gms.ads.MobileAds;
 
 
 public class MainActivity extends AppCompatActivity
@@ -49,7 +40,7 @@ public class MainActivity extends AppCompatActivity
         //Init the ads
         MobileAds.initialize(this, getString(R.string.ad_account_id));
         //TEST ACCOUNT
-//        MobileAds.initialize(this, "cca-app-pub-3940256099942544/5224354917");
+//        MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
 
         //Interstitial
         mInterstitialAd = new InterstitialAd(this);

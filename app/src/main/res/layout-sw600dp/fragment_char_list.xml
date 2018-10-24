@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Project Name"
+        android:text="Project Name - Drama"
         android:textColor="@color/headline"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintHorizontal_bias="0.498"
@@ -26,7 +26,7 @@
         tools:layout_constraintTop_creator="1" />
 
     <ImageButton
-        android:id="@+id/charlist_project_delete_btn"
+        android:id="@+id/charlist_project_edit_btn"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginEnd="8dp"
@@ -35,7 +35,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:background="#00000000"
-        android:src="@android:drawable/ic_menu_delete"
+        android:src="@android:drawable/ic_menu_edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.974"
         app:layout_constraintStart_toStartOf="parent"

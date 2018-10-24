@@ -26,6 +26,9 @@ public class ChallengeListFragment extends Fragment {
     List<item_herojourney> mlist = new ArrayList<>();
     private AdView mAdView;
 
+
+    //    TODO DETECT THE GENRE AND LOAD ONLY CHALLENGE FOR THAT TYPE OF GENRE.
+    //      TODO CREATE A CLASS FOR THE CHALLENGES? IT"S POSSIBLE???
     public ChallengeListFragment() {
         // Required empty public constructor
     }

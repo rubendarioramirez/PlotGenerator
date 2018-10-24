@@ -9,6 +9,8 @@
 
     <string name="ad_account_id" translatable="false">ca-app-pub-6493977652279663~1385558778</string>
     <string name="banner_ad_unit_id" translatable="false">ca-app-pub-6493977652279663/1193987081</string>
+    <!--<string name="banner_ad_unit_id" translatable="false">ca-app-pub-6493977652279663/5728506734</string>-->
+
     <string name="interstitial_plot_gen" translatable="false">ca-app-pub-6493977652279663/4941660400</string>
     <string name="reward_ad_plot_gen" translatable="false">ca-app-pub-6493977652279663/1348881823</string>
 
@@ -85,12 +87,22 @@
     <string name="project_name">Project Name</string>
     <string name="project_genre">Genre</string>
     <string-array name="genres_array">
-        <item>Horror</item>
-        <item>Romance</item>
+        <item>Tragedy</item>
+        <item>Science fiction</item>
+        <item>Fantasy</item>
+        <item>Mythology</item>
+        <item>Adventure</item>
+        <item>Mystery</item>
         <item>Drama</item>
-        <item>Sci-Fiction</item>
+        <item>Romance</item>
+        <item>Action / Adventure</item>
+        <item>Satire</item>
+        <item>Horror</item>
+        <item>Tragic comedy</item>
+        <item>Young adult fiction</item>
+        <item>Dystopia</item>
+        <item>Action thriller</item>
     </string-array>
-
 
     <string name="project_summary">Plot Summary</string>
 
@@ -101,6 +113,9 @@
     <string name="delete_project_btn_message">All characters associated to it will be deleted</string>
     <string name="projects_empty_text">Seems that you don\'t have any project yet.
     Please go ahead and create a new one to get started.</string>
+
+    <string name="project_detail_description">What\'s your story about? The genre and the plot will define where your story is going. In short, what you want to tell the world.\nAlso challenges in this app are linked to the genre of your project. So choose wisely, but no pressure, you can change it any time.</string>
+
 
     <!--Character String-->
     <string name="character_bio_title">Biography</string>
@@ -685,9 +700,6 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="weekly_challenge_view_ad_desc">To keep this app free, in order to participate, I\'ve to ask you to watch a quick ad.</string>
     <string name="weekly_challenge_submit_btn">Participate</string>
     <string name="weekly_challenge_email_desc">Don\'t forget to add your name if you want to be named. And thanks for participating!</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

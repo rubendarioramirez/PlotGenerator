@@ -1,36 +1,17 @@
 package com.plotgen.rramirez.plotgenerator;
 
-
-import android.content.ContentValues;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 
@@ -58,21 +39,23 @@ public class ProjectFragment extends Fragment {
 
         project_lv  = myFragmentView.findViewById(R.id.project_lv);
         empty_project_tv = myFragmentView.findViewById(R.id.empty_project_tv);
-
-        project_list_array = getProjects(myFragmentView.getContext());
+        mAdView = (AdView) myFragmentView.findViewById(R.id.adView_project_frag);
+        project_list_array = Utils.getProjects_list(myFragmentView.getContext());
         itemsAdapter = new ArrayAdapter<String>(myFragmentView.getContext(), android.R.layout.simple_list_item_1, project_list_array);
         project_lv.setAdapter(itemsAdapter);
         project_lv.setEmptyView(empty_project_tv);
+
+
+        Utils.loadAd(mAdView);
+
 
         project_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
-                //Bundle the project INFO
-                Bundle bundle = new Bundle();
-                bundle.putString("project_name",itemsAdapter.getItem(position).toString());
-                //Send it to the next fragment
-                changeFragment(bundle);
+                CharListFragment nextFragment = new CharListFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                Utils.changeFragment(nextFragment,transaction,"project_name",itemsAdapter.getItem(position).toString());
             }
         });
 
@@ -81,62 +64,15 @@ public class ProjectFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                alertDialog.show();
                 Project_detailsFragment nextFragment = new Project_detailsFragment();
-                //Make the transaction
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
-                transaction.replace(R.id.flMain,nextFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
+                Utils.changeFragment(nextFragment,transaction,"project_name","");
             }
         });
-
-
-
-
-    mAdView = (AdView) myFragmentView.findViewById(R.id.adView_project_frag);
-        //Display the ad
-        AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
-                .build();
-        mAdView.loadAd(adRequest);
-
 
 
         return myFragmentView;
 
     }
-
-    public ArrayList<String> getProjects(Context context){
-        mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
-        SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        Cursor cursor = sqLiteDatabase.query(mySQLiteDBHelper.CHARACTER_TABLE_PROJECT, null, null, null, null, null, null);
-        cursor.moveToFirst();
-        ArrayList<String> projects_list = new ArrayList<String>();
-        while(!cursor.isAfterLast()) {
-            projects_list.add(cursor.getString(cursor.getColumnIndex("project")));
-            cursor.moveToNext();
-        }
-        cursor.close();
-        return projects_list;
-    }
-
-
-
-    private void changeFragment(Bundle bundle){
-        CharListFragment nextFragment = new CharListFragment();
-        nextFragment.setArguments(bundle);
-        //Make the transaction
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
-        transaction.replace(R.id.flMain,nextFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
-
-
-
-
 
 }

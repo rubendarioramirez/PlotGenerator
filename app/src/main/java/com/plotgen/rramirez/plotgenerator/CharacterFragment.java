@@ -49,6 +49,7 @@ public class CharacterFragment extends Fragment {
         // Required empty public constructor
     }
 
+    //TODO BE able to block certain parts to just randomize some others. Yep, a mess
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
