@@ -49,17 +49,16 @@ public class CharListFragment extends Fragment {
     }
 
 
-    //TODO #2 Project detail to identify that its updating.
-    //TODO #3 Able to EDIT or delete from Project detail.
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         ((MainActivity)getActivity()).setActionBarTitle(getString(R.string.character_list_tab));
         //Get the data from the previous fragment
-        final String project_name_text = this.getArguments().getString("project_name");
+        String project_info = this.getArguments().getString("project_info");
+        final String project_name_text = project_info.split("_")[1];
+        final String project_id = project_info.split("_")[0];
+
         final View myFragmentView =   inflater.inflate(R.layout.fragment_char_list, container, false);
 
         //Declare elements
@@ -67,21 +66,15 @@ public class CharListFragment extends Fragment {
         character_list_lv = myFragmentView.findViewById(R.id.character_list_lv);
         empty_character_tv= myFragmentView.findViewById(R.id.empty_character_tv);
         charlist_project_edit_btn = myFragmentView.findViewById(R.id.charlist_project_edit_btn);
+        project_list_array = Utils.getCharList(myFragmentView.getContext(), project_id);
+
         project_list_tv.setText(project_name_text);
-
-
 
         //Display the ad
         mAdView = (AdView) myFragmentView.findViewById(R.id.adView_char_list);
-        //Display the ad
-        AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
-                .build();
-        mAdView.loadAd(adRequest);
-
+        Utils.loadAd(mAdView);
 
         //Display the adapter
-        project_list_array = Utils.getCharList(myFragmentView.getContext(), project_name_text);
         itemsAdapter = new ArrayAdapter<String>(myFragmentView.getContext(), android.R.layout.simple_list_item_1, project_list_array);
 
         character_list_lv.setAdapter(itemsAdapter);
@@ -97,7 +90,7 @@ public class CharListFragment extends Fragment {
 
                 Bundle bundle = new Bundle();
                 bundle.putString("char_name",charName);
-                bundle.putString("project_name",project_name_text.toString());
+                bundle.putString("project_name",project_name_text);
                 //Send it to the next fragment
                 BioFragment nextFragment = new BioFragment();
                 nextFragment.setArguments(bundle);

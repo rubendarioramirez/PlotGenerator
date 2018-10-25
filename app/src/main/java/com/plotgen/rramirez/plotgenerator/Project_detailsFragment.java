@@ -1,8 +1,11 @@
 package com.plotgen.rramirez.plotgenerator;
 
 
+import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -49,14 +52,9 @@ public class Project_detailsFragment extends Fragment {
 
         //Role spinner functions
         project_genre_spinner = myFragmentView.findViewById(R.id.project_genre_spinner);
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> genre_adapter = ArrayAdapter.createFromResource(myFragmentView.getContext(),
-                R.array.genres_array, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
+        ArrayAdapter<CharSequence> genre_adapter = ArrayAdapter.createFromResource(myFragmentView.getContext(), R.array.genres_array, android.R.layout.simple_spinner_item);
         genre_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
         project_genre_spinner.setAdapter(genre_adapter);
-
 
         if(project_name_text != ""){
             //Update mode
@@ -68,8 +66,6 @@ public class Project_detailsFragment extends Fragment {
         } else {
             updateMode = false;
         }
-
-
 
 
         fab_save.setOnClickListener(new View.OnClickListener() {
@@ -94,12 +90,32 @@ public class Project_detailsFragment extends Fragment {
 
         fab_delete.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Utils.deleteFromDB(view.getContext(),project_name_text);
-                ProjectFragment nextFragment = new ProjectFragment();
-                //Make the transaction
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                Utils.changeFragment(nextFragment,transaction,"","");
+            public void onClick(final View view) {
+                AlertDialog.Builder builder;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    builder = new AlertDialog.Builder(getContext(), android.R.style.Theme_Material_Dialog_Alert);
+                } else {
+                    builder = new AlertDialog.Builder(getContext());
+                }
+                builder.setTitle("Delete entry")
+                        .setMessage("Are you sure you want to delete this entry?")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // continue with delete
+                                Utils.deleteFromDB(view.getContext(),project_name_text);
+                                ProjectFragment nextFragment = new ProjectFragment();
+                                //Make the transaction
+                                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                                Utils.changeFragment(nextFragment,transaction,"","");
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // do nothing
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
             }
         });
 
@@ -115,6 +131,7 @@ public class Project_detailsFragment extends Fragment {
         values.put(mySQLiteDBHelper.PROJECT_COLUMN_GENRE, project_genre_spinner.getSelectedItem().toString());
         values.put(mySQLiteDBHelper.PROJECT_COLUMN_PLOT, project_plot_et.getText().toString());
         long newRowId = database.insert(mySQLiteDBHelper.CHARACTER_TABLE_PROJECT, null, values);
+        database.close();
 
     }
 
@@ -125,23 +142,14 @@ public class Project_detailsFragment extends Fragment {
         values.put(mySQLiteDBHelper.PROJECT_COLUMN_GENRE, project_genre_spinner.getSelectedItem().toString());
         values.put(mySQLiteDBHelper.PROJECT_COLUMN_PLOT, project_plot_et.getText().toString());
         database.update(mySQLiteDBHelper.CHARACTER_TABLE_PROJECT, values,   "project = ?", new String[]{project_name_text.toString()});
-
+        database.close();
         //Come back to previous fragment
-        fragmentTransition();
-
-    }
-
-    public void fragmentTransition(){
-        Bundle bundle = new Bundle();
-        bundle.putString("project_name",project_name_text);
-        //Send it to the next fragment
-        CharListFragment nextFragment = new CharListFragment();
-        nextFragment.setArguments(bundle);
-        //Make the transaction
+        ProjectFragment nextFragment = new ProjectFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.flMain,nextFragment);
-        transaction.commit();
+        Utils.changeFragment(nextFragment,transaction,"","");
+
 
     }
+
 
 }

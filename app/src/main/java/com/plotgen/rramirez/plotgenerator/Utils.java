@@ -44,6 +44,7 @@ public class Utils {
             cursor.moveToNext();
         }
         cursor.close();
+        sqLiteDatabase.close();
         return projects_list;
     }
 
@@ -54,18 +55,22 @@ public class Utils {
         cursor.moveToFirst();
         ArrayList<String> projects_list = new ArrayList<String>();
         while(!cursor.isAfterLast()) {
-            projects_list.add(cursor.getString(cursor.getColumnIndex("project")));
+            String id = cursor.getString(cursor.getColumnIndex("_id"));
+            String project_name = cursor.getString(cursor.getColumnIndex("project"));
+//            projects_list.add(cursor.getString(cursor.getColumnIndex("project")));
+            projects_list.add(id + "_" + project_name);
             cursor.moveToNext();
         }
         cursor.close();
+        sqLiteDatabase.close();
         return projects_list;
     }
 
-    public static ArrayList<String> getCharList(Context context, String project_name){
+    public static ArrayList<String> getCharList(Context context, String project_id){
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER  + " WHERE project = ?";
-        Cursor cursor = sqLiteDatabase.rawQuery(query,new String[]{project_name});
+        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER  + " WHERE _id = ?";
+        Cursor cursor = sqLiteDatabase.rawQuery(query,new String[]{project_id});
         cursor.moveToFirst();
         ArrayList<String> projects_list = new ArrayList<String>();
         while(!cursor.isAfterLast()) {
@@ -75,12 +80,14 @@ public class Utils {
             cursor.moveToNext();
         }
         cursor.close();
+        sqLiteDatabase.close();
         return projects_list;
     }
 
     public static void deleteFromDB(Context context, String project_name) {
         SQLiteDatabase database = new mySQLiteDBHelper(context).getWritableDatabase();
         database.delete(mySQLiteDBHelper.CHARACTER_TABLE_PROJECT,  "project = ?", new String[]{project_name});
+        database.close();
     }
 
 

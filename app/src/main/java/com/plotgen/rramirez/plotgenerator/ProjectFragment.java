@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,13 +22,14 @@ public class ProjectFragment extends Fragment {
     ArrayList<String> project_list_array;
     ArrayAdapter<String> itemsAdapter;
     TextView empty_project_tv;
+    ArrayList<String> project_names;
+    ArrayList<String> projects_ids;
 
     private AdView mAdView;
 
     public ProjectFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,11 +42,18 @@ public class ProjectFragment extends Fragment {
         project_lv  = myFragmentView.findViewById(R.id.project_lv);
         empty_project_tv = myFragmentView.findViewById(R.id.empty_project_tv);
         mAdView = (AdView) myFragmentView.findViewById(R.id.adView_project_frag);
+        project_names = new ArrayList<String>();
+        projects_ids = new ArrayList<String>();
+
         project_list_array = Utils.getProjects_list(myFragmentView.getContext());
-        itemsAdapter = new ArrayAdapter<String>(myFragmentView.getContext(), android.R.layout.simple_list_item_1, project_list_array);
+        for (int i=0;i<project_list_array.size();i++) {
+            project_names.add(project_list_array.get(i).split("_")[1]);
+            projects_ids.add(project_list_array.get(i).split("_")[0]);
+        }
+
+        itemsAdapter = new ArrayAdapter<String>(myFragmentView.getContext(), android.R.layout.simple_list_item_1, project_names);
         project_lv.setAdapter(itemsAdapter);
         project_lv.setEmptyView(empty_project_tv);
-
 
         Utils.loadAd(mAdView);
 
@@ -55,7 +64,8 @@ public class ProjectFragment extends Fragment {
                                     long id) {
                 CharListFragment nextFragment = new CharListFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                Utils.changeFragment(nextFragment,transaction,"project_name",itemsAdapter.getItem(position).toString());
+                String values = projects_ids.get(position) + "_" + project_names.get(position);
+                Utils.changeFragment(nextFragment,transaction,"project_info",values);
             }
         });
 
