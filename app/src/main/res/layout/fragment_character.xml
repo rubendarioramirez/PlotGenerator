@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="27dp"
                 android:textColor="@color/content"
-                android:textSize="14sp"></android.support.v7.widget.AppCompatSpinner>
+                android:textSize="14sp" />
 
 
             <EditText
@@ -114,6 +114,17 @@
                 android:text="@string/character_personality_tv"
                 android:textColor="@color/headline"
                 android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/phrase_et"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="12dp"
+                android:ems="8"
+                android:hint="@string/character_add_phrase"
+                android:inputType="textMultiLine"
+                android:textColor="@color/content"
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/trait_edit_text"
@@ -164,7 +175,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="27dp"
                 android:textColor="@color/content"
-                android:textSize="14sp"></android.support.v7.widget.AppCompatSpinner>
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/defmoment_edit_text"
@@ -175,7 +186,6 @@
                 android:hint="@string/character_add_defmoment"
                 android:inputType="textMultiLine"
                 android:textColor="@color/content"
-
                 android:textSize="14sp" />
 
 

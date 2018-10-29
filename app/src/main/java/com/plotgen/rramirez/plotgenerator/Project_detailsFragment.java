@@ -7,16 +7,23 @@ import android.content.DialogInterface;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.w3c.dom.Text;
 
@@ -28,10 +35,12 @@ import java.util.ArrayList;
  */
 public class Project_detailsFragment extends Fragment {
 
-    TextView project_name_et, project_plot_et;
+    EditText project_name_et, project_plot_et;
     Spinner project_genre_spinner;
     public Boolean updateMode;
     String project_name_text;
+    private FirebaseAnalytics mFirebaseAnalytics;
+    FloatingActionButton fab_save;
 
     public Project_detailsFragment() {
         // Required empty public constructor
@@ -47,8 +56,9 @@ public class Project_detailsFragment extends Fragment {
 
         project_name_et = myFragmentView.findViewById(R.id.project_name_et);
         project_plot_et = myFragmentView.findViewById(R.id.project_plot_et);
-        FloatingActionButton fab_save = myFragmentView.findViewById(R.id.project_add_submit);
+        final FloatingActionButton fab_save = myFragmentView.findViewById(R.id.project_add_submit);
         final FloatingActionButton fab_delete = myFragmentView.findViewById(R.id.project_detail_delete);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(myFragmentView.getContext());
 
         //Role spinner functions
         project_genre_spinner = myFragmentView.findViewById(R.id.project_genre_spinner);
@@ -60,6 +70,7 @@ public class Project_detailsFragment extends Fragment {
             //Update mode
             ArrayList<String> project_list_array = Utils.getProject(this.getContext(), project_name_text);
             project_name_et.setText(project_list_array.get(0));
+            project_name_et.setEnabled(false);
             project_plot_et.setText(project_list_array.get(2));
             //TODO UPDATE THE SPINNER IN THE SAME POSITION
             updateMode = true;
@@ -71,19 +82,21 @@ public class Project_detailsFragment extends Fragment {
         fab_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(updateMode)
-                {
-                    updateDB();
-                    fab_delete.setVisibility(View.INVISIBLE);
+                if (isEmpty(project_name_et)) {
+                    Toast.makeText(getActivity(), getString(R.string.projects_empty),
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    if (updateMode) {
+                        updateDB();
+                        fab_delete.setVisibility(View.INVISIBLE);
+                    } else {
+                            saveToDB(project_name_et, project_plot_et, project_genre_spinner);
+                            fab_delete.setVisibility(View.VISIBLE);
+                    }
+                    ProjectFragment nextFragment = new ProjectFragment();
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    Utils.changeFragment(nextFragment, transaction, "", "");
                 }
-                else {
-                    saveToDB(project_name_et, project_plot_et, project_genre_spinner);
-                    fab_delete.setVisibility(View.VISIBLE);
-                }
-                ProjectFragment nextFragment = new ProjectFragment();
-                //Make the transaction
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                Utils.changeFragment(nextFragment,transaction,"","");
             }
         });
 
@@ -97,8 +110,8 @@ public class Project_detailsFragment extends Fragment {
                 } else {
                     builder = new AlertDialog.Builder(getContext());
                 }
-                builder.setTitle("Delete entry")
-                        .setMessage("Are you sure you want to delete this entry?")
+                builder.setTitle(getString(R.string.delete_project_btn))
+                        .setMessage(getString(R.string.delete_project_btn_message))
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 // continue with delete
@@ -119,6 +132,8 @@ public class Project_detailsFragment extends Fragment {
             }
         });
 
+
+
         return myFragmentView;
 
     }
@@ -131,6 +146,11 @@ public class Project_detailsFragment extends Fragment {
         values.put(mySQLiteDBHelper.PROJECT_COLUMN_GENRE, project_genre_spinner.getSelectedItem().toString());
         values.put(mySQLiteDBHelper.PROJECT_COLUMN_PLOT, project_plot_et.getText().toString());
         long newRowId = database.insert(mySQLiteDBHelper.CHARACTER_TABLE_PROJECT, null, values);
+
+        //Log challenges updated
+        Bundle params = new Bundle();
+        params.putString("Genre", project_genre_spinner.getSelectedItem().toString());
+        mFirebaseAnalytics.logEvent("genre",params);
         database.close();
 
     }
@@ -149,7 +169,15 @@ public class Project_detailsFragment extends Fragment {
         Utils.changeFragment(nextFragment,transaction,"","");
 
 
+
+
     }
 
+    private boolean isEmpty(TextView etText) {
+        if (etText.getText().toString().trim().length() > 0)
+            return false;
+
+        return true;
+    }
 
 }

@@ -92,6 +92,11 @@ public class ChallengeTemplateFragment extends Fragment {
             question2Title.setText(getString(R.string.challenge_5_q2));
             question3Title.setText(getString(R.string.challenge_5_q3));
             question4Title.setText(getString(R.string.challenge_5_q4));
+        }else if(challenge_number.equals("Mentor Challenge") || challenge_number.equals("Desafio del Mentor")){
+            question1Title.setText(getString(R.string.c1_mentor_q1));
+            question2Title.setText(getString(R.string.c1_mentor_q2));
+            question3Title.setText(getString(R.string.c1_mentor_q3));
+            question4Title.setText(getString(R.string.c1_mentor_q4));
         }
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -110,11 +115,7 @@ public class ChallengeTemplateFragment extends Fragment {
 
         //Init the ad
         mAdView = (AdView) myFragmentView.findViewById(R.id.adView_challenge_template);
-        //Display the ad
-        AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
-                .build();
-        mAdView.loadAd(adRequest);
+        Utils.loadAd(mAdView);
 
         return myFragmentView;
     }
@@ -148,6 +149,11 @@ public class ChallengeTemplateFragment extends Fragment {
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C5Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C5Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C5Q4, question4.getText().toString());
+        }else if(challenge_number.equals("Mentor Challenge") || challenge_number.equals("Desafio del Mentor")){
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_MENTOR_Q1, question1.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_MENTOR_Q2, question2.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_MENTOR_Q3, question3.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_MENTOR_Q4, question4.getText().toString());
         }
 
         database.update(mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER, values,   "name = ?", new String[]{char_name});

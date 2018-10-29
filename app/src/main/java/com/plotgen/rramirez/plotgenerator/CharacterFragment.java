@@ -16,6 +16,7 @@ import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,13 +38,15 @@ import java.util.Random;
 
 public class CharacterFragment extends Fragment {
 
-    public EditText nameEditText, profession_edit_text, desire_edit_text, age_edit_text, placebirth_edit_text, defmoment_edit_text,need_edit_text, trait_edit_text, trait2_edit_text,trait3_edit_text, notes_edit_text;
+    public EditText nameEditText, profession_edit_text, desire_edit_text, age_edit_text, placebirth_edit_text, defmoment_edit_text,need_edit_text, phrase_et,trait_edit_text, trait2_edit_text,trait3_edit_text, notes_edit_text;
     public TextView project_name_tv;
     public ImageButton delete_btn,random_gen_char_btn;
     public Spinner gender_spinner, role_spinner;
     public static int rated;
     ArrayList<String> char_description;
     private FirebaseAnalytics mFirebaseAnalytics;
+    public String project_name;
+    public String project_id;
 
     public CharacterFragment() {
         // Required empty public constructor
@@ -59,33 +62,31 @@ public class CharacterFragment extends Fragment {
 
         // Obtain the FirebaseAnalytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(myFragmentView.getContext());
+        try{
+            final String project_info = this.getArguments().getString("project_info");
+            project_name = project_info.split("_")[1];
+            project_id = project_info.split("_")[0];
+        } catch (Exception e) {
 
-        final String project_name_text = this.getArguments().getString("project_name");
+        }
+
+        final String project_name_fromEdit = this.getArguments().getString("project_name");
         final String name_text = this.getArguments().getString("char_name");
+
         //Get if rated already
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(myFragmentView.getContext());
         rated = preferences.getInt("rated",0);
 
         //Gender spinner functions
         gender_spinner = myFragmentView.findViewById(R.id.gender_spinner);
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(myFragmentView.getContext(),
-                R.array.gender_spinner_array, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(myFragmentView.getContext(), R.array.gender_spinner_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
         gender_spinner.setAdapter(adapter);
-
         //Role spinner functions
         role_spinner = myFragmentView.findViewById(R.id.role_spinner);
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> role_adapter = ArrayAdapter.createFromResource(myFragmentView.getContext(),
-                R.array.char_guide_types_titles, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
+        ArrayAdapter<CharSequence> role_adapter = ArrayAdapter.createFromResource(myFragmentView.getContext(), R.array.char_guide_types_titles, android.R.layout.simple_spinner_item);
         role_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
         role_spinner.setAdapter(role_adapter);
-
 
 
         //Declare all the elements
@@ -97,20 +98,17 @@ public class CharacterFragment extends Fragment {
         defmoment_edit_text= myFragmentView.findViewById(R.id.defmoment_edit_text);
         desire_edit_text = myFragmentView.findViewById(R.id.desire_edit_text);
         need_edit_text= myFragmentView.findViewById(R.id.need_edit_text);
+        phrase_et = myFragmentView.findViewById(R.id.phrase_et);
         trait_edit_text= myFragmentView.findViewById(R.id.trait_edit_text);
         trait2_edit_text= myFragmentView.findViewById(R.id.trait_2_edit_text);
         trait3_edit_text= myFragmentView.findViewById(R.id.trait_3_edit_text);
         notes_edit_text= myFragmentView.findViewById(R.id.notes_edit_text);
-        //Save button
         FloatingActionButton fab = (FloatingActionButton) myFragmentView.findViewById(R.id.char_template_submit);
-        //Generate button
         random_gen_char_btn = myFragmentView.findViewById(R.id.random_gen_char_btn);
-        //Detele button
         delete_btn = myFragmentView.findViewById(R.id.char_edit_delete_btn);
 
         //Set the title
-        project_name_tv.setText(project_name_text);
-
+        project_name_tv.setText(project_name);
 
         if (name_text == null){ //If it's in create new character mode
             fab.setOnClickListener(new View.OnClickListener() {
@@ -126,7 +124,7 @@ public class CharacterFragment extends Fragment {
             ((MainActivity)getActivity()).setActionBarTitle(getString(R.string.character_update));
             delete_btn.setVisibility(View.VISIBLE);
             //database getter
-            char_description = getDescription(myFragmentView.getContext(), name_text.toString());
+            char_description = getDescription(myFragmentView.getContext(), name_text);
             nameEditText.setText(char_description.get(0));
             age_edit_text.setText(char_description.get(1));
             placebirth_edit_text.setText(char_description.get(3));
@@ -134,10 +132,11 @@ public class CharacterFragment extends Fragment {
             desire_edit_text.setText(char_description.get(5));
             defmoment_edit_text.setText(char_description.get(7));
             need_edit_text.setText(char_description.get(8));
-            trait_edit_text.setText(char_description.get(9));
-            trait2_edit_text.setText(char_description.get(10));
-            trait3_edit_text.setText(char_description.get(11));
-            notes_edit_text.setText(char_description.get(12));
+            phrase_et.setText(char_description.get(9));
+            trait_edit_text.setText(char_description.get(10));
+            trait2_edit_text.setText(char_description.get(11));
+            trait3_edit_text.setText(char_description.get(12));
+            notes_edit_text.setText(char_description.get(13));
 
 
             //Set the proper spinner value
@@ -180,11 +179,11 @@ public class CharacterFragment extends Fragment {
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    updateDB(name_text.toString(), project_name_text.toString());
+                    updateDB(name_text, project_name_fromEdit);
                 }
             });
             if(rated == 0) {
-                showRateDialogForRate(myFragmentView.getContext());
+                Utils.showRateDialogForRate(myFragmentView.getContext());
             }
         }
 
@@ -205,6 +204,7 @@ public class CharacterFragment extends Fragment {
                 trait2_edit_text.setText(info.get(8));
                 trait3_edit_text.setText(info.get(9));
                 need_edit_text.setText(info.get(10));
+                phrase_et.setText(info.get(11));
 
 
             }
@@ -239,16 +239,17 @@ public class CharacterFragment extends Fragment {
 
     private ArrayList<String> generateBIO(Context context){
 
-        ArrayList<String> male_names = new ArrayList<String>(100);
-        ArrayList<String> female_names = new ArrayList<String>(100);
-        ArrayList<String> last_name = new ArrayList<String>(100);
-        ArrayList<String> placeOfBirth = new ArrayList<String>(100);
-        ArrayList<String> profession = new ArrayList<String>(100);
-        ArrayList<String> desire = new ArrayList<String>();
-        ArrayList<String> moment = new ArrayList<String>();
-        ArrayList<String> traits = new ArrayList<String>();
-        ArrayList<String> needs = new ArrayList<String>();
-        ArrayList<String> bio = new ArrayList<String>();
+        ArrayList<String> male_names = new ArrayList<>(100);
+        ArrayList<String> female_names = new ArrayList<>(100);
+        ArrayList<String> last_name = new ArrayList<>(100);
+        ArrayList<String> placeOfBirth = new ArrayList<>(100);
+        ArrayList<String> profession = new ArrayList<>(100);
+        ArrayList<String> desire = new ArrayList<>();
+        ArrayList<String> moment = new ArrayList<>();
+        ArrayList<String> traits = new ArrayList<>();
+        ArrayList<String> phrases_array = new ArrayList<>();
+        ArrayList<String> needs = new ArrayList<>();
+        ArrayList<String> bio = new ArrayList<>();
         String selectedName;
 
 
@@ -259,6 +260,7 @@ public class CharacterFragment extends Fragment {
         profession.addAll(Arrays.asList(context.getResources().getStringArray(R.array.profession_array)));
         desire.addAll(Arrays.asList(context.getResources().getStringArray(R.array.desire_array)));
         moment.addAll(Arrays.asList(context.getResources().getStringArray(R.array.defmoment_array)));
+        phrases_array.addAll(Arrays.asList(context.getResources().getStringArray(R.array.phrases)));
         traits.addAll(Arrays.asList(context.getResources().getStringArray(R.array.trait_array)));
         needs.addAll(Arrays.asList(context.getResources().getStringArray(R.array.need_array)));
 
@@ -308,6 +310,10 @@ public class CharacterFragment extends Fragment {
         String trait2 = traits.get(index9);
         String trait3 = traits.get(index10);
 
+        //phrases
+        int index20 = (r.nextInt(phrases_array.size()));
+        String phrase_text = phrases_array.get(index20);
+
         //Moment
         int index11 = (r.nextInt(needs.size()));
         String need =needs.get(index11);
@@ -324,6 +330,7 @@ public class CharacterFragment extends Fragment {
         bio.add(trait2);
         bio.add(trait3);
         bio.add(need);
+        bio.add(phrase_text);
         return bio;
 
     }
@@ -333,6 +340,7 @@ public class CharacterFragment extends Fragment {
         SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_NAME, nameEditText.getText().toString());
+        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PROJECT_ID, project_id);
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_JOB, profession_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_DESIRE, desire_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_AGE, age_edit_text.getText().toString());
@@ -341,23 +349,20 @@ public class CharacterFragment extends Fragment {
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_DEFMOMENT, defmoment_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_NEED, need_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PLACEBIRTH, placebirth_edit_text.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PROJECT, project_name_tv.getText().toString());
+        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PROJECT, project_name);
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_TRAIT1, trait_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_TRAIT2, trait2_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_TRAIT3, trait3_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_ENOTES, notes_edit_text.getText().toString());
-
-
-        long newRowId = database.insert(mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER, null, values);
+        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PHRASE, phrase_et.getText().toString());
+        database.insert(mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER, null, values);
 
         //Log challenges updated
         Bundle params = new Bundle();
         params.putString("Character", "completed");
         mFirebaseAnalytics.logEvent("character_created",params);
 
-        //Come back to previous fragment
         fragmentTransition();
-
     }
 
     private void deleteFromDB(String name_char) {
@@ -368,9 +373,7 @@ public class CharacterFragment extends Fragment {
         params.putString("Character", "deleted");
         mFirebaseAnalytics.logEvent("character_deleted",params);
 
-        //Come back to previous fragment
         fragmentTransition();
-
     }
 
 
@@ -391,8 +394,8 @@ public class CharacterFragment extends Fragment {
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_TRAIT2, trait2_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_TRAIT3, trait3_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_ENOTES, notes_edit_text.getText().toString());
+        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PHRASE, phrase_et.getText().toString());
         database.update(mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER, values,   "name = ?", new String[]{name_text.toString()});
-
         //Come back to previous fragment
         fragmentTransition();
 
@@ -416,6 +419,7 @@ public class CharacterFragment extends Fragment {
             char_list.add(cursor.getString(cursor.getColumnIndex("role")));
             char_list.add(cursor.getString(cursor.getColumnIndex("defmoment")));
             char_list.add(cursor.getString(cursor.getColumnIndex("need")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("phrase")));
             char_list.add(cursor.getString(cursor.getColumnIndex("trait1")));
             char_list.add(cursor.getString(cursor.getColumnIndex("trait2")));
             char_list.add(cursor.getString(cursor.getColumnIndex("trait3")));
@@ -428,52 +432,10 @@ public class CharacterFragment extends Fragment {
 
 
     public void fragmentTransition(){
-        Bundle bundle = new Bundle();
-        bundle.putString("project_name",project_name_tv.getText().toString());
-        //Send it to the next fragment
-        CharListFragment nextFragment = new CharListFragment();
-        nextFragment.setArguments(bundle);
-        //Make the transaction
+        ProjectFragment nextFragment = new ProjectFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.flMain,nextFragment);
-        transaction.commit();
+        Utils.changeFragment(nextFragment,transaction,"","");
 
-    }
-
-    public static void showRateDialogForRate(final Context context) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context)
-                .setTitle(context.getString(R.string.rate_app))
-                .setMessage(context.getString(R.string.rate_app_des))
-                .setPositiveButton(context.getString(R.string.rate_submit), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (context != null) {
-                            ////////////////////////////////
-                            Uri uri = Uri.parse("market://details?id=" + context.getPackageName());
-                            Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
-                            // To count with Play market backstack, After pressing back button,
-                            // to taken back to our application, we need to add following flags to intent.
-                            goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
-                                    Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET |
-                                    Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-                            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-                            SharedPreferences.Editor editor = preferences.edit();
-                            editor.putInt("rated", 1);
-                            editor.apply();
-                            try {
-                                context.startActivity(goToMarket);
-                            } catch (ActivityNotFoundException e) {
-                                context.startActivity(new Intent(Intent.ACTION_VIEW,
-                                        Uri.parse("http://play.google.com/store/apps/details?id=" + context.getPackageName())));
-                            }
-
-
-                        }
-                    }
-                })
-                .setNegativeButton( context.getString(R.string.rate_cancel), null);
-        builder.show();
-    }
-
+        }
 
 }

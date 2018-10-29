@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,10 +29,9 @@ import java.util.Locale;
  */
 public class BioFragment extends Fragment {
 
-    TextView title, role_subtitle, intro_tv,character_bio_challenge, character_bio_challenge_2,character_bio_challenge_3,character_bio_challenge_4,character_bio_challenge_5;
+    TextView title, role_subtitle, intro_tv,char_role_challenge,character_bio_challenge, character_bio_challenge_2,character_bio_challenge_3,character_bio_challenge_4,character_bio_challenge_5;
     ArrayList<String> char_description;
     ImageButton character_bio_edit_btn, character_bio_share_btn, guide_btn,character_bio_challenge_btn;
-    String gender_article, gender_article_posesive;
     private FirebaseAnalytics mFirebaseAnalytics;
 
 
@@ -65,6 +65,7 @@ public class BioFragment extends Fragment {
         character_bio_edit_btn = myFragmentView.findViewById(R.id.character_bio_edit_btn);
         character_bio_share_btn = myFragmentView.findViewById(R.id.character_bio_share_btn);
         character_bio_challenge_btn = myFragmentView.findViewById(R.id.bio_fragment_challenge_btn);
+        char_role_challenge = myFragmentView.findViewById(R.id.char_role_challenge);
         guide_btn = myFragmentView.findViewById(R.id.guide_btn);
 
 
@@ -79,35 +80,42 @@ public class BioFragment extends Fragment {
         final String role = char_description.get(6);
         String moment = char_description.get(7);
         String need = char_description.get(8);
-        final String trait1 = char_description.get(9);
-        String trait2 = char_description.get(10);
-        String trait3 = char_description.get(11);
-        String notes = char_description.get(32);
+        String phrase = char_description.get(9);
+        final String trait1 = char_description.get(10);
+        String trait2 = char_description.get(11);
+        String trait3 = char_description.get(12);
+        String notes = char_description.get(13); //Always update notes to the last index. Because of reasons.
         //First challenge
-        String firstReaction = char_description.get(12);
-        String waitRescue = char_description.get(13);
-        String helpPartner = char_description.get(14);
-        String escapeFirst = char_description.get(15);
+        String firstReaction = char_description.get(14);
+        String waitRescue = char_description.get(15);
+        String helpPartner = char_description.get(16);
+        String escapeFirst = char_description.get(17);
         //Second challenge
-        String challenge2_q1 = char_description.get(16);
-        String challenge2_q2 = char_description.get(17);
-        String challenge2_q3 = char_description.get(18);
-        String challenge2_q4 = char_description.get(19);
+        String challenge2_q1 = char_description.get(18);
+        String challenge2_q2 = char_description.get(19);
+        String challenge2_q3 = char_description.get(20);
+        String challenge2_q4 = char_description.get(21);
         //Third challenge
-        String challenge3_q1 = char_description.get(20);
-        String challenge3_q2 = char_description.get(21);
-        String challenge3_q3 = char_description.get(22);
-        String challenge3_q4 = char_description.get(23);
+        String challenge3_q1 = char_description.get(21);
+        String challenge3_q2 = char_description.get(22);
+        String challenge3_q3 = char_description.get(23);
+        String challenge3_q4 = char_description.get(24);
         //Fourth challenge
-        String challenge4_q1 = char_description.get(24);
-        String challenge4_q2 = char_description.get(25);
-        String challenge4_q3 = char_description.get(26);
-        String challenge4_q4 = char_description.get(27);
+        String challenge4_q1 = char_description.get(25);
+        String challenge4_q2 = char_description.get(26);
+        String challenge4_q3 = char_description.get(27);
+        String challenge4_q4 = char_description.get(28);
         //Fifth challenge
-        String challenge5_q1 = char_description.get(28);
-        String challenge5_q2 = char_description.get(29);
-        String challenge5_q3 = char_description.get(30);
-        String challenge5_q4 = char_description.get(31);
+        String challenge5_q1 = char_description.get(29);
+        String challenge5_q2 = char_description.get(31);
+        String challenge5_q3 = char_description.get(32);
+        String challenge5_q4 = char_description.get(33);
+        //Mentor challenge
+        String c1_mentor_q1 = char_description.get(34);
+        String c1_mentor_q2 = char_description.get(35);
+        String c1_mentor_q3 = char_description.get(36);
+        String c1_mentor_q4 = char_description.get(37);
+
 
         //Titles
         title.setText(char_name.toString() );
@@ -128,15 +136,27 @@ public class BioFragment extends Fragment {
             bio_text.append(getString(R.string.male_need_bio) + " " + need + "?<br>");
             bio_text.append(getString(R.string.male_moment_bio) + " " + moment + "<br>");
             bio_text.append(getString(R.string.male_trait_bio) + " " + trait1 + ", " + trait2 + ", " + trait3 + "<br><br>");
+            bio_text.append(getString(R.string.male_phrase_bio) +"<br> " +  phrase +"<br><br>");
         } else {
             bio_text.append(getString(R.string.female_desire_bio) + " " + desire + "<br>");
             bio_text.append(getString(R.string.female_need_bio) + " " + need + "?<br>");
             bio_text.append(getString(R.string.female_moment_bio) + " " + moment + "<br>");
             bio_text.append(getString(R.string.female_trait_bio) + " " + trait1 + ", " + trait2 + ", " + trait3 + "<br><br>");
+            bio_text.append(getString(R.string.female_phrase_bio) +"<br> " +  phrase +"<br><br>");
         }
+
         bio_text.append(getString(R.string.notes_bio) +"<br> " +  notes );
         intro_tv.setText(Html.fromHtml(bio_text.toString()));
-
+        if(c1_mentor_q1 != null) {
+            StringBuffer sb=new StringBuffer();
+            sb.append("<b>" + getString(R.string.c1_mentor_bio_title) + "</b>");
+            sb.append("<br><i><b>" + getString(R.string.c1_mentor_bio_desc_1) + " " + char_name + "?" + "</b></i><br> " + c1_mentor_q1);
+            sb.append("<br><i><b>"+ getString(R.string.c1_mentor_bio_desc_2) +"</b></i><br> " + c1_mentor_q2);
+            sb.append("<br><i><b>"+ getString(R.string.c1_mentor_bio_desc_3) +"</b></i><br> " + c1_mentor_q3);
+            sb.append("<br><i><b>"+ getString(R.string.c1_mentor_bio_desc_4) +"</b></i><br> " + c1_mentor_q4);
+            char_role_challenge.setVisibility(View.VISIBLE);
+            char_role_challenge.setText(Html.fromHtml(sb.toString()));
+        }
         if(firstReaction != null) {
             StringBuffer sb=new StringBuffer();
             sb.append("<b>" + getString(R.string.challenge_1_bio_title) + "</b>");
@@ -196,6 +216,7 @@ public class BioFragment extends Fragment {
                     Bundle bundle = new Bundle();
                     bundle.putString("char_name",char_name);
                     bundle.putString("project_name",project_name);
+
                     //Send it to the next fragment
                     CharacterFragment nextFragment = new CharacterFragment();
                     nextFragment.setArguments(bundle);
@@ -215,15 +236,9 @@ public class BioFragment extends Fragment {
 
         guide_btn.setOnClickListener(new View.OnClickListener()   {
             public void onClick(View v)  {
-                //Send it to the next fragment
                 GuideListFragment nextFragment = new GuideListFragment();
-                //Make the transaction
-                FragmentTransaction transaction = getFragmentManager()
-                        .beginTransaction()
-                        .setCustomAnimations( R.anim.slide_up, 0, 0, R.anim.slide_down);
-                transaction.add(R.id.flMain,nextFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                Utils.changeFragment(nextFragment,transaction,"","");
             }
         });
 
@@ -233,6 +248,7 @@ public class BioFragment extends Fragment {
                     Bundle bundle = new Bundle();
                     bundle.putString("char_name",char_name);
                     bundle.putString("project_name",project_name);
+                    bundle.putString("role",role);
                     //Send it to the next fragment
                     ChallengeListFragment nextFragment = new ChallengeListFragment();
                     nextFragment.setArguments(bundle);
@@ -255,7 +271,7 @@ public class BioFragment extends Fragment {
                 try {
                     String allbody = intro_tv.getText().toString() + " \n" +  character_bio_challenge.getText().toString() + " \n" + character_bio_challenge_2.getText().toString() + " \n" + character_bio_challenge_3.getText().toString() + " \n" + character_bio_challenge_4.getText().toString()+ " \n" + character_bio_challenge_5.getText().toString();
                     String char_role = project_name + ": " + char_name + " - " + role;
-                    SHARE(myFragmentView,allbody.toString(), char_role);
+                    SHARE(myFragmentView,allbody, char_role);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -308,9 +324,11 @@ public class BioFragment extends Fragment {
             char_list.add(cursor.getString(cursor.getColumnIndex("role")));
             char_list.add(cursor.getString(cursor.getColumnIndex("defmoment")));
             char_list.add(cursor.getString(cursor.getColumnIndex("need")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("phrase")));
             char_list.add(cursor.getString(cursor.getColumnIndex("trait1")));
             char_list.add(cursor.getString(cursor.getColumnIndex("trait2")));
             char_list.add(cursor.getString(cursor.getColumnIndex("trait3")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("elevator_notes")));
             //First challenge
             char_list.add(cursor.getString(cursor.getColumnIndex("elevator_initial_reaction")));
             char_list.add(cursor.getString(cursor.getColumnIndex("elevator_wait_rescue")));
@@ -336,8 +354,13 @@ public class BioFragment extends Fragment {
             char_list.add(cursor.getString(cursor.getColumnIndex("challenge_5_q2")));
             char_list.add(cursor.getString(cursor.getColumnIndex("challenge_5_q3")));
             char_list.add(cursor.getString(cursor.getColumnIndex("challenge_5_q4")));
+            //Mentor Challenge
+            char_list.add(cursor.getString(cursor.getColumnIndex("c1_mentor_q1")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("c1_mentor_q2")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("c1_mentor_q3")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("c1_mentor_q4")));
 
-            char_list.add(cursor.getString(cursor.getColumnIndex("elevator_notes")));
+
 
             cursor.moveToNext();
         }

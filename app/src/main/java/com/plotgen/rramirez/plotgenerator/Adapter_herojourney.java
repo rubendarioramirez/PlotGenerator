@@ -160,7 +160,24 @@ public class Adapter_herojourney extends RecyclerView.Adapter<Adapter_herojourne
                 transaction.addToBackStack(null);
                 transaction.replace(R.id.flMain, nextFragment);
                 transaction.commit();
-            } else if (clicked.equals("Typical Character Roles") || clicked.equals("Roles de personajes tipicos")){
+            }  else if (clicked.equals("Mentor Challenge") || clicked.equals("Desafio del Mentor")) {
+                //Send it to the next fragment
+                Bundle bundle = new Bundle();
+                bundle.putString("char_name", charName);
+                bundle.putString("project_name", projectName);
+                bundle.putString("challenge_number", clicked.toString());
+                //Send it to the next fragment
+                ChallengeTemplateFragment nextFragment = new ChallengeTemplateFragment();
+                nextFragment.setArguments(bundle);
+                //Make the transaction
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
+                transaction.addToBackStack(null);
+                transaction.replace(R.id.flMain, nextFragment);
+                transaction.commit();
+            }
+            else if (clicked.equals("Typical Character Roles") || clicked.equals("Roles de personajes tipicos")){
                     //Send it to the next fragment
                     GuideRoleFragment nextFragment = new GuideRoleFragment();
                     //Make the transaction

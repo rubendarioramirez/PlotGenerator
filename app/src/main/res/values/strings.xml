@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Plot story assistant</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -15,7 +15,7 @@
     <string name="reward_ad_plot_gen" translatable="false">ca-app-pub-6493977652279663/1348881823</string>
 
     <string name="trigger_tab">Writing Prompts</string>
-    <string-array name="triggers_list">
+    <string-array name="triggers_list" tools:ignore="InconsistentArrays">
         <item>He didn\’t tell anyone where he was going.</item>
         <item>He opened the letter and quickly threw it in the fire.</item>
         <item>The brick in the wall of the old house was loose.</item>
@@ -41,14 +41,14 @@
         <item>Right now, I\'m more afraid of living than dying.</item>
         <item>That\'s not the deal we sign up for. But we had no way to go back.</item>
         <item>I never thought I would forgive</item>
-        <item>I hear them downstairs...</item>
-        <item>There is something sweet about knowing you\'re going to die...</item>
+        <item>I hear them downstairs…</item>
+        <item>There is something sweet about knowing you\'re going to die…</item>
         <item>True friends don\'t leave you behind. I guess I wasn\'t a true friend after all.</item>
         <item>I didn\'t take a Sherlock Holmes to realise that the knife was gone.</item>
-        <item>I don\'t believe in angels. Well, I didn\'t until then...</item>
+        <item>I don\'t believe in angels. Well, I didn\'t until then…</item>
         <item>I don\'t swear, I do never do. Not even then.</item>
-        <item>He check around to make sure nobody was watching. Then he put the USB in the pocket...</item>
-        <item>He looked at his rifle. It was long time since the last time...</item>
+        <item>He check around to make sure nobody was watching. Then he put the USB in the pocket…</item>
+        <item>He looked at his rifle. It was long time since the last time…</item>
         <item>Worse than a sunken ship. Is to be the only survivor.</item>
         <item>I looked like a flu. We were sure it was a flu. The only problem was that I wasn\'t.</item>
         <item>We were at war, a war we will lose. But you know, we were taught to fight to fight just to stand our ground, victory was a detail.</item>
@@ -77,13 +77,14 @@
     <!--HOME Strings-->
     <string name="home_title">The only thing that one\n really knows about human nature\n is that it changes.\n      Oscar Wilde</string>
     <string name="home_tab">Home</string>
-    <string name="home_header">Focus on writing...</string>
+    <string name="home_header">Focus on writing…</string>
     <string name="home_desc">If you love to write, then you\'re in the right place.\nI made this app because I also love writing as well but I know the struggle with writer\'s block, being lost or just losing focus.\nActually, I did this app for me but I believe it can also help you.\nThere are three things at the moment that you may find interesting.\n\nWriting prompts, whenever you\'re lost or you don\'t know how to start or how to continue, check them out. \nA simple sentence that will let your imagination fly away. And don\'t worry I\'ll post new ones weekly.\n\nThe Hero Journey. If you didn\'t read it, go running to get it! That\'s Joseph Campbell legacy for writers. \nHowever if you did read it and you want a refreshment, or you just want to go to the meat, check out The Hero Journey section, it contains all you have to know for your hero and it\'s journey.
         \n\nLast but not least, check out the workshop. It contains what you need to track and develop your characters. Create a project, then add characters and don\t worry if you are a bit block. I got your back with the generator function, that will generate traits, desires and needs for you.\n\nHave a great writing!</string>
 
 
     <!--Projects String-->
     <string name="projects_tab">Projects</string>
+    <string name="projects_empty">Really no name for your project? Try again with something more creative</string>
     <string name="project_name">Project Name</string>
     <string name="project_genre">Genre</string>
     <string-array name="genres_array">
@@ -114,9 +115,6 @@
     <string name="projects_empty_text">Seems that you don\'t have any project yet.
     Please go ahead and create a new one to get started.</string>
 
-    <string name="project_detail_description">What\'s your story about? The genre and the plot will define where your story is going. In short, what you want to tell the world.\nAlso challenges in this app are linked to the genre of your project. So choose wisely, but no pressure, you can change it any time.</string>
-
-
     <!--Character String-->
     <string name="character_bio_title">Biography</string>
     <string name="character_list_tab">Characters</string>
@@ -130,12 +128,14 @@
     <string name="male_desire_bio">In his mind he wants </string>
     <string name="male_need_bio">But is that what he really wants? Or he actually needs</string>
     <string name="male_moment_bio">About his childhood we know that he</string>
+    <string name="male_phrase_bio">A phrase that people will commonly associate with him is</string>
     <string name="male_trait_bio">Also his friends says that he is</string>
     <string name="notes_bio">Notes</string>
 
     <string name="female_desire_bio">In her mind she wants </string>
     <string name="female_need_bio">But is that what she really wants? Or she actually needs</string>
     <string name="female_moment_bio">About her childhood we know that she</string>
+    <string name="female_phrase_bio">A phrase that people will commonly associate with her is</string>
     <string name="female_trait_bio">Also her friends says that she is</string>
     <string name="female_notes_bio">Notes</string>
 
@@ -172,8 +172,14 @@
     <string name="challenge_5_bio_desc_1">How would he react if somebody he loves is in danger?</string>
     <string name="challenge_5_bio_desc_2">Will he kill?</string>
     <string name="challenge_5_bio_desc_3">Does he believes that the end justify the means?</string>
-    <string name="challenge_5_bio_desc_4">Ok, he doesnt cross his own limits. how does he reacts then?</string>
-
+    <string name="challenge_5_bio_desc_4">OK, he doesn\'t cross his own limits. how does he reacts then?</string>
+    <!--Challenge I Mentor-->
+    <string name="c1_mentor_bio_title">Know your mentor.</string>
+    <string name="c1_mentor_bio_subtitle">Not all mentors behave the same, neither teach or guide in the same way. What about yours?</string>
+    <string name="c1_mentor_bio_desc_1">Why the protagonist needs a mentor? Why it has to be</string>
+    <string name="c1_mentor_bio_desc_2">How he will mentor the protagonist?</string>
+    <string name="c1_mentor_bio_desc_3">Will the mentor give an artifact? Which one?</string>
+    <string name="c1_mentor_bio_desc_4">When during your story the mentor will depart?</string>
 
     <string name="add_character_btn">Add Character</string>
     <string name="delete_character_btn">Are you sure you want to delete this character?</string>
@@ -241,6 +247,7 @@
     </string-array>
     <string name="character_add_role">Role</string>
     <string name="character_add_placebirth">Place of Birth</string>
+    <string name="character_add_phrase">Catchphrase</string>
     <string name="character_add_trait">Trait</string>
     <string-array name="trait_array">
         <item>Aware</item>
@@ -264,7 +271,7 @@
         <item>Selfless</item>
         <item>Sincere</item>
         <item>Smart</item>
-        <item>Inteligent</item>
+        <item>Intelligent</item>
         <item>Loyal</item>
         <item>Mature</item>
         <item>Modest</item>
@@ -288,6 +295,35 @@
         <item>Good leader</item>
         <item>Good Friend</item>
         <item>Unpredictable</item>
+    </string-array>
+
+    <string-array name="phrases">
+        <item>Maybe everybody in the whole damn world is scared of each other.</item>
+        <item>Life is to be lived, not controlled; and humanity is won by continuing to play in face of certain defeat.</item>
+        <item>Terror made me cruel</item>
+        <item>We were the people who were not in the papers. We lived in the blank white spaces at the edges of print. It gave us more freedom. We lived in the gaps between the stories.</item>
+        <item>It sounds plausible enough tonight, but wait until tomorrow. Wait for the common sense of the morning.</item>
+        <item>It\'s much better to do good in a way that no one knows anything about it.</item>
+        <item>Life appears to me too short to be spent in nursing animosity or registering wrongs.</item>
+        <item>You forget what you want to remember, and you remember what you want to forget.</item>
+        <item>Finally, from so little sleeping and so much reading, his brain dried up and he went completely out of his mind.</item>
+        <item>Memories warm you up from the inside. But they also tear you apart.</item>
+        <item>History, Stephen said, is a nightmare from which I am trying to awake.</item>
+        <item>It is a great misfortune to be alone, my friends; and it must be believed that solitude can quickly destroy reason.</item>
+        <item>And meanwhile time goes about its immemorial work of making everyone look and feel like shit.</item>
+        <item>No man, for any considerable period, can wear one face to himself and another to the multitude, without finally getting bewildered as to which may be the true.</item>
+        <item>Nowadays people know the price of everything and the value of nothing.</item>
+        <item>No one forgets the truth; they just get better at lying.</item>
+        <item>She had waited all her life for something, and it had killed her when it found her.</item>
+        <item>We need never be ashamed of our tears.</item>
+        <item>Nothing is so painful to the human mind as a great and sudden change.</item>
+        <item>It is sometimes an appropriate response to reality to go insane.</item>
+        <item>It doesn\'t matter who you are or what you look like, so long as somebody loves you.</item>
+        <item>I know. I was there. I saw the great void in your soul, and you saw mine.</item>
+        <item>Perhaps it was freedom itself that choked her.</item>
+        <item>Anyone who ever gave you confidence, you owe them a lot.</item>
+        <item>The only lies for which we are truly punished are those we tell ourselves.</item>
+        <item>I know not all that may be coming, but be it what it will, I\’ll go to it laughing.</item>
     </string-array>
     <string-array name="placebirth_array">
         <item>São Paulo - Brazil</item>
@@ -444,7 +480,7 @@
         <item>to survive</item>
     </string-array>
     <string name="character_add_need">What he/she needs?</string>
-    <string-array name="need_array">
+    <string-array name="need_array" tools:ignore="InconsistentArrays">
         <item>to be accepted</item>
         <item>to be loved</item>
         <item>to trust others</item>
@@ -532,7 +568,7 @@ Sometimes, the heroes lose their mentor in this stage (e.g. LOTR and Star Wars).
 
 
     <!--Challenge fragment-->
-    <string name="challenge_answer_placeholder">Answer...</string>
+    <string name="challenge_answer_placeholder">Answer…</string>
     <string name="challenge_nochallenge_placeholder">You have no challenges yet for this character.</string>
     <string name="challenge_action_bar">Challenges</string>
 
@@ -582,6 +618,16 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="challenge_5_q2">Will he be able to kill? </string>
     <string name="challenge_5_q3">Will your character say that the end justify the means when it\'s about protecting a loved one?</string>
     <string name="challenge_5_q4">Let\'s says he doesn\'t dare to cross his own limits to save the life a person he cares. What within his limits/boundaries will he do to solve the situation?</string>
+
+
+    <!--Mentor Challenge-->
+    <string name="c1_mentor_title">Mentor Challenge</string>
+    <string name="c1_mentor_desc">Know your mentor.</string>
+    <string name="c1_mentor_desc_long">Mentors are a rare type of characters. Not all the stories has one, but when they do, it has to be for a reason.\nWhat was Yoda motive to teach Luke Skywalker? Who put him on that swamp waiting to be discover? Did he only offered knowledge or also an artifact? Was this artifact the source of Luke\'s power? Dive in to find out about your mentor.</string>
+    <string name="c1_mentor_q1">Why your protagonist needs a mentor? Why this particular one, will be exactly what he needs?</string>
+    <string name="c1_mentor_q2">Will the mentor give knowledge to the protagonist? Or he will help him to discover himself?</string>
+    <string name="c1_mentor_q3">Will your protagonist power be unlocked by an artifact given by the mentor? If so, which power and which artifact?</string>
+    <string name="c1_mentor_q4">Mentors die. As part of any dramatic journey, the mentor usually has to go a bit before the protagonist is actually ready. Or perhaps he is but he doesn\'t know it yet.\nAt which moment your mentor will leave or die? How will that be?</string>
     <!--Coming soon challenge-->
     <string name="challenge_6_title">Challenge VI</string>
     <string name="challenge_6_desc">Coming soon</string>

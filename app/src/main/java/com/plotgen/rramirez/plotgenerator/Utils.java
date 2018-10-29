@@ -1,14 +1,21 @@
 package com.plotgen.rramirez.plotgenerator;
 
+import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
+
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
@@ -57,7 +64,6 @@ public class Utils {
         while(!cursor.isAfterLast()) {
             String id = cursor.getString(cursor.getColumnIndex("_id"));
             String project_name = cursor.getString(cursor.getColumnIndex("project"));
-//            projects_list.add(cursor.getString(cursor.getColumnIndex("project")));
             projects_list.add(id + "_" + project_name);
             cursor.moveToNext();
         }
@@ -66,23 +72,44 @@ public class Utils {
         return projects_list;
     }
 
-    public static ArrayList<String> getCharList(Context context, String project_id){
+//    This function to get projects by ID onces everybody saved the id.
+//    public static ArrayList<String> getCharList(Context context, String project_id){
+//        mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
+//        SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
+//        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER  + " WHERE project_id = ?";
+//        Cursor cursor = sqLiteDatabase.rawQuery(query,new String[]{project_id});
+//        cursor.moveToFirst();
+//        ArrayList<String> projects_list = new ArrayList<String>();
+//        while(!cursor.isAfterLast()) {
+//            String charname = cursor.getString(cursor.getColumnIndex("name"));
+//            String charRole = cursor.getString(cursor.getColumnIndex("role"));
+//            projects_list.add(charname + " - " + charRole);
+//            cursor.moveToNext();
+//        }
+//        cursor.close();
+//        sqLiteDatabase.close();
+//        return projects_list;
+//    }
+
+    public static ArrayList<String> getCharList(Context context, String project_name){
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER  + " WHERE _id = ?";
-        Cursor cursor = sqLiteDatabase.rawQuery(query,new String[]{project_id});
+        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER  + " WHERE project = ?";
+        Cursor cursor = sqLiteDatabase.rawQuery(query,new String[]{project_name});
         cursor.moveToFirst();
-        ArrayList<String> projects_list = new ArrayList<String>();
+        ArrayList<String> char_list = new ArrayList<String>();
         while(!cursor.isAfterLast()) {
             String charname = cursor.getString(cursor.getColumnIndex("name"));
             String charRole = cursor.getString(cursor.getColumnIndex("role"));
-            projects_list.add(charname + " - " + charRole);
+            Log.v("matilda",charname);
+            char_list.add(charname + " - " + charRole);
             cursor.moveToNext();
         }
         cursor.close();
         sqLiteDatabase.close();
-        return projects_list;
+        return char_list;
     }
+
 
     public static void deleteFromDB(Context context, String project_name) {
         SQLiteDatabase database = new mySQLiteDBHelper(context).getWritableDatabase();
@@ -109,6 +136,41 @@ public class Utils {
         transaction.replace(R.id.flMain,nextFragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    public static void showRateDialogForRate(final Context context) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context)
+                .setTitle(context.getString(R.string.rate_app))
+                .setMessage(context.getString(R.string.rate_app_des))
+                .setPositiveButton(context.getString(R.string.rate_submit), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (context != null) {
+                            ////////////////////////////////
+                            Uri uri = Uri.parse("market://details?id=" + context.getPackageName());
+                            Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+                            // To count with Play market backstack, After pressing back button,
+                            // to taken back to our application, we need to add following flags to intent.
+                            goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
+                                    Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET |
+                                    Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+                            SharedPreferences.Editor editor = preferences.edit();
+                            editor.putInt("rated", 1);
+                            editor.apply();
+                            try {
+                                context.startActivity(goToMarket);
+                            } catch (ActivityNotFoundException e) {
+                                context.startActivity(new Intent(Intent.ACTION_VIEW,
+                                        Uri.parse("http://play.google.com/store/apps/details?id=" + context.getPackageName())));
+                            }
+
+
+                        }
+                    }
+                })
+                .setNegativeButton( context.getString(R.string.rate_cancel), null);
+        builder.show();
     }
 
 }

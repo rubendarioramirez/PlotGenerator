@@ -14,11 +14,13 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
     public static final String CHARACTER_TABLE_PROJECT = "projectname";
     public static final String CHARACTER_COLUMN_ID = "_id";
     public static final String CHARACTER_COLUMN_PROJECT = "project";
+    public static final String CHARACTER_COLUMN_PROJECT_ID = "project_id";
 
     public static final String PROJECT_COLUMN_ID = "_id";
     public static final String PROJECT_COLUMN_PROJECT = "project";
     public static final String PROJECT_COLUMN_GENRE = "genre";
     public static final String PROJECT_COLUMN_PLOT = "plot";
+
 
     //Character BIO
     public static final String CHARACTER_COLUMN_NAME = "name";
@@ -31,6 +33,7 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
     public static final String CHARACTER_COLUMN_DEFMOMENT = "defmoment";
     public static final String CHARACTER_COLUMN_NEED = "need";
     public static final String CHARACTER_COLUMN_PLACEBIRTH = "placebirth";
+    public static final String CHARACTER_COLUMN_PHRASE = "phrase";
     public static final String CHARACTER_COLUMN_TRAIT1 = "trait1";
     public static final String CHARACTER_COLUMN_TRAIT2  = "trait2";
     public static final String CHARACTER_COLUMN_TRAIT3 = "trait3";
@@ -60,6 +63,12 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
     public static final String CHARACTER_COLUMN_C5Q2 = "challenge_5_q2";
     public static final String CHARACTER_COLUMN_C5Q3 = "challenge_5_q3";
     public static final String CHARACTER_COLUMN_C5Q4 = "challenge_5_q4";
+    //Mentor Challenge.
+    public static final String CHARACTER_COLUMN_C1_MENTOR_Q1 = "c1_mentor_q1";
+    public static final String CHARACTER_COLUMN_C1_MENTOR_Q2 = "c1_mentor_q2";
+    public static final String CHARACTER_COLUMN_C1_MENTOR_Q3 = "c1_mentor_q3";
+    public static final String CHARACTER_COLUMN_C1_MENTOR_Q4 = "c1_mentor_q4";
+
 
     public mySQLiteDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -103,7 +112,13 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
                 CHARACTER_COLUMN_C5Q1 + " TEXT, " +
                 CHARACTER_COLUMN_C5Q2 + " TEXT, " +
                 CHARACTER_COLUMN_C5Q3 + " TEXT, " +
-                CHARACTER_COLUMN_C5Q4 + " TEXT " + ")");
+                CHARACTER_COLUMN_C5Q4 + " TEXT, " +
+                CHARACTER_COLUMN_C1_MENTOR_Q1 + " TEXT, " +
+                CHARACTER_COLUMN_C1_MENTOR_Q2 + " TEXT, " +
+                CHARACTER_COLUMN_C1_MENTOR_Q3 + " TEXT, " +
+                CHARACTER_COLUMN_C1_MENTOR_Q4 + " TEXT, " +
+                CHARACTER_COLUMN_PROJECT_ID + " TEXT, " +
+                CHARACTER_COLUMN_PHRASE + " TEXT " +")");
 
         sqLiteDatabase.execSQL("CREATE TABLE " + CHARACTER_TABLE_PROJECT + " (" +
                 PROJECT_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -133,8 +148,16 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
                 sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_5_q4 TEXT");
 
             case 7:
+                //Project columns
                 sqLiteDatabase.execSQL("ALTER TABLE projectname ADD COLUMN genre TEXT");
                 sqLiteDatabase.execSQL("ALTER TABLE projectname ADD COLUMN plot TEXT");
+                //Character columns
+                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN c1_mentor_q1 TEXT");
+                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN c1_mentor_q2 TEXT");
+                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN c1_mentor_q3 TEXT");
+                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN c1_mentor_q4 TEXT");
+                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN project_id TEXT");
+                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN phrase TEXT");
 
         }
 

@@ -50,6 +50,16 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                 android:textColor="@color/headline"
                 android:textSize="36sp" />
+            <TextView
+                android:id="@+id/char_role_challenge"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="22dp"
+                android:background="@color/content_lighter"
+                android:fontFamily="@font/typewcond_regular"
+                android:gravity="left"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/content" />
 
             <TextView
                 android:id="@+id/character_bio_challenge"
@@ -59,7 +69,6 @@
                 android:background="@color/content_lighter"
                 android:fontFamily="@font/typewcond_regular"
                 android:gravity="left"
-                android:text="@string/challenge_nochallenge_placeholder"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/content" />
 
