@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,7 +40,6 @@ import java.util.concurrent.Executor;
 public class HomeFragment extends Fragment {
 
     TextView textTitle;
-    private AdView mAdView;
     private FirebaseAuth mAuth;
     GoogleSignInClient mGoogleSignInClient;
     SignInButton signInButton;
@@ -71,15 +71,15 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
-
-        mAdView = (AdView) myFragmentView.findViewById(R.id.adView);
-
-        //Display the ad
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-
         return myFragmentView;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+//        updateUI(currentUser);
     }
 
     private void signIn() {
@@ -130,5 +130,12 @@ public class HomeFragment extends Fragment {
                     }
                 });
     }
+
+    private void updateUI(FirebaseUser currentUser){
+        Log.v("matilda", "current user is: " + currentUser.getDisplayName());
+        ProjectFragment nextFragment = new ProjectFragment();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        Utils.changeFragment(nextFragment, transaction, "", "");
+    };
 
 }

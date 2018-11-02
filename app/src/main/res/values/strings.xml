@@ -7,12 +7,12 @@
     <string name="action_settings">Settings</string>
 
 
-    <string name="ad_account_id" translatable="false">ca-app-pub-6493977652279663~1385558778</string>
-    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-6493977652279663/1193987081</string>
+    <string name="ad_account_id" translatable="false">ca-app-pub-6696437403163667~6953226633</string>
+    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-6696437403163667/5982516625</string>
     <!--<string name="banner_ad_unit_id" translatable="false">ca-app-pub-6493977652279663/5728506734</string>-->
 
-    <string name="interstitial_plot_gen" translatable="false">ca-app-pub-6493977652279663/4941660400</string>
-    <string name="reward_ad_plot_gen" translatable="false">ca-app-pub-6493977652279663/1348881823</string>
+    <string name="interstitial_plot_gen" translatable="false">ca-app-pub-6696437403163667/3046586854</string>
+    <string name="reward_ad_plot_gen" translatable="false">ca-app-pub-6696437403163667/2030936311</string>
 
     <string name="trigger_tab">Writing Prompts</string>
     <string-array name="triggers_list" tools:ignore="InconsistentArrays">
@@ -243,7 +243,7 @@
         <item>Gender</item>
         <item>Male</item>
         <item>Female</item>
-        <item>Transsexual</item>
+        <item>Transgender</item>
     </string-array>
     <string name="character_add_role">Role</string>
     <string name="character_add_placebirth">Place of Birth</string>

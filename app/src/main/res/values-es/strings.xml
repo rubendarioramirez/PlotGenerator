@@ -31,12 +31,12 @@
         <item>Nunca había sentido tanto frio como hasta ese día…</item>
         <item>Miro su rifle, lleno de polvo otra vez sobre su cama…</item>
         <item>Realmente no sabia quien era. Aunque pensandolo bien, tampoco me hubiese importado.</item>
-        <item>No hay mal que por bien no venga? Ja, a veces hay males que vienen por males.</item>
+        <item>¿No hay mal que por bien no venga? Ja, a veces hay males que vienen por males.</item>
         <item>Ese no era el trato que habiamos firmado, pero ya no había vuelta atras.</item>
         <item>Solo queria darle un susto…</item>
         <item>Los escuche en el piso de abajo.</item>ß
         <item>La vi bajar del bus, como todos los días. Salvo que esta vez si me atreví a hablarle.</item>
-        <item>Quien soy? Quienes son ellos…</item>
+        <item>¿Quien soy? Quienes son ellos…</item>
         <item>Peor que un barco hundiendose, es ser el único sobreviviente.</item>
         <item>Parecia una gripe, estabamos seguros que lo era. El único problema es que nos equivocamos.</item>
         <item>Me gustaría decir que amarla era dejarla ir. Pero yo la amaba y no podia dejarla.</item>
@@ -53,7 +53,7 @@
         <item>Fue la primera vez que maneje un camion, y crei que seria la ultima.</item>
         <item>El jefe de policía me miro por un segundo, ambos sabiamos pero ninguno dijo nada.</item>
         <item>Ese fue el primer día que la extrañe.</item>
-        <item>No me molesto que me deje por otra mujer, pero tenia que ser por mi hermana?</item>
+        <item>No me molesto que me deje por otra mujer, pero ¿Tenia que ser por mi hermana?</item>
     </string-array>
 
 
@@ -73,7 +73,7 @@
 
     <!--Projects String-->
     <string name="projects_tab">Proyectos</string>
-    <string name="projects_empty">De verdad, ningun nombre para tu proyecto? Intenta de nuevo con algo mas creativo.</string>
+    <string name="projects_empty">De verdad, ¿Ningun nombre para tu proyecto? Intenta de nuevo con algo mas creativo.</string>
     <string name="project_name">Nombre del proyecto</string>
     <string name="project_genre">Genero</string>
     <string-array name="genres_array">
@@ -98,7 +98,7 @@
 
     <string name="add_projects_btn">Agregar proyecto</string>
     <string name="edit_projects_btn">Editar proyecto</string>
-    <string name="delete_project_btn">Estas seguro que deseas eliminar este proyecto?</string>
+    <string name="delete_project_btn">¿Estas seguro que deseas eliminar este proyecto?</string>
     <string name="delete_project_btn_message">Todos los personajes asociados se perderan</string>
     <string name="projects_empty_text">Parece que aun no tienes ningún proyecto.
     Por favor crea uno para comenzar.</string>
@@ -111,7 +111,7 @@
     Por favor, crea uno para comenzar.</string>
 
     <string name="add_character_btn">Agregar Personaje</string>
-    <string name="delete_character_btn">Estas seguro que quieres borrar este personaje?</string>
+    <string name="delete_character_btn">¿Estas seguro que quieres borrar este personaje?</string>
     <string name="guide_character_btn">Guia</string>
     <!--Add character-->
     <string name="character_personality_tv">Personalidad</string>
@@ -446,14 +446,14 @@
     <string name="placebirth_bio">Nació en</string>
     <string name="job_bio">Trabaja de </string>
     <string name="male_desire_bio">En su mente quiere </string>
-    <string name="male_need_bio">Pero es eso lo que realmente quiere? O en realidad necesita </string>
+    <string name="male_need_bio">Pero, ¿Es eso lo que necesita? ¿O realmente necesita </string>
     <string name="male_moment_bio">De su infancia sabemos que </string>
     <string name="male_trait_bio">Sus amigos dicen que </string>
     <string name="male_phrase_bio">Una frase con la que generalmente es asociado es</string>
     <string name="notes_bio">Notas</string>
 
     <string name="female_desire_bio">En su mente ella quiere </string>
-    <string name="female_need_bio">pero es eso lo que realmente quiere? O en realidad necesita </string>
+    <string name="female_need_bio">Pero, ¿Es eso lo que necesita? ¿O realmente necesita </string>
     <string name="female_moment_bio">De su infancia sabemos que</string>
     <string name="female_phrase_bio">Una frase con la que generalmente es asociada es</string>
     <string name="female_trait_bio">Sus amigas dicen que es</string>
@@ -463,46 +463,46 @@
 
     <!--Challenge I BIO-->
     <string name="challenge_1_bio_title">El desafio del elevador:</string>
-    <string name="challenge_1_bio_desc_1">Cual seria su primera reaccion de quedarse atrapado?</string>
-    <string name="challenge_1_bio_desc_2">Esperaria a ser rescatado?</string>
-    <string name="challenge_1_bio_desc_3">Si la persona que esta con el entrara en panico. Lo ayudaria?</string>
-    <string name="challenge_1_bio_desc_4">Finalmente, si solo uno pudiese escapar, quien iria primero?</string>
+    <string name="challenge_1_bio_desc_1">¿Cual seria su primera reaccion de quedarse atrapado?</string>
+    <string name="challenge_1_bio_desc_2">¿Esperaria a ser rescatado?</string>
+    <string name="challenge_1_bio_desc_3">Si la persona que esta con el entrara en panico. ¿Lo ayudaria?</string>
+    <string name="challenge_1_bio_desc_4">Finalmente. Si solo uno pudiese escapar, ¿Quien iria primero?</string>
     <!--Challenge II BIO-->
     <string name="challenge_2_bio_title">La mentira que cree tu personaje:</string>
     <string name="challenge_2_bio_subtitle">Es la base para su arco de cambio. Esto es todo lo que esta mal en su mundo. Una vez que sabes que esta mal, es el principio de poder arreglarlo.</string>
-    <string name="challenge_2_bio_desc_1">Cual es el concepto errado que tiene sobre el o sobre el mundo?</string>
-    <string name="challenge_2_bio_desc_2">Su mentira hace que sea miserable cuando la historia comienza? De ser así, como?</string>
-    <string name="challenge_2_bio_desc_3">Si no, va a hacer el plot inicial que se sienta incomodo?</string>
-    <string name="challenge_2_bio_desc_4">Cuales son los sintomas de la mentira de tu personaje?</string>
+    <string name="challenge_2_bio_desc_1">¿Cual es el concepto errado que tiene sobre el o sobre el mundo?</string>
+    <string name="challenge_2_bio_desc_2">¿Su mentira hace que sea miserable cuando la historia comienza? De ser así, ¿Cómo?</string>
+    <string name="challenge_2_bio_desc_3">Si no, ¿Va a hacer el plot inicial que se sienta incomodo?</string>
+    <string name="challenge_2_bio_desc_4">¿Cuales son los sintomas de la mentira de tu personaje?</string>
     <!--Challenge III BIO-->
     <string name="challenge_3_bio_title">Su historia</string>
-    <string name="challenge_3_bio_subtitle">Por qué tu personaje es quien es?</string>
+    <string name="challenge_3_bio_subtitle">¿Por qué tu personaje es quien es?</string>
     <string name="challenge_3_bio_desc_1">Su familia</string>
-    <string name="challenge_3_bio_desc_2">Su mejor momento de la infancia?</string>
-    <string name="challenge_3_bio_desc_3">Su peor momento de la infancia?</string>
-    <string name="challenge_3_bio_desc_4">Tenia amigos? Que decian sus amigos de el?</string>
+    <string name="challenge_3_bio_desc_2">¿Su mejor momento de la infancia?</string>
+    <string name="challenge_3_bio_desc_3">¿Su peor momento de la infancia?</string>
+    <string name="challenge_3_bio_desc_4">¿Tenia amigos? ¿Qué decian sus amigos de el?</string>
     <!--Challenge IV BIO-->
-    <string name="challenge_4_bio_title">Como luce?</string>
+    <string name="challenge_4_bio_title">¿Como luce?</string>
     <string name="challenge_4_bio_subtitle">En un mundo perfecto, como nos vemos no deberia interferir en quienes somos. Pero no vivimos en un mundo perfecto.</string>
     <string name="challenge_4_bio_desc_1">Como es tu personaje en cinco palabras.</string>
-    <string name="challenge_4_bio_desc_2">Marcas de nacimiento? Tatuajes?</string>
-    <string name="challenge_4_bio_desc_3">Alguna condicion medica? Alergias?</string>
-    <string name="challenge_4_bio_desc_4">Su postura y aparariencia? </string>
+    <string name="challenge_4_bio_desc_2">¿Marcas de nacimiento? ¿Tatuajes?</string>
+    <string name="challenge_4_bio_desc_3">¿Alguna condicion medica? ¿Alergias?</string>
+    <string name="challenge_4_bio_desc_4">¿Su postura y aparariencia? </string>
     <!--Challenge V BIO-->
     <string name="challenge_5_bio_title">Cuando esta bajo presión</string>
-    <string name="challenge_5_bio_subtitle">tu personaje puede reaccionar de distintas maneras, como elige actuar cuando alguien que ama esta en problemas?</string>
-    <string name="challenge_5_bio_desc_1">Como reaccionaria si alguien que ama esta en problemas?</string>
-    <string name="challenge_5_bio_desc_2">Se atreveria a matar?</string>
-    <string name="challenge_5_bio_desc_3">Cree que el fin justifica los medios?</string>
-    <string name="challenge_5_bio_desc_4">Ok, si no cruzara sus propios limites, como resolveria este problema?</string>
+    <string name="challenge_5_bio_subtitle">tu personaje puede reaccionar de distintas maneras, ¿Como elige actuar cuando alguien que ama esta en problemas?</string>
+    <string name="challenge_5_bio_desc_1">¿Cómo reaccionaria si alguien que ama esta en problemas?</string>
+    <string name="challenge_5_bio_desc_2">¿Se atreveria a matar?</string>
+    <string name="challenge_5_bio_desc_3">¿Cree que el fin justifica los medios?</string>
+    <string name="challenge_5_bio_desc_4">Ok, si no cruzara sus propios limites, ¿Cómo resolveria este problema?</string>
     <!--Mentor Challenge-->
     <string name="c1_mentor_title">Desafio del Mentor</string>
     <string name="c1_mentor_desc">Conoce a tu mentor.</string>
-    <string name="c1_mentor_desc_long">Mentores son un tipo raro de personajes. No todas las historias tienen uno, pero cuando lo tienen debe ser por una buena razon.\nCual era el motivo de Yoda para ser el mentor de Luke Skywalker? Quien lo puso en un pantano esperando ser descubierto? Solo le ofrecio a Luke conocimiento o además un artefacto? Fue ese artefaco la fuente de poder de Luke? Sumergite en este desafio para conocer mejor a tu mentor.</string>
-    <string name="c1_mentor_q1">Por qué tu protagonista necesita un mentor? Por qué este en particular?</string>
-    <string name="c1_mentor_q2">Tu mentor le dara conocimiento a tu protagonista? O lo ayudara a descubrir que todo lo que necesita saber esta dentro de el mismo?</string>
-    <string name="c1_mentor_q3">El poder de tu protagonista será desbloqueado por un artefacto que le de el mentor? De ser así, cual será ese poder y cual será ese artefacto?</string>
-    <string name="c1_mentor_q4">Los mentores mueren. Como parte de cualquier cruzada dramatica, el mentor debe irse generalmente un poco antes de que el protagonista este listo. O quizás ya esta listo, pero no lo sabe. De cualquier modo, en que momento partira tu mentor? Y como?</string>
+    <string name="c1_mentor_desc_long">Mentores son un tipo raro de personajes. No todas las historias tienen uno, pero cuando lo tienen debe ser por una buena razon.\n¿Cual era el motivo de Yoda para ser el mentor de Luke Skywalker? ¿Quien lo puso en un pantano esperando ser descubierto? ¿Solo le ofrecio a Luke conocimiento o además un artefacto? ¿Fue ese artefaco la fuente de poder de Luke? Sumergite en este desafio para conocer mejor a tu mentor.</string>
+    <string name="c1_mentor_q1">¿Por qué tu protagonista necesita un mentor? ¿Por qué este en particular?</string>
+    <string name="c1_mentor_q2">¿Tu mentor le dara conocimiento a tu protagonista? ¿O lo ayudara a descubrir que todo lo que necesita saber esta dentro de el mismo?</string>
+    <string name="c1_mentor_q3">¿El poder de tu protagonista será desbloqueado por un artefacto que le de el mentor? De ser así, ¿Cual será ese poder y cual será ese artefacto?</string>
+    <string name="c1_mentor_q4">Los mentores mueren. Como parte de cualquier cruzada dramatica, el mentor debe irse generalmente un poco antes de que el protagonista este listo. O quizás ya esta listo, pero no lo sabe. De cualquier modo, ¿En que momento partira tu mentor? Y ¿Como?</string>
 
     <!--Journey Strings-->
     <string name="hero_journey_tab">El camino del héroe</string>
@@ -564,37 +564,37 @@ A veces, el héroe puede incluso perder a su mentor en esta etapa (Ejemplo: LOTR
     <!--Primer desafio-->
     <string name="challenge_1_title">Desafio I</string>
     <string name="challenge_1_desc">Desafio del ascensor</string>
-    <string name="challenge_1_desc_long">Como reaccionaria tu personaje en una crisis?\n
+    <string name="challenge_1_desc_long">¿Como reaccionaria tu personaje en una crisis?\n
     Pongamoslo en un elevador con un extraño. No importa con quien.\n
-    De pronto el ascensor se queda atascado y ambos están atrapados.\n Como reacciona? Estara calmado? Entrara en panico?
+    De pronto el ascensor se queda atascado y ambos están atrapados.\n ¿Como reacciona? ¿Estara calmado? ¿Entrara en panico?
     \nTomate tu tiempo para constar.
     \nEste ejercicio te permitira reflexionar sobre tu personaje y conocer como actua en situaciones limites.</string>
-    <string name="challenge_1_q1">Cual es su primera reaccion?</string>
-    <string name="challenge_1_q2">Esperara a ser rescatado?</string>
+    <string name="challenge_1_q1">¿Cual es su primera reaccion?</string>
+    <string name="challenge_1_q2">¿Esperara a ser rescatado?</string>
     <string name="challenge_1_q3">La persona que esta con el de pronto entra en panico. Tu personaje lo calmaria? O entraria en panico también?</string>
     <string name="challenge_1_q4">Luego de estar atrapados por mas de una hora, repentinamente una voz les habla. Hey, aquí arriba. Puedo sacar a uno, pero el otro debera esperar la ayuda…
-        \nIria tu personaje primero o dejaria a su compañero?</string>
+        \n¿Iria tu personaje primero o dejaria a su compañero?</string>
     <!--Segundo desafio-->
     <string name="challenge_2_title">Desafio II</string>
-    <string name="challenge_2_desc">Cual es la mentira?</string>
+    <string name="challenge_2_desc">¿Cual es la mentira?</string>
     <string name="challenge_2_desc_long">El arco de cambio se trata de la mentira que tu personaje cree. Su vida puede ser genial u horrenda. Pero, acechando en la superfice de su vida, ahí esta la mentira.
 Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenzar con algo que le falte en su vida, alguna razon que haga su cambio necesario.</string>
-    <string name="challenge_2_q1">Cual es el concepto errado que tiene sobre el o sobre el mundo?</string>
-    <string name="challenge_2_q2">Esta mentira hace su vida miserable cuando comienza la historia? De ser así, como?</string>
+    <string name="challenge_2_q1">¿Cual es el concepto errado que tiene sobre el o sobre el mundo?</string>
+    <string name="challenge_2_q2">¿Esta mentira hace su vida miserable cuando comienza la historia? De ser así, ¿Cómo?</string>
     <string name="challenge_2_q3">Si no fuese, durante el plot inicial vemos como su mentira lo pone incomodo?</string>
-    <string name="challenge_2_q4">Cuales son los sintomas de la mentira de tu personaje?</string>
+    <string name="challenge_2_q4">¿Cuales son los sintomas de la mentira de tu personaje?</string>
     <!--Tercer desafio-->
     <string name="challenge_3_title">Desafio III</string>
     <string name="challenge_3_desc">Historia</string>
     <string name="challenge_3_desc_long">Quien es tu personaje es muy importante, cual es su trabajo, cuales son sus pasiones, etc. Quien será en el futuro, es lo esencial de la historia, por eso la contamos. Pero entonces, que pasa con su pasado? Su pasado explica el por qué es como es. Se divorciaron sus padres? Quizás su madre era alcoholica? Puede algo de eso afectar quien será? Sumergite en este desafio para desarrollar un personaje realmente tridimensional.</string>
-    <string name="challenge_3_q1">Describe brevemente su familia mas cercana, madre, padre, hermanos?. Todos viven? Sus padres están divorciados? Fueron una familia feliz quizás?</string>
-    <string name="challenge_3_q2">Cual es su mejor recuerdo de la infancia?</string>
-    <string name="challenge_3_q3">Cual es su peor recuerdo de la infancia?</string>
-    <string name="challenge_3_q4">Tenia amigos de pequeño? Como lo describirian sus amigos? Si no tenia amigos, por que?</string>
+    <string name="challenge_3_q1">Describe brevemente su familia mas cercana, madre, padre, hermanos. ¿Todos viven? ¿Sus padres están divorciados? ¿Fueron una familia feliz quizás?</string>
+    <string name="challenge_3_q2">¿Cual es su mejor recuerdo de la infancia?</string>
+    <string name="challenge_3_q3">¿Cual es su peor recuerdo de la infancia?</string>
+    <string name="challenge_3_q4">¿Tenia amigos de pequeño? ¿Cómo lo describirian sus amigos? Si no tenia amigos, ¿Por qué?</string>
     <!--Cuarto desafio-->
     <string name="challenge_4_title">Desafio IV</string>
-    <string name="challenge_4_desc">Como luce?</string>
-    <string name="challenge_4_desc_long">Lajos Egri decia que como te ves, determina quien seras. No te parece? Imaginate que tu personaje estuvo paralizado cuando era pequeño, debido a esto pasaba sus días en la cama y jamas pudo jugar con los demas niños, por lo tanto se volco a la lectura ya que no tenia otra cosa para hacer. No crees que cuando sea un adulto esto podria afectar quien es? Quizás mas introvertido pero altamente inteligente?</string>
+    <string name="challenge_4_desc">¿Como luce?</string>
+    <string name="challenge_4_desc_long">Lajos Egri decia que como te ves, determina quien seras. ¿No te parece? Imaginate que tu personaje estuvo paralizado cuando era pequeño, debido a esto pasaba sus días en la cama y jamas pudo jugar con los demas niños, por lo tanto se volco a la lectura ya que no tenia otra cosa para hacer. No crees que cuando sea un adulto esto podria afectar quien es? Quizás mas introvertido pero altamente inteligente?</string>
     <string name="challenge_4_q1">Tomate un momento para reflexionar. Escribi cinco adjetivos que describan a tu personaje fisicamente</string>
     <string name="challenge_4_q2">Tiene alguna marca de nacimiento? Tatuajes quizás que lo hagan único? </string>
     <string name="challenge_4_q3">Alguna condicion medica? Alergias? Algo que se manifieste fisicamente incluso si pueda estar oculto debajo de su ropa?</string>
@@ -727,13 +727,13 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string-array name="antagonist_guide_array_desc">
         <item>A menudo en literatura, el antagonista es simplemente lo contrario del protagonista. Por ejemplo, si tu protagonista es alocado y explosivo, entonces el antagonista es calmado y en control de sus emociones. El contraste entre estos dos ayuda a crear momentos mas realistas y emocionantes.\n
         Pero su oposición no es meramente en las tacticas para lograr sus objetivos, sino que va mas allá y su oposición radica en lo mas pronfudo de sus naturalezas. La batalla que se gesta al comienzo de tu historia no puede ser evitada.</item>
-        <item>Por mas que sea tentador, no hagas de tu antagonista el perfecto ejemplo de la maldad. Por qué no? Porque es aburrido y poco realista. Cuantas personas has conocido en tu vida que sean puramente malvadas? Probablemente cero, aun cuando conozcas personas malas. No importa que tan mala sea una persona, siempre tiene rasgos que lo hacen humano y bondadoso.\n
+        <item>Por mas que sea tentador, no hagas de tu antagonista el perfecto ejemplo de la maldad. ¿Por qué no? Porque es aburrido y poco realista. ¿Cuantas personas has conocido en tu vida que sean puramente malvadas? Probablemente cero, aun cuando conozcas personas malas. No importa que tan mala sea una persona, siempre tiene rasgos que lo hacen humano y bondadoso.\n
         Dale a tu antagonista algunas cualidades buenas que pueda mostrar en algunas escenas o capitulos. Esto creara un fuerte contraste entre lo que hace y quien es, haciendolo mas creible y quizás hasta entendible para el espectador/lector.\n
-        Para darle mas profundidad a tu antagonista, explora su trasfondo. Fue alguna vez una buena persona? Siempre tuvo estas tendencias malvadas? Que lo hizo tan malvado? Agregarle capas de profundidad a tu antagonista haran que tu audiencía realmente crea lo que esta ocurriendo.</item>
+        Para darle mas profundidad a tu antagonista, explora su trasfondo. ¿Fue alguna vez una buena persona? ¿Siempre tuvo estas tendencias malvadas? ¿Qué lo hizo tan malvado? Agregarle capas de profundidad a tu antagonista haran que tu audiencía realmente crea lo que esta ocurriendo.</item>
         <item>No hay obra si tu antagonista no es por lo menos tan fuerte como el protagonista. De hecho, muchas obras comienza de la manera opuesta, Es el protagonista el que debe crecer y hacerse fuerte para enfrentar al ya poderoso antagonista. Fallar al tener un antagonista que este a la altura del protagonista genera falta de empatia y falta de interes en los espectadores. A nadie le interesa ver una pelea donde ya se conoce al ganador.
         A menudo es útil hacer que tu protagonista pierda algunas batallas contra el antagonista hasta que pueda madurar y crecer (Interna o externamente) para finalmente derrotarlo en la batalla final.</item>
-        <item>Cual es el objectivo de tu antagonista? Cual es el motivo para hacer tanto daño? No basta con solo explicar que toda esa maldad es producto de su naturaleza malvada. La gente no hace cosas malas solo porque si. Generalmente hay una razon para su forma de ser. Encontra la motivación de tu antagonista para hacer lo que hace y obtendras tu antagonista perfecto.\n
-        Por qué quiere la bruja mala destruir la raza humana? Quizás porque los humanos la expulsaron de su casa miles de años atras y ahora no ve mas salida que destruirlos. Esto no hace a la bruja menos malvada, pero si mas creible.</item>
+        <item>¿Cual es el objectivo de tu antagonista? ¿Cual es el motivo para hacer tanto daño? No basta con solo explicar que toda esa maldad es producto de su naturaleza malvada. La gente no hace cosas malas solo porque si. Generalmente hay una razon para su forma de ser. Encontra la motivación de tu antagonista para hacer lo que hace y obtendras tu antagonista perfecto.\n
+        ¿Por qué quiere la bruja mala destruir la raza humana? Quizás porque los humanos la expulsaron de su casa miles de años atras y ahora no ve mas salida que destruirlos. Esto no hace a la bruja menos malvada, pero si mas creible.</item>
     </string-array>
 
     <string name="weekly_challenge_title_default">Sin conexion</string>

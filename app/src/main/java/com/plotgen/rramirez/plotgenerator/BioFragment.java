@@ -96,17 +96,17 @@ public class BioFragment extends Fragment {
         String challenge2_q3 = char_description.get(20);
         String challenge2_q4 = char_description.get(21);
         //Third challenge
-        String challenge3_q1 = char_description.get(21);
-        String challenge3_q2 = char_description.get(22);
-        String challenge3_q3 = char_description.get(23);
-        String challenge3_q4 = char_description.get(24);
+        String challenge3_q1 = char_description.get(22);
+        String challenge3_q2 = char_description.get(23);
+        String challenge3_q3 = char_description.get(24);
+        String challenge3_q4 = char_description.get(25);
         //Fourth challenge
-        String challenge4_q1 = char_description.get(25);
-        String challenge4_q2 = char_description.get(26);
-        String challenge4_q3 = char_description.get(27);
-        String challenge4_q4 = char_description.get(28);
+        String challenge4_q1 = char_description.get(26);
+        String challenge4_q2 = char_description.get(27);
+        String challenge4_q3 = char_description.get(28);
+        String challenge4_q4 = char_description.get(29);
         //Fifth challenge
-        String challenge5_q1 = char_description.get(29);
+        String challenge5_q1 = char_description.get(30);
         String challenge5_q2 = char_description.get(31);
         String challenge5_q3 = char_description.get(32);
         String challenge5_q4 = char_description.get(33);

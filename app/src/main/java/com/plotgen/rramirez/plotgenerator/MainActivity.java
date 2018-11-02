@@ -75,7 +75,8 @@ public class MainActivity extends AppCompatActivity
 
         //Launch HOME first
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft .replace(R.id.flMain,new ProjectFragment());
+//        ft .replace(R.id.flMain,new ProjectFragment());
+        ft .replace(R.id.flMain,new HomeFragment());
         ft.commit();
         //Set home as selected
         navigationView.setCheckedItem(R.id.nav_char);

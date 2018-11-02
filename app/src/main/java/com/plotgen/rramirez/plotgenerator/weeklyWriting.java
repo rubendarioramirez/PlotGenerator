@@ -45,7 +45,7 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
     private String databaseToUse;
     ArrayList data_list;
     private FirebaseAnalytics mFirebaseAnalytics;
-    public int can_submit = 1;
+    public int can_submit = 0;
     private RewardedVideoAd mRewardedVideoAd;
 
 
@@ -154,7 +154,9 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
 
     private void loadRewardedVideoAd() {
         mRewardedVideoAd.loadAd(getString(R.string.reward_ad_plot_gen),
-                new AdRequest.Builder().build());
+                new AdRequest.Builder()
+                        .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
+                        .build());
     }
 
     @Override
