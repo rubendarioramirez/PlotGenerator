@@ -503,6 +503,21 @@
     <string name="c1_mentor_q2">¿Tu mentor le dara conocimiento a tu protagonista? ¿O lo ayudara a descubrir que todo lo que necesita saber esta dentro de el mismo?</string>
     <string name="c1_mentor_q3">¿El poder de tu protagonista será desbloqueado por un artefacto que le de el mentor? De ser así, ¿Cual será ese poder y cual será ese artefacto?</string>
     <string name="c1_mentor_q4">Los mentores mueren. Como parte de cualquier cruzada dramatica, el mentor debe irse generalmente un poco antes de que el protagonista este listo. O quizás ya esta listo, pero no lo sabe. De cualquier modo, ¿En que momento partira tu mentor? Y ¿Como?</string>
+    <!--Challenge I Antagonist-->
+    <string name="c1_antagonist_bio_title">Conoce a tu Antagonista.</string>
+    <string name="c1_antagonist_bio_subtitle">Los antagonistas no son la fuente del mal. En realidad tienen una mejor razon para existir.</string>
+    <string name="c1_antagonist_bio_desc_1">¿Quien es tu Antagonista?, ¿Por qué es lo exactamente opuesto a tu protagonista?</string>
+    <string name="c1_antagonist_bio_desc_2">¿Cual es su objetivo?</string>
+    <string name="c1_antagonist_bio_desc_3">¿Cuales son las tacticas que utilizara para lograr su meta?</string>
+    <string name="c1_antagonist_bio_desc_4">¿Cual es su arco de cambio?</string>
+    <!--Challenge I Sidekick-->
+    <string name="c1_sidekick_bio_title">Conoce a tu Escudero.</string>
+    <string name="c1_sidekick_bio_subtitle">¿Quien realmente es tu escudero?</string>
+    <string name="c1_sidekick_bio_desc_1">¿Por qué decidio seguir a tu protagonista?</string>
+    <string name="c1_sidekick_bio_desc_2">¿Por qué decidio adoptar los objetivos de tu protagonista?</string>
+    <string name="c1_sidekick_bio_desc_3">Herramientas, Tactias y Armas</string>
+    <string name="c1_sidekick_bio_desc_4">¿Cual es el esfuerzo último que haria para que tu protagonista cumpla su objetivo?</string>
+
 
     <!--Journey Strings-->
     <string name="hero_journey_tab">El camino del héroe</string>
@@ -607,7 +622,6 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="challenge_5_q2">Seria capaz de matar? </string>
     <string name="challenge_5_q3">Diria tu personaje que el fin justifica los medios cuando se trata de proteger a quien ama?</string>
     <string name="challenge_5_q4">Supongamos que no cruzara sus limites para salvar a alguien que quiere, sea por miedo o por valores morales. Como resolveria esta situacion sin dejar de ser quien es?</string>
-
     <!--Challenge I Mentor-->
     <string name="c1_mentor_bio_title">Conoce a tu mentor.</string>
     <string name="c1_mentor_bio_subtitle">No todos los mentores se comportan del a misma manera, ni enseñan o guian en las mismas formas. Como es el tuyo?</string>
@@ -615,8 +629,23 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="c1_mentor_bio_desc_2">Como va a guiar al protagonista?</string>
     <string name="c1_mentor_bio_desc_3">El mentor le dara un artefacto al protagonista? De ser así, cual?</string>
     <string name="c1_mentor_bio_desc_4">Cuando, durante la historia, el mentor desaparecera?</string>
-
-
+    <!--Antagonist Challenge-->
+    <string name="c1_antagonist_title">Desafio del Antagonista</string>
+    <string name="c1_antagonist_desc">Conoce a tu Antagonista.</string>
+    <string name="c1_antagonist_desc_long">Las historias son una lucha de poderes. A nadie le importan las aventuras de "Mr puedo hacer todo", si tu protagonista no se enfrenta a algún obstaculo que le impide conseguir lo que quiere, entonces no hay desafios, y sin desafios no hay crecimiento, lo cual se resume a que no hay historia. Sin embargo, agregar obstaculos solo para trabar a tu personaje tampoco es una buena idea. Completa este desafio para entender mejor, quien es tu Antagonista y por qué existe</string>
+    <string name="c1_antagonist_q1">Tu antagonista es el opuesto exacto de tu protagonista. ¿Como, de que manera?</string>
+    <string name="c1_antagonist_q2">Tu antagonista no es simplemente malvado, no quiere destruir al protagonista a menos que este se meta en su camino. Entonces, ¿Cual es el su objetivo último? ¿Qué quiere lograr?</string>
+    <string name="c1_antagonist_q3">¿Cuales son las tacticas que utilizara para obtener su objetivo?</string>
+    <string name="c1_antagonist_q4">Pensa en el arco de cambio de tu antagonista. ¿Comienza malo y terminar malo? No es un gran arco entonces, ¿No? Entonces, ¿Como es en el Acto 1 y como es en el Acto 3? ¿Cual es su cambio?</string>
+    <!--Sidekick Challenge-->
+    <string name="c1_sidekick_title">Desafio del Escudero</string>
+    <string name="c1_sidekick_desc">Conoce a tu Escudero.</string>
+    <string name="c1_sidekick_desc_long">A menudo los escuderos son subestimados, ¿Pero podria haber llegado a su destino Frodo sin Sam? Don Quijote era una personaje en si mismo, ¿Pero te lo imaginarias peleando contra los molinos sin Sancho Panza? Los escuderos tienen una razon de existir. Encuentra la razon del tuyo en este desafio.</string>
+    <string name="c1_sidekick_q1">¿Por qué tu escudero decide seguir a tu protagonista?</string>
+    <string name="c1_sidekick_q2">¿Por qué los objetivos de tu protagonista son tan fuertes que el escudero decide adoptarlos como propios?</string>
+    <string name="c1_sidekick_q3">¿Cuales son las tacticas, herramientas o armas que le provee al protagonista? ¿Como lo protegera o defendera?</string>
+    <string name="c1_sidekick_q4">Algunos escuderos tienen momentos donde deben decidir si vale la pena sacrificar sus vidas por el protagonista. ¿Es el caso del tuyo? ¿Cual es la cosa mas preciada que sacrificara por el protagonista? ¿Séra su propia vida?</string>
+    <!--Coming Soon Challenge-->
     <string name="challenge_6_title">Desafio V</string>
     <string name="challenge_6_desc">Muy pronto</string>
     <string name="challenge_6_desc_long">Actualmente estoy trabajando en mas desafios. No dudes en enviarme tus sugerencias.</string>

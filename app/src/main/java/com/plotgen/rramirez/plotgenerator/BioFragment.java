@@ -115,6 +115,16 @@ public class BioFragment extends Fragment {
         String c1_mentor_q2 = char_description.get(35);
         String c1_mentor_q3 = char_description.get(36);
         String c1_mentor_q4 = char_description.get(37);
+        //Antagonist challenge
+        String c1_antagonist_q1 = char_description.get(38);
+        String c1_antagonist_q2 = char_description.get(39);
+        String c1_antagonist_q3 = char_description.get(40);
+        String c1_antagonist_q4 = char_description.get(41);
+        //Sidekick challenge
+        String c1_sidekick_q1 = char_description.get(42);
+        String c1_sidekick_q2 = char_description.get(43);
+        String c1_sidekick_q3 = char_description.get(44);
+        String c1_sidekick_q4 = char_description.get(45);
 
 
         //Titles
@@ -147,16 +157,49 @@ public class BioFragment extends Fragment {
 
         bio_text.append(getString(R.string.notes_bio) +"<br> " +  notes );
         intro_tv.setText(Html.fromHtml(bio_text.toString()));
-        if(c1_mentor_q1 != null) {
-            StringBuffer sb=new StringBuffer();
-            sb.append("<b>" + getString(R.string.c1_mentor_bio_title) + "</b>");
-            sb.append("<br><i><b>" + getString(R.string.c1_mentor_bio_desc_1) + " " + char_name + "?" + "</b></i><br> " + c1_mentor_q1);
-            sb.append("<br><i><b>"+ getString(R.string.c1_mentor_bio_desc_2) +"</b></i><br> " + c1_mentor_q2);
-            sb.append("<br><i><b>"+ getString(R.string.c1_mentor_bio_desc_3) +"</b></i><br> " + c1_mentor_q3);
-            sb.append("<br><i><b>"+ getString(R.string.c1_mentor_bio_desc_4) +"</b></i><br> " + c1_mentor_q4);
-            char_role_challenge.setVisibility(View.VISIBLE);
-            char_role_challenge.setText(Html.fromHtml(sb.toString()));
+
+
+        switch (role){
+            case "Mentor":
+                if(c1_mentor_q1 != null) {
+                    StringBuffer sb=new StringBuffer();
+                    sb.append("<b>" + getString(R.string.c1_mentor_bio_title) + "</b>");
+                    sb.append("<br><i><b>" + getString(R.string.c1_mentor_bio_desc_1) + " " + char_name + "?" + "</b></i><br> " + c1_mentor_q1);
+                    sb.append("<br><i><b>"+ getString(R.string.c1_mentor_bio_desc_2) +"</b></i><br> " + c1_mentor_q2);
+                    sb.append("<br><i><b>"+ getString(R.string.c1_mentor_bio_desc_3) +"</b></i><br> " + c1_mentor_q3);
+                    sb.append("<br><i><b>"+ getString(R.string.c1_mentor_bio_desc_4) +"</b></i><br> " + c1_mentor_q4);
+                    char_role_challenge.setVisibility(View.VISIBLE);
+                    char_role_challenge.setText(Html.fromHtml(sb.toString()));
+                }
+                break;
+            case "Antagonist":
+            case "Antagonista":
+                if(c1_antagonist_q1 != null) {
+                    StringBuffer sb=new StringBuffer();
+                    sb.append("<b>" + getString(R.string.c1_antagonist_bio_title) + "</b>");
+                    sb.append("<br><i><b>" + getString(R.string.c1_antagonist_bio_desc_1) + "</b></i><br> " + c1_antagonist_q1);
+                    sb.append("<br><i><b>"+ getString(R.string.c1_antagonist_bio_desc_2) +"</b></i><br> " + c1_antagonist_q2);
+                    sb.append("<br><i><b>"+ getString(R.string.c1_antagonist_bio_desc_3) +"</b></i><br> " + c1_antagonist_q3);
+                    sb.append("<br><i><b>"+ getString(R.string.c1_antagonist_bio_desc_4) +"</b></i><br> " + c1_antagonist_q4);
+                    char_role_challenge.setVisibility(View.VISIBLE);
+                    char_role_challenge.setText(Html.fromHtml(sb.toString()));
+                }
+                break;
+            case "Sidekick":
+            case "Escudero":
+                if(c1_sidekick_q1 != null) {
+                    StringBuffer sb=new StringBuffer();
+                    sb.append("<b>" + getString(R.string.c1_sidekick_bio_title) + "</b>");
+                    sb.append("<br><i><b>" + getString(R.string.c1_sidekick_bio_desc_1) + "</b></i><br> " + c1_sidekick_q1);
+                    sb.append("<br><i><b>"+ getString(R.string.c1_sidekick_bio_desc_2) +"</b></i><br> " + c1_sidekick_q2);
+                    sb.append("<br><i><b>"+ getString(R.string.c1_sidekick_bio_desc_3) +"</b></i><br> " + c1_sidekick_q3);
+                    sb.append("<br><i><b>"+ getString(R.string.c1_sidekick_bio_desc_4) +"</b></i><br> " + c1_sidekick_q4);
+                    char_role_challenge.setVisibility(View.VISIBLE);
+                    char_role_challenge.setText(Html.fromHtml(sb.toString()));
+                }
+                break;
         }
+
         if(firstReaction != null) {
             StringBuffer sb=new StringBuffer();
             sb.append("<b>" + getString(R.string.challenge_1_bio_title) + "</b>");
@@ -359,8 +402,16 @@ public class BioFragment extends Fragment {
             char_list.add(cursor.getString(cursor.getColumnIndex("c1_mentor_q2")));
             char_list.add(cursor.getString(cursor.getColumnIndex("c1_mentor_q3")));
             char_list.add(cursor.getString(cursor.getColumnIndex("c1_mentor_q4")));
-
-
+            //Antagonist Challenge
+            char_list.add(cursor.getString(cursor.getColumnIndex("c1_antagonist_q1")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("c1_antagonist_q2")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("c1_antagonist_q3")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("c1_antagonist_q4")));
+            //Sidekick Challenge
+            char_list.add(cursor.getString(cursor.getColumnIndex("c1_sidekick_q1")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("c1_sidekick_q2")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("c1_sidekick_q3")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("c1_sidekick_q4")));
 
             cursor.moveToNext();
         }

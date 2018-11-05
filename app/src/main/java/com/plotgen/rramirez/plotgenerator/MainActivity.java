@@ -39,8 +39,6 @@ public class MainActivity extends AppCompatActivity
 
         //Init the ads
         MobileAds.initialize(this, getString(R.string.ad_account_id));
-        //TEST ACCOUNT
-//        MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
 
         //Interstitial
         mInterstitialAd = new InterstitialAd(this);
@@ -75,8 +73,8 @@ public class MainActivity extends AppCompatActivity
 
         //Launch HOME first
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//        ft .replace(R.id.flMain,new ProjectFragment());
-        ft .replace(R.id.flMain,new HomeFragment());
+        ft .replace(R.id.flMain,new ProjectFragment());
+//        ft .replace(R.id.flMain,new HomeFragment());
         ft.commit();
         //Set home as selected
         navigationView.setCheckedItem(R.id.nav_char);

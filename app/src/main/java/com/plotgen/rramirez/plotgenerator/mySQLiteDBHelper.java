@@ -6,8 +6,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class mySQLiteDBHelper extends SQLiteOpenHelper {
-//    private static final int DATABASE_VERSION = 6;
-    private static final int DATABASE_VERSION = 7;
+    //private static final int DATABASE_VERSION = 7; //Old version
+    private static final int DATABASE_VERSION = 8;
+
     //public static final String DATABASE_NAME = "test_database";
     public static final String DATABASE_NAME = "production_database";
     public static final String CHARACTER_TABLE_CHARACTER = "character";
@@ -20,7 +21,6 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
     public static final String PROJECT_COLUMN_PROJECT = "project";
     public static final String PROJECT_COLUMN_GENRE = "genre";
     public static final String PROJECT_COLUMN_PLOT = "plot";
-
 
     //Character BIO
     public static final String CHARACTER_COLUMN_NAME = "name";
@@ -68,6 +68,16 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
     public static final String CHARACTER_COLUMN_C1_MENTOR_Q2 = "c1_mentor_q2";
     public static final String CHARACTER_COLUMN_C1_MENTOR_Q3 = "c1_mentor_q3";
     public static final String CHARACTER_COLUMN_C1_MENTOR_Q4 = "c1_mentor_q4";
+    //Antagonist Challenge.
+    public static final String CHARACTER_COLUMN_C1_ANTAGONIST_Q1 = "c1_antagonist_q1";
+    public static final String CHARACTER_COLUMN_C1_ANTAGONIST_Q2 = "c1_antagonist_q2";
+    public static final String CHARACTER_COLUMN_C1_ANTAGONIST_Q3 = "c1_antagonist_q3";
+    public static final String CHARACTER_COLUMN_C1_ANTAGONIST_Q4 = "c1_antagonist_q4";
+    //Escudero Challenge.
+    public static final String CHARACTER_COLUMN_C1_sidekick_Q1 = "c1_sidekick_q1";
+    public static final String CHARACTER_COLUMN_C1_sidekick_Q2 = "c1_sidekick_q2";
+    public static final String CHARACTER_COLUMN_C1_sidekick_Q3 = "c1_sidekick_q3";
+    public static final String CHARACTER_COLUMN_C1_sidekick_Q4 = "c1_sidekick_q4";
 
 
     public mySQLiteDBHelper(Context context) {
@@ -118,7 +128,16 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
                 CHARACTER_COLUMN_C1_MENTOR_Q3 + " TEXT, " +
                 CHARACTER_COLUMN_C1_MENTOR_Q4 + " TEXT, " +
                 CHARACTER_COLUMN_PROJECT_ID + " TEXT, " +
-                CHARACTER_COLUMN_PHRASE + " TEXT " +")");
+                CHARACTER_COLUMN_PHRASE + " TEXT, " +
+                CHARACTER_COLUMN_C1_ANTAGONIST_Q1 + " TEXT, " +
+                CHARACTER_COLUMN_C1_ANTAGONIST_Q2 + " TEXT, " +
+                CHARACTER_COLUMN_C1_ANTAGONIST_Q3 + " TEXT, " +
+                CHARACTER_COLUMN_C1_ANTAGONIST_Q4 + " TEXT, " +
+                CHARACTER_COLUMN_C1_sidekick_Q1 + " TEXT, " +
+                CHARACTER_COLUMN_C1_sidekick_Q2 + " TEXT, " +
+                CHARACTER_COLUMN_C1_sidekick_Q3 + " TEXT, " +
+                CHARACTER_COLUMN_C1_sidekick_Q4 + " TEXT " +
+                ")");
 
         sqLiteDatabase.execSQL("CREATE TABLE " + CHARACTER_TABLE_PROJECT + " (" +
                 PROJECT_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -131,22 +150,22 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         switch(i1) {
-            case 5:
-                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_3_q1 TEXT");
-                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_3_q2 TEXT");
-                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_3_q3 TEXT");
-                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_3_q4 TEXT");
-                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_4_q1 TEXT");
-                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_4_q2 TEXT");
-                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_4_q3 TEXT");
-                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_4_q4 TEXT");
-
+//            case 5:
+//                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_3_q1 TEXT");
+//                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_3_q2 TEXT");
+//                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_3_q3 TEXT");
+//                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_3_q4 TEXT");
+//                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_4_q1 TEXT");
+//                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_4_q2 TEXT");
+//                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_4_q3 TEXT");
+//                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_4_q4 TEXT");
+//                break;
             case 6:
                 sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_5_q1 TEXT");
                 sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_5_q2 TEXT");
                 sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_5_q3 TEXT");
                 sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_5_q4 TEXT");
-
+                break;
             case 7:
                 //Project columns
                 sqLiteDatabase.execSQL("ALTER TABLE projectname ADD COLUMN genre TEXT");
@@ -158,7 +177,18 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
                 sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN c1_mentor_q4 TEXT");
                 sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN project_id TEXT");
                 sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN phrase TEXT");
-
+                break;
+            case 8:
+                //Character columns
+                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN c1_antagonist_q1 TEXT");
+                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN c1_antagonist_q2 TEXT");
+                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN c1_antagonist_q3 TEXT");
+                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN c1_antagonist_q4 TEXT");
+                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN c1_sidekick_q1 TEXT");
+                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN c1_sidekick_q2 TEXT");
+                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN c1_sidekick_q3 TEXT");
+                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN c1_sidekick_q4 TEXT");
+                break;
         }
 
     }

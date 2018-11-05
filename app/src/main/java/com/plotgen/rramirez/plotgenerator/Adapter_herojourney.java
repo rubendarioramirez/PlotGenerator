@@ -12,6 +12,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.reward.RewardItem;
+import com.google.android.gms.ads.reward.RewardedVideoAd;
+import com.google.android.gms.ads.reward.RewardedVideoAdListener;
+
 import java.util.List;
 
 /**
@@ -20,10 +26,12 @@ import java.util.List;
 
 
 
-public class Adapter_herojourney extends RecyclerView.Adapter<Adapter_herojourney.myViewHolder_heroJourney> {
+public class Adapter_herojourney extends RecyclerView.Adapter<Adapter_herojourney.myViewHolder_heroJourney> implements RewardedVideoAdListener {
 
     Context mContext;
     List<item_herojourney> mData;
+    public int challenge_unlock = 0;
+    private RewardedVideoAd mRewardedVideoAd;
 
     public Adapter_herojourney(Context mContext, List<item_herojourney> mData) {
         this.mContext = mContext;
@@ -36,6 +44,11 @@ public class Adapter_herojourney extends RecyclerView.Adapter<Adapter_herojourne
     public myViewHolder_heroJourney onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View v = inflater.inflate(R.layout.hero_jouney_card_item, parent, false);
+
+        //Rewarded ad
+        mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(mContext);
+        mRewardedVideoAd.setRewardedVideoAdListener(this);
+        loadRewardedVideoAd(mContext);
 
         return new Adapter_herojourney.myViewHolder_heroJourney(v, mContext,mData);
     }
@@ -81,101 +94,39 @@ public class Adapter_herojourney extends RecyclerView.Adapter<Adapter_herojourne
             String charName = mData.get(getAdapterPosition()).getHerojourneyChar();
             String projectName = mData.get(getAdapterPosition()).getHerojourneyProject();
             if(clicked.equals("Challenge I") || clicked.equals("Desafio I")){
-                //Send it to the next fragment
-                Bundle bundle = new Bundle();
-                bundle.putString("char_name",charName);
-                bundle.putString("project_name",projectName);
-                bundle.putString("challenge_number",clicked.toString());
-                //Send it to the next fragment
-                ChallengeTemplateFragment nextFragment = new ChallengeTemplateFragment();
-                nextFragment.setArguments(bundle);
-                //Make the transaction
-                AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-                transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
-                transaction.addToBackStack(null);
-                transaction.replace(R.id.flMain,nextFragment);
-                transaction.commit();
+                nextFragment(mContext,charName,projectName,clicked);
             } else if (clicked.equals("Challenge II") || clicked.equals("Desafio II")){
-                //Send it to the next fragment
-                Bundle bundle = new Bundle();
-                bundle.putString("char_name",charName);
-                bundle.putString("project_name",projectName);
-                bundle.putString("challenge_number",clicked.toString());
-                //Send it to the next fragment
-                ChallengeTemplateFragment nextFragment = new ChallengeTemplateFragment();
-                nextFragment.setArguments(bundle);
-                //Make the transaction
-                AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-                transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
-                transaction.addToBackStack(null);
-                transaction.replace(R.id.flMain,nextFragment);
-                transaction.commit();
+                nextFragment(mContext,charName,projectName,clicked);
             } else if (clicked.equals("Challenge III") || clicked.equals("Desafio III")){
-                //Send it to the next fragment
-                Bundle bundle = new Bundle();
-                bundle.putString("char_name",charName);
-                bundle.putString("project_name",projectName);
-                bundle.putString("challenge_number",clicked.toString());
-                //Send it to the next fragment
-                ChallengeTemplateFragment nextFragment = new ChallengeTemplateFragment();
-                nextFragment.setArguments(bundle);
-                //Make the transaction
-                AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-                transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
-                transaction.addToBackStack(null);
-                transaction.replace(R.id.flMain,nextFragment);
-                transaction.commit();
+                nextFragment(mContext,charName,projectName,clicked);
             } else if (clicked.equals("Challenge IV") || clicked.equals("Desafio IV")){
-                    //Send it to the next fragment
-                    Bundle bundle = new Bundle();
-                    bundle.putString("char_name",charName);
-                    bundle.putString("project_name",projectName);
-                    bundle.putString("challenge_number",clicked.toString());
-                    //Send it to the next fragment
-                    ChallengeTemplateFragment nextFragment = new ChallengeTemplateFragment();
-                    nextFragment.setArguments(bundle);
-                    //Make the transaction
-                    AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                    FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-                    transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
-                    transaction.addToBackStack(null);
-                    transaction.replace(R.id.flMain,nextFragment);
-                    transaction.commit();
+                nextFragment(mContext,charName,projectName,clicked);
             }  else if (clicked.equals("Challenge V") || clicked.equals("Desafio V")) {
-                //Send it to the next fragment
-                Bundle bundle = new Bundle();
-                bundle.putString("char_name", charName);
-                bundle.putString("project_name", projectName);
-                bundle.putString("challenge_number", clicked.toString());
-                //Send it to the next fragment
-                ChallengeTemplateFragment nextFragment = new ChallengeTemplateFragment();
-                nextFragment.setArguments(bundle);
-                //Make the transaction
-                AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-                transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
-                transaction.addToBackStack(null);
-                transaction.replace(R.id.flMain, nextFragment);
-                transaction.commit();
+                nextFragment(mContext,charName,projectName,clicked);
             }  else if (clicked.equals("Mentor Challenge") || clicked.equals("Desafio del Mentor")) {
-                //Send it to the next fragment
-                Bundle bundle = new Bundle();
-                bundle.putString("char_name", charName);
-                bundle.putString("project_name", projectName);
-                bundle.putString("challenge_number", clicked.toString());
-                //Send it to the next fragment
-                ChallengeTemplateFragment nextFragment = new ChallengeTemplateFragment();
-                nextFragment.setArguments(bundle);
-                //Make the transaction
-                AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-                transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
-                transaction.addToBackStack(null);
-                transaction.replace(R.id.flMain, nextFragment);
-                transaction.commit();
+                if(challenge_unlock == 0){
+                    if (mRewardedVideoAd.isLoaded()) {
+                        mRewardedVideoAd.show();
+                    }
+                }else {
+                    nextFragment(mContext,charName,projectName,clicked);
+                }
+            }else if (clicked.equals("Antagonist Challenge") || clicked.equals("Desafio del Antagonista")) {
+                if(challenge_unlock == 0){
+                    if (mRewardedVideoAd.isLoaded()) {
+                        mRewardedVideoAd.show();
+                    }
+                }else {
+                    nextFragment(mContext,charName,projectName,clicked);
+                }
+            }else if (clicked.equals("Sidekick Challenge") || clicked.equals("Desafio del Escudero")) {
+                if(challenge_unlock == 0){
+                    if (mRewardedVideoAd.isLoaded()) {
+                        mRewardedVideoAd.show();
+                    }
+                }else {
+                    nextFragment(mContext,charName,projectName,clicked);
+                }
             }
             else if (clicked.equals("Typical Character Roles") || clicked.equals("Roles de personajes tipicos")){
                     //Send it to the next fragment
@@ -223,4 +174,70 @@ public class Adapter_herojourney extends RecyclerView.Adapter<Adapter_herojourne
 
         }
     }
+
+    public void nextFragment(Context context, String charName,String projectName,String clicked){
+        Bundle bundle = new Bundle();
+        bundle.putString("char_name",charName);
+        bundle.putString("project_name",projectName);
+        bundle.putString("challenge_number",clicked);
+        //Send it to the next fragment
+        ChallengeTemplateFragment nextFragment = new ChallengeTemplateFragment();
+        nextFragment.setArguments(bundle);
+        //Make the transaction
+        AppCompatActivity activity = (AppCompatActivity) context;
+        FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
+        transaction.addToBackStack(null);
+        transaction.replace(R.id.flMain, nextFragment);
+        transaction.commit();
+        }
+
+    private void loadRewardedVideoAd(Context mContext) {
+        mRewardedVideoAd.loadAd(mContext.getString(R.string.reward_ad_challenge),
+                new AdRequest.Builder()
+                        .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
+                        .build());
+    }
+
+    @Override
+    public void onRewardedVideoAdLoaded() {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdOpened() {
+
+    }
+
+    @Override
+    public void onRewardedVideoStarted() {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdClosed() {
+        loadRewardedVideoAd(mContext);
+    }
+
+    @Override
+    public void onRewarded(RewardItem rewardItem) {
+        //Get the reward
+        challenge_unlock = 1;
+    }
+
+    @Override
+    public void onRewardedVideoAdLeftApplication() {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdFailedToLoad(int i) {
+
+    }
+
+    @Override
+    public void onRewardedVideoCompleted() {
+
+    }
+
 }

@@ -9,10 +9,10 @@
 
     <string name="ad_account_id" translatable="false">ca-app-pub-6696437403163667~6953226633</string>
     <string name="banner_ad_unit_id" translatable="false">ca-app-pub-6696437403163667/5982516625</string>
-    <!--<string name="banner_ad_unit_id" translatable="false">ca-app-pub-6493977652279663/5728506734</string>-->
 
     <string name="interstitial_plot_gen" translatable="false">ca-app-pub-6696437403163667/3046586854</string>
     <string name="reward_ad_plot_gen" translatable="false">ca-app-pub-6696437403163667/2030936311</string>
+    <string name="reward_ad_challenge" translatable="false">ca-app-pub-6696437403163667/6917012049</string>
 
     <string name="trigger_tab">Writing Prompts</string>
     <string-array name="triggers_list" tools:ignore="InconsistentArrays">
@@ -180,6 +180,21 @@
     <string name="c1_mentor_bio_desc_2">How he will mentor the protagonist?</string>
     <string name="c1_mentor_bio_desc_3">Will the mentor give an artifact? Which one?</string>
     <string name="c1_mentor_bio_desc_4">When during your story the mentor will depart?</string>
+    <!--Challenge I Antagonist-->
+    <string name="c1_antagonist_bio_title">Know your Antagonist.</string>
+    <string name="c1_antagonist_bio_subtitle">Antagonist are not just the source of all evil. They actually have a reason to exist</string>
+    <string name="c1_antagonist_bio_desc_1">How is the Antagonist the exact opposite of your Protagonist?</string>
+    <string name="c1_antagonist_bio_desc_2">What\'s his/her goal?</string>
+    <string name="c1_antagonist_bio_desc_3">What are the tactics he/she uses to reach his/her goals?</string>
+    <string name="c1_antagonist_bio_desc_4">What about the change arc?</string>
+    <!--Challenge I Sidekick-->
+    <string name="c1_sidekick_bio_title">Know your Sidekick.</string>
+    <string name="c1_sidekick_bio_subtitle">Who really is your sidekick?</string>
+    <string name="c1_sidekick_bio_desc_1">Why he/she decided to follow your protagonist?</string>
+    <string name="c1_sidekick_bio_desc_2">Why he/she decided to pursue the protagonist goals?</string>
+    <string name="c1_sidekick_bio_desc_3">Tools, Tactics, Weapons</string>
+    <string name="c1_sidekick_bio_desc_4">What\'s the ultimate effort your sidekick will do for your protagonist?</string>
+
 
     <string name="add_character_btn">Add Character</string>
     <string name="delete_character_btn">Are you sure you want to delete this character?</string>
@@ -618,8 +633,6 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="challenge_5_q2">Will he be able to kill? </string>
     <string name="challenge_5_q3">Will your character say that the end justify the means when it\'s about protecting a loved one?</string>
     <string name="challenge_5_q4">Let\'s says he doesn\'t dare to cross his own limits to save the life a person he cares. What within his limits/boundaries will he do to solve the situation?</string>
-
-
     <!--Mentor Challenge-->
     <string name="c1_mentor_title">Mentor Challenge</string>
     <string name="c1_mentor_desc">Know your mentor.</string>
@@ -628,6 +641,22 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="c1_mentor_q2">Will the mentor give knowledge to the protagonist? Or he will help him to discover himself?</string>
     <string name="c1_mentor_q3">Will your protagonist power be unlocked by an artifact given by the mentor? If so, which power and which artifact?</string>
     <string name="c1_mentor_q4">Mentors die. As part of any dramatic journey, the mentor usually has to go a bit before the protagonist is actually ready. Or perhaps he is but he doesn\'t know it yet.\nAt which moment your mentor will leave or die? How will that be?</string>
+    <!--Antagonist Challenge-->
+    <string name="c1_antagonist_title">Antagonist Challenge</string>
+    <string name="c1_antagonist_desc">Know your Antagonist.</string>
+    <string name="c1_antagonist_desc_long">Stories are a power play. Nobody cares about the journey of "Mr I can do everything", if your protagonist is not facing some sort of obstacle that prevent him to get what he wants, then there is no challenge, and no challenge means no growth, which resumes to no story at all. However just adding obstacles for the sake of story is not a good practice either. Dig in to understand better who your antagonist really is, and what\'s his real role on your story</string>
+    <string name="c1_antagonist_q1">The antagonist is the exact opposite of your protagonist. How in this case?</string>
+    <string name="c1_antagonist_q2">Your Antagonist is not just evil, he doesn\'t want to destroy the protagonist, unless this one gets on his way. So what is your Antagonist\'s ultimate goal?</string>
+    <string name="c1_antagonist_q3">What are the tactics he uses to reach his goals?</string>
+    <string name="c1_antagonist_q4">Think about the arc of change of your Antagonist. Does he start bad and ends bad? Not a great arc, then no? So how he is in Act 1, how he is in Act 3?</string>
+    <!--Sidekick Challenge-->
+    <string name="c1_sidekick_title">Sidekick Challenge</string>
+    <string name="c1_sidekick_desc">Know your Sidekick.</string>
+    <string name="c1_sidekick_desc_long">Sidekicks are often underestimated, But could Frodo reach his goal without Sam? Don Quixote was a complete character on his own, but can you imagine him fighting the windmills without Sancho Panza? Sidekicks have a reason to exist. Find your sidekick reason on this challenge.</string>
+    <string name="c1_sidekick_q1">Why your sidekick decides to follow your protagonist?</string>
+    <string name="c1_sidekick_q2">Why the goals of your protagonist are so strong that your sidekick decides to pursue them as well?</string>
+    <string name="c1_sidekick_q3">What are the tools, tactics or weapons that your sidekick provides to your protagonist? How he protects him or defend him?</string>
+    <string name="c1_sidekick_q4">Some sidekicks had a moment when they have to decide, if the protagonist worth their own lives. What\'s the case in yours? What\'s the most precious thing your sidekick will risk for your protagonist? Will be his life?</string>
     <!--Coming soon challenge-->
     <string name="challenge_6_title">Challenge VI</string>
     <string name="challenge_6_desc">Coming soon</string>

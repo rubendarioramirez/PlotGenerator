@@ -7,14 +7,10 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
-
-import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
@@ -22,12 +18,13 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ChallengeTemplateFragment extends Fragment {
+public class ChallengeTemplateFragment extends Fragment  {
 
 
     TextView charTemplateTitle, question1Title, question1, question2Title, question2, question3Title, question3, question4Title, question4;
     private AdView mAdView;
     private FirebaseAnalytics mFirebaseAnalytics;
+
 
     public ChallengeTemplateFragment() {
         // Required empty public constructor
@@ -97,6 +94,16 @@ public class ChallengeTemplateFragment extends Fragment {
             question2Title.setText(getString(R.string.c1_mentor_q2));
             question3Title.setText(getString(R.string.c1_mentor_q3));
             question4Title.setText(getString(R.string.c1_mentor_q4));
+        } else if(challenge_number.equals("Antagonist Challenge") || challenge_number.equals("Desafio del Antagonista")){
+            question1Title.setText(getString(R.string.c1_antagonist_q1));
+            question2Title.setText(getString(R.string.c1_antagonist_q2));
+            question3Title.setText(getString(R.string.c1_antagonist_q3));
+            question4Title.setText(getString(R.string.c1_antagonist_q4));
+        }else if(challenge_number.equals("Sidekick Challenge") || challenge_number.equals("Desafio del Escudero")){
+            question1Title.setText(getString(R.string.c1_sidekick_q1));
+            question2Title.setText(getString(R.string.c1_sidekick_q2));
+            question3Title.setText(getString(R.string.c1_sidekick_q3));
+            question4Title.setText(getString(R.string.c1_sidekick_q4));
         }
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -154,6 +161,16 @@ public class ChallengeTemplateFragment extends Fragment {
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_MENTOR_Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_MENTOR_Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_MENTOR_Q4, question4.getText().toString());
+        } else if(challenge_number.equals("Antagonist Challenge") || challenge_number.equals("Desafio del Antagonista")){
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_ANTAGONIST_Q1, question1.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_ANTAGONIST_Q2, question2.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_ANTAGONIST_Q3, question3.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_ANTAGONIST_Q4, question4.getText().toString());
+        }else if(challenge_number.equals("Sidekick Challenge") || challenge_number.equals("Desafio del Escudero")){
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_sidekick_Q1, question1.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_sidekick_Q2, question2.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_sidekick_Q3, question3.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_sidekick_Q4, question4.getText().toString());
         }
 
         database.update(mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER, values,   "name = ?", new String[]{char_name});

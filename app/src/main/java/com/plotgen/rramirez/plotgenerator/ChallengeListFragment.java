@@ -3,16 +3,13 @@ package com.plotgen.rramirez.plotgenerator;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-
-import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.reward.RewardedVideoAd;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,9 +22,9 @@ public class ChallengeListFragment extends Fragment {
 
     List<item_herojourney> mlist = new ArrayList<>();
     private AdView mAdView;
+    public int challenge_unlocked = 0;
+    private RewardedVideoAd mRewardedVideoAd;
 
-
-    //    TODO DETECT THE GENRE AND LOAD ONLY CHALLENGE FOR THAT TYPE OF GENRE.
     public ChallengeListFragment() {
         // Required empty public constructor
     }
@@ -54,13 +51,13 @@ public class ChallengeListFragment extends Fragment {
             case "Mentor":
                 mlist.add(new item_herojourney(R.drawable.typewriter, getString(R.string.c1_mentor_title), getString(R.string.c1_mentor_desc), getString(R.string.c1_mentor_desc_long),(String) char_name, (String) project_name));
                 break;
-            case "Protagonist":
-            case "Protagonista":
-//                mlist.add(new item_herojourney(R.drawable.typewriter, "Protagonista Challenge", (String) getString(R.string.challenge_6_desc), (String) getString(R.string.challenge_6_desc_long),(String) char_name, (String) project_name));
+            case "Sidekick":
+            case "Escudero":
+                mlist.add(new item_herojourney(R.drawable.typewriter, getString(R.string.c1_sidekick_title), getString(R.string.c1_sidekick_desc), getString(R.string.c1_sidekick_desc_long), char_name, project_name));
                 break;
             case "Antagonist":
             case "Antagonista":
-//                mlist.add(new item_herojourney(R.drawable.typewriter, "Antagonista Challenge", (String) getString(R.string.challenge_6_desc), (String) getString(R.string.challenge_6_desc_long),(String) char_name, (String) project_name));
+                mlist.add(new item_herojourney(R.drawable.typewriter, getString(R.string.c1_antagonist_title), getString(R.string.c1_antagonist_desc), getString(R.string.c1_antagonist_desc_long), char_name, project_name));
                 break;
         }
         //Generic list
