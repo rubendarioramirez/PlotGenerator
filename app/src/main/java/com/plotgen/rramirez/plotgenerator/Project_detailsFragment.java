@@ -69,11 +69,20 @@ public class Project_detailsFragment extends Fragment {
         if(project_name_text != ""){
             //Update mode
             ArrayList<String> project_list_array = Utils.getProject(this.getContext(), project_name_text);
-            project_name_et.setText(project_list_array.get(0));
-            project_name_et.setEnabled(false);
-            project_plot_et.setText(project_list_array.get(2));
-            //TODO UPDATE THE SPINNER IN THE SAME POSITION
-            updateMode = true;
+            if(project_list_array != null && !project_list_array.isEmpty()) {
+                project_name_et.setText(project_list_array.get(0));
+                project_name_et.setEnabled(false);
+                project_plot_et.setText(project_list_array.get(2));
+                //TODO UPDATE THE SPINNER IN THE SAME POSITION
+                updateMode = true;
+            }
+            else
+            {
+                //make it back to project
+                ProjectFragment nextFragment = new ProjectFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                Utils.changeFragment(nextFragment, transaction, "", "");
+            }
         } else {
             updateMode = false;
         }

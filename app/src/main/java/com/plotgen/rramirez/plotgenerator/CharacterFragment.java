@@ -64,8 +64,8 @@ public class CharacterFragment extends Fragment {
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(myFragmentView.getContext());
         try{
             final String project_info = this.getArguments().getString("project_info");
-            project_name = project_info.split("_")[1];
-            project_id = project_info.split("_")[0];
+            project_name = project_info.substring(2);
+            project_id = String.valueOf(project_info.charAt(0));
         } catch (Exception e) {
 
         }

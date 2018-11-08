@@ -46,9 +46,12 @@ public class ProjectFragment extends Fragment {
         projects_ids = new ArrayList<String>();
 
         project_list_array = Utils.getProjects_list(myFragmentView.getContext());
+        if(project_list_array != null && !project_list_array.isEmpty())
         for (int i=0;i<project_list_array.size();i++) {
-            project_names.add(project_list_array.get(i).split("_")[1]);
-            projects_ids.add(project_list_array.get(i).split("_")[0]);
+            if(!project_list_array.get(i).isEmpty()) {
+                projects_ids.add(String.valueOf(project_list_array.get(i).charAt(0)));
+                project_names.add(project_list_array.get(i).substring(2));
+            }
         }
 
         itemsAdapter = new ArrayAdapter<String>(myFragmentView.getContext(), android.R.layout.simple_list_item_1, project_names);

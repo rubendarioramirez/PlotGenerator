@@ -57,8 +57,8 @@ public class CharListFragment extends Fragment {
         ((MainActivity)getActivity()).setActionBarTitle(getString(R.string.character_list_tab));
         //Get the data from the previous fragment
         project_info = this.getArguments().getString("project_info");
-        final String project_name_text = project_info.split("_")[1];
-        final String project_id = project_info.split("_")[0];
+        final String project_name_text = project_info.substring(2);
+        final String project_id = String.valueOf(project_info.charAt(0));
 
         final View myFragmentView =   inflater.inflate(R.layout.fragment_char_list, container, false);
 
