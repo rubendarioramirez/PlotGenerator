@@ -71,7 +71,6 @@ public class CharListFragment extends Fragment {
 
 //      project_list_array = Utils.getCharList(myFragmentView.getContext(), project_id); TO SEARCH BY PROJECT ID
         char_list_array = Utils.getCharList(myFragmentView.getContext(), project_name_text);
-        Log.v("matilda",project_name_text);
 
         project_list_tv.setText(project_name_text);
 

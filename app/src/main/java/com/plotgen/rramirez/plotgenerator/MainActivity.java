@@ -43,7 +43,9 @@ public class MainActivity extends AppCompatActivity
         //Interstitial
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId(getString(R.string.interstitial_plot_gen));
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        mInterstitialAd.loadAd(new AdRequest.Builder()
+                .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
+                .build());
         mInterstitialAd.setAdListener(new AdListener() {
             @Override
             public void onAdClosed() {
@@ -51,7 +53,6 @@ public class MainActivity extends AppCompatActivity
                 mInterstitialAd.loadAd(new AdRequest.Builder()
                         .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
                         .build());
-
             }
 
         });
@@ -182,10 +183,5 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-
-//    @Override
-//    public void onRewarded(RewardItem rewardItem) {
-//        Utils.saveOnSharePreg(getApplicationContext(),"weekly_challenge_visit",rewardItem.getAmount());
-//    }
 
 }

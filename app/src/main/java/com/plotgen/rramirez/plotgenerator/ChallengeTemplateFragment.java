@@ -7,11 +7,17 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 
@@ -22,9 +28,8 @@ public class ChallengeTemplateFragment extends Fragment  {
 
 
     TextView charTemplateTitle, question1Title, question1, question2Title, question2, question3Title, question3, question4Title, question4;
-    private AdView mAdView;
     private FirebaseAnalytics mFirebaseAnalytics;
-
+    private InterstitialAd mInterstitialAd_challenge;
 
     public ChallengeTemplateFragment() {
         // Required empty public constructor
@@ -119,10 +124,20 @@ public class ChallengeTemplateFragment extends Fragment  {
             }
         });
 
+        //Interstitial
+        mInterstitialAd_challenge = new InterstitialAd(this.getContext());
+        mInterstitialAd_challenge.setAdUnitId(getString(R.string.interstitial_plot_gen));
+        mInterstitialAd_challenge.loadAd(new AdRequest.Builder()
+                .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
+                .build());
+        mInterstitialAd_challenge.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                mInterstitialAd_challenge.show();
+            }
 
-        //Init the ad
-        mAdView = (AdView) myFragmentView.findViewById(R.id.adView_challenge_template);
-        Utils.loadAd(mAdView);
+        });
 
         return myFragmentView;
     }
