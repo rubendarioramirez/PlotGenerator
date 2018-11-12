@@ -4,7 +4,9 @@ package com.plotgen.rramirez.plotgenerator;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,7 +15,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.firebase.ui.auth.AuthUI;
+import com.firebase.ui.auth.ErrorCodes;
+import com.firebase.ui.auth.IdpResponse;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -26,12 +32,15 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.plotgen.rramirez.plotgenerator.Fragment.ProfileFragment;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
+import static android.app.Activity.RESULT_OK;
 import static android.content.ContentValues.TAG;
 
 
@@ -45,8 +54,10 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
     private String databaseToUse;
     ArrayList data_list;
     private FirebaseAnalytics mFirebaseAnalytics;
-    public int can_submit = 0;
+    public int can_submit = 1;
     private RewardedVideoAd mRewardedVideoAd;
+
+    private static final int RC_SIGN_IN = 123;
 
 
     public weeklyWriting() {
@@ -128,7 +139,7 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
             @Override
             public void onClick(View view) {
                 if(can_submit == 1){
-                    Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                    /*Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                             "mailto","ramirez.ruben.dario10@gmail.com", null));
                     emailIntent.putExtra(Intent.EXTRA_SUBJECT,
                             title.getText().toString() + " - " + getString(R.string.writing_challenge_tab)
@@ -139,6 +150,15 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
 
                         );
                     startActivity(Intent.createChooser(emailIntent, "Send your story by email to me..."));
+                    */
+                    startActivityForResult(
+                            AuthUI.getInstance()
+                                    .createSignInIntentBuilder()
+                                    .setAvailableProviders(Arrays.asList(
+                                            new AuthUI.IdpConfig.GoogleBuilder().build()))
+                                    .setIsSmartLockEnabled(false)
+                                    .build(),
+                            RC_SIGN_IN);
                 } else{
                     if (mRewardedVideoAd.isLoaded()) {
                         mRewardedVideoAd.show();
@@ -150,6 +170,36 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
 
 
         return myFragmentView;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // RC_SIGN_IN is the request code you passed into startActivityForResult(...) when starting the sign in flow.
+        if (requestCode == RC_SIGN_IN) {
+            IdpResponse response = IdpResponse.fromResultIntent(data);
+
+            // Successfully signed in
+            if (resultCode == RESULT_OK) {
+                //
+                // change to profile fragment in main activity
+            } else {
+                // Sign in failed
+                if (response == null) {
+                    // User pressed back button
+                    Toast.makeText(getContext(),"eeeh kepencet back eeeh",Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                if (response.getError().getErrorCode() == ErrorCodes.NO_NETWORK) {
+                    Toast.makeText(getContext(),"duh ga ada internet nih",Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                Toast.makeText(getContext(),"nyong ra ngerti kie error opo",Toast.LENGTH_LONG).show();
+                Log.e(TAG, "Sign-in error: ", response.getError());
+            }
+        }
     }
 
     private void loadRewardedVideoAd() {

@@ -2,6 +2,7 @@ package com.plotgen.rramirez.plotgenerator;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -21,6 +22,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import java.util.Random;
 import com.google.android.gms.ads.MobileAds;
+import com.plotgen.rramirez.plotgenerator.Fragment.ProfileFragment;
 
 
 public class MainActivity extends AppCompatActivity
@@ -28,6 +30,8 @@ public class MainActivity extends AppCompatActivity
 
     private InterstitialAd mInterstitialAd;
     private FirebaseAnalytics mFirebaseAnalytics;
+
+    NavigationView navigationView;
 
 
     @Override
@@ -53,6 +57,7 @@ public class MainActivity extends AppCompatActivity
                 mInterstitialAd.loadAd(new AdRequest.Builder()
                         .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
                         .build());
+
             }
 
         });
@@ -69,7 +74,7 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         //Launch HOME first
@@ -150,6 +155,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        String title = item.getTitle().toString();
         if (id == R.id.nav_genre) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft .replace(R.id.flMain,new HeroJourneyFragment());
@@ -172,16 +178,33 @@ public class MainActivity extends AppCompatActivity
             ft .replace(R.id.flMain,new weeklyWriting());
             mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
             ft.commit();
-
-            }
-
-
-
+        }
+        else if(title.equals("My Profile")) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft .replace(R.id.flMain,new ProfileFragment());
+            mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
+            ft.commit();
+            navigationView.setCheckedItem(item.getItemId());
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Menu menu = navigationView.getMenu();
+        menu.add("My Profile");
+        menu.getItem(menu.size()-1).setIcon(R.drawable.writer_icon);
+        onNavigationItemSelected(menu.getItem(menu.size()-1));
+    }
+
+//    @Override
+//    public void onRewarded(RewardItem rewardItem) {
+//        Utils.saveOnSharePreg(getApplicationContext(),"weekly_challenge_visit",rewardItem.getAmount());
+//    }
 
 }
