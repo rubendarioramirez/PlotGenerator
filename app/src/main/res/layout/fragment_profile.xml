@@ -96,14 +96,14 @@
                 android:orientation="horizontal">
 
                 <com.rengwuxian.materialedittext.MaterialEditText
-                    android:id="@+id/txtUid"
+                    android:id="@+id/txtProjectsCreated"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ellipsize="end"
                     android:ems="10"
-                    android:hint="Uid"
-                    app:met_floatingLabelText="Uid"
+                    android:hint="Projects Created"
+                    app:met_floatingLabelText="Projects Created"
                     app:met_floatingLabel="highlight"
                     android:inputType="textMultiLine"
                     android:maxLines="3"
@@ -123,14 +123,14 @@
                 android:orientation="horizontal">
 
                 <com.rengwuxian.materialedittext.MaterialEditText
-                    android:id="@+id/txtUrlPhoto"
+                    android:id="@+id/txtCharCreated"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ellipsize="end"
                     android:ems="10"
-                    android:hint="Photo Url"
-                    app:met_floatingLabelText="Photo Url"
+                    android:hint="Characters Created"
+                    app:met_floatingLabelText="Characters Created"
                     app:met_floatingLabel="highlight"
                     android:inputType="textMultiLine"
                     android:maxLines="3"

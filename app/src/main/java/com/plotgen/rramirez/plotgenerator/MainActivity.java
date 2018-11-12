@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentTransaction;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,6 +16,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.InterstitialAd;
@@ -22,6 +25,9 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import java.util.Random;
 import com.google.android.gms.ads.MobileAds;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Fragment.ProfileFragment;
 
 
@@ -32,6 +38,9 @@ public class MainActivity extends AppCompatActivity
     private FirebaseAnalytics mFirebaseAnalytics;
 
     NavigationView navigationView;
+
+    private FirebaseAuth mAuth;
+    private FirebaseUser mUser;
 
 
     @Override
@@ -62,7 +71,8 @@ public class MainActivity extends AppCompatActivity
 
         });
 
-
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
 
         // Obtain the FirebaseAnalytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
@@ -100,7 +110,23 @@ public class MainActivity extends AppCompatActivity
 
         }
 
+        mAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                updateUI();
+            }
+        });
 
+        updateUI();
+
+
+    }
+
+    public void updateUI() {
+        if(mAuth.getCurrentUser() != null)
+            Common.isProfileUnlocked = true;
+        else
+            Common.isProfileUnlocked = false;
     }
 
     @Override
@@ -179,12 +205,16 @@ public class MainActivity extends AppCompatActivity
             mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
             ft.commit();
         }
-        else if(title.equals("My Profile")) {
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft .replace(R.id.flMain,new ProfileFragment());
-            mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
-            ft.commit();
-            navigationView.setCheckedItem(item.getItemId());
+        else if(id == R.id.nav_profile) {
+            if(Common.isProfileUnlocked) {
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.flMain, new ProfileFragment());
+                mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
+                ft.commit();
+            }
+            else {
+                Toast.makeText(this,"Profile locked!",Toast.LENGTH_LONG).show();
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -196,13 +226,15 @@ public class MainActivity extends AppCompatActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        updateUI();
+
         Menu menu = navigationView.getMenu();
-        menu.add("My Profile");
-        menu.getItem(menu.size()-1).setIcon(R.drawable.writer_icon);
-        onNavigationItemSelected(menu.getItem(menu.size()-1));
+
+        MenuItem item = menu.findItem(R.id.nav_profile);
+        onNavigationItemSelected(item);
     }
 
-//    @Override
+    //    @Override
 //    public void onRewarded(RewardItem rewardItem) {
 //        Utils.saveOnSharePreg(getApplicationContext(),"weekly_challenge_visit",rewardItem.getAmount());
 //    }

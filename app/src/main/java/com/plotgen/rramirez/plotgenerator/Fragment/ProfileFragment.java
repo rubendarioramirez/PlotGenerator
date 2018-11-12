@@ -1,11 +1,13 @@
 package com.plotgen.rramirez.plotgenerator.Fragment;
 
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +27,7 @@ import com.google.firebase.storage.StorageReference;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.MainActivity;
 import com.plotgen.rramirez.plotgenerator.Model.User;
+import com.plotgen.rramirez.plotgenerator.ProjectFragment;
 import com.plotgen.rramirez.plotgenerator.R;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
@@ -49,11 +52,11 @@ public class ProfileFragment extends Fragment {
     @BindView(R.id.ivProfilePic)
     ImageView ivProfilePic;
 
-    @BindView(R.id.txtUid)
-    MaterialEditText etUid;
+    @BindView(R.id.txtProjectsCreated)
+    MaterialEditText etProjectsCreated;
 
-    @BindView(R.id.txtUrlPhoto)
-    MaterialEditText etUrlPhoto;
+    @BindView(R.id.txtCharCreated)
+    MaterialEditText etCharCreated;
 
     @OnClick(R.id.btnSignOut)
     public void onClick(View v) {
@@ -62,7 +65,11 @@ public class ProfileFragment extends Fragment {
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     public void onComplete(@NonNull Task<Void> task) {
                         // user is now signed out
-                        startActivity(new Intent(getActivity(), MainActivity.class));
+                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        ft .replace(R.id.flMain,new ProjectFragment());
+                        ft.commit();
+
+                        Common.isProfileUnlocked = false;
                     }
                 });
     }
@@ -79,6 +86,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        ((MainActivity)getActivity()).setActionBarTitle("My Profile");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
@@ -91,19 +99,35 @@ public class ProfileFragment extends Fragment {
 
         etEmailProfile.setText(Common.currentUser.getEmail());
         etNamaProfile.setText(Common.currentUser.getName());
-        etUid.setText(Common.currentUser.getUid());
-        etUrlPhoto.setText(Common.currentUser.getPicUrl().toString());
 
         etEmailProfile.setFocusable(false);
         etNamaProfile.setFocusable(false);
-        etUid.setFocusable(false);
-        etUrlPhoto.setFocusable(false);
-
-
+        etProjectsCreated.setFocusable(false);
+        etCharCreated.setFocusable(false);
 
         Glide.with(this.getContext())
                 .load(getHiResUrl(Common.currentUser.getPicUrl().toString()))
                 .into(ivProfilePic);
+
+        ValueAnimator projectsAnimator = new ValueAnimator();
+        projectsAnimator.setObjectValues(0, 99);// here you set the range, from 0 to "count" value
+        projectsAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            public void onAnimationUpdate(ValueAnimator animation) {
+                etProjectsCreated.setText(String.valueOf(animation.getAnimatedValue()));
+            }
+        });
+        projectsAnimator.setDuration(1000); // here you set the duration of the anim
+        projectsAnimator.start();
+
+        ValueAnimator charAnimator = new ValueAnimator();
+        charAnimator.setObjectValues(0, 99);// here you set the range, from 0 to "count" value
+        charAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            public void onAnimationUpdate(ValueAnimator animation) {
+                etCharCreated.setText(String.valueOf(animation.getAnimatedValue()));
+            }
+        });
+        charAnimator.setDuration(1000); // here you set the duration of the anim
+        charAnimator.start();
 
         return view;
     }
