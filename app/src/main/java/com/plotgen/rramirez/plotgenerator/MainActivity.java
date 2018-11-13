@@ -123,10 +123,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void updateUI() {
-        if(mAuth.getCurrentUser() != null)
-            Common.isProfileUnlocked = true;
-        else
-            Common.isProfileUnlocked = false;
+
     }
 
     @Override
@@ -181,7 +178,6 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        String title = item.getTitle().toString();
         if (id == R.id.nav_genre) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft .replace(R.id.flMain,new HeroJourneyFragment());
@@ -206,15 +202,11 @@ public class MainActivity extends AppCompatActivity
             ft.commit();
         }
         else if(id == R.id.nav_profile) {
-            if(Common.isProfileUnlocked) {
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.flMain, new ProfileFragment());
-                mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
-                ft.commit();
-            }
-            else {
-                Toast.makeText(this,"Profile locked!",Toast.LENGTH_LONG).show();
-            }
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.flMain, new ProfileFragment());
+            mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
+            ft.commit();
+            navigationView.setCheckedItem(R.id.nav_profile);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
