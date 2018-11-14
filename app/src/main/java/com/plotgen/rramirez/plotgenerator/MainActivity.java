@@ -29,6 +29,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Fragment.ProfileFragment;
+import com.plotgen.rramirez.plotgenerator.Fragment.SubmitStoryFragment;
+import com.plotgen.rramirez.plotgenerator.Fragment.WeeklyChallengeFragment;
+import com.plotgen.rramirez.plotgenerator.Model.User;
 
 
 public class MainActivity extends AppCompatActivity
@@ -77,7 +80,6 @@ public class MainActivity extends AppCompatActivity
         // Obtain the FirebaseAnalytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -123,7 +125,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void updateUI() {
-
+        if(mUser != null)
+            Common.currentUser = new User(mUser.getUid(),mUser.getDisplayName(),mUser.getEmail(),mUser.getPhotoUrl());
     }
 
     @Override
@@ -208,6 +211,20 @@ public class MainActivity extends AppCompatActivity
             ft.commit();
             navigationView.setCheckedItem(R.id.nav_profile);
         }
+        else if(id == R.id.nav_submit)
+        {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.flMain, new SubmitStoryFragment());
+            mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
+            ft.commit();
+        }
+        else if(id == R.id.nav_weekly_challenge)
+        {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.flMain, new WeeklyChallengeFragment());
+            mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
+            ft.commit();
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -217,13 +234,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        updateUI();
-
-        Menu menu = navigationView.getMenu();
-
-        MenuItem item = menu.findItem(R.id.nav_profile);
-        onNavigationItemSelected(item);
     }
 
     //    @Override

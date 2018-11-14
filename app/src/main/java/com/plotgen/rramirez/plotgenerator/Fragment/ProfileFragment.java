@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -75,6 +76,9 @@ public class ProfileFragment extends Fragment {
 
     @BindView(R.id.txtCharCreated)
     MaterialEditText etCharCreated;
+
+    @BindView(R.id.btnSignOut)
+    Button btnSignOut;
 
     @OnClick(R.id.btnSignOut)
     public void signOut(View v) {
@@ -240,11 +244,14 @@ public class ProfileFragment extends Fragment {
             });
             charAnimator.setDuration(1000); // here you set the duration of the anim
             charAnimator.start();
+
+            btnSignOut.setVisibility(View.VISIBLE);
         }
         else
         {
             loginLayout.setVisibility(View.VISIBLE);
             profileLayout.setVisibility(View.INVISIBLE);
+            btnSignOut.setVisibility(View.INVISIBLE);
         }
     }
 
