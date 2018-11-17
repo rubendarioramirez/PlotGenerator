@@ -2,11 +2,13 @@ package com.plotgen.rramirez.plotgenerator.Model;
 
 public class Story {
 
+    private String id;
     private String title;
     private String genre;
     private String chalenge;
     private long submitDate;
     private User user;
+    private int like;
 
     public Story() {
     }
@@ -16,6 +18,15 @@ public class Story {
         this.genre = genre;
         this.chalenge = chalenge;
         this.user = user;
+        this.like = 0;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -56,5 +67,13 @@ public class Story {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public int getLike() {
+        return like;
+    }
+
+    public void setLike(int like) {
+        this.like = like;
     }
 }

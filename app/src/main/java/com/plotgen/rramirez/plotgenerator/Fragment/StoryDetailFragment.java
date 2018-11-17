@@ -39,6 +39,9 @@ public class StoryDetailFragment extends Fragment {
     @BindView(R.id.ivUserPicDetail)
     ImageView ivUserPicDetail;
 
+    @BindView(R.id.ivLoves)
+    ImageView ivLoves;
+
     @BindView(R.id.tvTitle)
     TextView tvTitle;
 
@@ -47,6 +50,9 @@ public class StoryDetailFragment extends Fragment {
 
     @BindView(R.id.tvStory)
     TextView tvStory;
+
+    @BindView(R.id.tvLoves)
+    TextView tvLoves;
 
 
     public StoryDetailFragment() {
@@ -68,6 +74,11 @@ public class StoryDetailFragment extends Fragment {
         tvGenre.setText(Common.currentStory.getGenre());
         tvStory.setText(Common.currentStory.getChalenge());
 
+        if(Common.currentStory.getLike()>0)
+            ivLoves.setImageResource(R.drawable.ic_love_red);
+
+        tvLoves.setText(String.valueOf(Common.currentStory.getLike()));
+
         return view;
     }
 
@@ -87,7 +98,7 @@ public class StoryDetailFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Glide.with(getActivity().getApplicationContext())
-                .load(getHiResUrl(Common.currentUser.getPicUrl().toString()))
+                .load(getHiResUrl(Common.currentStory.getUser().getUriString()))
                 .apply(RequestOptions.circleCropTransform())
                 .into(ivUserPicDetail);
     }

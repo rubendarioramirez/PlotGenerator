@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.MainActivity;
@@ -39,6 +40,9 @@ public class WeeklyChallengeFragment extends Fragment {
     FirebaseListAdapter<Story> adapter;
     FirebaseListOptions<Story> options;
 
+    private FirebaseDatabase mDatabase;
+    private DatabaseReference mReference;
+
 
     public WeeklyChallengeFragment() {
         // Required empty public constructor
@@ -54,8 +58,11 @@ public class WeeklyChallengeFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
+        mDatabase = FirebaseDatabase.getInstance();
+        mReference = mDatabase.getReference().child("Weekly_Challenge_test");
+
         options = new FirebaseListOptions.Builder<Story>()
-                .setQuery(FirebaseDatabase.getInstance().getReference().child("Weekly_Challenge_test"), Story.class)
+                .setQuery(mReference, Story.class)
                 .setLayout(R.layout.item_story)
                 .build();
 
@@ -68,16 +75,18 @@ public class WeeklyChallengeFragment extends Fragment {
 
         adapter = new FirebaseListAdapter<Story>(options) {
             @Override
-            protected void populateView(@NonNull View v, @NonNull Story model, int position) {
+            protected void populateView(@NonNull View v, @NonNull final Story model, int position) {
 
-                TextView tvTitle, tvGenre, tvStory, tvUser;
-                ImageView ivTemplatePic, ivUser;
+                final TextView tvTitle, tvGenre, tvStory, tvUser, tvLoves;
+                final ImageView ivTemplatePic, ivUser, ivLoves;
 
                 tvTitle = v.findViewById(R.id.tvTitle);
                 tvGenre = v.findViewById(R.id.tvGenre);
                 tvStory = v.findViewById(R.id.tvStory);
                 tvUser = v.findViewById(R.id.tvUser);
+                tvLoves = v.findViewById(R.id.tvLoves);
                 ivUser = v.findViewById(R.id.ivUser);
+                ivLoves = v.findViewById(R.id.ivLoves);
 
                 Glide.with(v.getContext())
                         .load(model.getUser().getUriString())
@@ -88,17 +97,32 @@ public class WeeklyChallengeFragment extends Fragment {
 
                 ivTemplatePic.setBackgroundColor(new Random().nextInt());
 
-                tvUser.setText(model.getUser().getName().toString());
-                tvTitle.setText(model.getTitle().toString());
-                tvGenre.setText(model.getGenre().toString());
-                tvStory.setText(model.getChalenge().toString());
+                tvUser.setText(model.getUser().getName());
+                tvTitle.setText(model.getTitle());
+                tvGenre.setText(model.getGenre());
+                tvStory.setText(model.getChalenge());
 
-                final Story test = model;
+                tvLoves.setText(String.valueOf(model.getLike()));
+
+                ivLoves.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        ivLoves.setImageResource(R.drawable.ic_love_red);
+                        int test2 = model.getLike();
+                        test2 = test2 +1;
+                        mReference.child(model.getId()).child("like").setValue(test2);
+
+                        tvLoves.setText(String.valueOf(test2));
+
+                    }
+                });
+
+                final Story currentStory = model;
 
                 v.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Common.currentStory = test;
+                        Common.currentStory = currentStory;
                         StoryDetailFragment nextFragment = new StoryDetailFragment();
                         FragmentTransaction transaction = getFragmentManager().beginTransaction();
                         Utils.changeFragment(nextFragment,transaction,"","");
