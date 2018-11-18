@@ -6,16 +6,14 @@
     android:background="@color/colorPrimaryDark"
     tools:context=".Fragment.WeeklyChallengeFragment">
 
-    <ListView
-        android:id="@+id/lvWeeklyChalenge"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvWeeklyChalenge"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:dividerHeight="16dp"
+        android:dividerHeight="2dp"
         android:divider="@android:color/transparent"
-        android:layout_margin="16dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        ></ListView>
+        tools:listitem="@layout/item_post"
+        ></android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>

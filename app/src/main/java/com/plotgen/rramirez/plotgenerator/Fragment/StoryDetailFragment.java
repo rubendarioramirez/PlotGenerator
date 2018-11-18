@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -26,6 +28,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
@@ -67,6 +71,9 @@ public class StoryDetailFragment extends Fragment {
     @BindView(R.id.tvLoves)
     TextView tvLoves;
 
+    @BindView(R.id.tvComments)
+    TextView tvComments;
+
     @BindView(R.id.lvComments)
     ListView lvComments;
 
@@ -92,6 +99,35 @@ public class StoryDetailFragment extends Fragment {
 
         // Clear the field
         etCommentText.setText(null);
+
+        DatabaseReference storyRef = mDatabase.getReference().child("Weekly_Challenge_test").child("posts").child(Common.currentStory.getId());
+
+        increaseCommentCount(storyRef);
+    }
+
+    private void increaseCommentCount(DatabaseReference mPostReference) {
+        mPostReference.runTransaction(new Transaction.Handler() {
+            @Override
+            public Transaction.Result doTransaction(MutableData mutableData) {
+                Story p = mutableData.getValue(Story.class);
+                if (p == null) {
+                    return Transaction.success(mutableData);
+                }
+
+                p.commentCount = p.commentCount + 1;
+
+                // Set value and report transaction success
+                mutableData.setValue(p);
+                tvComments.setText(String.valueOf(p.getCommentCount()));
+                return Transaction.success(mutableData);
+            }
+
+            @Override
+            public void onComplete(DatabaseError databaseError, boolean b,
+                                   DataSnapshot dataSnapshot) {
+                Log.d("UpdateCommentCount", "postTransaction:onComplete:" + databaseError);
+            }
+        });
     }
 
 
@@ -120,8 +156,8 @@ public class StoryDetailFragment extends Fragment {
         tvStory.setText(Common.currentStory.getChalenge());
 
         ivLoves.setImageResource(R.drawable.ic_love_red);
-
-        //tvLoves.setText(String.valueOf(Common.currentStory.getLike()));
+        tvLoves.setText(String.valueOf(Common.currentStory.getLikeCount()));
+        tvComments.setText(String.valueOf(Common.currentStory.getCommentCount()));
 
         options = new FirebaseListOptions.Builder<Comment>()
                 .setQuery(mCommentReference, Comment.class)

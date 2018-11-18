@@ -12,6 +12,7 @@ public class Story {
     private long submitDate;
     private User user;
     public int likeCount = 0;
+    public int commentCount = 0;
     public Map<String, Boolean> likes = new HashMap<>();
 
     public Story() {
@@ -81,6 +82,14 @@ public class Story {
         this.likeCount = likeCount;
     }
 
+    public int getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(int commentCount) {
+        this.commentCount = commentCount;
+    }
+
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
         result.put("id", id);
@@ -90,6 +99,7 @@ public class Story {
         result.put("chalenge", chalenge);
         result.put("likeCount", likeCount);
         result.put("likes", likes);
+        result.put("commentCount", commentCount);
 
         return result;
     }
