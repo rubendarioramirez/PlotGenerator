@@ -2,30 +2,30 @@ package com.plotgen.rramirez.plotgenerator.Model;
 
 public class Like {
 
-    private int likeCount;
-    private User user;
+    private String userId;
+    private Boolean userLiked;
 
     public Like() {
     }
 
-    public Like(int likeCount, User user) {
-        this.likeCount = likeCount;
-        this.user = user;
+    public Like(String userId, Boolean userLiked) {
+        this.userId = userId;
+        this.userLiked = userLiked;
     }
 
-    public int getLikeCount() {
-        return likeCount;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setLikeCount(int likeCount) {
-        this.likeCount = likeCount;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public User getUser() {
-        return user;
+    public Boolean getUserLiked() {
+        return userLiked;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserLiked(Boolean userLiked) {
+        this.userLiked = userLiked;
     }
 }

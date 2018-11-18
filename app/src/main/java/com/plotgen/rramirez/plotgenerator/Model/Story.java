@@ -1,5 +1,8 @@
 package com.plotgen.rramirez.plotgenerator.Model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Story {
 
     private String id;
@@ -8,17 +11,18 @@ public class Story {
     private String chalenge;
     private long submitDate;
     private User user;
-    private int like;
+    public int likeCount = 0;
+    public Map<String, Boolean> likes = new HashMap<>();
 
     public Story() {
     }
 
-    public Story(String title, String genre, String chalenge, User user) {
+    public Story(String id, String title, String genre, String chalenge, User user) {
+        this.id = id;
         this.title = title;
         this.genre = genre;
         this.chalenge = chalenge;
         this.user = user;
-        this.like = 0;
     }
 
     public String getId() {
@@ -69,11 +73,24 @@ public class Story {
         this.user = user;
     }
 
-    public int getLike() {
-        return like;
+    public int getLikeCount() {
+        return likeCount;
     }
 
-    public void setLike(int like) {
-        this.like = like;
+    public void setLikeCount(int likeCount) {
+        this.likeCount = likeCount;
+    }
+
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("id", id);
+        result.put("user", user);
+        result.put("title", title);
+        result.put("genre", genre);
+        result.put("chalenge", chalenge);
+        result.put("likeCount", likeCount);
+        result.put("likes", likes);
+
+        return result;
     }
 }

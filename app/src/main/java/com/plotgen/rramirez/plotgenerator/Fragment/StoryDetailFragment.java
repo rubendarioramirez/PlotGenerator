@@ -9,7 +9,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -17,16 +19,27 @@ import com.bumptech.glide.Registry;
 import com.bumptech.glide.annotation.GlideModule;
 import com.bumptech.glide.module.AppGlideModule;
 import com.bumptech.glide.request.RequestOptions;
+import com.firebase.ui.database.FirebaseListAdapter;
+import com.firebase.ui.database.FirebaseListOptions;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
+import com.plotgen.rramirez.plotgenerator.Model.Comment;
+import com.plotgen.rramirez.plotgenerator.Model.Story;
 import com.plotgen.rramirez.plotgenerator.R;
+import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.io.InputStream;
 import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -54,6 +67,33 @@ public class StoryDetailFragment extends Fragment {
     @BindView(R.id.tvLoves)
     TextView tvLoves;
 
+    @BindView(R.id.lvComments)
+    ListView lvComments;
+
+    @BindView(R.id.fieldCommentText)
+    MaterialEditText etCommentText;
+
+    FirebaseListAdapter<Comment> adapter;
+    FirebaseListOptions<Comment> options;
+
+    private FirebaseDatabase mDatabase;
+    private DatabaseReference mCommentReference, mPostReference;
+
+    @OnClick(R.id.buttonPostComment)
+    public void postComment(View v)
+    {
+        Comment comment = new Comment(Common.currentUser.getUid(),
+                Common.currentUser.getName(),
+                Common.currentUser.getPicUrl().toString(),
+                etCommentText.getText().toString());
+
+        // Push the comment, it will appear in the list
+        mCommentReference.push().setValue(comment);
+
+        // Clear the field
+        etCommentText.setText(null);
+    }
+
 
     public StoryDetailFragment() {
         // Required empty public constructor
@@ -65,8 +105,13 @@ public class StoryDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_story_detail, container, false);
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         ButterKnife.bind(this, view);
+
+        mDatabase = FirebaseDatabase.getInstance();
+        mPostReference = mDatabase.getReference().child("Weekly_Challenge_test").child("posts").child(Common.currentStory.getId());
+        mCommentReference = mDatabase.getReference().child("Weekly_Challenge_test").child("post-comments").child(Common.currentStory.getId());
 
         ivTemplatePic.setBackgroundColor(new Random().nextInt());
 
@@ -74,12 +119,43 @@ public class StoryDetailFragment extends Fragment {
         tvGenre.setText(Common.currentStory.getGenre());
         tvStory.setText(Common.currentStory.getChalenge());
 
-        if(Common.currentStory.getLike()>0)
-            ivLoves.setImageResource(R.drawable.ic_love_red);
+        ivLoves.setImageResource(R.drawable.ic_love_red);
 
-        tvLoves.setText(String.valueOf(Common.currentStory.getLike()));
+        //tvLoves.setText(String.valueOf(Common.currentStory.getLike()));
+
+        options = new FirebaseListOptions.Builder<Comment>()
+                .setQuery(mCommentReference, Comment.class)
+                .setLayout(R.layout.item_comment)
+                .build();
+
+        populateComments();
 
         return view;
+    }
+
+    private void populateComments() {
+        adapter = new FirebaseListAdapter<Comment>(options) {
+            @Override
+            protected void populateView(@NonNull View v, @NonNull Comment model, int position) {
+
+                ImageView ivCommentPic;
+                TextView tvCommentUser, tvCommentBody;
+
+                ivCommentPic = v.findViewById(R.id.ivCommentPic);
+                tvCommentUser = v.findViewById(R.id.tvCommentUser);
+                tvCommentBody = v.findViewById(R.id.tvCommentBody);
+
+                Glide.with(getActivity().getApplicationContext())
+                        .load(model.getUserPic())
+                        .apply(RequestOptions.circleCropTransform())
+                        .into(ivCommentPic);
+
+                tvCommentUser.setText(model.getUserName());
+                tvCommentBody.setText(model.getUserComment());
+            }
+        };
+
+        lvComments.setAdapter(adapter);
     }
 
     @GlideModule
@@ -125,4 +201,17 @@ public class StoryDetailFragment extends Fragment {
         else
             return s;
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        adapter.stopListening();
+    }
+
 }

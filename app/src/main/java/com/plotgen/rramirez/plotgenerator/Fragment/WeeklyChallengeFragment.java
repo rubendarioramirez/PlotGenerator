@@ -3,8 +3,10 @@ package com.plotgen.rramirez.plotgenerator.Fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +18,17 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
+import com.google.firebase.database.ValueEventListener;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.MainActivity;
+import com.plotgen.rramirez.plotgenerator.Model.Like;
 import com.plotgen.rramirez.plotgenerator.Model.Story;
 import com.plotgen.rramirez.plotgenerator.R;
 import com.plotgen.rramirez.plotgenerator.Utils;
@@ -59,7 +68,7 @@ public class WeeklyChallengeFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         mDatabase = FirebaseDatabase.getInstance();
-        mReference = mDatabase.getReference().child("Weekly_Challenge_test");
+        mReference = mDatabase.getReference().child("Weekly_Challenge_test").child("posts");
 
         options = new FirebaseListOptions.Builder<Story>()
                 .setQuery(mReference, Story.class)
@@ -76,9 +85,12 @@ public class WeeklyChallengeFragment extends Fragment {
         adapter = new FirebaseListAdapter<Story>(options) {
             @Override
             protected void populateView(@NonNull View v, @NonNull final Story model, int position) {
+                final DatabaseReference postRef = getRef(position);
 
                 final TextView tvTitle, tvGenre, tvStory, tvUser, tvLoves;
                 final ImageView ivTemplatePic, ivUser, ivLoves;
+
+                final boolean canLike;
 
                 tvTitle = v.findViewById(R.id.tvTitle);
                 tvGenre = v.findViewById(R.id.tvGenre);
@@ -101,21 +113,7 @@ public class WeeklyChallengeFragment extends Fragment {
                 tvTitle.setText(model.getTitle());
                 tvGenre.setText(model.getGenre());
                 tvStory.setText(model.getChalenge());
-
-                tvLoves.setText(String.valueOf(model.getLike()));
-
-                ivLoves.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        ivLoves.setImageResource(R.drawable.ic_love_red);
-                        int test2 = model.getLike();
-                        test2 = test2 +1;
-                        mReference.child(model.getId()).child("like").setValue(test2);
-
-                        tvLoves.setText(String.valueOf(test2));
-
-                    }
-                });
+                tvLoves.setText(String.valueOf(model.getLikeCount()));
 
                 final Story currentStory = model;
 
@@ -128,11 +126,61 @@ public class WeeklyChallengeFragment extends Fragment {
                         Utils.changeFragment(nextFragment,transaction,"","");
                     }
                 });
+
+                // Determine if the current user has liked this post and set UI accordingly
+                if (model.likes.containsKey(Common.currentUser.getUid())) {
+                    ivLoves.setImageResource(R.drawable.ic_love_red);
+                } else {
+                    ivLoves.setImageResource(R.drawable.ic_love_outline);
+                }
+
+                ivLoves.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        DatabaseReference globalPostRef = mReference.child(postRef.getKey());
+
+                        // Run two transactions
+                        onStarClicked(globalPostRef);
+                    }
+                });
             }
         };
 
         lvWeeklyChallenge.setAdapter(adapter);
     }
+
+    private void onStarClicked(DatabaseReference postRef) {
+        postRef.runTransaction(new Transaction.Handler() {
+            @Override
+            public Transaction.Result doTransaction(MutableData mutableData) {
+                Story p = mutableData.getValue(Story.class);
+                if (p == null) {
+                    return Transaction.success(mutableData);
+                }
+
+                if (p.likes.containsKey(Common.currentUser.getUid())) {
+                    // Unstar the post and remove self from stars
+                    p.likeCount = p.likeCount - 1;
+                    p.likes.remove(Common.currentUser.getUid());
+                } else {
+                    // Star the post and add self to stars
+                    p.likeCount = p.likeCount + 1;
+                    p.likes.put(Common.currentUser.getUid(), true);
+                }
+
+                // Set value and report transaction success
+                mutableData.setValue(p);
+                return Transaction.success(mutableData);
+            }
+
+            @Override
+            public void onComplete(DatabaseError databaseError, boolean b,
+                                   DataSnapshot dataSnapshot) {
+
+            }
+        });
+    }
+
 
     @Override
     public void onStart() {
