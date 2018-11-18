@@ -89,8 +89,16 @@ public class CharListFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
                 //Get the name that was touched
-                String[] charNameRaw = itemsAdapter.getItem(position).split(" - ");
-                String charName = charNameRaw[0];
+                //String[] charNameRaw = itemsAdapter.getItem(position).split(" - ");
+                String charName = itemsAdapter.getItem(position);
+                String[] arrayList = getResources().getStringArray(R.array.char_guide_types_titles);
+                for(String s : arrayList)
+                {
+                    if(charName.contains(s))
+                    {
+                        charName = charName.replace( " - " + s,"");
+                    }
+                }
 
                 Bundle bundle = new Bundle();
                 bundle.putString("char_name",charName);
