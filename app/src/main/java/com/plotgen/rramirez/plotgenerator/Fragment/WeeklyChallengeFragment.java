@@ -24,6 +24,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
@@ -70,8 +71,9 @@ public class WeeklyChallengeFragment extends Fragment {
         mDatabase = FirebaseDatabase.getInstance();
         mReference = mDatabase.getReference().child("Weekly_Challenge_test").child("posts");
 
+        Query query = mDatabase.getReference().child("Weekly_Challenge_test").child("posts").orderByChild("likeCount");
         options = new FirebaseListOptions.Builder<Story>()
-                .setQuery(mReference, Story.class)
+                .setQuery(query, Story.class)
                 .setLayout(R.layout.item_story)
                 .build();
 
@@ -83,6 +85,10 @@ public class WeeklyChallengeFragment extends Fragment {
     private void populateWeeklyChallenge() {
 
         adapter = new FirebaseListAdapter<Story>(options) {
+            @Override
+            public Story getItem(int position) {
+                return super.getItem(super.getCount() - position - 1);
+            }
             @Override
             protected void populateView(@NonNull View v, @NonNull final Story model, int position) {
                 final DatabaseReference postRef = getRef(position);
@@ -107,7 +113,7 @@ public class WeeklyChallengeFragment extends Fragment {
 
                 ivTemplatePic = v.findViewById(R.id.ivTemplatePic);
 
-                ivTemplatePic.setBackgroundColor(new Random().nextInt());
+                ivTemplatePic.setImageResource(R.drawable.typewriter);
 
                 tvUser.setText(model.getUser().getName());
                 tvTitle.setText(model.getTitle());
@@ -185,13 +191,17 @@ public class WeeklyChallengeFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        adapter.startListening();
+        if (adapter != null) {
+            adapter.startListening();
+        }
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        adapter.stopListening();
+        if (adapter != null) {
+            adapter.stopListening();
+        }
     }
 
 }

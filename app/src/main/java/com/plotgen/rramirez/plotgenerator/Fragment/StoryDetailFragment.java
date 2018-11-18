@@ -113,7 +113,7 @@ public class StoryDetailFragment extends Fragment {
         mPostReference = mDatabase.getReference().child("Weekly_Challenge_test").child("posts").child(Common.currentStory.getId());
         mCommentReference = mDatabase.getReference().child("Weekly_Challenge_test").child("post-comments").child(Common.currentStory.getId());
 
-        ivTemplatePic.setBackgroundColor(new Random().nextInt());
+        ivTemplatePic.setImageResource(R.drawable.typewriter);
 
         tvTitle.setText(Common.currentStory.getTitle());
         tvGenre.setText(Common.currentStory.getGenre());

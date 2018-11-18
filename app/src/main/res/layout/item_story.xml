@@ -46,7 +46,9 @@
             <ImageView
                 android:id="@+id/ivTemplatePic"
                 android:layout_width="match_parent"
-                android:layout_height="140dp" />
+                android:layout_height="140dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"

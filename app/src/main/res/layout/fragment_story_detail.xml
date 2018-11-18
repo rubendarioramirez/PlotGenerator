@@ -14,9 +14,11 @@
         android:orientation="vertical">
 
         <ImageView
-                android:id="@+id/ivTemplatePic"
-                android:layout_width="match_parent"
-                android:layout_height="140dp" />
+            android:id="@+id/ivTemplatePic"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"/>
 
         <RelativeLayout
                 android:layout_width="match_parent"
