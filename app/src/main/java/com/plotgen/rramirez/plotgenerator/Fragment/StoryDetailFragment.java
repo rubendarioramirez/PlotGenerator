@@ -127,7 +127,6 @@ public class StoryDetailFragment extends Fragment {
             public void onComplete(DatabaseError databaseError, boolean b,
                                    DataSnapshot dataSnapshot) {
                 Log.d("UpdateCommentCount", "postTransaction:onComplete:" + databaseError);
-                Toast.makeText(getContext(),"postTransaction:onComplete:" + databaseError,Toast.LENGTH_LONG).show();
             }
         });
     }
