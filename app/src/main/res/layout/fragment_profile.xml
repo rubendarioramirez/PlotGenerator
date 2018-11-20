@@ -205,9 +205,11 @@
             android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/grey_font"
             android:text="Sign Out"
-            android:visibility="invisible"/>
+            android:visibility="invisible"
+            android:fontFamily="@font/typewcond_regular"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button.Colored"
+            android:background="@color/colorAccent"/>
 
     </LinearLayout>
 

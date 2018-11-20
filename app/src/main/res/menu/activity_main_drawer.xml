@@ -33,11 +33,6 @@
             android:title="My Profile" />
 
         <item
-            android:id="@+id/nav_submit"
-            android:icon="@drawable/ic_person_black"
-            android:title="Submit " />
-
-        <item
             android:id="@+id/nav_weekly_challenge"
             android:icon="@drawable/ic_person_black"
             android:title="Weekly Challenge " />

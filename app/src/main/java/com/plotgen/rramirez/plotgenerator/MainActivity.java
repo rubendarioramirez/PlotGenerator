@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity
 
     public void updateUI() {
         if(mUser != null)
-            Common.currentUser = new User(mUser.getUid(),mUser.getDisplayName(),mUser.getEmail(),mUser.getPhotoUrl());
+            Common.currentUser = new User(mUser.getUid(),mUser.getDisplayName(),mUser.getEmail(),mUser.getPhotoUrl().toString(),mUser.getPhotoUrl());
     }
 
     @Override
@@ -210,13 +210,6 @@ public class MainActivity extends AppCompatActivity
             mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
             ft.commit();
             navigationView.setCheckedItem(R.id.nav_profile);
-        }
-        else if(id == R.id.nav_submit)
-        {
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.flMain, new SubmitStoryFragment());
-            mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
-            ft.commit();
         }
         else if(id == R.id.nav_weekly_challenge)
         {

@@ -2,13 +2,10 @@ package com.plotgen.rramirez.plotgenerator;
 
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,7 +29,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.plotgen.rramirez.plotgenerator.Fragment.ProfileFragment;
+import com.plotgen.rramirez.plotgenerator.Fragment.SubmitStoryFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -182,7 +179,10 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
             // Successfully signed in
             if (resultCode == RESULT_OK) {
                 //
-                // change to profile fragment in main activity
+                // change to submit fragment in main activity
+                SubmitStoryFragment nextFragment = new SubmitStoryFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                Utils.changeFragment(nextFragment,transaction,"","");
             } else {
                 // Sign in failed
                 if (response == null) {

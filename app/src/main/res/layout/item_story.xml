@@ -120,20 +120,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
                     android:gravity="center"
-                    android:text="9999"/>
+                    android:text="9999"
+                    android:fontFamily="@font/typewcond_regular"/>
 
                 <TextView
                     android:layout_margin="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
                     android:gravity="center"
-                    android:text="Likes"/>
+                    android:text="Likes"
+                    android:fontFamily="@font/typewcond_regular"/>
 
                 <ImageView
                     android:layout_margin="8dp"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_comment"/>
+                    android:src="@drawable/ic_comment" />
 
                 <TextView
                     android:id="@+id/tvComments"
@@ -141,14 +143,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
                     android:gravity="center"
-                    android:text="9999"/>
+                    android:text="9999"
+                    android:fontFamily="@font/typewcond_regular"/>
 
                 <TextView
                     android:layout_margin="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
                     android:gravity="center"
-                    android:text="Comments"/>
+                    android:text="Comments"
+                    android:fontFamily="@font/typewcond_regular"/>
 
             </LinearLayout>
 

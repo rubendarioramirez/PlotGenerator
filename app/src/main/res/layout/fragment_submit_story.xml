@@ -98,9 +98,9 @@
         android:layout_margin="8dp"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:textColor="@color/content"
         android:text="Submit"
         android:fontFamily="@font/typewcond_regular"
-        android:background="@drawable/bg_rectangle_button"/>
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button.Colored"
+        android:background="@color/colorAccent"/>
 
 </RelativeLayout>

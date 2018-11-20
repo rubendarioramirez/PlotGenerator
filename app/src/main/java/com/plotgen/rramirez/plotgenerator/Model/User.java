@@ -27,6 +27,14 @@ public class User {
         this.picUrl = picUrl;
     }
 
+    public User(String uid, String name, String email, String uriString, Uri picUrl) {
+        this.uid = uid;
+        this.name = name;
+        this.email = email;
+        this.uriString = uriString;
+        this.picUrl = picUrl;
+    }
+
     public String getUid() {
         return uid;
     }
