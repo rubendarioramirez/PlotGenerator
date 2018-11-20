@@ -26,6 +26,7 @@ import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -88,47 +89,19 @@ public class StoryDetailFragment extends Fragment {
     private FirebaseDatabase mDatabase;
     private DatabaseReference mCommentReference, mPostReference;
 
-    private int commentCount;
-
     @OnClick(R.id.buttonPostComment)
     public void postComment(View v)
     {
-        Comment comment = new Comment(Common.currentUser.getUid(),
+        final Comment comment = new Comment(Common.currentUser.getUid(),
                 Common.currentUser.getName(),
                 Common.currentUser.getPicUrl().toString(),
                 etCommentText.getText().toString());
 
         // Push the comment, it will appear in the list
         mCommentReference.push().setValue(comment);
-        increaseCommentCount(mPostReference);
 
         // Clear the field
         etCommentText.setText(null);
-    }
-
-    private void increaseCommentCount(DatabaseReference mPostReference) {
-        mPostReference.runTransaction(new Transaction.Handler() {
-            @Override
-            public Transaction.Result doTransaction(MutableData mutableData) {
-                Story p = mutableData.getValue(Story.class);
-                if (p == null) {
-                    return Transaction.success(mutableData);
-                }
-
-                p.commentCount = p.commentCount + 1;
-
-                // Set value and report transaction success
-                mutableData.setValue(p);
-                tvComments.setText(String.valueOf(p.getCommentCount()));
-                return Transaction.success(mutableData);
-            }
-
-            @Override
-            public void onComplete(DatabaseError databaseError, boolean b,
-                                   DataSnapshot dataSnapshot) {
-                Log.d("UpdateCommentCount", "postTransaction:onComplete:" + databaseError);
-            }
-        });
     }
 
 
@@ -156,9 +129,19 @@ public class StoryDetailFragment extends Fragment {
         tvGenre.setText(Common.currentStory.getGenre());
         tvStory.setText(Common.currentStory.getChalenge());
 
-        ivLoves.setImageResource(R.drawable.ic_love_red);
+        if (Common.currentStory.likes.containsKey(Common.currentUser.getUid())) {
+            ivLoves.setImageResource(R.drawable.ic_love_red);
+        } else {
+            ivLoves.setImageResource(R.drawable.ic_love_outline);
+        }
+
+        ivLoves.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onLikeClicked(mPostReference);
+            }
+        });
         tvLoves.setText(String.valueOf(Common.currentStory.getLikeCount()));
-        tvComments.setText(String.valueOf(Common.currentStory.getCommentCount()));
 
         options = new FirebaseListOptions.Builder<Comment>()
                 .setQuery(mCommentReference, Comment.class)
@@ -166,8 +149,75 @@ public class StoryDetailFragment extends Fragment {
                 .build();
 
         populateComments();
+        checkCommentCount();
 
         return view;
+    }
+
+    private void onLikeClicked(DatabaseReference postRef) {
+        postRef.runTransaction(new Transaction.Handler() {
+            @Override
+            public Transaction.Result doTransaction(MutableData mutableData) {
+                Story p = mutableData.getValue(Story.class);
+                if (p == null) {
+                    return Transaction.success(mutableData);
+                }
+
+                if (p.likes.containsKey(Common.currentUser.getUid())) {
+                    // Unstar the post and remove self from stars
+                    p.likeCount = p.likeCount - 1;
+                    p.likes.remove(Common.currentUser.getUid());
+                } else {
+                    // Star the post and add self to stars
+                    p.likeCount = p.likeCount + 1;
+                    p.likes.put(Common.currentUser.getUid(), true);
+                }
+
+                // Set value and report transaction success
+                mutableData.setValue(p);
+                Common.tempStory = p;
+                return Transaction.success(mutableData);
+            }
+
+            @Override
+            public void onComplete(DatabaseError databaseError, boolean b,
+                                   DataSnapshot dataSnapshot) {
+                Log.d("UpdateLikeCount", "postTransaction:onComplete:" + databaseError);
+
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (Common.tempStory.likes.containsKey(Common.currentUser.getUid())) {
+                            ivLoves.setImageResource(R.drawable.ic_love_red);
+                        } else {
+                            ivLoves.setImageResource(R.drawable.ic_love_outline);
+                        }
+                        tvLoves.setText(String.valueOf(Common.tempStory.getLikeCount()));
+                    }
+                });
+            }
+        });
+    }
+
+    private void checkCommentCount() {
+        mCommentReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int commentCount = 0;
+                for(DataSnapshot commentData : dataSnapshot.getChildren())
+                {
+                    commentCount++;
+                }
+
+                tvComments.setText(String.valueOf(commentCount));
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void populateComments() {
@@ -192,6 +242,7 @@ public class StoryDetailFragment extends Fragment {
 
             }
         };
+        lvComments.setFocusable(false);
         lvComments.setAdapter(adapter);
         lvComments.setExpanded(true);
     }

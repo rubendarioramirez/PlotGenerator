@@ -57,6 +57,7 @@ public class WeeklyChallengeFragment extends Fragment {
 
     private FirebaseDatabase mDatabase;
     private DatabaseReference mReference;
+    private DatabaseReference mCommentReference;
 
     private LinearLayoutManager mManager;
 
@@ -84,6 +85,7 @@ public class WeeklyChallengeFragment extends Fragment {
 
         mDatabase = FirebaseDatabase.getInstance();
         mReference = mDatabase.getReference().child("Weekly_Challenge_test").child("posts");
+        mCommentReference = mDatabase.getReference().child("Weekly_Challenge_test").child("post-comments");
 
         Query query = mDatabase.getReference().child("Weekly_Challenge_test").child("posts").orderByChild("likeCount");
 
@@ -128,13 +130,15 @@ public class WeeklyChallengeFragment extends Fragment {
                     viewHolder.ivLoves.setImageResource(R.drawable.ic_love_outline);
                 }
 
-                viewHolder.bindToPost(model, new View.OnClickListener() {
+                View.OnClickListener likeClickListener = new View.OnClickListener() {
                     @Override
-                    public void onClick(View starView) {
+                    public void onClick(View view) {
                         DatabaseReference globalPostRef = mReference.child(postRef.getKey());
-                        onStarClicked(globalPostRef);
+                        onLikeClicked(globalPostRef);
                     }
-                });
+                };
+
+                viewHolder.bindToPost(model, likeClickListener, mCommentReference.child(postRef.getKey()));
 
             }
         };
@@ -142,7 +146,7 @@ public class WeeklyChallengeFragment extends Fragment {
         rvWeeklyChallenge.setAdapter(mAdapter);
     }
 
-    private void onStarClicked(DatabaseReference postRef) {
+    private void onLikeClicked(DatabaseReference postRef) {
         postRef.runTransaction(new Transaction.Handler() {
             @Override
             public Transaction.Result doTransaction(MutableData mutableData) {
