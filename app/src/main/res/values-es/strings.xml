@@ -168,12 +168,55 @@
         <item>Dentista</item>
     </string-array>
     <string name="character_add_age">Edad</string>
+    <string name="character_add_height">Altura</string>
+    <string-array name="heights">
+        <item>1.50 de altura</item>
+        <item>1.55 de altura</item>
+        <item>1.60 de altura</item>
+        <item>1.65 de altura</item>
+        <item>1.70 de altura</item>
+        <item>1.75 de altura</item>
+        <item>1.80 de altura</item>
+        <item>1.85 de altura</item>
+        <item>1.90 de altura</item>
+    </string-array>
+    <string name="character_add_haircolor">Color de pelo</string>
+    <string-array name="haircolors">
+        <item>Marron</item>
+        <item>Gris</item>
+        <item>Negro</item>
+        <item>Trigo</item>
+        <item>Plateado</item>
+        <item>Rubio</item>
+        <item>Rojo</item>
+        <item>Blanco</item>
+    </string-array>
+    <string name="character_add_eyecolor">Color de ojos</string>
+    <string-array name="eyecolors">
+        <item>Marron</item>
+        <item>Verde</item>
+        <item>Verde claro</item>
+        <item>Azul</item>
+        <item>Celeste</item>
+        <item>Negro</item>
+        <item>Marron Claro</item>
+    </string-array>
+    <string name="character_add_bodybuild">Complexion física</string>
+    <string-array name="bodytypes">
+        <item>Flaco</item>
+        <item>Encorvado</item>
+        <item>Musculoso</item>
+        <item>Rechoncho</item>
+        <item>En forma</item>
+    </string-array>
     <string name="character_add_gender">Sexo</string>
     <string-array name="gender_spinner_array">
         <item>Sexo</item>
         <item>Masculino</item>
         <item>Femenino</item>
-        <item>Transsexual</item>
+        <item>Binario</item>
+        <item>No-Binario</item>
+        <item>Transgenero</item>
     </string-array>
     <string name="character_add_defmoment">Momento de su infancia</string>
     <string-array name="defmoment_array">
@@ -445,6 +488,12 @@
     <string name="age_bio_2">años.</string>
     <string name="placebirth_bio">Nació en</string>
     <string name="job_bio">Trabaja de </string>
+    <string name="height_bio">Tiene</string>
+    <string name="hair_bio_1">Con pelo</string>
+    <string name="hair_bio_2">y</string>
+    <string name="eyes_bio">ojos color</string>
+    <string name="bodybuild_bio">Uno podría decir que se ve</string>
+
     <string name="male_desire_bio">En su mente quiere </string>
     <string name="male_need_bio">Pero, ¿Es eso lo que necesita? ¿O realmente necesita </string>
     <string name="male_moment_bio">De su infancia sabemos que </string>
@@ -458,8 +507,11 @@
     <string name="female_phrase_bio">Una frase con la que generalmente es asociada es</string>
     <string name="female_trait_bio">Sus amigas dicen que es</string>
 
-
-
+    <string name="binary_desire_bio">En sus mentes ellos quieren </string>
+    <string name="binary_need_bio">Pero, ¿Es eso lo que necesitan? ¿O realmente necesitan </string>
+    <string name="binary_moment_bio">De su infancia sabemos que</string>
+    <string name="binary_phrase_bio">Una frase con la que generalmente son asociados es</string>
+    <string name="binary_trait_bio">Sus amiges dicen que son</string>
 
     <!--Challenge I BIO-->
     <string name="challenge_1_bio_title">El desafio del elevador:</string>
@@ -495,6 +547,13 @@
     <string name="challenge_5_bio_desc_2">¿Se atreveria a matar?</string>
     <string name="challenge_5_bio_desc_3">¿Cree que el fin justifica los medios?</string>
     <string name="challenge_5_bio_desc_4">Ok, si no cruzara sus propios limites, ¿Cómo resolveria este problema?</string>
+    <!--Challenge VI BIO-->
+    <string name="challenge_6_bio_title">¿Qué hay en sus bolsillos?</string>
+    <string name="challenge_6_bio_subtitle">Todos tenemos cosas en los bolsillos. Todos tomamos algo antes de salir de casa. En el caso de tu personaje, ¿Qué es?</string>
+    <string name="challenge_6_bio_desc_1">¿Cuando deja la casa, que lleva consigo?</string>
+    <string name="challenge_6_bio_desc_2">¿Hay una foto en su billetera/cartera?</string>
+    <string name="challenge_6_bio_desc_3">Sobre el llavero</string>
+    <string name="challenge_6_bio_desc_4">Acerca de su telefono móvil</string>
     <!--Mentor Challenge-->
     <string name="c1_mentor_title">Desafio del Mentor</string>
     <string name="c1_mentor_desc">Conoce a tu mentor.</string>
@@ -622,6 +681,14 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="challenge_5_q2">Seria capaz de matar? </string>
     <string name="challenge_5_q3">Diria tu personaje que el fin justifica los medios cuando se trata de proteger a quien ama?</string>
     <string name="challenge_5_q4">Supongamos que no cruzara sus limites para salvar a alguien que quiere, sea por miedo o por valores morales. Como resolveria esta situacion sin dejar de ser quien es?</string>
+    <!--Sexto Challenge-->
+    <string name="challenge_6_title">Desafio VI</string>
+    <string name="challenge_6_desc">¿Qué hay en sus bolsillos?</string>
+    <string name="challenge_6_desc_long">Lo que llevas contigo, habla generalmente de aquello que mas te importa. ¿Llevarias algo que no te importa perder? Probablemente no. Lo mismo ocurre con tu personaje. Sumergete en este desafío para entender mas que lleva tu personaje en sus bolsillo. O mejor dicho, que le imoprta mas.</string>
+    <string name="challenge_6_q1">Tu personaje esta apunto de salir de la casa. ¿Qué toma y se pone en los bolsillos? ¿Billetera/Cartera? ¿Lllaves? ¿Es una llave de auto o moto? ¿Qué vehiculo tiene?</string>
+    <string name="challenge_6_q2">Abre su cartera/billetera, ¿Tiene una foto? ¿Quién esta en la foto? ¿Por qué esta ahí y desde cuando la tiene?</string>
+    <string name="challenge_6_q3">Toma las llaves de su bolsillo, presta atencíon al llavero. ¿Qué es? ¿Donde lo consiguio? ¿Acaso fue un regalo? Si es el icono o la bandera de algún país. ¿Qué país es ese?</string>
+    <string name="challenge_6_q4">¿Lleva un telefono móvil consigo? ¿Tiene bateria? ¿O siempre esta casi vacío al salir de la casa? ¿Tiene el telefono en modo silencío? Mira mas atentamente, ¿Cual es su fondo de pantalla?</string>
     <!--Challenge I Mentor-->
     <string name="c1_mentor_bio_title">Conoce a tu mentor.</string>
     <string name="c1_mentor_bio_subtitle">No todos los mentores se comportan del a misma manera, ni enseñan o guian en las mismas formas. Como es el tuyo?</string>
@@ -646,9 +713,9 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="c1_sidekick_q3">¿Cuales son las tacticas, herramientas o armas que le provee al protagonista? ¿Como lo protegera o defendera?</string>
     <string name="c1_sidekick_q4">Algunos escuderos tienen momentos donde deben decidir si vale la pena sacrificar sus vidas por el protagonista. ¿Es el caso del tuyo? ¿Cual es la cosa mas preciada que sacrificara por el protagonista? ¿Séra su propia vida?</string>
     <!--Coming Soon Challenge-->
-    <string name="challenge_6_title">Desafio V</string>
-    <string name="challenge_6_desc">Muy pronto</string>
-    <string name="challenge_6_desc_long">Actualmente estoy trabajando en mas desafios. No dudes en enviarme tus sugerencias.</string>
+    <string name="challenge_7_title">Desafio VII</string>
+    <string name="challenge_7_desc">Muy pronto</string>
+    <string name="challenge_7_desc_long">Actualmente estoy trabajando en mas desafios. No dudes en enviarme tus sugerencias.</string>
 
 
     <!--GUIDE ME Strings-->

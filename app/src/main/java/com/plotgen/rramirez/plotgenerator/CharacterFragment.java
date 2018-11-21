@@ -35,10 +35,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
+import butterknife.BindView;
+
 
 public class CharacterFragment extends Fragment {
 
-    public EditText nameEditText, profession_edit_text, desire_edit_text, age_edit_text, placebirth_edit_text, defmoment_edit_text,need_edit_text, phrase_et,trait_edit_text, trait2_edit_text,trait3_edit_text, notes_edit_text;
+    public EditText nameEditText, profession_edit_text, desire_edit_text, age_edit_text, height_et, hair_color_et,eye_color_et,bodybuild_et,
+            placebirth_edit_text, defmoment_edit_text,need_edit_text, phrase_et,trait_edit_text,
+            trait2_edit_text,trait3_edit_text, notes_edit_text;
     public TextView project_name_tv;
     public ImageButton delete_btn,random_gen_char_btn;
     public Spinner gender_spinner, role_spinner;
@@ -94,6 +98,10 @@ public class CharacterFragment extends Fragment {
         nameEditText = myFragmentView.findViewById(R.id.nameEditText);
         age_edit_text = myFragmentView.findViewById(R.id.age_edit_text);
         profession_edit_text = myFragmentView.findViewById(R.id.profession_edit_text);
+        height_et = myFragmentView.findViewById(R.id.height_et);
+        hair_color_et = myFragmentView.findViewById(R.id.hair_color_et);
+        eye_color_et = myFragmentView.findViewById(R.id.eye_color_et);
+        bodybuild_et = myFragmentView.findViewById(R.id.bodybuild_et);
         placebirth_edit_text = myFragmentView.findViewById(R.id.placebirth_edit_text);
         defmoment_edit_text= myFragmentView.findViewById(R.id.defmoment_edit_text);
         desire_edit_text = myFragmentView.findViewById(R.id.desire_edit_text);
@@ -129,15 +137,18 @@ public class CharacterFragment extends Fragment {
             age_edit_text.setText(char_description.get(1));
             placebirth_edit_text.setText(char_description.get(3));
             profession_edit_text.setText(char_description.get(4));
-            desire_edit_text.setText(char_description.get(5));
-            defmoment_edit_text.setText(char_description.get(7));
-            need_edit_text.setText(char_description.get(8));
-            phrase_et.setText(char_description.get(9));
-            trait_edit_text.setText(char_description.get(10));
-            trait2_edit_text.setText(char_description.get(11));
-            trait3_edit_text.setText(char_description.get(12));
-            notes_edit_text.setText(char_description.get(13));
-
+            height_et.setText(char_description.get(5));
+            hair_color_et.setText(char_description.get(6));
+            eye_color_et.setText(char_description.get(7));
+            bodybuild_et.setText(char_description.get(8));
+            desire_edit_text.setText(char_description.get(9));
+            defmoment_edit_text.setText(char_description.get(11));
+            need_edit_text.setText(char_description.get(12));
+            phrase_et.setText(char_description.get(13));
+            trait_edit_text.setText(char_description.get(14));
+            trait2_edit_text.setText(char_description.get(15));
+            trait3_edit_text.setText(char_description.get(16));
+            notes_edit_text.setText(char_description.get(17));
 
             //Set the proper spinner value
             String gender = char_description.get(2);
@@ -145,12 +156,16 @@ public class CharacterFragment extends Fragment {
                 gender_spinner.setSelection(1);
             } else if (gender.equals("Female") || gender.equals("Femenino")){
                 gender_spinner.setSelection(2);
-            } else {
+            } else if (gender.equals("Transgender") || gender.equals("Transgenero")){
                 gender_spinner.setSelection(3);
+            }  else if (gender.equals("Binario") || gender.equals("Binary")){
+                gender_spinner.setSelection(4);
+            } else {
+                gender_spinner.setSelection(5);
             }
 
             //Set the proper spinner value
-            String role = char_description.get(6);
+            String role = char_description.get(10);
             if(role.equals("Protagonist") || role.equals("Protagonista")){
                 role_spinner.setSelection(0);
             } else if(role.equals("Protagonist's Helper") || role.equals("Ayudante de protagonista")) {
@@ -192,21 +207,22 @@ public class CharacterFragment extends Fragment {
             public void onClick(View v) {
                 // Perform action on click
                 ArrayList<String> info = generateBIO(myFragmentView.getContext());
-
                 nameEditText.setText(info.get(0));
                 placebirth_edit_text.setText(info.get(1));
                 age_edit_text.setText(info.get(2));
                 gender_spinner.setSelection(Integer.valueOf(info.get(3)));
                 profession_edit_text.setText(info.get(4));
-                desire_edit_text.setText(info.get(5));
-                defmoment_edit_text.setText(info.get(6));
-                trait_edit_text.setText(info.get(7));
-                trait2_edit_text.setText(info.get(8));
-                trait3_edit_text.setText(info.get(9));
-                need_edit_text.setText(info.get(10));
-                phrase_et.setText(info.get(11));
-
-
+                height_et.setText(info.get(5));
+                hair_color_et.setText(info.get(6));
+                eye_color_et.setText(info.get(7));
+                bodybuild_et.setText(info.get(8));
+                desire_edit_text.setText(info.get(9));
+                defmoment_edit_text.setText(info.get(10));
+                trait_edit_text.setText(info.get(11));
+                trait2_edit_text.setText(info.get(12));
+                trait3_edit_text.setText(info.get(13));
+                need_edit_text.setText(info.get(14));
+                phrase_et.setText(info.get(15));
             }
         });
 
@@ -244,6 +260,10 @@ public class CharacterFragment extends Fragment {
         ArrayList<String> last_name = new ArrayList<>(100);
         ArrayList<String> placeOfBirth = new ArrayList<>(100);
         ArrayList<String> profession = new ArrayList<>(100);
+        ArrayList<String> height = new ArrayList<>();
+        ArrayList<String> haircolor = new ArrayList<>();
+        ArrayList<String> eyecolor = new ArrayList<>();
+        ArrayList<String> bodybuild = new ArrayList<>();
         ArrayList<String> desire = new ArrayList<>();
         ArrayList<String> moment = new ArrayList<>();
         ArrayList<String> traits = new ArrayList<>();
@@ -258,6 +278,10 @@ public class CharacterFragment extends Fragment {
         last_name.addAll(Arrays.asList("SMITH", "JOHNSON", "WILLIAMS", "JONES", "BROWN", "DAVIS", "MILLER", "WILSON", "MOORE", "TAYLOR", "ANDERSON", "THOMAS", "JACKSON", "WHITE", "HARRIS", "MARTIN", "THOMPSON", "GARCIA", "MARTINEZ", "ROBINSON", "CLARK", "RODRIGUEZ", "LEWIS", "LEE", "WALKER", "HALL", "ALLEN", "YOUNG", "HERNANDEZ", "KING", "WRIGHT", "LOPEZ", "HILL","SCOTT", "GREEN", "ADAMS", "BAKER", "GONZALEZ", "NELSON", "CARTER", "MITCHELL", "PEREZ", "ROBERTS", "TURNER", "PHILLIPS", "CAMPBELL", "PARKER", "EVANS", "EDWARDS", "COLLINS", "STEWART", "SANCHEZ", "MORRIS", "ROGERS", "REED", "COOK", "MORGAN", "BELL", "MURPHY", "BAILEY", "RIVERA", "COOPER", "RICHARDSON","Garcia", "Fernandez", "Lopez", "Martinez", "Gonzalez", "Rodriguez", "Sanchez", "Perez","Martin","Gomez","Ruiz", "Diaz", "Hernandez", "Alvarez", "Jimenez", "Moreno", "Munoz", "Alonso", "Romero", "Navarro", "Gutierrez", "Torres", "Dominguez", "Gil", "Vazquez", "Blanco", "Serrano", "Ramos", "Castro", "Suarez", "Sanz", "Rubio", "Ortega", "Molina", "Delgado", "Ortiz", "Morales", "Ramirez", "Marin", "Iglesias", "Santos", "Castillo", "Garrido"));
         placeOfBirth.addAll(Arrays.asList(context.getResources().getStringArray(R.array.placebirth_array)));
         profession.addAll(Arrays.asList(context.getResources().getStringArray(R.array.profession_array)));
+        height.addAll(Arrays.asList(context.getResources().getStringArray(R.array.heights)));
+        haircolor.addAll(Arrays.asList(context.getResources().getStringArray(R.array.haircolors)));
+        eyecolor.addAll(Arrays.asList(context.getResources().getStringArray(R.array.eyecolors)));
+        bodybuild.addAll(Arrays.asList(context.getResources().getStringArray(R.array.bodytypes)));
         desire.addAll(Arrays.asList(context.getResources().getStringArray(R.array.desire_array)));
         moment.addAll(Arrays.asList(context.getResources().getStringArray(R.array.defmoment_array)));
         phrases_array.addAll(Arrays.asList(context.getResources().getStringArray(R.array.phrases)));
@@ -294,6 +318,19 @@ public class CharacterFragment extends Fragment {
         int index5 = (r.nextInt(profession.size()));
         String job = profession.get(index5);
 
+        //Height
+        int index_height = (r.nextInt(height.size()));
+        String height_temp = height.get(index_height);
+        //Hair Color
+        int index_hair = (r.nextInt(haircolor.size()));
+        String hair = haircolor.get(index_hair);
+        //Eye Color
+        int index_eye = (r.nextInt(eyecolor.size()));
+        String eye = eyecolor.get(index_eye);
+        //Bodybuilds
+        int index_body = (r.nextInt(bodybuild.size()));
+        String body = bodybuild.get(index_body);
+
         //Desire
         int index6 = (r.nextInt(desire.size()));
         String wish = desire.get(index6);
@@ -324,6 +361,10 @@ public class CharacterFragment extends Fragment {
         bio.add(String.valueOf(age));
         bio.add(String.valueOf(gender));
         bio.add(job);
+        bio.add(height_temp);
+        bio.add(hair);
+        bio.add(eye);
+        bio.add(body);
         bio.add(wish);
         bio.add(defmoment);
         bio.add(trait1);
@@ -332,7 +373,6 @@ public class CharacterFragment extends Fragment {
         bio.add(need);
         bio.add(phrase_text);
         return bio;
-
     }
 
 
@@ -342,6 +382,10 @@ public class CharacterFragment extends Fragment {
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_NAME, nameEditText.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PROJECT_ID, project_id);
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_JOB, profession_edit_text.getText().toString());
+        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_HEIGHT, height_et.getText().toString());
+        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_HAIRCOLOR, hair_color_et.getText().toString());
+        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_EYECOLOR, eye_color_et.getText().toString());
+        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_BODYBUILD, bodybuild_et.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_DESIRE, desire_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_AGE, age_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_GENDER, gender_spinner.getSelectedItem().toString());
@@ -382,6 +426,10 @@ public class CharacterFragment extends Fragment {
         ContentValues values = new ContentValues();
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_NAME, nameEditText.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_JOB, profession_edit_text.getText().toString());
+        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_HEIGHT, height_et.getText().toString());
+        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_HAIRCOLOR, hair_color_et.getText().toString());
+        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_EYECOLOR, eye_color_et.getText().toString());
+        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_BODYBUILD, bodybuild_et.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_DESIRE, desire_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_AGE, age_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_GENDER, gender_spinner.getSelectedItem().toString());
@@ -401,7 +449,6 @@ public class CharacterFragment extends Fragment {
 
     }
 
-
     public ArrayList<String> getDescription(Context context, String char_name){
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
@@ -415,6 +462,10 @@ public class CharacterFragment extends Fragment {
             char_list.add(cursor.getString(cursor.getColumnIndex("gender")));
             char_list.add(cursor.getString(cursor.getColumnIndex("placebirth")));
             char_list.add(cursor.getString(cursor.getColumnIndex("profession")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("height")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("haircolor")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("eyecolor")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("bodybuild")));
             char_list.add(cursor.getString(cursor.getColumnIndex("desire")));
             char_list.add(cursor.getString(cursor.getColumnIndex("role")));
             char_list.add(cursor.getString(cursor.getColumnIndex("defmoment")));

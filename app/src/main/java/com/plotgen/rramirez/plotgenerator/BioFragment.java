@@ -29,7 +29,7 @@ import java.util.Locale;
  */
 public class BioFragment extends Fragment {
 
-    TextView title, role_subtitle, intro_tv,char_role_challenge,character_bio_challenge, character_bio_challenge_2,character_bio_challenge_3,character_bio_challenge_4,character_bio_challenge_5;
+    TextView title, role_subtitle, intro_tv,char_role_challenge,character_bio_challenge, character_bio_challenge_2,character_bio_challenge_3,character_bio_challenge_4,character_bio_challenge_5,character_bio_challenge_6;
     ArrayList<String> char_description;
     ImageButton character_bio_edit_btn, character_bio_share_btn, guide_btn,character_bio_challenge_btn;
     private FirebaseAnalytics mFirebaseAnalytics;
@@ -62,6 +62,7 @@ public class BioFragment extends Fragment {
         character_bio_challenge_3 = myFragmentView.findViewById(R.id.character_bio_challenge_3);
         character_bio_challenge_4 = myFragmentView.findViewById(R.id.character_bio_challenge_4);
         character_bio_challenge_5 = myFragmentView.findViewById(R.id.character_bio_challenge_5);
+        character_bio_challenge_6 = myFragmentView.findViewById(R.id.character_bio_challenge_6);
         character_bio_edit_btn = myFragmentView.findViewById(R.id.character_bio_edit_btn);
         character_bio_share_btn = myFragmentView.findViewById(R.id.character_bio_share_btn);
         character_bio_challenge_btn = myFragmentView.findViewById(R.id.bio_fragment_challenge_btn);
@@ -76,55 +77,64 @@ public class BioFragment extends Fragment {
         String gender = char_description.get(2);
         String placebirth = char_description.get(3);
         String job = char_description.get(4);
-        String desire = char_description.get(5);
-        final String role = char_description.get(6);
-        String moment = char_description.get(7);
-        String need = char_description.get(8);
-        String phrase = char_description.get(9);
-        final String trait1 = char_description.get(10);
-        String trait2 = char_description.get(11);
-        String trait3 = char_description.get(12);
-        String notes = char_description.get(13); //Always update notes to the last index. Because of reasons.
+        String height = char_description.get(5);
+        String haircolor = char_description.get(6);
+        String eyecolor = char_description.get(7);
+        String bodybuild = char_description.get(8);
+        String desire = char_description.get(9);
+        final String role = char_description.get(10);
+        String moment = char_description.get(11);
+        String need = char_description.get(12);
+        String phrase = char_description.get(13);
+        final String trait1 = char_description.get(14);
+        String trait2 = char_description.get(15);
+        String trait3 = char_description.get(16);
+        String notes = char_description.get(17); //Always update notes to the last index. Because of reasons.
         //First challenge
-        String firstReaction = char_description.get(14);
-        String waitRescue = char_description.get(15);
-        String helpPartner = char_description.get(16);
-        String escapeFirst = char_description.get(17);
+        String firstReaction = char_description.get(18);
+        String waitRescue = char_description.get(19);
+        String helpPartner = char_description.get(20);
+        String escapeFirst = char_description.get(21);
         //Second challenge
-        String challenge2_q1 = char_description.get(18);
-        String challenge2_q2 = char_description.get(19);
-        String challenge2_q3 = char_description.get(20);
-        String challenge2_q4 = char_description.get(21);
+        String challenge2_q1 = char_description.get(22);
+        String challenge2_q2 = char_description.get(23);
+        String challenge2_q3 = char_description.get(24);
+        String challenge2_q4 = char_description.get(25);
         //Third challenge
-        String challenge3_q1 = char_description.get(22);
-        String challenge3_q2 = char_description.get(23);
-        String challenge3_q3 = char_description.get(24);
-        String challenge3_q4 = char_description.get(25);
+        String challenge3_q1 = char_description.get(26);
+        String challenge3_q2 = char_description.get(27);
+        String challenge3_q3 = char_description.get(28);
+        String challenge3_q4 = char_description.get(29);
         //Fourth challenge
-        String challenge4_q1 = char_description.get(26);
-        String challenge4_q2 = char_description.get(27);
-        String challenge4_q3 = char_description.get(28);
-        String challenge4_q4 = char_description.get(29);
+        String challenge4_q1 = char_description.get(30);
+        String challenge4_q2 = char_description.get(31);
+        String challenge4_q3 = char_description.get(32);
+        String challenge4_q4 = char_description.get(33);
         //Fifth challenge
-        String challenge5_q1 = char_description.get(30);
-        String challenge5_q2 = char_description.get(31);
-        String challenge5_q3 = char_description.get(32);
-        String challenge5_q4 = char_description.get(33);
+        String challenge5_q1 = char_description.get(34);
+        String challenge5_q2 = char_description.get(35);
+        String challenge5_q3 = char_description.get(36);
+        String challenge5_q4 = char_description.get(37);
+        //Sixth challenge
+        String challenge6_q1 = char_description.get(38);
+        String challenge6_q2 = char_description.get(39);
+        String challenge6_q3 = char_description.get(40);
+        String challenge6_q4 = char_description.get(41);
         //Mentor challenge
-        String c1_mentor_q1 = char_description.get(34);
-        String c1_mentor_q2 = char_description.get(35);
-        String c1_mentor_q3 = char_description.get(36);
-        String c1_mentor_q4 = char_description.get(37);
+        String c1_mentor_q1 = char_description.get(42);
+        String c1_mentor_q2 = char_description.get(43);
+        String c1_mentor_q3 = char_description.get(44);
+        String c1_mentor_q4 = char_description.get(45);
         //Antagonist challenge
-        String c1_antagonist_q1 = char_description.get(38);
-        String c1_antagonist_q2 = char_description.get(39);
-        String c1_antagonist_q3 = char_description.get(40);
-        String c1_antagonist_q4 = char_description.get(41);
+        String c1_antagonist_q1 = char_description.get(46);
+        String c1_antagonist_q2 = char_description.get(47);
+        String c1_antagonist_q3 = char_description.get(48);
+        String c1_antagonist_q4 = char_description.get(49);
         //Sidekick challenge
-        String c1_sidekick_q1 = char_description.get(42);
-        String c1_sidekick_q2 = char_description.get(43);
-        String c1_sidekick_q3 = char_description.get(44);
-        String c1_sidekick_q4 = char_description.get(45);
+        String c1_sidekick_q1 = char_description.get(50);
+        String c1_sidekick_q2 = char_description.get(51);
+        String c1_sidekick_q3 = char_description.get(52);
+        String c1_sidekick_q4 = char_description.get(53);
 
 
         //Titles
@@ -140,6 +150,11 @@ public class BioFragment extends Fragment {
         bio_text.append(name + " " + getString(R.string.age_bio_1) + "<br> " + age + " " + getString(R.string.age_bio_2) + "<br>");
         bio_text.append(getString(R.string.placebirth_bio) +"<br> " + placebirth+"<br>");
         bio_text.append(getString(R.string.job_bio) + " " + job + "<br>");
+        bio_text.append(getString(R.string.height_bio) + " " + height + "<br>");
+        bio_text.append(getString(R.string.hair_bio_1) + " " + haircolor + " " + getString(R.string.hair_bio_2));
+        bio_text.append(" " + getString(R.string.eyes_bio) + " " + eyecolor + "<br>");
+        bio_text.append(getString(R.string.bodybuild_bio) + " " + bodybuild + "<br>");
+
 
         if(gender.equals("Masculino") || gender.equals("Male")) {
             bio_text.append(getString(R.string.male_desire_bio) + " " + desire + "<br>");
@@ -147,12 +162,18 @@ public class BioFragment extends Fragment {
             bio_text.append(getString(R.string.male_moment_bio) + " " + moment + "<br>");
             bio_text.append(getString(R.string.male_trait_bio) + " " + trait1 + ", " + trait2 + ", " + trait3 + "<br><br>");
             bio_text.append(getString(R.string.male_phrase_bio) +"<br> " +  phrase +"<br><br>");
-        } else {
+        } else if (gender.equals("Femenino") || gender.equals("Female")){
             bio_text.append(getString(R.string.female_desire_bio) + " " + desire + "<br>");
             bio_text.append(getString(R.string.female_need_bio) + " " + need + "?<br>");
             bio_text.append(getString(R.string.female_moment_bio) + " " + moment + "<br>");
             bio_text.append(getString(R.string.female_trait_bio) + " " + trait1 + ", " + trait2 + ", " + trait3 + "<br><br>");
             bio_text.append(getString(R.string.female_phrase_bio) +"<br> " +  phrase +"<br><br>");
+        } else {
+            bio_text.append(getString(R.string.binary_desire_bio) + " " + desire + "<br>");
+            bio_text.append(getString(R.string.binary_need_bio) + " " + need + "?<br>");
+            bio_text.append(getString(R.string.binary_moment_bio) + " " + moment + "<br>");
+            bio_text.append(getString(R.string.binary_trait_bio) + " " + trait1 + ", " + trait2 + ", " + trait3 + "<br><br>");
+            bio_text.append(getString(R.string.binary_phrase_bio) +"<br> " +  phrase +"<br><br>");
         }
 
         bio_text.append(getString(R.string.notes_bio) +"<br> " +  notes );
@@ -250,6 +271,17 @@ public class BioFragment extends Fragment {
             sb.append("<br><br><br>");
             character_bio_challenge_5.setVisibility(View.VISIBLE);
             character_bio_challenge_5.setText(Html.fromHtml(sb.toString()));
+        }
+        if(challenge6_q1 != null){
+            StringBuffer sb=new StringBuffer();
+            sb.append("<br><b>"+getString(R.string.challenge_6_bio_title) +"</b> "+getString(R.string.challenge_6_bio_subtitle) +" <br>");
+            sb.append("<br><i><b>" + getString(R.string.challenge_6_bio_desc_1) +"</b></i><br>" + challenge6_q1 + "<br>");
+            sb.append("<br><i><b>" + getString(R.string.challenge_6_bio_desc_2) + "</b></i><br>" + challenge6_q2+ "<br>");
+            sb.append("<br><i><b>"+ getString(R.string.challenge_6_bio_desc_3) +"</b></i><br>" + challenge6_q3+ "<br>");
+            sb.append("<br><i><b>"+ getString(R.string.challenge_6_bio_desc_4) +"</b></i><br>" + challenge6_q4);
+            sb.append("<br><br><br>");
+            character_bio_challenge_6.setVisibility(View.VISIBLE);
+            character_bio_challenge_6.setText(Html.fromHtml(sb.toString()));
         }
 
 
@@ -363,6 +395,10 @@ public class BioFragment extends Fragment {
             char_list.add(cursor.getString(cursor.getColumnIndex("gender")));
             char_list.add(cursor.getString(cursor.getColumnIndex("placebirth")));
             char_list.add(cursor.getString(cursor.getColumnIndex("profession")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("height")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("haircolor")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("eyecolor")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("bodybuild")));
             char_list.add(cursor.getString(cursor.getColumnIndex("desire")));
             char_list.add(cursor.getString(cursor.getColumnIndex("role")));
             char_list.add(cursor.getString(cursor.getColumnIndex("defmoment")));
@@ -397,6 +433,11 @@ public class BioFragment extends Fragment {
             char_list.add(cursor.getString(cursor.getColumnIndex("challenge_5_q2")));
             char_list.add(cursor.getString(cursor.getColumnIndex("challenge_5_q3")));
             char_list.add(cursor.getString(cursor.getColumnIndex("challenge_5_q4")));
+            //Sixth Challenge
+            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_6_q1")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_6_q2")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_6_q3")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_6_q4")));
             //Mentor Challenge
             char_list.add(cursor.getString(cursor.getColumnIndex("c1_mentor_q1")));
             char_list.add(cursor.getString(cursor.getColumnIndex("c1_mentor_q2")));

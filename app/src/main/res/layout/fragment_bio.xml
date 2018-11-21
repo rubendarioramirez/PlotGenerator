@@ -122,6 +122,18 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/content" />
 
+            <TextView
+                android:id="@+id/character_bio_challenge_6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="12dp"
+                android:background="@color/content_lighter"
+                android:fontFamily="@font/typewcond_regular"
+                android:gravity="left"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/content" />
+
 
         </LinearLayout>
     </ScrollView>

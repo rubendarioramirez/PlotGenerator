@@ -101,7 +101,6 @@ public class Utils {
         while(!cursor.isAfterLast()) {
             String charname = cursor.getString(cursor.getColumnIndex("name"));
             String charRole = cursor.getString(cursor.getColumnIndex("role"));
-            Log.v("matilda",charname);
             char_list.add(charname + " - " + charRole);
             cursor.moveToNext();
         }

@@ -83,6 +83,49 @@
                 android:textColor="@color/content"
                 android:textSize="14sp" />
 
+            <EditText
+                android:id="@+id/height_et"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="27dp"
+                android:ems="8"
+                android:hint="@string/character_add_height"
+                android:inputType="textPersonName"
+                android:textColor="@color/content"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/hair_color_et"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="27dp"
+                android:ems="8"
+                android:hint="@string/character_add_haircolor"
+                android:inputType="textPersonName"
+                android:textColor="@color/content"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/eye_color_et"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="27dp"
+                android:ems="8"
+                android:hint="@string/character_add_eyecolor"
+                android:inputType="textPersonName"
+                android:textColor="@color/content"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/bodybuild_et"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="27dp"
+                android:ems="8"
+                android:hint="@string/character_add_bodybuild"
+                android:inputType="textPersonName"
+                android:textColor="@color/content"
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/profession_edit_text"

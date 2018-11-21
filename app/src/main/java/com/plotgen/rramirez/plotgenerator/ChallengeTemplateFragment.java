@@ -50,6 +50,7 @@ public class ChallengeTemplateFragment extends Fragment  {
         final String project_name  = this.getArguments().getString("char_name");
         final String char_name = this.getArguments().getString("project_name");
         final String challenge_number = this.getArguments().getString("challenge_number");
+        Log.v("matilda","Challenge number is: " + challenge_number);
 
 
         //Save button
@@ -94,7 +95,13 @@ public class ChallengeTemplateFragment extends Fragment  {
             question2Title.setText(getString(R.string.challenge_5_q2));
             question3Title.setText(getString(R.string.challenge_5_q3));
             question4Title.setText(getString(R.string.challenge_5_q4));
-        }else if(challenge_number.equals("Mentor Challenge") || challenge_number.equals("Desafio del Mentor")){
+        } else if(challenge_number.equals("Challenge VI") || challenge_number.equals("Desafio VI")){
+            question1Title.setText(getString(R.string.challenge_6_q1));
+            question2Title.setText(getString(R.string.challenge_6_q2));
+            question3Title.setText(getString(R.string.challenge_6_q3));
+            question4Title.setText(getString(R.string.challenge_6_q4));
+        }
+        else if(challenge_number.equals("Mentor Challenge") || challenge_number.equals("Desafio del Mentor")){
             question1Title.setText(getString(R.string.c1_mentor_q1));
             question2Title.setText(getString(R.string.c1_mentor_q2));
             question3Title.setText(getString(R.string.c1_mentor_q3));
@@ -171,6 +178,11 @@ public class ChallengeTemplateFragment extends Fragment  {
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C5Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C5Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C5Q4, question4.getText().toString());
+        }else if(challenge_number.equals("Challenge VI") || challenge_number.equals("Desafio VI")){
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C6Q1, question1.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C6Q2, question2.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C6Q3, question3.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C6Q4, question4.getText().toString());
         }else if(challenge_number.equals("Mentor Challenge") || challenge_number.equals("Desafio del Mentor")){
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_MENTOR_Q1, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_MENTOR_Q2, question2.getText().toString());

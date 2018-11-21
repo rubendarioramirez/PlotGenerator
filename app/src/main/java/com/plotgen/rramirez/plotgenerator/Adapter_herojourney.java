@@ -103,7 +103,10 @@ public class Adapter_herojourney extends RecyclerView.Adapter<Adapter_herojourne
                 nextFragment(mContext,charName,projectName,clicked);
             }  else if (clicked.equals("Challenge V") || clicked.equals("Desafio V")) {
                 nextFragment(mContext,charName,projectName,clicked);
-            }  else if (clicked.equals("Mentor Challenge") || clicked.equals("Desafio del Mentor")) {
+            } else if (clicked.equals("Challenge VI") || clicked.equals("Desafio VI")) {
+                nextFragment(mContext,charName,projectName,clicked);
+            }
+            else if (clicked.equals("Mentor Challenge") || clicked.equals("Desafio del Mentor")) {
                 if(challenge_unlock == 0){
                     if (mRewardedVideoAd.isLoaded()) {
                         mRewardedVideoAd.show();

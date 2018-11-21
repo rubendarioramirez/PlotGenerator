@@ -124,6 +124,13 @@
     <string name="age_bio_1">is</string>
     <string name="age_bio_2">years old.</string>
     <string name="placebirth_bio">Born in</string>
+
+    <string name="height_bio">Being</string>
+    <string name="hair_bio_1">with</string>
+    <string name="hair_bio_2">hair and</string>
+    <string name="eyes_bio">eyes color</string>
+    <string name="bodybuild_bio">One could say that looks rather</string>
+
     <string name="job_bio">Works as</string>
     <string name="male_desire_bio">In his mind he wants </string>
     <string name="male_need_bio">But is that what he really wants? Or he actually needs</string>
@@ -138,6 +145,12 @@
     <string name="female_phrase_bio">A phrase that people will commonly associate with her is</string>
     <string name="female_trait_bio">Also her friends says that she is</string>
     <string name="female_notes_bio">Notes</string>
+
+    <string name="binary_desire_bio">In their mind they want </string>
+    <string name="binary_need_bio">But is that what they really want? Or they actually need</string>
+    <string name="binary_moment_bio">About their childhood we know that they</string>
+    <string name="binary_phrase_bio">A phrase that people will commonly associate with them is</string>
+    <string name="binary_trait_bio">Also their friends says that they are</string>
 
     <!--Challenge I BIO-->
     <string name="challenge_1_bio_title">The elevator challenge:</string>
@@ -173,6 +186,13 @@
     <string name="challenge_5_bio_desc_2">Will he kill?</string>
     <string name="challenge_5_bio_desc_3">Does he believes that the end justify the means?</string>
     <string name="challenge_5_bio_desc_4">OK, he doesn\'t cross his own limits. how does he reacts then?</string>
+    <!--Challenge VI BIO-->
+    <string name="challenge_6_bio_title">What\'s in the pockets?</string>
+    <string name="challenge_6_bio_subtitle">We all have stuff in our pockets, we all care about something before leaving our houses. What is it for your character?</string>
+    <string name="challenge_6_bio_desc_1">When leaving the house, what\'s in the pockets?</string>
+    <string name="challenge_6_bio_desc_2">Is there a picture in the wallet?</string>
+    <string name="challenge_6_bio_desc_3">About the keychain (Keyring)</string>
+    <string name="challenge_6_bio_desc_4">About the cellphone</string>
     <!--Challenge I Mentor-->
     <string name="c1_mentor_bio_title">Know your mentor.</string>
     <string name="c1_mentor_bio_subtitle">Not all mentors behave the same, neither teach or guide in the same way. What about yours?</string>
@@ -259,8 +279,51 @@
         <item>Male</item>
         <item>Female</item>
         <item>Transgender</item>
+        <item>Binary</item>
+        <item>Non-Binary</item>
     </string-array>
     <string name="character_add_role">Role</string>
+    <string name="character_add_height">Height</string>
+    <string-array name="heights">
+        <item>1.50 tall</item>
+        <item>1.55 tall</item>
+        <item>1.60 tall</item>
+        <item>1.65 tall</item>
+        <item>1.70 tall</item>
+        <item>1.75 tall</item>
+        <item>1.80 tall</item>
+        <item>1.85 tall</item>
+        <item>1.90 tall</item>
+    </string-array>
+    <string name="character_add_haircolor">Hair\'s color</string>
+    <string-array name="haircolors">
+        <item>Brown</item>
+        <item>Grey</item>
+        <item>Black</item>
+        <item>Wheat</item>
+        <item>Silver</item>
+        <item>Blond</item>
+        <item>Red</item>
+        <item>White</item>
+    </string-array>
+    <string name="character_add_eyecolor">Eye\'s color</string>
+    <string-array name="eyecolors">
+        <item>Brown</item>
+        <item>Green</item>
+        <item>Light Green</item>
+        <item>Blue</item>
+        <item>Light Blue</item>
+        <item>Black</item>
+        <item>Light Brown</item>
+    </string-array>
+    <string name="character_add_bodybuild">Bodybuild</string>
+    <string-array name="bodytypes">
+        <item>Skinny</item>
+        <item>Lean</item>
+        <item>Muscular</item>
+        <item>Chubby</item>
+        <item>Fit</item>
+    </string-array>
     <string name="character_add_placebirth">Place of Birth</string>
     <string name="character_add_phrase">Catchphrase</string>
     <string name="character_add_trait">Trait</string>
@@ -633,6 +696,14 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="challenge_5_q2">Will he be able to kill? </string>
     <string name="challenge_5_q3">Will your character say that the end justify the means when it\'s about protecting a loved one?</string>
     <string name="challenge_5_q4">Let\'s says he doesn\'t dare to cross his own limits to save the life a person he cares. What within his limits/boundaries will he do to solve the situation?</string>
+    <!--Sixth Challenge-->
+    <string name="challenge_6_title">Challenge VI</string>
+    <string name="challenge_6_desc">What\'s in the pockets?</string>
+    <string name="challenge_6_desc_long">Whatever you carry with you, speaks in a way about what you care. Will you carry something you don\'t care? You probably won\'t. Same it\'s true for your character. Dive in to discover what he/she has in the pockets, discover what he/she really cares about</string>
+    <string name="challenge_6_q1">Your character it\s about to leave the house. What will he/she take and put in his pockets? Wallet? Keys? It\'s a car key? What car does she/he has?</string>
+    <string name="challenge_6_q2">Open the wallet, is there a picture? Who is in the picture? Why it\'s there? Since when?</string>
+    <string name="challenge_6_q3">Take the keys from his/her pocket, look carefully at the key chain. What is it? Where he/she got it? Was it a gift? Is it a country icon or flag? Which country?</string>
+    <string name="challenge_6_q4">Does he/she carry a cellphone? Does it has battery? or it\'s always nearly empty when it\'s time to leave? Is the phone in silent mode? Look closer, what\'s the phone wall paper?</string>
     <!--Mentor Challenge-->
     <string name="c1_mentor_title">Mentor Challenge</string>
     <string name="c1_mentor_desc">Know your mentor.</string>
@@ -658,9 +729,9 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="c1_sidekick_q3">What are the tools, tactics or weapons that your sidekick provides to your protagonist? How he protects him or defend him?</string>
     <string name="c1_sidekick_q4">Some sidekicks had a moment when they have to decide, if the protagonist worth their own lives. What\'s the case in yours? What\'s the most precious thing your sidekick will risk for your protagonist? Will be his life?</string>
     <!--Coming soon challenge-->
-    <string name="challenge_6_title">Challenge VI</string>
-    <string name="challenge_6_desc">Coming soon</string>
-    <string name="challenge_6_desc_long">I\m currently working on more challenges. Don\'t hesitate to contact me with suggestions</string>
+    <string name="challenge_7_title">Challenge VII</string>
+    <string name="challenge_7_desc">Coming soon</string>
+    <string name="challenge_7_desc_long">I\m currently working on more challenges. Don\'t hesitate to contact me with suggestions</string>
 
 
     <!--GUIDE ROLES-->
