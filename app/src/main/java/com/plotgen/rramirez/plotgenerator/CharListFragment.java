@@ -91,7 +91,7 @@ public class CharListFragment extends Fragment {
                 //Get the name that was touched
                 //String[] charNameRaw = itemsAdapter.getItem(position).split(" - ");
                 String charName = itemsAdapter.getItem(position);
-                String[] arrayList = getResources().getStringArray(R.array.char_guide_types_titles);
+                String[] arrayList = getResources().getStringArray(R.array.char_guide_types_titles_for_comparison);
                 for(String s : arrayList)
                 {
                     if(charName.contains(s))

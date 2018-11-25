@@ -847,5 +847,31 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="weekly_challenge_submit_btn">Participate</string>
     <string name="weekly_challenge_email_desc">Don\'t forget to add your name if you want to be named. And thanks for participating!</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string-array name="char_guide_types_titles_for_comparison">
+        <item>Protagonist</item>
+        <item>Protagonist\'s Helper</item>
+        <item>Sidekick</item>
+        <item>Guardian</item>
+        <item>Mentor</item>
+        <item>Impact</item>
+        <item>Antagonist</item>
+        <item>Antagonist\'s Helper</item>
+        <item>Skeptic</item>
+        <item>Obstacle</item>
+        <item>Goal</item>
+        <item>Protagonista</item>
+        <item>Ayudante de protagonista</item>
+        <item>Escudero</item>
+        <item>Guardian</item>
+        <item>Mentor</item>
+        <item>De Impacto</item>
+        <item>Antagonista</item>
+        <item>Ayudante de Antagonista</item>
+        <item>Esceptico</item>
+        <item>Obstaculo</item>
+        <item>Meta</item>
+    </string-array>
+
 
 </resources>

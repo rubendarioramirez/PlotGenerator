@@ -840,5 +840,29 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="weekly_challenge_email_desc">No te olvides de agregar tu nombre si deseas ser nombrado. Y gracias por participar!</string>
     <string name="female_notes_bio">Notas</string>
 
-
+    <!-- TODO: Remove or change this placeholder text -->
+    <string-array name="char_guide_types_titles_for_comparison">
+        <item>Protagonist</item>
+        <item>Protagonist\'s Helper</item>
+        <item>Sidekick</item>
+        <item>Guardian</item>
+        <item>Mentor</item>
+        <item>Impact</item>
+        <item>Antagonist</item>
+        <item>Antagonist\'s Helper</item>
+        <item>Skeptic</item>
+        <item>Obstacle</item>
+        <item>Goal</item>
+        <item>Protagonista</item>
+        <item>Ayudante de protagonista</item>
+        <item>Escudero</item>
+        <item>Guardian</item>
+        <item>Mentor</item>
+        <item>De Impacto</item>
+        <item>Antagonista</item>
+        <item>Ayudante de Antagonista</item>
+        <item>Esceptico</item>
+        <item>Obstaculo</item>
+        <item>Meta</item>
+    </string-array>
 </resources>
