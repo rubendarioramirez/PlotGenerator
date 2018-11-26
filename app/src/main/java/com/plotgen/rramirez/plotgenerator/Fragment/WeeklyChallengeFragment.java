@@ -39,6 +39,7 @@ import com.plotgen.rramirez.plotgenerator.R;
 import com.plotgen.rramirez.plotgenerator.Utils;
 import com.plotgen.rramirez.plotgenerator.ViewHolder.StoryViewHolder;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import butterknife.BindView;
@@ -61,7 +62,6 @@ public class WeeklyChallengeFragment extends Fragment {
 
     private LinearLayoutManager mManager;
 
-
     public WeeklyChallengeFragment() {
         // Required empty public constructor
     }
@@ -82,13 +82,11 @@ public class WeeklyChallengeFragment extends Fragment {
         mManager.setStackFromEnd(true);
         rvWeeklyChallenge.setLayoutManager(mManager);
 
-
         mDatabase = FirebaseDatabase.getInstance();
         mReference = mDatabase.getReference().child("Weekly_Challenge_test").child("posts");
         mCommentReference = mDatabase.getReference().child("Weekly_Challenge_test").child("post-comments");
 
         Query query = mDatabase.getReference().child("Weekly_Challenge_test").child("posts").orderByChild("likeCount");
-
 
         options = new FirebaseRecyclerOptions.Builder<Story>()
                 .setQuery(query, Story.class)
@@ -114,31 +112,39 @@ public class WeeklyChallengeFragment extends Fragment {
                 final DatabaseReference postRef = getRef(position);
                 final Story currentStory = model;
 
-                viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Common.currentStory = currentStory;
-                        StoryDetailFragment nextFragment = new StoryDetailFragment();
-                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                        Utils.changeFragment(nextFragment,transaction,"","");
-                    }
-                });
+                if(model.getTitle().contains(Common.currentChallenge.getName())) {
 
-                if (model.likes.containsKey(Common.currentUser.getUid())) {
-                    viewHolder.ivLoves.setImageResource(R.drawable.ic_love_red);
-                } else {
-                    viewHolder.ivLoves.setImageResource(R.drawable.ic_love_outline);
+                    viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Common.currentStory = currentStory;
+                            StoryDetailFragment nextFragment = new StoryDetailFragment();
+                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                            Utils.changeFragment(nextFragment, transaction, "", "");
+                        }
+                    });
+
+                    if (model.likes.containsKey(Common.currentUser.getUid())) {
+                        viewHolder.ivLoves.setImageResource(R.drawable.ic_love_red);
+                    } else {
+                        viewHolder.ivLoves.setImageResource(R.drawable.ic_love_outline);
+                    }
+
+                    View.OnClickListener likeClickListener = new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            DatabaseReference globalPostRef = mReference.child(postRef.getKey());
+                            onLikeClicked(globalPostRef);
+                        }
+                    };
+
+                    viewHolder.bindToPost(model, likeClickListener, mCommentReference.child(postRef.getKey()));
+
                 }
-
-                View.OnClickListener likeClickListener = new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        DatabaseReference globalPostRef = mReference.child(postRef.getKey());
-                        onLikeClicked(globalPostRef);
-                    }
-                };
-
-                viewHolder.bindToPost(model, likeClickListener, mCommentReference.child(postRef.getKey()));
+                else
+                {
+                    mAdapter.getRef(position).removeValue();
+                }
 
             }
         };

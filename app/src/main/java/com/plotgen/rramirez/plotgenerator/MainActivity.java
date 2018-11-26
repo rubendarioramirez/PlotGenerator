@@ -211,13 +211,6 @@ public class MainActivity extends AppCompatActivity
             ft.commit();
             navigationView.setCheckedItem(R.id.nav_profile);
         }
-        else if(id == R.id.nav_weekly_challenge)
-        {
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.flMain, new WeeklyChallengeFragment());
-            mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
-            ft.commit();
-        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

@@ -29,7 +29,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Fragment.SubmitStoryFragment;
+import com.plotgen.rramirez.plotgenerator.Fragment.WeeklyChallengeFragment;
+import com.plotgen.rramirez.plotgenerator.Model.Challenge;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,6 +51,7 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
 
     private TextView title,description, ad_desc;
     private Button ad_submit_btn;
+    private Button btViewParticipant;
     private String databaseToUse;
     ArrayList data_list;
     private FirebaseAnalytics mFirebaseAnalytics;
@@ -55,6 +59,7 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
     private RewardedVideoAd mRewardedVideoAd;
 
     private static final int RC_SIGN_IN = 123;
+    private static final int RC_SIGN_IN_View_Participant = 124;
 
 
     public weeklyWriting() {
@@ -78,6 +83,10 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
 
         ad_desc = myFragmentView.findViewById(R.id.weekly_challenge_ad_desc);
         ad_submit_btn = myFragmentView.findViewById(R.id.weekly_challenge_btn);
+        btViewParticipant = myFragmentView.findViewById(R.id.weekly_challenge_list_btn);
+
+        ad_submit_btn.setVisibility(View.INVISIBLE);
+        btViewParticipant.setVisibility(View.INVISIBLE);
 
         // Obtain the FirebaseAnalytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(myFragmentView.getContext());
@@ -105,13 +114,18 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
         data_list = new ArrayList();
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {;
+            public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot childSnap : dataSnapshot.getChildren()){
                     data_list.add(childSnap.getValue(String.class));
 
                 }
                 title.setText(data_list.get(0).toString());
                 description.setText(data_list.get(1).toString());
+                String s = data_list.get(0).toString();
+                Challenge challenge = new Challenge("",s);
+                Common.currentChallenge = challenge;
+                ad_submit_btn.setVisibility(View.VISIBLE);
+                btViewParticipant.setVisibility(View.VISIBLE);
 
             }
 
@@ -165,6 +179,20 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
 
         });
 
+        btViewParticipant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(
+                        AuthUI.getInstance()
+                                .createSignInIntentBuilder()
+                                .setAvailableProviders(Arrays.asList(
+                                        new AuthUI.IdpConfig.GoogleBuilder().build()))
+                                .setIsSmartLockEnabled(false)
+                                .build(),
+                        RC_SIGN_IN_View_Participant);
+            }
+        });
+
 
         return myFragmentView;
     }
@@ -187,16 +215,43 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
                 // Sign in failed
                 if (response == null) {
                     // User pressed back button
-                    Toast.makeText(getContext(),"eeeh kepencet back eeeh",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),"You cancelled",Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 if (response.getError().getErrorCode() == ErrorCodes.NO_NETWORK) {
-                    Toast.makeText(getContext(),"duh ga ada internet nih",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),"No internet connection",Toast.LENGTH_LONG).show();
                     return;
                 }
 
-                Toast.makeText(getContext(),"nyong ra ngerti kie error opo",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),"Unknown error, please try again",Toast.LENGTH_LONG).show();
+                Log.e(TAG, "Sign-in error: ", response.getError());
+            }
+        }
+        else if (requestCode == RC_SIGN_IN_View_Participant)  {
+            IdpResponse response = IdpResponse.fromResultIntent(data);
+
+            // Successfully signed in
+            if (resultCode == RESULT_OK) {
+                //
+                // change to submit fragment in main activity
+                WeeklyChallengeFragment nextFragment = new WeeklyChallengeFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                Utils.changeFragment(nextFragment,transaction,"","");
+            } else {
+                // Sign in failed
+                if (response == null) {
+                    // User pressed back button
+                    Toast.makeText(getContext(),"You cancelled",Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                if (response.getError().getErrorCode() == ErrorCodes.NO_NETWORK) {
+                    Toast.makeText(getContext(),"No internet connection",Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                Toast.makeText(getContext(),"Unknown error, please try again",Toast.LENGTH_LONG).show();
                 Log.e(TAG, "Sign-in error: ", response.getError());
             }
         }

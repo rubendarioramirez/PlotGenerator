@@ -143,7 +143,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
                     android:gravity="center"
-                    android:text="Likes"
+                    android:text="@string/likes"
                     android:fontFamily="@font/typewcond_regular"/>
 
                 <ImageView
@@ -166,7 +166,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
                     android:gravity="center"
-                    android:text="Comments"
+                    android:text="@string/comments"
                     android:fontFamily="@font/typewcond_regular"/>
 
             </LinearLayout>
@@ -185,7 +185,7 @@
                 android:layout_weight="0.8"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
-                android:hint="Write a comment..."
+                android:hint="@string/write_a_comment"
                 android:fontFamily="@font/typewcond_regular"/>
 
             <Button
@@ -194,7 +194,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="0.2"
                 android:layout_height="wrap_content"
-                android:text="Post"
+                android:text="@string/post"
                 android:fontFamily="@font/typewcond_regular"/>
 
         </LinearLayout>

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -92,6 +93,14 @@ public class StoryDetailFragment extends Fragment {
     @OnClick(R.id.buttonPostComment)
     public void postComment(View v)
     {
+        final String s = etCommentText.getText().toString();
+
+        // Comment is required
+        if (TextUtils.isEmpty(s)) {
+            etCommentText.setError("Required");
+            return;
+        }
+
         final Comment comment = new Comment(Common.currentUser.getUid(),
                 Common.currentUser.getName(),
                 Common.currentUser.getPicUrl().toString(),

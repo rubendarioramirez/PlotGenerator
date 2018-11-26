@@ -48,21 +48,8 @@
             android:padding="8dp"
             android:inputType="textPersonName"
             android:background="@drawable/bg_rectangle_edittext"
-            android:textColor="@color/content"/>
-
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/etGenre"
-            android:layout_marginTop="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Genre"
-            app:met_floatingLabel="highlight"
-            app:met_floatingLabelText="Genre"
-            android:textColorHint="@color/content_lighter"
-            android:padding="8dp"
-            android:inputType="textEmailAddress"
-            android:background="@drawable/bg_rectangle_edittext"
-            android:textColor="@color/content"/>
+            android:textColor="@color/content"
+            android:fontFamily="@font/typewcond_regular"/>
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/etStory"
@@ -78,7 +65,8 @@
             android:inputType="textCapSentences|textMultiLine"
             android:padding="8dp"
             android:background="@drawable/bg_rectangle_edittext"
-            android:textColor="@color/content"/>
+            android:textColor="@color/content"
+            android:fontFamily="@font/typewcond_regular"/>
 
         <TextView
             android:layout_marginTop="8dp"

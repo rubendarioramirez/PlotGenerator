@@ -847,6 +847,19 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="weekly_challenge_submit_btn">Participate</string>
     <string name="weekly_challenge_email_desc">Don\'t forget to add your name if you want to be named. And thanks for participating!</string>
 
+    <string name="sign_out">Sign Out</string>
+    <string name="characters_created">Characters Created</string>
+    <string name="projects_created">Projects Created</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="view_participant">View Participant</string>
+    <string name="likes">Likes</string>
+    <string name="comments">Comments</string>
+    <string name="write_a_comment">Write a comment...</string>
+    <string name="post">Post</string>
+    <string name="my_profile">My Profile</string>
+    <string name="info">Info</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string-array name="char_guide_types_titles_for_comparison">
         <item>Protagonista</item>
