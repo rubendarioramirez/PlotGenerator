@@ -84,7 +84,6 @@ public class SubmitStoryFragment extends Fragment {
 
         mReference.updateChildren(childUpdates);
 
-        etTitle.setText("");
         etStory.setText("");
 
         WeeklyChallengeFragment nextFragment = new WeeklyChallengeFragment();

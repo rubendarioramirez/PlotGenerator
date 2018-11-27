@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -38,6 +39,9 @@ public class StoryViewHolder extends RecyclerView.ViewHolder {
     public ImageView ivUser;
     @BindView(R.id.ivLoves)
     public ImageView ivLoves;
+
+    @BindView(R.id.itemStoryLayout)
+    public RelativeLayout itemStoryLayout;
 
 
     public StoryViewHolder(View itemView) {
@@ -78,5 +82,10 @@ public class StoryViewHolder extends RecyclerView.ViewHolder {
 
             }
         });
+    }
+
+    public void removeItem() {
+
+        itemStoryLayout.removeAllViewsInLayout();
     }
 }

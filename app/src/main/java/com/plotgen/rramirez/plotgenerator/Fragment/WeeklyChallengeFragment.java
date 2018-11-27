@@ -143,7 +143,7 @@ public class WeeklyChallengeFragment extends Fragment {
                 }
                 else
                 {
-                    mAdapter.getRef(position).removeValue();
+                    viewHolder.removeItem();
                 }
 
             }
