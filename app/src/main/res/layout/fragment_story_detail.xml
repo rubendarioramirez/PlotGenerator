@@ -54,7 +54,7 @@
                             android:textStyle="bold"
                             android:layout_margin="8dp"
                             android:fontFamily="@font/typewcond_bold"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large"
                             android:textColor="@color/content"/>
 
                     </LinearLayout>
@@ -111,7 +111,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/typewcond_regular"
                     android:text="Lorem Ipsum Dolor Sit Amet, The Quick Brown Lazy Fox Jump Out Over The Fence"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/content"/>
 
             </LinearLayout>

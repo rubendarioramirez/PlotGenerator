@@ -22,7 +22,7 @@
             android:textSize="24sp"
             android:textColor="@color/headline"
             android:fontFamily="@font/typewcond_bold"
-            android:text="Welcome"/>
+            android:text="@string/submit_welcome"/>
 
         <TextView
             android:id="@+id/tvEmail"
@@ -41,7 +41,7 @@
             android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Title"
+            android:hint="@string/submit_title"
             app:met_floatingLabel="highlight"
             app:met_floatingLabelText="Title"
             android:textColorHint="@color/content_lighter"
@@ -58,7 +58,7 @@
             android:layout_marginBottom="60dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Write your story here!"
+            android:hint="@string/write_here_hint"
             app:met_floatingLabel="highlight"
             app:met_floatingLabelText="Story Challenge"
             android:textColorHint="@color/content_lighter"
@@ -76,7 +76,7 @@
             android:textSize="20sp"
             android:textColor="@color/headline"
             android:fontFamily="@font/typewcond_bold"
-            android:text="Submit your weekly chalenge now!"/>
+            android:text="@string/submit_prompt"/>
 
     </LinearLayout>
 
@@ -86,7 +86,7 @@
         android:layout_margin="8dp"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Submit"
+        android:text="@string/submit_button"
         android:fontFamily="@font/typewcond_regular"
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button.Colored"
         android:background="@color/colorAccent"/>

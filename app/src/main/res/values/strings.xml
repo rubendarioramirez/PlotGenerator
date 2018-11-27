@@ -861,7 +861,15 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="info">Info</string>
     <string name="must_login">You must logged in to see your profile</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+    <!-- Submit -->
+    <string name="submit_welcome">Welcome</string>
+    <string name="submit_title">Title</string>
+    <string name="write_here_hint">Write your story here</string>
+    <string name="submit_prompt">Send your weekly challenge now!</string>
+    <string name="submit_button">Submit</string>
+
+
+
     <string-array name="char_guide_types_titles_for_comparison">
         <item>Protagonista</item>
         <item>Ayudante de protagonista</item>

@@ -841,20 +841,29 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="female_notes_bio">Notas</string>
 
     <string name="sign_out">Sign Out</string>
-    <string name="characters_created">Characters Created</string>
-    <string name="projects_created">Projects Created</string>
-    <string name="name">Name</string>
+    <string name="characters_created">Personajes Creados</string>
+    <string name="projects_created">Proyectos Creados</string>
+    <string name="name">Nombre</string>
     <string name="email">Email</string>
-    <string name="view_participant">View Participant</string>
-    <string name="likes">Likes</string>
-    <string name="comments">Comments</string>
-    <string name="write_a_comment">Write a comment...</string>
+    <string name="view_participant">Leer</string>
+    <string name="likes">Me gusta</string>
+    <string name="comments">Comentarios</string>
+    <string name="write_a_comment">Escribe un comentario</string>
     <string name="post">Post</string>
-    <string name="my_profile">My Profile</string>
+    <string name="my_profile">Mi perfil</string>
     <string name="info">Info</string>
-    <string name="must_login">You must logged in to see your profile</string>
+    <string name="must_login">Debes iniciar sesion para ver esta parte</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+
+    <!-- Submit -->
+    <string name="submit_welcome">Bienvenido</string>
+    <string name="submit_title">Titulo</string>
+    <string name="write_here_hint">Escribe tu historia aquí</string>
+    <string name="submit_prompt">Envia tu desafío semanal ahora!</string>
+    <string name="submit_button">Enviar</string>
+
+
+
     <string-array name="char_guide_types_titles_for_comparison">
         <item>Protagonista</item>
         <item>Ayudante de protagonista</item>
