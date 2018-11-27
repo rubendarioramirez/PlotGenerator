@@ -852,6 +852,7 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="post">Post</string>
     <string name="my_profile">My Profile</string>
     <string name="info">Info</string>
+    <string name="must_login">You must logged in to see your profile</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string-array name="char_guide_types_titles_for_comparison">

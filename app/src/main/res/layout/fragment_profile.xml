@@ -23,7 +23,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="You must logged in to see your profile"
+                android:text="@string/must_login"
                 android:textAlignment="center"
                 android:fontFamily="@font/typewcond_bold"/>
 

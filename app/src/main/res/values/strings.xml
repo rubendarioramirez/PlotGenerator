@@ -859,6 +859,7 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="post">Post</string>
     <string name="my_profile">My Profile</string>
     <string name="info">Info</string>
+    <string name="must_login">You must logged in to see your profile</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string-array name="char_guide_types_titles_for_comparison">

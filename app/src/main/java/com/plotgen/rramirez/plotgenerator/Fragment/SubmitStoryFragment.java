@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -47,6 +49,9 @@ public class SubmitStoryFragment extends Fragment {
     EditText etTitle;
     @BindView(R.id.etStory)
     EditText etStory;
+
+    private FirebaseAuth mAuth;
+    private FirebaseUser mUser;
 
     private FirebaseDatabase mDatabase;
     private DatabaseReference mReference;
@@ -103,14 +108,32 @@ public class SubmitStoryFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
+
+        mAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                updateUI();
+            }
+        });
+
         mDatabase = FirebaseDatabase.getInstance();
         mReference = mDatabase.getReference().child("Weekly_Challenge_test");
 
-        tvEmail.setText(Common.currentUser.getName());
+        //tvEmail.setText(Common.currentUser.getName());
+
         etTitle.setText(Common.currentChallenge.getName());
         etTitle.setFocusable(false);
 
         return view;
+    }
+
+    private void updateUI() {
+        if(mUser!= null) {
+            Common.currentUser = new User(mUser.getUid(),mUser.getDisplayName(),mUser.getEmail(),mUser.getPhotoUrl().toString(),mUser.getPhotoUrl());
+            tvEmail.setText(mUser.getDisplayName());
+        }
     }
 
 }
