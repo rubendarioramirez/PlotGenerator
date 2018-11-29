@@ -128,6 +128,8 @@ public class WeeklyChallengeFragment extends Fragment {
                 final DatabaseReference postRef = getRef(position);
                 final Story currentStory = model;
 
+                viewHolder.setIsRecyclable(false);
+
                 if(model.getTitle().contains(Common.currentChallenge.getName())) {
 
                     viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
