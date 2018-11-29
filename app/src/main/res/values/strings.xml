@@ -852,7 +852,7 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="projects_created">Projects Created</string>
     <string name="name">Name</string>
     <string name="email">Email</string>
-    <string name="view_participant">View Participant</string>
+    <string name="view_participant">Read</string>
     <string name="likes">Likes</string>
     <string name="comments">Comments</string>
     <string name="write_a_comment">Write a comment...</string>

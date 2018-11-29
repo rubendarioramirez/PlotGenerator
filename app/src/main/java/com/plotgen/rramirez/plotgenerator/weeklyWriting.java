@@ -102,7 +102,8 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
 
         //Get a firebase reference
         //Get device lang
-        if (Locale.getDefault().getLanguage()=="es"){
+        if (Locale.getDefault().getDisplayLanguage().equals("español")){
+
             databaseToUse = "writing_challenge_es";
         }
         else {

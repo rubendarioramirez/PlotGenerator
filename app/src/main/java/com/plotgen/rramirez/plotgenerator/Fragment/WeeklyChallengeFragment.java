@@ -16,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.firebase.ui.database.FirebaseListAdapter;
@@ -35,6 +37,7 @@ import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.MainActivity;
 import com.plotgen.rramirez.plotgenerator.Model.Like;
 import com.plotgen.rramirez.plotgenerator.Model.Story;
+import com.plotgen.rramirez.plotgenerator.Model.User;
 import com.plotgen.rramirez.plotgenerator.R;
 import com.plotgen.rramirez.plotgenerator.Utils;
 import com.plotgen.rramirez.plotgenerator.ViewHolder.StoryViewHolder;
@@ -56,6 +59,9 @@ public class WeeklyChallengeFragment extends Fragment {
     private FirebaseRecyclerAdapter<Story, StoryViewHolder> mAdapter;
     FirebaseRecyclerOptions<Story> options;
 
+    private FirebaseAuth mAuth;
+    private FirebaseUser mUser;
+
     private FirebaseDatabase mDatabase;
     private DatabaseReference mReference;
     private DatabaseReference mCommentReference;
@@ -75,6 +81,16 @@ public class WeeklyChallengeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_weekly_challenge, container, false);
 
         ButterKnife.bind(this, view);
+
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
+
+        mAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                updateUI();
+            }
+        });
 
         // Set up Layout Manager, reverse layout
         mManager = new LinearLayoutManager(getActivity());
@@ -182,6 +198,13 @@ public class WeeklyChallengeFragment extends Fragment {
                 Log.d("UpdateLikeCount", "postTransaction:onComplete:" + databaseError);
             }
         });
+    }
+
+    private void updateUI() {
+        if(mUser!= null) {
+            Common.currentUser = new User(mUser.getUid(),mUser.getDisplayName(),mUser.getEmail(),mUser.getPhotoUrl().toString(),mUser.getPhotoUrl());
+
+        }
     }
 
 
