@@ -6,9 +6,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -40,6 +44,7 @@ import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Model.Comment;
 import com.plotgen.rramirez.plotgenerator.Model.Story;
 import com.plotgen.rramirez.plotgenerator.R;
+import com.plotgen.rramirez.plotgenerator.Utils;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.io.InputStream;
@@ -129,8 +134,8 @@ public class StoryDetailFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         mDatabase = FirebaseDatabase.getInstance();
-        mPostReference = mDatabase.getReference().child("Weekly_Challenge_test").child("posts").child(Common.currentStory.getId());
-        mCommentReference = mDatabase.getReference().child("Weekly_Challenge_test").child("post-comments").child(Common.currentStory.getId());
+        mPostReference = mDatabase.getReference().child("Weekly_Challenge_Beta").child("posts").child(Common.currentStory.getId());
+        mCommentReference = mDatabase.getReference().child("Weekly_Challenge_Beta").child("post-comments").child(Common.currentStory.getId());
 
 //        mPostReference = mDatabase.getReference().child("Weekly_Challenge").child("posts").child(Common.currentStory.getId());
 //        mCommentReference = mDatabase.getReference().child("Weekly_Challenge").child("post-comments").child(Common.currentStory.getId());
@@ -315,4 +320,27 @@ public class StoryDetailFragment extends Fragment {
         adapter.stopListening();
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_edit, menu);
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if(Common.currentStory.getUser().getUid().equals(Common.currentUser.getUid())) setHasOptionsMenu(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(id == R.id.menu_edit){
+            StoryEditFragment nextFragment = new StoryEditFragment();
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            Utils.changeFragment(nextFragment, transaction, "", "");
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

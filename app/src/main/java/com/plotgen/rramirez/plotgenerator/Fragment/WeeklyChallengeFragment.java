@@ -99,10 +99,10 @@ public class WeeklyChallengeFragment extends Fragment {
         rvWeeklyChallenge.setLayoutManager(mManager);
 
         mDatabase = FirebaseDatabase.getInstance();
-        mReference = mDatabase.getReference().child("Weekly_Challenge_test").child("posts");
-        mCommentReference = mDatabase.getReference().child("Weekly_Challenge_test").child("post-comments");
+        mReference = mDatabase.getReference().child("Weekly_Challenge_Beta").child("posts");
+        mCommentReference = mDatabase.getReference().child("Weekly_Challenge_Beta").child("post-comments");
 
-        Query query = mDatabase.getReference().child("Weekly_Challenge_test").child("posts").orderByChild("likeCount");
+        Query query = mDatabase.getReference().child("Weekly_Challenge_Beta").child("posts").orderByChild("likeCount");
 
         options = new FirebaseRecyclerOptions.Builder<Story>()
                 .setQuery(query, Story.class)
