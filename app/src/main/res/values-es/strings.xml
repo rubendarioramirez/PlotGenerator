@@ -861,7 +861,7 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="write_here_hint">Escribe tu historia aquí</string>
     <string name="submit_prompt">Envia tu desafío semanal ahora!</string>
     <string name="submit_button">Enviar</string>
-
+    <string name="edit_your_story">Edit your story</string>
 
 
     <string-array name="char_guide_types_titles_for_comparison">

@@ -37,7 +37,7 @@
         android:layout_margin="8dp"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Save"
+        android:text="@string/character_save_btn"
         android:fontFamily="@font/typewcond_regular"
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button.Colored"
         android:background="@color/colorAccent"/>

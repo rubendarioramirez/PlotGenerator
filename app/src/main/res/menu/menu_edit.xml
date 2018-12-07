@@ -5,5 +5,5 @@
 
     <item
         android:id="@+id/menu_edit"
-        android:title="Edit your story" />
+        android:title="@string/edit_your_story" />
 </menu>

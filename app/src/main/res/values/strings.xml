@@ -867,7 +867,7 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="write_here_hint">Write your story here</string>
     <string name="submit_prompt">Send your weekly challenge now!</string>
     <string name="submit_button">Submit</string>
-
+    <string name="edit_your_story">Edit your story</string>
 
 
     <string-array name="char_guide_types_titles_for_comparison">
