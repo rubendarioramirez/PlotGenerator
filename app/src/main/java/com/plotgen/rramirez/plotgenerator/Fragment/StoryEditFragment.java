@@ -98,7 +98,7 @@ public class StoryEditFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         mDatabase = FirebaseDatabase.getInstance();
-        mReference = mDatabase.getReference().child("Weekly_Challenge_Beta").child("posts");
+        mReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts");
 
         etEditStory.setText(Common.currentStory.getChalenge());
 

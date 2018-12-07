@@ -888,4 +888,8 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
         <item>Obstacle</item>
         <item>Goal</item>
     </string-array>
+
+    <!-- Firebase Database name  -->
+    <string name="weekly_challenge_db_name">Weekly_Challenge_test</string>
+
 </resources>
