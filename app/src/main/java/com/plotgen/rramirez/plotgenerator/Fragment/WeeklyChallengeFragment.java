@@ -10,6 +10,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -157,7 +160,7 @@ public class WeeklyChallengeFragment extends Fragment {
                     };
 
                     viewHolder.bindToPost(model, likeClickListener, mCommentReference.child(postRef.getKey()));
-
+                    viewHolder.checkPosition(model, position);
                 }
                 else
                 {
@@ -168,6 +171,7 @@ public class WeeklyChallengeFragment extends Fragment {
         };
 
         rvWeeklyChallenge.setAdapter(mAdapter);
+
     }
 
     private void onLikeClicked(DatabaseReference postRef) {
@@ -224,6 +228,28 @@ public class WeeklyChallengeFragment extends Fragment {
         if (mAdapter != null) {
             mAdapter.stopListening();
         }
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if(Common.currentStoryPosition != -1) setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_goto, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(id == R.id.menu_goto){
+            rvWeeklyChallenge.scrollToPosition(Common.currentStoryPosition);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

@@ -13,6 +13,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Model.Story;
 import com.plotgen.rramirez.plotgenerator.R;
 
@@ -42,7 +43,6 @@ public class StoryViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.itemStoryLayout)
     public RelativeLayout itemStoryLayout;
-
 
     public StoryViewHolder(View itemView) {
         super(itemView);
@@ -87,5 +87,13 @@ public class StoryViewHolder extends RecyclerView.ViewHolder {
     public void removeItem() {
 
         itemStoryLayout.removeAllViewsInLayout();
+    }
+
+    public void checkPosition(Story story, int pos)
+    {
+        if(story.getUser().getUid().equals(Common.currentUser.getUid()))
+            Common.currentStoryPosition = pos;
+        else
+            Common.currentStoryPosition = -1;
     }
 }
