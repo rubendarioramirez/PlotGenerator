@@ -88,12 +88,4 @@ public class StoryViewHolder extends RecyclerView.ViewHolder {
 
         itemStoryLayout.removeAllViewsInLayout();
     }
-
-    public void checkPosition(Story story, int pos)
-    {
-        if(story.getUser().getUid().equals(Common.currentUser.getUid()))
-            Common.currentStoryPosition = pos;
-        else
-            Common.currentStoryPosition = -1;
-    }
 }

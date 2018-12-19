@@ -10,5 +10,4 @@ public class Common {
     public static Challenge currentChallenge;
 
     public static Story tempStory;
-    public static int currentStoryPosition = -1;
 }

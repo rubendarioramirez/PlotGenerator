@@ -862,8 +862,7 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="submit_prompt">Envia tu desafío semanal ahora!</string>
     <string name="submit_button">Enviar</string>
     <string name="edit_your_story">Edit your story</string>
-    <string name="go_to_my_story">go to my story</string>
-
+    <string name="go_to_my_story">Show/Hide others stories</string>
 
     <string-array name="char_guide_types_titles_for_comparison">
         <item>Protagonista</item>
@@ -891,7 +890,7 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
     </string-array>
 
     <!-- Firebase Database name  -->
-    <string name="weekly_challenge_db_name">Weekly_Challenge_test</string>
+    <string name="weekly_challenge_db_name">Weekly_Challenge_Beta</string>
 
 
 </resources>
