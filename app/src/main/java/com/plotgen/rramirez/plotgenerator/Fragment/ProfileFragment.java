@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -18,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.anjlab.android.iab.v3.BillingProcessor;
+import com.anjlab.android.iab.v3.TransactionDetails;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Registry;
 import com.bumptech.glide.annotation.GlideModule;
@@ -29,6 +32,7 @@ import com.firebase.ui.auth.IdpResponse;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.StorageReference;
@@ -54,7 +58,7 @@ import static android.content.ContentValues.TAG;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment implements BillingProcessor.IBillingHandler {
 
     @BindView(R.id.loginLayout)
     LinearLayout loginLayout;
@@ -79,6 +83,21 @@ public class ProfileFragment extends Fragment {
 
     @BindView(R.id.btnSignOut)
     Button btnSignOut;
+
+    @BindView(R.id.btnIAP)
+    Button btnIAP;
+
+    @OnClick(R.id.btnIAP)
+    public void buyIAP(View v){
+        //((MainActivity) getActivity()).bp.purchase(this.getActivity(),"android.test.purchased");
+
+        //Log challenges updated
+        Bundle params = new Bundle();
+        params.putString("user_email", Common.currentUser.getEmail());
+        mFirebaseAnalytics.logEvent("Click_IAP_Purchase", params);
+
+        Utils.showComingSoonPopup(v.getContext());
+    }
 
     @OnClick(R.id.btnSignOut)
     public void signOut(View v) {
@@ -110,8 +129,12 @@ public class ProfileFragment extends Fragment {
                 RC_SIGN_IN);
     }
 
+    private FirebaseAnalytics mFirebaseAnalytics;
+
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
+
+
 
     private static final int RC_SIGN_IN = 123;
 
@@ -131,6 +154,10 @@ public class ProfileFragment extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(view.getContext());
+
+        ((MainActivity) getActivity()).bp = new BillingProcessor(getContext(), null, this);
+        ((MainActivity) getActivity()).bp.initialize();
 
         updateUI();
 
@@ -158,6 +185,26 @@ public class ProfileFragment extends Fragment {
         }
         else
             return s;
+    }
+
+    @Override
+    public void onProductPurchased(@NonNull String productId, @Nullable TransactionDetails details) {
+        Toast.makeText(getContext(), "You are now a premium user", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onPurchaseHistoryRestored() {
+
+    }
+
+    @Override
+    public void onBillingError(int errorCode, @Nullable Throwable error) {
+
+    }
+
+    @Override
+    public void onBillingInitialized() {
+
     }
 
     @GlideModule
@@ -245,6 +292,7 @@ public class ProfileFragment extends Fragment {
             charAnimator.setDuration(1000); // here you set the duration of the anim
             charAnimator.start();
 
+            btnIAP.setVisibility(View.VISIBLE);
             btnSignOut.setVisibility(View.VISIBLE);
         }
         else
@@ -252,6 +300,7 @@ public class ProfileFragment extends Fragment {
             loginLayout.setVisibility(View.VISIBLE);
             profileLayout.setVisibility(View.INVISIBLE);
             btnSignOut.setVisibility(View.INVISIBLE);
+            btnIAP.setVisibility(View.INVISIBLE);
         }
     }
 

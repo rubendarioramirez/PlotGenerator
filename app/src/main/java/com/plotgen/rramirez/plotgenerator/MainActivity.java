@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,6 +19,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.anjlab.android.iab.v3.BillingProcessor;
+import com.anjlab.android.iab.v3.TransactionDetails;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.InterstitialAd;
@@ -35,7 +38,7 @@ import com.plotgen.rramirez.plotgenerator.Model.User;
 
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements BillingProcessor.IBillingHandler,NavigationView.OnNavigationItemSelectedListener {
 
     private InterstitialAd mInterstitialAd;
     private FirebaseAnalytics mFirebaseAnalytics;
@@ -44,6 +47,8 @@ public class MainActivity extends AppCompatActivity
 
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
+
+    public BillingProcessor bp;
 
 
     @Override
@@ -221,6 +226,37 @@ public class MainActivity extends AppCompatActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         updateUI();
+        if (bp != null) {
+            bp.handleActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    @Override
+    public void onProductPurchased(@NonNull String productId, @Nullable TransactionDetails details) {
+        Toast.makeText(this, "You are a premium user", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onPurchaseHistoryRestored() {
+
+    }
+
+    @Override
+    public void onBillingError(int errorCode, @Nullable Throwable error) {
+        Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onBillingInitialized() {
+
+    }
+
+    @Override
+    public void onDestroy() {
+        if (bp != null) {
+            bp.release();
+        }
+        super.onDestroy();
     }
 
     //    @Override

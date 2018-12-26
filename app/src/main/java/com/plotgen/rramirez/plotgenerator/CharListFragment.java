@@ -28,8 +28,12 @@ import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.plotgen.rramirez.plotgenerator.Fragment.OfflineStoryFragment;
 
 import java.util.ArrayList;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 /**
@@ -43,6 +47,11 @@ public class CharListFragment extends Fragment {
     ArrayList<String> char_list_array;
     ArrayAdapter<String> itemsAdapter;
     String project_info;
+
+    @BindView(R.id.fab_add_char)
+    com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton fabAddChar;
+    @BindView(R.id.fab_add_story)
+    com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton fabAddStory;
     private AdView mAdView;
 
     public CharListFragment() {
@@ -62,8 +71,10 @@ public class CharListFragment extends Fragment {
 
         final View myFragmentView =   inflater.inflate(R.layout.fragment_char_list, container, false);
 
+        ButterKnife.bind(this, myFragmentView);
+
         //Declare elements
-        FloatingActionButton fab_add = (FloatingActionButton) myFragmentView.findViewById(R.id.add_character_btn);
+        //FloatingActionButton fab_add = (FloatingActionButton) myFragmentView.findViewById(R.id.add_character_btn);
         project_list_tv = myFragmentView.findViewById(R.id.project_list_tv);
         character_list_lv = myFragmentView.findViewById(R.id.character_list_lv);
         empty_character_tv= myFragmentView.findViewById(R.id.empty_character_tv);
@@ -117,10 +128,22 @@ public class CharListFragment extends Fragment {
         });
 
 
-        fab_add.setOnClickListener(new View.OnClickListener() {
+        fabAddChar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 CharacterFragment nextFragment = new CharacterFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                Utils.changeFragment(nextFragment,transaction,"project_info",project_info);
+            }
+        });
+
+        if(Utils.isHaveStoryFromDB(myFragmentView.getContext(),project_name_text))
+            fabAddStory.setFabText("Edit Story");
+
+        fabAddStory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                OfflineStoryFragment nextFragment = new OfflineStoryFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 Utils.changeFragment(nextFragment,transaction,"project_info",project_info);
             }

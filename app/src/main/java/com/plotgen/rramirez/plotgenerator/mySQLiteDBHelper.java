@@ -22,6 +22,13 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
     public static final String PROJECT_COLUMN_GENRE = "genre";
     public static final String PROJECT_COLUMN_PLOT = "plot";
 
+    public static final String CHARACTER_TABLE_STORY = "story";
+    public static final String STORY_COLUMN_ID = "_id";
+    public static final String STORY_COLUMN_PROJECT = "project";
+    public static final String STORY_COLUMN_PROJECT_ID = "project_id";
+    public static final String STORY_COLUMN_STORIES = "stories";
+
+
     //Character BIO
     public static final String CHARACTER_COLUMN_NAME = "name";
     public static final String CHARACTER_COLUMN_NICKNAME = "nickname";
@@ -164,6 +171,12 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
                 PROJECT_COLUMN_GENRE + " TEXT, " +
                 PROJECT_COLUMN_PLOT + " TEXT " + ")");
 
+        sqLiteDatabase.execSQL("CREATE TABLE " + CHARACTER_TABLE_STORY + " (" +
+                STORY_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                STORY_COLUMN_PROJECT + " TEXT, " +
+                STORY_COLUMN_PROJECT_ID + " TEXT, " +
+                STORY_COLUMN_STORIES + " TEXT " + ")");
+
     }
 
     @Override
@@ -208,6 +221,12 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
                 sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_6_q2 TEXT");
                 sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_6_q3 TEXT");
                 sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_6_q4 TEXT");
+
+                sqLiteDatabase.execSQL("CREATE TABLE " + CHARACTER_TABLE_STORY + " (" +
+                        STORY_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        STORY_COLUMN_PROJECT + " TEXT, " +
+                        STORY_COLUMN_PROJECT_ID + " TEXT, " +
+                        STORY_COLUMN_STORIES + " TEXT " + ")");
 
                 break;
         }

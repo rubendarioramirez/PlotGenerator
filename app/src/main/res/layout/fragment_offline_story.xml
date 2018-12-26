@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".Fragment.OfflineStoryFragment">
+
+    <HorizontalScrollView
+        android:id="@+id/editorView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <ImageView
+                android:id="@+id/formatBold"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_format_bold" />
+
+            <ImageView
+                android:id="@+id/formatItalic"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_format_italic" />
+
+            <ImageView
+                android:id="@+id/formatAlignLeft"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_format_align_left" />
+
+            <ImageView
+                android:id="@+id/formatAlignCenter"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_format_align_center" />
+
+            <ImageView
+                android:id="@+id/formatAlignRight"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_format_align_right" />
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <ScrollView
+        android:layout_below="@+id/editorView"
+        android:layout_above="@+id/btnSaveStory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <jp.wasabeef.richeditor.RichEditor
+            android:id="@+id/editor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="52dp"
+            />
+    </ScrollView>
+
+
+    <Button
+        android:id="@+id/btnSaveStory"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/character_save_btn"
+        android:fontFamily="@font/typewcond_regular"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button.Colored"
+        android:background="@color/colorAccent"/>
+
+    <!--<TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="HTML Preview"
+        android:textSize="12sp"
+        />
+
+    <TextView
+        android:id="@+id/preview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        />
+        -->
+
+</RelativeLayout>

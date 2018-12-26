@@ -109,6 +109,30 @@ public class Utils {
         return char_list;
     }
 
+    public static Boolean isHaveStoryFromDB(Context context, String project_name){
+        mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
+        SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
+        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_STORY  + " WHERE project = ?";
+        Cursor cursor = sqLiteDatabase.rawQuery(query,new String[]{project_name});
+        cursor.moveToFirst();
+        String s = "";
+        ArrayList<String> story_list = new ArrayList<String>();
+        while(!cursor.isAfterLast()) {
+            story_list.add(cursor.getString(cursor.getColumnIndex("project")));
+            story_list.add(cursor.getString(cursor.getColumnIndex("project_id")));
+            story_list.add(cursor.getString(cursor.getColumnIndex("stories")));
+
+            s = cursor.getString(cursor.getColumnIndex("stories"));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        sqLiteDatabase.close();
+        if(s != "")
+            return true;
+        else
+            return false;
+    }
+
 
     public static void deleteFromDB(Context context, String project_name) {
         SQLiteDatabase database = new mySQLiteDBHelper(context).getWritableDatabase();
@@ -169,6 +193,15 @@ public class Utils {
                     }
                 })
                 .setNegativeButton( context.getString(R.string.rate_cancel), null);
+        builder.show();
+    }
+
+    public static void showComingSoonPopup(final Context context)
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context)
+                .setTitle("It's Coming Soon!")
+                .setMessage("Pro version with no Ads will be available on next update :)")
+                .setNeutralButton("Yess, I'll wait!", null);
         builder.show();
     }
 

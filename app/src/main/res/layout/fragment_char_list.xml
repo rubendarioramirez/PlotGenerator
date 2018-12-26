@@ -45,7 +45,6 @@
 
 
     <TextView
-
         android:id="@+id/empty_character_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -98,7 +97,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <android.support.design.widget.FloatingActionButton
+    <!--<android.support.design.widget.FloatingActionButton
         android:id="@+id/add_character_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -111,7 +110,48 @@
         android:src="@android:drawable/ic_input_add"
         app:borderWidth="0dp"
         app:layout_constraintBottom_toTopOf="@+id/adView_char_list"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" /> -->
+
+    <com.robertlevonyan.views.customfloatingactionbutton.FloatingLayout
+        android:id="@+id/floating_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:fabMenuGravity="bottom|end"
+        app:fabMenuStyle="popUp"
+        app:layout_constraintBottom_toBottomOf="@+id/adView_char_list"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton
+            android:id="@+id/fab1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            app:fabElevation="10dp"
+            app:fabIcon="@android:drawable/ic_input_add"
+            app:fabSizes="mini" />
+
+        <com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_add_char"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fabColor="#ff9c10"
+            app:fabIcon="@drawable/ic_character_black"
+            app:fabSizes="mini"
+            app:fabText="Add Character"/>
+
+        <com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_add_story"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fabColor="#ff9c10"
+            app:fabIcon="@drawable/ic_book_black"
+            app:fabSizes="mini"
+            app:fabText="Add Story"/>
+
+    </com.robertlevonyan.views.customfloatingactionbutton.FloatingLayout>
 
 </android.support.constraint.ConstraintLayout>
 
