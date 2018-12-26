@@ -124,10 +124,7 @@ public class ChallengeTemplateFragment extends Fragment  {
                 // Perform action on click
                 updateDB(char_name.toString(), project_name.toString(), challenge_number.toString());
 
-                //Log challenges updated
-                Bundle params = new Bundle();
-                params.putString("Challenge", "completed");
-                mFirebaseAnalytics.logEvent("challenge_completed",params);
+
             }
         });
 
@@ -152,56 +149,67 @@ public class ChallengeTemplateFragment extends Fragment  {
     private void updateDB(String char_name, String project_name, String challenge_number){
         SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
         ContentValues values = new ContentValues();
+        //Log challenges updated
+        Bundle params = new Bundle();
         if(challenge_number.equals("Challenge I") || challenge_number.equals("Desafio I")) {
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_EIR, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_EWR, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_EHP, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_EEF, question4.getText().toString());
+            params.putString("Challenge", "challenge_1");
         }
         else if(challenge_number.equals("Challenge II") || challenge_number.equals("Desafio II")){
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C2Q1, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C2Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C2Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C2Q4, question4.getText().toString());
+            params.putString("Challenge", "challenge_2");
         }else if(challenge_number.equals("Challenge III") || challenge_number.equals("Desafio III")){
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C3Q1, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C3Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C3Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C3Q4, question4.getText().toString());
+            params.putString("Challenge", "challenge_3");
         }else if(challenge_number.equals("Challenge IV") || challenge_number.equals("Desafio IV")){
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C4Q1, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C4Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C4Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C4Q4, question4.getText().toString());
+            params.putString("Challenge", "challenge_4");
         }else if(challenge_number.equals("Challenge V") || challenge_number.equals("Desafio V")){
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C5Q1, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C5Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C5Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C5Q4, question4.getText().toString());
+            params.putString("Challenge", "challenge_5");
         }else if(challenge_number.equals("Challenge VI") || challenge_number.equals("Desafio VI")){
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C6Q1, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C6Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C6Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C6Q4, question4.getText().toString());
+            params.putString("Challenge", "challenge_6");
         }else if(challenge_number.equals("Mentor Challenge") || challenge_number.equals("Desafio del Mentor")){
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_MENTOR_Q1, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_MENTOR_Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_MENTOR_Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_MENTOR_Q4, question4.getText().toString());
+            params.putString("Challenge", "challenge_mentor");
         } else if(challenge_number.equals("Antagonist Challenge") || challenge_number.equals("Desafio del Antagonista")){
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_ANTAGONIST_Q1, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_ANTAGONIST_Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_ANTAGONIST_Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_ANTAGONIST_Q4, question4.getText().toString());
+            params.putString("Challenge", "challenge_antagonist");
         }else if(challenge_number.equals("Sidekick Challenge") || challenge_number.equals("Desafio del Escudero")){
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_sidekick_Q1, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_sidekick_Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_sidekick_Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_sidekick_Q4, question4.getText().toString());
+            params.putString("Challenge", "challenge_sidekick");
         }
-
+        mFirebaseAnalytics.logEvent("challenge_completed",params);
+        Log.v("matilda","the event is" + params);
         database.update(mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER, values,   "name = ?", new String[]{char_name});
-
         //Come back to previous fragment
         fragmentTransition(project_name,char_name);
     }
