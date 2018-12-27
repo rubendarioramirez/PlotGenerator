@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.reward.RewardedVideoAd;
+import com.plotgen.rramirez.plotgenerator.Common.Common;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,8 +42,10 @@ public class ChallengeListFragment extends Fragment {
         // Inflate the layout for this fragment
         View myFragmentView =  inflater.inflate(R.layout.fragment_challenge, container, false);
 
-        mAdView = (AdView) myFragmentView.findViewById(R.id.adView_challenge_list);
-        Utils.loadAd(mAdView);
+        if(!Common.isPAU) {
+            mAdView = (AdView) myFragmentView.findViewById(R.id.adView_challenge_list);
+            Utils.loadAd(mAdView);
+        }
 
         RecyclerView recyclerView = myFragmentView.findViewById(R.id.rv_challenge_fragment);
         final Adapter_herojourney adapter = new Adapter_herojourney(this.getActivity(),mlist);

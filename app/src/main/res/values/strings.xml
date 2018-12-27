@@ -908,6 +908,7 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="iap_desc">Pro version with no Ads will be available on next update</string>
     <string name="iap_btn">Sure! I will wait</string>
 
+    <string name="remove_ads_product_id">android.test.purchased</string>
 
 
 </resources>

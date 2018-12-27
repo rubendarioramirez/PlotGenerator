@@ -75,10 +75,14 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
         View myFragmentView = inflater.inflate(R.layout.fragment_weekly_writing, container, false);
 
 
-        //Rewarded ad
-        mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(myFragmentView.getContext());
-        mRewardedVideoAd.setRewardedVideoAdListener(this);
-        loadRewardedVideoAd();
+        if(!Common.isPAU) {
+            //Rewarded ad
+            mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(myFragmentView.getContext());
+            mRewardedVideoAd.setRewardedVideoAdListener(this);
+            loadRewardedVideoAd();
+        }
+        else
+            can_submit = 1;
 
 
         ad_desc = myFragmentView.findViewById(R.id.weekly_challenge_ad_desc);
@@ -103,7 +107,6 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
         //Get a firebase reference
         //Get device lang
         if (Locale.getDefault().getDisplayLanguage().equals("español")){
-
             databaseToUse = "writing_challenge_es";
         }
         else {

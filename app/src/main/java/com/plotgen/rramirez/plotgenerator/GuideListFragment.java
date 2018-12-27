@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.plotgen.rramirez.plotgenerator.Common.Common;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,9 +34,11 @@ public class GuideListFragment extends Fragment {
         ((MainActivity)getActivity()).setActionBarTitle(getString(R.string.guide_character_btn));
         View myFragmentView =  inflater.inflate(R.layout.fragment_guide_list, container, false);
 
-        mAdView = (AdView) myFragmentView.findViewById(R.id.adView_guide_list);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        if(!Common.isPAU) {
+            mAdView = (AdView) myFragmentView.findViewById(R.id.adView_guide_list);
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
+        }
 
         RecyclerView recyclerView = myFragmentView.findViewById(R.id.rv_guide_list_fragment);
         final Adapter_herojourney adapter = new Adapter_herojourney(this.getActivity(),mlist);

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.plotgen.rramirez.plotgenerator.Common.Common;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,9 +34,11 @@ public class GuideWeilandFragment extends Fragment {
         ((MainActivity)getActivity()).setActionBarTitle(getString(R.string.change_arc_title));
         View myFragmentView = inflater.inflate(R.layout.fragment_guide_weiland, container, false);
 
-        mAdView = (AdView) myFragmentView.findViewById(R.id.adView_guide_weiland);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        if(!Common.isPAU) {
+            mAdView = (AdView) myFragmentView.findViewById(R.id.adView_guide_weiland);
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
+        }
 
         guide_weiland_content_tv = myFragmentView.findViewById(R.id.guide_weiland_content_tv);
 

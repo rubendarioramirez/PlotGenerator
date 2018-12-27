@@ -90,9 +90,11 @@ public class CharListFragment extends Fragment {
 
         project_list_tv.setText(project_name_text);
 
-        //Display the ad
-        mAdView = (AdView) myFragmentView.findViewById(R.id.adView_char_list);
-        Utils.loadAd(mAdView);
+        if(!Common.isPAU) {
+            //Display the ad
+            mAdView = (AdView) myFragmentView.findViewById(R.id.adView_char_list);
+            Utils.loadAd(mAdView);
+        }
 
         //Display the adapter
         itemsAdapter = new ArrayAdapter<String>(myFragmentView.getContext(), android.R.layout.simple_list_item_1, char_list_array);

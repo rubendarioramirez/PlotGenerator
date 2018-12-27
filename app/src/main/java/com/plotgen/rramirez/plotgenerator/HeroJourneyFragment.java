@@ -17,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.plotgen.rramirez.plotgenerator.Common.Common;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -46,9 +47,12 @@ public class HeroJourneyFragment extends Fragment {
         ((MainActivity)getActivity()).setActionBarTitle(getString(R.string.hero_journey_tab));
 
         View myFragmentView =  inflater.inflate(R.layout.fragment_herojourney, container, false);
-        mAdView = (AdView) myFragmentView.findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+
+        if(!Common.isPAU) {
+            mAdView = (AdView) myFragmentView.findViewById(R.id.adView);
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
+        }
 
         //Get a firebase reference
         FirebaseDatabase database = FirebaseDatabase.getInstance();

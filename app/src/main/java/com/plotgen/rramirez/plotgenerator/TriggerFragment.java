@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.plotgen.rramirez.plotgenerator.Common.Common;
 
 
 /**
@@ -40,10 +41,12 @@ public class TriggerFragment extends Fragment {
         ((MainActivity)getActivity()).setActionBarTitle(getString(R.string.trigger_tab));
         View myFragmentView = inflater.inflate(R.layout.fragment_trigger, container, false);
 
-        //Add the ads
-        mAdView = (AdView) myFragmentView.findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        if(!Common.isPAU) {
+            //Add the ads
+            mAdView = (AdView) myFragmentView.findViewById(R.id.adView);
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
+        }
 
 
         //set up the recycler view with the adapter

@@ -12,7 +12,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.google.android.gms.ads.AdView;
+import com.plotgen.rramirez.plotgenerator.Common.Common;
+
 import java.util.ArrayList;
 
 
@@ -39,6 +43,9 @@ public class ProjectFragment extends Fragment {
 
         final View myFragmentView = inflater.inflate(R.layout.fragment_project, container, false);
 
+        if(Common.isPAU)
+            Toast.makeText(this.getContext(), "yeay maneh teh pau coy", Toast.LENGTH_LONG).show();
+
         project_lv  = myFragmentView.findViewById(R.id.project_lv);
         empty_project_tv = myFragmentView.findViewById(R.id.empty_project_tv);
         mAdView = (AdView) myFragmentView.findViewById(R.id.adView_project_frag);
@@ -58,7 +65,9 @@ public class ProjectFragment extends Fragment {
         project_lv.setAdapter(itemsAdapter);
         project_lv.setEmptyView(empty_project_tv);
 
-        Utils.loadAd(mAdView);
+        if(!Common.isPAU) {
+            Utils.loadAd(mAdView);
+        }
 
 
         project_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

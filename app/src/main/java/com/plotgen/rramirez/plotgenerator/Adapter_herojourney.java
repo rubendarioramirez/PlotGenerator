@@ -17,6 +17,7 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.reward.RewardItem;
 import com.google.android.gms.ads.reward.RewardedVideoAd;
 import com.google.android.gms.ads.reward.RewardedVideoAdListener;
+import com.plotgen.rramirez.plotgenerator.Common.Common;
 
 import java.util.List;
 
@@ -45,10 +46,14 @@ public class Adapter_herojourney extends RecyclerView.Adapter<Adapter_herojourne
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View v = inflater.inflate(R.layout.hero_jouney_card_item, parent, false);
 
-        //Rewarded ad
-        mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(mContext);
-        mRewardedVideoAd.setRewardedVideoAdListener(this);
-        loadRewardedVideoAd(mContext);
+        if(!Common.isPAU) {
+            //Rewarded ad
+            mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(mContext);
+            mRewardedVideoAd.setRewardedVideoAdListener(this);
+            loadRewardedVideoAd(mContext);
+        }
+        else
+            challenge_unlock = 1;
 
         return new Adapter_herojourney.myViewHolder_heroJourney(v, mContext,mData);
     }

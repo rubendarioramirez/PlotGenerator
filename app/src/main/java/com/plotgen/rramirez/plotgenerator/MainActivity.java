@@ -58,26 +58,33 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //Init the ads
-        MobileAds.initialize(this, getString(R.string.ad_account_id));
+        Common.isPAU = Utils.getSPIAP(this);
 
-        //Interstitial
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_plot_gen));
-        mInterstitialAd.loadAd(new AdRequest.Builder()
-                .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
-                .build());
-        mInterstitialAd.setAdListener(new AdListener() {
-            @Override
-            public void onAdClosed() {
-                // Load the next interstitial.
-                mInterstitialAd.loadAd(new AdRequest.Builder()
-                        .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
-                        .build());
+        if(Common.isPAU)
+            Toast.makeText(this, "yeay maneh teh pau coy", Toast.LENGTH_LONG).show();
 
-            }
+        if(!Common.isPAU) {
+            //Init the ads
+            MobileAds.initialize(this, getString(R.string.ad_account_id));
 
-        });
+            //Interstitial
+            mInterstitialAd = new InterstitialAd(this);
+            mInterstitialAd.setAdUnitId(getString(R.string.interstitial_plot_gen));
+            mInterstitialAd.loadAd(new AdRequest.Builder()
+                    .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
+                    .build());
+            mInterstitialAd.setAdListener(new AdListener() {
+                @Override
+                public void onAdClosed() {
+                    // Load the next interstitial.
+                    mInterstitialAd.loadAd(new AdRequest.Builder()
+                            .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
+                            .build());
+
+                }
+
+            });
+        }
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
@@ -154,13 +161,14 @@ public class MainActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
-        if (mInterstitialAd.isLoaded()) {
-            if(inter_chance <=5) {
-                mInterstitialAd.show();
+        if(!Common.isPAU) {
+            if (mInterstitialAd.isLoaded()) {
+                if (inter_chance <= 5) {
+                    mInterstitialAd.show();
+                }
+            } else {
+                Log.d("TAG", "The interstitial wasn't loaded yet.");
             }
-        }
-        else {
-            Log.d("TAG", "The interstitial wasn't loaded yet.");
         }
     }
 
@@ -233,7 +241,8 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onProductPurchased(@NonNull String productId, @Nullable TransactionDetails details) {
-        Toast.makeText(this, "You are a premium user", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "You are a premium user now", Toast.LENGTH_SHORT).show();
+        Utils.setSPIAP(this, true);
     }
 
     @Override

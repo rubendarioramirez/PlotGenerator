@@ -19,6 +19,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.plotgen.rramirez.plotgenerator.Common.Common;
 
 
 /**
@@ -128,20 +129,23 @@ public class ChallengeTemplateFragment extends Fragment  {
             }
         });
 
-        //Interstitial
-        mInterstitialAd_challenge = new InterstitialAd(this.getContext());
-        mInterstitialAd_challenge.setAdUnitId(getString(R.string.interstitial_plot_gen));
-        mInterstitialAd_challenge.loadAd(new AdRequest.Builder()
-                .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
-                .build());
-        mInterstitialAd_challenge.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-                mInterstitialAd_challenge.show();
-            }
 
-        });
+        if(!Common.isPAU) {
+            //Interstitial
+            mInterstitialAd_challenge = new InterstitialAd(this.getContext());
+            mInterstitialAd_challenge.setAdUnitId(getString(R.string.interstitial_plot_gen));
+            mInterstitialAd_challenge.loadAd(new AdRequest.Builder()
+                    .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
+                    .build());
+            mInterstitialAd_challenge.setAdListener(new AdListener() {
+                @Override
+                public void onAdLoaded() {
+                    super.onAdLoaded();
+                    mInterstitialAd_challenge.show();
+                }
+
+            });
+        }
 
         return myFragmentView;
     }

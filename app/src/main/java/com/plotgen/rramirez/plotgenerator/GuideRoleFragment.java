@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.plotgen.rramirez.plotgenerator.Common.Common;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,10 +36,12 @@ public class GuideRoleFragment extends Fragment {
         // Inflate the layout for this fragment
         ((MainActivity)getActivity()).setActionBarTitle("Roles");
         View myFragmentView =  inflater.inflate(R.layout.fragment_guide_role, container, false);
-        mAdView = (AdView) myFragmentView.findViewById(R.id.adView_charguide);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
 
+        if(!Common.isPAU) {
+            mAdView = (AdView) myFragmentView.findViewById(R.id.adView_charguide);
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
+        }
 
         char_guide_content_tv = myFragmentView.findViewById(R.id.char_guide_content_tv);
 

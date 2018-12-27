@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.plotgen.rramirez.plotgenerator.Common.Common;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,9 +37,11 @@ public class AntagonistFragment extends Fragment {
         ((MainActivity)getActivity()).setActionBarTitle(getString(R.string.antagonist_guide_title));
         View myFragmentView = inflater.inflate(R.layout.fragment_antagonist, container, false);
 
-        mAdView = (AdView) myFragmentView.findViewById(R.id.adView_guide_antagonist);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        if(!Common.isPAU) {
+            mAdView = (AdView) myFragmentView.findViewById(R.id.adView_guide_antagonist);
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
+        }
 
         guide_antagonist_content_tv = myFragmentView.findViewById(R.id.guide_antagonist_content_tv);
 

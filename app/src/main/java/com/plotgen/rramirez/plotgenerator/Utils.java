@@ -18,16 +18,31 @@ import android.util.Log;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.plotgen.rramirez.plotgenerator.Common.Common;
 
 import java.util.ArrayList;
 
 public class Utils {
+
+    public static final String SP_HAS_BUY_IAP = "spHasBuyIap";
 
     public static void saveOnSharePreg(Context context, String variable, int value){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putInt(variable, value);
         editor.apply();
+    }
+
+    public static void setSPIAP(Context context, boolean value){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean(SP_HAS_BUY_IAP, value);
+        editor.apply();
+    }
+
+    public static boolean getSPIAP(Context context){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.getBoolean(SP_HAS_BUY_IAP,false);
     }
 
 
@@ -142,11 +157,13 @@ public class Utils {
 
 
     public static void loadAd(AdView mAdView){
-        //Display the ad
-        AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
-                .build();
-        mAdView.loadAd(adRequest);
+        if(!Common.isPAU) {
+            //Display the ad
+            AdRequest adRequest = new AdRequest.Builder()
+                    .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
+                    .build();
+            mAdView.loadAd(adRequest);
+        }
     }
 
 

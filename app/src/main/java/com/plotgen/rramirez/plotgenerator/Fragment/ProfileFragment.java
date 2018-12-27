@@ -89,14 +89,14 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
 
     @OnClick(R.id.btnIAP)
     public void buyIAP(View v){
-        //((MainActivity) getActivity()).bp.purchase(this.getActivity(),"android.test.purchased");
+        ((MainActivity) getActivity()).bp.purchase(this.getActivity(),getString(R.string.remove_ads_product_id));
 
         //Log clicked in IAP updated
         Bundle params = new Bundle();
         params.putString("user_email", Common.currentUser.getEmail());
         mFirebaseAnalytics.logEvent("Click_IAP_Purchase", params);
 
-        Utils.showComingSoonPopup(v.getContext());
+        //Utils.showComingSoonPopup(v.getContext());
     }
 
     @OnClick(R.id.btnSignOut)
@@ -190,6 +190,10 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
     @Override
     public void onProductPurchased(@NonNull String productId, @Nullable TransactionDetails details) {
         Toast.makeText(getContext(), "You are now a premium user", Toast.LENGTH_SHORT).show();
+        Utils.setSPIAP(this.getContext(), true);
+        Common.isPAU = true;
+
+        btnIAP.setVisibility(View.INVISIBLE);
     }
 
     @Override
