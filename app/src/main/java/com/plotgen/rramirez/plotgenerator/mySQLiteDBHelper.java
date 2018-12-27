@@ -6,9 +6,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class mySQLiteDBHelper extends SQLiteOpenHelper {
-//    Retail version it's 8
-//    private static final int DATABASE_VERSION = 8;
-    private static final int DATABASE_VERSION = 9;
+//    Retail version it's 9
+//    private static final int DATABASE_VERSION = 9;
+    private static final int DATABASE_VERSION = 10;
     //public static final String DATABASE_NAME = "test_database";
     public static final String DATABASE_NAME = "production_database";
     public static final String CHARACTER_TABLE_CHARACTER = "character";
@@ -182,12 +182,6 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         switch(i1) {
-//            case 6:
-//                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_5_q1 TEXT");
-//                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_5_q2 TEXT");
-//                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_5_q3 TEXT");
-//                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_5_q4 TEXT");
-//                break;
             case 7:
                 //Project columns
                 sqLiteDatabase.execSQL("ALTER TABLE projectname ADD COLUMN genre TEXT");
@@ -221,13 +215,12 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
                 sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_6_q2 TEXT");
                 sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_6_q3 TEXT");
                 sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_6_q4 TEXT");
-
-                sqLiteDatabase.execSQL("CREATE TABLE " + CHARACTER_TABLE_STORY + " (" +
-                        STORY_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        STORY_COLUMN_PROJECT + " TEXT, " +
-                        STORY_COLUMN_PROJECT_ID + " TEXT, " +
-                        STORY_COLUMN_STORIES + " TEXT " + ")");
-
+                break;
+            case 10:
+                sqLiteDatabase.execSQL("CREATE TABLE story (_id INTEGER PRIMARY KEY AUTOINCREMENT)");
+                sqLiteDatabase.execSQL("ALTER TABLE story ADD COLUMN project  TEXT");
+                sqLiteDatabase.execSQL("ALTER TABLE story ADD COLUMN project_id  TEXT");
+                sqLiteDatabase.execSQL("ALTER TABLE story ADD COLUMN stories  TEXT");
                 break;
         }
 

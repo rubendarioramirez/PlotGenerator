@@ -91,7 +91,7 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
     public void buyIAP(View v){
         //((MainActivity) getActivity()).bp.purchase(this.getActivity(),"android.test.purchased");
 
-        //Log challenges updated
+        //Log clicked in IAP updated
         Bundle params = new Bundle();
         params.putString("user_email", Common.currentUser.getEmail());
         mFirebaseAnalytics.logEvent("Click_IAP_Purchase", params);

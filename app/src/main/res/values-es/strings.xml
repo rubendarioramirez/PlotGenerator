@@ -892,4 +892,12 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
     <!-- Firebase Database name  -->
     <string name="weekly_challenge_db_name">Weekly_Challenge_test</string>
 
+    <string name="edit_story">Editar historia</string>
+    <string name="write_story">Escribir historia</string>
+    <string name="add_char">Agregar Personaje</string>
+
+    <string name="iap_title">Muy pronto</string>
+    <string name="iap_desc">La version pro sin ads va a estar disponible en la proxima version</string>
+    <string name="iap_btn">No hay problema!</string>
+
 </resources>

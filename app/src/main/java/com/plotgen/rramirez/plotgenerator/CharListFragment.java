@@ -28,6 +28,8 @@ import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Fragment.OfflineStoryFragment;
 
 import java.util.ArrayList;
@@ -47,6 +49,8 @@ public class CharListFragment extends Fragment {
     ArrayList<String> char_list_array;
     ArrayAdapter<String> itemsAdapter;
     String project_info;
+    private FirebaseAnalytics mFirebaseAnalytics;
+
 
     @BindView(R.id.fab_add_char)
     com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton fabAddChar;
@@ -70,6 +74,7 @@ public class CharListFragment extends Fragment {
         final String project_id = String.valueOf(project_info.charAt(0));
 
         final View myFragmentView =   inflater.inflate(R.layout.fragment_char_list, container, false);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(myFragmentView.getContext());
 
         ButterKnife.bind(this, myFragmentView);
 
@@ -138,7 +143,7 @@ public class CharListFragment extends Fragment {
         });
 
         if(Utils.isHaveStoryFromDB(myFragmentView.getContext(),project_name_text))
-            fabAddStory.setFabText("Edit Story");
+            fabAddStory.setFabText(getString(R.string.edit_story));
 
         fabAddStory.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,6 +151,9 @@ public class CharListFragment extends Fragment {
                 OfflineStoryFragment nextFragment = new OfflineStoryFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 Utils.changeFragment(nextFragment,transaction,"project_info",project_info);
+                Bundle params = new Bundle();
+                params.putString("created_story", "started");
+                mFirebaseAnalytics.logEvent("created_story", params);
             }
         });
 

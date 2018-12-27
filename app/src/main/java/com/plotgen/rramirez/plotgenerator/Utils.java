@@ -199,9 +199,9 @@ public class Utils {
     public static void showComingSoonPopup(final Context context)
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(context)
-                .setTitle("It's Coming Soon!")
-                .setMessage("Pro version with no Ads will be available on next update :)")
-                .setNeutralButton("Yess, I'll wait!", null);
+                .setTitle(context.getString(R.string.iap_title))
+                .setMessage(context.getString(R.string.iap_desc))
+                .setNeutralButton(context.getString(R.string.iap_btn), null);
         builder.show();
     }
 

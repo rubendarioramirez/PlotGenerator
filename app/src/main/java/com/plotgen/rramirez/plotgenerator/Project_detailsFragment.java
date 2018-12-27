@@ -176,10 +176,6 @@ public class Project_detailsFragment extends Fragment {
         ProjectFragment nextFragment = new ProjectFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         Utils.changeFragment(nextFragment,transaction,"","");
-
-
-
-
     }
 
     private boolean isEmpty(TextView etText) {

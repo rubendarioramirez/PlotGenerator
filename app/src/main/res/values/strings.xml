@@ -899,5 +899,15 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="weekly_challenge_db_name">Weekly_Challenge_Beta</string>
 
 
+    <string name="edit_story">Edit Story</string>
+    <string name="write_story">Write Story</string>
+    <string name="add_char">Add Character</string>
+
+
+    <string name="iap_title">It\'s coming soon</string>
+    <string name="iap_desc">Pro version with no Ads will be available on next update</string>
+    <string name="iap_btn">Sure! I will wait</string>
+
+
 
 </resources>
