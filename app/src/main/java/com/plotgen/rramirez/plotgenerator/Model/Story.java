@@ -21,11 +21,12 @@ public class Story {
     public Story() {
     }
 
-    public Story(String id, String title, String genre, String chalenge, User user) {
+    public Story(String id, String title, String genre, String chalenge, long date, User user) {
         this.id = id;
         this.title = title;
         this.genre = genre;
         this.chalenge = chalenge;
+        this.submitDate = date;
         this.user = user;
     }
 
@@ -93,6 +94,7 @@ public class Story {
         result.put("title", title);
         result.put("genre", genre);
         result.put("chalenge", chalenge);
+        result.put("date", submitDate);
         result.put("likeCount", likeCount);
         result.put("likes", likes);
 

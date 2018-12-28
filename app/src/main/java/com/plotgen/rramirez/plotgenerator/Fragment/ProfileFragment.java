@@ -31,10 +31,13 @@ import com.firebase.ui.auth.ErrorCodes;
 import com.firebase.ui.auth.IdpResponse;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.google.firebase.storage.StorageReference;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.MainActivity;
@@ -47,6 +50,8 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.concurrent.Executor;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -59,6 +64,9 @@ import static android.content.ContentValues.TAG;
  * A simple {@link Fragment} subclass.
  */
 public class ProfileFragment extends Fragment implements BillingProcessor.IBillingHandler {
+
+
+    private FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.getInstance();
 
     @BindView(R.id.loginLayout)
     LinearLayout loginLayout;
@@ -98,6 +106,7 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
 
         //Utils.showComingSoonPopup(v.getContext());
     }
+
 
     @OnClick(R.id.btnSignOut)
     public void signOut(View v) {
@@ -155,6 +164,26 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(view.getContext());
+
+        remoteConfig.setConfigSettings(new FirebaseRemoteConfigSettings.Builder()
+            .setDeveloperModeEnabled(false)
+            .build());
+
+        HashMap<String,Object> defaults = new HashMap<>();
+        defaults.put("iap_button_text", "Go no ads!");
+        remoteConfig.setDefaults(defaults);
+        final Task<Void> fetch = remoteConfig.fetch(0);
+        fetch.addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                remoteConfig.activateFetched();
+                updateIAPText();
+            }
+        });
+
+
+
+
 
         ((MainActivity) getActivity()).bp = new BillingProcessor(getContext(), null, this);
         ((MainActivity) getActivity()).bp.initialize();
@@ -256,6 +285,12 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
         }
     }
 
+    private void updateIAPText(){
+        String text = (String) remoteConfig.getString("iap_button_text");
+        btnIAP.setText(text);
+    }
+
+
     private void updateUI() {
         if(mUser != null) {
             Common.currentUser = new User(mUser.getUid(),mUser.getDisplayName(),mUser.getEmail(),mUser.getPhotoUrl());
@@ -297,6 +332,7 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
             charAnimator.start();
 
             btnIAP.setVisibility(View.VISIBLE);
+            updateIAPText();
             btnSignOut.setVisibility(View.VISIBLE);
         }
         else

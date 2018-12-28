@@ -43,8 +43,8 @@ public class ProjectFragment extends Fragment {
 
         final View myFragmentView = inflater.inflate(R.layout.fragment_project, container, false);
 
-        if(Common.isPAU)
-            Toast.makeText(this.getContext(), "yeay maneh teh pau coy", Toast.LENGTH_LONG).show();
+//        if(Common.isPAU)
+//            Toast.makeText(this.getContext(), "yeay maneh teh pau coy", Toast.LENGTH_LONG).show();
 
         project_lv  = myFragmentView.findViewById(R.id.project_lv);
         empty_project_tv = myFragmentView.findViewById(R.id.empty_project_tv);

@@ -869,6 +869,8 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="submit_button">Submit</string>
     <string name="edit_your_story">Edit your story</string>
     <string name="go_to_my_story">Show/Hide others stories</string>
+    <string name="go_to_most_likes">Sort by Votes</string>
+    <string name="go_to_most_recent">Sort by Recent</string>
 
     <string-array name="char_guide_types_titles_for_comparison">
         <item>Protagonista</item>
@@ -906,9 +908,11 @@ In order for your character to evolve in a positive way, he has to start out wit
 
     <string name="iap_title">It\'s coming soon</string>
     <string name="iap_desc">Pro version with no Ads will be available on next update</string>
-    <string name="iap_btn">Sure! I will wait</string>
+    <string name="iap_btn">No ads!</string>
 
-    <string name="remove_ads_product_id">android.test.purchased</string>
+    <!--<string name="remove_ads_product_id">android.test.purchased</string>-->
+    <string name="remove_ads_product_id">no_ads</string>
+
 
 
 </resources>

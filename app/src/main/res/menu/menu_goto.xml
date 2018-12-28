@@ -6,4 +6,11 @@
     <item
         android:id="@+id/menu_goto"
         android:title="@string/go_to_my_story" />
+    <item
+        android:id="@+id/menu_likes"
+        android:title="@string/go_to_most_likes" />
+    <item
+        android:id="@+id/menu_recent"
+        android:title="@string/go_to_most_recent" />
+
 </menu>

@@ -68,10 +68,12 @@ public class SubmitStoryFragment extends Fragment {
         }
 
         String key = mReference.child("posts").push().getKey();
+        Long tsLong = System.currentTimeMillis()/1000;
+
 
         Story story = new Story(key,etTitle.getText().toString(),
                 "",
-                etStory.getText().toString(),
+                etStory.getText().toString(), tsLong,
                 new User(Common.currentUser.getUid(),
                         Common.currentUser.getName(),
                         Common.currentUser.getEmail(),

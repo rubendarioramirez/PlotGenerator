@@ -61,8 +61,10 @@ public class WeeklyChallengeFragment extends Fragment {
 
     private FirebaseRecyclerAdapter<Story, StoryViewHolder> mAdapter;
     private FirebaseRecyclerAdapter<Story, StoryViewHolder> mMyPostAdapter;
+    private FirebaseRecyclerAdapter<Story, StoryViewHolder> mRecentAdapter;
     FirebaseRecyclerOptions<Story> options;
     FirebaseRecyclerOptions<Story> optionsMyPost;
+    FirebaseRecyclerOptions<Story> optionsMostRecent;
 
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
@@ -110,6 +112,8 @@ public class WeeklyChallengeFragment extends Fragment {
         mCommentReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("post-comments");
 
         Query query = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts").orderByChild("likeCount");
+        Query query_recents = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts").orderByChild("date");
+
 
         options = new FirebaseRecyclerOptions.Builder<Story>()
                 .setQuery(query, Story.class)
@@ -118,6 +122,11 @@ public class WeeklyChallengeFragment extends Fragment {
         optionsMyPost = new FirebaseRecyclerOptions.Builder<Story>()
                 .setQuery(query, Story.class)
                 .build();
+
+        optionsMostRecent = new FirebaseRecyclerOptions.Builder<Story>()
+                .setQuery(query_recents, Story.class)
+                .build();
+
 
         populateWeeklyChallenge();
         rvWeeklyChallenge.setAdapter(mAdapter);
@@ -227,7 +236,56 @@ public class WeeklyChallengeFragment extends Fragment {
 
             }
         };
+        mRecentAdapter = new FirebaseRecyclerAdapter<Story, StoryViewHolder>(optionsMostRecent) {
 
+            @Override
+            public StoryViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+                LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
+                return new StoryViewHolder(inflater.inflate(R.layout.item_story, viewGroup, false));
+            }
+
+            @Override
+            protected void onBindViewHolder(StoryViewHolder viewHolder, int position, final Story model) {
+                final DatabaseReference postRef = getRef(position);
+                final Story currentStory = model;
+
+                viewHolder.setIsRecyclable(false);
+
+                if(model.getTitle().contains(Common.currentChallenge.getName())) {
+
+                    viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Common.currentStory = currentStory;
+                            StoryDetailFragment nextFragment = new StoryDetailFragment();
+                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                            Utils.changeFragment(nextFragment, transaction, "", "");
+                        }
+                    });
+
+                    if (model.likes.containsKey(Common.currentUser.getUid())) {
+                        viewHolder.ivLoves.setImageResource(R.drawable.ic_love_red);
+                    } else {
+                        viewHolder.ivLoves.setImageResource(R.drawable.ic_love_outline);
+                    }
+
+                    View.OnClickListener likeClickListener = new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            DatabaseReference globalPostRef = mReference.child(postRef.getKey());
+                            onLikeClicked(globalPostRef);
+                        }
+                    };
+
+                    viewHolder.bindToPost(model, likeClickListener, mCommentReference.child(postRef.getKey()));
+                }
+                else
+                {
+                    viewHolder.removeItem();
+                }
+
+            }
+        };
     }
 
     private void onLikeClicked(DatabaseReference postRef) {
@@ -275,6 +333,7 @@ public class WeeklyChallengeFragment extends Fragment {
         if (mAdapter != null) {
             mAdapter.startListening();
             mMyPostAdapter.startListening();
+            mRecentAdapter.startListening();
         }
     }
 
@@ -284,6 +343,7 @@ public class WeeklyChallengeFragment extends Fragment {
         if (mAdapter != null) {
             mAdapter.stopListening();
             mMyPostAdapter.stopListening();
+            mRecentAdapter.stopListening();
         }
     }
 
@@ -311,6 +371,14 @@ public class WeeklyChallengeFragment extends Fragment {
                 rvWeeklyChallenge.swapAdapter(mAdapter, true);
                 toggleMyPost = 1;
             }
+            return true;
+        }
+        else if(id == R.id.menu_recent){
+            rvWeeklyChallenge.swapAdapter(mRecentAdapter, true);
+            return true;
+        }
+        else if(id == R.id.menu_likes){
+            rvWeeklyChallenge.swapAdapter(mAdapter, true);
             return true;
         }
         return super.onOptionsItemSelected(item);
