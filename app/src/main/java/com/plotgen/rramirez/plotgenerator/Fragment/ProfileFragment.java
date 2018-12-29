@@ -103,7 +103,7 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
         Bundle params = new Bundle();
         params.putString("user_email", Common.currentUser.getEmail());
         mFirebaseAnalytics.logEvent("Click_IAP_Purchase", params);
-
+        Log.v("Matilda", "it was pressed");
         //Utils.showComingSoonPopup(v.getContext());
     }
 
