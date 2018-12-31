@@ -220,7 +220,7 @@
             android:visibility="invisible"
             android:fontFamily="@font/typewcond_regular"
             android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button.Colored"
-            android:background="@color/colorAccent"/>
+            android:background="@color/grey_font"/>
 
     </LinearLayout>
 

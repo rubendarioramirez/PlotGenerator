@@ -3,7 +3,9 @@ package com.plotgen.rramirez.plotgenerator;
 
 import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
@@ -41,6 +43,7 @@ public class Project_detailsFragment extends Fragment {
     String project_name_text;
     private FirebaseAnalytics mFirebaseAnalytics;
     FloatingActionButton fab_save;
+    ArrayList<String> project_description;
 
     public Project_detailsFragment() {
         // Required empty public constructor
@@ -73,7 +76,40 @@ public class Project_detailsFragment extends Fragment {
                 project_name_et.setText(project_list_array.get(0));
                 project_name_et.setEnabled(false);
                 project_plot_et.setText(project_list_array.get(2));
-                //TODO UPDATE THE SPINNER IN THE SAME POSITION
+                project_description =  getProject(myFragmentView.getContext(),project_name_text);
+                String project_genre = project_description.get(1);
+                //Set the proper spinner value
+                if(project_genre.equals("Tragedia") || project_genre.equals("Tragedy")) {
+                    project_genre_spinner.setSelection(0);
+                } else if (project_genre.equals("Ciencía Ficción") || project_genre.equals("Science fiction")){
+                    project_genre_spinner.setSelection(1);
+                }else if (project_genre.equals("Fantasía") || project_genre.equals("Fantasy")){
+                    project_genre_spinner.setSelection(2);
+                }else if (project_genre.equals("Mitología") || project_genre.equals("Mythology")){
+                    project_genre_spinner.setSelection(3);
+                }else if (project_genre.equals("Aventura") || project_genre.equals("Adventure")){
+                    project_genre_spinner.setSelection(4);
+                }else if (project_genre.equals("Misterio") || project_genre.equals("Mistery")){
+                    project_genre_spinner.setSelection(5);
+                }else if (project_genre.equals("Drama")){
+                    project_genre_spinner.setSelection(6);
+                }else if (project_genre.equals("Romance")){
+                    project_genre_spinner.setSelection(7);
+                }else if (project_genre.equals("Acción") || project_genre.equals("Action / Adventure")){
+                    project_genre_spinner.setSelection(8);
+                }else if (project_genre.equals("Satira") || project_genre.equals("Satire")){
+                    project_genre_spinner.setSelection(9);
+                }else if (project_genre.equals("Horror")){
+                    project_genre_spinner.setSelection(10);
+                }else if (project_genre.equals("Tragedia comica") || project_genre.equals("Tragic comedy")){
+                    project_genre_spinner.setSelection(11);
+                }else if (project_genre.equals("Ficción para jovenes") || project_genre.equals("Young adult fiction")|| project_genre.equals("Ficción para joveves")){
+                    project_genre_spinner.setSelection(12);
+                }else if (project_genre.equals("Dystopia")){
+                    project_genre_spinner.setSelection(13);
+                }else if (project_genre.equals("Thriller") || project_genre.equals("Action thriller")){
+                    project_genre_spinner.setSelection(14);
+                }
                 updateMode = true;
             }
             else
@@ -183,6 +219,24 @@ public class Project_detailsFragment extends Fragment {
             return false;
 
         return true;
+    }
+
+
+    public ArrayList<String> getProject(Context context, String project_name){
+        mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
+        SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
+        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_PROJECT  + " WHERE project = ?";
+        Cursor cursor = sqLiteDatabase.rawQuery(query,new String[]{project_name});
+        cursor.moveToFirst();
+        ArrayList<String> char_list = new ArrayList<String>();
+        while(!cursor.isAfterLast()) {
+            char_list.add(cursor.getString(cursor.getColumnIndex("project")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("genre")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("plot")));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return char_list;
     }
 
 }
