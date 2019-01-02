@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.Debug;
 import android.support.constraint.solver.widgets.Guideline;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -87,6 +88,7 @@ public class CharListFragment extends Fragment {
 
 //      project_list_array = Utils.getCharList(myFragmentView.getContext(), project_id); TO SEARCH BY PROJECT ID
         char_list_array = Utils.getCharList(myFragmentView.getContext(), project_name_text);
+        Log.v("matilda","the size is: " + char_list_array.size());
 
         project_list_tv.setText(project_name_text);
 
