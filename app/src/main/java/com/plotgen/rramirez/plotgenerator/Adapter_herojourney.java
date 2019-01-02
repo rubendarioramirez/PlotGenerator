@@ -195,7 +195,7 @@ public class Adapter_herojourney extends RecyclerView.Adapter<Adapter_herojourne
         AppCompatActivity activity = (AppCompatActivity) context;
         FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
-        transaction.addToBackStack(null);
+        //transaction.addToBackStack(null);
         transaction.replace(R.id.flMain, nextFragment);
         transaction.commit();
         }

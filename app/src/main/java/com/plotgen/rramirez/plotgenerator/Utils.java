@@ -11,10 +11,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -26,40 +24,40 @@ public class Utils {
 
     public static final String SP_HAS_BUY_IAP = "spHasBuyIap";
 
-    public static void saveOnSharePreg(Context context, String variable, int value){
+    public static void saveOnSharePreg(Context context, String variable, int value) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putInt(variable, value);
         editor.apply();
     }
 
-    public static void setSPIAP(Context context, boolean value){
+    public static void setSPIAP(Context context, boolean value) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putBoolean(SP_HAS_BUY_IAP, value);
         editor.apply();
     }
 
-    public static boolean getSPIAP(Context context){
+    public static boolean getSPIAP(Context context) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        return preferences.getBoolean(SP_HAS_BUY_IAP,false);
+        return preferences.getBoolean(SP_HAS_BUY_IAP, false);
     }
 
 
-    public static int getSharePref(Context context, String variable, int value){
+    public static int getSharePref(Context context, String variable, int value) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        int result = preferences.getInt(variable,value);
+        int result = preferences.getInt(variable, value);
         return result;
     }
 
-    public static ArrayList<String> getProject(Context context, String project_name){
+    public static ArrayList<String> getProject(Context context, String project_name) {
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_PROJECT  + " WHERE project = ?";
-        Cursor cursor = sqLiteDatabase.rawQuery(query,new String[]{project_name});
+        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_PROJECT + " WHERE project = ?";
+        Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{project_name});
         cursor.moveToFirst();
         ArrayList<String> projects_list = new ArrayList<String>();
-        while(!cursor.isAfterLast()) {
+        while (!cursor.isAfterLast()) {
             projects_list.add(cursor.getString(cursor.getColumnIndex("project")));
             projects_list.add(cursor.getString(cursor.getColumnIndex("genre")));
             projects_list.add(cursor.getString(cursor.getColumnIndex("plot")));
@@ -70,13 +68,13 @@ public class Utils {
         return projects_list;
     }
 
-    public static ArrayList<String> getProjects_list(Context context){
+    public static ArrayList<String> getProjects_list(Context context) {
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
         Cursor cursor = sqLiteDatabase.query(mySQLiteDBHelper.CHARACTER_TABLE_PROJECT, null, null, null, null, null, null);
         cursor.moveToFirst();
         ArrayList<String> projects_list = new ArrayList<String>();
-        while(!cursor.isAfterLast()) {
+        while (!cursor.isAfterLast()) {
             String id = cursor.getString(cursor.getColumnIndex("_id"));
             String project_name = cursor.getString(cursor.getColumnIndex("project"));
             projects_list.add(id + "_" + project_name);
@@ -106,33 +104,37 @@ public class Utils {
 //        return projects_list;
 //    }
 
-    public static ArrayList<String> getCharList(Context context, String project_name){
+    public static ArrayList<String> getCharList(Context context, String project_name) {
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER  + " WHERE project = ?";
-        Cursor cursor = sqLiteDatabase.rawQuery(query,new String[]{project_name});
-        cursor.moveToFirst();
+        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER + " WHERE project = ?";
+        Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{project_name});
         ArrayList<String> char_list = new ArrayList<String>();
-        while(!cursor.isAfterLast()) {
-            String charname = cursor.getString(cursor.getColumnIndex("name"));
-            String charRole = cursor.getString(cursor.getColumnIndex("role"));
-            char_list.add(charname + " - " + charRole);
-            cursor.moveToNext();
+        if (cursor != null) {
+            cursor.moveToFirst();
+
+            while (!cursor.isAfterLast()) {
+                String charname = cursor.getString(cursor.getColumnIndex("name"));
+                String charRole = cursor.getString(cursor.getColumnIndex("role"));
+                char_list.add(charname + " - " + charRole);
+                cursor.moveToNext();
+            }
+            cursor.close();
         }
-        cursor.close();
         sqLiteDatabase.close();
+
         return char_list;
     }
 
-    public static Boolean isHaveStoryFromDB(Context context, String project_name){
+    public static Boolean isHaveStoryFromDB(Context context, String project_name) {
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_STORY  + " WHERE project = ?";
-        Cursor cursor = sqLiteDatabase.rawQuery(query,new String[]{project_name});
+        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_STORY + " WHERE project = ?";
+        Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{project_name});
         cursor.moveToFirst();
         String s = "";
         ArrayList<String> story_list = new ArrayList<String>();
-        while(!cursor.isAfterLast()) {
+        while (!cursor.isAfterLast()) {
             story_list.add(cursor.getString(cursor.getColumnIndex("project")));
             story_list.add(cursor.getString(cursor.getColumnIndex("project_id")));
             story_list.add(cursor.getString(cursor.getColumnIndex("stories")));
@@ -142,7 +144,7 @@ public class Utils {
         }
         cursor.close();
         sqLiteDatabase.close();
-        if(s != "")
+        if (s != "")
             return true;
         else
             return false;
@@ -151,13 +153,13 @@ public class Utils {
 
     public static void deleteFromDB(Context context, String project_name) {
         SQLiteDatabase database = new mySQLiteDBHelper(context).getWritableDatabase();
-        database.delete(mySQLiteDBHelper.CHARACTER_TABLE_PROJECT,  "project = ?", new String[]{project_name});
+        database.delete(mySQLiteDBHelper.CHARACTER_TABLE_PROJECT, "project = ?", new String[]{project_name});
         database.close();
     }
 
 
-    public static void loadAd(AdView mAdView){
-        if(!Common.isPAU) {
+    public static void loadAd(AdView mAdView) {
+        if (!Common.isPAU) {
             //Display the ad
             AdRequest adRequest = new AdRequest.Builder()
                     .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
@@ -167,14 +169,15 @@ public class Utils {
     }
 
 
-    public static void changeFragment(Fragment nextFragment,FragmentTransaction transaction, String bundleName, String bundleValue){
+    public static void changeFragment(Fragment nextFragment, FragmentTransaction transaction, String bundleName, String bundleValue) {
         Bundle bundle = new Bundle();
-        bundle.putString(bundleName,bundleValue);
+        bundle.putString(bundleName, bundleValue);
         nextFragment.setArguments(bundle);
         //Make the transaction
+
         transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
-        transaction.replace(R.id.flMain,nextFragment);
-        transaction.addToBackStack(null);
+        transaction.replace(R.id.flMain, nextFragment);
+//        transaction.addToBackStack(null);
         transaction.commit();
     }
 
@@ -209,12 +212,11 @@ public class Utils {
                         }
                     }
                 })
-                .setNegativeButton( context.getString(R.string.rate_cancel), null);
+                .setNegativeButton(context.getString(R.string.rate_cancel), null);
         builder.show();
     }
 
-    public static void showComingSoonPopup(final Context context)
-    {
+    public static void showComingSoonPopup(final Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context)
                 .setTitle(context.getString(R.string.iap_title))
                 .setMessage(context.getString(R.string.iap_desc))

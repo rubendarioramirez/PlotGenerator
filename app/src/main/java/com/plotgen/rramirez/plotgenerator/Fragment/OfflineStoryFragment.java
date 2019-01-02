@@ -68,6 +68,7 @@ public class OfflineStoryFragment extends Fragment {
         ProjectFragment nextFragment = new ProjectFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         Utils.changeFragment(nextFragment,transaction,"","");
+        getFragmentManager().popBackStack();
 
     }
 

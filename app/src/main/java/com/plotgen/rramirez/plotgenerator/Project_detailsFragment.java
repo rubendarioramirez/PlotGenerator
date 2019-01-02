@@ -5,16 +5,14 @@ import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,8 +24,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -54,7 +50,7 @@ public class Project_detailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View myFragmentView =  inflater.inflate(R.layout.fragment_project_details, container, false);
+        View myFragmentView = inflater.inflate(R.layout.fragment_project_details, container, false);
         project_name_text = this.getArguments().getString("project_name");
 
         project_name_et = myFragmentView.findViewById(R.id.project_name_et);
@@ -69,55 +65,55 @@ public class Project_detailsFragment extends Fragment {
         genre_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         project_genre_spinner.setAdapter(genre_adapter);
 
-        if(project_name_text != ""){
+        if (project_name_text != "") {
             //Update mode
             ArrayList<String> project_list_array = Utils.getProject(this.getContext(), project_name_text);
-            if(project_list_array != null && !project_list_array.isEmpty()) {
+            if (project_list_array != null && !project_list_array.isEmpty()) {
                 project_name_et.setText(project_list_array.get(0));
                 project_name_et.setEnabled(false);
                 project_plot_et.setText(project_list_array.get(2));
-                project_description =  getProject(myFragmentView.getContext(),project_name_text);
+                project_description = getProject(myFragmentView.getContext(), project_name_text);
                 String project_genre = project_description.get(1);
                 //Set the proper spinner value
-                if(project_genre.equals("Tragedia") || project_genre.equals("Tragedy")) {
+                if (project_genre.equals("Tragedia") || project_genre.equals("Tragedy")) {
                     project_genre_spinner.setSelection(0);
-                } else if (project_genre.equals("Ciencía Ficción") || project_genre.equals("Science fiction")){
+                } else if (project_genre.equals("Ciencía Ficción") || project_genre.equals("Science fiction")) {
                     project_genre_spinner.setSelection(1);
-                }else if (project_genre.equals("Fantasía") || project_genre.equals("Fantasy")){
+                } else if (project_genre.equals("Fantasía") || project_genre.equals("Fantasy")) {
                     project_genre_spinner.setSelection(2);
-                }else if (project_genre.equals("Mitología") || project_genre.equals("Mythology")){
+                } else if (project_genre.equals("Mitología") || project_genre.equals("Mythology")) {
                     project_genre_spinner.setSelection(3);
-                }else if (project_genre.equals("Aventura") || project_genre.equals("Adventure")){
+                } else if (project_genre.equals("Aventura") || project_genre.equals("Adventure")) {
                     project_genre_spinner.setSelection(4);
-                }else if (project_genre.equals("Misterio") || project_genre.equals("Mistery")){
+                } else if (project_genre.equals("Misterio") || project_genre.equals("Mistery")) {
                     project_genre_spinner.setSelection(5);
-                }else if (project_genre.equals("Drama")){
+                } else if (project_genre.equals("Drama")) {
                     project_genre_spinner.setSelection(6);
-                }else if (project_genre.equals("Romance")){
+                } else if (project_genre.equals("Romance")) {
                     project_genre_spinner.setSelection(7);
-                }else if (project_genre.equals("Acción") || project_genre.equals("Action / Adventure")){
+                } else if (project_genre.equals("Acción") || project_genre.equals("Action / Adventure")) {
                     project_genre_spinner.setSelection(8);
-                }else if (project_genre.equals("Satira") || project_genre.equals("Satire")){
+                } else if (project_genre.equals("Satira") || project_genre.equals("Satire")) {
                     project_genre_spinner.setSelection(9);
-                }else if (project_genre.equals("Horror")){
+                } else if (project_genre.equals("Horror")) {
                     project_genre_spinner.setSelection(10);
-                }else if (project_genre.equals("Tragedia comica") || project_genre.equals("Tragic comedy")){
+                } else if (project_genre.equals("Tragedia comica") || project_genre.equals("Tragic comedy")) {
                     project_genre_spinner.setSelection(11);
-                }else if (project_genre.equals("Ficción para jovenes") || project_genre.equals("Young adult fiction")|| project_genre.equals("Ficción para joveves")){
+                } else if (project_genre.equals("Ficción para jovenes") || project_genre.equals("Young adult fiction") || project_genre.equals("Ficción para joveves")) {
                     project_genre_spinner.setSelection(12);
-                }else if (project_genre.equals("Dystopia")){
+                } else if (project_genre.equals("Dystopia")) {
                     project_genre_spinner.setSelection(13);
-                }else if (project_genre.equals("Thriller") || project_genre.equals("Action thriller")){
+                } else if (project_genre.equals("Thriller") || project_genre.equals("Action thriller")) {
                     project_genre_spinner.setSelection(14);
                 }
                 updateMode = true;
-            }
-            else
-            {
+            } else {
                 //make it back to project
                 ProjectFragment nextFragment = new ProjectFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 Utils.changeFragment(nextFragment, transaction, "", "");
+                getFragmentManager().popBackStack();
+
             }
         } else {
             updateMode = false;
@@ -135,12 +131,15 @@ public class Project_detailsFragment extends Fragment {
                         updateDB();
                         fab_delete.setVisibility(View.INVISIBLE);
                     } else {
-                            saveToDB(project_name_et, project_plot_et, project_genre_spinner);
-                            fab_delete.setVisibility(View.VISIBLE);
+                        saveToDB(project_name_et, project_plot_et, project_genre_spinner);
+                        fab_delete.setVisibility(View.VISIBLE);
                     }
                     ProjectFragment nextFragment = new ProjectFragment();
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
                     Utils.changeFragment(nextFragment, transaction, "", "");
+                    getFragmentManager().popBackStack();
+
                 }
             }
         });
@@ -160,11 +159,15 @@ public class Project_detailsFragment extends Fragment {
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 // continue with delete
-                                Utils.deleteFromDB(view.getContext(),project_name_text);
+                                Utils.deleteFromDB(view.getContext(), project_name_text);
                                 ProjectFragment nextFragment = new ProjectFragment();
                                 //Make the transaction
                                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                                Utils.changeFragment(nextFragment,transaction,"","");
+
+                                Utils.changeFragment(nextFragment, transaction, "", "");
+                                getFragmentManager().popBackStack();
+
+                                //transaction.addToBackStack(null);
                             }
                         })
                         .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -178,13 +181,12 @@ public class Project_detailsFragment extends Fragment {
         });
 
 
-
         return myFragmentView;
 
     }
 
 
-    private void saveToDB(TextView project_name_et, TextView project_plot_et, Spinner project_genre_spinner ) {
+    private void saveToDB(TextView project_name_et, TextView project_plot_et, Spinner project_genre_spinner) {
         SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(mySQLiteDBHelper.PROJECT_COLUMN_PROJECT, project_name_et.getText().toString());
@@ -195,23 +197,27 @@ public class Project_detailsFragment extends Fragment {
         //Log challenges updated
         Bundle params = new Bundle();
         params.putString("Genre", project_genre_spinner.getSelectedItem().toString());
-        mFirebaseAnalytics.logEvent("genre",params);
+        mFirebaseAnalytics.logEvent("genre", params);
         database.close();
 
     }
 
-    private void updateDB(){
+    private void updateDB() {
         SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(mySQLiteDBHelper.PROJECT_COLUMN_PROJECT, project_name_et.getText().toString());
         values.put(mySQLiteDBHelper.PROJECT_COLUMN_GENRE, project_genre_spinner.getSelectedItem().toString());
         values.put(mySQLiteDBHelper.PROJECT_COLUMN_PLOT, project_plot_et.getText().toString());
-        database.update(mySQLiteDBHelper.CHARACTER_TABLE_PROJECT, values,   "project = ?", new String[]{project_name_text.toString()});
+        database.update(mySQLiteDBHelper.CHARACTER_TABLE_PROJECT, values, "project = ?", new String[]{project_name_text.toString()});
         database.close();
         //Come back to previous fragment
         ProjectFragment nextFragment = new ProjectFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        Utils.changeFragment(nextFragment,transaction,"","");
+
+        Utils.changeFragment(nextFragment, transaction, "", "");
+        getFragmentManager().popBackStack();
+
+        //transaction.addToBackStack(null);
     }
 
     private boolean isEmpty(TextView etText) {
@@ -222,14 +228,14 @@ public class Project_detailsFragment extends Fragment {
     }
 
 
-    public ArrayList<String> getProject(Context context, String project_name){
+    public ArrayList<String> getProject(Context context, String project_name) {
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_PROJECT  + " WHERE project = ?";
-        Cursor cursor = sqLiteDatabase.rawQuery(query,new String[]{project_name});
+        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_PROJECT + " WHERE project = ?";
+        Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{project_name});
         cursor.moveToFirst();
         ArrayList<String> char_list = new ArrayList<String>();
-        while(!cursor.isAfterLast()) {
+        while (!cursor.isAfterLast()) {
             char_list.add(cursor.getString(cursor.getColumnIndex("project")));
             char_list.add(cursor.getString(cursor.getColumnIndex("genre")));
             char_list.add(cursor.getString(cursor.getColumnIndex("plot")));

@@ -7,8 +7,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentTransaction;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -22,23 +22,21 @@ import android.widget.Toast;
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
 import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.AdRequest;
-import com.google.firebase.analytics.FirebaseAnalytics;
-import java.util.Random;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Fragment.ProfileFragment;
-import com.plotgen.rramirez.plotgenerator.Fragment.SubmitStoryFragment;
-import com.plotgen.rramirez.plotgenerator.Fragment.WeeklyChallengeFragment;
 import com.plotgen.rramirez.plotgenerator.Model.User;
+
+import java.util.Random;
 
 
 public class MainActivity extends AppCompatActivity
-        implements BillingProcessor.IBillingHandler,NavigationView.OnNavigationItemSelectedListener {
+        implements BillingProcessor.IBillingHandler, NavigationView.OnNavigationItemSelectedListener {
 
     private InterstitialAd mInterstitialAd;
     private FirebaseAnalytics mFirebaseAnalytics;
@@ -60,10 +58,10 @@ public class MainActivity extends AppCompatActivity
 
         Common.isPAU = Utils.getSPIAP(this);
 
-        if(Common.isPAU)
+        if (Common.isPAU)
             Toast.makeText(this, "yeay maneh teh pau coy", Toast.LENGTH_LONG).show();
 
-        if(!Common.isPAU) {
+        if (!Common.isPAU) {
             //Init the ads
             MobileAds.initialize(this, getString(R.string.ad_account_id));
 
@@ -103,7 +101,8 @@ public class MainActivity extends AppCompatActivity
 
         //Launch HOME first
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft .replace(R.id.flMain,new ProjectFragment());
+        ft.replace(R.id.flMain, new ProjectFragment());
+        getSupportFragmentManager().popBackStack();
 //        ft .replace(R.id.flMain,new HomeFragment());
         ft.commit();
         //Set home as selected
@@ -114,7 +113,7 @@ public class MainActivity extends AppCompatActivity
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             NotificationChannel mChannel =
-                    new NotificationChannel(Constants.CHANNEL_ID,Constants.CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH);
+                    new NotificationChannel(Constants.CHANNEL_ID, Constants.CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH);
 
             mChannel.setDescription(Constants.CHANNEL_DESCRIPTION);
             mChannel.enableLights(true);
@@ -137,8 +136,12 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void updateUI() {
-        if(mUser != null)
-            Common.currentUser = new User(mUser.getUid(),mUser.getDisplayName(),mUser.getEmail(),mUser.getPhotoUrl().toString(),mUser.getPhotoUrl());
+        if (mUser != null) {
+            String photoUrl = null;
+            if (mUser.getPhotoUrl() != null)
+                photoUrl = mUser.getPhotoUrl().toString();
+            Common.currentUser = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail(), photoUrl, mUser.getPhotoUrl());
+        }
     }
 
     @Override
@@ -147,7 +150,7 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    public void setActionBarTitle(String title){
+    public void setActionBarTitle(String title) {
         getSupportActionBar().setTitle(title);
     }
 
@@ -161,7 +164,7 @@ public class MainActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
-        if(!Common.isPAU) {
+        if (!Common.isPAU) {
             if (mInterstitialAd.isLoaded()) {
                 if (inter_chance <= 5) {
                     mInterstitialAd.show();
@@ -196,28 +199,26 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         if (id == R.id.nav_genre) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft .replace(R.id.flMain,new HeroJourneyFragment());
+            ft.replace(R.id.flMain, new HeroJourneyFragment());
             mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
             ft.commit();
         } else if (id == R.id.nav_trigger) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft .replace(R.id.flMain,new TriggerFragment());
+            ft.replace(R.id.flMain, new TriggerFragment());
             mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
             ft.commit();
-        }
-        else if (id == R.id.nav_char) {
+        } else if (id == R.id.nav_char) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft .replace(R.id.flMain,new ProjectFragment());
+            ft.replace(R.id.flMain, new ProjectFragment());
+            getSupportFragmentManager().popBackStack();
             mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
             ft.commit();
-        }
-        else if (id == R.id.nav_writting_challenge) {
+        } else if (id == R.id.nav_writting_challenge) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft .replace(R.id.flMain,new weeklyWriting());
+            ft.replace(R.id.flMain, new weeklyWriting());
             mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
             ft.commit();
-        }
-        else if(id == R.id.nav_profile) {
+        } else if (id == R.id.nav_profile) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.flMain, new ProfileFragment());
             mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());

@@ -339,6 +339,7 @@ public class StoryDetailFragment extends Fragment {
             StoryEditFragment nextFragment = new StoryEditFragment();
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             Utils.changeFragment(nextFragment, transaction, "", "");
+            transaction.addToBackStack(null);
             return true;
         }
         return super.onOptionsItemSelected(item);
