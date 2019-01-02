@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -17,6 +18,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdView;
+import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.MainActivity;
 import com.plotgen.rramirez.plotgenerator.ProjectFragment;
 import com.plotgen.rramirez.plotgenerator.R;
@@ -48,10 +51,10 @@ public class OfflineStoryFragment extends Fragment {
     ImageView ivAlignCenter;
     @BindView(R.id.formatAlignRight)
     ImageView ivAlignRight;
-    @BindView(R.id.btnSaveStory)
-    Button btnSaveStory;
 
-    @OnClick(R.id.btnSaveStory)
+    private AdView mAdView;
+
+
     public void saveStoryToDB(View v)
     {
         SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
@@ -147,7 +150,23 @@ public class OfflineStoryFragment extends Fragment {
         project_id = String.valueOf(project_info.charAt(0));
 
         mStory =  getStoryFromDB(view.getContext(), project_name);
-        btnSaveStory.setVisibility(View.INVISIBLE);
+        //Save button
+        FloatingActionButton fab = view.findViewById(R.id.btnSaveStory);
+//        btnSaveStory.setVisibility(View.INVISIBLE);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveStoryToDB(view);
+            }
+        });
+
+        if(!Common.isPAU) {
+            mAdView = (AdView) view.findViewById(R.id.adView_offile_story);
+            Utils.loadAd(mAdView);
+        }
+
+
 
         mEditor.setEditorHeight(200);
         mEditor.setEditorFontSize(16);
@@ -161,14 +180,13 @@ public class OfflineStoryFragment extends Fragment {
         {
             isUpdate = true;
             mEditor.setHtml(mStory);
-            btnSaveStory.setText("Update");
         }
 
 
         mEditor.setOnTextChangeListener(new RichEditor.OnTextChangeListener() {
             @Override public void onTextChange(String text) {
                 mStory = text;
-                btnSaveStory.setVisibility(View.VISIBLE);
+//                btnSaveStory.setVisibility(View.VISIBLE);
             }
         });
 
