@@ -3,7 +3,6 @@ package com.plotgen.rramirez.plotgenerator.Fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
@@ -13,18 +12,13 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.MainActivity;
-import com.plotgen.rramirez.plotgenerator.Model.Like;
 import com.plotgen.rramirez.plotgenerator.Model.Story;
 import com.plotgen.rramirez.plotgenerator.Model.User;
 import com.plotgen.rramirez.plotgenerator.R;
@@ -57,8 +51,7 @@ public class SubmitStoryFragment extends Fragment {
     private DatabaseReference mReference;
 
     @OnClick(R.id.btnSubmit)
-    public void submitStory(View view)
-    {
+    public void submitStory(View view) {
         final String s = etStory.getText().toString();
 
         // Title is required
@@ -68,10 +61,10 @@ public class SubmitStoryFragment extends Fragment {
         }
 
         String key = mReference.child("posts").push().getKey();
-        Long tsLong = System.currentTimeMillis()/1000;
+        Long tsLong = System.currentTimeMillis() / 1000;
 
 
-        Story story = new Story(key,etTitle.getText().toString(),
+        Story story = new Story(key, etTitle.getText().toString(),
                 "",
                 etStory.getText().toString(), tsLong,
                 new User(Common.currentUser.getUid(),
@@ -90,7 +83,7 @@ public class SubmitStoryFragment extends Fragment {
 
         WeeklyChallengeFragment nextFragment = new WeeklyChallengeFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        Utils.changeFragment(nextFragment,transaction,"","");
+        Utils.changeFragment(nextFragment, transaction, "", "");
     }
 
 
@@ -102,7 +95,7 @@ public class SubmitStoryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((MainActivity)getActivity()).setActionBarTitle("Submit Your Challenge!");
+        ((MainActivity) getActivity()).setActionBarTitle("Submit Your Challenge!");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_submit_story, container, false);
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
@@ -124,16 +117,17 @@ public class SubmitStoryFragment extends Fragment {
         //mReference = mDatabase.getReference().child("Weekly_Challenge_Beta");
 
         //tvEmail.setText(Common.currentUser.getName());
-
-        etTitle.setText(Common.currentChallenge.getName());
-        etTitle.setFocusable(false);
+        if (Common.currentChallenge != null) {
+            etTitle.setText(Common.currentChallenge.getName());
+            etTitle.setFocusable(false);
+        }
 
         return view;
     }
 
     private void updateUI() {
-        if(mUser!= null) {
-            Common.currentUser = new User(mUser.getUid(),mUser.getDisplayName(),mUser.getEmail(),mUser.getPhotoUrl().toString(),mUser.getPhotoUrl());
+        if (mUser != null) {
+            Common.currentUser = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail(), mUser.getPhotoUrl().toString(), mUser.getPhotoUrl());
             tvEmail.setText(mUser.getDisplayName());
         }
     }

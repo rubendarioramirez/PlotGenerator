@@ -4,7 +4,6 @@ package com.plotgen.rramirez.plotgenerator;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,7 +12,6 @@ import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -448,30 +446,32 @@ public class CharacterFragment extends Fragment {
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
         String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER + " WHERE name = ?";
         Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{char_name});
-        cursor.moveToFirst();
         ArrayList<String> char_list = new ArrayList<String>();
-        while (!cursor.isAfterLast()) {
-            char_list.add(cursor.getString(cursor.getColumnIndex("name")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("age")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("gender")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("placebirth")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("profession")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("height")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("haircolor")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("eyecolor")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("bodybuild")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("desire")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("role")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("defmoment")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("need")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("phrase")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("trait1")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("trait2")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("trait3")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("elevator_notes")));
-            cursor.moveToNext();
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                char_list.add(cursor.getString(cursor.getColumnIndex("name")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("age")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("gender")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("placebirth")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("profession")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("height")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("haircolor")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("eyecolor")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("bodybuild")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("desire")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("role")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("defmoment")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("need")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("phrase")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("trait1")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("trait2")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("trait3")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("elevator_notes")));
+                cursor.moveToNext();
+            }
+            cursor.close();
         }
-        cursor.close();
         return char_list;
     }
 

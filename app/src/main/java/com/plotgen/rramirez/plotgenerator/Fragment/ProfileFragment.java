@@ -117,9 +117,7 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
                         // user is now signed out
                         FragmentTransaction ft = getFragmentManager().beginTransaction();
                         ft .replace(R.id.flMain,new ProjectFragment());
-                        getFragmentManager().popBackStack();
                         ft.commit();
-
                         Snackbar.make(getActivity().findViewById(R.id.flMain), "Sign Out Success.", Snackbar.LENGTH_SHORT).show();
 
                     }
@@ -181,10 +179,6 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
                 updateIAPText();
             }
         });
-
-
-
-
 
         ((MainActivity) getActivity()).bp = new BillingProcessor(getContext(), null, this);
         ((MainActivity) getActivity()).bp.initialize();

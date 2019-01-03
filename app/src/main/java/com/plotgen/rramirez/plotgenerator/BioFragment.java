@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,6 +69,7 @@ public class BioFragment extends Fragment {
 
         //Set the narrative
         char_description = getDescription(myFragmentView.getContext(), char_name.toString());
+        // changes done to check list size
         if (char_description.size() > 0) {
             String name = char_description.get(0);
             String age = char_description.get(1);
@@ -383,7 +385,6 @@ public class BioFragment extends Fragment {
         params.putString("Share", "completed");
         mFirebaseAnalytics.logEvent("share_completed", params);
 
-
     }
 
 
@@ -392,74 +393,78 @@ public class BioFragment extends Fragment {
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
         String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER + " WHERE name = ?";
         Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{char_name});
-        cursor.moveToFirst();
+        Log.e("cursor count",cursor.getCount()+"");
         ArrayList<String> char_list = new ArrayList<String>();
-        while (!cursor.isAfterLast()) {
-            char_list.add(cursor.getString(cursor.getColumnIndex("name")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("age")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("gender")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("placebirth")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("profession")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("height")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("haircolor")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("eyecolor")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("bodybuild")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("desire")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("role")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("defmoment")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("need")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("phrase")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("trait1")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("trait2")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("trait3")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("elevator_notes")));
-            //First challenge
-            char_list.add(cursor.getString(cursor.getColumnIndex("elevator_initial_reaction")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("elevator_wait_rescue")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("elevator_help_partner")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("elevator_escape_first")));
-            //Second Challenge
-            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_2_q1")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_2_q2")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_2_q3")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_2_q4")));
-            //Third Challenge
-            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_3_q1")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_3_q2")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_3_q3")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_3_q4")));
-            //Fourth Challenge
-            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_4_q1")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_4_q2")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_4_q3")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_4_q4")));
-            //Fifth Challenge
-            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_5_q1")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_5_q2")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_5_q3")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_5_q4")));
-            //Sixth Challenge
-            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_6_q1")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_6_q2")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_6_q3")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_6_q4")));
-            //Mentor Challenge
-            char_list.add(cursor.getString(cursor.getColumnIndex("c1_mentor_q1")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("c1_mentor_q2")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("c1_mentor_q3")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("c1_mentor_q4")));
-            //Antagonist Challenge
-            char_list.add(cursor.getString(cursor.getColumnIndex("c1_antagonist_q1")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("c1_antagonist_q2")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("c1_antagonist_q3")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("c1_antagonist_q4")));
-            //Sidekick Challenge
-            char_list.add(cursor.getString(cursor.getColumnIndex("c1_sidekick_q1")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("c1_sidekick_q2")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("c1_sidekick_q3")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("c1_sidekick_q4")));
+        // changes done to check is cursor size is greator than 0
+        if(cursor!=null && cursor.getCount()>0) {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                char_list.add(cursor.getString(cursor.getColumnIndex("name")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("age")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("gender")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("placebirth")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("profession")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("height")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("haircolor")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("eyecolor")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("bodybuild")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("desire")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("role")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("defmoment")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("need")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("phrase")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("trait1")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("trait2")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("trait3")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("elevator_notes")));
+                //First challenge
+                char_list.add(cursor.getString(cursor.getColumnIndex("elevator_initial_reaction")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("elevator_wait_rescue")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("elevator_help_partner")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("elevator_escape_first")));
+                //Second Challenge
+                char_list.add(cursor.getString(cursor.getColumnIndex("challenge_2_q1")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("challenge_2_q2")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("challenge_2_q3")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("challenge_2_q4")));
+                //Third Challenge
+                char_list.add(cursor.getString(cursor.getColumnIndex("challenge_3_q1")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("challenge_3_q2")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("challenge_3_q3")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("challenge_3_q4")));
+                //Fourth Challenge
+                char_list.add(cursor.getString(cursor.getColumnIndex("challenge_4_q1")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("challenge_4_q2")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("challenge_4_q3")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("challenge_4_q4")));
+                //Fifth Challenge
+                char_list.add(cursor.getString(cursor.getColumnIndex("challenge_5_q1")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("challenge_5_q2")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("challenge_5_q3")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("challenge_5_q4")));
+                //Sixth Challenge
+                char_list.add(cursor.getString(cursor.getColumnIndex("challenge_6_q1")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("challenge_6_q2")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("challenge_6_q3")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("challenge_6_q4")));
+                //Mentor Challenge
+                char_list.add(cursor.getString(cursor.getColumnIndex("c1_mentor_q1")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("c1_mentor_q2")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("c1_mentor_q3")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("c1_mentor_q4")));
+                //Antagonist Challenge
+                char_list.add(cursor.getString(cursor.getColumnIndex("c1_antagonist_q1")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("c1_antagonist_q2")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("c1_antagonist_q3")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("c1_antagonist_q4")));
+                //Sidekick Challenge
+                char_list.add(cursor.getString(cursor.getColumnIndex("c1_sidekick_q1")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("c1_sidekick_q2")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("c1_sidekick_q3")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("c1_sidekick_q4")));
 
-            cursor.moveToNext();
+                cursor.moveToNext();
+            }
         }
         cursor.close();
         return char_list;

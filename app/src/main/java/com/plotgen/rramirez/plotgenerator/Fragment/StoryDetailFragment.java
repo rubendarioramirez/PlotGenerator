@@ -17,10 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Registry;
@@ -31,7 +28,6 @@ import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -48,7 +44,6 @@ import com.plotgen.rramirez.plotgenerator.Utils;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.io.InputStream;
-import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -96,8 +91,7 @@ public class StoryDetailFragment extends Fragment {
     private DatabaseReference mCommentReference, mPostReference;
 
     @OnClick(R.id.buttonPostComment)
-    public void postComment(View v)
-    {
+    public void postComment(View v) {
         final String s = etCommentText.getText().toString();
 
         // Comment is required
@@ -221,8 +215,7 @@ public class StoryDetailFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int commentCount = 0;
-                for(DataSnapshot commentData : dataSnapshot.getChildren())
-                {
+                for (DataSnapshot commentData : dataSnapshot.getChildren()) {
                     commentCount++;
                 }
 
@@ -303,8 +296,7 @@ public class StoryDetailFragment extends Fragment {
             String newString = photoPath.replace(originalPieceOfUrl, newPieceOfUrlToAdd);
 
             return newString;
-        }
-        else
+        } else
             return s;
     }
 
@@ -329,13 +321,15 @@ public class StoryDetailFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(Common.currentStory.getUser().getUid().equals(Common.currentUser.getUid())) setHasOptionsMenu(true);
+        if (Common.currentStory.getUser() != null)
+            if (Common.currentStory.getUser().getUid().equals(Common.currentUser.getUid()))
+                setHasOptionsMenu(true);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if(id == R.id.menu_edit){
+        if (id == R.id.menu_edit) {
             StoryEditFragment nextFragment = new StoryEditFragment();
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             Utils.changeFragment(nextFragment, transaction, "", "");
