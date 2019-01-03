@@ -224,6 +224,7 @@
     <string name="character_add_profession">Profession</string>
     <string-array name="profession_array">
         <item>Retail salespersons</item>
+        <item>Retired</item>
         <item>Cashier</item>
         <item>Office clerk</item>
         <item>Nurse</item>
