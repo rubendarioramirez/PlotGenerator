@@ -119,6 +119,7 @@
     <string name="character_add_profession">Profesion</string>
     <string-array name="profession_array">
         <item>Vendedor</item>
+        <item>Retirado</item>
         <item>Cajero</item>
         <item>Oficinista</item>
         <item>Enfermero</item>
