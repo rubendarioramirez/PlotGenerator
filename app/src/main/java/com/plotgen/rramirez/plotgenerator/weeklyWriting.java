@@ -3,6 +3,7 @@ package com.plotgen.rramirez.plotgenerator;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -18,16 +19,19 @@ import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.ErrorCodes;
 import com.firebase.ui.auth.IdpResponse;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.reward.RewardItem;
 import com.google.android.gms.ads.reward.RewardedVideoAd;
 import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Fragment.SubmitStoryFragment;
@@ -36,9 +40,7 @@ import com.plotgen.rramirez.plotgenerator.Model.Challenge;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Locale;
-import java.util.Random;
 
 import static android.app.Activity.RESULT_OK;
 import static android.content.ContentValues.TAG;
@@ -49,7 +51,7 @@ import static android.content.ContentValues.TAG;
  */
 public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
 
-    private TextView title,description, ad_desc;
+    private TextView title, description, ad_desc;
     private Button ad_submit_btn;
     private Button btViewParticipant;
     private String databaseToUse;
@@ -60,6 +62,9 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
 
     private static final int RC_SIGN_IN = 123;
     private static final int RC_SIGN_IN_View_Participant = 124;
+    private FirebaseDatabase mDatabase;
+    private FirebaseAuth mAuth;
+    private FirebaseUser mUser;
 
 
     public weeklyWriting() {
@@ -70,18 +75,17 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((MainActivity)getActivity()).setActionBarTitle(getString(R.string.writing_challenge_tab));
+        ((MainActivity) getActivity()).setActionBarTitle(getString(R.string.writing_challenge_tab));
         // Inflate the layout for this fragment
         View myFragmentView = inflater.inflate(R.layout.fragment_weekly_writing, container, false);
 
 
-        if(!Common.isPAU) {
+        if (!Common.isPAU) {
             //Rewarded ad
             mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(myFragmentView.getContext());
             mRewardedVideoAd.setRewardedVideoAdListener(this);
             loadRewardedVideoAd();
-        }
-        else
+        } else
             can_submit = 1;
 
 
@@ -97,7 +101,7 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
         //Log challenges updated
         Bundle params = new Bundle();
         params.putString("WeeklyWriting", "opened");
-        mFirebaseAnalytics.logEvent("weekly_writing",params);
+        mFirebaseAnalytics.logEvent("weekly_writing", params);
 
 
         //Define elements
@@ -106,10 +110,9 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
 
         //Get a firebase reference
         //Get device lang
-        if (Locale.getDefault().getDisplayLanguage().equals("español")){
+        if (Locale.getDefault().getDisplayLanguage().equals("español")) {
             databaseToUse = "writing_challenge_es";
-        }
-        else {
+        } else {
             databaseToUse = "writing_challenge";
         }
 
@@ -119,14 +122,14 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot childSnap : dataSnapshot.getChildren()){
+                for (DataSnapshot childSnap : dataSnapshot.getChildren()) {
                     data_list.add(childSnap.getValue(String.class));
 
                 }
                 title.setText(data_list.get(0).toString());
                 description.setText(data_list.get(1).toString());
                 String s = data_list.get(0).toString();
-                Challenge challenge = new Challenge("",s);
+                Challenge challenge = new Challenge("", s);
                 Common.currentChallenge = challenge;
                 ad_submit_btn.setVisibility(View.VISIBLE);
                 btViewParticipant.setVisibility(View.VISIBLE);
@@ -141,11 +144,10 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
         });
 
         //Check if should watch ad or can submit
-        if(can_submit == 1){
+        if (can_submit == 1) {
             ad_submit_btn.setText(getString(R.string.weekly_challenge_submit_btn));
             ad_desc.setText("");
-        }
-        else{
+        } else {
             ad_submit_btn.setText(getString(R.string.weekly_challenge_view_ad_btn));
             ad_desc.setText(getString(R.string.weekly_challenge_view_ad_desc));
         }
@@ -153,7 +155,7 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
         ad_submit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(can_submit == 1){
+                if (can_submit == 1) {
                     /*Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                             "mailto","ramirez.ruben.dario10@gmail.com", null));
                     emailIntent.putExtra(Intent.EXTRA_SUBJECT,
@@ -174,7 +176,7 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
                                     .setIsSmartLockEnabled(false)
                                     .build(),
                             RC_SIGN_IN);
-                } else{
+                } else {
                     if (mRewardedVideoAd.isLoaded()) {
                         mRewardedVideoAd.show();
                     }
@@ -210,29 +212,59 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
 
             // Successfully signed in
             if (resultCode == RESULT_OK) {
+                mDatabase = FirebaseDatabase.getInstance();
+                mAuth = FirebaseAuth.getInstance();
+
+                final DatabaseReference mUserDatabase = mDatabase.getReference().child("users");
+                mUser = mAuth.getCurrentUser();
+                final String firebase_token = Utils.getSharePref((MainActivity) getActivity(), "firebase_token");
+
+
+                if (mUser != null) {
+                    mUserDatabase.runTransaction(new Transaction.Handler() {
+                        @NonNull
+                        @Override
+                        public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                            if (mutableData.hasChild(mUser.getUid())) {
+                                mutableData.child(mUser.getUid()).child("token").setValue(firebase_token);
+                            } else {
+                                mutableData.child(mUser.getUid());
+                                mutableData.child(mUser.getUid()).setValue(mUser.getUid());
+                                mutableData.child(mUser.getUid()).child("token").setValue(firebase_token);
+                            }
+                            return Transaction.success(mutableData);
+                        }
+
+                        @Override
+                        public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+                            Log.d("Updated token", "postTransaction:onComplete:" + databaseError);
+
+                        }
+                    });
+                }
                 //
                 // change to submit fragment in main activity
                 SubmitStoryFragment nextFragment = new SubmitStoryFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                Utils.changeFragment(nextFragment,transaction,"","");
+                Utils.changeFragment(nextFragment, transaction, "", "");
+                transaction.addToBackStack(null);
             } else {
                 // Sign in failed
                 if (response == null) {
                     // User pressed back button
-                    Toast.makeText(getContext(),"You cancelled",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "You cancelled", Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 if (response.getError().getErrorCode() == ErrorCodes.NO_NETWORK) {
-                    Toast.makeText(getContext(),"No internet connection",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "No internet connection", Toast.LENGTH_LONG).show();
                     return;
                 }
 
-                Toast.makeText(getContext(),"Unknown error, please try again",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Unknown error, please try again", Toast.LENGTH_LONG).show();
                 Log.e(TAG, "Sign-in error: ", response.getError());
             }
-        }
-        else if (requestCode == RC_SIGN_IN_View_Participant)  {
+        } else if (requestCode == RC_SIGN_IN_View_Participant) {
             IdpResponse response = IdpResponse.fromResultIntent(data);
 
             // Successfully signed in
@@ -241,21 +273,22 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
                 // change to submit fragment in main activity
                 WeeklyChallengeFragment nextFragment = new WeeklyChallengeFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                Utils.changeFragment(nextFragment,transaction,"","");
+                Utils.changeFragment(nextFragment, transaction, "", "");
+                transaction.addToBackStack(null);
             } else {
                 // Sign in failed
                 if (response == null) {
                     // User pressed back button
-                    Toast.makeText(getContext(),"You cancelled",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "You cancelled", Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 if (response.getError().getErrorCode() == ErrorCodes.NO_NETWORK) {
-                    Toast.makeText(getContext(),"No internet connection",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "No internet connection", Toast.LENGTH_LONG).show();
                     return;
                 }
 
-                Toast.makeText(getContext(),"Unknown error, please try again",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Unknown error, please try again", Toast.LENGTH_LONG).show();
                 Log.e(TAG, "Sign-in error: ", response.getError());
             }
         }

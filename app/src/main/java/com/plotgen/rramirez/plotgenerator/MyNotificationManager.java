@@ -27,7 +27,7 @@ public class MyNotificationManager {
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(mCtx,Constants.CHANNEL_ID)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle(title)
-                .setContentTitle(body);
+                .setContentText(body);
 
         Intent intent  = new Intent(mCtx, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(mCtx,0,intent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -41,4 +41,23 @@ public class MyNotificationManager {
 
     }
 
+    public void displayNotification(String title, String body, String tag, String id) {
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(mCtx,Constants.CHANNEL_ID)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle(title)
+                .setAutoCancel(true)
+                .setContentText(body);
+
+        Intent intent  = new Intent(mCtx, MainActivity.class);
+        intent.putExtra("tag",tag);
+        intent.putExtra("post_id",id);
+        PendingIntent pendingIntent = PendingIntent.getActivity(mCtx,0,intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        mBuilder.setContentIntent(pendingIntent);
+
+        NotificationManager mNotificationManager = (NotificationManager) mCtx.getSystemService(Context.NOTIFICATION_SERVICE);
+        if(mNotificationManager !=null){
+            mNotificationManager.notify(1, mBuilder.build());
+        }
+    }
 }

@@ -15,19 +15,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
-import com.firebase.ui.database.FirebaseListAdapter;
-import com.firebase.ui.database.FirebaseListOptions;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,17 +28,18 @@ import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.RemoteMessage;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
+import com.plotgen.rramirez.plotgenerator.Common.Notify;
 import com.plotgen.rramirez.plotgenerator.MainActivity;
-import com.plotgen.rramirez.plotgenerator.Model.Like;
 import com.plotgen.rramirez.plotgenerator.Model.Story;
 import com.plotgen.rramirez.plotgenerator.Model.User;
 import com.plotgen.rramirez.plotgenerator.R;
 import com.plotgen.rramirez.plotgenerator.Utils;
 import com.plotgen.rramirez.plotgenerator.ViewHolder.StoryViewHolder;
 
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -72,6 +65,7 @@ public class WeeklyChallengeFragment extends Fragment {
     private FirebaseDatabase mDatabase;
     private DatabaseReference mReference;
     private DatabaseReference mCommentReference;
+    private DatabaseReference mUserReference;
 
     private LinearLayoutManager mManager;
 
@@ -85,7 +79,7 @@ public class WeeklyChallengeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((MainActivity)getActivity()).setActionBarTitle("Weekly Challenge Participant");
+        ((MainActivity) getActivity()).setActionBarTitle("Weekly Challenge Participant");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_weekly_challenge, container, false);
 
@@ -110,6 +104,7 @@ public class WeeklyChallengeFragment extends Fragment {
         mDatabase = FirebaseDatabase.getInstance();
         mReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts");
         mCommentReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("post-comments");
+        mUserReference = mDatabase.getReference().child("users");
 
         Query query = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts").orderByChild("likeCount");
         Query query_recents = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts").orderByChild("date");
@@ -151,7 +146,7 @@ public class WeeklyChallengeFragment extends Fragment {
 
                 viewHolder.setIsRecyclable(false);
 
-                if(model.getTitle().contains(Common.currentChallenge.getName())) {
+                if (model.getTitle().contains(Common.currentChallenge.getName())) {
 
                     viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -160,6 +155,7 @@ public class WeeklyChallengeFragment extends Fragment {
                             StoryDetailFragment nextFragment = new StoryDetailFragment();
                             FragmentTransaction transaction = getFragmentManager().beginTransaction();
                             Utils.changeFragment(nextFragment, transaction, "", "");
+                            transaction.addToBackStack(null);
                         }
                     });
 
@@ -178,9 +174,7 @@ public class WeeklyChallengeFragment extends Fragment {
                     };
 
                     viewHolder.bindToPost(model, likeClickListener, mCommentReference.child(postRef.getKey()));
-                }
-                else
-                {
+                } else {
                     viewHolder.removeItem();
                 }
 
@@ -201,7 +195,7 @@ public class WeeklyChallengeFragment extends Fragment {
 
                 viewHolder.setIsRecyclable(false);
 
-                if(model.getUser().getUid().equals(Common.currentUser.getUid())) {
+                if (model.getUser().getUid().equals(Common.currentUser.getUid())) {
 
                     viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -210,6 +204,7 @@ public class WeeklyChallengeFragment extends Fragment {
                             StoryDetailFragment nextFragment = new StoryDetailFragment();
                             FragmentTransaction transaction = getFragmentManager().beginTransaction();
                             Utils.changeFragment(nextFragment, transaction, "", "");
+                            transaction.addToBackStack(null);
                         }
                     });
 
@@ -228,9 +223,7 @@ public class WeeklyChallengeFragment extends Fragment {
                     };
 
                     viewHolder.bindToPost(model, likeClickListener, mCommentReference.child(postRef.getKey()));
-                }
-                else
-                {
+                } else {
                     viewHolder.removeItem();
                 }
 
@@ -251,7 +244,7 @@ public class WeeklyChallengeFragment extends Fragment {
 
                 viewHolder.setIsRecyclable(false);
 
-                if(model.getTitle().contains(Common.currentChallenge.getName())) {
+                if (model.getTitle().contains(Common.currentChallenge.getName())) {
 
                     viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -260,6 +253,7 @@ public class WeeklyChallengeFragment extends Fragment {
                             StoryDetailFragment nextFragment = new StoryDetailFragment();
                             FragmentTransaction transaction = getFragmentManager().beginTransaction();
                             Utils.changeFragment(nextFragment, transaction, "", "");
+                            transaction.addToBackStack(null);
                         }
                     });
 
@@ -278,9 +272,7 @@ public class WeeklyChallengeFragment extends Fragment {
                     };
 
                     viewHolder.bindToPost(model, likeClickListener, mCommentReference.child(postRef.getKey()));
-                }
-                else
-                {
+                } else {
                     viewHolder.removeItem();
                 }
 
@@ -288,11 +280,12 @@ public class WeeklyChallengeFragment extends Fragment {
         };
     }
 
-    private void onLikeClicked(DatabaseReference postRef) {
+    private void onLikeClicked(final DatabaseReference postRef) {
+
         postRef.runTransaction(new Transaction.Handler() {
             @Override
             public Transaction.Result doTransaction(MutableData mutableData) {
-                Story p = mutableData.getValue(Story.class);
+                final Story p = mutableData.getValue(Story.class);
                 if (p == null) {
                     return Transaction.success(mutableData);
                 }
@@ -305,6 +298,7 @@ public class WeeklyChallengeFragment extends Fragment {
                     // Star the post and add self to stars
                     p.likeCount = p.likeCount + 1;
                     p.likes.put(Common.currentUser.getUid(), true);
+                    sendNotification(Common.currentUser.getName() + " liked your post", p.getUser(), p.getId());
                 }
 
                 // Set value and report transaction success
@@ -315,14 +309,15 @@ public class WeeklyChallengeFragment extends Fragment {
             @Override
             public void onComplete(DatabaseError databaseError, boolean b,
                                    DataSnapshot dataSnapshot) {
+
                 Log.d("UpdateLikeCount", "postTransaction:onComplete:" + databaseError);
             }
         });
     }
 
     private void updateUI() {
-        if(mUser!= null) {
-            Common.currentUser = new User(mUser.getUid(),mUser.getDisplayName(),mUser.getEmail(),mUser.getPhotoUrl().toString(),mUser.getPhotoUrl());
+        if (mUser != null) {
+            Common.currentUser = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail(), mUser.getPhotoUrl().toString(), mUser.getPhotoUrl());
         }
     }
 
@@ -362,26 +357,55 @@ public class WeeklyChallengeFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if(id == R.id.menu_goto){
-            if(toggleMyPost == 1){
+        if (id == R.id.menu_goto) {
+            if (toggleMyPost == 1) {
                 rvWeeklyChallenge.swapAdapter(mMyPostAdapter, true);
                 toggleMyPost = 0;
-            }
-            else if(toggleMyPost == 0) {
+            } else if (toggleMyPost == 0) {
                 rvWeeklyChallenge.swapAdapter(mAdapter, true);
                 toggleMyPost = 1;
             }
             return true;
-        }
-        else if(id == R.id.menu_recent){
+        } else if (id == R.id.menu_recent) {
             rvWeeklyChallenge.swapAdapter(mRecentAdapter, true);
             return true;
-        }
-        else if(id == R.id.menu_likes){
+        } else if (id == R.id.menu_likes) {
             rvWeeklyChallenge.swapAdapter(mAdapter, true);
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void sendNotification(final String message, User user, final String id) {
+        //String firebase_token = mUserReference.child(user.getUid()).child("token");
+        Query query = mUserReference.child(user.getUid()).orderByChild("token");
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.hasChild("token")) {
+                    String token = dataSnapshot.child("token").getValue().toString();
+
+                    String to = token; // the notification key
+                    AtomicInteger msgId = new AtomicInteger();
+                    new Notify(to, message, id).execute();
+                    //notifyMessage(to,message);
+                    FirebaseMessaging.getInstance().send(new RemoteMessage.Builder(to)
+                            .setMessageId(String.valueOf(msgId.get()))
+                            .addData("title", "Weekly Challenge")
+                            .addData("body", message)
+                            .build());
+                    Log.e("message", new RemoteMessage.Builder(to).setMessageId(String.valueOf(msgId.get()))
+                            .addData("title", "Weekly Challenge")
+                            .addData("body", message).toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("notification action", databaseError.getDetails());
+            }
+        });
+
     }
 
 }

@@ -33,17 +33,23 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.RemoteMessage;
 import com.google.firebase.storage.StorageReference;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
+import com.plotgen.rramirez.plotgenerator.Common.Notify;
 import com.plotgen.rramirez.plotgenerator.Model.Comment;
 import com.plotgen.rramirez.plotgenerator.Model.Story;
+import com.plotgen.rramirez.plotgenerator.Model.User;
 import com.plotgen.rramirez.plotgenerator.R;
 import com.plotgen.rramirez.plotgenerator.Utils;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.io.InputStream;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -89,6 +95,7 @@ public class StoryDetailFragment extends Fragment {
 
     private FirebaseDatabase mDatabase;
     private DatabaseReference mCommentReference, mPostReference;
+    private DatabaseReference mUserReference;
 
     @OnClick(R.id.buttonPostComment)
     public void postComment(View v) {
@@ -107,6 +114,7 @@ public class StoryDetailFragment extends Fragment {
 
         // Push the comment, it will appear in the list
         mCommentReference.push().setValue(comment);
+        sendNotification(Common.currentUser.getName() + " commented on your post", Common.currentStory.getUser(),Common.currentStory.getId());
 
         // Clear the field
         etCommentText.setText(null);
@@ -130,6 +138,7 @@ public class StoryDetailFragment extends Fragment {
         mDatabase = FirebaseDatabase.getInstance();
         mPostReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts").child(Common.currentStory.getId());
         mCommentReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("post-comments").child(Common.currentStory.getId());
+        mUserReference = mDatabase.getReference().child("users");
 
 //        mPostReference = mDatabase.getReference().child("Weekly_Challenge").child("posts").child(Common.currentStory.getId());
 //        mCommentReference = mDatabase.getReference().child("Weekly_Challenge").child("post-comments").child(Common.currentStory.getId());
@@ -182,6 +191,7 @@ public class StoryDetailFragment extends Fragment {
                     // Star the post and add self to stars
                     p.likeCount = p.likeCount + 1;
                     p.likes.put(Common.currentUser.getUid(), true);
+                    sendNotification(Common.currentUser.getName() + " liked your post", p.getUser(), p.getId());
                 }
 
                 // Set value and report transaction success
@@ -208,6 +218,30 @@ public class StoryDetailFragment extends Fragment {
                 });
             }
         });
+    }
+
+    public void sendNotification(final String message, User user, final String id) {
+        //String firebase_token = mUserReference.child(user.getUid()).child("token");
+        Query query = mUserReference.child(user.getUid()).orderByChild("token");
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.hasChild("token")) {
+                    String token = dataSnapshot.child("token").getValue().toString();
+
+                    String to = token; // the notification key
+                    AtomicInteger msgId = new AtomicInteger();
+                    new Notify(to, message,id).execute();
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("notification action", databaseError.getDetails());
+            }
+        });
+
     }
 
     private void checkCommentCount() {

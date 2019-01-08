@@ -15,6 +15,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -36,6 +38,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.google.firebase.storage.StorageReference;
@@ -51,7 +59,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.concurrent.Executor;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -89,15 +96,19 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
     @BindView(R.id.txtCharCreated)
     MaterialEditText etCharCreated;
 
+    @BindView(R.id.notification)
+    CheckBox cbNotification;
+
     @BindView(R.id.btnSignOut)
     Button btnSignOut;
 
     @BindView(R.id.btnIAP)
     Button btnIAP;
+    private String firebase_token;
 
     @OnClick(R.id.btnIAP)
-    public void buyIAP(View v){
-        ((MainActivity) getActivity()).bp.purchase(this.getActivity(),getString(R.string.remove_ads_product_id));
+    public void buyIAP(View v) {
+        ((MainActivity) getActivity()).bp.purchase(this.getActivity(), getString(R.string.remove_ads_product_id));
 
         //Log clicked in IAP updated
         Bundle params = new Bundle();
@@ -116,7 +127,7 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
                     public void onComplete(@NonNull Task<Void> task) {
                         // user is now signed out
                         FragmentTransaction ft = getFragmentManager().beginTransaction();
-                        ft .replace(R.id.flMain,new ProjectFragment());
+                        ft.replace(R.id.flMain, new ProjectFragment());
                         ft.commit();
                         Snackbar.make(getActivity().findViewById(R.id.flMain), "Sign Out Success.", Snackbar.LENGTH_SHORT).show();
 
@@ -125,8 +136,7 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
     }
 
     @OnClick(R.id.btnLogin)
-    public void login(View v)
-    {
+    public void login(View v) {
         startActivityForResult(
                 AuthUI.getInstance()
                         .createSignInIntentBuilder()
@@ -143,7 +153,6 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
     private FirebaseUser mUser;
 
 
-
     private static final int RC_SIGN_IN = 123;
 
     public ProfileFragment() {
@@ -154,7 +163,7 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((MainActivity)getActivity()).setActionBarTitle("My Profile");
+        ((MainActivity) getActivity()).setActionBarTitle("My Profile");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
@@ -163,12 +172,39 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(view.getContext());
+        firebase_token = Utils.getSharePref((MainActivity) getActivity(), "firebase_token");
 
+
+        //handle notification
+        if(Utils.getSharePref(getActivity(),"notifications").equalsIgnoreCase("true")){
+            cbNotification.setChecked(true);
+            cbNotification.setButtonDrawable(R.drawable.ic_check_box);
+        }
+        else{
+            cbNotification.setChecked(false);
+            cbNotification.setButtonDrawable(R.drawable.ic_uncheck_box);
+        }
+
+        //handle notification checkbox click
+        cbNotification.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(cbNotification.isChecked()){
+                    //cbNotification.setChecked(false);
+                    cbNotification.setButtonDrawable(R.drawable.ic_check_box);
+                    Utils.saveOnSharePreg(getActivity(),"notifications","true");
+                }else{
+                    //cbNotification.setChecked(true);
+                    cbNotification.setButtonDrawable(R.drawable.ic_uncheck_box);
+                    Utils.saveOnSharePreg(getActivity(),"notifications","false");
+                }
+            }
+        });
         remoteConfig.setConfigSettings(new FirebaseRemoteConfigSettings.Builder()
-            .setDeveloperModeEnabled(false)
-            .build());
+                .setDeveloperModeEnabled(false)
+                .build());
 
-        HashMap<String,Object> defaults = new HashMap<>();
+        HashMap<String, Object> defaults = new HashMap<>();
         defaults.put("iap_button_text", "Go no ads!");
         remoteConfig.setDefaults(defaults);
         final Task<Void> fetch = remoteConfig.fetch(0);
@@ -206,8 +242,7 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
             String newString = photoPath.replace(originalPieceOfUrl, newPieceOfUrlToAdd);
 
             return newString;
-        }
-        else
+        } else
             return s;
     }
 
@@ -252,12 +287,42 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
 
         // RC_SIGN_IN is the request code you passed into startActivityForResult(...) when starting the sign in flow.
         if (requestCode == RC_SIGN_IN) {
-            IdpResponse response = IdpResponse.fromResultIntent(data);
+            final IdpResponse response = IdpResponse.fromResultIntent(data);
 
             // Successfully signed in
             if (resultCode == RESULT_OK) {
+
+                mUser = mAuth.getCurrentUser();
+                FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
+                final DatabaseReference mUserDatabase = mDatabase.getReference().child("users");
+
+                mUserDatabase.runTransaction(new Transaction.Handler() {
+                    @NonNull
+                    @Override
+                    public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                        if (mutableData.hasChild("users")) {
+                            if (mutableData.child("users").hasChild(mUser.getUid())) {
+                                mutableData.child("users").child(mUser.getUid()).child("token").setValue(firebase_token);
+                            }
+
+                        } else {
+                            mutableData.child(mUser.getUid());
+                            mutableData.child(mUser.getUid()).setValue(mUser.getUid());
+                            mutableData.child(mUser.getUid()).child("token").setValue(firebase_token);
+                        }
+                        return Transaction.success(mutableData);
+                    }
+
+                    @Override
+                    public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+                        Log.d("Updated token", "postTransaction:onComplete:" + databaseError);
+
+                    }
+                });
+
+
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft .replace(R.id.flMain,new ProfileFragment());
+                ft.replace(R.id.flMain, new ProfileFragment());
                 ft.commit();
 
                 Snackbar.make(getActivity().findViewById(R.id.flMain), "Sign In Success.", Snackbar.LENGTH_SHORT).show();
@@ -280,15 +345,15 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
         }
     }
 
-    private void updateIAPText(){
+    private void updateIAPText() {
         String text = (String) remoteConfig.getString("iap_button_text");
         btnIAP.setText(text);
     }
 
 
     private void updateUI() {
-        if(mUser != null) {
-            Common.currentUser = new User(mUser.getUid(),mUser.getDisplayName(),mUser.getEmail(),mUser.getPhotoUrl());
+        if (mUser != null) {
+            Common.currentUser = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail(), mUser.getPhotoUrl());
 
             loginLayout.setVisibility(View.INVISIBLE);
             profileLayout.setVisibility(View.VISIBLE);
@@ -329,9 +394,7 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
             btnIAP.setVisibility(View.VISIBLE);
             updateIAPText();
             btnSignOut.setVisibility(View.VISIBLE);
-        }
-        else
-        {
+        } else {
             loginLayout.setVisibility(View.VISIBLE);
             profileLayout.setVisibility(View.INVISIBLE);
             btnSignOut.setVisibility(View.INVISIBLE);
@@ -348,10 +411,10 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
         ArrayList<String> projects = Utils.getProjects_list(getContext());
         ArrayList<String> chars;
         int totalChar = 0;
-        if(projects != null && !projects.isEmpty())
-            for (int i=0;i<projects.size();i++) {
-                if(!projects.get(i).isEmpty()) {
-                    chars = Utils.getCharList(getContext(),projects.get(i).substring(2));
+        if (projects != null && !projects.isEmpty())
+            for (int i = 0; i < projects.size(); i++) {
+                if (!projects.get(i).isEmpty()) {
+                    chars = Utils.getCharList(getContext(), projects.get(i).substring(2));
                     totalChar = totalChar + chars.size();
                 }
             }

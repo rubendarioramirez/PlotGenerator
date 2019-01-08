@@ -13,6 +13,7 @@ public class myFirebaseInstanceIdService extends FirebaseInstanceIdService {
     public void onTokenRefresh() {
         // Get updated InstanceID token.
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+        Utils.saveOnSharePreg(getApplicationContext(),"firebase_token",refreshedToken);
         Log.d("This app", "Refreshed token: " + refreshedToken);
     }
 }

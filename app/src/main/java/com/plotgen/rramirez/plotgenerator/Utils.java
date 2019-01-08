@@ -24,10 +24,10 @@ public class Utils {
 
     public static final String SP_HAS_BUY_IAP = "spHasBuyIap";
 
-    public static void saveOnSharePreg(Context context, String variable, int value) {
+    public static void saveOnSharePreg(Context context, String variable, String value) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putInt(variable, value);
+        editor.putString(variable, value);
         editor.apply();
     }
 
@@ -44,9 +44,9 @@ public class Utils {
     }
 
 
-    public static int getSharePref(Context context, String variable, int value) {
+    public static String getSharePref(Context context, String variable) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        int result = preferences.getInt(variable, value);
+        String result = preferences.getString(variable, "");
         return result;
     }
 

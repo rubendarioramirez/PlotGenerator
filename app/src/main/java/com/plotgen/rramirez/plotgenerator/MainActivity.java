@@ -25,11 +25,25 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.Transaction;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Fragment.ProfileFragment;
+import com.plotgen.rramirez.plotgenerator.Fragment.StoryDetailFragment;
+import com.plotgen.rramirez.plotgenerator.Model.Story;
 import com.plotgen.rramirez.plotgenerator.Model.User;
 
 import java.util.Random;
@@ -47,6 +61,9 @@ public class MainActivity extends AppCompatActivity
     private FirebaseUser mUser;
 
     public BillingProcessor bp;
+    private FirebaseDatabase mDatabase;
+    private String firebase_token;
+    private String id;
 
 
     @Override
@@ -57,6 +74,7 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         Common.isPAU = Utils.getSPIAP(this);
+        FirebaseApp.initializeApp(this);
 
         if (Common.isPAU)
             Toast.makeText(this, "yeay maneh teh pau coy", Toast.LENGTH_LONG).show();
@@ -86,10 +104,47 @@ public class MainActivity extends AppCompatActivity
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
+        if (FirebaseInstanceId.getInstance() != null) {
+            FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(MainActivity.this, new OnSuccessListener<InstanceIdResult>() {
+                @Override
+                public void onSuccess(InstanceIdResult instanceIdResult) {
+                    if (instanceIdResult != null) {
+                        firebase_token = instanceIdResult.getToken();
+                        if (firebase_token != null && !firebase_token.equals(""))
+                            Utils.saveOnSharePreg(getApplicationContext(), "firebase_token", firebase_token);
+                        Log.d("This app", "Refreshed token: " + firebase_token);
+                    }
+                }
+            });
+        }
 
         // Obtain the FirebaseAnalytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        mDatabase = FirebaseDatabase.getInstance();
+        final DatabaseReference mUserDatabase = mDatabase.getReference().child("users");
 
+        if (mUser != null) {
+            mUserDatabase.runTransaction(new Transaction.Handler() {
+                @NonNull
+                @Override
+                public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                    if (mutableData.hasChild(mUser.getUid())) {
+                        mutableData.child(mUser.getUid()).child("token").setValue(firebase_token);
+                    } else {
+                        mutableData.child(mUser.getUid());
+                        mutableData.child(mUser.getUid()).setValue(mUser.getUid());
+                        mutableData.child(mUser.getUid()).child("token").setValue(firebase_token);
+                    }
+                    return Transaction.success(mutableData);
+                }
+
+                @Override
+                public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+                    Log.d("Updated token", "postTransaction:onComplete:" + databaseError);
+
+                }
+            });
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -99,15 +154,52 @@ public class MainActivity extends AppCompatActivity
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //Launch HOME first
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.flMain, new ProjectFragment());
-        getSupportFragmentManager().popBackStack();
-//        ft .replace(R.id.flMain,new HomeFragment());
-        ft.commit();
-        //Set home as selected
-        navigationView.setCheckedItem(R.id.nav_char);
 
+        //handle notification on post like and comment
+        if (Utils.getSharePref(getApplicationContext(), "notifications").equalsIgnoreCase("")) {
+            Utils.saveOnSharePreg(getApplicationContext(), "notifications", "true");
+        }
+
+
+        if (Utils.getSharePref(getApplicationContext(), "notifications").equalsIgnoreCase("true")) {
+             if (getIntent() != null && getIntent().getStringExtra("tag") != null && getIntent().getStringExtra("tag").equalsIgnoreCase("post")) {
+                 id = getIntent().getStringExtra("post_id");
+                 if (id == null) {
+                     id = getIntent().getStringExtra("id");
+                 }
+                 if (id != null) {
+                     final DatabaseReference mPostReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts");
+                     Query query = mPostReference.child(id).orderByChild("id");
+                     query.addValueEventListener(new ValueEventListener() {
+                         @Override
+                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                             if (dataSnapshot != null && dataSnapshot.getKey().equals(id)) {
+                                 Common.currentStory = dataSnapshot.getValue(Story.class);
+                                 StoryDetailFragment nextFragment = new StoryDetailFragment();
+                                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                                 Utils.changeFragment(nextFragment, transaction, "", "");
+                                 getSupportFragmentManager().popBackStack();
+                                 navigationView.setCheckedItem(R.id.nav_writting_challenge);
+
+                             } else {
+                                 openHomeFragment();
+                             }
+                         }
+
+                         @Override
+                         public void onCancelled(@NonNull DatabaseError databaseError) {
+                             Log.e("error", databaseError.getDetails());
+                         }
+                     });
+                 } else {
+                     openHomeFragment();
+                 }
+             } else {
+                 openHomeFragment();
+             }
+         }else{
+            openHomeFragment();
+         }
 
         //Notification manager if device is OREO or below
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -132,7 +224,17 @@ public class MainActivity extends AppCompatActivity
 
         updateUI();
 
+    }
 
+    public void openHomeFragment() {
+        //Launch HOME first
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.flMain, new ProjectFragment());
+        getSupportFragmentManager().popBackStack();
+//        ft .replace(R.id.flMain,new HomeFragment());
+        ft.commit();
+        //Set home as selected
+        navigationView.setCheckedItem(R.id.nav_char);
     }
 
     public void updateUI() {
