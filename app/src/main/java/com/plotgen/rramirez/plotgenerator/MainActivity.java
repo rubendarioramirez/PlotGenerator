@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity
 
         Common.isPAU = Utils.getSPIAP(this);
 
-        if (Common.isPAU)
+//        if (Common.isPAU)
 //            Toast.makeText(this, "yeay maneh teh pau coy", Toast.LENGTH_LONG).show();
 
         if (!Common.isPAU) {

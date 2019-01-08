@@ -902,7 +902,7 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="iap_title">Muy pronto</string>
     <string name="iap_desc">La version pro sin ads va a estar disponible en la proxima version</string>
     <string name="iap_btn">No mas ads!</string>
-
+    <string name="themes_disclaimer">Debes ser premium para cambiar el tema!</string>
     <string name="remove_ads_product_id">no_ads</string>
 
 </resources>

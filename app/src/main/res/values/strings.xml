@@ -914,9 +914,14 @@ In order for your character to evolve in a positive way, he has to start out wit
     </string-array>
 
 
+
+
     <string name="iap_title">It\'s coming soon</string>
     <string name="iap_desc">Pro version with no Ads will be available on next update</string>
     <string name="iap_btn">No ads!</string>
+
+    <string name="themes_disclaimer">You have to be premium to change your theme</string>
+
 
     <!--<string name="remove_ads_product_id">android.test.purchased</string>-->
     <string name="remove_ads_product_id">no_ads</string>
