@@ -69,21 +69,20 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        int selectedTheme = Utils.getSharePref(getApplicationContext(),"selectedTheme",0);
-        if(selectedTheme == 0){
+        int selectedTheme = Utils.getSharePref(getApplicationContext(), "selectedTheme", 0);
+        if (selectedTheme == 0) {
             setTheme(R.style.AppTheme);
-        } else if (selectedTheme == 1){
+        } else if (selectedTheme == 1) {
             setTheme(R.style.DarkTheme);
-        } else if (selectedTheme == 2){
+        } else if (selectedTheme == 2) {
             setTheme(R.style.OpaqueTheme);
-        }else if (selectedTheme == 3){
+        } else if (selectedTheme == 3) {
             setTheme(R.style.AutumnTheme);
         }
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
 
         Common.isPAU = Utils.getSPIAP(this);
@@ -175,44 +174,48 @@ public class MainActivity extends AppCompatActivity
 
 
         if (Utils.getStringSharePref(getApplicationContext(), "notifications").equalsIgnoreCase("true")) {
-             if (getIntent() != null && getIntent().getStringExtra("tag") != null && getIntent().getStringExtra("tag").equalsIgnoreCase("post")) {
-                 id = getIntent().getStringExtra("post_id");
-                 if (id == null) {
-                     id = getIntent().getStringExtra("id");
-                 }
-                 if (id != null) {
-                     final DatabaseReference mPostReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts");
-                     Query query = mPostReference.child(id).orderByChild("id");
-                     query.addValueEventListener(new ValueEventListener() {
-                         @Override
-                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                             if (dataSnapshot != null && dataSnapshot.getKey().equals(id)) {
-                                 Common.currentStory = dataSnapshot.getValue(Story.class);
-                                 StoryDetailFragment nextFragment = new StoryDetailFragment();
-                                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                                 Utils.changeFragment(nextFragment, transaction, "", "");
-                                 getSupportFragmentManager().popBackStack();
-                                 navigationView.setCheckedItem(R.id.nav_writting_challenge);
+            if (getIntent() != null && getIntent().getStringExtra("tag") != null && getIntent().getStringExtra("tag").equalsIgnoreCase("post")) {
+                id = getIntent().getStringExtra("post_id");
+                if (id == null) {
+                    id = getIntent().getStringExtra("id");
+                }
+                if (id != null) {
+                    final DatabaseReference mPostReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts");
+                    Query query = mPostReference.child(id).orderByChild("id");
+                    query.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if (dataSnapshot != null && dataSnapshot.getKey().equals(id)) {
+                                String photoUrl = null;
+                                if (mUser.getPhotoUrl() != null)
+                                    photoUrl = mUser.getPhotoUrl().toString();
+                                Common.currentUser = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail(), photoUrl, mUser.getPhotoUrl());
+                                Common.currentStory = dataSnapshot.getValue(Story.class);
+                                StoryDetailFragment nextFragment = new StoryDetailFragment();
+                                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                                Utils.changeFragment(nextFragment, transaction, "", "");
+                                getSupportFragmentManager().popBackStack();
+                                navigationView.setCheckedItem(R.id.nav_writting_challenge);
 
-                             } else {
-                                 openHomeFragment();
-                             }
-                         }
+                            } else {
+                                openHomeFragment();
+                            }
+                        }
 
-                         @Override
-                         public void onCancelled(@NonNull DatabaseError databaseError) {
-                             Log.e("error", databaseError.getDetails());
-                         }
-                     });
-                 } else {
-                     openHomeFragment();
-                 }
-             } else {
-                 openHomeFragment();
-             }
-         }else{
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            Log.e("error", databaseError.getDetails());
+                        }
+                    });
+                } else {
+                    openHomeFragment();
+                }
+            } else {
+                openHomeFragment();
+            }
+        } else {
             openHomeFragment();
-         }
+        }
 
         //Notification manager if device is OREO or below
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
