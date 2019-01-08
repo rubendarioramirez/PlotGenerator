@@ -15,7 +15,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         String body = remoteMessage.getNotification().getBody();
         Gson gson = new GsonBuilder().serializeNulls().create();
 
-        if(Utils.getSharePref(getApplicationContext(),"notifications").equalsIgnoreCase("true")) {
+        if(Utils.getStringSharePref(getApplicationContext(),"notifications").equalsIgnoreCase("true")) {
             if (remoteMessage.getData() != null) {
                 if (remoteMessage.getData().get("tag").equalsIgnoreCase("post")) {
                     String tag = remoteMessage.getData().get("tag");

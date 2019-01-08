@@ -2,7 +2,9 @@ package com.plotgen.rramirez.plotgenerator.Fragment;
 
 
 import android.animation.ValueAnimator;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -75,6 +77,10 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
 
     private FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.getInstance();
 
+
+    String selection;
+    String[] themes;
+
     @BindView(R.id.loginLayout)
     LinearLayout loginLayout;
 
@@ -86,6 +92,9 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
 
     @BindView(R.id.txtNamaProfile)
     MaterialEditText etNamaProfile;
+
+    @BindView(R.id.txtChoosetheme)
+    MaterialEditText etChooseTheme;
 
     @BindView(R.id.ivProfilePic)
     ImageView ivProfilePic;
@@ -114,8 +123,6 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
         Bundle params = new Bundle();
         params.putString("user_email", Common.currentUser.getEmail());
         mFirebaseAnalytics.logEvent("Click_IAP_Purchase", params);
-        Log.v("Matilda", "it was pressed");
-        //Utils.showComingSoonPopup(v.getContext());
     }
 
 
@@ -165,22 +172,22 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
                              Bundle savedInstanceState) {
         ((MainActivity) getActivity()).setActionBarTitle("My Profile");
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        final View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
         ButterKnife.bind(this, view);
+        themes = view.getContext().getResources().getStringArray(R.array.themes);
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(view.getContext());
-        firebase_token = Utils.getSharePref((MainActivity) getActivity(), "firebase_token");
+        firebase_token = Utils.getStringSharePref((MainActivity) getActivity(), "firebase_token");
 
 
         //handle notification
-        if(Utils.getSharePref(getActivity(),"notifications").equalsIgnoreCase("true")){
+        if (Utils.getStringSharePref(getActivity(), "notifications").equalsIgnoreCase("true")) {
             cbNotification.setChecked(true);
             cbNotification.setButtonDrawable(R.drawable.ic_check_box);
-        }
-        else{
+        } else {
             cbNotification.setChecked(false);
             cbNotification.setButtonDrawable(R.drawable.ic_uncheck_box);
         }
@@ -189,14 +196,14 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
         cbNotification.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(cbNotification.isChecked()){
+                if (cbNotification.isChecked()) {
                     //cbNotification.setChecked(false);
                     cbNotification.setButtonDrawable(R.drawable.ic_check_box);
-                    Utils.saveOnSharePreg(getActivity(),"notifications","true");
-                }else{
+                    Utils.saveOnSharePreg(getActivity(), "notifications", "true");
+                } else {
                     //cbNotification.setChecked(true);
                     cbNotification.setButtonDrawable(R.drawable.ic_uncheck_box);
-                    Utils.saveOnSharePreg(getActivity(),"notifications","false");
+                    Utils.saveOnSharePreg(getActivity(), "notifications", "false");
                 }
             }
         });
@@ -221,8 +228,69 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
 
         updateUI();
 
+
+        etChooseTheme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Common.isPAU) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext())
+                            .setTitle("Choose your theme")
+                            .setSingleChoiceItems(R.array.themes, -1, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    selection = themes[i];
+                                }
+                            })
+                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    if (selection.equals("Dark Theme")) {
+                                        Utils.saveOnSharePreg(getContext(), "selectedTheme", 1);
+                                        Bundle params = new Bundle();
+                                        params.putString("theme_chosen", "dark_theme");
+                                        mFirebaseAnalytics.logEvent("theme_selected", params);
+                                        getActivity().recreate();
+
+                                    } else if (selection.equals("Light Theme")) {
+                                        Utils.saveOnSharePreg(getContext(), "selectedTheme", 0);
+                                        Bundle params = new Bundle();
+                                        params.putString("theme_chosen", "light_theme");
+                                        mFirebaseAnalytics.logEvent("theme_selected", params);
+                                        getActivity().recreate();
+
+                                    } else if (selection.equals("Romance Theme")) {
+                                        Utils.saveOnSharePreg(getContext(), "selectedTheme", 2);
+                                        Bundle params = new Bundle();
+                                        params.putString("theme_chosen", "romance_theme");
+                                        mFirebaseAnalytics.logEvent("theme_selected", params);
+                                        getActivity().recreate();
+
+                                    } else if (selection.equals("Autumn Theme")) {
+                                        Utils.saveOnSharePreg(getContext(), "selectedTheme", 3);
+                                        Bundle params = new Bundle();
+                                        params.putString("theme_chosen", "autumn_theme");
+                                        mFirebaseAnalytics.logEvent("theme_selected", params);
+                                        getActivity().recreate();
+                                    }
+                                }
+                            })
+                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+
+                                }
+                            });
+                    builder.show();
+                } else {
+                    Toast.makeText(getContext(), getResources().getString(R.string.themes_disclaimer), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+
         return view;
     }
+
 
     private String getHiResUrl(String s) {
 
@@ -363,6 +431,19 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
 
             etEmailProfile.setFocusable(false);
             etNamaProfile.setFocusable(false);
+            etChooseTheme.setFocusable(false);
+            int selectedTheme = Utils.getSharePref(getContext(), "selectedTheme", 0);
+            if (selectedTheme == 0) {
+                etChooseTheme.setText("Light Theme");
+            } else if (selectedTheme == 1) {
+                etChooseTheme.setText("Dark Theme");
+            } else if (selectedTheme == 2) {
+                etChooseTheme.setText("Romance Theme");
+            } else if (selectedTheme == 3) {
+                etChooseTheme.setText("Autumn Theme");
+            }
+
+
             etProjectsCreated.setFocusable(false);
             etCharCreated.setFocusable(false);
 
@@ -391,7 +472,9 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
             charAnimator.setDuration(1000); // here you set the duration of the anim
             charAnimator.start();
 
-            btnIAP.setVisibility(View.VISIBLE);
+            if (!Common.isPAU) {
+                btnIAP.setVisibility(View.VISIBLE);
+            }
             updateIAPText();
             btnSignOut.setVisibility(View.VISIBLE);
         } else {

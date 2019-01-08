@@ -217,7 +217,7 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
 
                 final DatabaseReference mUserDatabase = mDatabase.getReference().child("users");
                 mUser = mAuth.getCurrentUser();
-                final String firebase_token = Utils.getSharePref((MainActivity) getActivity(), "firebase_token");
+                final String firebase_token = Utils.getStringSharePref((MainActivity) getActivity(), "firebase_token");
 
 
                 if (mUser != null) {

@@ -31,6 +31,13 @@ public class Utils {
         editor.apply();
     }
 
+    public static void saveOnSharePreg(Context context, String variable, int value) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt(variable, value);
+        editor.apply();
+    }
+
     public static void setSPIAP(Context context, boolean value) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();
@@ -44,9 +51,15 @@ public class Utils {
     }
 
 
-    public static String getSharePref(Context context, String variable) {
+    public static String getStringSharePref(Context context, String variable) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         String result = preferences.getString(variable, "");
+        return result;
+    }
+
+    public static int getSharePref(Context context, String variable,int value) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        int result = preferences.getInt(variable, value);
         return result;
     }
 
@@ -216,9 +229,14 @@ public class Utils {
         builder.show();
     }
 
+
+
     public static void showComingSoonPopup(final Context context) {
+
+        String[] themes = context.getResources().getStringArray(R.array.themes);
+
         AlertDialog.Builder builder = new AlertDialog.Builder(context)
-                .setTitle(context.getString(R.string.iap_title))
+                .setTitle("Choose your theme")
                 .setMessage(context.getString(R.string.iap_desc))
                 .setNeutralButton(context.getString(R.string.iap_btn), null);
         builder.show();
