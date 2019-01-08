@@ -216,9 +216,14 @@ public class Utils {
         builder.show();
     }
 
+
+
     public static void showComingSoonPopup(final Context context) {
+
+        String[] themes = context.getResources().getStringArray(R.array.themes);
+
         AlertDialog.Builder builder = new AlertDialog.Builder(context)
-                .setTitle(context.getString(R.string.iap_title))
+                .setTitle("Choose your theme")
                 .setMessage(context.getString(R.string.iap_desc))
                 .setNeutralButton(context.getString(R.string.iap_btn), null);
         builder.show();

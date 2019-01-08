@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--<color name="colorPrimary">#344955</color>-->
-    <!--<color name="colorPrimaryDark">#232F34</color>-->
-    <!--<color name="colorAccent">#F9AA33</color>-->
 
+    <!--Classic Theme -->
     <color name="colorPrimary">#37966F</color>
     <color name="colorPrimaryDark">#356859</color>
     <color name="colorAccent">#FD5523</color>
+
+    <!--Dark Theme -->
+    <color name="colorPrimary_2">#344955</color>
+    <color name="colorPrimaryDark_2">#232F34</color>
+    <color name="colorAccent_2">#1d374e</color>
+
+    <!--Romance Theme -->
+    <color name="colorPrimary_3">#f2605d</color>
+    <color name="colorPrimaryDark_3">#232F34</color>
+    <color name="colorAccent_3">#cc3610</color>
+
+    <!--Autumn Theme -->
+    <color name="colorPrimary_4">#f2b95d</color>
+    <color name="colorPrimaryDark_4">#232F34</color>
+    <color name="colorAccent_4">#d67748</color>
 
 
     <color name="headline">#FD5523</color>
@@ -24,8 +37,5 @@
     <color name="color_trigger_3">#373753</color>
     <color name="color_trigger_4">#28283d</color>
     <color name="color_trigger_5">#13131d</color>
-
-
-
 
 </resources>

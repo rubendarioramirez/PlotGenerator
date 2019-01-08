@@ -52,14 +52,27 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        int selectedTheme = Utils.getSharePref(getApplicationContext(),"selectedTheme",0);
+        if(selectedTheme == 0){
+            setTheme(R.style.AppTheme);
+        } else if (selectedTheme == 1){
+            setTheme(R.style.DarkTheme);
+        } else if (selectedTheme == 2){
+            setTheme(R.style.OpaqueTheme);
+        }else if (selectedTheme == 3){
+            setTheme(R.style.AutumnTheme);
+        }
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+
         Common.isPAU = Utils.getSPIAP(this);
 
         if (Common.isPAU)
-            Toast.makeText(this, "yeay maneh teh pau coy", Toast.LENGTH_LONG).show();
+//            Toast.makeText(this, "yeay maneh teh pau coy", Toast.LENGTH_LONG).show();
 
         if (!Common.isPAU) {
             //Init the ads
