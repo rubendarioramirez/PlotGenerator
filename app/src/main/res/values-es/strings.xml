@@ -904,5 +904,9 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="iap_btn">No mas ads!</string>
     <string name="themes_disclaimer">Debes ser premium para cambiar el tema!</string>
     <string name="remove_ads_product_id">no_ads</string>
+    <string name="invitation_title">PlotGenerator</string>
+    <string name="invitation_message">This story is terrific, give it a try</string>
+    <string name="invitation_deep_link">com.plotgen..page.link</string>
+    <string name="invitation_cta">Read</string>
 
 </resources>

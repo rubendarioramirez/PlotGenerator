@@ -13,7 +13,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
-import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Model.Story;
 import com.plotgen.rramirez.plotgenerator.R;
 
@@ -40,7 +39,10 @@ public class StoryViewHolder extends RecyclerView.ViewHolder {
     public ImageView ivUser;
     @BindView(R.id.ivLoves)
     public ImageView ivLoves;
-
+/*    @BindView(R.id.tvshare)
+    public TextView tvShare;
+    @BindView(R.id.ivshare)
+    public ImageView ivShare;*/
     @BindView(R.id.itemStoryLayout)
     public RelativeLayout itemStoryLayout;
 
@@ -50,7 +52,8 @@ public class StoryViewHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
-    public void bindToPost(Story story, View.OnClickListener likeClickListener, DatabaseReference commentRef) {
+    public void bindToPost(Story story, View.OnClickListener likeClickListener,
+                            DatabaseReference commentRef) {
 
         Glide.with(itemView.getContext())
                 .load(story.getUser().getUriString())
@@ -64,13 +67,14 @@ public class StoryViewHolder extends RecyclerView.ViewHolder {
         tvStory.setText(story.getChalenge());
         tvLoves.setText(String.valueOf(story.getLikeCount()));
         ivLoves.setOnClickListener(likeClickListener);
+/*        tvShare.setOnClickListener(shareListener);
+        ivShare.setOnClickListener(shareListener);*/
 
         commentRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int commentCount = 0;
-                for(DataSnapshot commentData : dataSnapshot.getChildren())
-                {
+                for (DataSnapshot commentData : dataSnapshot.getChildren()) {
                     commentCount++;
                 }
 

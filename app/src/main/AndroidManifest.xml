@@ -5,9 +5,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <uses-permission android:name="com.android.vending.BILLING" />
-
 
     <application
         android:allowBackup="false"
@@ -16,10 +14,8 @@
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
-        tools:replace="android:allowBackup"
-
-
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:allowBackup">
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
@@ -32,16 +28,14 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:scheme="http"
-                    android:host="com.plotgen.rramirez" />
+                    android:host="com.plotgen.rramirez"
+                    android:scheme="http" />
             </intent-filter>
         </activity>
 
@@ -61,8 +55,7 @@
             android:value="false" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@mipmap/ic_launcher"/>
-
+            android:resource="@mipmap/ic_launcher" />
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/ad_account_id" />

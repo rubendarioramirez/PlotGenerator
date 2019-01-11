@@ -4,6 +4,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -25,6 +26,7 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -38,6 +40,8 @@ import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
+import com.google.firebase.dynamiclinks.PendingDynamicLinkData;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
@@ -173,49 +177,43 @@ public class MainActivity extends AppCompatActivity
         }
 
 
-        if (Utils.getStringSharePref(getApplicationContext(), "notifications").equalsIgnoreCase("true")) {
-            if (getIntent() != null && getIntent().getStringExtra("tag") != null && getIntent().getStringExtra("tag").equalsIgnoreCase("post")) {
-                id = getIntent().getStringExtra("post_id");
-                if (id == null) {
-                    id = getIntent().getStringExtra("id");
-                }
-                if (id != null) {
-                    final DatabaseReference mPostReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts");
-                    Query query = mPostReference.child(id).orderByChild("id");
-                    query.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if (dataSnapshot != null && dataSnapshot.getKey().equals(id)) {
-                                String photoUrl = null;
-                                if (mUser.getPhotoUrl() != null)
-                                    photoUrl = mUser.getPhotoUrl().toString();
-                                Common.currentUser = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail(), photoUrl, mUser.getPhotoUrl());
-                                Common.currentStory = dataSnapshot.getValue(Story.class);
-                                StoryDetailFragment nextFragment = new StoryDetailFragment();
-                                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                                Utils.changeFragment(nextFragment, transaction, "", "");
-                                getSupportFragmentManager().popBackStack();
-                                navigationView.setCheckedItem(R.id.nav_writting_challenge);
-
-                            } else {
-                                openHomeFragment();
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-                            Log.e("error", databaseError.getDetails());
-                        }
-                    });
-                } else {
-                    openHomeFragment();
-                }
+        //if (Utils.getStringSharePref(getApplicationContext(), "notifications").equalsIgnoreCase("true")) {
+        if (getIntent() != null && getIntent().getStringExtra("tag") != null && getIntent().getStringExtra("tag").equalsIgnoreCase("post")) {
+            id = getIntent().getStringExtra("post_id");
+            if (id == null) {
+                id = getIntent().getStringExtra("id");
+            }
+            if (id != null) {
+                openStoryFragment(id);
             } else {
                 openHomeFragment();
             }
         } else {
             openHomeFragment();
         }
+
+
+        FirebaseDynamicLinks.getInstance().getDynamicLink(getIntent())
+                .addOnSuccessListener(this, new OnSuccessListener<PendingDynamicLinkData>() {
+                    @Override
+                    public void onSuccess(PendingDynamicLinkData data) {
+                        if (data == null) {
+                            Log.d("invite_link", "getInvitation: no data");
+                            return;
+                        }
+                        // Get the deep link
+                        Uri deepLink = data.getLink();
+                        String id = deepLink.getQueryParameter("id");
+                        openStoryFragment(id);
+                    }
+                })
+                .addOnFailureListener(this, new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("invite_link", "getDynamicLink:onFailure", e);
+                    }
+                });
+
 
         //Notification manager if device is OREO or below
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -240,6 +238,37 @@ public class MainActivity extends AppCompatActivity
 
         updateUI();
 
+    }
+
+    private void openStoryFragment(final String id) {
+        final DatabaseReference mPostReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts");
+        Query query = mPostReference.child(id).orderByChild("id");
+
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot != null && dataSnapshot.getKey().equals(id)) {
+                    String photoUrl = null;
+                    if (mUser.getPhotoUrl() != null)
+                        photoUrl = mUser.getPhotoUrl().toString();
+                    Common.currentUser = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail(), photoUrl, mUser.getPhotoUrl());
+                    Common.currentStory = dataSnapshot.getValue(Story.class);
+                    StoryDetailFragment nextFragment = new StoryDetailFragment();
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    Utils.changeFragment(nextFragment, transaction, "", "");
+                    getSupportFragmentManager().popBackStack();
+                    navigationView.setCheckedItem(R.id.nav_writting_challenge);
+
+                } else {
+                    openHomeFragment();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("error", databaseError.getDetails());
+            }
+        });
     }
 
     public void openHomeFragment() {

@@ -114,6 +114,8 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
     @BindView(R.id.btnIAP)
     Button btnIAP;
     private String firebase_token;
+    private FirebaseDatabase mDatabase;
+    private DatabaseReference mUserDatabase;
 
     @OnClick(R.id.btnIAP)
     public void buyIAP(View v) {
@@ -132,6 +134,22 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
                 .signOut(this.getContext())
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     public void onComplete(@NonNull Task<Void> task) {
+                        mUserDatabase.runTransaction(new Transaction.Handler() {
+                            @NonNull
+                            @Override
+                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                                if (mutableData.hasChild(Common.currentUser.getUid())) {
+                                    mutableData.child(Common.currentUser.getUid()).child("token").setValue("");
+                                }
+                                return Transaction.success(mutableData);
+                            }
+
+                            @Override
+                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+                                Log.d("Updated token", "postTransaction:onComplete:" + databaseError);
+
+                            }
+                        });
                         // user is now signed out
                         FragmentTransaction ft = getFragmentManager().beginTransaction();
                         ft.replace(R.id.flMain, new ProjectFragment());
@@ -181,6 +199,8 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
         mUser = mAuth.getCurrentUser();
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(view.getContext());
         firebase_token = Utils.getStringSharePref((MainActivity) getActivity(), "firebase_token");
+        mDatabase = FirebaseDatabase.getInstance();
+        mUserDatabase = mDatabase.getReference().child("users");
 
 
         //handle notification
@@ -199,9 +219,50 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
                 if (cbNotification.isChecked()) {
                     //cbNotification.setChecked(false);
                     cbNotification.setButtonDrawable(R.drawable.ic_check_box);
+                    mUserDatabase.runTransaction(new Transaction.Handler() {
+                        @NonNull
+                        @Override
+                        public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                            if (mutableData.hasChild(mUser.getUid())) {
+                                mutableData.child(mUser.getUid()).child("token").setValue(firebase_token);
+                            } else {
+                                mutableData.child(mUser.getUid());
+                                mutableData.child(mUser.getUid()).setValue(mUser.getUid());
+                                mutableData.child(mUser.getUid()).child("token").setValue(firebase_token);
+                            }
+                            return Transaction.success(mutableData);
+                        }
+
+                        @Override
+                        public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+                            Log.d("Updated token", "postTransaction:onComplete:" + databaseError);
+
+                        }
+                    });
+
                     Utils.saveOnSharePreg(getActivity(), "notifications", "true");
                 } else {
                     //cbNotification.setChecked(true);
+                    mUserDatabase.runTransaction(new Transaction.Handler() {
+                        @NonNull
+                        @Override
+                        public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                            if (mutableData.hasChild(mUser.getUid())) {
+                                mutableData.child(mUser.getUid()).child("token").setValue("");
+                            } else {
+                                mutableData.child(mUser.getUid());
+                                mutableData.child(mUser.getUid()).setValue(mUser.getUid());
+                                mutableData.child(mUser.getUid()).child("token").setValue("");
+                            }
+                            return Transaction.success(mutableData);
+                        }
+
+                        @Override
+                        public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+                            Log.d("Updated token", "postTransaction:onComplete:" + databaseError);
+
+                        }
+                    });
                     cbNotification.setButtonDrawable(R.drawable.ic_uncheck_box);
                     Utils.saveOnSharePreg(getActivity(), "notifications", "false");
                 }
@@ -361,9 +422,6 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
             if (resultCode == RESULT_OK) {
 
                 mUser = mAuth.getCurrentUser();
-                FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
-                final DatabaseReference mUserDatabase = mDatabase.getReference().child("users");
-
                 mUserDatabase.runTransaction(new Transaction.Handler() {
                     @NonNull
                     @Override

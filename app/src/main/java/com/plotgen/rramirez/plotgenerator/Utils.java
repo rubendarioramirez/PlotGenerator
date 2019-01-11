@@ -192,6 +192,7 @@ public class Utils {
         transaction.replace(R.id.flMain, nextFragment);
 //        transaction.addToBackStack(null);
         transaction.commit();
+       // transaction.commitAllowingStateLoss();
     }
 
     public static void showRateDialogForRate(final Context context) {

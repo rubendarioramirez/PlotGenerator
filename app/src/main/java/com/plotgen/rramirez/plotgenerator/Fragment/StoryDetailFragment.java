@@ -2,6 +2,8 @@ package com.plotgen.rramirez.plotgenerator.Fragment;
 
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -28,6 +30,8 @@ import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,8 +40,9 @@ import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.firebase.messaging.RemoteMessage;
+import com.google.firebase.dynamiclinks.DynamicLink;
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
+import com.google.firebase.dynamiclinks.ShortDynamicLink;
 import com.google.firebase.storage.StorageReference;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Notify;
@@ -60,6 +65,7 @@ import butterknife.OnClick;
  */
 public class StoryDetailFragment extends Fragment {
 
+    private static final int REQUEST_INVITE = 101;
     @BindView(R.id.ivTemplatePic)
     ImageView ivTemplatePic;
 
@@ -114,12 +120,57 @@ public class StoryDetailFragment extends Fragment {
 
         // Push the comment, it will appear in the list
         mCommentReference.push().setValue(comment);
-        sendNotification(Common.currentUser.getName() + " commented on your post", Common.currentStory.getUser(),Common.currentStory.getId());
-
+        if (comment != null) {
+            sendNotification(Common.currentUser.getName() + " commented on your post",
+                    Common.currentStory.getUser(), Common.currentStory.getId());
+        }
         // Clear the field
         etCommentText.setText(null);
     }
 
+
+    @OnClick({R.id.tvshare, R.id.ivshare})
+    public void share() {
+        FirebaseDynamicLinks.getInstance().createDynamicLink()
+                .setLink(createShareUri())
+                .setDomainUriPrefix("https://plotgen.page.link")
+                .setAndroidParameters(new DynamicLink.AndroidParameters.Builder().build())
+                .buildShortDynamicLink()
+                .addOnCompleteListener(getActivity(), new OnCompleteListener<ShortDynamicLink>() {
+                    @Override
+                    public void onComplete(@NonNull Task<ShortDynamicLink> task) {
+                        if (task.isSuccessful()) {
+                            // Short link created
+                            Uri shortLink = task.getResult().getShortLink();
+                            Uri flowchartLink = task.getResult().getPreviewLink();
+
+                            Log.v("short link", String.valueOf(Uri.decode(shortLink + "")));
+                            Log.v("preview link", String.valueOf(Uri.decode(flowchartLink + "")));
+                            Intent shareIntent = new Intent();
+                            shareIntent.setAction(Intent.ACTION_SEND);
+                            shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.invitation_message) + " " + String.valueOf(shortLink));
+                            shareIntent.setType("text/plain");
+                            shareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getString(R.string.app_name));
+//                            shareIntent.putExtra(Intent.EXTRA_STREAM, getString(R.string.invitation_message));
+                            shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                            startActivity(Intent.createChooser(shareIntent, "Share Post"));
+
+                        } else {
+                            // Error
+                            // ...
+                        }
+                    }
+                });
+    }
+
+    private Uri createShareUri() {
+        Uri.Builder builder = new Uri.Builder();
+        builder.scheme("http")
+                .authority("com.plotgen.rramirez")
+                .appendPath("post")
+                .appendQueryParameter("id", Common.currentStory.getId());
+        return builder.build();
+    }
 
     public StoryDetailFragment() {
         // Required empty public constructor
@@ -228,11 +279,9 @@ public class StoryDetailFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.hasChild("token")) {
                     String token = dataSnapshot.child("token").getValue().toString();
-
                     String to = token; // the notification key
                     AtomicInteger msgId = new AtomicInteger();
-                    new Notify(to, message,id).execute();
-
+                    new Notify(to, message, id).execute();
                 }
             }
 
@@ -355,7 +404,7 @@ public class StoryDetailFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (Common.currentStory.getUser() != null)
+        if (Common.currentStory != null && Common.currentStory.getUser() != null)
             if (Common.currentStory.getUser().getUid().equals(Common.currentUser.getUid()))
                 setHasOptionsMenu(true);
     }
