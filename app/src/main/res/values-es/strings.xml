@@ -813,8 +813,8 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
 
     <string name="antagonist_guide_title">Anatomia del Antagonista perfecto</string>
     <string name="antagonist_guide_desc">De que están hechos los antagonistas?</string>
-    <string name="antagonist_guide_desc_long">Lajos Egri describe en su libro "El arte de la escritura dramatica" la importancia de la union de opuestos. Esto quiere decir, que si Batman quiere orden, entonces el Guason quiere caos, Si Gandalf desea paz, entonces Sauron quiere guerra.
-    La Union de opuestos, se refiere a que tanto el protagonista como el antagonista quieren exactamente lo opuesto y es por eso que entran en conflicto. Si este concepto no se aplica, el resultado es amenudo un antagonista aburrido o poco creible. Lee este capitulo para entender mejor como se hacen los antagonistas.</string>
+    <string name="antagonist_guide_desc_long">\n\n\n\nLajos Egri describe en su libro "El arte de la escritura dramatica" la importancia de la union de opuestos. Esto quiere decir, que si Batman quiere orden, entonces el Guason quiere caos, Si Gandalf desea paz, entonces Sauron quiere guerra.
+    La Union de opuestos, se refiere a que tanto el protagonista como el antagonista quieren exactamente lo opuesto y es por eso que entran en conflicto.</string>
     <string-array name="antagonist_guide_array_titles">
         <item>Los Antagonistas son lo opuesto a tu protagonista.</item>
         <item>Los Antagonistas son complejos.</item>

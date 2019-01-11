@@ -75,7 +75,7 @@ public class ChallengeTemplateFragment extends Fragment  {
         challenge_info = getDescription(myFragmentView.getContext(),char_name);
         charTemplateTitle.setText(char_name);
         //Set titles for challenge one
-        if(challenge_number.equals("Challenge I") || challenge_number.equals("Desafio I")) {
+        if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_1_title))) {
             question1Title.setText(getString(R.string.challenge_1_q1));
             question2Title.setText(getString(R.string.challenge_1_q2));
             question3Title.setText(getString(R.string.challenge_1_q3));
@@ -84,7 +84,7 @@ public class ChallengeTemplateFragment extends Fragment  {
             question2.setText(challenge_info.get(1));
             question3.setText(challenge_info.get(2));
             question4.setText(challenge_info.get(3));
-        } else if(challenge_number.equals("Challenge II") || challenge_number.equals("Desafio II")){
+        } else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_2_title))){
             question1Title.setText(getString(R.string.challenge_2_q1));
             question2Title.setText(getString(R.string.challenge_2_q2));
             question3Title.setText(getString(R.string.challenge_2_q3));
@@ -93,7 +93,7 @@ public class ChallengeTemplateFragment extends Fragment  {
             question2.setText(challenge_info.get(5));
             question3.setText(challenge_info.get(6));
             question4.setText(challenge_info.get(7));
-        }else if(challenge_number.equals("Challenge III") || challenge_number.equals("Desafio III")){
+        }else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_3_title))){
             question1Title.setText(getString(R.string.challenge_3_q1));
             question2Title.setText(getString(R.string.challenge_3_q2));
             question3Title.setText(getString(R.string.challenge_3_q3));
@@ -102,7 +102,7 @@ public class ChallengeTemplateFragment extends Fragment  {
             question2.setText(challenge_info.get(9));
             question3.setText(challenge_info.get(10));
             question4.setText(challenge_info.get(11));
-        }else if(challenge_number.equals("Challenge IV") || challenge_number.equals("Desafio IV")){
+        }else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_4_title))){
             question1Title.setText(getString(R.string.challenge_4_q1));
             question2Title.setText(getString(R.string.challenge_4_q2));
             question3Title.setText(getString(R.string.challenge_4_q3));
@@ -111,7 +111,7 @@ public class ChallengeTemplateFragment extends Fragment  {
             question2.setText(challenge_info.get(13));
             question3.setText(challenge_info.get(14));
             question4.setText(challenge_info.get(15));
-        }else if(challenge_number.equals("Challenge V") || challenge_number.equals("Desafio V")){
+        }else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_5_title))){
             question1Title.setText(getString(R.string.challenge_5_q1));
             question2Title.setText(getString(R.string.challenge_5_q2));
             question3Title.setText(getString(R.string.challenge_5_q3));
@@ -120,7 +120,7 @@ public class ChallengeTemplateFragment extends Fragment  {
             question2.setText(challenge_info.get(17));
             question3.setText(challenge_info.get(18));
             question4.setText(challenge_info.get(19));
-        } else if(challenge_number.equals("Challenge VI") || challenge_number.equals("Desafio VI")){
+        } else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_6_title))){
             question1Title.setText(getString(R.string.challenge_6_q1));
             question2Title.setText(getString(R.string.challenge_6_q2));
             question3Title.setText(getString(R.string.challenge_6_q3));
@@ -130,7 +130,7 @@ public class ChallengeTemplateFragment extends Fragment  {
             question3.setText(challenge_info.get(22));
             question4.setText(challenge_info.get(23));
         }
-        else if(challenge_number.equals("Mentor Challenge") || challenge_number.equals("Desafio del Mentor")){
+        else if(challenge_number.equals(getContext().getResources().getString(R.string.c1_mentor_title))){
             question1Title.setText(getString(R.string.c1_mentor_q1));
             question2Title.setText(getString(R.string.c1_mentor_q2));
             question3Title.setText(getString(R.string.c1_mentor_q3));
@@ -139,7 +139,7 @@ public class ChallengeTemplateFragment extends Fragment  {
             question2.setText(challenge_info.get(25));
             question3.setText(challenge_info.get(26));
             question4.setText(challenge_info.get(27));
-        } else if(challenge_number.equals("Antagonist Challenge") || challenge_number.equals("Desafio del Antagonista")){
+        } else if(challenge_number.equals(getContext().getResources().getString(R.string.c1_antagonist_title))){
             question1Title.setText(getString(R.string.c1_antagonist_q1));
             question2Title.setText(getString(R.string.c1_antagonist_q2));
             question3Title.setText(getString(R.string.c1_antagonist_q3));
@@ -148,7 +148,7 @@ public class ChallengeTemplateFragment extends Fragment  {
             question2.setText(challenge_info.get(29));
             question3.setText(challenge_info.get(30));
             question4.setText(challenge_info.get(31));
-        }else if(challenge_number.equals("Sidekick Challenge") || challenge_number.equals("Desafio del Escudero")){
+        }else if(challenge_number.equals(getContext().getResources().getString(R.string.c1_sidekick_title))){
             question1Title.setText(getString(R.string.c1_sidekick_q1));
             question2Title.setText(getString(R.string.c1_sidekick_q2));
             question3Title.setText(getString(R.string.c1_sidekick_q3));
@@ -252,7 +252,6 @@ public class ChallengeTemplateFragment extends Fragment  {
             params.putString("Challenge", "challenge_sidekick");
         }
         mFirebaseAnalytics.logEvent("challenge_completed",params);
-        Log.v("matilda","the event is" + params);
         database.update(mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER, values,   "name = ?", new String[]{char_name});
         //Come back to previous fragment
         fragmentTransition(project_name,char_name);

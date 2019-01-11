@@ -1,0 +1,882 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+<string name="trigger_tab">Stichwörter Schreiben</string>
+<string-array name="triggers_list" tools:ignore="InconsistentArrays">
+<item>Er hatte niemandem erzählt wo er hin ging.</item>
+<item>Er öffnete den Brief und warf ihn schnell ins Feuer.</item>
+<item>Der Stein in der Wand des alten Hauses war locker.</item>
+<item>Die normalweise so belebte Straße war leer.</item>
+<item>Der Schlüssel konnte die Tür nicht mehr öffnen.</item>
+<item>Es war zwei Uhr morgens als er dort lag und den Geräuschen lauschte.</item>
+<item>Noch mehr Menschen quetschten sich in das Stadium.</item>
+<item>Fünf alte Pennies in einem Beutelchen aus Samt.</item>
+<item>Er rannte schneller als er es je für möglich hielt.</item>
+<item>Das waren Schreie, jedoch gewiss keine menschlichen.</item>
+<item>Sie wartete, doch niemand kam.</item>
+<item>Hoch oben auf der Spitze eines grünen Berges.</item>
+<item>Er hielt das erste Mal eine Pistole in der Hand, jedoch fühlte es sich nicht komisch an.</item>,
+<item>Sein Blick war scharf als er den Jungen ansah.</item>
+<item>Der Fluss begann über die Ufer zu steigen.</item>
+<item>Sie würde nicht einmal Zeit haben zu packen.</item>
+<item>Das Haus sah anders aus mit den neuen Fenstern und der neuen Tür.</item>
+<item>Der Mann versuchte, sich in der Dunkelheit zu verstecken, doch sie konnte ihn sehen.</item>
+<item>Das war weder ein Tier noch eine Person.</item>
+<item>Ich bin mir sicher was ich gesehen habe. Ich kann es nur nicht erklären.</item>
+<item>Es ist nicht so, dass ich ihm nicht glaube. Es ist mir jedoch egal.</item>
+<item>Es war tot lange bevor ich ankam.</item>
+<item>Momentan habe ich mehr Angst davor zu leben als zu sterben.</item>
+<item>Das ist nicht die Abmachung auf die wir uns eingelassen hatten, aber es gibt kein Zurück.</item>
+<item>Ich hätte niemals gedacht, dass ich vergeben würde.</item>
+<item>Ich kann sie unten hören…</item>
+<item>Es hat etwas Schönes zu wissen, dass du sterben wirst...</item>
+<item>Echte Freunde lassen dich nicht zurück. Ich schätze ich war letzten Endes kein echter Freund.</item>
+<item>Ich brauche keinen Sherlock Holmes um zu realisieren, dass das Messer weg war.</item>
+<item>Ich glaube nicht an Engel. Naja, bis dahin...</item>
+<item>Ich fluche nicht, niemals. Nichtmal dann.</item>
+<item>Er schaute sich um, um sicher zu gehen, dass ihn keiner beobachtete. Dann steckte er den USB Stick in seine Tasche...</item>
+<item>Er schaute auf seine Waffe. Seit dem letzten Mal ist viel Zeit vergangen...</item>
+<item>Schlimmer als ein gesunkenes Schiff ist es, der einzige Überlebende zu sein.</item>
+<item>Es schien eine Grippe zu sein. Wir waren sicher, dass es eine Grippe ist. Das einzige Problem war, dass es keine war.</item>
+<item>Wir steckten im Krieg, einem Krieg den wir verlieren würden. Aber du musst wissen, uns wurde beigebracht zu kämpfen und unsere Werte zu bewahren. Ein Sieg wäre nur ein Aspekt.</item>
+<item>Es war die schlimmste Finanzkrise, die ich jemals erlebt habe. Und ich habe schon viele gesehen.</item>
+<item>Ich hätte ihn an Ort und Stelle erschossen, allerdings hatte ich keine Munition.</item>
+<item>Warte, ist das eine Taschenlampe?</item>
+<item>Ich habe mir diesen Beruf nicht ausgesucht, sondern er mich.</item>
+<item>Die Tatsache bei 42 Grad in Afrika zu sein war nicht das Problem. Der Mann, der mich verfolgte war es.</item>
+<item>Angestellt als ein Privatdetektiv. Mein erster großer Job und es war ein totales Missverständnis.</item>
+<item>Ich müsste die Polizei anrufen, aber ich bin die Polizei und habe keine Ahnung, was zu tun ist.</item>
+<item>Das Licht verschwand langsam.</item>
+<item>Wir wärend fast ertrunken, aber mir war es egal.</item>
+<item>Es war das erste Mal, dass ich einen LKW fuhr und ich glaube, es sollte auch das letzte Mal sein.</item>
+<item>Der Sheriff starrte mich für einen Moment an. Ich wusste, dass er es wusste, jedoch sagte keiner von uns etwas.</item>
+<item>An diesem Tag vermisste ich sie zum ersten Mal.</item>
+<item>Es war kein Problem, dass sie mit einer anderen Frau abgehauen war, aber musste es meine Schwester sein?</item>
+</string-array>
+
+
+<string name="character_tab">Charakter Workshop</string>
+<string name="character_create">Charakter erstellen</string>
+<string name="character_update">Charakter bearbeiten</string>
+<string name="writing_challenge_tab">Wöchentliche Schreibchallenge</string>
+
+
+    <!--HOME Strings-->
+<string name="home_title">Das Einzige, was man wirklich über die Menschheit weiß, ist, dass sie sich verändert. Oscar Wilde</string>
+<string name="home_tab">Home</string>
+<string name="home_header">Focus on writing…</string>
+<string name="home_desc">Wenn du das Schreiben liebst, bist du hier an der richtigen Stelle.\n Ich habe diese App entwickelt, weil ich es liebe zu schreiben und Probleme wie Schreibblockaden oder fehlende Konzentration bestens kenne. \n Anfangs habe ich diese App für mich selbst entwickelt, aber ich glaube, dass sie auch dir helfen kann.\n Momentan gibt es drei Funktionen, die dir helfen könnten, wenn du nicht weiter weißt.\n\n Stichworterstellung, wenn du nicht weißt, wo du anfangen oder wie du weiter machen sollst. \n Einfache Sätze, die deine Fantasie anregen werden. Keine Sorge, es wird jede Woche neue geben.\n\n The Hero Journey. Falls du es noch nicht gelesen hast, solltest du es dir mal ansehen. Das ist Joseph Campbells Erbe für Autoren. \n Wenn du es bereits gelesen hast und eine Erfrischung brauchst, schau\' mal in die Hero Journey. Dort findest du alles, was du für deinen Helden und seine Reise brauchst.
+\n\n Zu guter Letzt solltest du dir die Rubrik Workshop ansehen. Sie beinhaltet alles, was du brauchst, um deine Charaktere zu entwickeln und den Überblick zu behalten. Erstelle ein Projekt, füge Charaktere hinzu und mache dir eine Sorgen über eine mögliche Schreibblockade. Die Generator-Funktion hilft dir mit Charakterzügen und anderen Wünschen. \n\n Viel Spaß beim Schreiben!</string>
+
+
+    <!--Projects String-->
+<string name="projects_tab">Projekte</string>
+<string name="projects_empty">Wirklich kein Name für dein Projekt? Versuche es doch nochmal mit etwas Kreativerem.</string>
+<string name="project_name">Projektname</string>
+<string name="project_genre">Genre</string>
+<string-array name="genres_array">
+<item>Tragödie</item>
+<item>Science fiction</item>
+<item>Fantasy</item>
+<item>Mythologie</item>
+<item>Abenteuer</item>
+<item>Mystery</item>
+<item>Drama</item>
+<item>Romanze</item>
+<item>Action / Abenteuer</item>
+<item>Satire</item>
+<item>Horror</item>
+<item>Tragödie / Comedy</item>
+<item>Jugendgeschichten</item>
+<item>Dystopie</item>
+<item>Action thriller</item>
+</string-array>
+
+<string name="project_summary">Kurzzusammenfassung</string>
+
+
+<string name="add_projects_btn">Projekt hinzufügen</string>
+<string name="edit_projects_btn">Projekt bearbeiten</string>
+<string name="delete_project_btn">Bist du dir sicher, dass du dieses Projekt löschen möchtest?</string>
+<string name="delete_project_btn_message">Alle mit dem Projekt zusammenhängenden Charaktere werden ebenfalls gelöscht</string>
+<string name="projects_empty_text">Scheint, als gäbe es noch keine Projekte.
+Starte jetzt dein neues Projekt.</string>
+
+    <!--Character String-->
+<string name="character_bio_title">Biografie</string>
+<string name="character_list_tab">Charaktere</string>
+<string name="character_empty_text">Scheint, als gäbe es noch keine Charaktere.
+Erstelle jetzt neue Charaktere.</string>
+    <!--BIOGRAPHY TEXT-->
+<string name="age_bio_1">ist</string>
+<string name="age_bio_2">Jahre alt.</string>
+<string name="placebirth_bio">geboren in</string>
+
+<string name="height_bio">Körpergröße</string>
+<string name="hair_bio_1">mit</string>
+<string name="hair_bio_2">Haarfarbe</string>
+<string name="eyes_bio">Augenfarbe</string>
+<string name="bodybuild_bio">Man könnte sagen, es sieht mehr aus wie</string>
+
+<string name="job_bio">Arbeitet als</string>
+<string name="male_desire_bio">In seiner Vorstellung wäre er lieber </string>
+<string name="male_need_bio">Aber ist es das, was er wirklich will? Oder braucht er eigentlich</string>
+<string name="male_moment_bio">Über seine Kindheit wissen wir, dass er</string>
+<string name="male_phrase_bio">Ein Satz, den Leute für gewöhnlich mit ihm assoziieren, ist</string>
+<string name="male_trait_bio">Seine Freunde sagen, er sei</string>
+<string name="notes_bio">Notizen</string>
+
+<string name="female_desire_bio">In ihrer Vorstellung wäre sie lieber</string>
+<string name="female_need_bio">Aber ist es das, was sie wirklich will? Oder braucht sie eigentlich</string>
+<string name="female_moment_bio">Über ihre Kindheit wissen wir, dass sie</string>
+<string name="female_phrase_bio">Ein Satz, den Leute für gewöhnlich mit ihr assoziieren, ist</string>
+<string name="female_trait_bio">Ihre Freunde sagen, sie sei</string>
+<string name="female_notes_bio">Notizen</string>
+
+<string name="binary_desire_bio">In ihren Vorstellungen wollen sie </string>
+<string name="binary_need_bio">Aber ist es das, was sie wirklich wollen? Oder brauchen sie eigentlich</string>
+<string name="binary_moment_bio">Über ihre Kindheit wissen wir, dass sie</string>
+<string name="binary_phrase_bio">Ein Satz, den Leute für gewöhnlich mit ihnen assoziieren, ist</string>
+<string name="binary_trait_bio">Ihre Freunde sagen, sie seien</string>
+
+    <!--Challenge I BIO-->
+<string name="challenge_1_bio_title">Die Aufzug-Herausforderung:</string>
+<string name="challenge_1_bio_desc_1">Was wäre seine erste Reaktion würde er in einem Aufzug stecken bleiben?</string>
+<string name="challenge_1_bio_desc_2">Würde dein Charakter warten, bis er gerettet wird?</string>
+<string name="challenge_1_bio_desc_3">Wenn eine andere Person im Aufzug eine Panikattacke bekäme, wie würde dein Charakter reagieren?</string>
+<string name="challenge_1_bio_desc_4">Sollte der Fall eintreten, dass eine Person entkommen kann und die andere Person warten muss, was würde dein Charakter tun?</string>
+    <!--Challenge II BIO-->
+<string name="challenge_2_bio_title">Die Lüge, die dein Charakter glaubt</string>
+<string name="challenge_2_bio_subtitle">ist die Basis für die Charakterentwicklung. Das ist, was in seiner Welt nicht stimmt und sobald du weißt, was es ist, kannst du herausfinden, wie es richtig zu stellen ist.</string>
+<string name="challenge_2_bio_desc_1">Welchen Irrglauben bestitz dein Protagonist?</string>
+<string name="challenge_2_bio_desc_2">Macht die Lüge sein Leben schlecht als die Geschichte anfängt? Falls ja, wie?</string>
+<string name="challenge_2_bio_desc_3">Falls nicht, bringen ihn die Geschehnisse in Verlegenheit?</string>
+<string name="challenge_2_bio_desc_4">Welches sind die Symptome der Lüge deines Charakters? </string>
+    <!--Challenge III BIO-->
+<string name="challenge_3_bio_title">Hintergrundgeschichte</string>
+<string name="challenge_3_bio_subtitle">Wieso ist dein Charakter wer er ist?</string>
+<string name="challenge_3_bio_desc_1">Seine Familie</string>
+<string name="challenge_3_bio_desc_2">Bester Moment der Kindheit?</string>
+<string name="challenge_3_bio_desc_3">Schlimmster Moment der Kindheit?</string>
+<string name="challenge_3_bio_desc_4">Hatte der Charakter Freunde? Was sagen sie über ihn?</string>
+    <!--Challenge IV BIO-->
+<string name="challenge_4_bio_title">Wie sieht er aus?</string>
+<string name="challenge_4_bio_subtitle">In einer perfekten Welt sollte dein Aussehen nicht bestimmen wer du bist. Aber dies ist keine perfekte Welt.</string>
+<string name="challenge_4_bio_desc_1">Beschreibe mit 5 Worten das Aussehen deines Charakters.</string>
+<string name="challenge_4_bio_desc_2">Muttermale? Tattoos?</string>
+<string name="challenge_4_bio_desc_3">Gesundheitlicher Zustand? Allergien?</string>
+<string name="challenge_4_bio_desc_4">Wie sind die Haltung und das Auftreten?</string>
+    <!--Challenge V BIO-->
+<string name="challenge_5_bio_title">Wenn er unter Druck steht,</string>
+<string name="challenge_5_bio_subtitle">kann dein Charakter verschieden reagieren. Wie würde er sich verhalten, wenn sich eine von ihm geliebte Person in Gefahr befindet?</string>
+<string name="challenge_5_bio_desc_1">Wie würde er reagieren, wenn sich eine von ihm geliebte Person in Gefahr befindet?</string>
+<string name="challenge_5_bio_desc_2">Würde er töten?</string>
+<string name="challenge_5_bio_desc_3">Glaubt dein Charakter, dass der Zweck die Mittel heiligt?</string>
+<string name="challenge_5_bio_desc_4">OK, er übertritt seine eigenen Grenzen nicht. Wie reagiert er dann?</string>
+    <!--Challenge VI BIO-->
+<string name="challenge_6_bio_title">Was ist in seinen Taschen?</string>
+<string name="challenge_6_bio_subtitle">Wir alle packen für uns wichtige Dinge in unsere Taschen bevor wir das Haus verlassen. Welche sind es bei deinem Charakter?</string>
+<string name="challenge_6_bio_desc_1">Wenn er das Haus verlässt, welche Dinge sind in seinen Taschen?</string>
+<string name="challenge_6_bio_desc_2">Hat er ein Foto im Geldbeutel?</string>
+<string name="challenge_6_bio_desc_3">Über den Schlüsselanhänger</string>
+<string name="challenge_6_bio_desc_4">Über das Handy</string>
+    <!--Challenge I Mentor-->
+<string name="c1_mentor_bio_title">Kenne deinen Mentor.</string>
+<string name="c1_mentor_bio_subtitle">Nicht alle Mentoren verhalten gleich. Nicht alle unterrichten gleich oder zeigen dir den selben Weg. Was ist mit deinem Mentor?</string>
+<string name="c1_mentor_bio_desc_1">Wieso braucht der Protagonist einen Mentor? Wieso ist es</string>
+<string name="c1_mentor_bio_desc_2">Wie wird er den Protagonisten lehren?</string>
+<string name="c1_mentor_bio_desc_3">Wird der Mentor ihm ein Artefakt geben? Wenn ja, welches?</string>
+<string name="c1_mentor_bio_desc_4">An welchem Punkt der Geschichte wird sich der Mentor entfernen?</string>
+    <!--Challenge I Antagonist-->
+<string name="c1_antagonist_bio_title">Kenne deinen Antagonisten.</string>
+<string name="c1_antagonist_bio_subtitle">Antagonisten sind nicht die Quelle alles Bösen. Ihre Existenz hat einen Grund. </string>
+<string name="c1_antagonist_bio_desc_1">Wie unterscheiden sich der Antagonist und der Protagonist?</string>
+<string name="c1_antagonist_bio_desc_2">Was sind seine/ihre Absichten?</string>
+<string name="c1_antagonist_bio_desc_3">Welche Taktik verfolgt er/sie, um sein/ihr Ziel zu erreichen?</string>
+<string name="c1_antagonist_bio_desc_4">Wie ist der Spannungsbogen?</string>
+    <!--Challenge I Sidekick-->
+<string name="c1_sidekick_bio_title">Kenne deinen Sidekick.</string>
+<string name="c1_sidekick_bio_subtitle">Wer ist dein Sidekick?</string>
+<string name="c1_sidekick_bio_desc_1">Wieso folgt er/sie deinem Protagonisten?</string>
+<string name="c1_sidekick_bio_desc_2">Wieso strebt er/sie die Ziele deines Protagonisten an?</string>
+<string name="c1_sidekick_bio_desc_3">Hilfsmittel, Taktiken, Waffen</string>
+<string name="c1_sidekick_bio_desc_4">Was ist der größte Aufwand, den dein Sidekick für deinen Protagonisten auf sich nehmen würde?</string>
+
+
+<string name="add_character_btn">Add Charakter</string>
+<string name="delete_character_btn">Bist du sicher, dass du diesen Charakter löschen möchtest?</string>
+<string name="guide_character_btn">Führe mich</string>
+    <!--Add character-->
+<string name="character_add_name">Name</string>
+<string name="character_add_profession">Beruf</string>
+<string-array name="profession_array">
+<item>Einzelhandelverkäufer/in</item>
+<item>Kassierer/in</item>
+<item>Büroangestellte/r</item>
+<item>Krankenpfleger/in</item>
+<item>Bedienung</item>
+<item>Kundenservice Mitarbeiter/in</item>
+<item>Hausmeister/in</item>
+<item>Reinigungskraft</item>
+<item>Sekretär/in</item>
+<item>Verkäufer/in</item>
+<item>Generaldirektor/in</item>
+<item>Betriebsleiter/in</item>
+<item>Buchhaltungskraft</item>
+<item>LKW Fahrer/in</item>
+<item>Außendienstmitarbeiter/in</item>
+<item>Lehrer/in</item>
+<item>Lehrassistent/in</item>
+<item>Handwerker/in</item>
+<item>Buchhalter/in</item>
+<item>Wächter/in</item>
+<item>Rezeptionist/in</item>
+<item>Informatikkaufmann/-frau</item>
+<item>Koch/Köchin</item>
+<item>Haushälter/in</item>
+<item>Bauarbeiter/in</item>
+<item>Polizist/in</item>
+<item>Sheriff</item>
+<item>Schreiner/in</item>
+<item>Feuerwehrmann/-frau</item>
+<item>Händler/in</item>
+<item>Seemann</item>
+<item>Schiffskapitän</item>
+<item>Mechaniker/in</item>
+<item>Programmierer/in</item>
+<item>IT Berater/in</item>
+<item>Anwalt/Anwältin</item>
+<item>Wahrsager/in</item>
+<item>Fast Food Koch/Köchin</item>
+<item>Elektriker/in</item>
+<item>Tellerwäscher/in</item>
+<item>Barkeeper/in</item>
+<item>Kontrolleur/in</item>
+<item>Tester/in</item>
+<item>Personalchef/in</item>
+<item>Maschinenbauer</item>
+<item>Friseur/Frisörin</item>
+<item>Postbote/-botin</item>
+<item>Zahnarzthelfer/in</item>
+</string-array>
+<string name="character_add_age">Alter</string>
+<string name="character_add_gender">Geschlecht</string>
+<string-array name="gender_spinner_array">
+<item>Geschlecht</item>
+<item>Männlich</item>
+<item>Weiblich</item>
+<item>Transsexuell</item>
+<item>Binär</item>
+<item>Nicht-binär</item>
+</string-array>
+<string name="character_add_role">Rolle</string>
+<string name="character_add_height">Größe</string>
+<string-array name="heights">
+<item>1,50m groß</item>
+<item>1,55m groß</item>
+<item>1,60m groß</item>
+<item>1,65m groß</item>
+<item>1,70m groß</item>
+<item>1,75m groß</item>
+<item>1,80m groß</item>
+<item>1,85m groß</item>
+<item>1,90m groß</item>
+</string-array>
+<string name="character_add_haircolor">Haarfarbe</string>
+<string-array name="haircolors">
+<item>Braun</item>
+<item>Grau</item>
+<item>Schwarz</item>
+<item>Dunkelblond</item>
+<item>Silber</item>
+<item>Blond</item>
+<item>Rot</item>
+<item>Weiß</item>
+</string-array>
+<string name="character_add_eyecolor">Augenfarbe</string>
+<string-array name="eyecolors">
+<item>Braun</item>
+<item>Grün</item>
+<item>Hellgrün</item>
+<item>Blau</item>
+<item>Hellblau</item>
+<item>Schwarz</item>
+<item>Hellbraun</item>
+</string-array>
+<string name="character_add_bodybuild">Körperbau</string>
+<string-array name="bodytypes">
+<item>Dünn</item>
+<item>Hager</item>
+<item>Muskulös</item>
+<item>Speckig</item>
+<item>Fit</item>
+</string-array>
+<string name="character_add_placebirth">Geburtsort</string>
+<string name="character_add_phrase">Schlagwort</string>
+<string name="character_add_trait">Charaktereigenschaft</string>
+<string-array name="trait_array">
+<item>Aufmerksam</item>
+<item>Zielstrebig</item>
+<item>Selbstlos</item>
+<item>Ehrlich</item>
+<item>Selbstbewusst</item>
+<item>Gelassen</item>
+<item>Mutig</item>
+<item>Zuverlässig</item>
+<item>Bestimmt</item>
+<item>Entspannt</item>
+<item>Kreativ</item>
+<item>Moralisch</item>
+<item>Fair</item>
+<item>Hingebungsvoll</item>
+<item>Fürsorglich</item>
+<item>Treuherzig</item>
+<item>Freundlich</item>
+<item>Liebevoll</item>
+<item>Selbstlos</item>
+<item>Aufrichtig</item>
+<item>Geschickt</item>
+<item>Intelligent</item>
+<item>Loyal</item>
+<item>Reif</item>
+<item>Bescheiden</item>
+<item>Geduldig</item>
+<item>Geistreich</item>
+<item>Ernst</item>
+<item>Lustig</item>
+<item>Respektvoll</item>
+<item>Verantwortungsvoll</item>
+<item>Fleißig</item>
+<item>Heiter</item>
+<item>Zurückhaltend</item>
+<item>Hilfsbereit</item>
+<item>Aufgeschlossen </item>
+<item>Folgsam</item>
+<item>Optimistisch</item>
+<item>Gut organisiert</item>
+<item>Sozial</item>
+<item>Stark</item>
+<item>Strapazierfähig</item>
+<item>Guter Anführer</item>
+<item>Gute/r Freund/in</item>
+<item>Unberechenbar</item>
+</string-array>
+
+<string-array name="phrases">
+<item>Vielleicht haben in dieser verdammten Welt alle Angst voreinander.</item>
+<item>Das Leben muss gelebt werden ohne es zu kontrollieren. Die Menschheit wird gewonnen, wenn man angesichts einer gewissen Niederlage weiter spielt.</item>
+<item>Das Grauen hat mich grausam gemacht</item>
+<item>Wir waren die Leute, die nicht in der Zeitung auftauchten. Wir lebten in den in den leeren Zwischenräumen zwischen den Geschichten. Es gab uns unsere Freiheit.</item>
+<item>Es klingt plausibel, aber warte lieber bis morgen. Warte auf den gesunden Menschenverstand am Morgen.</item>
+<item>Es ist besser Gutes zu tun. In einer Art und Weise, die bisher keiner kennt.</item>
+<item>Das Leben ist mir zu kurz um es mit Feindseligkeit und Unrecht zu verschwenden.</item>
+<item>Du vergisst die Dinge, die du dir merken willst und erinnerst dich an die Dinge, die du vergessen willst.</item>
+<item>Er las so viel und schlief so wenig, dass sich sein Gehirn anfühlte, als sei es ausgetrocknet.</item>
+<item>Erinnerungen geben dir ein warmes Gefühl. Sie können dich aber auch zerstören.</item>
+<item>Die Geschichte, sagte Stephen, ist ein Albtraum und ich versuche wach zu bleiben.</item>
+<item>Es ist ein ziemliches Unglück alleine zu sein, meine Freunde. Einsamkeit kann den Verstand zerstören.</item>
+<item>Und die Zeit nimmt weiter ihren Lauf und lässt alle scheiße aussehen.</item>
+<item>Kein Mensch kann ein Gesicht für sich und ein anderes für die Menge tragen, ohne sich schließlich darüber zu wundern, welches das wahre ist.</item>
+<item>Heutzutage kennen die Leute zwar den Preis von allem, jedoch nicht mehr den Wert.</item>
+<item>Niemand vergisst die Wahrheit; sie werden nur besser im Lügen.</item>
+<item>Sie wartete ihr ganzes Leben auf etwas das sie umbrachte, als sie es fand.</item>
+<item>Wir müssen uns niemals wegen unserer Tränen schämen.</item>
+<item>Nichts schmerzt den menschlichen Verstand so sehr wie eine große und plötzliche Veränderung.</item>
+<item>Die Realität lässt einen manchmal verrückt werden.</item>
+<item>Solange dich jemand liebt, ist es völlig egal wer du bist oder wie du aussiehst.</item>
+<item>Ich weiß. Ich war dort. Ich sah die große Leere in deiner Seele und du sahst meine.</item>
+<item>Vielleicht war es die Freiheit, die ihr die Luft abschnürte.</item>
+<item>Du schuldest jedem etwas, der dein Selbstbewusstsein stärkte.</item>
+<item>Die einzigen Lügen, für die wir wahrlich bestraft werden, sind jene, die wir uns selbst erzählen.</item>
+<item>Komme, was wolle. Ich werden lachen.</item>
+</string-array>
+<string-array name="placebirth_array">
+<item>São Paulo - Brasilien</item>
+<item>Mumbai - Indien</item>
+<item>JAKARTA - Indonesien</item>
+<item>Karachi - Pakistan</item>
+<item>MOSKVA (Moskau) - Russland</item>
+<item>Istanbul - Türkei</item>
+<item>MEXICO (Mexiko Stadt) - Mexiko</item>
+<item>Shanghai - China</item>
+<item>TOKYO    - Japan</item>
+<item>New York (NY) - USA</item>
+<item>BANGKOK - Thailand</item>
+<item>PEKING - China</item>
+<item>Delhi - Indien</item>
+<item>LONDON - UK</item>
+<item>HongKong - China</item>
+<item>KAIRO - Ägypten</item>
+<item>TEHERAN - Iran</item>
+<item>BOGOTÀ - Kolumbien</item>
+<item>Bandung - Indonesien</item>
+<item>Tianjin - China</item>
+<item>LIMA - Peru</item>
+<item>Rio de Janeiro - Brasilien</item>
+<item>Lahore - Pakistan</item>
+<item>SANTIAGO - Chile</item>
+<item>St Petersburg - Russland</item>
+<item>Shenyang - China</item>
+<item>Kalkutta - India</item>
+<item>Wuhan - China</item>
+<item>Sydney - Australien</item>
+<item>Guangzhou    - China</item>
+<item>SINGAPUR - Singapur</item>
+<item>Madras - Indien</item>
+<item>BAGDAD - Irak</item>
+<item>Pusan - Südkorea</item>
+<item>Los Angeles (CA) - USA</item>
+<item>Yokohama - Japan</item>
+<item>DHAKA - Bangladesch</item>
+<item>BERLIN - Deutschland</item>
+<item>Alexandria - Ägypten</item>
+<item>Bangalore - Indien</item>
+<item>Hyderabad - Indien</item>
+<item>Ho Chi Minh Stadt - Vietnam</item>
+<item>Hanoi - Vietnam</item>
+<item>Haerbin - China</item>
+<item>ANKARA - Türkei</item>
+<item>BUENOS AIRES - Argentinien</item>
+<item>Chengdu  - China</item>
+<item>Ahmedabad    - Indien</item>
+<item>Casablanca - Marokko</item>
+<item>Chicago (IL) - USA</item>
+<item>Xian - China</item>
+<item>MADRID - Spanien</item>
+<item>Barcelona - Spanien</item>
+<item>PYONGYANG - Nordkorea</item>
+<item>Nanjing - China</item>
+<item>KINSHASA - Kongo (Zaire)</item>
+<item>ROMA - Italien</item>
+<item>Taipei - Taiwan</item>
+<item>Osaka - Japan</item>
+<item>KIEV - Ukraine</item>
+<item>YANGON - Myanmar</item>
+<item>Toronto - Kanada</item>
+<item>Taegu - Südkorea</item>
+<item>ADDIS ABABA - Äthiopien</item>
+<item>Jinan - China</item>
+<item>Salvador - Brasilien</item>
+<item>Inchon - Südkorea</item>
+<item>Giza - Ägypten</item>
+<item>Changchun - China</item>
+<item>Havanna - Kuba</item>
+<item>Nagoya - Japan</item>
+<item>Belo Horizonte - Brasilien</item>
+<item>PARIS - Frankreich</item>
+<item>TASHKENT - Uzbekistan</item>
+<item>Cali - Kolumbien</item>
+<item>Guayaquil - Ecuador</item>
+<item>Taiyuan - China</item>
+<item>BRASILIA - Brasilien</item>
+<item>BUKAREST   - Rumänien</item>
+<item>Faisalabad - Pakistan</item>
+<item>Quezon Stadt - Philippinen</item>
+<item>Houston (TX) - USA</item>
+<item>Abidjan - Elfenbeinküste</item>
+<item>Mashhad - Iran</item>
+<item>Medellín - Kolumbien</item>
+<item>Kanpur - Indien</item>
+<item>BUDAPEST - Ungarn</item>
+<item>CARACAS - Venezuela</item>
+<item>Prague - Tschechien</item>
+</string-array>
+<string name="character_add_defmoment">Moment der Kindheit</string>
+<string-array name="defmoment_array">
+<item>Eltern wurden getötet</item>
+<item>ein großer Verlust</item>
+<item>ein Ausflug ins Ausland</item>
+<item>ist verloren gegangen</item>
+<item>wurde Zeuge eines Mordes</item>
+<item>fand ein Artefakt</item>
+<item>hatte ein großes Geheimnis</item>
+<item>Scheidung der Eltern</item>
+<item>wurde in der Schule gehänselt</item>
+<item>hatte einen Autounfall</item>
+<item>hatte einen großen Unfall</item>
+<item>wurde adoptiert</item>
+<item>zog in eine andere Stadt</item>
+<item>hatte keine Freunde</item>
+<item>war gelähmt</item>
+</string-array>
+<string name="character_add_desire">Was will er/sie?</string>
+<string-array name="desire_array">
+<item>geliebt werden</item>
+<item>gefürchtet sein</item>
+<item>angenommen werden</item>
+<item>reich sein</item>
+<item>perfekt sein</item>
+<item>sich entschuldigen</item>
+<item>Konflikte vermeiden</item>
+<item>Schmerz vermeiden</item>
+<item>anerkannt werden</item>
+<item>ein schlechter Mensch sein</item>
+<item>ein guter Mensch sein</item>
+<item>normal sein</item>
+<item>in Erinnerung bleiben</item>
+<item>respektiert werden</item>
+<item>jemand Anderes sein</item>
+<item>etwas Besonderes sein</item>
+<item>schön sein</item>
+<item>stark sein</item>
+<item>den Tod austricksen</item>
+<item>Behaglichkeit</item>
+<item>sich den Ängsten stellen</item>
+<item>Ruhm</item>
+<item>Glück</item>
+<item>eine Bestimmung finden</item>
+<item>ein Abenteuer erleben</item>
+<item>dazu zu gehören</item>
+<item>Freiheit</item>
+<item>Unabhängigkeit</item>
+<item>anzukommen</item>
+<item>die Stadt zu verlassen</item>
+<item>Ehre</item>
+<item>Rache</item>
+<item>Gerechtigkeit</item>
+<item>Wissen</item>
+<item>nicht einsam zu sein</item>
+<item>Macht</item>
+<item>Erlösung</item>
+<item>Schulden zurück zu zahlen</item>
+<item>Sicherheit</item>
+<item>heraus zu stechen</item>
+<item>zu sterben</item>
+<item>zu überleben</item>
+</string-array>
+<string name="character_add_need">Was braucht er/sie?</string>
+<string-array name="need_array" tools:ignore="InconsistentArrays">
+<item>akzeptiert werden</item>
+<item>geliebt werden</item>
+<item>anderen zu vertrauen</item>
+<item>wegzurennen</item>
+<item>anerkannt zu werden</item>
+<item>zurück zu kämpfen</item>
+<item>sich den Ängsten zu stellen</item>
+<item>seine/ihre Prinzipien zu verteidigen</item>
+<item>die Realität zu akzeptieren</item>
+<item>seine/ihre Familie zu lieben</item>
+<item>nach Hause zu kommen</item>
+<item>Liebe zu finden</item>
+<item>wieder zu vertrauen</item>
+<item>verantwortungsvoll zu sein</item>
+<item>erwachsen zu werden</item>
+<item>reifer zu werden</item>
+<item>ihre/seine Grenzen austesten</item>
+<item>den Status-quo nicht mehr hinzunehmen</item>
+</string-array>
+
+<string name="character_save_btn">Speichern</string>
+<string name="character_random_btn">Erstellen </string>
+
+
+    <!--Subtitles-->
+<string name="character_basic_tv">Basis</string>
+<string name="character_story_tv">Geschichte</string>
+<string name="character_notes_tv">Notizen</string>
+<string name="character_personality_tv">Personalität</string>
+
+
+    <!--Journey Strings-->
+<string name="hero_journey_tab">Der Weg des Helden</string>
+<string name="hj_act1">Handlung 1: der Aufbruch</string>
+<string name="hj_act2">Handlung 2: Einleitung</string>
+<string name="hj_act3">Handlung 3: die Wiederkehr</string>
+
+<string name="hj_title1">Der Ruf des Abenteuers (Berufung)</string>
+<string name="hj_title2">Weigerung</string>
+<string name="hj_title3">Übernatürliche Hilfe</string>
+<string name="hj_title4">Das Überschreiten der ersten Schwelle</string>
+<string name="hj_title5">Der Bauch des Walfischs</string>
+<string name="hj_title6">Der Weg der Prüfungen</string>
+<string name="hj_title7">Die Begegnung mit der Göttin</string>
+<string name="hj_title8">Die Frau als Versucherin</string>
+<string name="hj_title9">Versöhnung mit dem Vater</string>
+<string name="hj_title10">Apotheose</string>
+<string name="hj_title11">Die endgültige Segnung</string>
+<string name="hj_title12">Verweigerung der Rückkehr</string>
+<string name="hj_title13">Die magische Flucht</string>
+<string name="hj_title14">Rettung von außen</string>
+<string name="hj_title15">Rückkehr über die Schwelle</string>
+<string name="hj_title16">Herr der zwei Welten</string>
+
+
+<string name="hj_desc1">Der Held trifft auf ein Problem, eine Herausforderung oder ein Abenteuer.
+Er muss sich der Veränderung stellen und die Herausforderung annehmen. Dies passiert entweder freiwillig, widerwillig oder aus Versehen.</string>
+
+<string name="hj_desc2">Der Held geht der Berufung nicht direkt nach. Dies kann mehrere Ursachen haben; fehlender Wille, Ablehnung oder der Unfähigkeit dem Ruf zu folgen.
+Der Held findet Motivation und nutzt die Gelegenheit dem Ruf zu folgen.</string>
+<string name="hj_desc3">Der Held gibt sich nun dem Ruf des Abenteuers hin (bewusst oder unbewusst) und sein Führer/Helfer taucht auf.
+Häufig stattet der Mentor den Helden mit einem Talisman aus, der ihm bei seiner Reise Unterstützung bieten soll.</string>
+<string name="hj_desc4">Der Held beginnt sein Abenteuer und tritt dem Unbekannten gegenüber. Die Grenzen und Regeln sind hier noch unbekannt.
+Nun gibt es kein Zurück mehr, das Abenteuer nimmt seinen Lauf.</string>
+<string name="hj_desc5">Der Bauch des Walfischs repräsentiert die endgültige Trennung von der bisher bekannten Welt des Heldes. Der Held ist nun bereit für Veränderungen.</string>
+<string name="hj_desc6">Zu Beginn seiner Verwandlung steht der Held vor einigen Prüfungen und Aufgaben, die er lösen muss. Sie treten häufig vermehrt auf und nicht selten scheitert der Held an einer oder mehrerer Prüfungen.
+Manchmal verliert in dieser Phase der Held seinen Mentor (z.B. Herr der Ringe und Star Wars).</string>
+<string name="hj_desc7">Der Held erlebt eine allmächtige, allumfassende und bedingungslose Liebe.</string>
+<string name="hj_desc8">Eine Verführung bringt den Helden dazu seine Mission zu vernachlässigen oder gar aufzugeben. Diese Verführung findet nicht zwangsläufig durch eine Frau statt.</string>
+<string name="hj_desc9">Der Held begegnet der ultimativen Macht. Dies ist der Wendepunkt der Geschichte. Alle vorigen Schritte führten ihn dort hin und alle kommenden Schritte führen ihn weg davon.</string>
+<string name="hj_desc10">Es folgt eine Zeit der Erholung, des Friedens und der Erfüllung bevor der Held seine Rückreise antritt.</string>
+<string name="hj_desc11">Der Held erreicht das Ziel.</string>
+<string name="hj_desc12">Unter Umständen möchte der Held nicht in die gewohnte Welt zurück kehren.</string>
+<string name="hj_desc13">Manchmal muss der Held mit dem Artefakt fliehen (z.B. Heiliger Grahl) und wird von den anderen deshalb verfolgt. In diesem Fall ist die Rückreise des Helden gefährlich und abenteuerlich. </string>
+<string name="hj_desc14">Häufig hat und braucht der Held Helfer, die ihm helfen zurück in seinen Alltag zu kommen. Dies ist vor allem wichtig wenn er verletzt wird.</string>
+<string name="hj_desc15">Nachdem er das Wissen erlangt hat und die Erfahrungen gesammelt hat, muss der Held sie bewahren, in sein menschliches Leben integrieren und mit der Welt teilen.</string>
+<string name="hj_desc16">Dieser Schritt ist relevant, wenn es sich um einen transzendenten Helden handelt, wie Jesus oder Buddha. Ist der Held von menschlicher Natur, erreicht er eine Ausgeglichenheit zwischen realer und gesitiger Welt und fühlt sich in beiden Welten wohl.</string>
+
+
+    <!--Rate app-->
+<string name="rate_app">Hilf mir die App zu verbessern!</string>
+<string name="rate_app_des">Es ist nicht einfach eine App herauszubringen. Vor allem, wenn sie kostenlos ist. Wenn sie dir gefällt, hilf mir indem du sie bewertest.</string>
+<string name="rate_submit">Bewerte die App!</string>
+<string name="rate_cancel">Noch nicht</string>
+
+
+    <!--Challenge fragment-->
+<string name="challenge_answer_placeholder">Antworte…</string>
+<string name="challenge_nochallenge_placeholder">Du hast noch keine Herausforderungen für diesen Charakter.</string>
+<string name="challenge_action_bar">Herausfoderungen</string>
+
+    <!--First challenge-->
+<string name="challenge_1_title">Herausforderung I</string>
+<string name="challenge_1_desc">Aufzug Herausforderung</string>
+<string name="challenge_1_desc_long">Wie reagiert dein Charakter in einer Krise?\n
+Angenommen der Charakter befindet sich in einem Aufzug mit einem beliebigen Fremden. Es spielt dabei keine Rolle mit wem.\n
+Plötzlich bleibt der Aufzug stecken und die beiden sitzen fest. Wie reagiert dein Charakter? Ist er entspannt? Bekommt er Panik?
+\n Nimm dir für die Beantwortung die Zeit, die du brauchst.
+\n Diese Aufgabe hilft dir dabei, über deinen Charakter zu reflektieren und zu sehen, wie er sich in Grenzsituationen verhält.</string>
+<string name="challenge_1_q1">Was ist seine erste Reaktion?</string>
+<string name="challenge_1_q2">Wartet er auf eine Rettung?</string>
+<string name="challenge_1_q3">Die andere Person im Aufzug bekommt Panik. Versucht dein Charakter sie zu beruhigen oder fängt er daraufhin auch an unruhig zu werden?</string>
+<string name="challenge_1_q4">Nach einer Stunde im Aufzug öffnet sich ein kleiner Spalt und eine Stimme sagt: "Komm, ich hole dich heraus. Ich kann jedoch nur einen mitnehmen, der andere muss auf Hilfe warten.
+\nder andere muss auf weitere Hilfe warten. Geht dein Charakter zuerst?</string>
+    <!--Second challenge-->
+<string name="challenge_2_title">Herausforderung II</string>
+<string name="challenge_2_desc">Was ist die Lüge?</string>
+<string name="challenge_2_desc_long">Der Entwicklungsbogen behandelt die Lüge, die dein Charakter glaubt. Sein Leben mag schlimm sein oder aber super toll. Unter der Oberfläche jedoch liegt die Lüge.
+Damit sich dein Charakter positiv entwickeln kann, muss er mit etwas beginnen, das in seinem Leben fehlt, ein Grund, der die Änderung notwendig macht. </string>
+<string name="challenge_2_q1">Welche falsche Ansicht hat der Protagonist von sich selbst oder der Welt?</string>
+<string name="challenge_2_q2">Macht die Lüge sein Leben schwer als die Geschichte beginnt? Falls ja, in welcher Form?</string>
+<string name="challenge_2_q3">Falls nicht, wird das einleitende Ereignis und/oder der erste Plot Point ihm ein unangenehmes Gefühl geben?</string>
+<string name="challenge_2_q4">Was sind die Symptome der Lüge des Charakters?</string>
+    <!--Third challenge-->
+<string name="challenge_3_title">Herausforderung III</string>
+<string name="challenge_3_desc">Hintergrundgeschichte - Finde das \'Warum\'!</string>
+<string name="challenge_3_desc_long">Wer dein Charakter heute ist, ist sehr wichtig. Welcher Arbeit geht er nach, was ist seine Leidenschaft etc. Wer er sein wird ist die Essenz deiner Geschichte. Was ist also mit seiner Vergangenheit? Die Vergangangenheit machte ihn zu dem, der er heute ist. Waren seine Eltern geschieden? Vielleicht war seine Mutter eine Alkoholikerin oder sein Bruder kam bei einem tragischen Unfall ums Leben. Lebensereignisse machen uns zu den Personen, die wir sind. Stürze dich in die Herausforderung einen dreidimensionalen Charakter zu erschaffen.</string>
+<string name="challenge_3_q1">Beschreibe kurz seinen engen Familienkreis; Mutter, Vater, Geschwister. Sind noch alle am Leben? Sind die Eltern geschieden? Sind alle glücklich und zufrieden?</string>
+<string name="challenge_3_q2">Was ist seine beste Kindheitserinnerung?</string>
+<string name="challenge_3_q3">Was ist seine schlimmste Kindheitserinnerung?</string>
+<string name="challenge_3_q4">Hatte die Figur in seiner Kindheit Freunde? Wie würden sie ihn/sie beschreiben? Falls nicht, wieso hatte er/sie keine Freunde?</string>
+    <!--Fourth Challenge-->
+<string name="challenge_4_title">Herausforderung IV</string>
+<string name="challenge_4_desc">Wie sieht er aus?</string>
+<string name="challenge_4_desc_long">Lajos Egri sagte, dein Aussehen beeinflusst, wer du bist. Du glaubst das nicht? Stell\' dir vor dein Charakter war als Kind gelähmt und konnte deshalb nicht das Gleiche tun wie die anderen Kinder. Er konnte nicht draußen spielen und verbrachte stattdessen seine Zeit im Haus mit Lesen. Für ein normales Kind scheint das seltsam, doch der Charakter kannte es nicht anders. Wird er anders als andere Erwachsene sein, wenn er aufwächst? Vielleicht ein bisschen cleverer? Finde heraus, wie dein Charakter aussieht</string>
+<string name="challenge_4_q1">Nimm dir einen Moment um zu reflektieren und notiere dir 5 Adjektive, die das Aussehen deines Charakters beschreiben.</string>
+<string name="challenge_4_q2">Hat er Muttermale oder vielleicht Tattoos, die ihn besonders machen?</string>
+<string name="challenge_4_q3">Wie ist sein körperlicher Zustand? Hat er Allergien? Gibt es etwas, das vielleicht auf den ersten Blick nicht sichtbar ist?</string>
+<string name="challenge_4_q4">Betrachte seine Haltung und beschreibe sie. Wie ist sein Auftreten? Ist es ordentlich und gepflegt? Würdest du sagen, dein Charakter sieht gut aus?</string>
+    <!--Fifth Challenge-->
+<string name="challenge_5_title">Herausforderung V</string>
+<string name="challenge_5_desc">Teste die Grenzen.</string>
+<string name="challenge_5_desc_long">Bedenkt man, dass Kohle und Diamanten fast das Gleiche sind, wie kommt es, dass Kohle so gewöhnlich und Diamanten so besonders sind? Druck. Das Gleiche gilt für deine Figur. Möchtest du wissen, ob dein Charakter nur einer von vielen ist oder ob er der einzigartige Held ist, den die Geschichte braucht? Setze ihn unter Druck um herauszufinden, wer er wirklich ist.</string>
+<string name="challenge_5_q1">Wie würde er reagieren, wenn sich eine Person, die ihm wichtig ist, in Gefahr befindet?</string>
+<string name="challenge_5_q2">Würde er töten können?</string>
+<string name="challenge_5_q3">Würde deine Figur sagen, dass der Zweck die Mittel heiligt, wenn es darum geht eine geliebte Person zu beschützen?</string>
+<string name="challenge_5_q4">Angenommen er würde seine Prinzipien nicht verwerfen um eine geliebte Person zu retten. Was würde er tun?</string>
+    <!--Sixth Challenge-->
+<string name="challenge_6_title">Herausforderung VI</string>
+<string name="challenge_6_desc">Was ist in den Hosentaschen?</string>
+<string name="challenge_6_desc_long">Was auch immer du dabei hast, sagt etwas darüber aus, wer du bist. Hast du Dinge dabei, die dir egal sind? Wahrscheinlich nicht. Das Gleiche gilt für deine Figur. Überlege dir, was er/sie in ihren Hosentaschen hat und was ihm/ihr wirklich wichtig ist.</string>
+<string name="challenge_6_q1">Deine Figur verlässt das Haus. Was packt er/sie in seine/ihre Taschen? Geldbeutel? Schlüssel? Autoschlüssel? Welches Auto hat er/sie?</string>
+<string name="challenge_6_q2">Öffne den Geldbeutel. Findest du ein Foto? Wenn ja, wen zeigt es? Wieso ist es dort und seit wann?</string>
+<string name="challenge_6_q3">Nimm die Schlüssel und schaue sie dir an. Was für einen Schlüsselanhänger siehst du? Wo hat er/sie ihn her? War es ein Geschenk? Aus welchem Land kommt der Anhänger?</string>
+<string name="challenge_6_q4">Hat er/sie ein Handy dabei? Wie voll ist der Akku? Ist es oft leer, wenn es Zeit ist das Haus zu verlassen? Ist das Handy stumm geschaltet? Was für ein Hintergrundbild siehst du?</string>
+    <!--Mentor Challenge-->
+<string name="c1_mentor_title">Mentor Herausforderung</string>
+<string name="c1_mentor_desc">Kenne deinen Mentor.</string>
+<string name="c1_mentor_desc_long">Mentoren sind seltene Charaktere. Es gibt sie nicht in allen Geschichten, aber wenn, dann hat es einen guten Grund. \n Welches Motiv hatte Yoda Luke Skywalker zu lehren? Hat er nur Wissen oder auch ein Artefakt angeboten? War dieses Artefakt die Quelle von Lukes Macht? Tauche ein, um mehr über den Mentor zu erfahren.</string>
+<string name="c1_mentor_q1">Wieso braucht dein Protagonist einen Mentor? Wieso braucht er genau diesen Mentor? Trifft dieser genau die Bedürfnisse der Hauptfigur?</string>
+<string name="c1_mentor_q2">Wird der Mentor dem Protagonisten Wissen geben? Wird er ihm helfen sich selbst zu finden?</string>
+<string name="c1_mentor_q3">Erlangt der Protagonist seine Macht durch ein Artefakt des Mentors? Falls ja, welche Art von Macht und welches Artefakt?</string>
+<string name="c1_mentor_q4">Mentoren sterben. Oft sterben sie, bevor der Protagonist bereit ist. Vielleicht ist er sogar bereit und weiß es nur noch nicht. An welchem Punkt deiner Geschichte stirbt oder verlässt der Mentor den Protagonisten? In welcher Form findet sein Abgang statt?</string>
+    <!--Antagonist Challenge-->
+<string name="c1_antagonist_title">Antagonisten Herausforderung</string>
+<string name="c1_antagonist_desc">Kenne deinen Antagonisten.</string>
+<string name="c1_antagonist_desc_long">Geschichten sind Machtspiele. Würde der Hauptfigur direkt alles gelingen und es gäbe keine Hindernisse, die er überwinden muss um zu bekommen, was er will, gäbe es keine Herausforderung. Keine Herausforderung bedeutet auch kein Wachstum und somit keine Handlung. Jedoch sollten die Hindernisse gut durchdacht sein und nicht einfach wahllos eingefügt werden. Tauche ein um besser zu verstehen, wie die Figur des Gegners aufgebaut werden soll und welche Rolle er in der Geschichte einnimmt.</string>
+<string name="c1_antagonist_q1">Der Antagonist ist das exakte Gegenteil zu deinem Protagonisten. Wie sieht das in deinem Fall aus?</string>
+<string name="c1_antagonist_q2">Dein Antagonist ist nicht nur böse, er möchte nicht einfach nur deinen Protagonisten zerstören, außer dieser kommt ihm in den Weg. Was ist das eigentliche Ziel deines Antagonisten?</string>
+<string name="c1_antagonist_q3">Was ist seine Taktik um das Ziel zu erreichen?</string>
+
+    <!--Sidekick Challenge-->
+<string name="c1_sidekick_title">Sidekick Herausforderung</string>
+<string name="c1_sidekick_desc">Kenne deinen Sidekick.</string>
+<string name="c1_sidekick_desc_long">Sidekicks werden häufig unterschätzt, aber hätte Frodo sein Ziel ohne Sam erreicht? Don Quixote war ein ganzer Charakter für sich, aber kannst du dir vorstellen, wie er die Windmühlen ohne Sancho Panza bekämpft hätte? Sidekicks existieren nicht ohne Grund. Finde diesen Grund hier.</string>
+<string name="c1_sidekick_q1">Wieso entscheidet sich dein Sidekick dazu deinem Protagonisten zu folgen?</string>
+<string name="c1_sidekick_q2">Wieso sind die Ziele, die sich dein Protagonist gesetzt hat, so stark, dass auch der Sidekick sich dazu entscheidet sie zu verfolgen?</string>
+<string name="c1_sidekick_q3">Welche Werkzeuge, Taktiken oder Waffen stellt dein Sidekick deinem Protagonisten zur Verfügung? Wie verteidigt oder beschützt er ihn?</string>
+<string name="c1_sidekick_q4">Manche Sidekicks stehen irgendwann vor der Entscheidung sich selbst oder den Protagonisten zu retten. Wie verhält sich der Sidekick in deiner Geschichte? Was würde er für den Protagonisten opfern? Sein eigenes Leben?</string>
+    <!--Coming soon challenge-->
+<string name="challenge_7_title">Herausforderung VII</string>
+<string name="challenge_7_desc">Kommt bald</string>
+<string name="challenge_7_desc_long">Momentan arbeite ich an weiteren Herausforderungen. Falls du Ideen und Anregungen hast, kannst du mich gerne kontaktieren.</string>
+
+
+    <!--GUIDE ROLES-->
+<string name="roles_title">Typische Charakterrollen</string>
+<string name="roles_desc">Rollen</string>
+<string name="roles_desc_long">Stell dir deine Geschichte wie einen Motor vor. Es gibt Gänge und Zahnräder und alle Teile müssen zusammenarbeiten damit der Motor funktioniert. Das kann man nun auf die Charaktere in einer Geschichte beziehen.
+Vom Protagonisten über die Sidekicks und Mentoren bis zum Antagonisten, jede Figur in deiner Geschichte hat eine Rolle und bringt somit die Geschichte weiter. Tauche ein und lies mehr über die Rollen deiner Figuren.</string>
+<string name="char_guide_title">Typische Charakterrollen</string>
+<string-array name="char_guide_types_titles">
+<item>Protagonist</item>
+<item>Helfer des Protagonisten</item>
+<item>Sidekick</item>
+<item>Wächter</item>
+<item>Mentor</item>
+<item>Einfluss</item>
+<item>Antagonist</item>
+<item>Helfer des Antagonisten</item>
+<item>Skeptiker</item>
+<item>Hindernis</item>
+<item>Ziel</item>
+</string-array>
+<string-array name="char_guide_types_desc">
+<item>Der Hauptfigur passieren die meisten Dinge. Meist führt er die Handlung vom Anfang bis zum Ende der Geschichte. Alle Geschichten haben mindestens einen Protagonisten und meistens geht es in der Geschichte um das Erreichen seines Ziels.</item>
+<item>Er mag irrtümlich als Hauptfigur angesehen werden, jedoch ist seine eigentliche Rolle den Protagonisten zu unterstützen und ihm zu helfen seine Ziele zu erreichen.</item>
+<item>Er taucht zwar nicht in jeder Geschichte auf, jedoch gibt es Sidekicks in diversen Genres. Der Sidekick ist die Figur, die den Protagonisten begleitet, ihn unterstützt und hilft wo sie kann. Er bietet seelische und moralische Unterstützung und unterwirft sich der Hauptfigur. Er tut was auch immer notwendig ist, schlimmstenfalls sogar sterben.</item>
+<item>Dieser Charakter ist weder zwingend noch einer der wichtigsten, jedoch taucht er in vielen Romanen auf. Er hat bzw. beschützt etwas, das im Zusammenhang mit dem Ziel des Protagnonisten steht. Der Wächter kann als Hindernis für den Protagonisten angesehen werden.</item>
+<item>Auch dieser Charakter ist nicht zwingend notwendig, ist jedoch, wenn er auftaucht, von großer Bedeutung. Er ist der Yoda aus Star Wars oder der Priester von Montecristo. Eine Figur, die dem Protagonisten (Held) den Weg weist und ihm hilft sich zu verändern und weiter zu entwickeln. Er bereitet ihn auf den finalen Kampf vor, damit der Held seine Ziele erreichen kann.</item>
+<item>Der Einflusscharakter ist ein sekundärer Charakter mit einem kurzen Auftritt, aber er ist sehr wichtig. Das ist die Figur, die dem Protagonisten in einem bestimmten Moment der Geschichte den letzten Schub gibt, um weiterzumachen; oder er kann ihm sogar einen Hinweis geben, den er später braucht, um ein Rätsel oder eine Aufgabe zu lösen.</item>
+<item>Auf der anderen Seite finden wir das Gegenteil des Protagonisten: den Antagonisten bzw. den Bösen der Geschichte. Es bedeutet nicht, dass der Antagonist immer böse ist. Jedoch verfolgt er das gegensätzliche Ziel des Protagonisten und kämpft bis zum Schluss, um es zu erreichen. Dies bildet den Konflikt in der Geschichte.</item>
+<item>Genau wie der Protagonist hat auch der Antagonist einen Helfer. Besser gesagt, Jemand, der ihm hilft seine Ziele zu erreichen. Diese Figur/Figuren sind nicht zwingen, aber können sich positiv auf die Handlung der Geschichte auswirken.</item>
+<item>Der Skeptiker zweifelt an den Zielen des Protagonisten. Man könnte sagen, er ist das Gegenstück zum Sidekick. Er stellt sich dem Protagonisten zwar nicht direkt in den Weg, aber er entmutigt ihn in seinem Tun.</item>
+<item>Diese Figur/Figuren sind mit dem Helfer des Antagonisten zu vergleichen, jedoch treten sie eher auf wie Joker, die kurz auftauchen um dem Protagonisten Steine in den Weg zu legen und ihn von seinem Schaffen abzulenken.</item>
+<item>Manchmal kann das Ziel der Hauptfigur auch eine andere Person sein. Beispielsweise wenn jemand entführt wurde und der Protagonist versucht, diese Person zu finden. Hat diese Person in der Geschichte ansonsten keine Funktion, kann sie als Ziel betrachtet werden.</item>
+</string-array>
+
+
+<string name="lajos_character_title">3D Charaktere - Lajos Egri</string>
+<string name="lajos_character_desc">Dreidimensionale Charaktere</string>
+<string name="lajos_character_long">Jedes Objekt hat drei Dimensionen; Tiefe, Höhe und Breite. Menschen haben drei weitere Dimensionen: Physiologie, Soziologie und Psychologie. Ohne Wissen über diese drei Dimensionen können wir einen Menschen nicht einschätzen. Es ist nicht genug zu wissen, dass der Mensch unhöflich, höflich, religiös, unreligiös, sittlich oder unsittlich ist. Man muss wissen warum.</string>
+<string name="lajos_text">Ein Charakter sollte immer drei Dimensionen haben. Ist dies nicht der Fall, wirkt die Figur schnell unrealistisch, langweilig und als Lückenfüller. Am wichtigsten ist die Dreidimensionalität für die Hauptcharaktere. In seinem Buch "The Art of Dramatic Writing" schrieb Lajos Egri über drei Kategorien (also drei Dimensionen), die der Charakter haben sollte.\nSiehe unten:\n\nPhysiologie\n
+1.Geschlecht\n
+2.Alter\n
+3.Größe, Gewicht\n
+4.Haarfarbe, Augenfarbe, Hautfarbe.\n
+5.Haltung\n
+6.Aussehen: gut aussehend, über- oder untergewichtig, sauber, ordentlich, angenehm, ungepflegt. Kopfform, Gesicht, Gliedmaßen.\n
+7.Auffälligkeiten: Deformierungen, Abnormalitäten, Muttermale, Krankheiten.\n
+8.Vererbung.\n
+\nSoziologie\n
+1.Soziale Schicht: Unterschicht, Mittelschicht, Oberschicht.\n
+2.Beschäftigung: Art der Arbeit, Arbeitsstunden, Einkommen, Occupation: type of work, hours of work, income, condition of work, union or nonunion, attitude towards organisation, suitability for work.\n
+3.Bildung: Dauer, Art der Schule, Noten, Lieblingsfächer, schlechteste Fächer, Begabungen.\n
+4.Familienleben: lebt mit den Eltern, Waisenkind, Eltern getrennt oder geschieden, Angewohnheiten der Eltern, mentale Entwicklung der Eltern, Unarten der Eltern, Vernachlässigung, Familienleben des Charakters.\n
+5.Religion\n
+6.Rasse, Nationalität\n
+7.Platz in der Gemeinschaft: Anführer im Freundeskreis, im Verein, beim Sport.\n
+8.Politische Verbindung\n
+9.Vergnügungen, Hobbies: Bücher, Zeitungen, Magazine.\n
+\nPsychologie\n
+1.Sexleben, Moralstandards\n
+2.Persönliche Prämisse, Ambitionen\n
+3.Frustrationen, Enttäuschungen\n
+4.Temperament: cholerisch, entspannt, pessimistisch, optimistisch.\n
+5.Lebenseinstellung: resigniert, militant, kapitulierend.\n
+6.Komplexe: Besessenheit, Hemmungen, Aberglauben, Phobien.\n
+7.Extrovertiert, introvertiert, ambivalent.\n
+8.Fähigkeiten: Sprachen, Talente.\n
+9.Qualitäten: Phantasie, Urteilsvermögen, Geschmack, Haltung.\n
+10.I.Q.\n\n\n
+</string>
+
+
+<string name="change_arc_title">Change Arc - K.M Weiland</string>
+<string name="change_arc_desc">Wie erstellt man einen Charakterbogen?</string>
+<string name="change_arc_desc_long">Aristoteles schrieb, dass es in einer Geschichte nur um die Handlung gehe. Heute wissen wir jedoch, dass es bei der Handlung ganz darum geht, wie die Charaktere darauf reagieren. Wird Indiana Jones auf einen Verrat genauso reagieren wie Scarface? Können wir davon ausgehen, dass Etwas für Batman aufregend ist,
+was Francis Underwood jedoch langweilt?</string>
+<string-array name="change_arc_array_titles">
+<item>Der positive Bogen</item>
+<item>Der flache Bogen</item>
+<item>Der negative Bogen</item>
+</string-array>
+<string-array name="change_arc_array_desc">
+<item>Dies ist der beliebteste und häufig der tragende Charakterbogen. Der Protagonist durchläuft unterschiedliche Stadien der Nichterfüllung und Ablehnung. Im Laufe der Geschichte wird er gezwungen sein, seinen Glauben an sich selbst und die Welt in Frage zu stellen, bis er schließlich seine inneren Dämonen (und damit wahrscheinlich auch seine äußeren Gegner) bekämpft hat.</item>
+<item>Many popular stories feature characters who are already essentially complete unto themselves. They’re already heroes and don’t require any noticeable personal growth to gain the inner strength to defeat the external antagonists. These characters experience little to no change over the course of the story, making their arcs static or “flat.” Sometimes these characters are the catalysts for change in the story world around them, so that we find more prominent growth arcs in the minor characters.</item>
+<item>Negative Charakterbogen bieten mehr Möglichkeiten als andere. Jedoch ist ein negativer Charakterbogen nur ein umgedrehter Veränderungsbogen. Statt einem Charakter, der seine negativen Eigenschaften hinter sich lässt und eine bessere Person wird, verändert sich die Person beim negativen Charakterbogen zum Schlechten oder Bösen hin.</item>
+</string-array>
+
+<string name="antagonist_guide_title">Anatomie des perfekten Antagonisten</string>
+<string name="antagonist_guide_desc">Wie werden Antagonisten erstellt?</string>
+<string name="antagonist_guide_desc_long">Lajos Egri thematisiert in seinem Buch "Die Kunst des dramatischen Schreibens" die Bedeutung der Einheit der Gegensätze. Wenn Batman Ordnung will, will der Joker Chaos. Will Gandalf Frieden, will Sauron Krieg.</string>
+<string-array name="antagonist_guide_array_titles">
+<item>Antagonisten sind das genaue Gegenteil von den Protagonisten</item>
+<item>Antagonisten sind komplex</item>
+<item>Antagonisten sind starke Gegner</item>
+<item>Der Antagonist hat ein starkes Motiv</item>
+</string-array>
+<string-array name="antagonist_guide_array_desc">
+<item>Häufig in der Literatur ist der Antagonist das komplette Gegenteil der Hauptfigur. Ist die Hauptfigur laut und hitzköpfig, so ist der Gegner ruhig und hat seine Emotionen im Griff. Der Kontrast zwischen den zwei Firguren kreiert einen Konflikt und macht das Zusammenspiel interessanter.\n
+Aber Vorsicht, der Widerstand ist nicht nur eine Taktik, um die Ziele zu erreichen. Es ist tief in seinem Wesen verankert und der letzte Kampf is für die Geschichte unvermeidlich.</item>
+<item>Es mag verlockend sein den Antagonisten als Ausgeburt des Bösen darzustellen, doch es ist nicht sehr realistisch. Wie viele Menschen kennst du, die zu 100 Prozent böse sind? Wahrscheinlich keinen. Egal wie böse jemand ist, etwas Gutes lässt sich doch in Jedem finden.\n
+Gib deinem Antagonisten auch ein paar positive Eigenschaften und zeige ihn in manchen Situationen in einem positiven Licht. Dies erschafft einen spannenden Kontrast und lässt seine schlechten Taten noch schlimmer aussehen.\n
+Um deinem Antagonisten noch mehr Tiefe zu geben, solltest du dir seine Hintergrundgeschichte überlegen. War er mal eine gute Person? Neigte er schon immer zu bösen Taten? Was erfüllte ihn mit Hass? Je mehr Tiefe der Charakter deines Antagonisten bekommt, desto glaubhafter und spannender wird deine Geschichte.</item>
+<item>Es gibt keine Handlung, wenn der Gegner nicht mindestens genauso stark ist wie der Protagonist. Tatsächlich fangen viele großartige Spiele am anderen Ende an, es ist der Protagonist, der seine Fähigkeiten erweitern muss, um mit dem bösen Gegenspieler mithalten zu können. Wenn es keinen starken Gegner gibt, führt dies zu einer langweiligen Geschichte, da der Protagonist vor keiner echten Herausforderung steht.
+Lasse den Antagonisten verachtenswerte Handlungen ausführen, und wenn möglich, den Protagonisten auch ein paar Kämpfe verlieren. Im letzten Kampf kann er dann zeigen, wie weit er gegangen ist um den Antagonisten zu bekämpfen.</item>
+<item>Was ist die Absicht oder das Ziel des Antagonisten? Was steckt hinter dem Ärger den er/sie verursacht? Sag nicht, dass die bösen Taten nur Produkt ihrer bösen Natur sind. Leute tun nicht einfach zufällig schlechte Dinge. Sie haben normalerweise einen Grund für ihr Handeln. Überlege dir ein Motiv das hinter dem Handeln steckt und der Charakter wird dadurch glaubwürdiger.</item>
+</string-array>
+
+<string name="weekly_challenge_title_default">Keine Internetverbindung</string>
+<string name="weekly_challenge_desc_default">Wenn du diesen Text liest, bedeutet das, dass du nicht mit dem Internet verbunden bist. Bitte überprüfe deine Verbindung und lade diese Seite neu.</string>
+<string name="weekly_challenge_view_ad_btn">Werbeclip ansehen</string>
+<string name="weekly_challenge_view_ad_desc">Damit diese App kostenlos bleiben kann, bitte ich dich, diesen kurzen Werbeclip anzusehen.</string>
+<string name="weekly_challenge_submit_btn">Teilnehmen</string>
+<string name="weekly_challenge_email_desc">Vergiss nicht deinen Namen anzugeben. Danke für deine Teilnahme.</string>
+
+<string name="sign_out">Ausloggen</string>
+<string name="characters_created">Erstellte Charaktere</string>
+<string name="projects_created">Erstellte Projekte</string>
+<string name="name">Name</string>
+<string name="email">Email</string>
+<string name="view_participant">Lies</string>
+<string name="likes">Likes</string>
+<string name="comments">Kommentare</string>
+<string name="write_a_comment">Schreibe einen Kommentar...</string>
+<string name="post">Beitrag</string>
+<string name="my_profile">Mein Profil</string>
+<string name="info">Info</string>
+<string name="must_login">Du musst eingeloggt sein um dein Profil sehen zu können.</string>
+
+    <!-- Submit -->
+<string name="submit_welcome">Willkommen</string>
+<string name="submit_title">Titel</string>
+<string name="write_here_hint">Schreibe hier deine Geschichte</string>
+<string name="submit_prompt">Wöchentliche Herausforderung jetzt absenden</string>
+<string name="submit_button">Einreichen</string>
+
+
+
+<string-array name="char_guide_types_titles_for_comparison">
+<item>Protagonist</item>
+<item>Ayudante de protagonista</item>
+<item>Escudero</item>
+<item>Beschützer</item>
+<item>Mentor</item>
+<item>De Impacto</item>
+<item>Antagonista</item>
+<item>Ayudante de Antagonista</item>
+<item>Esceptico</item>
+<item>Obstaculo</item>
+<item>Meta</item>
+<item>Protagonist</item>
+<item>Helfer des Protagonisten</item>
+<item>Handlanger</item>
+<item>Beschützer</item>
+<item>Mentor</item>
+<item>Auswirkung</item>
+<item>Antagonist</item>
+<item>Helfer des Antagonisten</item>
+<item>Skepsis</item>
+<item>Hindernis</item>
+<item>Ziel</item>
+</string-array>
+
+    </resources>

@@ -98,20 +98,20 @@ public class Adapter_herojourney extends RecyclerView.Adapter<Adapter_herojourne
             String clicked = mData.get(getAdapterPosition()).getHerojourney_title();
             String charName = mData.get(getAdapterPosition()).getHerojourneyChar();
             String projectName = mData.get(getAdapterPosition()).getHerojourneyProject();
-            if(clicked.equals("Challenge I") || clicked.equals("Desafio I")){
+            if(clicked.equals(view.getContext().getResources().getString(R.string.challenge_1_title))){
                 nextFragment(mContext,charName,projectName,clicked);
-            } else if (clicked.equals("Challenge II") || clicked.equals("Desafio II")){
+            } else if (clicked.equals(view.getContext().getResources().getString(R.string.challenge_2_title))){
                 nextFragment(mContext,charName,projectName,clicked);
-            } else if (clicked.equals("Challenge III") || clicked.equals("Desafio III")){
+            } else if (clicked.equals(view.getContext().getResources().getString(R.string.challenge_3_title))){
                 nextFragment(mContext,charName,projectName,clicked);
-            } else if (clicked.equals("Challenge IV") || clicked.equals("Desafio IV")){
+            } else if (clicked.equals(view.getContext().getResources().getString(R.string.challenge_4_title))){
                 nextFragment(mContext,charName,projectName,clicked);
-            }  else if (clicked.equals("Challenge V") || clicked.equals("Desafio V")) {
+            }  else if (clicked.equals(view.getContext().getResources().getString(R.string.challenge_5_title))) {
                 nextFragment(mContext,charName,projectName,clicked);
-            } else if (clicked.equals("Challenge VI") || clicked.equals("Desafio VI")) {
+            } else if (clicked.equals(view.getContext().getResources().getString(R.string.challenge_6_title))) {
                 nextFragment(mContext,charName,projectName,clicked);
             }
-            else if (clicked.equals("Mentor Challenge") || clicked.equals("Desafio del Mentor")) {
+            else if (clicked.equals(view.getContext().getResources().getString(R.string.c1_mentor_title))) {
                 if(challenge_unlock == 0){
                     if (mRewardedVideoAd.isLoaded()) {
                         mRewardedVideoAd.show();
@@ -119,7 +119,7 @@ public class Adapter_herojourney extends RecyclerView.Adapter<Adapter_herojourne
                 }else {
                     nextFragment(mContext,charName,projectName,clicked);
                 }
-            }else if (clicked.equals("Antagonist Challenge") || clicked.equals("Desafio del Antagonista")) {
+            }else if (clicked.equals(view.getContext().getResources().getString(R.string.c1_antagonist_title))) {
                 if(challenge_unlock == 0){
                     if (mRewardedVideoAd.isLoaded()) {
                         mRewardedVideoAd.show();
@@ -127,7 +127,7 @@ public class Adapter_herojourney extends RecyclerView.Adapter<Adapter_herojourne
                 }else {
                     nextFragment(mContext,charName,projectName,clicked);
                 }
-            }else if (clicked.equals("Sidekick Challenge") || clicked.equals("Desafio del Escudero")) {
+            }else if (clicked.equals(view.getContext().getResources().getString(R.string.c1_sidekick_title))) {
                 if(challenge_unlock == 0){
                     if (mRewardedVideoAd.isLoaded()) {
                         mRewardedVideoAd.show();
@@ -136,7 +136,7 @@ public class Adapter_herojourney extends RecyclerView.Adapter<Adapter_herojourne
                     nextFragment(mContext,charName,projectName,clicked);
                 }
             }
-            else if (clicked.equals("Typical Character Roles") || clicked.equals("Roles de personajes tipicos")){
+            else if (clicked.equals(view.getContext().getResources().getString(R.string.char_guide_title))){
                     //Send it to the next fragment
                     GuideRoleFragment nextFragment = new GuideRoleFragment();
                     //Make the transaction
@@ -146,7 +146,7 @@ public class Adapter_herojourney extends RecyclerView.Adapter<Adapter_herojourne
                     transaction.addToBackStack(null);
                     transaction.replace(R.id.flMain,nextFragment);
                     transaction.commit();
-            }else if (clicked.equals("3D Characters - Lajos Egri") || clicked.equals("Personajes 3D - Lajos Egri")){
+            }else if (clicked.equals(view.getContext().getResources().getString(R.string.lajos_character_title))){
                     //Send it to the next fragment
                     GuideLajosFragment nextFragment = new GuideLajosFragment();
                     //Make the transaction
@@ -156,7 +156,7 @@ public class Adapter_herojourney extends RecyclerView.Adapter<Adapter_herojourne
                     transaction.addToBackStack(null);
                     transaction.replace(R.id.flMain,nextFragment);
                     transaction.commit();
-            }else if (clicked.equals("Change Arc - K.M Weiland") || clicked.equals("Arco de cambio - K.M Weiland")){
+            }else if (clicked.equals(view.getContext().getResources().getString(R.string.change_arc_title))){
                     //Send it to the next fragment
                     GuideWeilandFragment nextFragment = new GuideWeilandFragment();
                     //Make the transaction
@@ -166,7 +166,7 @@ public class Adapter_herojourney extends RecyclerView.Adapter<Adapter_herojourne
                     transaction.addToBackStack(null);
                     transaction.replace(R.id.flMain,nextFragment);
                     transaction.commit();
-            }else if (clicked.equals("The anatomy of the perfect Antagonist") || clicked.equals("Anatomia del Antagonista perfecto")){
+            }else if (clicked.equals(view.getContext().getResources().getString(R.string.antagonist_guide_title))){
                 //Send it to the next fragment
                 AntagonistFragment nextFragment = new AntagonistFragment();
                 //Make the transaction
