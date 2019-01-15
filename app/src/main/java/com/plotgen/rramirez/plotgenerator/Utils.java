@@ -2,6 +2,7 @@ package com.plotgen.rramirez.plotgenerator;
 
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,15 +10,21 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.provider.DocumentsContract;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 public class Utils {
@@ -74,6 +81,8 @@ public class Utils {
             projects_list.add(cursor.getString(cursor.getColumnIndex("project")));
             projects_list.add(cursor.getString(cursor.getColumnIndex("genre")));
             projects_list.add(cursor.getString(cursor.getColumnIndex("plot")));
+            projects_list.add(cursor.getString(cursor.getColumnIndex("image")));
+
             cursor.moveToNext();
         }
         cursor.close();
@@ -90,6 +99,7 @@ public class Utils {
         while (!cursor.isAfterLast()) {
             String id = cursor.getString(cursor.getColumnIndex("_id"));
             String project_name = cursor.getString(cursor.getColumnIndex("project"));
+            String image = cursor.getString(cursor.getColumnIndex("image"));
             projects_list.add(id + "_" + project_name);
             cursor.moveToNext();
         }
@@ -241,6 +251,102 @@ public class Utils {
                 .setMessage(context.getString(R.string.iap_desc))
                 .setNeutralButton(context.getString(R.string.iap_btn), null);
         builder.show();
+    }
+
+
+    //get image file path
+    public static String getFilePath(Context context, Uri uri) throws URISyntaxException {
+        String selection = null;
+        String[] selectionArgs = null;
+        // Uri is different in versions after KITKAT (Android 4.4), we need to
+        if (Build.VERSION.SDK_INT >= 19 && DocumentsContract.isDocumentUri(context.getApplicationContext(), uri)) {
+            if (isExternalStorageDocument(uri)) {
+                final String docId = DocumentsContract.getDocumentId(uri);
+                final String[] split = docId.split(":");
+                return Environment.getExternalStorageDirectory() + "/" + split[1];
+            } else if (isDownloadsDocument(uri)) {
+                final String id = DocumentsContract.getDocumentId(uri);
+                uri = ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"), Long.valueOf(id));
+                return getDataColumn(context, uri, selection, selectionArgs);
+            } else if (isMediaDocument(uri)) {
+                final String docId = DocumentsContract.getDocumentId(uri);
+                final String[] split = docId.split(":");
+                final String type = split[0];
+                if ("image".equals(type)) {
+                    uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+                } else if ("video".equals(type)) {
+                    uri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                } else if ("audio".equals(type)) {
+                    uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+                }
+                selection = "_id=?";
+                selectionArgs = new String[]{
+                        split[1]
+                };
+                Log.e("file path",getDataColumn(context, uri, selection, selectionArgs));
+                return getDataColumn(context, uri, selection, selectionArgs);
+            }
+        } else if ("content".equalsIgnoreCase(uri.getScheme())) {
+
+            if (isGooglePhotosUri(uri)) {
+                Log.e("file path", uri.getLastPathSegment());
+                return uri.toString();
+            }
+
+            String[] projection = {MediaStore.Images.Media.DATA};
+            Cursor cursor = null;
+            try {
+                cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs, null);
+                int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+                if (cursor.moveToFirst()) {
+                    Log.e("file path",cursor.getString(column_index));
+                    return cursor.getString(column_index);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if ("file".equalsIgnoreCase(uri.getScheme())) {
+            Log.e("file path",uri.getPath());
+
+            return uri.getPath();
+        }
+        return null;
+    }
+
+    private static boolean isExternalStorageDocument(Uri uri) {
+        return "com.android.externalstorage.documents".equals(uri.getAuthority());
+    }
+
+    private static boolean isDownloadsDocument(Uri uri) {
+        return "com.android.providers.downloads.documents".equals(uri.getAuthority());
+    }
+
+    private static boolean isMediaDocument(Uri uri) {
+        return "com.android.providers.media.documents".equals(uri.getAuthority());
+    }
+    public static boolean isGooglePhotosUri(Uri uri) {
+        return "com.google.android.apps.photos.contentprovider".equals(uri.getAuthority());
+    }
+    private static String getDataColumn(Context context, Uri uri, String selection,
+                                        String[] selectionArgs) {
+
+        Cursor cursor = null;
+        final String column = "_data";
+        String[] projection = {column};
+
+        try {
+            cursor = context.getContentResolver().query(uri, null, selection, selectionArgs,
+                    null);
+            if (cursor != null)
+                if (cursor.moveToFirst()) {
+                    final int index = cursor.getColumnIndexOrThrow("_data");
+                    return cursor.getString(index);
+                }
+        } finally {
+            if (cursor != null)
+                cursor.close();
+        }
+        return null;
     }
 
 }

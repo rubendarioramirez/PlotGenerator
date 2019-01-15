@@ -901,7 +901,6 @@ In order for your character to evolve in a positive way, he has to start out wit
     <!-- Firebase Database name  -->
     <string name="weekly_challenge_db_name">Weekly_Challenge_Beta</string>
 
-
     <string name="edit_story">Edit Story</string>
     <string name="write_story">Write Story</string>
     <string name="add_char">Add Character</string>
@@ -913,7 +912,10 @@ In order for your character to evolve in a positive way, he has to start out wit
         <item>Autumn Theme</item>
     </string-array>
 
-
+    <string name="please_select_the_one_option">Please select the one option</string>
+    <string name="select_from_photo_gallery">Select from Photo Gallery</string>
+    <string name="remove_photo">Remove Photo</string>
+    <string name="cancel">Cancel</string>
     <string name="iap_title">It\'s coming soon</string>
     <string name="iap_desc">Pro version with no Ads will be available on next update</string>
     <string name="iap_btn">No ads!</string>

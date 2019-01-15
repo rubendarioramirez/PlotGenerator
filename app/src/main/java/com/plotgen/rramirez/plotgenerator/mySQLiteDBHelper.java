@@ -3,12 +3,13 @@ package com.plotgen.rramirez.plotgenerator;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 public class mySQLiteDBHelper extends SQLiteOpenHelper {
-//    Retail version it's 9
-//    private static final int DATABASE_VERSION = 9;
-    private static final int DATABASE_VERSION = 10;
+    //    Retail version it's 9
+    //private static final int DATABASE_VERSION = 9;
+    //private static final int DATABASE_VERSION = 10;
+    private static final int DATABASE_VERSION = 11;
+
     //public static final String DATABASE_NAME = "test_database";
     public static final String DATABASE_NAME = "production_database";
     public static final String CHARACTER_TABLE_CHARACTER = "character";
@@ -21,12 +22,14 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
     public static final String PROJECT_COLUMN_PROJECT = "project";
     public static final String PROJECT_COLUMN_GENRE = "genre";
     public static final String PROJECT_COLUMN_PLOT = "plot";
+    public static final String PROJECT_COLUMN_IMAGE = "image";
 
     public static final String CHARACTER_TABLE_STORY = "story";
     public static final String STORY_COLUMN_ID = "_id";
     public static final String STORY_COLUMN_PROJECT = "project";
     public static final String STORY_COLUMN_PROJECT_ID = "project_id";
     public static final String STORY_COLUMN_STORIES = "stories";
+    public static final String STORY_COLUMN_IMAGE = "image";
 
 
     //Character BIO
@@ -48,7 +51,7 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
     public static final String CHARACTER_COLUMN_PLACEBIRTH = "placebirth";
     public static final String CHARACTER_COLUMN_PHRASE = "phrase";
     public static final String CHARACTER_COLUMN_TRAIT1 = "trait1";
-    public static final String CHARACTER_COLUMN_TRAIT2  = "trait2";
+    public static final String CHARACTER_COLUMN_TRAIT2 = "trait2";
     public static final String CHARACTER_COLUMN_TRAIT3 = "trait3";
     //Challenge I old naming.
     public static final String CHARACTER_COLUMN_EIR = "elevator_initial_reaction";
@@ -181,7 +184,7 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        switch(i1) {
+        switch (i1) {
             case 7:
                 //Project columns
                 sqLiteDatabase.execSQL("ALTER TABLE projectname ADD COLUMN genre TEXT");
@@ -221,6 +224,11 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
                 sqLiteDatabase.execSQL("ALTER TABLE story ADD COLUMN project  TEXT");
                 sqLiteDatabase.execSQL("ALTER TABLE story ADD COLUMN project_id  TEXT");
                 sqLiteDatabase.execSQL("ALTER TABLE story ADD COLUMN stories  TEXT");
+                break;
+            case 11:
+                sqLiteDatabase.execSQL("ALTER TABLE projectname ADD COLUMN " + PROJECT_COLUMN_IMAGE + " TEXT");
+                sqLiteDatabase.execSQL("ALTER TABLE story ADD COLUMN " + STORY_COLUMN_IMAGE + " TEXT");
+
                 break;
         }
 

@@ -5,7 +5,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -14,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -55,45 +53,40 @@ public class OfflineStoryFragment extends Fragment {
     private AdView mAdView;
 
 
-    public void saveStoryToDB(View v)
-    {
+    public void saveStoryToDB(View v) {
         SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(mySQLiteDBHelper.STORY_COLUMN_PROJECT, project_name);
         values.put(mySQLiteDBHelper.STORY_COLUMN_PROJECT_ID, project_id);
         values.put(mySQLiteDBHelper.STORY_COLUMN_STORIES, mStory);
 
-        if(isUpdate)
-            database.update(mySQLiteDBHelper.CHARACTER_TABLE_STORY, values,   "project = ?", new String[]{project_name});
+        if (isUpdate)
+            database.update(mySQLiteDBHelper.CHARACTER_TABLE_STORY, values, "project = ?", new String[]{project_name});
         else
             database.insert(mySQLiteDBHelper.CHARACTER_TABLE_STORY, null, values);
 
         ProjectFragment nextFragment = new ProjectFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        Utils.changeFragment(nextFragment,transaction,"","");
+        Utils.changeFragment(nextFragment, transaction, "", "");
         getFragmentManager().popBackStack();
 
     }
 
 
-
     @OnClick(R.id.formatBold)
-    public void setBold(View v)
-    {
+    public void setBold(View v) {
         mEditor.setBold();
 
     }
 
     @OnClick(R.id.formatItalic)
-    public void setItalic(View v)
-    {
+    public void setItalic(View v) {
         mEditor.setItalic();
 
     }
 
     @OnClick(R.id.formatAlignLeft)
-    public void setAlignLeft(View v)
-    {
+    public void setAlignLeft(View v) {
         mEditor.setAlignLeft();
         //ivAlignLeft.setBackgroundColor(Color.GRAY);
         //ivAlignCenter.setBackgroundColor(Color.WHITE);
@@ -102,8 +95,7 @@ public class OfflineStoryFragment extends Fragment {
     }
 
     @OnClick(R.id.formatAlignCenter)
-    public void setAlignCenter(View v)
-    {
+    public void setAlignCenter(View v) {
         mEditor.setAlignCenter();
         //ivAlignLeft.setBackgroundColor(Color.WHITE);
         //ivAlignCenter.setBackgroundColor(Color.GRAY);
@@ -112,8 +104,7 @@ public class OfflineStoryFragment extends Fragment {
     }
 
     @OnClick(R.id.formatAlignRight)
-    public void setAlignRight(View v)
-    {
+    public void setAlignRight(View v) {
         mEditor.setAlignRight();
         //ivAlignLeft.setBackgroundColor(Color.WHITE);
         //ivAlignCenter.setBackgroundColor(Color.WHITE);
