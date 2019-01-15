@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -30,6 +31,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import jp.wasabeef.richeditor.RichEditor;
+
+import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -151,6 +154,19 @@ public class OfflineStoryFragment extends Fragment {
 
         mEditor.setEditorHeight(200);
         mEditor.setEditorFontSize(16);
+        int selectedTheme = Utils.getSharePref(view.getContext(), "selectedTheme", 0);
+        if (selectedTheme == 0) {
+            mEditor.setEditorFontColor(Color.BLACK);
+        } else if (selectedTheme == 1) {
+            mEditor.setEditorFontColor(Color.WHITE);
+        } else if (selectedTheme == 2) {
+            mEditor.setEditorFontColor(Color.BLACK);
+        } else if (selectedTheme == 3) {
+            mEditor.setEditorFontColor(Color.BLACK);
+        }
+
+
+
         mEditor.setPadding(10, 10, 10, 10);
         if(mStory.equals(""))
         {

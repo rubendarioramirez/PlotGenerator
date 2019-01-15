@@ -161,7 +161,7 @@
                         android:textColor="@color/content"
                         android:textSize="16sp"
                         app:met_floatingLabel="highlight"
-                        app:met_floatingLabelText="@string/name" />
+                        app:met_floatingLabelText="Theme" />
 
 
                 </LinearLayout>
@@ -265,7 +265,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:background="@color/grey_font"
+                        android:background="@color/colorPrimary"
                         android:fontFamily="@font/typewcond_regular"
                         android:text="@string/sign_out"
                         android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button.Colored"
