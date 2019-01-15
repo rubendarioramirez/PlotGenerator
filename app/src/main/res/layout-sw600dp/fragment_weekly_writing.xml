@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/background"
+    android:background="?android:attr/colorBackground"
     tools:context=".weeklyWriting">
 
     <LinearLayout
@@ -44,7 +44,7 @@
                     android:gravity="center_horizontal"
                     android:text="@string/weekly_challenge_title_default"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                    android:textColor="@color/headline" />
+                    android:textColor="?android:attr/textColorPrimary" />
 
                 <TextView
                     android:id="@+id/writing_challenge_desc"
@@ -60,7 +60,7 @@
                     android:gravity="center_horizontal"
                     android:text="@string/weekly_challenge_desc_default"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textColor="@color/content" />
+                    android:textColor="?android:attr/textColorSecondary" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

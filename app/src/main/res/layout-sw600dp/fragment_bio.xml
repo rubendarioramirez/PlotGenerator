@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="?android:attr/colorBackground"
     tools:context="com.plotgen.rramirez.plotgenerator.BioFragment">
 
 
@@ -36,7 +36,7 @@
                 android:text="His name is Rambo, he is XX years "
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/content" />
+                android:textColor="?android:attr/textColorSecondary" />
 
             <TextView
                 android:id="@+id/placeholder"
@@ -48,7 +48,7 @@
                 android:gravity="center"
                 android:text="@string/challenge_action_bar"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:textColor="@color/headline"
+                android:textColor="?android:attr/textColorPrimary"
                 android:textSize="36sp" />
             <TextView
                 android:id="@+id/char_role_challenge"
@@ -59,7 +59,7 @@
                 android:fontFamily="@font/typewcond_regular"
                 android:gravity="left"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/content" />
+                android:textColor="?android:attr/textColorSecondary" />
 
             <TextView
                 android:id="@+id/character_bio_challenge"
@@ -70,7 +70,7 @@
                 android:fontFamily="@font/typewcond_regular"
                 android:gravity="left"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/content" />
+                android:textColor="?android:attr/textColorSecondary" />
 
             <TextView
                 android:id="@+id/character_bio_challenge_2"
@@ -82,7 +82,7 @@
                 android:gravity="left"
                 android:text=""
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/content" />
+                android:textColor="?android:attr/textColorSecondary" />
 
             <TextView
                 android:id="@+id/character_bio_challenge_3"
@@ -94,7 +94,7 @@
                 android:gravity="left"
                 android:text=""
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/content" />
+                android:textColor="?android:attr/textColorSecondary" />
 
             <TextView
                 android:id="@+id/character_bio_challenge_4"
@@ -106,7 +106,7 @@
                 android:gravity="left"
                 android:text=""
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/content" />
+                android:textColor="?android:attr/textColorSecondary" />
 
             <TextView
                 android:id="@+id/character_bio_challenge_5"
@@ -118,7 +118,7 @@
                 android:gravity="left"
                 android:text=""
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/content" />
+                android:textColor="?android:attr/textColorSecondary" />
 
             <TextView
                 android:id="@+id/character_bio_challenge_6"
@@ -130,7 +130,7 @@
                 android:gravity="left"
                 android:text=""
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/content" />
+                android:textColor="?android:attr/textColorSecondary" />
 
 
 

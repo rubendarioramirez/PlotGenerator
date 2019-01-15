@@ -5,27 +5,40 @@
     <color name="colorPrimary">#37966F</color>
     <color name="colorPrimaryDark">#356859</color>
     <color name="colorAccent">#FD5523</color>
+    <color name="background">#FFFBE6</color>
+    <color name="text_color">#000000</color>
+    <color name="headline_classic">#FD5523</color>
+    <color name="content">#356859</color>
+    <color name="content_lighter">#0537966f</color>
 
     <!--Dark Theme -->
     <color name="colorPrimary_2">#344955</color>
-    <color name="colorPrimaryDark_2">#232F34</color>
+    <color name="colorPrimaryDark_2">#000000</color>
     <color name="colorAccent_2">#1d374e</color>
+    <color name="background_2">#424648</color>
+    <color name="text_color_2">#ffffff</color>
+    <color name="headline_2">#ffffff</color>
+    <color name="content_2">#dae2e0</color>
+    <color name="content_lighter_2">#0537966f</color>
+
+
 
     <!--Romance Theme -->
     <color name="colorPrimary_3">#f2605d</color>
     <color name="colorPrimaryDark_3">#232F34</color>
     <color name="colorAccent_3">#cc3610</color>
+    <color name="background_3">#FFFBE6</color>
 
     <!--Autumn Theme -->
     <color name="colorPrimary_4">#f2b95d</color>
     <color name="colorPrimaryDark_4">#232F34</color>
     <color name="colorAccent_4">#d67748</color>
+    <color name="background_4">#FFFBE6</color>
 
 
     <color name="headline">#FD5523</color>
-    <color name="background">#FFFBE6</color>
-    <color name="content">#356859</color>
-    <color name="content_lighter">#0537966f</color>
+
+
 
     <color name="light_font">#fbfbfb</color>
     <color name="grey_font">#272121</color>
@@ -37,5 +50,6 @@
     <color name="color_trigger_3">#373753</color>
     <color name="color_trigger_4">#28283d</color>
     <color name="color_trigger_5">#13131d</color>
+    <color name="background_material_light">#baa647</color>
 
 </resources>
