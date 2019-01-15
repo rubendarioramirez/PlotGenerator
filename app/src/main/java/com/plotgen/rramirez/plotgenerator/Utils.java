@@ -1,6 +1,6 @@
 package com.plotgen.rramirez.plotgenerator;
 
-import android.app.AlertDialog;
+import android.support.v7.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
 import android.content.Context;
