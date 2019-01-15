@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
     tools:context="com.plotgen.rramirez.plotgenerator.CharListFragment"
+    android:background="?android:attr/colorBackground"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="25dp">
 
@@ -17,8 +17,8 @@
         android:gravity="center_horizontal|center"
         android:lineSpacingExtra="8sp"
         android:text="Project Name - Drama"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="@color/headline"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -56,7 +56,7 @@
         android:text="@string/character_empty_text"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        android:textColor="@color/content"
+        android:textColor="?android:attr/textColorSecondary"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -98,20 +98,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <!--<android.support.design.widget.FloatingActionButton
-        android:id="@+id/add_character_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:elevation="10dp"
-        android:src="@android:drawable/ic_input_add"
-        app:borderWidth="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/adView_char_list"
-        app:layout_constraintEnd_toEndOf="parent" /> -->
 
     <com.robertlevonyan.views.customfloatingactionbutton.FloatingLayout
         android:id="@+id/floating_layout"

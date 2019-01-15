@@ -88,27 +88,18 @@ public class OfflineStoryFragment extends Fragment {
     @OnClick(R.id.formatAlignLeft)
     public void setAlignLeft(View v) {
         mEditor.setAlignLeft();
-        //ivAlignLeft.setBackgroundColor(Color.GRAY);
-        //ivAlignCenter.setBackgroundColor(Color.WHITE);
-        //ivAlignRight.setBackgroundColor(Color.WHITE);
 
     }
 
     @OnClick(R.id.formatAlignCenter)
     public void setAlignCenter(View v) {
         mEditor.setAlignCenter();
-        //ivAlignLeft.setBackgroundColor(Color.WHITE);
-        //ivAlignCenter.setBackgroundColor(Color.GRAY);
-        //ivAlignRight.setBackgroundColor(Color.WHITE);
 
     }
 
     @OnClick(R.id.formatAlignRight)
     public void setAlignRight(View v) {
         mEditor.setAlignRight();
-        //ivAlignLeft.setBackgroundColor(Color.WHITE);
-        //ivAlignCenter.setBackgroundColor(Color.WHITE);
-        //ivAlignRight.setBackgroundColor(Color.GRAY);
 
     }
 
@@ -143,7 +134,6 @@ public class OfflineStoryFragment extends Fragment {
         mStory =  getStoryFromDB(view.getContext(), project_name);
         //Save button
         FloatingActionButton fab = view.findViewById(R.id.btnSaveStory);
-//        btnSaveStory.setVisibility(View.INVISIBLE);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -177,11 +167,9 @@ public class OfflineStoryFragment extends Fragment {
         mEditor.setOnTextChangeListener(new RichEditor.OnTextChangeListener() {
             @Override public void onTextChange(String text) {
                 mStory = text;
-//                btnSaveStory.setVisibility(View.VISIBLE);
             }
         });
 
-        //ivAlignLeft.setBackgroundColor(Color.GRAY);
 
         return view;
     }

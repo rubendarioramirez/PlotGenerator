@@ -80,55 +80,79 @@ public class ChallengeTemplateFragment extends Fragment  {
             question2Title.setText(getString(R.string.challenge_1_q2));
             question3Title.setText(getString(R.string.challenge_1_q3));
             question4Title.setText(getString(R.string.challenge_1_q4));
-            question1.setText(challenge_info.get(0));
-            question2.setText(challenge_info.get(1));
-            question3.setText(challenge_info.get(2));
-            question4.setText(challenge_info.get(3));
+            if(challenge_info.size()>0) {
+                question1.setText(challenge_info.get(0));
+                question2.setText(challenge_info.get(1));
+                question3.setText(challenge_info.get(2));
+                question4.setText(challenge_info.get(3));
+            } else {
+                default_questions_text();
+            }
         } else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_2_title))){
             question1Title.setText(getString(R.string.challenge_2_q1));
             question2Title.setText(getString(R.string.challenge_2_q2));
             question3Title.setText(getString(R.string.challenge_2_q3));
             question4Title.setText(getString(R.string.challenge_2_q4));
-            question1.setText(challenge_info.get(4));
-            question2.setText(challenge_info.get(5));
-            question3.setText(challenge_info.get(6));
-            question4.setText(challenge_info.get(7));
+            if(challenge_info.size()>0) {
+                question1.setText(challenge_info.get(4));
+                question2.setText(challenge_info.get(5));
+                question3.setText(challenge_info.get(6));
+                question4.setText(challenge_info.get(7));
+            }else {
+                default_questions_text();
+            }
         }else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_3_title))){
             question1Title.setText(getString(R.string.challenge_3_q1));
             question2Title.setText(getString(R.string.challenge_3_q2));
             question3Title.setText(getString(R.string.challenge_3_q3));
             question4Title.setText(getString(R.string.challenge_3_q4));
-            question1.setText(challenge_info.get(8));
-            question2.setText(challenge_info.get(9));
-            question3.setText(challenge_info.get(10));
-            question4.setText(challenge_info.get(11));
+            if(challenge_info.size()>0) {
+                question1.setText(challenge_info.get(8));
+                question2.setText(challenge_info.get(9));
+                question3.setText(challenge_info.get(10));
+                question4.setText(challenge_info.get(11));
+            }else {
+                default_questions_text();
+            }
         }else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_4_title))){
             question1Title.setText(getString(R.string.challenge_4_q1));
             question2Title.setText(getString(R.string.challenge_4_q2));
             question3Title.setText(getString(R.string.challenge_4_q3));
             question4Title.setText(getString(R.string.challenge_4_q4));
+            if(challenge_info.size()>0) {
             question1.setText(challenge_info.get(12));
             question2.setText(challenge_info.get(13));
             question3.setText(challenge_info.get(14));
             question4.setText(challenge_info.get(15));
+            }else {
+                default_questions_text();
+            }
         }else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_5_title))){
             question1Title.setText(getString(R.string.challenge_5_q1));
             question2Title.setText(getString(R.string.challenge_5_q2));
             question3Title.setText(getString(R.string.challenge_5_q3));
             question4Title.setText(getString(R.string.challenge_5_q4));
-            question1.setText(challenge_info.get(16));
-            question2.setText(challenge_info.get(17));
-            question3.setText(challenge_info.get(18));
-            question4.setText(challenge_info.get(19));
+            if(challenge_info.size()>0) {
+                question1.setText(challenge_info.get(16));
+                question2.setText(challenge_info.get(17));
+                question3.setText(challenge_info.get(18));
+                question4.setText(challenge_info.get(19));
+            }else {
+                default_questions_text();
+            }
         } else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_6_title))){
             question1Title.setText(getString(R.string.challenge_6_q1));
             question2Title.setText(getString(R.string.challenge_6_q2));
             question3Title.setText(getString(R.string.challenge_6_q3));
             question4Title.setText(getString(R.string.challenge_6_q4));
-            question1.setText(challenge_info.get(20));
-            question2.setText(challenge_info.get(21));
-            question3.setText(challenge_info.get(22));
-            question4.setText(challenge_info.get(23));
+            if(challenge_info.size()>0) {
+                question1.setText(challenge_info.get(20));
+                question2.setText(challenge_info.get(21));
+                question3.setText(challenge_info.get(22));
+                question4.setText(challenge_info.get(23));
+            }else {
+                default_questions_text();
+            }
         }
         else if(challenge_number.equals(getContext().getResources().getString(R.string.c1_mentor_title))){
             question1Title.setText(getString(R.string.c1_mentor_q1));
@@ -195,56 +219,56 @@ public class ChallengeTemplateFragment extends Fragment  {
         ContentValues values = new ContentValues();
         //Log challenges updated
         Bundle params = new Bundle();
-        if(challenge_number.equals("Challenge I") || challenge_number.equals("Desafio I")) {
+        if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_1_title))) {
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_EIR, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_EWR, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_EHP, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_EEF, question4.getText().toString());
             params.putString("Challenge", "challenge_1");
         }
-        else if(challenge_number.equals("Challenge II") || challenge_number.equals("Desafio II")){
+        else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_2_title))){
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C2Q1, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C2Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C2Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C2Q4, question4.getText().toString());
             params.putString("Challenge", "challenge_2");
-        }else if(challenge_number.equals("Challenge III") || challenge_number.equals("Desafio III")){
+        }else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_3_title))){
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C3Q1, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C3Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C3Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C3Q4, question4.getText().toString());
             params.putString("Challenge", "challenge_3");
-        }else if(challenge_number.equals("Challenge IV") || challenge_number.equals("Desafio IV")){
+        }else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_4_title))){
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C4Q1, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C4Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C4Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C4Q4, question4.getText().toString());
             params.putString("Challenge", "challenge_4");
-        }else if(challenge_number.equals("Challenge V") || challenge_number.equals("Desafio V")){
+        }else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_5_title))){
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C5Q1, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C5Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C5Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C5Q4, question4.getText().toString());
             params.putString("Challenge", "challenge_5");
-        }else if(challenge_number.equals("Challenge VI") || challenge_number.equals("Desafio VI")){
+        }else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_6_title))){
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C6Q1, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C6Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C6Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C6Q4, question4.getText().toString());
             params.putString("Challenge", "challenge_6");
-        }else if(challenge_number.equals("Mentor Challenge") || challenge_number.equals("Desafio del Mentor")){
+        }else if(challenge_number.equals(getContext().getResources().getString(R.string.c1_mentor_title))){
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_MENTOR_Q1, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_MENTOR_Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_MENTOR_Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_MENTOR_Q4, question4.getText().toString());
             params.putString("Challenge", "challenge_mentor");
-        } else if(challenge_number.equals("Antagonist Challenge") || challenge_number.equals("Desafio del Antagonista")){
+        } else if(challenge_number.equals(getContext().getResources().getString(R.string.c1_antagonist_title))){
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_ANTAGONIST_Q1, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_ANTAGONIST_Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_ANTAGONIST_Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_ANTAGONIST_Q4, question4.getText().toString());
             params.putString("Challenge", "challenge_antagonist");
-        }else if(challenge_number.equals("Sidekick Challenge") || challenge_number.equals("Desafio del Escudero")){
+        }else if(challenge_number.equals(getContext().getResources().getString(R.string.c1_sidekick_title))){
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_sidekick_Q1, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_sidekick_Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_sidekick_Q3, question3.getText().toString());
@@ -333,5 +357,11 @@ public class ChallengeTemplateFragment extends Fragment  {
 
     }
 
+    private void default_questions_text(){
+        question1.setText("Please refresh the challenge");
+        question2.setText("Please refresh the challenge");
+        question3.setText("Please refresh the challenge");
+        question4.setText("Please refresh the challenge");
+    }
 
 }
