@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -127,7 +128,6 @@ public class OfflineStoryFragment extends Fragment {
         ((MainActivity)getActivity()).setActionBarTitle("My Story");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_offline_story, container, false);
-        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
         ButterKnife.bind(this, view);
@@ -159,17 +159,30 @@ public class OfflineStoryFragment extends Fragment {
         int selectedTheme = Utils.getSharePref(view.getContext(), "selectedTheme", 0);
         if (selectedTheme == 0) {
             mEditor.setEditorFontColor(Color.BLACK);
+            mEditor.setBackgroundColor(getResources().getColor(R.color.background));
+            mEditor.setBackgroundColor(getResources().getColor(R.color.background));
         } else if (selectedTheme == 1) {
+            //DARK THEME
             mEditor.setEditorFontColor(Color.WHITE);
+            mEditor.setBackgroundColor(getResources().getColor(R.color.background_2));
+            mEditor.setTextBackgroundColor(getResources().getColor(R.color.background_2));
         } else if (selectedTheme == 2) {
+            //ROMANCE THEME
             mEditor.setEditorFontColor(Color.BLACK);
+            mEditor.setBackgroundColor(getResources().getColor(R.color.background_3));
+            mEditor.setTextBackgroundColor(getResources().getColor(R.color.background_3));
         } else if (selectedTheme == 3) {
+            //AUTUMN THEME
             mEditor.setEditorFontColor(Color.BLACK);
+            mEditor.setBackgroundColor(getResources().getColor(R.color.background_4));
+            mEditor.setTextBackgroundColor(getResources().getColor(R.color.background_4));
         }
 
 
 
         mEditor.setPadding(10, 10, 10, 10);
+//        mEditor.setScrollY(400);
+//        mEditor.setScrollBarFadeDuration(0);
         if(mStory.equals(""))
         {
             mEditor.setPlaceholder("Insert text here...");
@@ -183,7 +196,9 @@ public class OfflineStoryFragment extends Fragment {
 
         mEditor.setOnTextChangeListener(new RichEditor.OnTextChangeListener() {
             @Override public void onTextChange(String text) {
+
                 mStory = text;
+//                mEditor.scrollBy(0,500);
             }
         });
 
