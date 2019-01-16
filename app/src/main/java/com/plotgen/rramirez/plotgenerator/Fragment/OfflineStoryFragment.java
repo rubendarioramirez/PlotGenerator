@@ -181,8 +181,6 @@ public class OfflineStoryFragment extends Fragment {
 
 
         mEditor.setPadding(10, 10, 10, 10);
-//        mEditor.setScrollY(400);
-//        mEditor.setScrollBarFadeDuration(0);
         if(mStory.equals(""))
         {
             mEditor.setPlaceholder("Insert text here...");
@@ -198,7 +196,6 @@ public class OfflineStoryFragment extends Fragment {
             @Override public void onTextChange(String text) {
 
                 mStory = text;
-//                mEditor.scrollBy(0,500);
             }
         });
 
