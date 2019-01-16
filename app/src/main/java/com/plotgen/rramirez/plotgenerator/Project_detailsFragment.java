@@ -99,8 +99,10 @@ public class Project_detailsFragment extends Fragment {
                 project_name_et.setText(project_list_array.get(0));
                 project_name_et.setEnabled(false);
                 project_plot_et.setText(project_list_array.get(2));
-                if(!project_list_array.get(3).equalsIgnoreCase(null) && !project_list_array.get(3).equalsIgnoreCase(""))
-                project_icon_iv.setImageURI(Uri.parse(project_list_array.get(3)));
+
+                if(project_list_array.size()>3 && !project_list_array.get(3).equalsIgnoreCase(null) && !project_list_array.get(3).equalsIgnoreCase("")) {
+                    project_icon_iv.setImageURI(Uri.parse(project_list_array.get(3)));
+                }
                 project_description = getProject(myFragmentView.getContext(), project_name_text);
                 String project_genre = project_description.get(1);
                 //Set the proper spinner value
@@ -271,7 +273,8 @@ public class Project_detailsFragment extends Fragment {
             char_list.add(cursor.getString(cursor.getColumnIndex("project")));
             char_list.add(cursor.getString(cursor.getColumnIndex("genre")));
             char_list.add(cursor.getString(cursor.getColumnIndex("plot")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("image")));
+            if(cursor.getColumnIndex("image") != -1 && cursor.getString(cursor.getColumnIndex("image"))!=null)
+                char_list.add(cursor.getString(cursor.getColumnIndex("image")));
             cursor.moveToNext();
         }
         cursor.close();

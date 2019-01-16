@@ -1,6 +1,5 @@
 package com.plotgen.rramirez.plotgenerator;
 
-import android.support.v7.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
 import android.content.Context;
@@ -18,6 +17,7 @@ import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 
 import com.google.android.gms.ads.AdRequest;
@@ -64,7 +64,7 @@ public class Utils {
         return result;
     }
 
-    public static int getSharePref(Context context, String variable,int value) {
+    public static int getSharePref(Context context, String variable, int value) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         int result = preferences.getInt(variable, value);
         return result;
@@ -81,7 +81,8 @@ public class Utils {
             projects_list.add(cursor.getString(cursor.getColumnIndex("project")));
             projects_list.add(cursor.getString(cursor.getColumnIndex("genre")));
             projects_list.add(cursor.getString(cursor.getColumnIndex("plot")));
-            projects_list.add(cursor.getString(cursor.getColumnIndex("image")));
+            if (cursor.getColumnIndex("image") != -1 && cursor.getString(cursor.getColumnIndex("image")) != null)
+                projects_list.add(cursor.getString(cursor.getColumnIndex("image")));
 
             cursor.moveToNext();
         }
@@ -99,7 +100,9 @@ public class Utils {
         while (!cursor.isAfterLast()) {
             String id = cursor.getString(cursor.getColumnIndex("_id"));
             String project_name = cursor.getString(cursor.getColumnIndex("project"));
-            String image = cursor.getString(cursor.getColumnIndex("image"));
+            if (cursor.getColumnIndex("image") != -1 && cursor.getString(cursor.getColumnIndex("image")) != null) {
+                String image = cursor.getString(cursor.getColumnIndex("image"));
+            }
             projects_list.add(id + "_" + project_name);
             cursor.moveToNext();
         }
@@ -202,7 +205,7 @@ public class Utils {
         transaction.replace(R.id.flMain, nextFragment);
 //        transaction.addToBackStack(null);
         transaction.commit();
-       // transaction.commitAllowingStateLoss();
+        // transaction.commitAllowingStateLoss();
     }
 
     public static void showRateDialogForRate(final Context context) {
@@ -239,7 +242,6 @@ public class Utils {
                 .setNegativeButton(context.getString(R.string.rate_cancel), null);
         builder.show();
     }
-
 
 
     public static void showComingSoonPopup(final Context context) {
@@ -283,7 +285,7 @@ public class Utils {
                 selectionArgs = new String[]{
                         split[1]
                 };
-                Log.e("file path",getDataColumn(context, uri, selection, selectionArgs));
+                Log.e("file path", getDataColumn(context, uri, selection, selectionArgs));
                 return getDataColumn(context, uri, selection, selectionArgs);
             }
         } else if ("content".equalsIgnoreCase(uri.getScheme())) {
@@ -299,14 +301,14 @@ public class Utils {
                 cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs, null);
                 int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
                 if (cursor.moveToFirst()) {
-                    Log.e("file path",cursor.getString(column_index));
+                    Log.e("file path", cursor.getString(column_index));
                     return cursor.getString(column_index);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else if ("file".equalsIgnoreCase(uri.getScheme())) {
-            Log.e("file path",uri.getPath());
+            Log.e("file path", uri.getPath());
 
             return uri.getPath();
         }
@@ -324,9 +326,11 @@ public class Utils {
     private static boolean isMediaDocument(Uri uri) {
         return "com.android.providers.media.documents".equals(uri.getAuthority());
     }
+
     public static boolean isGooglePhotosUri(Uri uri) {
         return "com.google.android.apps.photos.contentprovider".equals(uri.getAuthority());
     }
+
     private static String getDataColumn(Context context, Uri uri, String selection,
                                         String[] selectionArgs) {
 
