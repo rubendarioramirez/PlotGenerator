@@ -172,7 +172,8 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
                 PROJECT_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 PROJECT_COLUMN_PROJECT + " TEXT, " +
                 PROJECT_COLUMN_GENRE + " TEXT, " +
-                PROJECT_COLUMN_PLOT + " TEXT " + ")");
+                PROJECT_COLUMN_PLOT + " TEXT, " +
+                PROJECT_COLUMN_IMAGE + " TEXT" + ")");
 
         sqLiteDatabase.execSQL("CREATE TABLE " + CHARACTER_TABLE_STORY + " (" +
                 STORY_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +

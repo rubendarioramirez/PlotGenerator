@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdView;
@@ -41,7 +42,6 @@ public class OfflineStoryFragment extends Fragment {
 
     @BindView(R.id.editor)
     RichEditor mEditor;
-
     @BindView(R.id.formatBold)
     ImageView ivBold;
     @BindView(R.id.formatItalic)
@@ -128,6 +128,8 @@ public class OfflineStoryFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_offline_story, container, false);
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
         ButterKnife.bind(this, view);
 
         final String project_info = this.getArguments().getString("project_info");
@@ -179,7 +181,6 @@ public class OfflineStoryFragment extends Fragment {
             mEditor.setHtml(mStory);
         }
 
-
         mEditor.setOnTextChangeListener(new RichEditor.OnTextChangeListener() {
             @Override public void onTextChange(String text) {
                 mStory = text;
@@ -187,8 +188,11 @@ public class OfflineStoryFragment extends Fragment {
         });
 
 
+
         return view;
     }
+
+
 
     public static String getStoryFromDB(Context context, String project_name){
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
