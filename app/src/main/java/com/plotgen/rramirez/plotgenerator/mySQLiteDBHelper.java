@@ -5,9 +5,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class mySQLiteDBHelper extends SQLiteOpenHelper {
-    //    Retail version it's 9
-    //private static final int DATABASE_VERSION = 9;
-    //private static final int DATABASE_VERSION = 10;
     private static final int DATABASE_VERSION = 11;
 
     //public static final String DATABASE_NAME = "test_database";
@@ -229,7 +226,7 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
                 break;
             case 11:
                 sqLiteDatabase.execSQL("ALTER TABLE projectname ADD COLUMN " + PROJECT_COLUMN_IMAGE + " TEXT");
-                sqLiteDatabase.execSQL("ALTER TABLE story ADD COLUMN " + STORY_COLUMN_IMAGE + " TEXT");
+//                sqLiteDatabase.execSQL("ALTER TABLE story ADD COLUMN " + STORY_COLUMN_IMAGE + " TEXT");
 
                 break;
         }

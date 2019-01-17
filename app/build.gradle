@@ -8,8 +8,8 @@ android {
         applicationId "com.plotgen.rramirez.plotgenerator"
         minSdkVersion 16
         targetSdkVersion 26
-        versionCode 49
-        versionName "5.3"
+        versionCode 51
+        versionName "5.5"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         lintOptions {

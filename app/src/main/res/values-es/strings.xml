@@ -120,6 +120,7 @@
     <string-array name="profession_array">
         <item>Vendedor</item>
         <item>Retirado</item>
+        <item>Desempleado</item>
         <item>Cajero</item>
         <item>Oficinista</item>
         <item>Enfermero</item>
@@ -489,6 +490,7 @@
     <string name="age_bio_2">años.</string>
     <string name="placebirth_bio">Nació en</string>
     <string name="job_bio">Trabaja de </string>
+    <string name="nojob_bio">por el momento esta </string>
     <string name="height_bio">Tiene</string>
     <string name="hair_bio_1">Con pelo</string>
     <string name="hair_bio_2">y</string>

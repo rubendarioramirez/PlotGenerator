@@ -148,7 +148,11 @@ public class BioFragment extends Fragment {
             StringBuffer bio_text = new StringBuffer();
             bio_text.append(name + " " + getString(R.string.age_bio_1) + "<br> " + age + " " + getString(R.string.age_bio_2) + "<br>");
             bio_text.append(getString(R.string.placebirth_bio) + "<br> " + placebirth + "<br>");
-            bio_text.append(getString(R.string.job_bio) + " " + job + "<br>");
+            if(job.equals("Arbeitslos") || job.equals("Desempleado") || job.equals("Desempleada") || job.equals("Unemployed")){
+                bio_text.append(getString(R.string.nojob_bio) + " " + job + "<br>");
+            } else {
+                bio_text.append(getString(R.string.job_bio) + " " + job + "<br>");
+            }
             bio_text.append(getString(R.string.height_bio) + " " + height + "<br>");
             bio_text.append(getString(R.string.hair_bio_1) + " " + haircolor + " " + getString(R.string.hair_bio_2));
             bio_text.append(" " + getString(R.string.eyes_bio) + " " + eyecolor + "<br>");

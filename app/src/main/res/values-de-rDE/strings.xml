@@ -117,6 +117,7 @@ Erstelle jetzt neue Charaktere.</string>
 <string name="bodybuild_bio">Man könnte sagen, es sieht mehr aus wie</string>
 
 <string name="job_bio">Arbeitet als</string>
+<string name="nojob_bio">Arbeitet als</string>
 <string name="male_desire_bio">In seiner Vorstellung wäre er lieber </string>
 <string name="male_need_bio">Aber ist es das, was er wirklich will? Oder braucht er eigentlich</string>
 <string name="male_moment_bio">Über seine Kindheit wissen wir, dass er</string>
@@ -210,6 +211,7 @@ Erstelle jetzt neue Charaktere.</string>
 <string-array name="profession_array">
 <item>Einzelhandelverkäufer/in</item>
 <item>Kassierer/in</item>
+<item>Arbeitslos</item>
 <item>Büroangestellte/r</item>
 <item>Krankenpfleger/in</item>
 <item>Bedienung</item>

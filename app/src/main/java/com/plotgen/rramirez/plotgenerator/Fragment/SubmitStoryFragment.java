@@ -114,9 +114,7 @@ public class SubmitStoryFragment extends Fragment {
 
         mDatabase = FirebaseDatabase.getInstance();
         mReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name));
-        //mReference = mDatabase.getReference().child("Weekly_Challenge_Beta");
 
-        //tvEmail.setText(Common.currentUser.getName());
         if (Common.currentChallenge != null) {
             etTitle.setText(Common.currentChallenge.getName());
             etTitle.setFocusable(false);

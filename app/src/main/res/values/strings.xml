@@ -132,6 +132,7 @@
     <string name="bodybuild_bio">One could say that looks rather</string>
 
     <string name="job_bio">Works as</string>
+    <string name="nojob_bio">at the moment is</string>
     <string name="male_desire_bio">In his mind he wants </string>
     <string name="male_need_bio">But is that what he really wants? Or he actually needs</string>
     <string name="male_moment_bio">About his childhood we know that he</string>
@@ -225,6 +226,7 @@
     <string-array name="profession_array">
         <item>Retail salespersons</item>
         <item>Retired</item>
+        <item>Unemployed</item>
         <item>Cashier</item>
         <item>Office clerk</item>
         <item>Nurse</item>
