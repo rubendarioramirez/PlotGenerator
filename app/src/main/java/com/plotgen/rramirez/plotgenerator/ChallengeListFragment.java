@@ -39,6 +39,7 @@ public class ChallengeListFragment extends Fragment {
         final String char_name = this.getArguments().getString("char_name");
         final String project_name = this.getArguments().getString("project_name");
         final String role = this.getArguments().getString("role");
+        final String gender = this.getArguments().getString("gender");
         // Inflate the layout for this fragment
         View myFragmentView =  inflater.inflate(R.layout.fragment_challenge, container, false);
 
@@ -64,16 +65,51 @@ public class ChallengeListFragment extends Fragment {
                 break;
         }
         //Generic list
+        //TODO EDIT Challenges to show the character name and proper gender
         mlist.add(new item_herojourney(R.drawable.typewriter, getString(R.string.challenge_1_title), (String) getString(R.string.challenge_1_desc), (String) getString(R.string.challenge_1_desc_long),(String) char_name, (String) project_name));
         mlist.add(new item_herojourney(R.drawable.typewriter, getString(R.string.challenge_2_title), (String) getString(R.string.challenge_2_desc), (String) getString(R.string.challenge_2_desc_long),(String) char_name, (String) project_name));
         mlist.add(new item_herojourney(R.drawable.typewriter, getString(R.string.challenge_3_title), (String) getString(R.string.challenge_3_desc), (String) getString(R.string.challenge_3_desc_long),(String) char_name, (String) project_name));
         mlist.add(new item_herojourney(R.drawable.typewriter, getString(R.string.challenge_4_title), (String) getString(R.string.challenge_4_desc), (String) getString(R.string.challenge_4_desc_long),(String) char_name, (String) project_name));
         mlist.add(new item_herojourney(R.drawable.typewriter, getString(R.string.challenge_5_title), (String) getString(R.string.challenge_5_desc), (String) getString(R.string.challenge_5_desc_long),(String) char_name, (String) project_name));
         mlist.add(new item_herojourney(R.drawable.typewriter, getString(R.string.challenge_6_title), (String) getString(R.string.challenge_6_desc), (String) getString(R.string.challenge_6_desc_long),(String) char_name, (String) project_name));
-        mlist.add(new item_herojourney(R.drawable.typewriter, getString(R.string.challenge_7_title), (String) getString(R.string.challenge_7_desc), (String) getString(R.string.challenge_7_desc_long),(String) char_name, (String) project_name));
+
+
+        String challenge7RawString = getString(R.string.challenge_7_desc_long);
+        String result_c7 = challenge7RawString.replace("$char_name$", char_name);
+
+        String challenge8RawString = getString(R.string.challenge_8_desc_long);
+        String result_c8 = challenge8RawString.replace("$char_name$", char_name);
+
+        switch (gender) {
+            case "Female":
+            case "Femenino":
+                //TODO ADD GERMAN CASE
+                String female_c7 = result_c7.replace("$gender$", getString(R.string.gender_female_article));
+                String female_c8 = result_c8.replace("$gender$", getString(R.string.gender_female_article));
+
+                mlist.add(new item_herojourney(R.drawable.typewriter, getString(R.string.challenge_7_title), getString(R.string.challenge_7_desc), female_c7 , char_name,  project_name));
+                mlist.add(new item_herojourney(R.drawable.typewriter, getString(R.string.challenge_8_title), getString(R.string.challenge_8_desc),  female_c8, char_name, project_name));
+
+                break;
+            case "Male":
+            case "Masculino":
+                //TODO ADD GERMAN CASE
+                String male_c7 = result_c7.replace("$gender$", getString(R.string.gender_male_article));
+                String male_c8 = result_c8.replace("$gender$", getString(R.string.gender_male_article));
+                mlist.add(new item_herojourney(R.drawable.typewriter, getString(R.string.challenge_7_title), getString(R.string.challenge_7_desc), male_c7 , char_name,  project_name));
+                mlist.add(new item_herojourney(R.drawable.typewriter, getString(R.string.challenge_8_title), getString(R.string.challenge_8_desc),  male_c8, char_name, project_name));
+        }
+
+
+
+
+
+
+
+
+
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-
         return myFragmentView;
     }
 

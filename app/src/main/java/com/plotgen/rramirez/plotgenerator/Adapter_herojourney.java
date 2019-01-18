@@ -2,6 +2,7 @@ package com.plotgen.rramirez.plotgenerator;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -98,88 +99,24 @@ public class Adapter_herojourney extends RecyclerView.Adapter<Adapter_herojourne
             String clicked = mData.get(getAdapterPosition()).getHerojourney_title();
             String charName = mData.get(getAdapterPosition()).getHerojourneyChar();
             String projectName = mData.get(getAdapterPosition()).getHerojourneyProject();
-            if(clicked.equals(view.getContext().getResources().getString(R.string.challenge_1_title))){
-                nextFragment(mContext,charName,projectName,clicked);
-            } else if (clicked.equals(view.getContext().getResources().getString(R.string.challenge_2_title))){
-                nextFragment(mContext,charName,projectName,clicked);
-            } else if (clicked.equals(view.getContext().getResources().getString(R.string.challenge_3_title))){
-                nextFragment(mContext,charName,projectName,clicked);
-            } else if (clicked.equals(view.getContext().getResources().getString(R.string.challenge_4_title))){
-                nextFragment(mContext,charName,projectName,clicked);
-            }  else if (clicked.equals(view.getContext().getResources().getString(R.string.challenge_5_title))) {
-                nextFragment(mContext,charName,projectName,clicked);
-            } else if (clicked.equals(view.getContext().getResources().getString(R.string.challenge_6_title))) {
-                nextFragment(mContext,charName,projectName,clicked);
-            }
-            else if (clicked.equals(view.getContext().getResources().getString(R.string.c1_mentor_title))) {
-                if(challenge_unlock == 0){
-                    if (mRewardedVideoAd.isLoaded()) {
-                        mRewardedVideoAd.show();
-                    }
-                }else {
-                    nextFragment(mContext,charName,projectName,clicked);
-                }
-            }else if (clicked.equals(view.getContext().getResources().getString(R.string.c1_antagonist_title))) {
-                if(challenge_unlock == 0){
-                    if (mRewardedVideoAd.isLoaded()) {
-                        mRewardedVideoAd.show();
-                    }
-                }else {
-                    nextFragment(mContext,charName,projectName,clicked);
-                }
-            }else if (clicked.equals(view.getContext().getResources().getString(R.string.c1_sidekick_title))) {
-                if(challenge_unlock == 0){
-                    if (mRewardedVideoAd.isLoaded()) {
-                        mRewardedVideoAd.show();
-                    }
-                }else {
-                    nextFragment(mContext,charName,projectName,clicked);
-                }
-            }
-            else if (clicked.equals(view.getContext().getResources().getString(R.string.char_guide_title))){
+            nextFragment(mContext,charName,projectName,clicked);
+             if (clicked.equals(view.getContext().getResources().getString(R.string.char_guide_title))){
                     //Send it to the next fragment
                     GuideRoleFragment nextFragment = new GuideRoleFragment();
-                    //Make the transaction
-                    AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                    FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-                    transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
-                    transaction.addToBackStack(null);
-                    transaction.replace(R.id.flMain,nextFragment);
-                    transaction.commit();
+                    nextGuideFragment(view,nextFragment);
             }else if (clicked.equals(view.getContext().getResources().getString(R.string.lajos_character_title))){
                     //Send it to the next fragment
                     GuideLajosFragment nextFragment = new GuideLajosFragment();
-                    //Make the transaction
-                    AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                    FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-                    transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
-                    transaction.addToBackStack(null);
-                    transaction.replace(R.id.flMain,nextFragment);
-                    transaction.commit();
+                 nextGuideFragment(view,nextFragment);
             }else if (clicked.equals(view.getContext().getResources().getString(R.string.change_arc_title))){
                     //Send it to the next fragment
                     GuideWeilandFragment nextFragment = new GuideWeilandFragment();
-                    //Make the transaction
-                    AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                    FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-                    transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
-                    transaction.addToBackStack(null);
-                    transaction.replace(R.id.flMain,nextFragment);
-                    transaction.commit();
+                    nextGuideFragment(view,nextFragment);
             }else if (clicked.equals(view.getContext().getResources().getString(R.string.antagonist_guide_title))){
                 //Send it to the next fragment
                 AntagonistFragment nextFragment = new AntagonistFragment();
-                //Make the transaction
-                AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-                transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
-                transaction.addToBackStack(null);
-                transaction.replace(R.id.flMain,nextFragment);
-                transaction.commit();
+                nextGuideFragment(view,nextFragment);
             }
-
-
-
         }
     }
 
@@ -195,9 +132,19 @@ public class Adapter_herojourney extends RecyclerView.Adapter<Adapter_herojourne
         AppCompatActivity activity = (AppCompatActivity) context;
         FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
-        //transaction.addToBackStack(null);
         transaction.replace(R.id.flMain, nextFragment);
         transaction.commit();
+        }
+
+
+        public void nextGuideFragment(View view, Fragment nextFragment){
+            //Make the transaction
+            AppCompatActivity activity = (AppCompatActivity) view.getContext();
+            FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+            transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
+            transaction.replace(R.id.flMain,nextFragment);
+            transaction.commit();
+
         }
 
     private void loadRewardedVideoAd(Context mContext) {

@@ -5,8 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class mySQLiteDBHelper extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 11;
-
+//  private static final int DATABASE_VERSION = 11;
+    private static final int DATABASE_VERSION = 12;
     //public static final String DATABASE_NAME = "test_database";
     public static final String DATABASE_NAME = "production_database";
     public static final String CHARACTER_TABLE_CHARACTER = "character";
@@ -81,6 +81,16 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
     public static final String CHARACTER_COLUMN_C6Q2 = "challenge_6_q2";
     public static final String CHARACTER_COLUMN_C6Q3 = "challenge_6_q3";
     public static final String CHARACTER_COLUMN_C6Q4 = "challenge_6_q4";
+    //Challenge VII.
+    public static final String CHARACTER_COLUMN_C7Q1 = "challenge_7_q1";
+    public static final String CHARACTER_COLUMN_C7Q2 = "challenge_7_q2";
+    public static final String CHARACTER_COLUMN_C7Q3 = "challenge_7_q3";
+    public static final String CHARACTER_COLUMN_C7Q4 = "challenge_7_q4";
+    //Challenge VIII.
+    public static final String CHARACTER_COLUMN_C8Q1 = "challenge_8_q1";
+    public static final String CHARACTER_COLUMN_C8Q2 = "challenge_8_q2";
+    public static final String CHARACTER_COLUMN_C8Q3 = "challenge_8_q3";
+    public static final String CHARACTER_COLUMN_C8Q4 = "challenge_8_q4";
     //Mentor Challenge.
     public static final String CHARACTER_COLUMN_C1_MENTOR_Q1 = "c1_mentor_q1";
     public static final String CHARACTER_COLUMN_C1_MENTOR_Q2 = "c1_mentor_q2";
@@ -149,6 +159,14 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
                 CHARACTER_COLUMN_C6Q2 + " TEXT, " +
                 CHARACTER_COLUMN_C6Q3 + " TEXT, " +
                 CHARACTER_COLUMN_C6Q4 + " TEXT, " +
+                CHARACTER_COLUMN_C7Q1 + " TEXT, " +
+                CHARACTER_COLUMN_C7Q2 + " TEXT, " +
+                CHARACTER_COLUMN_C7Q3 + " TEXT, " +
+                CHARACTER_COLUMN_C7Q4 + " TEXT, " +
+                CHARACTER_COLUMN_C8Q1 + " TEXT, " +
+                CHARACTER_COLUMN_C8Q2 + " TEXT, " +
+                CHARACTER_COLUMN_C8Q3 + " TEXT, " +
+                CHARACTER_COLUMN_C8Q4 + " TEXT, " +
                 CHARACTER_COLUMN_C1_MENTOR_Q1 + " TEXT, " +
                 CHARACTER_COLUMN_C1_MENTOR_Q2 + " TEXT, " +
                 CHARACTER_COLUMN_C1_MENTOR_Q3 + " TEXT, " +
@@ -226,7 +244,17 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
                 break;
             case 11:
                 sqLiteDatabase.execSQL("ALTER TABLE projectname ADD COLUMN " + PROJECT_COLUMN_IMAGE + " TEXT");
-//                sqLiteDatabase.execSQL("ALTER TABLE story ADD COLUMN " + STORY_COLUMN_IMAGE + " TEXT");
+                break;
+            case 12:
+                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_7_q1 TEXT");
+                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_7_q2 TEXT");
+                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_7_q3 TEXT");
+                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_7_q4 TEXT");
+
+                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_8_q1 TEXT");
+                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_8_q2 TEXT");
+                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_8_q3 TEXT");
+                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_8_q4 TEXT");
 
                 break;
         }

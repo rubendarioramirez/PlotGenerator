@@ -68,7 +68,7 @@
         sobre la naturaleza humana,\n es que cambia.\n      Oscar Wilde</string>
     <string name="home_tab">Principal</string>
     <string name="home_header">Enfocate en escribir…</string>
-    <string name="home_desc">Si amas escribir, entonces estas en el lugar correcto.\nHice esta aplicación porque amo escribir, y por eso se lo que es estar bloqueado, perdido o simplemente perder el foco.\nEn realidad, hice esta aplicación para mi, pero creo que puede ayudarte también.\nHay tres cosas que te pueden interesar por el momento.\n\nDisparadores, cuando estes perdido o no sepas como empezar, dales una mirada. \nA veces una simple oración puede hacer volar tu imaginación. Y no te preocupes, voy a poner nuevos todas las semanas.\n\nEl camino del héroe. Si no lo leiste, deberias correr a hacerlo! El hero de las mil caras es el legado que Joseph Campbell le dejo a los escritores. \nSin embargo, si queres refrescar la memoria, o si queres ir derecho a lo que significa, mira la seccion El camino del héroe, contiene todo lo que tenes que saber para comenzar o pulir tu historia.
+    <string name="home_desc">Si amas escribir, entonces estas en el lugar correcto.\nHice esta aplicación porque amo escribir, y por eso se lo que es estar bloqueado, perdido o simplemente perder el foco.\nEn realidad, hice esta aplicación para mi, pero creo que puede ayudarte también.\nHay tres cosas que te pueden interesar por el momento.\n\nDisparadores, cuando estes perdido o no sepas como empezar, dales una mirada. \nA veces una simple oración puede hacer volar tu imaginación. Y no te preocupes, voy a poner nuevos todas las semanas.\n\nEl camino del héroe. Si no lo leiste, deberias correr a hacerlo! El hero de las mil caras es el legado que Joseph Campbell le dejo a los escritores. \nSin embargo, si queres refrescar la memoria, o si queres ir derecho a lo que significa, mira la seccion El camino del héroe, contiene todo lo que tienes que saber para comenzar o pulir tu historia.
         \n\nPor último pero no menos importante, el TALLER. Ahí podes crear tu novela o guion, crear personajes (tantos como sea necesario) y no te preocupes si estas bloqueado, el generador de personajes te tiene cubierto. \n\nFeliz escritura!</string>
 
     <!--Projects String-->
@@ -557,6 +557,20 @@
     <string name="challenge_6_bio_desc_2">¿Hay una foto en su billetera/cartera?</string>
     <string name="challenge_6_bio_desc_3">Sobre el llavero</string>
     <string name="challenge_6_bio_desc_4">Acerca de su telefono móvil</string>
+    <!--Challenge VII BIO-->
+    <string name="challenge_7_bio_title">¿Qué esta en juego?</string>
+    <string name="challenge_7_bio_subtitle">¿Por qué nos importa si el personaje vive o muere? Si quieres que le importe a tu audiencia, entonces tienes que conseguir que sea importante.</string>
+    <string name="challenge_7_bio_desc_1">¿Cual es la decision mas imporante que debe tomar?</string>
+    <string name="challenge_7_bio_desc_2">¿Cuales son las consecuencias externas de estas deciciones?</string>
+    <string name="challenge_7_bio_desc_3">¿La interna?</string>
+    <string name="challenge_7_bio_desc_4">¿Filosoficamente?</string>
+    <!--Challenge VIII BIO-->
+    <string name="challenge_8_bio_title">¿Cómo es la casa?</string>
+    <string name="challenge_8_bio_subtitle">Como vives dice mucho sobre quien eres. Para tu personaje, esto no es la excepción.</string>
+    <string name="challenge_8_bio_desc_1">¿Qué tipo de lugar es?</string>
+    <string name="challenge_8_bio_desc_2">¿Qué hay dentro?</string>
+    <string name="challenge_8_bio_desc_3">Sobre el dormitorio</string>
+    <string name="challenge_8_bio_desc_4">¿Qué puede verse desde las ventanas?</string>
     <!--Mentor Challenge-->
     <string name="c1_mentor_title">Desafio del Mentor</string>
     <string name="c1_mentor_desc">Conoce a tu mentor.</string>
@@ -715,11 +729,22 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="c1_sidekick_q2">¿Por qué los objetivos de tu protagonista son tan fuertes que el escudero decide adoptarlos como propios?</string>
     <string name="c1_sidekick_q3">¿Cuales son las tacticas, herramientas o armas que le provee al protagonista? ¿Como lo protegera o defendera?</string>
     <string name="c1_sidekick_q4">Algunos escuderos tienen momentos donde deben decidir si vale la pena sacrificar sus vidas por el protagonista. ¿Es el caso del tuyo? ¿Cual es la cosa mas preciada que sacrificara por el protagonista? ¿Séra su propia vida?</string>
-    <!--Coming Soon Challenge-->
+    <!--Stakes Challenge-->
     <string name="challenge_7_title">Desafio VII</string>
-    <string name="challenge_7_desc">Muy pronto</string>
-    <string name="challenge_7_desc_long">Actualmente estoy trabajando en mas desafios. No dudes en enviarme tus sugerencias.</string>
-
+    <string name="challenge_7_desc">¿Qué hay en juego?</string>
+    <string name="challenge_7_desc_long">¿Por qué nos importa $char_name$? ¿Qué puede ocurrir si a $gender$ le va mal? ¿Cuan importante es $char_name$ para la audiencia?</string>
+    <string name="challenge_7_q1">Piensa en la decision mas importante que $char_name$ tenga que tomar. ¿Qué esta en juego en ese momento?</string>
+    <string name="challenge_7_q2">Lo que esta en juego puede ser externo o interno. Piensa en las consecuencias externas de no cumplir con el objetivo. ¿Explotara el mundo? ¿Morira alguien? Por ejemplo en la pélicula \"Valiente\" la madre de la protagonista sera un oso para siempre si el hechizo no se rompe.</string>
+    <string name="challenge_7_q3">Ahora considera internamente, ¿Cuales seran las consecuencias morales o psicologicas para $char_name$ si el objectivo no es alcanzado? Olvidate de los traumas, piensa en algo mas profundo. ¿Séra posible para $char_name$ sobreponerse al fracaso?</string>
+    <string name="challenge_7_q4">Finalmente, filosoficamente ¿Qué es lo que esta en juego? Si la madre de los dragones no detiene a los caminantes el mundo sera conquistado por el terror y la maldad. ¿Qué ocurriria en el caso de $char_name$\?</string>
+    <!--Challenge 8 -->
+    <string name="challenge_8_title">Desafio VIII</string>
+    <string name="challenge_8_desc">¿Cómo vive?</string>
+    <string name="challenge_8_desc_long">Dime como vives y te dire quien eres.\n\nElabora como $char_name$ vive y donde.</string>
+    <string name="challenge_8_q1">¿Acaso $char_name$ vive en una casa o en un departamento? ¿Tal vez es un granero o tal solo un cuarto?.</string>
+    <string name="challenge_8_q2">$char_name$ se para en medio del cuarto mas grande, ¿Qué es lo que ve? ¿Qué hay en las ventanas? ¿Quien puso eso ahí?.</string>
+    <string name="challenge_8_q3">Vé al dormitorio, ¿Cómo es? ¿Tiene una cama doble? ¿Es una simple? ¿Esta la cama hecha? ¿Acaso hay alguien en la cama?</string>
+    <string name="challenge_8_q4">Abre las ventanas, todas ellas. ¿Qué es lo que $char_name$ ve desde ahí? ¿Puede verlo la gente? ¿Puede escucharse el ruido de la calle? ¿Qué tan ruidoso es ese lugar?</string>
 
     <!--GUIDE ME Strings-->
     <string name="char_guide_title">Roles de personajes tipicos</string>
@@ -910,5 +935,11 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="invitation_message">This story is terrific, give it a try</string>
     <string name="invitation_deep_link">com.plotgen..page.link</string>
     <string name="invitation_cta">Read</string>
+
+
+    <string name="gender_male_article">el</string>
+    <string name="gender_female_article">ella</string>
+    <string name="gender_male_posesive">su</string>
+    <string name="gender_female_posesive">su</string>
 
 </resources>

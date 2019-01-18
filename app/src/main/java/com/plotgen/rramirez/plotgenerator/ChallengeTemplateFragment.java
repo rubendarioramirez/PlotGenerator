@@ -74,6 +74,7 @@ public class ChallengeTemplateFragment extends Fragment  {
         ((MainActivity)getActivity()).setActionBarTitle(project_name);
         challenge_info = getDescription(myFragmentView.getContext(),char_name);
         charTemplateTitle.setText(char_name);
+        String short_name = char_name.split(" ")[0];
         //Set titles for challenge one
         if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_1_title))) {
             question1Title.setText(getString(R.string.challenge_1_q1));
@@ -153,34 +154,60 @@ public class ChallengeTemplateFragment extends Fragment  {
             }else {
                 default_questions_text();
             }
+        } else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_7_title))){
+            question1Title.setText(getString(R.string.challenge_7_q1).replace("$char_name$", short_name));
+            question2Title.setText(getString(R.string.challenge_7_q2).replace("$char_name$", short_name));
+            question3Title.setText(getString(R.string.challenge_7_q3).replace("$char_name$", short_name));
+            question4Title.setText(getString(R.string.challenge_7_q4).replace("$char_name$", short_name));
+            if(challenge_info.size()>0) {
+                question1.setText(challenge_info.get(24));
+                question2.setText(challenge_info.get(25));
+                question3.setText(challenge_info.get(26));
+                question4.setText(challenge_info.get(27));
+            }else {
+                default_questions_text();
+            }
+        }else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_8_title))){
+            question1Title.setText(getString(R.string.challenge_8_q1).replace("$char_name$", short_name));
+            question2Title.setText(getString(R.string.challenge_8_q2).replace("$char_name$", short_name));
+            question3Title.setText(getString(R.string.challenge_8_q3).replace("$char_name$", short_name));
+            question4Title.setText(getString(R.string.challenge_8_q4).replace("$char_name$", short_name));
+            if(challenge_info.size()>0) {
+                question1.setText(challenge_info.get(28));
+                question2.setText(challenge_info.get(29));
+                question3.setText(challenge_info.get(30));
+                question4.setText(challenge_info.get(31));
+            }else {
+                default_questions_text();
+            }
         }
         else if(challenge_number.equals(getContext().getResources().getString(R.string.c1_mentor_title))){
             question1Title.setText(getString(R.string.c1_mentor_q1));
             question2Title.setText(getString(R.string.c1_mentor_q2));
             question3Title.setText(getString(R.string.c1_mentor_q3));
             question4Title.setText(getString(R.string.c1_mentor_q4));
-            question1.setText(challenge_info.get(24));
-            question2.setText(challenge_info.get(25));
-            question3.setText(challenge_info.get(26));
-            question4.setText(challenge_info.get(27));
+            question1.setText(challenge_info.get(32));
+            question2.setText(challenge_info.get(33));
+            question3.setText(challenge_info.get(34));
+            question4.setText(challenge_info.get(35));
         } else if(challenge_number.equals(getContext().getResources().getString(R.string.c1_antagonist_title))){
             question1Title.setText(getString(R.string.c1_antagonist_q1));
             question2Title.setText(getString(R.string.c1_antagonist_q2));
             question3Title.setText(getString(R.string.c1_antagonist_q3));
             question4Title.setText(getString(R.string.c1_antagonist_q4));
-            question1.setText(challenge_info.get(28));
-            question2.setText(challenge_info.get(29));
-            question3.setText(challenge_info.get(30));
-            question4.setText(challenge_info.get(31));
+            question1.setText(challenge_info.get(36));
+            question2.setText(challenge_info.get(37));
+            question3.setText(challenge_info.get(38));
+            question4.setText(challenge_info.get(39));
         }else if(challenge_number.equals(getContext().getResources().getString(R.string.c1_sidekick_title))){
             question1Title.setText(getString(R.string.c1_sidekick_q1));
             question2Title.setText(getString(R.string.c1_sidekick_q2));
             question3Title.setText(getString(R.string.c1_sidekick_q3));
             question4Title.setText(getString(R.string.c1_sidekick_q4));
-            question1.setText(challenge_info.get(32));
-            question2.setText(challenge_info.get(33));
-            question3.setText(challenge_info.get(34));
-            question4.setText(challenge_info.get(35));
+            question1.setText(challenge_info.get(40));
+            question2.setText(challenge_info.get(41));
+            question3.setText(challenge_info.get(42));
+            question4.setText(challenge_info.get(43));
         }
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -256,7 +283,20 @@ public class ChallengeTemplateFragment extends Fragment  {
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C6Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C6Q4, question4.getText().toString());
             params.putString("Challenge", "challenge_6");
-        }else if(challenge_number.equals(getContext().getResources().getString(R.string.c1_mentor_title))){
+        }else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_7_title))){
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C7Q1, question1.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C7Q2, question2.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C7Q3, question3.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C7Q4, question4.getText().toString());
+            params.putString("Challenge", "challenge_7");
+        }else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_8_title))){
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C8Q1, question1.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C8Q2, question2.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C8Q3, question3.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C8Q4, question4.getText().toString());
+            params.putString("Challenge", "challenge_8");
+        }
+        else if(challenge_number.equals(getContext().getResources().getString(R.string.c1_mentor_title))){
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_MENTOR_Q1, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_MENTOR_Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_MENTOR_Q3, question3.getText().toString());
@@ -320,6 +360,16 @@ public class ChallengeTemplateFragment extends Fragment  {
             char_list.add(cursor.getString(cursor.getColumnIndex("challenge_6_q2")));
             char_list.add(cursor.getString(cursor.getColumnIndex("challenge_6_q3")));
             char_list.add(cursor.getString(cursor.getColumnIndex("challenge_6_q4")));
+            //Seventh Challenge
+            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_7_q1")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_7_q2")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_7_q3")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_7_q4")));
+            //Eight Challenge
+            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_8_q1")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_8_q2")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_8_q3")));
+            char_list.add(cursor.getString(cursor.getColumnIndex("challenge_8_q4")));
             //Mentor Challenge
             char_list.add(cursor.getString(cursor.getColumnIndex("c1_mentor_q1")));
             char_list.add(cursor.getString(cursor.getColumnIndex("c1_mentor_q2")));

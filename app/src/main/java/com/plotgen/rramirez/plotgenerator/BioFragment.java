@@ -26,7 +26,7 @@ import java.util.ArrayList;
  */
 public class BioFragment extends Fragment {
 
-    TextView title, role_subtitle, intro_tv, char_role_challenge, character_bio_challenge, character_bio_challenge_2, character_bio_challenge_3, character_bio_challenge_4, character_bio_challenge_5, character_bio_challenge_6;
+    TextView title, role_subtitle, intro_tv, char_role_challenge, character_bio_challenge;
     ArrayList<String> char_description;
     ImageButton character_bio_edit_btn, character_bio_share_btn, guide_btn, character_bio_challenge_btn;
     private FirebaseAnalytics mFirebaseAnalytics;
@@ -56,11 +56,6 @@ public class BioFragment extends Fragment {
         role_subtitle = myFragmentView.findViewById(R.id.character_bio_role_title);
         intro_tv = myFragmentView.findViewById(R.id.character_bio_intro);
         character_bio_challenge = myFragmentView.findViewById(R.id.character_bio_challenge);
-        character_bio_challenge_2 = myFragmentView.findViewById(R.id.character_bio_challenge_2);
-        character_bio_challenge_3 = myFragmentView.findViewById(R.id.character_bio_challenge_3);
-        character_bio_challenge_4 = myFragmentView.findViewById(R.id.character_bio_challenge_4);
-        character_bio_challenge_5 = myFragmentView.findViewById(R.id.character_bio_challenge_5);
-        character_bio_challenge_6 = myFragmentView.findViewById(R.id.character_bio_challenge_6);
         character_bio_edit_btn = myFragmentView.findViewById(R.id.character_bio_edit_btn);
         character_bio_share_btn = myFragmentView.findViewById(R.id.character_bio_share_btn);
         character_bio_challenge_btn = myFragmentView.findViewById(R.id.bio_fragment_challenge_btn);
@@ -73,7 +68,7 @@ public class BioFragment extends Fragment {
         if (char_description.size() > 0) {
             String name = char_description.get(0);
             String age = char_description.get(1);
-            String gender = char_description.get(2);
+            final String gender = char_description.get(2);
             String placebirth = char_description.get(3);
             String job = char_description.get(4);
             String height = char_description.get(5);
@@ -134,16 +129,21 @@ public class BioFragment extends Fragment {
             String c1_sidekick_q2 = char_description.get(51);
             String c1_sidekick_q3 = char_description.get(52);
             String c1_sidekick_q4 = char_description.get(53);
+            //Seventh challenge
+            String challenge7_q1 = char_description.get(54);
+            String challenge7_q2 = char_description.get(55);
+            String challenge7_q3 = char_description.get(56);
+            String challenge7_q4 = char_description.get(57);
+            //Eight challenge
+            String challenge8_q1 = char_description.get(58);
+            String challenge8_q2 = char_description.get(59);
+            String challenge8_q3 = char_description.get(60);
+            String challenge8_q4 = char_description.get(61);
 
 
             //Titles
-            title.setText(char_name.toString());
-            role_subtitle.setText(role.toString());
-
-            //Remove challenges textView if they're empty
-            character_bio_challenge_2.setVisibility(View.INVISIBLE);
-            character_bio_challenge_3.setVisibility(View.INVISIBLE);
-            character_bio_challenge_4.setVisibility(View.INVISIBLE);
+            title.setText(char_name);
+            role_subtitle.setText(role);
 
             StringBuffer bio_text = new StringBuffer();
             bio_text.append(name + " " + getString(R.string.age_bio_1) + "<br> " + age + " " + getString(R.string.age_bio_2) + "<br>");
@@ -224,68 +224,74 @@ public class BioFragment extends Fragment {
                     break;
             }
 
+            StringBuffer sb = new StringBuffer();
             if (firstReaction != null) {
-                StringBuffer sb = new StringBuffer();
                 sb.append("<b>" + getString(R.string.challenge_1_bio_title) + "</b>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_1_bio_desc_1) + "</b></i><br> " + firstReaction);
                 sb.append("<br><i><b>" + getString(R.string.challenge_1_bio_desc_2) + "</b></i><br> " + waitRescue);
                 sb.append("<br><i><b>" + getString(R.string.challenge_1_bio_desc_3) + "</b></i><br> " + helpPartner);
                 sb.append("<br><i><b>" + getString(R.string.challenge_1_bio_desc_4) + "</b></i><br> " + escapeFirst);
-                character_bio_challenge.setText(Html.fromHtml(sb.toString()));
+                sb.append("<br><br>");
             }
             if (challenge2_q1 != null) {
-                StringBuffer sb = new StringBuffer();
                 sb.append("<br><b>" + getString(R.string.challenge_2_bio_title) + "</b> " + getString(R.string.challenge_2_bio_subtitle) + " <br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_2_bio_desc_1) + "</b></i><br>" + challenge2_q1 + "<br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_2_bio_desc_2) + "</b></i><br>" + challenge2_q2 + "<br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_2_bio_desc_3) + "</b></i><br>" + challenge2_q3 + "<br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_2_bio_desc_4) + "</b></i><br>" + challenge2_q4);
-                character_bio_challenge_2.setVisibility(View.VISIBLE);
-                character_bio_challenge_2.setText(Html.fromHtml(sb.toString()));
+                sb.append("<br><br>");
             }
             if (challenge3_q1 != null) {
-                StringBuffer sb = new StringBuffer();
                 sb.append("<br><b>" + getString(R.string.challenge_3_bio_title) + "</b> " + getString(R.string.challenge_3_bio_subtitle) + " <br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_3_bio_desc_1) + "</b></i><br>" + challenge3_q1 + "<br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_3_bio_desc_2) + "</b></i><br>" + challenge3_q2 + "<br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_3_bio_desc_3) + "</b></i><br>" + challenge3_q3 + "<br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_3_bio_desc_4) + "</b></i><br>" + challenge3_q4);
-                character_bio_challenge_3.setVisibility(View.VISIBLE);
-                character_bio_challenge_3.setText(Html.fromHtml(sb.toString()));
+                sb.append("<br><br>");
             }
             if (challenge4_q1 != null) {
-                StringBuffer sb = new StringBuffer();
                 sb.append("<br><b>" + getString(R.string.challenge_4_bio_title) + "</b> " + getString(R.string.challenge_4_bio_subtitle) + " <br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_4_bio_desc_1) + "</b></i><br>" + challenge4_q1 + "<br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_4_bio_desc_2) + "</b></i><br>" + challenge4_q2 + "<br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_4_bio_desc_3) + "</b></i><br>" + challenge4_q3 + "<br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_4_bio_desc_4) + "</b></i><br>" + challenge4_q4);
-                sb.append("<br><br><br>");
-                character_bio_challenge_4.setVisibility(View.VISIBLE);
-                character_bio_challenge_4.setText(Html.fromHtml(sb.toString()));
+                sb.append("<br><br>");
             }
+
             if (challenge5_q1 != null) {
-                StringBuffer sb = new StringBuffer();
                 sb.append("<br><b>" + getString(R.string.challenge_5_bio_title) + "</b> " + getString(R.string.challenge_5_bio_subtitle) + " <br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_5_bio_desc_1) + "</b></i><br>" + challenge5_q1 + "<br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_5_bio_desc_2) + "</b></i><br>" + challenge5_q2 + "<br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_5_bio_desc_3) + "</b></i><br>" + challenge5_q3 + "<br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_5_bio_desc_4) + "</b></i><br>" + challenge5_q4);
-                sb.append("<br><br><br>");
-                character_bio_challenge_5.setVisibility(View.VISIBLE);
-                character_bio_challenge_5.setText(Html.fromHtml(sb.toString()));
+                sb.append("<br><br>");
             }
             if (challenge6_q1 != null) {
-                StringBuffer sb = new StringBuffer();
                 sb.append("<br><b>" + getString(R.string.challenge_6_bio_title) + "</b> " + getString(R.string.challenge_6_bio_subtitle) + " <br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_6_bio_desc_1) + "</b></i><br>" + challenge6_q1 + "<br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_6_bio_desc_2) + "</b></i><br>" + challenge6_q2 + "<br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_6_bio_desc_3) + "</b></i><br>" + challenge6_q3 + "<br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_6_bio_desc_4) + "</b></i><br>" + challenge6_q4);
-                sb.append("<br><br><br>");
-                character_bio_challenge_6.setVisibility(View.VISIBLE);
-                character_bio_challenge_6.setText(Html.fromHtml(sb.toString()));
+                sb.append("<br><br>");
             }
+
+            if (challenge7_q1 != null) {
+                sb.append("<br><b>" + getString(R.string.challenge_7_bio_title) + "</b> " + getString(R.string.challenge_7_bio_subtitle) + " <br>");
+                sb.append("<br><i><b>" + getString(R.string.challenge_7_bio_desc_1) + "</b></i><br>" + challenge7_q1 + "<br>");
+                sb.append("<br><i><b>" + getString(R.string.challenge_7_bio_desc_2) + "</b></i><br>" + challenge7_q2 + "<br>");
+                sb.append("<br><i><b>" + getString(R.string.challenge_7_bio_desc_3) + "</b></i><br>" + challenge7_q3 + "<br>");
+                sb.append("<br><i><b>" + getString(R.string.challenge_7_bio_desc_4) + "</b></i><br>" + challenge7_q4);
+                sb.append("<br><br>");
+            }if (challenge8_q1 != null) {
+                sb.append("<br><b>" + getString(R.string.challenge_8_bio_title) + "</b> " + getString(R.string.challenge_8_bio_subtitle) + " <br>");
+                sb.append("<br><i><b>" + getString(R.string.challenge_8_bio_desc_1) + "</b></i><br>" + challenge8_q1 + "<br>");
+                sb.append("<br><i><b>" + getString(R.string.challenge_8_bio_desc_2) + "</b></i><br>" + challenge8_q2 + "<br>");
+                sb.append("<br><i><b>" + getString(R.string.challenge_8_bio_desc_3) + "</b></i><br>" + challenge8_q3 + "<br>");
+                sb.append("<br><i><b>" + getString(R.string.challenge_8_bio_desc_4) + "</b></i><br>" + challenge8_q4);
+                sb.append("<br><br>");
+            }
+            character_bio_challenge.setVisibility(View.VISIBLE);
+            character_bio_challenge.setText(Html.fromHtml(sb.toString()));
 
 
             character_bio_edit_btn.setOnClickListener(new View.OnClickListener() {
@@ -331,6 +337,7 @@ public class BioFragment extends Fragment {
                         bundle.putString("char_name", char_name);
                         bundle.putString("project_name", project_name);
                         bundle.putString("role", role);
+                        bundle.putString("gender", gender);
                         //Send it to the next fragment
                         ChallengeListFragment nextFragment = new ChallengeListFragment();
                         nextFragment.setArguments(bundle);
@@ -343,7 +350,6 @@ public class BioFragment extends Fragment {
                             transaction.addToBackStack(null);
                         }
                         transaction.add(R.id.flMain, nextFragment);
-//                        transaction.addToBackStack(null);
                         transaction.commit();
 
                     } catch (Exception e) {
@@ -355,7 +361,7 @@ public class BioFragment extends Fragment {
             character_bio_share_btn.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     try {
-                        String allbody = intro_tv.getText().toString() + " \n" + character_bio_challenge.getText().toString() + " \n" + character_bio_challenge_2.getText().toString() + " \n" + character_bio_challenge_3.getText().toString() + " \n" + character_bio_challenge_4.getText().toString() + " \n" + character_bio_challenge_5.getText().toString();
+                        String allbody = intro_tv.getText().toString() + " \n" + character_bio_challenge.getText().toString() + " \n";
                         String char_role = project_name + ": " + char_name + " - " + role;
                         SHARE(myFragmentView, allbody, char_role);
                     } catch (Exception e) {
@@ -466,7 +472,16 @@ public class BioFragment extends Fragment {
                 char_list.add(cursor.getString(cursor.getColumnIndex("c1_sidekick_q2")));
                 char_list.add(cursor.getString(cursor.getColumnIndex("c1_sidekick_q3")));
                 char_list.add(cursor.getString(cursor.getColumnIndex("c1_sidekick_q4")));
-
+                //Challenge 7 Challenge
+                char_list.add(cursor.getString(cursor.getColumnIndex("challenge_7_q1")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("challenge_7_q2")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("challenge_7_q3")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("challenge_7_q4")));
+                //Challenge 8 Challenge
+                char_list.add(cursor.getString(cursor.getColumnIndex("challenge_8_q1")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("challenge_8_q2")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("challenge_8_q3")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("challenge_8_q4")));
                 cursor.moveToNext();
             }
         }

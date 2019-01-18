@@ -92,9 +92,6 @@ public class MainActivity extends AppCompatActivity
         Common.isPAU = Utils.getSPIAP(this);
         FirebaseApp.initializeApp(this);
 
-//        if (Common.isPAU)
-//            Toast.makeText(this, "yeay maneh teh pau coy", Toast.LENGTH_LONG).show();
-
         if (!Common.isPAU) {
             //Init the ads
             MobileAds.initialize(this, getString(R.string.ad_account_id));
@@ -415,10 +412,5 @@ public class MainActivity extends AppCompatActivity
         }
         super.onDestroy();
     }
-
-    //    @Override
-//    public void onRewarded(RewardItem rewardItem) {
-//        Utils.saveOnSharePreg(getApplicationContext(),"weekly_challenge_visit",rewardItem.getAmount());
-//    }
 
 }

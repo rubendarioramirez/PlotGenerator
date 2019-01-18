@@ -311,8 +311,6 @@ public class Project_detailsFragment extends Fragment {
         tvSelectFromGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Todo : check for permission
-
                 if (ContextCompat.checkSelfPermission(myFragmentView.getContext(), WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(getActivity(), new String[]{WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSION_REQUEST_GALLERY);
                 } else {
@@ -332,7 +330,6 @@ public class Project_detailsFragment extends Fragment {
                 boolean isGalleryGranted = (grantResults[0] == PackageManager.PERMISSION_GRANTED);
 
                 if (isGalleryGranted) {
-                    //TODO all granted
                     openGallery();
                     return;
                 }
