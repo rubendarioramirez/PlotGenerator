@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -57,7 +58,7 @@ public class OfflineStoryFragment extends Fragment {
     private AdView mAdView;
 
 
-    public void saveStoryToDB(View v) {
+    public void saveStoryToDB() {
         SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(mySQLiteDBHelper.STORY_COLUMN_PROJECT, project_name);
@@ -68,12 +69,6 @@ public class OfflineStoryFragment extends Fragment {
             database.update(mySQLiteDBHelper.CHARACTER_TABLE_STORY, values, "project = ?", new String[]{project_name});
         else
             database.insert(mySQLiteDBHelper.CHARACTER_TABLE_STORY, null, values);
-
-        ProjectFragment nextFragment = new ProjectFragment();
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        Utils.changeFragment(nextFragment, transaction, "", "");
-        getFragmentManager().popBackStack();
-
     }
 
 
@@ -143,7 +138,9 @@ public class OfflineStoryFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                saveStoryToDB(view);
+                saveStoryToDB();
+                changeFragment();
+
             }
         });
 
@@ -200,10 +197,45 @@ public class OfflineStoryFragment extends Fragment {
         });
 
 
-
+//        startRepeatingTask();
         return view;
     }
 
+
+//      Auto saving
+//    private final static int INTERVAL = 1000 * 60; //1 minutes
+//    Handler mHandler = new Handler();
+//
+//    Runnable mHandlerTask = new Runnable()
+//    {
+//        @Override
+//        public void run() {
+//            saveStoryToDB();
+//            Log.v("matilda", "running");
+//            mHandler.postDelayed(mHandlerTask, INTERVAL);
+//        }
+//    };
+//
+//    void startRepeatingTask()
+//    {
+//        mHandlerTask.run();
+//    }
+//
+//    void stopRepeatingTask()
+//    {
+//        mHandler.removeCallbacks(mHandlerTask);
+//        Log.v("matilda", "stopped");
+//    }
+//
+//    @Override
+//    public void onDestroy () {
+//
+//        Log.v("matilda", "destroyed");
+//        mHandler.removeCallbacks(mHandlerTask);
+//        super.onDestroy ();
+//
+//
+//    }
 
 
     public static String getStoryFromDB(Context context, String project_name){
@@ -226,5 +258,14 @@ public class OfflineStoryFragment extends Fragment {
         sqLiteDatabase.close();
         return s;
     }
+
+    private void changeFragment(){
+        ProjectFragment nextFragment = new ProjectFragment();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        Utils.changeFragment(nextFragment, transaction, "", "");
+        getFragmentManager().popBackStack();
+    }
+
+
 
 }

@@ -47,6 +47,7 @@ import com.google.firebase.iid.InstanceIdResult;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Fragment.ProfileFragment;
 import com.plotgen.rramirez.plotgenerator.Fragment.StoryDetailFragment;
+import com.plotgen.rramirez.plotgenerator.Fragment.weekly_challenge_container;
 import com.plotgen.rramirez.plotgenerator.Model.Story;
 import com.plotgen.rramirez.plotgenerator.Model.User;
 
@@ -359,10 +360,18 @@ public class MainActivity extends AppCompatActivity
             ft.commit();
         } else if (id == R.id.nav_writting_challenge) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.flMain, new weeklyWriting());
+//            ft.replace(R.id.flMain, new weeklyWriting());
+            ft.replace(R.id.flMain, new weekly_challenge_container());
             mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
             ft.commit();
-        } else if (id == R.id.nav_profile) {
+        }
+//        else if (id == R.id.discover) {
+//                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//                ft.replace(R.id.flMain, new discoverFragment());
+//                mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
+//                ft.commit();
+//        }
+         else if (id == R.id.nav_profile) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.flMain, new ProfileFragment());
             mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());

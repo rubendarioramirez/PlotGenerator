@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name" translatable="false">Character Generator</string>
+    <string name="app_name" translatable="false">Auctor</string>
 
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
@@ -963,5 +963,10 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="gender_female_article">she</string>
     <string name="gender_male_posesive">his</string>
     <string name="gender_female_posesive">her</string>
+
+    <!--Weekly writing strings-->
+    <string name="weekly_challenge_tab1">On Going</string>
+    <string name="weekly_challenge_tab2">Last winner</string>
+    <string name="weekly_challenge_author">By</string>
 
 </resources>

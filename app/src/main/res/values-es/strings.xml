@@ -211,9 +211,9 @@
         <item>Rechoncho</item>
         <item>En forma</item>
     </string-array>
-    <string name="character_add_gender">Sexo</string>
+    <string name="character_add_gender">Género</string>
     <string-array name="gender_spinner_array">
-        <item>Sexo</item>
+        <item>Género</item>
         <item>Masculino</item>
         <item>Femenino</item>
         <item>Binario</item>
@@ -942,4 +942,7 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="gender_male_posesive">su</string>
     <string name="gender_female_posesive">su</string>
 
+    <string name="weekly_challenge_tab1">En progreso</string>
+    <string name="weekly_challenge_tab2">Último ganador</string>
+    <string name="weekly_challenge_author">Por</string>
 </resources>

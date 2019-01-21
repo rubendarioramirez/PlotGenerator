@@ -2,11 +2,13 @@ package com.plotgen.rramirez.plotgenerator;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class mySQLiteDBHelper extends SQLiteOpenHelper {
-//  private static final int DATABASE_VERSION = 11;
-    private static final int DATABASE_VERSION = 12;
+//  private static final int DATABASE_VERSION = 12;
+    private static final int DATABASE_VERSION = 13;
     //public static final String DATABASE_NAME = "test_database";
     public static final String DATABASE_NAME = "production_database";
     public static final String CHARACTER_TABLE_CHARACTER = "character";
@@ -255,6 +257,38 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
                 sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_8_q2 TEXT");
                 sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_8_q3 TEXT");
                 sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_8_q4 TEXT");
+                break;
+            case 13:
+                try {
+                    sqLiteDatabase.execSQL("CREATE TABLE story (_id INTEGER PRIMARY KEY AUTOINCREMENT)");
+                    sqLiteDatabase.execSQL("ALTER TABLE story ADD COLUMN project  TEXT");
+                    sqLiteDatabase.execSQL("ALTER TABLE story ADD COLUMN project_id  TEXT");
+                    sqLiteDatabase.execSQL("ALTER TABLE story ADD COLUMN stories  TEXT");
+                } catch (SQLiteException ex) {
+                    Log.w("Matilda", "Altering: " + ex.getMessage());
+                }
+
+                try {
+                    sqLiteDatabase.execSQL("ALTER TABLE projectname ADD COLUMN " + PROJECT_COLUMN_IMAGE + " TEXT");
+                } catch (SQLiteException ex) {
+                    Log.w("Matilda", "Altering: " + ex.getMessage());
+                }
+
+                try {
+                    sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_7_q1 TEXT");
+                    sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_7_q2 TEXT");
+                    sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_7_q3 TEXT");
+                    sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_7_q4 TEXT");
+
+                    sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_8_q1 TEXT");
+                    sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_8_q2 TEXT");
+                    sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_8_q3 TEXT");
+                    sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_8_q4 TEXT");
+                } catch (SQLiteException ex) {
+                    Log.w("Matilda", "Altering: " + ex.getMessage());
+                }
+
+
 
                 break;
         }

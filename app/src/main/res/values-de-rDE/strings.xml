@@ -911,4 +911,7 @@ Lasse den Antagonisten verachtenswerte Handlungen ausführen, und wenn möglich,
     <string name="gender_male_posesive">seine</string>
     <string name="gender_female_posesive">ihr</string>
 
+    <string name="weekly_challenge_tab1">in Bearbeitung</string>
+    <string name="weekly_challenge_tab2">Letzter Gewinner</string>
+
     </resources>

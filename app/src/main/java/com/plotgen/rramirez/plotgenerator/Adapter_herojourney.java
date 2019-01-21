@@ -99,7 +99,9 @@ public class Adapter_herojourney extends RecyclerView.Adapter<Adapter_herojourne
             String clicked = mData.get(getAdapterPosition()).getHerojourney_title();
             String charName = mData.get(getAdapterPosition()).getHerojourneyChar();
             String projectName = mData.get(getAdapterPosition()).getHerojourneyProject();
+
             nextFragment(mContext,charName,projectName,clicked);
+            Log.v("matilda", clicked);
              if (clicked.equals(view.getContext().getResources().getString(R.string.char_guide_title))){
                     //Send it to the next fragment
                     GuideRoleFragment nextFragment = new GuideRoleFragment();
