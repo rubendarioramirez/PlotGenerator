@@ -40,6 +40,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Fragment.SubmitStoryFragment;
+import com.plotgen.rramirez.plotgenerator.Fragment.Wcc_stories;
 import com.plotgen.rramirez.plotgenerator.Fragment.WeeklyChallengeFragment;
 import com.plotgen.rramirez.plotgenerator.Model.Challenge;
 
@@ -59,8 +60,6 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
     private TextView title_tv, body_tv, ad_desc;
     private Button ad_submit_btn;
     private Button btViewParticipant;
-    private String databaseToUse;
-    ArrayList data_list;
     private FirebaseAnalytics mFirebaseAnalytics;
     public int can_submit = 0;
     private RewardedVideoAd mRewardedVideoAd;
@@ -113,45 +112,9 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
         title_tv = myFragmentView.findViewById(R.id.writing_challenge_title);
         body_tv = myFragmentView.findViewById(R.id.writing_challenge_desc);
 
-        //Get a firebase reference
-        //Get device lang
-//        if (Locale.getDefault().getDisplayLanguage().equals("español")) {
-//            databaseToUse = "writing_challenge_es";
-//        } else {
-//            databaseToUse = "writing_challenge";
-//        }
-//
-//        FirebaseDatabase database = FirebaseDatabase.getInstance();
-//        DatabaseReference myRef = database.getReference(databaseToUse);
-//        data_list = new ArrayList();
-//        myRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                for (DataSnapshot childSnap : dataSnapshot.getChildren()) {
-//                    data_list.add(childSnap.getValue(String.class));
-//
-//                }
-//                title.setText(data_list.get(0).toString());
-//                description.setText(data_list.get(1).toString());
-//                String s = data_list.get(0).toString();
-//                Challenge challenge = new Challenge("", s);
-//                Common.currentChallenge = challenge;
-//                ad_submit_btn.setVisibility(View.VISIBLE);
-//                btViewParticipant.setVisibility(View.VISIBLE);
-//
-//            }
-
-
-//            @Override
-//            public void onCancelled(DatabaseError error) {
-//                // Failed to read value
-//                Log.w(TAG, "Failed to read value.", error.toException());
-//            }
-//        });
-
         DocumentReference mDocRef;
           if (Locale.getDefault().getDisplayLanguage().equals("español")) {
-                mDocRef = FirebaseFirestore.getInstance().document("weekly_challenge/current");
+                mDocRef = FirebaseFirestore.getInstance().document("weekly_challenge_es/current");
             } else {
                 mDocRef = FirebaseFirestore.getInstance().document("weekly_challenge/current");
             }
@@ -293,7 +256,8 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
             if (resultCode == RESULT_OK) {
                 //
                 // change to submit fragment in main activity
-                WeeklyChallengeFragment nextFragment = new WeeklyChallengeFragment();
+//                WeeklyChallengeFragment nextFragment = new WeeklyChallengeFragment();
+                Wcc_stories nextFragment = new Wcc_stories();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 Utils.changeFragment(nextFragment, transaction, "", "");
                 transaction.addToBackStack(null);

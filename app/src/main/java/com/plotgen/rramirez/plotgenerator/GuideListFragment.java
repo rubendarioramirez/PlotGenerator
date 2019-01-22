@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.plotgen.rramirez.plotgenerator.Common.Adapter_challenges;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ public class GuideListFragment extends Fragment {
         }
 
         RecyclerView recyclerView = myFragmentView.findViewById(R.id.rv_guide_list_fragment);
-        final Adapter_herojourney adapter = new Adapter_herojourney(this.getActivity(),mlist);
+        final Adapter_challenges adapter = new Adapter_challenges(this.getActivity(),mlist);
         mlist.clear();
         mlist.add(new item_herojourney(R.drawable.typewriter, (String) getString(R.string.roles_title), (String) getString(R.string.roles_desc), (String) getString(R.string.roles_desc_long),(String) "dumi", (String) "dumi"));
         mlist.add(new item_herojourney(R.drawable.typewriter, (String) getString(R.string.lajos_character_title), (String) getString(R.string.lajos_character_desc), (String) getString(R.string.lajos_character_long),(String) "dumi", (String) "dumi"));

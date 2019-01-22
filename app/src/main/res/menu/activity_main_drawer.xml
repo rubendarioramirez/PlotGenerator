@@ -27,10 +27,10 @@
             android:icon="@drawable/writer_icon"
             android:title="@string/writing_challenge_tab" />
 
-        <!--<item-->
-            <!--android:id="@+id/discover"-->
-            <!--android:icon="@drawable/writer_icon"-->
-            <!--android:title="Discover" />-->
+        <item
+            android:id="@+id/premium"
+            android:icon="@drawable/ic_love_red"
+            android:title="Premium" />
 
         <item
             android:id="@+id/nav_profile"

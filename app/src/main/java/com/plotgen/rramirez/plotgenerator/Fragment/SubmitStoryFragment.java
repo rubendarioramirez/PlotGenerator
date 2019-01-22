@@ -80,30 +80,12 @@ public class SubmitStoryFragment extends Fragment {
                         Common.currentUser.getEmail(),
                         Common.currentUser.getPicUrl().toString()));
 
-//        Map<String, Object> postValues = story.toMap();
-//
-//        Map<String, Object> childUpdates = ne w HashMap<>();
-//        childUpdates.put("/posts/" + key, postValues);
-//
-//        mReference.updateChildren(childUpdates);
+        Map<String, Object> postValues = story.toMap();
 
-        Map<String,Object> dataToSave = new HashMap<String,Object>();
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put("/posts/" + key, postValues);
 
-        dataToSave.put("title", story.getTitle());
-        dataToSave.put("body", etStory.getText().toString());
-        dataToSave.put("likecount", 0);
-        dataToSave.put("email", Common.currentUser.getEmail());
-        dataToSave.put("user", Common.currentUser.getName());
-        dataToSave.put("uriString", Common.currentUser.getUriString());
-
-//        db.collection("weekly_challenge").document();
-
-        db.collection("weekly_challenge").document(Common.currentUser.getUid()).set(dataToSave).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Log.d("matilda","it worked!");
-            }
-        });
+        mReference.updateChildren(childUpdates);
 
         etStory.setText("");
 

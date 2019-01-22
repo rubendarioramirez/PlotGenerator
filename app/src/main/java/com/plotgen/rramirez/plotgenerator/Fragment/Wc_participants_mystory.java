@@ -1,8 +1,6 @@
 package com.plotgen.rramirez.plotgenerator.Fragment;
 
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,16 +10,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -32,9 +25,6 @@ import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.dynamiclinks.DynamicLink;
-import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
-import com.google.firebase.dynamiclinks.ShortDynamicLink;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.RemoteMessage;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
@@ -54,13 +44,13 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class WeeklyChallengeFragment extends Fragment {
+public class Wc_participants_mystory extends Fragment {
 
     @BindView(R.id.rvWeeklyChalenge)
     RecyclerView rvWeeklyChallenge;
 
-    private FirebaseRecyclerAdapter<Story, StoryViewHolder> mAdapter;
-    FirebaseRecyclerOptions<Story> options;
+    private FirebaseRecyclerAdapter<Story, StoryViewHolder> mMyPostAdapter;
+    FirebaseRecyclerOptions<Story> optionsMyPost;
 
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
@@ -72,9 +62,7 @@ public class WeeklyChallengeFragment extends Fragment {
 
     private LinearLayoutManager mManager;
 
-    private int toggleMyPost = 1;
-
-    public WeeklyChallengeFragment() {
+    public Wc_participants_mystory() {
         // Required empty public constructor
     }
 
@@ -112,35 +100,39 @@ public class WeeklyChallengeFragment extends Fragment {
         mUserReference = mDatabase.getReference().child("users");
 
         Query query = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts").orderByChild("likeCount");
-        options = new FirebaseRecyclerOptions.Builder<Story>()
+
+
+
+        optionsMyPost = new FirebaseRecyclerOptions.Builder<Story>()
                 .setQuery(query, Story.class)
                 .build();
 
+
+
         populateWeeklyChallenge();
-        rvWeeklyChallenge.setAdapter(mAdapter);
+        rvWeeklyChallenge.setAdapter(mMyPostAdapter);
 
         return view;
     }
 
     private void populateWeeklyChallenge() {
 
-
-        mAdapter = new FirebaseRecyclerAdapter<Story, StoryViewHolder>(options) {
+        mMyPostAdapter = new FirebaseRecyclerAdapter<Story, StoryViewHolder>(optionsMyPost) {
 
             @Override
             public StoryViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                 LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
                 return new StoryViewHolder(inflater.inflate(R.layout.item_story, viewGroup, false));
-
             }
 
             @Override
             protected void onBindViewHolder(StoryViewHolder viewHolder, int position, final Story model) {
                 final DatabaseReference postRef = getRef(position);
                 final Story currentStory = model;
+
                 viewHolder.setIsRecyclable(false);
 
-                if (model.getTitle().contains(Common.currentChallenge.getName())) {
+                if (model.getUser().getUid().equals(Common.currentUser.getUid())) {
 
                     viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -166,8 +158,6 @@ public class WeeklyChallengeFragment extends Fragment {
                             onLikeClicked(globalPostRef);
                         }
                     };
-
-
                     viewHolder.bindToPost(model, likeClickListener, mCommentReference.child(postRef.getKey()));
                 } else {
                     viewHolder.removeItem();
@@ -222,17 +212,16 @@ public class WeeklyChallengeFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        if (mAdapter != null) {
-            mAdapter.startListening();
-
+        if (mMyPostAdapter != null) {
+            mMyPostAdapter.startListening();
         }
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        if (mAdapter != null) {
-            mAdapter.stopListening();
+        if (mMyPostAdapter != null) {
+            mMyPostAdapter.stopListening();
         }
     }
 
@@ -242,33 +231,6 @@ public class WeeklyChallengeFragment extends Fragment {
         setHasOptionsMenu(true);
     }
 
-//    @Override
-//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//        super.onCreateOptionsMenu(menu, inflater);
-//        inflater.inflate(R.menu.menu_goto, menu);
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        int id = item.getItemId();
-//        if (id == R.id.menu_goto) {
-//            if (toggleMyPost == 1) {
-//                rvWeeklyChallenge.swapAdapter(mMyPostAdapter, true);
-//                toggleMyPost = 0;
-//            } else if (toggleMyPost == 0) {
-//                rvWeeklyChallenge.swapAdapter(mAdapter, true);
-//                toggleMyPost = 1;
-//            }
-//            return true;
-//        } else if (id == R.id.menu_recent) {
-//            rvWeeklyChallenge.swapAdapter(mRecentAdapter, true);
-//            return true;
-//        } else if (id == R.id.menu_likes) {
-//            rvWeeklyChallenge.swapAdapter(mAdapter, true);
-//            return true;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
 
     public void sendNotification(final String message, User user, final String id) {
         //String firebase_token = mUserReference.child(user.getUid()).child("token");

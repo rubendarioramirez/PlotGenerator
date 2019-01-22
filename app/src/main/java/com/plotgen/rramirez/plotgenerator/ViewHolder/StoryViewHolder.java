@@ -2,6 +2,7 @@ package com.plotgen.rramirez.plotgenerator.ViewHolder;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -69,6 +70,8 @@ public class StoryViewHolder extends RecyclerView.ViewHolder {
         ivLoves.setOnClickListener(likeClickListener);
 /*        tvShare.setOnClickListener(shareListener);
         ivShare.setOnClickListener(shareListener);*/
+
+        Log.v("matilda", "Called bindToPost");
 
         commentRef.addValueEventListener(new ValueEventListener() {
             @Override

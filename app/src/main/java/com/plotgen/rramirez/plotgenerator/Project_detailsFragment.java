@@ -302,7 +302,7 @@ public class Project_detailsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 filepath="";
-                project_icon_iv.setImageResource(R.drawable.writer_icon);
+                project_icon_iv.setImageResource(R.drawable.ic_menu_gallery);
                 dialog.dismiss();
             }
         });

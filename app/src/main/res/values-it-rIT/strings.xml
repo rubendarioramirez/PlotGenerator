@@ -1,0 +1,918 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name = "trigger_tab"> Scrivendo Prompt </string>
+    <string-array name="triggers_list" tools:ignore="InconsistentArrays">
+    <item> Lui non ’t dire a nessuno dove stava andando. </item>
+    <item> Aprì la lettera e rapidamente lo gettò nel fuoco. </item>
+    <item> Il mattone nel muro della vecchia casa era allentata. </item>
+    <item> La strada normalmente affollata era vuota. </item>
+    <item> La chiave non sarebbe più aprire la porta. </item>
+    <item> Erano le due del mattino mentre era lì ad ascoltare i suoni. </item>
+    <item> Sempre più persone stipate nello stadio. </item>
+    <item> Cinque vecchie monetine in un sacchetto di velluto. </item>
+    <item> Corse, più velocemente di quanto avesse mai creduto possibile. </item>
+    <item> Quelli erano grida, ma certamente non esseri umani </item>
+    <item> Attese, ma nessuno è venuto. </item>
+    <item> In alto, sulla cima di una montagna verde. </item>
+    <item> E stata la prima volta che tiene una pistola, ma in qualche modo sento strano. </item>
+    <item> il suo sguardo era duro mentre fissava il ragazzo. </item>
+    <item> Il fiume cominciava a rompere  s banche. </item>
+    <item> Lei wouldn ’t nemmeno il tempo di mettere in valigia. </item>
+    <item> La casa sembrava diversa con nuove finestre e porte. </item>
+    <item> Luomo cercò di fondere nel buio, ma poteva vederlo. </item>
+    <item> Questo wasn  t un animale, ma una persona sia. </item>
+    <item> I  m sicuro di quello che ho visto. Non riesco proprio a spiegarmelo. </item>
+    <item> Non è che io don  t credere. E solo che io don ’t cura. </item>
+    <item> E stato così morto prima del mio arrivo. </item>
+    <item> In questo momento, I  m più paura di vivere che morire. </item>
+    <item> Questo  non è il problema che si iscrivono per. Ma non abbiamo avuto modo di tornare indietro. </item>
+    <item> Non ho mai pensato che avrei perdonare </item>
+    <item> li sento al piano di sotto … </item>
+    <item> Cè qualcosa di dolce di sapere che si  re andando a morire … </item>
+    <item> I veri amici don  t si lascia alle spalle. Credo che non ero  t un vero amico, dopo tutto. </item>
+    <item> I didn  t prendere uno Sherlock Holmes per capire che il coltello era sparito. </item>
+    <item> I don  t credere negli angeli. Beh, io didn  t fino ad allora … </item>
+    <item> I don  t giuro, io non faccio mai. Nemmeno allora. </item>
+    <item> Si controllare in giro per assicurarsi che nessuno stesse guardando. Poi ha messo lUSB in tasca … </item>
+    <item> Guardò il suo fucile. E stato molto tempo dallultima volta … </item>
+    <item> Peggio di una nave affondata. È quello di essere lunico sopravvissuto. </item>
+    <item> Ho guardato come un influenza. Eravamo sicuri che fosse un influenza. Lunico problema era che t non ero . </item>
+    <item> Siamo stati in guerra, una guerra perderemo. Ma si sa, ci hanno insegnato a lottare a combattere solo per stare in piedi la nostra terra, la vittoria era un dettaglio. </item>
+    <item> E stata la peggiore crisi finanziaria che abbia mai visto. E ho visto molti. </item>
+    <item> lo avrei sparato sul posto. Tranne che ho ricevuto proiettili. </item>
+    <item> Wait. È una torcia elettrica? </item>
+    <item> I didn  t scegliere questa professione. La professione ha scelto me. </item>
+    <item> Essere in Africa a 42 gradi, wasn  t il problema. Il ragazzo mi insegue, certamente lo era. </item>
+    <item> Assunto come un investigatore privato. Il mio primo grande affare ed è stata unincomprensione. </item>
+    <item> avrei chiamato la polizia, se non che ero la polizia, e non ho idea di cosa fare. </item>
+    <item> La luce si stava spegnendo. </item>
+    <item> Abbiamo quasi annegato, ma io didn cura  t. </item>
+    <item> E stata la prima volta che ho guidato un camion, e ho pensato che sarebbe stato anche lultimo. </item>
+    <item> Lo sceriffo mi fissano per un secondo. Sapevo che sapeva, ma nessuno di noi ha detto nulla. </item>
+    <item> Quel giorno mi mancava per la prima volta. </item>
+    <item> E wasn  t un problema che lei ha lasciato con unaltra donna, ma deve essere la mia sorella? </item>
+    </string-array>
+    
+    
+<string name = "character_tab"> Officina carattere </string>
+<string name = "character_create"> Crea carattere </string>
+<string name = "character_update"> Modifica carattere </string>
+<string name = "writing_challenge_tab"> Weekly scrittura Sfida </string>
+    
+    
+<!--PRINCIPALE Strings -->
+<string name = "home_title"> Lunica cosa che un  n davvero conosce la natura umana  n è che cambia.  N Oscar Wilde </string>
+<string name = "home_tab"> Home </string>
+<string name = "home_header"> Focus sulla scrittura … </string>
+<string name = "home_desc"> Se ami scrivere, allora si  re nel posto giusto.  NI fatto questa app perché mi piace anche scrivere così, ma so che la lotta con lo scrittore  blocchi s, sta perdendo o semplicemente perdere la concentrazione.  Nactually, ho fatto questa applicazione per me, ma credo che può anche aiutare.  nCi sono tre cose in questo momento che si possono trovare interessanti.  n  nWriting richiede, ogni volta che si  re perso o don  t sapere come iniziare o come continuare, check them out.  NA semplice frase che lasciare la vostra immaginazione volare via. E don  t preoccupare i  ll inviare nuovi ogni settimana.  N  nIl Viaggio dellEroe. Se non hai  t leggere, andare a correre per farlo! Che  s Joseph Campbell eredità per gli scrittori.  NTuttavia se avete letto e si vuole un rinfresco, o se si vuole semplicemente andare alla carne, controllare la sezione Viaggio dellEroe, che contiene tutto quello che dovete sapere per il tuo eroe e il viaggio è  s.
+ N  Nlast ma non meno importante, controllare il workshop. Contiene quello che ti serve per monitorare e sviluppare i vostri personaggi. Creare un progetto, quindi aggiungere personaggi e don  t preoccupare se si è un po isolato. Ho avuto la schiena con la funzione del generatore, che genererà tratti, i desideri e le necessità per voi.  N  Nhave una grande scrittura! </string>
+    
+    
+<!--Progetti String -->
+<string name = "projects_tab"> Progetti </string>
+<string name = "projects_empty"> Davvero nessun nome per il vostro progetto? Prova di nuovo con qualcosa di più creativo </string>
+<string name = "project_name"> Nome progetto </string>
+<string name = "project_genre"> Genre </string>
+<string-array name="genres_array">
+<item> Tragedia </item>
+<item> La fantascienza </item>
+<item> Fantasy </item>
+<item> Mitologia </item>
+<item> Avventura </item>
+<item> Mistero </item>
+<item> Drammatico </item>
+<item> Storia </item>
+<item> Azione / Avventura </item>
+<item> Satira </item>
+<item> Horror </item>
+<item> commedia Tragico </item>
+<item> Giovani narrativa per adulti </item>
+<item> Dystopia </item>
+<item> thriller dazione </item>
+</string-array>
+    
+<string name = "project_summary"> Sommario trama </string>
+
+<string name = "add_projects_btn"> Aggiungi progetto </string>
+<string name = "edit_projects_btn"> Modifica progetto </string>
+<string name = "delete_project_btn"> Sei sicuro di voler eliminare questo progetto? </string>
+<string name = "delete_project_btn_message"> Tutti i personaggi ad esso associati verranno eliminati </string>
+<string name = "projects_empty_text"> Sembra che don  t hanno ancora progetti. Si prega di andare avanti e creare uno nuovo per iniziare. </string>
+    
+<!--stringa di caratteri -->
+<string name = "character_bio_title"> Biografia </string>
+<string name = "character_list_tab"> Caratteri </string>
+<string name = "character_empty_text"> Sembra che don  t hanno alcun carattere ancora. Si prega di andare avanti e creare uno nuovo per iniziare. </string>
+<!--BIOGRAFIA TESTO -->
+<string name = "age_bio_1"> è </string>
+<string name = "age_bio_2"> anni. </string>
+<string name = "placebirth_bio"> Nato a </string>
+
+<string name = "height_bio"> Essere </string>
+<string name = "hair_bio_1"> con </string>
+<string name = "hair_bio_2"> capelli e </string>
+<string name = "eyes_bio"> colore occhi </string>
+<string name = "bodybuild_bio"> Si potrebbe dire che sembra piuttosto </string>
+    
+<string name = "job_bio"> Funziona come </string>
+<string name = "male_desire_bio"> Nella sua mente vuole </string>
+<string name = "male_need_bio"> Ma è che ciò che vuole veramente? O ha effettivamente bisogno </string>
+<string name = "male_moment_bio"> A proposito della sua infanzia sappiamo che </string>
+<string name = "male_phrase_bio"> Una frase che la gente comunemente associato con lui è </string>
+<string name = "male_trait_bio"> Anche i suoi amici dice che è </string>
+<string name = "notes_bio"> Note </string>
+    
+<string name = "female_desire_bio"> Nella sua mente lei vuole </string>
+<string name = "female_need_bio"> Ma è che ciò che vuole veramente? O lei ha bisogno in realtà </string>
+<string name = "female_moment_bio"> A proposito della sua infanzia sappiamo che </string>
+<string name = "female_phrase_bio"> Una frase che la gente comunemente associato con lei è </string>
+<string name = "female_trait_bio"> Anche i suoi amici dice che è </string>
+<string name = "female_notes_bio"> Note </string>
+    
+<string name = "binary_desire_bio"> Nella loro mente che vogliono </string>
+<string name = "binary_need_bio"> Ma è che cosa vogliono veramente? O hanno effettivamente bisogno </string>
+<string name = "binary_moment_bio"> A proposito di loro infanzia sappiamo che </string>
+<string name = "binary_phrase_bio"> Una frase che la gente comunemente associato con loro è </string>
+<string name = "binary_trait_bio"> Anche i loro amici dice che sono </string>
+    
+<!--Sfida I BIO -->
+<string name = "challenge_1_bio_title"> La sfida ascensore: </string>
+<string name = "challenge_1_bio_desc_1"> Quale sarà la sua prima reazione se viene bloccato in un ascensore? </string>
+<string name = "challenge_1_bio_desc_2"> La vostra attesa personaggio per essere salvato? </string>
+<string name = "challenge_1_bio_desc_3"> Se la persona accanto al tuo personaggio ha un attacco di panico. Che cosa accadrà? </string>
+<string name = "challenge_1_bio_desc_4"> Infine nelleventualità che appena si può sfuggire e laltro deve aspettare, quale sarà il tuo personaggio fare? </string>
+<!--Sfida II BIO -->
+<string name = "challenge_2_bio_title"> The Lie tuo personaggio è convinto </string>
+<string name = "challenge_2_bio_subtitle"> è il fondamento per il suo arco di carattere. Questo è quello che ’s di sbagliato nel suo mondo. Una volta che sai cosa ’s sbagliato, è quindi ottenere impostare su capire come fare nel modo giusto. </string>
+<string name = "challenge_2_bio_desc_1"> Cosa equivoco fa il tuo protagonista ha di se stesso del mondo? </string>
+<string name = "challenge_2_bio_desc_2"> è la menzogna rendendo la sua vita miserabile, quando comincia la storia? Se sì, come? </string>
+<string name = "challenge_2_bio_desc_3"> In caso contrario, sarà levento che incitano metterlo a disagio? </string>
+<string name = "challenge_2_bio_desc_4"> Quali sono i sintomi della menzogna tuo personaggio s ? </string>
+<!--Sfida III BIO -->
+<string name = "challenge_3_bio_title"> Backstory </string>
+<string name = "challenge_3_bio_subtitle"> Perché è il vostro personaggio chi è? </string>
+<string name = "challenge_3_bio_desc_1"> La sua famiglia </string>
+<string name = "challenge_3_bio_desc_2"> Miglior momento infanzia? </string>
+<string name = "challenge_3_bio_desc_3"> momento peggiore infanzia? </string>
+<string name = "challenge_3_bio_desc_4"> Forse aveva degli amici? Cosa dicono di lui? </string>
+<!--Sfida IV BIO -->
+<string name = "challenge_4_bio_title"> Come si guarda? </string>
+<string name = "challenge_4_bio_subtitle"> In un mondo perfetto, come si guarda shouldn  t effetto che si  re. Ma indovina un po? Questo non è un mondo perfetto. </string>
+<string name = "challenge_4_bio_desc_1"> Come il tuo personaggio appare in cinque parole. </string>
+<string name = "challenge_4_bio_desc_2"> Birthmarks? Tatuaggi? </string>
+<string name = "challenge_4_bio_desc_3"> Condizioni mediche? Allergie? </string>
+<string name = "challenge_4_bio_desc_4"> A proposito della sua postura e laspetto? </string>
+<!--Sfida V BIO -->
+<string name = "challenge_5_bio_title"> Quando sotto pressione </string>
+<string name = "challenge_5_bio_subtitle"> Il tuo personaggio può reagire in modi diversi, come si sceglie di agire quando qualcuno ama è in pericolo? </string>
+<string name = "challenge_5_bio_desc_1"> Come avrebbe reagito se qualcuno ama è in pericolo? </string>
+<string name = "challenge_5_bio_desc_2"> Riuscirà a uccidere? </string>
+<string name = "challenge_5_bio_desc_3"> Se lui ritiene che il fine giustifica i mezzi? </string>
+<string name = "challenge_5_bio_desc_4"> OK, lui doesn  t attraversare i propri limiti. come fa egli reagisce allora? </string>
+<!--Sfida VI BIO -->
+<string name = "challenge_6_bio_title"> Qual  s nelle tasche? </string>
+<string name = "challenge_6_bio_subtitle"> Tutti noi abbiamo cose nelle nostre tasche, abbiamo tutti a cuore qualcosa prima di lasciare le nostre case. Che cosa è per il tuo personaggio? </string>
+<string name = "challenge_6_bio_desc_1"> Quando si lascia la casa, che cosa s  nelle tasche? </string>
+<string name = "challenge_6_bio_desc_2"> Cè una foto nel portafogli? </string>
+<string name = "challenge_6_bio_desc_3"> A proposito del portachiavi (portachiavi) </string>
+<string name = "challenge_6_bio_desc_4"> Informazioni sul cellulare </string>
+<!--Sfida I Mentor -->
+<string name = "c1_mentor_bio_title"> Conosci il tuo mentore. </string>
+<string name = "c1_mentor_bio_subtitle"> Non tutti i mentori si comportano allo stesso, né insegnare o guidano nello stesso modo. Che dire la tua? </string>
+<string name = "c1_mentor_bio_desc_1"> Perché il protagonista ha bisogno di un mentore? Perché deve essere </string>
+<string name = "c1_mentor_bio_desc_2"> Come egli mentore del protagonista? </string>
+<string name = "c1_mentor_bio_desc_3"> Sarà il mentore dare un artefatto? Quale? </string>
+<string name = "c1_mentor_bio_desc_4"> Quando durante la tua storia il mentore partirà? </string>
+<!--Sfida I Antagonista -->
+<string name = "c1_antagonist_bio_title"> Conosci il tuo antagonista. </string>
+<string name = "c1_antagonist_bio_subtitle"> Antagonista non sono solo la fonte di tutti i mali. Essi in realtà hanno un motivo di esistere </string>
+<string name = "c1_antagonist_bio_desc_1"> Come è lantagonista lesatto opposto del protagonista? </string>
+<string name = "c1_antagonist_bio_desc_2"> Qual  s la sua / il suo obiettivo? </string>
+<string name = "c1_antagonist_bio_desc_3"> Quali sono le tattiche che lui / lei usa per raggiungere il suo / suoi obiettivi? </string>
+<string name = "c1_antagonist_bio_desc_4"> Che dire larco cambiamento? </string>
+<!--Sfida I Sidekick -->
+<string name = "c1_sidekick_bio_title"> Conosci il tuo Sidekick. </string>
+<string name = "c1_sidekick_bio_subtitle"> Chi è realmente tuo compagno? </string>
+<string name = "c1_sidekick_bio_desc_1"> Perché lui / lei ha deciso di seguire il tuo protagonista? </string>
+<string name = "c1_sidekick_bio_desc_2"> Perché lui / lei ha deciso di perseguire gli obiettivi protagonista? </string>
+<string name = "c1_sidekick_bio_desc_3"> Strumenti, tattiche, armi </string>
+<string name = "c1_sidekick_bio_desc_4"> Qual  s lo sforzo finale tuo compagno farà per il tuo protagonista? </string>
+    
+    
+<string name = "add_character_btn"> Aggiungi carattere </string>
+<string name = "delete_character_btn"> Sei sicuro di voler eliminare questo personaggio? </string>
+<string name = "guide_character_btn"> Guidami </string>
+<!--Aggiungere carattere -->
+<string name = "character_add_name"> Nome </string>
+<string name = "character_add_profession"> Professione </string>
+<string-array name= "profession_array" tools:ignore="InconsistentArrays">
+<item> venditori al dettaglio </item>
+<item> In pensione </item>
+<item> Cassa </item>
+<item> Impiegato di ufficio </item>
+<item> Infermiera </item>
+<item> Cameriere </item>
+<item> il Servizio Clienti </item>
+<item> Janitor </item>
+<item> Cleaner </item>
+<item> Segretario </item>
+<item> Archivio impiegato </item>
+<item> General manager </item>
+<item> Gestore di funzionamento </item>
+<item> Revisione impiegato </item>
+<item> Camionista </item>
+<item> Vendita rappresentante </item>
+<item> Maestro </item>
+<item> assistente insegnante </item>
+<item> Riparazione lavoratore </item>
+<item> Accountant </item>
+<item> Vigilanza </item>
+<item> Receptionist </item>
+<item> Informazioni impiegato </item>
+<item> Ristorante cuoco </item>
+<item> Pulizie </item>
+<item> Edilizia operaio </item>
+<item> Lagente di polizia </item>
+<item> Sheriff </item>
+<item> Carpenter </item>
+<item> Fireman </item>
+<item> Merchant </item>
+<item> Sailor </item>
+<item> Nave capitano </item>
+<item> Meccanico </item>
+<item> Programmatore </item>
+<item> consulente IT </item>
+<item> Avvocato </item>
+<item> Fortune teller </item>
+<item> fast food cuoco </item>
+<item> Elettricista </item>
+<item> Lavastoviglie </item>
+<item> Bartender </item>
+<item> Ispettore </item>
+<item> Tester </item>
+<item> responsabile delle risorse umane </item>
+<item> Machinist </item>
+<item> Parrucchiere </item>
+<item> Servizio postale postino </item>
+<item> Lassistente dentale </item>
+    </string-array>
+<string name = "character_add_age"> Età </string>
+<string name = "character_add_gender"> di genere </string>
+<string-array name= "gender_spinner_array">
+<item> Sesso </item>
+<item> Male </item>
+<item> Donna </item>
+<item> Transgender </item>
+<item> Binary </item>
+<item> Non-Binary </item>
+    </string-array>
+<string name = "character_add_role"> Ruolo </string>
+<string name = "character_add_height"> Altezza </string>
+<string-array name= "heights">
+<item> 1,50 di altezza </item>
+<item> 1.55 di altezza </item>
+<item> 1.60 di altezza </item>
+<item> 1.65 di altezza </item>
+<item> 170 cm di altezza </item>
+<item> 1.75 di altezza </item>
+<item> 1,80 di altezza </item>
+<item> 1.85 di altezza </item>
+<item> 1.90 di altezza </item>
+</string-array>
+<string name = "character_add_haircolor"> Colore dei capelli  s </string>
+<string-array name = "haircolors">
+<item> Brown </item>
+<item> Grigio </item>
+<item> Black </item>
+<item> grano </item>
+<item> argento </item>
+<item> Biondi </item>
+<item> Red </item>
+<item> Bianco </item>
+</string-array>
+<string name = "character_add_eyecolor"> color  degli occhi s </string>
+<string-array name= "eyecolors">
+<item> Brown </item>
+<item> Green </item>
+<item> Luce verde </item>
+<item> Blue </item>
+<item> Light Blue </item>
+<item> Black </item>
+<item> scuri </item>
+</string-array>
+<string name = "character_add_bodybuild"> Bodybuild </string>
+<string-array name="bodytypes">
+<item> Magro </item>
+<item> magra </item>
+<item> Muscoloso </item>
+<item> Chubby </item>
+<item> Fit </item>
+</string-array>
+
+<string name = "character_add_placebirth"> Luogo di nascita </string>
+<string name = "character_add_phrase"> Slogan </string>
+<string name = "character_add_trait"> Trait </string>
+<string-array name= "trait_array">
+<item> Consapevole </item>
+<item> Ambizioso </item>
+<item> Altruistic </item>
+<item> Candid </item>
+<item> Fiducioso </item>
+<item> Calm </item>
+<item> Coraggioso </item>
+<item> affidabile </item>
+<item> Determinato </item>
+<item> Easy-going </item>
+<item> Creatività </item>
+<item> Etica </item>
+<item> Fiera </item>
+<item> Dedicata </item>
+<item> materna </item>
+<item> Inocent </item>
+<item> Tipo </item>
+<item> Loving </item>
+<item> Selfless </item>
+<item> Sincero </item>
+<item> Smart </item>
+<item> intelligente </item>
+<item> Loyal </item>
+<item> matura </item>
+<item> Modest </item>
+<item> paziente </item>
+<item> Witty </item>
+<item> Gravi </item>
+<item> Divertimento </item>
+<item> Rispettoso </item>
+<item> Responsable </item>
+<item> Laborioso </item>
+<item> Allegro </item>
+<item> Cauto </item>
+<item> Utile </item>
+<item> Open-minded </item>
+<item> Obbediente </item>
+<item> Ottimista </item>
+<item> Organizzato </item>
+<item> sociale </item>
+<item> Forte </item>
+<item> Duro </item>
+<item> buon leader </item>
+<item> Good Friend </item>
+<item> Imprevedibile </item>
+</string-array>
+    
+<string-array name= "phrases">
+<item> Forse tutti in tutto il mondo maledetto ha paura gli uni degli altri. </item>
+<item> La vita deve essere vissuta, non controllata; e lumanità è vinta continuando a giocare di fronte a una sconfitta certa. </item>
+<item> Il terrore mi ha fatto crudele </item>
+<item> Eravamo le persone che non erano sui giornali. Abbiamo vissuto negli spazi bianchi in bianco ai bordi della stampa. Che ci ha dato più libertà. Abbiamo vissuto i vuoti tra le storie. </item>
+<item> Sembra abbastanza stasera plausibile, ma aspettare fino a domani. Attendere che il comune senso del mattino. </item>
+<item> E  s molto meglio per fare del bene in un modo che nessuno sa nulla. </item>
+<item> La vita mi sembra troppo breve per essere trascorso in nutrire rancori o torti. </item>
+<item> si dimentica ciò che si vuole ricordare, e ti ricordi che cosa si vuole dimenticare. </item>
+<item> Infine, da così poco sonno e così tanto la lettura, il suo cervello si seccò e andò completamente fuori di testa. </item>
+<item> I ricordi si riscaldano dallinterno. Ma hanno anche strappare a parte. </item>
+<item> Storia, Stephen ha detto, è un incubo dal quale sto cercando di risvegliare. </item>
+<item> Si tratta di una grande disgrazia di essere solo, i miei amici; e si deve credere che la solitudine può distruggere rapidamente ragione. </item>
+<item> E intanto il tempo passa circa il suo lavoro immemorabile di rendere tutti guardare e sentire una merda. </item>
+<item> Nessun uomo, per un periodo considerevole, può indossare una faccia a se stesso e un altro per la moltitudine, senza arrivare finalmente disorientato su quale può essere il vero. </item>
+<item> Al giorno doggi la gente conosce il prezzo di tutto e il valore di niente. </item>
+<item> Nessuno dimentica la verità; hanno appena arriva meglio a mentire. </item>
+<item> Aveva aspettato tutta la vita per qualcosa, e laveva uccisa quando lha trovata. </item>
+<item> Abbiamo bisogno di non vergognarci delle nostre lacrime. </item>
+<item> Nulla è così doloroso per la mente umana come un grande e improvviso cambiamento. </item>
+<item> A volte è una risposta adeguata alla realtà impazzire. </item>
+<item> E doesn  t importa chi sei o quello che sembri, a patto che qualcuno ti ama. </item>
+<item> Lo so. Ero lì. Ho visto il grande vuoto nella tua anima, e ti ho visto il mio. </item>
+<item> Forse era la libertà stessa che la soffocava. </item>
+<item> Chi mai ti ha dato fiducia, ti devo loro un sacco. </item>
+<item> Le uniche bugie per cui siamo veramente puniti sono quelli che ci raccontiamo. </item>
+<item> Non so tutto quello che può venire, ma sia esso quello che vuole, io ’ll andare ad esso ridere. </item>
+</string-array>
+<string-array name= "placebirth_array">
+<item> San Paolo - Brasile </item>
+<item> Bombay - India </item>
+<item> JAKARTA - Indonesia </item>
+<item> Karachi - Pakistan </item>
+<item> Moskva (Moscow) - Russia </item>
+<item> Istanbul - Turchia </item>
+<item> Messico (Città del Messico) - Messico </item>
+<item> Shanghai - Cina </item>
+<item> TOKYO - Giappone </item>
+<item> New York (NY) - Stati Uniti dAmerica </item>
+<item> BANGKOK - Tailandia </item>
+<item> PECHINO - La Cina </item>
+<item> Delhi - India </item>
+<item> Londra - Regno Unito </item>
+<item> Hong Kong - Cina </item>
+<item> Il Cairo - Egitto </item>
+<item> TEHERAN - LIran </item>
+<item> Bogotá - Colombia </item>
+<item> Bandung - Indonesia </item>
+<item> Tianjin - Cina </item>
+<item> Lima - Perù </item>
+<item> Rio de Janeiro - Brasile </item>
+<item> Lahore - Pakistan </item>
+<item> SANTIAGO - Cile </item>
+<item> St Petersburg - Russia </item>
+<item> Shenyang - Cina </item>
+<item> Calcutta - India </item>
+<item> Wuhan - Cina </item>
+<item> Sydney - Australia </item>
+<item> Guangzhou - Cina </item>
+<item> SINGAPORE - Singapore </item>
+<item> Madras - India </item>
+<item> BAGHDAD - LIraq </item>
+<item> Pusan ​​- Corea del Sud </item>
+<item> Los Angeles (CA) - Stati Uniti dAmerica </item>
+<item> Yokohama - Giappone </item>
+<item> DHAKA - Bangladesh </item>
+<item> Berlino - Germania </item>
+<item> Alessandria - Egitto </item>
+<item> Bangalore - India </item>
+<item> Hyderabad - India </item>
+<item> Ho Chi Minh City - Vietnam </item>
+<item> Hanoi - Vietnam </item>
+<item> Haerbin - Cina </item>
+<item> ANKARA - Turchia </item>
+<item> BUENOS AIRES - Argentina </item>
+<item> Chengdu - Cina </item>
+<item> Ahmedabad - India </item>
+<item> Casablanca - Marocco </item>
+<item> Chicago (IL) - Stati Uniti dAmerica </item>
+<item> Xian - Cina </item>
+<item> MADRID - Spagna </item>
+<item> Barcellona - Spagna </item>
+<item> Pyongyang - NorthKorea </item>
+<item> Nanjing - Cina </item>
+<item> KINSHASA - Congo (Zaire) </item>
+<item> ROMA - Italia </item>
+<item> Taipei - Taiwan </item>
+<item> Osaka - Japan </item>
+<item> KIEV - Ucraina </item>
+<item> YANGON - Myanmar </item>
+<item> Toronto - Canada </item>
+<item> Taegu - Corea del Sud </item>
+<item> ADDIS ABEBA - Etiopia </item>
+<item> Jinan - Cina </item>
+<item> Salvador - Brasile </item>
+<item> Inchon - Corea del Sud </item>
+<item> Giza - Egitto </item>
+<item> Changchun - Cina </item>
+<item> LAvana - Cuba </item>
+<item> Nagoya - Giappone </item>
+<item> Belo Horizonte - Brasile </item>
+<item> PARIGI - Francia </item>
+<item> TASHKENT - Uzbekistan </item>
+<item> Cali - Colombia </item>
+<item> Guayaquil - Ecuador </item>
+<item> Taiyuan - Cina </item>
+<item> BRASILIA - Brasile </item>
+<item> Bucuresti - Romania </item>
+<item> Faisalabad - Pakistan </item>
+<item> Quezon City - Filippine </item>
+<item> Houston (TX) - Stati Uniti dAmerica </item>
+<item> Abidjan - Costa dIvorie </item>
+<item> Mashhad - Iran </item>
+<item> Medellín - Colombia </item>
+<item> Kanpur - India </item>
+<item> Budapest - Ungheria </item>
+<item> CARACAS - Venezuela </item>
+<item> Praga - Repubblica Ceca </item>
+</string-array>
+<string name = "character_add_defmoment"> momento Infanzia </string>
+<string-array name= "defmoment_array">
+<item> i genitori è stato ucciso </item>
+<item> una grande perdita </item>
+<item> aveva un viaggio in un paese foreing </item>
+<item> si è persa </item>
+<item> testimone di un omicidio </item>
+<item> trovato un artefatto </item>
+<item> nascondere un grande segreto </item>
+<item> genitori divorziarono </item>
+<item> è stato vittima di bullismo a scuola </item>
+<item> ha avuto un incidente dauto </item>
+<item> ha avuto un grosso incidente </item>
+<item> è stata adottata </item>
+<item> trasferito in unaltra città </item>
+<item> non aveva amici </item>
+<item> è stato paralizzato </item>
+</string-array>
+<string name = "character_add_desire"> Quello che lui / lei vuole? </string>
+<string-array name= "desire_array">
+<item> per essere amato </item>
+<item> per essere la paura </item>
+<item> per essere accettato </item>
+<item> per essere ricco </item>
+<item> per raggiungere la perfezione </item>
+<item> per scuse </item>
+<item> per evitare conflitti </item>
+<item> per evitare il dolore </item>
+<item> per essere riconosciuto </item>
+<item> per essere cattivo </item>
+<item> per essere buono </item>
+<item> per essere normale </item>
+<item> per essere ricordato </item>
+<item> essere rispettato </item>
+<item> di essere qualcun altro </item>
+<item> per essere speciale </item>
+<item> per essere la bellezza </item>
+<item> per essere forte </item>
+<item> per ingannare la morte </item>
+<item> il comfort </item>
+<item> per affrontare le paure </item>
+<item> fama </item>
+<item> fortuna </item>
+<item> per trovare uno scopo </item>
+<item> per trovare lavventura </item>
+<item> per adattarsi in </item>
+<item> la libertà </item>
+<item> indipendenza </item>
+<item> per arrivare da qualche parte </item>
+<item> per lasciare la città </item>
+<item> gloria </item>
+<item> revange </item>
+<item> giustizia </item>
+<item> conoscenza </item>
+<item> di non essere soli </item>
+<item> potenza </item>
+<item> redenzione </item>
+<item> per ripagare un debito </item>
+<item> Sicurezza </item>
+<item> per distinguersi </item>
+<item> a morire </item>
+<item> per sopravvivere </item>
+</string-array>
+<string name = "character_add_need"> Quello che lui / lei ha bisogno? </string>
+
+<string-array name="need_array" tools:ignore="InconsistentArrays">
+<item> per essere accettato </item>
+<item> per essere amato </item>
+<item> a fidarsi degli altri </item>
+<item> Runaway </item>
+<item> per essere riconosciuto </item>
+<item> per combattere </item>
+<item> per affrontare le paure </item>
+<item> a stare la sua terra </item>
+<item> per accettare la realtà </item>
+<item> ad amare la sua famiglia </item>
+<item> per tornare a casa </item>
+<item> per trovare lamore </item>
+<item> a fidarsi di nuovo </item>
+<item> per essere responsabile </item>
+<item> di crescere </item>
+<item> a maturare </item>
+<item> a spingere i suoi limiti </item>
+<item> per smettere di accettare lo status quo </item>
+</string-array>
+    
+<string name = "character_save_btn"> Salva </string>
+<string name = "character_random_btn"> Genera </string>
+    
+    
+<!--Sottotitoli -->
+<string name = "character_basic_tv"> base </string>
+<string name = "character_story_tv"> Story </string>
+<string name = "character_notes_tv"> Note </string>
+<string name = "character_personality_tv"> Personalità </string>
+    
+    
+<!--Viaggio Strings -->
+<string name = "hero_journey_tab"> Il viaggio delleroe </string>
+<string name = "hj_act1"> Atto 1: La partenza </string>
+<string name = "hj_act2"> Atto 2: Iniziazione </string>
+<string name = "hj_act3"> Atto 3: Il ritorno </string>
+    
+<string name = "hj_title1"> La chiamata allavventura </string>
+<string name = "hj_title2"> Rifiuto della chiamata </string>
+<string name = "hj_title3"> Supernatural Aid </string>
+<string name = "hj_title4"> La traversata della prima soglia </string>
+<string name = "hj_title5"> ventre della balena </string>
+<string name = "hj_title6"> La strada di Sentieri </string>
+<string name = "hj_title7"> Lincontro con la Dea </string>
+<string name = "hj_title8"> La donna come tentatrice </string>
+<string name = "hj_title9"> Espiazione con il padre </string>
+<string name = "hj_title10"> Apotheosis </string>
+<string name = "hj_title11"> The Ultimate Boon </string>
+<string name = "hj_title12"> Il rifiuto del ritorno </string>
+<string name = "hj_title13"> Il volo magico </string>
+<string name = "hj_title14"> salvataggio dallesterno </string>
+<string name = "hj_title15"> Il superamento della soglia di ritorno </string>
+<string name = "hj_title16"> Master di due mondi </string>
+    
+    
+<string name = "hj_desc1"> Leroe è presentato con un problema, sfida o avventura.
+Leroe deve affrontare inizio del cambiamento. Questa chiamata deve essere accettato, questo può accadere di buon grado,
+a malincuore, consapevolmente o accidentalmente </string>
+<string name = "hj_desc2"> Leroe non accetta la chiamata subito. Ciò può accadere per tutti i tipi di ragioni, come lessere disposti, essendo in segno di diniego o di essere impedito di essere in grado di rispondere.
+Leroe trova la motivazione e o lopportunità di rispondere alla chiamata. </string>
+<string name = "hj_desc3"> Leroe è ora impegnata nella ricerca (consciamente o inconsciamente) e la sua guida / assistente viene a conoscenza.
+Spesso, il mentore presenterà leroe con un talismano o un artefatto per aiutare lui più tardi nella ricerca. </string>
+<string name = "hj_desc4"> Leroe attraversa nel campo di avventura, lasciando dietro di sé tutto ciò che è conosciuto e fare un passo verso lignoto. Qui, i limiti, le regole ed i limiti non sono ancora noti.
+Non si può tornare indietro, questo è dove lavventura si va. </string>
+<string name = "hj_desc5"> Il ventre della balena rappresenta la definitiva separazione dal mondo conosciuto delleroe. In questa fase, egli mostra la volontà di sottoporsi a cambiamento e adattamento. </string>
+<string name = "hj_desc6"> Si tratta di una serie di test, i compiti e le prove che leroe deve subire al fine di iniziare la sua trasformazione. Spesso i test avvengono in gruppi di tre e leroe di solito non riesce una o più.
+A volte, gli eroi perdono il loro mentore in questa fase (per esempio LOTR e Star Wars). </string>
+<string name = "hj_desc7"> Leroe sperimenta un amore che è onnipotente, che comprende e incondizionato. </string>
+<string name = "hj_desc8"> Leroe deve affrontare tentazione (fisica o piacevole) che rendono lo ha portato ad allontanarsi dalla sua missione o addirittura abbandonarla. Questa tentazione non necessaria proviene da una donna. </string>
+<string name = "hj_desc9"> Leroe si confronta con il potere ultimo della sua vita. Questo è il punto centrale della storia. Tutte le fasi precedenti lo hanno portato qui e le fasi di venire lui allontanarsi. </string>
+<string name = "hj_desc10"> Cè un periodo di riposo, di pace e appagamento prima che leroe inizia il suo viaggio a casa. </string>
+<string name = "hj_desc11"> Il raggiungimento dellobiettivo o di quest. Leroe ottiene quello che è venuto per. </string>
+<string name = "hj_desc12"> Leroe non può decidere di tornare nel mondo normale. </string>
+<string name = "hj_desc13"> A volte leroe deve scappare con lartefatto è venuto per (ad esempio il Sacro Graal) e altri venuti dopo di lui di rivendicare indietro. In questo caso, il viaggio di ritorno può essere altrettanto pericoloso e pieno di avventura. </string>
+<string name = "hj_desc14"> Leroe ha spesso (e bisogni) guide e aiutanti, a volte gli aiutanti sono quella che ha bisogno di riportarlo alla vita di ogni giorno. Specialmente se leroe è stato gravemente ferito. </string>
+<string name = "hj_desc15"> Adesso che ha acquisito tutta questa conoscenza ed esperienza, ha bisogno di conservarlo e di integrarlo nella sua vita umana e o condividerlo con il mondo. </string>
+<string name = "hj_desc16"> Questo passaggio si verifica se leroe è un eroe trascendente, come Gesù o Buddha. Se leroe è umano, questo può essere semplicemente il raggiungimento di un equilibrio tra il mondo materiale e spirituale. Leroe diventa comodo e competenti sia nel mondo interiore ed esteriore. </string>
+    
+    
+<!--Tasso di applicazione -->
+<string name = "rate_app"> Aiutami migliorarlo! </string>
+<string name = "rate_app_des"> E  s non facile fare un app. Ancora più difficile se si  s gratuitamente. Se ti è piaciuto!  Nhelp mi stese a rating esso. </string>
+<string name = "rate_submit"> Vota! </string>
+<string name = "rate_cancel"> Non ancora </string>
+    
+    
+<!--fragment Challenge -->
+<string name = "challenge_answer_placeholder"> risposta … </string>
+<string name = "challenge_nochallenge_placeholder"> Non hai problemi ancora per questo personaggio. </string>
+<string name = "challenge_action_bar"> Le sfide </string>
+    
+<!--Prima sfida -->
+<string name = "challenge_1_title"> Sfida I </string>
+<string name = "challenge_1_desc"> ascensore Sfida </string>
+<string name = "challenge_1_desc_long"> Come fa il tuo personaggio reagisce in crisi?  N
+Let  s lo ha messo su un ascensore con uno sconosciuto casuale. E doesn  t importa chi.  N
+Improvvisamente lascensore si blocca e si  re sia trappola allinterno.  N Come si reagisce? Sta calmo? Egli panico?
+ Ntake il tempo necessario per rispondere.
+ NIl esercizio vi permetterà di riflettere sul tuo personaggio, come si comporta in situazioni limite. </string>
+<string name = "challenge_1_q1"> Qual è la sua prima reazione? </string>
+<string name = "challenge_1_q2"> Sarà lui lora di essere salvato? </string>
+<string name = "challenge_1_q3"> La persona accanto a lui panico improvviso. Il vostro personaggio chiamarlo verso il basso? Riuscirà a prendere dal panico come bene? </string>
+<string name = "challenge_1_q4"> Dopo più di unora intrappolato in ascensore improvvisamente vè una fessura aperta. Vieni, dice la voce, ma posso prendere una sola
+ Nla altro dovrebbe aspettare fino a più aiuto arriva. Sarà il tuo personaggio va prima? </string>
+<!--Seconda sfida -->
+<string name = "challenge_2_title"> Challenge II </string>
+<string name = "challenge_2_desc"> Qual  s la menzogna? </string>
+<string name = "challenge_2_desc_long"> The Change Arc è tutta una questione di Lie tuo personaggio è convinto. La sua vita può essere orribile, o la sua vita possa sembrare abbastanza grande. Ma, purulenta sotto la superficie, è la menzogna.
+Affinché il vostro personaggio si evolva in modo positivo, deve iniziare con qualcosa che manca nella sua vita, un motivo che rende il cambiamento necessario. </string>
+<string name = "challenge_2_q1"> Cosa equivoco fa il tuo protagonista ha di se stesso o il mondo? </string>
+<string name = "challenge_2_q2"> è la menzogna facendo la sua vita miserabile, quando si apre la storia? Se sì, come? </string>
+<string name = "challenge_2_q3"> In caso contrario, sarà lIstigazione Evento e / o la prima Plot Point cominciare a metterlo a disagio a seguito della sua bugia? </string>
+<string name = "challenge_2_q4"> Quali sono i sintomi di Lie del tuo personaggio? </string>
+<!--Terza sfida -->
+<string name = "challenge_3_title"> Challenge III </string>
+<string name = "challenge_3_desc"> Backstory - Trovare il perché </string>
+<string name = "challenge_3_desc_long"> Chi è il tuo personaggio di oggi è molto importante, quello che  s il suo lavoro, che cosa  s la sua passione, ecc chi egli sarà è la carne della vostra storia. Che  s quello che si  re raccontarla. E per quanto riguarda il suo passato? Il suo passato è per questo che è così. Erano i suoi genitori divorziano? Forse la sua madre era un alcolizzato, ha fatto il suo fratello è morto in un tragico incidente? Gli eventi della vita forma che siamo. Dive in questa sfida per sviluppare pienamente il vostro personaggio tridimensionale. </string>
+<string name = "challenge_3_q1"> Descrivere brevemente la sua stretta famiglia, madre, padre, fratelli ?. Sono tutti vivi? Sono i genitori divorziati? Famiglia felice, forse? </string>
+<string name = "challenge_3_q2"> Qual  s il suo miglior ricordo infantile? </string>
+<string name = "challenge_3_q3"> Qual  s la sua memoria peggiore infanzia? </string>
+<string name = "challenge_3_q4"> Ha avuto amici quando era un bambino? Come i suoi amici a loro lo descrivono? Se non aveva amici, perché era? </string>
+<!--quarta sfida -->
+<string name = "challenge_4_title"> Challenge IV </string>
+<string name = "challenge_4_desc"> Come si guarda? </string>
+<string name = "challenge_4_desc_long"> Lajos Egri ha detto che una parte di chi siete, è  s a causa di come la si guarda. È don  t credete? Immaginate il vostro personaggio è stato paralizzato quando era un ragazzino, a causa di questo era tutto il giorno nel suo letto, così lui riusciva  t fare tanto come altri ragazzi, come giocare al di fuori. Alla fine ha trascorso la maggior parte del suo tempo a leggere e imparare cose nuove. Strano per un ragazzo normale, ma lunica vita il tuo personaggio lo sapeva. Riuscirà a essere diverso da altre adulti quando sarà grande? Un po più intelligente, forse? Tuffati in per scoprire come il tuo personaggio si presenta come </string>
+<string name = "challenge_4_q1"> Prendetevi un momento per riflettere. Annotare 5 aggettivi che descrivono il tuo personaggio fisicamente </string>
+<string name = "challenge_4_q2"> Se lui ha qualche segno di nascita? Tatuaggi forse che lo renderà unico? </string>
+<string name = "challenge_4_q3"> Non cè alcuna condizione medica? Allergie? Qualcosa che si manifesta fisicamente, anche se riesce a nascondere sotto i vestiti? </string>
+<string name = "challenge_4_q4"> Si consideri la sua postura un po , si può descriverlo? Inoltre, per quanto riguarda il suo aspetto? È lui ordinata? È lui ordinata? Direte che è buono nel complesso cercando? </string>
+<!--Quinto Challenge -->
+<string name = "challenge_5_title"> Challenge V </string>
+<string name = "challenge_5_desc"> testare i limiti. </string>
+<string name = "challenge_5_desc_long"> Se il carbone e diamanti sono fondamentalmente la stessa cosa, ciò che rende il carbone in modo comune e il diamante così raro?  N pressione.  Nsame è vero in caratteri, vuoi sapere se il tuo personaggio è solo un altro in mezzo alla folla o è lui leroe unico tua storia ha bisogno? Lasciate pressione put  s su di lui e scoprire chi è veramente. </string>
+<string name = "challenge_5_q1"> Come avrebbe reagito se qualcuno si preoccupa sta in pericolo? </string>
+<string name = "challenge_5_q2"> Sarà in grado di uccidere? </string>
+<string name = "challenge_5_q3"> Il vostro personaggio dire che il fine giustifica i mezzi quando si  s di proteggere una persona cara? </string>
+<string name = "challenge_5_q4"> Let  s dice che doesn  t hanno il coraggio di attraversare i propri limiti per salvare la vita di una persona che si prende cura. Ciò che entro i suoi limiti / confini farà a risolvere la situazione? </string>
+<!--Sesta Challenge -->
+<string name = "challenge_6_title"> Challenge VI </string>
+<string name = "challenge_6_desc"> Qual  s nelle tasche? </string>
+<string name = "challenge_6_desc_long"> Qualunque cosa portate con voi, parla in modo di ciò che ti interessa. Volete portare qualcosa che si cura don  t? Probabilmente ha vinto  t. Lo stesso è s vero per il tuo personaggio . Tuffati in per scoprire quello che lui / lei ha nelle tasche, scoprire quello che lui / lei si preoccupa veramente di </string>
+<string name = "challenge_6_q1"> Il tuo personaggio è  s in procinto di lasciare la casa. Quale sarà lui / lei prendere e mettere in tasca? Portafoglio? Chiavi? E  s una chiave di auto? Che macchina fa lei / lui ha? </string>
+<string name = "challenge_6_q2"> Aprire il portafoglio, cè una foto? Chi è nella foto? Perché  ci s ? Da quando? </string>
+<string name = "challenge_6_q3"> prendere le chiavi dalla sua / tasca, guardare con attenzione al portachiavi. Che cosè? Dove lui / lei ottenuto? Era un regalo? E licona di un paese o di bandiera? Quale paese? </string>
+<string name = "challenge_6_q4"> Egli / ella portare un cellulare? Lo fa ha la batteria? o E  s sempre quasi vuoto quando si  s il tempo di lasciare? È il telefono in modalità silenziosa? Guardare più da vicino, quello che </string>  s la carta di parete cellulare?
+<!--Mentor Challenge -->
+<string name = "c1_mentor_title"> Mentor Sfida </string>
+<string name = "c1_mentor_desc"> Conosci il tuo mentore. </string>
+<string name = "c1_mentor_desc_long"> I mentori sono un raro tipo di caratteri. Non tutte le storie ha uno, ma quando lo fanno, deve essere per un motivo.  NChe era Yoda motivo per insegnare Luke Skywalker? Chi lo ha messo in quella palude in attesa di essere scoperta? Ha offerto solo conoscenza o anche un artefatto? Era questo artefatto la fonte del potere Luca  s? Tuffati in per scoprire il tuo mentore. </string>
+<string name = "c1_mentor_q1"> Perché il vostro protagonista ha bisogno di un mentore? Perché questo particolare, sarà esattamente quello di cui ha bisogno? </string>
+<string name = "c1_mentor_q2"> Sarà il mentore darne conoscenza al protagonista? Oppure lo aiuterà a scoprire se stesso? </string>
+<string name = "c1_mentor_q3"> Il vostro potere protagonista essere sbloccato da un artefatto proposta dal mentore? Se sì, quale potere e quale artefatto? </string>
+<string name = "c1_mentor_q4"> Mentors muoiono. Come parte di qualsiasi viaggio drammatico, il mentore di solito deve andare un po prima che il protagonista è in realtà pronto. O forse è ma lui doesn  t lo sanno ancora.  Nat quale momento il vostro mentore lascerà o morire? Come sarà? </string>
+<!--Antagonista Challenge -->
+<string name = "c1_antagonist_title"> Antagonista Sfida </string>
+<string name = "c1_antagonist_desc"> Conosci il tuo antagonista. </string>
+<string name = "c1_antagonist_desc_long"> Le storie sono un gioco di potere. Nessuno si preoccupa il viaggio di "Mr posso fare tutto", se il protagonista non si trova ad affrontare una sorta di ostacolo che gli impedisce di ottenere ciò che vuole, allora non cè sfida, e nessuna sfida significa nessuna crescita, che riprende su no storia a tutti. Tuttavia solo laggiunta di ostacoli per il bene della storia non è una buona pratica sia. Scavare in per capire meglio chi è il vostro antagonista realmente è, e che cosa  s il suo vero ruolo in tua storia </string>
+<string name = "c1_antagonist_q1"> Lantagonista è lesatto opposto del protagonista. Come in questo caso? </string>
+<string name = "c1_antagonist_q2"> Il tuo Antagonista non è solo il male, lui doesn  t vogliono distruggere il protagonista, a meno che ciò si ottiene per la sua strada. Allora, qual è il tuo obiettivo finale Antagonista  s? </string>
+<string name = "c1_antagonist_q3"> Quali sono le tattiche che usa per raggiungere i suoi obiettivi? </string>
+<string name = "c1_antagonist_q4"> Pensate larco di cambiamento del vostro antagonista. Egli inizia male e finisce male? Non è un grande arco, allora no? Così come lui è in atto 1, come egli è nella legge 3? </string>
+<!--Sidekick Challenge -->
+<string name = "c1_sidekick_title"> Sidekick Sfida </string>
+<string name = "c1_sidekick_desc"> Conosci il tuo Sidekick. </string>
+<string name = "c1_sidekick_desc_long"> Sidekicks sono spesso sottovalutati, ma Frodo potrebbe raggiungere il suo obiettivo senza Sam? Don Chisciotte è un personaggio completo per conto suo, ma si può immaginare lo combattere i mulini a vento senza Sancio Panza? Sidekicks hanno un motivo di esistere. Trova la tua ragione sidekick questa sfida. </string>
+<string name = "c1_sidekick_q1"> Perché il vostro compagno decide di seguire il tuo protagonista? </string>
+<string name = "c1_sidekick_q2"> Perché gli obiettivi della vostra protagonista sono così forti che il vostro compagno decide di perseguire la loro? </string>
+<string name = "c1_sidekick_q3"> Quali sono gli strumenti, tattiche o armi che il vostro compagno fornisce al tuo protagonista? Come lo protegge o difenderlo? </string>
+<string name = "c1_sidekick_q4"> Alcuni assistenti avuto un momento in cui devono decidere, se il protagonista merita la propria vita. Che il caso nel vostro  s? Che  s la cosa più preziosa tuo compagno rischierà per il vostro protagonista? Sarà la sua vita? </string>
+<!--Coming soon sfida -->
+<string name = "challenge_7_title"> Challenge VII </string>
+<string name = "challenge_7_desc"> In arrivo </string>
+<string name = "challenge_7_desc_long"> I  sto attualmente lavorando su più sfide. Don  t esitate a contattarmi per suggerimenti </string>
+    
+    
+<!-- RUOLI GUIDA -->
+<string name = "roles_title">Ruoli di carattere tipici </string>
+<string name = "roles_desc"> Ruoli </string>
+<string name = "roles_desc_long"> Picture la tua storia come motore, contiene ingranaggi e ruote dentate che ha bisogno di lavorare insieme per il vostro motore di muoversi. I personaggi in una storia non sono diversi.
+Ogni personaggio nella vostra storia deve avere un ruolo che si muove avanti la storia, dal protagonista al antogonist, ma che  non è tutto. Che dire dei comprimari? O i mentori? Dive in qui per saperne di più sui ruoli di carattere </string>
+<string name = "char_guide_title"> tipica ruoli di carattere </string>
+<string-array name="char_guide_types_titles">
+<item> Protagonista </item>
+<item> Helper </item> Protagonista  s
+<item> Sidekick </item>
+<item> Guardiano </item>
+<item> Mentor </item>
+<item> Impatto </item>
+<item> Antagonista </item>
+<item> Helper </item> Antagonista  s
+<item> Skeptic </item>
+<item> Obstacle </item>
+<item> Obiettivo </item>
+</string-array>
+
+<string-array name= "char_guide_types_desc">
+<item> il protagonista della trama E  s, le cose accadono a lui. Egli guida lazione dallinizio alla fine del gioco, per esempio. Tutte le storie hanno almeno un protagonista principale e, in generale, questo atto motivato dal suo obiettivo. </item>
+<item> Può essere confuso con il protagonista, ma il suo ruolo è quello di aiutare il protagonista a raggiungere i suoi obiettivi nel gioco, niente altro. </item>
+<item> E doesn  t appare davvero in tutti i giochi però, la spalla può essere visto in molti generi diversi. Lui è il personaggio che unisce e accompagnano il protagonista sulle sue vittorie o sconfitte, sarà sempre aiutare il protagonista a qualunque esso  s necessario, dal fisico al sostegno morale. Lassistente, anche è spesso dedicata alla protagonista e farà di tutto per lui. Potrebbe anche morire. </item>
+<item> E  s non un carattere vincolante né luno principale, tuttavia si presenta in molti romanzi. È quella che mantiene quarantina, che la custodisce (normalmente qualcosa di molto importante e relativo al lobiettivo protagonista) si comporterà come un ostacolo per il protagonista a raggiungere il suo obiettivo. </item>
+<item> Un altro personaggio non obbligatorio comunque molto forte quando presente  s. Egli è il Yoda di Star Wars, o il sacerdote nel Conte di Montecristo. Un personaggio che guideranno e trasformare il protagonista (The Hero), in modo che sarà pronto per la battaglia finale, quella che dovrà lottare per raggiungere i suoi objetives. </item>
+<item> Il personaggio impatto è un personaggio secondario con un breve spettacolo in scena, ma molto importante. È di circa il personaggio che in un dato momento del gioco, darà il protagonista la spinta finale per andare avanti; o può anche dargli un indizio che può utilizzare in seguito (nel momento clou, per esempio) per risolvere qualcosa, per trovare il valore di cui ha bisogno, o lindizio per trovare lomicidio. </item>
+<item> In altra parte del tavolo, troviamo un personaggio che è  s lesatto opposto del protagonista: lantagonista o il cattivo della storia. Questo doesn  t significa che lantagonista è sempre cattiva. Tuttavia, egli ha un obiettivo di fronte a completa rispetto alla protagonista e che combatterà fino alla fine per raggiungerlo. Con questo scontro di obiettivi è dove si trova il vostro conflitto. </item>
+<item> Proprio come il protagonista, lantagonista può avere il suo aiutante. Meglio detto, Personaggio che aiuta lAntagonista per raggiungere i suoi obiettivi. Questi non sono personaggi obbligatori, naturalmente, ma possono essere molto utili per creare il vostro diagramma. </item>
+<item> Il carattere scettico è quella che doesn  t credere negli obiettivi del protagonista. Potremmo dire, lopposto della spalla, lui doesn  t realmente mettere ostacoli sul protagonista comunque cercherà di demoralizzare lui. </item>
+<item> Questo tipo di personaggi sono in qualche modo simile a aiutanti lantagonista  s invece agiscono più come jolly, personaggi che si aprirà brevemente per complicare o deviare il protagonista dal suo obiettivo. </item>
+<item> A volte lobiettivo di un protagonista può essere un altro personaggio. Per esempio, qualcuno è stato rapito e il protagonista deve trovare lui. Questo personaggio se lui doesn  t hanno alcuna altra funzione o il ruolo nel gioco, può essere considerare lobiettivo </item>
+</string-array>
+    
+    
+<string name = "lajos_character_title"> lajos_character_title 3D Characters - Lajos Egri </string>
+<string name = "lajos_character_desc"> personaggi tridimensionali </string>
+<string name = "lajos_character_long"> Ogni oggetto ha tre dimensioni: profondità, altezza, larghezza. Gli esseri umani hanno un ulteriore tre dimensioni: la fisiologia; sociologia; psicologia. Senza una conoscenza di queste tre dimensioni non possiamo valutare un essere umano. Non è sufficiente, nel vostro studio di un uomo, per sapere se è maleducato, gentile, religioso, ateo, morale, degenerato. È necessario conoscere il motivo per cui </string>
+<string name = "lajos_text"> Cè un solo ambito in cui i personaggi sfidare le leggi naturali e rimanere lo stesso: il regno della scrittura bar  n- Lajos Egri -.  N  nA reale un personaggio convincente avrà sempre tre dimensioni, non riuscendo a farlo, si tradurrà in un carattere uncompelling irrealistico il cui scopo è solo quello di essere lì come riempitivo.  Nnot tutti i personaggi hanno di avere tre dimensioni è vero, ma almeno si deve concentrarsi su quelle principali.  n  nLajos Egri sul suo libro "Larte di scrivere drammatica" scrisse tre categorie (da qui le tre dimensioni) che il tuo personaggio deve avere  Ntake unocchiata qui sotto:.  n  nPhysiology  n
+1.Sex  \n
+2.Age  \n
+3.Height &amp; Peso  \n
+4.Colour di capelli, occhi, pelle  \n
+5.Posture  \n
+6.Appearance: bello, sovra o sottopeso, pulito, ordinato, piacevole, in disordine. Forma della testa, viso, gli arti.  \n
+7.Defects: deformità, anomalie, voglie. Malattie.  \n
+8.Heredity.  \n
+ NSociology  \n
+1.class:. Inferiore, medio, superiore  \n
+2.Occupation:. Tipo di lavoro, ore di lavoro, reddito, condizioni di lavoro, sindacale o non sindacale, atteggiamento verso lorganizzazione, lidoneità per il lavoro  \n
+3.Education:. Importo, tipo di scuole, segni, soggetti preferiti, i soggetti più poveri, attitudini  \n
+4.Home vita: i genitori che vivono, capacità di guadagno, orfani, genitori separati o divorziati, abitudini, genitori di sviluppo mentale, vizi dei genitori, abbandono. stato di famiglia del personaggio.  \n
+5.Religion  \n
+6.Race, nazionalità  \n
+7.Place in comunità:. Leader tra amici, club, sport  \n
+di carattere 8.Political  \n
+9.Amusements, hobby:. Libri, giornali, riviste che legge  \n
+ NPsychology  \n
+vita 1.Sex, standard morali  \n
+premessa 2.Personal, ambizione  \n
+3.Frustrations, capo delusioni  \n
+4.Temperament:. Collerico, accomodante, pessimista, ottimista  \n
+5.Attitude verso la vita: si è dimesso, militante, disfattista  \n
+6.Complexes:. Ossessioni, inibizioni, superstizioni, fobie  \n
+7.Extrovert, introverso, ambivert.  \n
+8.Abilities:. Lingue, talenti  \n
+9.Qualities:. Immaginazione, di giudizio, di gusto, equilibrio  \n
+10.I.Q.  \n\n
+</string>
+    
+    
+<string name = "change_arc_title"> Cambia Arc - K.M Weiland </string>
+<string name = "change_arc_desc"> Come creare caratteri archi  s? </string>
+<string name = "change_arc_desc_long"> Aristotele scrisse che la storia è stato tutto di trama, ma oggi sappiamo che trama è tutto su come i personaggi reagiscono ad esso. Sarà Indiana Jones reagire lo stesso ad un tradimento di Scarface? Possiamo supporre che ciò che s  eccitante per Batman
+forse noioso per Francis Underwood? Personaggi in stesse situazioni reagiscono in modo completamente diverso  nDive in questa sezione per ulteriori informazioni su come personaggi reagiscono alle situazioni e come cambiano di conseguenza </string>
+<string-array name="change_arc_array_titles">
+<item> LArco positivo </item>
+<item> The Flat Arc </item>
+<item> Il Negativo Arc </item>
+</string-array>
+<string-array name= "change_arc_array_desc">
+<item> Questo è il più popolare e spesso larco personaggio più risonante. Il protagonista partirà con diversi livelli di cumplimento personali e negazione. Nel corso della storia, sarà costretto a sfidare le sue convinzioni su se stesso e il mondo, fino a quando finalmente egli conquista i suoi demoni interiori (e, di conseguenza, probabilmente, i suoi antagonisti esterni pure) e finisce il suo arco aver cambiato in un modo positivo. </item>
+<item> Molte storie popolari sono dotate di personaggi che sono già sostanzialmente completo a se stessi. Sono già eroi e non richiedono alcuna crescita personale notevole per acquisire la forza interiore per sconfiggere gli antagonisti esterni. Questi personaggi sperimentano poco o nessun cambiamento nel corso della storia, rendendo i loro archi statica o “flat”. A volte questi personaggi sono i catalizzatori per il cambiamento nel mondo storia intorno a loro, in modo che troviamo archi di crescita più importanti in personaggi minori . </item>
+<item> archi carattere negativo offrono, probabilmente, più varianti che uno degli altri archi. Tuttavia, al loro livello più elementare, lArco negativo è solo un cambiamento arco rovesciato sul suo capo. Invece di un personaggio che si sviluppa dalle sue colpe in una persona migliore, lArc negativo presenta un personaggio che finisce in uno stato peggiore di quello in cui inizia la storia. </item>
+</string-array>
+    
+<string name = "antagonist_guide_title"> Lanatomia del perfetto antagonista </string>
+<string name = "antagonist_guide_desc"> Come sono fatte antagonisti? </string>
+<string name = "antagonist_guide_desc_long"> Lajos Egri discutere nel suo libro "Larte della scrittura drammatica" limportanza di unità degli opposti. Il che significa che se Batman fine vuole poi il Joker vuole il caos, se Gandalf vuole la pace, poi Sauron vuole la guerra.
+Lunità degli opposti si riferisce al fatto che entrambi, il protagonista e lantagonista vuole esattamente opposto e che  s il motivo per cui si scontrano. Non riuscendo ad applicare questo concetto nel vostro antagonista lo renderà noioso o non è realistico. Scavare in per capire meglio come un buon antagonisti sono fatti. </string>
+<string-array name="antagonist_guide_array_titles">
+<item> Gli antagonisti sono lesatto opposto del protagonista </item>
+<item> Gli antagonisti sono complesse </item>
+<item> Gli antagonisti sono avversari difficili </item>
+<item> Lantagonista ha una forte motivazione </item>
+</string-array>
+<string-array name= "antagonist_guide_array_desc">
+<item> Molto spesso nella letteratura, lantagonista è semplicemente lopposto delleroe / protagonista. Ad esempio, se il protagonista è sfacciato e testa calda, quindi lantagonista è calmo e molto in controllo delle proprie emozioni. Il contrasto tra i due contribuisce a creare un conflitto convincente e rende le interazioni più interessanti.  N
+Ma attenzione, la loro opposizione non è solo nelle loro tattiche per raggiungere i loro obiettivi, è  s più profondo di quello, va tutto il senso alla loro natura, in un modo che la battaglia finale tra i quali è  s inevitabile, dal momento che la prima la linea della vostra storia. </item>
+<item> Per quanto allettante come potrebbe essere, non fare il vostro antagonista lepitome del male. Perchè no? Perché è  s noioso e poco realistico. Quante persone hai incontrato nella tua vita che sono assolutamente il male? Probabilmente azzerare. Non importa quanto malvagio qualcuno è, si può sempre trovare qualche cosa veramente positiva nel loro carattere.  N
+Lascia la tua antagonista alcune buone qualità e mostrare loro in una luce positiva durante alcune scene / capitoli. Questo creerà un forte contrasto quando inevitabilmente agiscono sui loro desideri malvagi e qualunque cosa facciano sembrerà ancora più terribile di quanto lo sarebbe se li avessi raffigurato come un essere puramente male.  N
+Per dare il tuo antagonista ancora più profondità, esplorare il loro background. Una volta era una brava persona? Aveva sempre avere cattive inclinazioni? Che cosa è successo a lui per essere così odioso? Laggiunta di questi strati al vostro antagonista permetterà la lettura anche essere costretto sulla tua antagonista e credono veramente il vostro gioco. </item>
+<item> Non vè alcun gioco se il vostro antagonista non è almeno forte come il vostro protagonista. In realtà, molti grandi giocate inizia dallaltra estremità, è  s il protagonista che deve crescere le proprie competenze al fine di corrispondere lantagonista del male. Non riuscendo ad avere un potente antagonista nel vostro gioco si tradurrà in uno scontro noioso e un gioco noioso come non cè sfida reale per il protagonista.
+Fare sei antagonista eseguire azioni veramente spregevoli e, se possibile, si potrebbe anche voler vostro protagonista a perdere un paio di battaglie prima che lultimo, quando ci mostrano quanto lontano è andato a sconfiggere lantagonista. </item>
+<item> Qual  s lobiettivo del vostro antagonista? Qual è lo scopo dietro tutto i problemi che stanno causando? Don  t essere tentato di spiegare che le loro azioni malvagie sono semplicemente un prodotto della loro natura malvagia. La gente don  t solo casualmente fare cose cattive. Di solito hanno un motivo per le loro azioni. Vieni con una forte motivazione e il tuo personaggio diventa molto più credibile. </item>
+</string-array>
+    
+<string name = "weekly_challenge_title_default"> Nessun collegamento </string>
+<string name = "weekly_challenge_desc_default"> Se vedete questo testo significa che avete senza connessione a internet. Si prega di verificare il vostro Internet e ri-entrare in questa sezione </string>
+<string name = "weekly_challenge_view_ad_btn"> Visualizza annuncio </string>
+<string name = "weekly_challenge_view_ad_desc"> Per mantenere questa applicazione gratuita, per partecipare, I  ve chiedervi di guardare un annuncio rapido. </string>
+<string name = "weekly_challenge_submit_btn"> Partecipa </string>
+<string name = "weekly_challenge_email_desc"> Don  t dimenticare di aggiungere il vostro nome, se si vuole essere nominato. E grazie per la partecipazione! </string>
+    
+<string name = "sign_out"> Esci </string>
+<string name = "characters_created">  personaggi creati </string>
+<string name = "projects_created">  progetti creati </string>
+<string name = "name"> Nome </string>
+<string name = "email"> E-mail </string>
+<string name = "view_participant"> Leggi </string>
+<string name = "likes"> Piace </string>
+<string name = "comments"> Commenti </string>
+<string name = "write_a_comment"> Scrivi un commento … </string>
+<string name = "post"> Post </string>
+<string name = "my_profile"> Il mio profilo </string>
+<string name = "info"> Info </string>
+<string name = "must_login"> È necessario il login per vedere il tuo profilo </string>
+    
+<!--Invia -->
+<string name = "submit_welcome"> Welcome </string>
+<string name = "submit_title"> Titolo </string>
+<string name = "write_here_hint"> Scrivi la tua storia qui </string>
+<string name = "submit_prompt"> Invia la tua sfida settimanale ora! </string>
+<string name = "submit_button"> Invia </string>
+<string name = "edit_your_story"> Modifica la tua storia </string>
+<string name = "go_to_my_story">  Mostra / Nascondi altre storie </string>
+<string name = "go_to_most_likes">  Ordina per numero di voti </string>
+<string name = "go_to_most_recent"> Ordina per recenti </string>
+    
+<string-array name= "char_guide_types_titles_for_comparison">
+<item> Protagonista </item>
+<item> aiutante de protagonista </item>
+<item> Escudero </item>
+<item> Guardiano </item>
+<item> Mentor </item>
+<item> De Impacto </item>
+<item> Antagonista </item>
+<item> aiutante de Antagonista </item>
+<item> Esceptico </item>
+<item> obstáculo </item>
+<item> Meta </item>
+<item> Helper </item>
+<item> Protagonista </item>
+<item> Sidekick </item>
+<item> Guardiano </item>
+<item> Mentor </item>
+<item> Impatto </item>
+<item> Helper </item>
+<item> Antagonista </item>
+<item> Skeptic </item>
+<item> Obstacle </item>
+<item> Obiettivo </item>
+</string-array>
+    
+<!--Nome database Firebase -->
+<string name = "weekly_challenge_db_name">Weekly_Challenge_Beta</string>
+    
+<string name = "edit_story"> Modifica brano </string>
+<string name = "write_story"> Scrivi Story </string>
+<string name = "add_char"> Aggiungi carattere </string>
+    
+<string-array name= "themes">
+<item> Luce a tema </item>
+<item> Dark Theme </item>
+<item> Storia tema </item>
+<item> Autunno a tema </item>
+</string-array>
+    
+<string name = "please_select_the_one_option"> Si prega di selezionare lopzione </string>
+<string name = "select_from_photo_gallery"> Seleziona dalla Galleria Foto </string>
+<string name = "remove_photo"> Rimuovi Foto </string>
+<string name = "cancel"> Annulla </string>
+<string name = "iap_title"> E  s in arrivo </string>
+<string name = "iap_desc"> versione Pro senza pubblicità sarà disponibile sul prossimo aggiornamento </string>
+<string name = "iap_btn"> Nessun annuncio! </string>
+    
+<string name = "themes_disclaimer"> Devi essere premio di cambiare il tema </string>
+    
+    
+<!--<string name = "remove_ads_product_id"> android.test.purchased </string> -->
+<string name = "remove_ads_product_id"> no_ads </string>
+<string name = "invitation_message"> Questa storia è eccezionale, dargli una prova </string>
+<string name = "invitation_deep_link"> com.plotgen.page.link </string>
+<string name = "invitation_cta"> Leggi </string>
+
+    </resources>

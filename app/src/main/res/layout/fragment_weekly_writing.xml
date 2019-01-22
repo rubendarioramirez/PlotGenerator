@@ -130,4 +130,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/weekly_challenge_btn" />
 
+
+
 </android.support.constraint.ConstraintLayout>

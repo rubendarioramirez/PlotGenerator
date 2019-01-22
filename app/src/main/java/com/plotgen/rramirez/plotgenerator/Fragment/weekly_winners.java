@@ -56,7 +56,8 @@ public class weekly_winners extends Fragment {
                         title_tv.setText(title);
                         //Parse body to get the line breaks
                         String bodyparsed = body.replace("\\n", "\n");
-                        body_tv.setText(bodyparsed);
+
+                        body_tv.setText(bodyparsed.replace("\\", ""));
                         author_tv.setText(getString(R.string.weekly_challenge_author) + " - " + author);
                     }
                 }
