@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.reward.RewardedVideoAd;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
+import com.plotgen.rramirez.plotgenerator.Common.Adapter_challenges;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +50,7 @@ public class ChallengeListFragment extends Fragment {
         }
 
         RecyclerView recyclerView = myFragmentView.findViewById(R.id.rv_challenge_fragment);
-        final Adapter_herojourney adapter = new Adapter_herojourney(this.getActivity(),mlist);
+        final Adapter_challenges adapter = new Adapter_challenges(this.getActivity(),mlist);
         mlist.clear();
         switch (role){
             case "Mentor":

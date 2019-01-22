@@ -1,29 +1,18 @@
 package com.plotgen.rramirez.plotgenerator.Fragment;
 
-import android.content.Context;
-import android.net.Uri;
+
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.plotgen.rramirez.plotgenerator.R;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 import java.util.Locale;
 
 import javax.annotation.Nullable;
@@ -37,10 +26,6 @@ public class weekly_winners extends Fragment {
 
 
     TextView title_tv, body_tv, author_tv;
-    String dataBaseToUse;
-
-
-//    private DocumentReference mDocRef_es = FirebaseFirestore.getInstance().document(dataBaseToUse);
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

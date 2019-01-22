@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import android.view.ViewGroup;
 import com.plotgen.rramirez.plotgenerator.R;
 import com.plotgen.rramirez.plotgenerator.weeklyWriting;
 
-import java.util.Locale;
 
 public class weekly_challenge_container extends Fragment {
 
@@ -32,15 +30,6 @@ public class weekly_challenge_container extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_weekly_challenge_container, container, false);
 
-//        mSectionsPageAdapter = new SectionsPageAdapter(getActivity().getSupportFragmentManager());
-//
-//        // Set up the ViewPager with the sections adapter.
-//        mViewPager = view.findViewById(R.id.container);
-//        setupViewPager(mViewPager);
-//
-//        TabLayout tabLayout = view.findViewById(R.id.tabs);
-//        tabLayout.setupWithViewPager(mViewPager);
-
         return view;
 
 
@@ -53,8 +42,6 @@ public class weekly_challenge_container extends Fragment {
 
         mSectionsPageAdapter = new SectionsPageAdapter(getActivity().getSupportFragmentManager());
 
-
-        Log.v("lalal", "this is called");
         // Set up the ViewPager with the sections adapter.
         mViewPager = this.getActivity().findViewById(R.id.container);
         setupViewPager(mViewPager);
@@ -62,9 +49,24 @@ public class weekly_challenge_container extends Fragment {
         TabLayout tabLayout = this.getActivity().findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
+    }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mSectionsPageAdapter = new SectionsPageAdapter(getActivity().getSupportFragmentManager());
+
+        // Set up the ViewPager with the sections adapter.
+        mViewPager = this.getActivity().findViewById(R.id.container);
+        setupViewPager(mViewPager);
+
+        TabLayout tabLayout = this.getActivity().findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mViewPager);
 
     }
+
+
 
     private void setupViewPager(ViewPager viewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getActivity().getSupportFragmentManager());

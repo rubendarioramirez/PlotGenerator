@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +14,14 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.MainActivity;
 import com.plotgen.rramirez.plotgenerator.Model.Story;
@@ -24,6 +29,7 @@ import com.plotgen.rramirez.plotgenerator.Model.User;
 import com.plotgen.rramirez.plotgenerator.R;
 import com.plotgen.rramirez.plotgenerator.Utils;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,6 +56,8 @@ public class SubmitStoryFragment extends Fragment {
     private FirebaseDatabase mDatabase;
     private DatabaseReference mReference;
 
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
     @OnClick(R.id.btnSubmit)
     public void submitStory(View view) {
         final String s = etStory.getText().toString();
@@ -72,12 +80,30 @@ public class SubmitStoryFragment extends Fragment {
                         Common.currentUser.getEmail(),
                         Common.currentUser.getPicUrl().toString()));
 
-        Map<String, Object> postValues = story.toMap();
+//        Map<String, Object> postValues = story.toMap();
+//
+//        Map<String, Object> childUpdates = ne w HashMap<>();
+//        childUpdates.put("/posts/" + key, postValues);
+//
+//        mReference.updateChildren(childUpdates);
 
-        Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/posts/" + key, postValues);
+        Map<String,Object> dataToSave = new HashMap<String,Object>();
 
-        mReference.updateChildren(childUpdates);
+        dataToSave.put("title", story.getTitle());
+        dataToSave.put("body", etStory.getText().toString());
+        dataToSave.put("likecount", 0);
+        dataToSave.put("email", Common.currentUser.getEmail());
+        dataToSave.put("user", Common.currentUser.getName());
+        dataToSave.put("uriString", Common.currentUser.getUriString());
+
+//        db.collection("weekly_challenge").document();
+
+        db.collection("weekly_challenge").document(Common.currentUser.getUid()).set(dataToSave).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d("matilda","it worked!");
+            }
+        });
 
         etStory.setText("");
 

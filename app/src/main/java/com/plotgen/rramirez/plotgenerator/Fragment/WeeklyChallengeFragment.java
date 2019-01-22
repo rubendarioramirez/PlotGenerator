@@ -180,12 +180,6 @@ public class WeeklyChallengeFragment extends Fragment {
                         }
                     };
 
-                   /* View.OnClickListener shareListener = new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            onShareClicked(currentStory.getId());
-                        }
-                    };*/
 
                     viewHolder.bindToPost(model, likeClickListener, mCommentReference.child(postRef.getKey()));
                 } else {
@@ -235,12 +229,6 @@ public class WeeklyChallengeFragment extends Fragment {
                             onLikeClicked(globalPostRef);
                         }
                     };
-                  /*  View.OnClickListener shareListener = new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            onShareClicked(currentStory.getId());
-                        }
-                    };*/
                     viewHolder.bindToPost(model, likeClickListener, mCommentReference.child(postRef.getKey()));
                 } else {
                     viewHolder.removeItem();
@@ -290,12 +278,6 @@ public class WeeklyChallengeFragment extends Fragment {
                         }
                     };
 
-/*                    View.OnClickListener shareListener = new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            onShareClicked(currentStory.getId());
-                        }
-                    };*/
 
                     viewHolder.bindToPost(model, likeClickListener,  mCommentReference.child(postRef.getKey()));
                 } else {
