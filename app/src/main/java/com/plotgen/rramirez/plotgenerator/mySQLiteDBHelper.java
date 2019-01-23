@@ -180,7 +180,9 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
                 STORY_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 STORY_COLUMN_PROJECT + " TEXT, " +
                 STORY_COLUMN_PROJECT_ID + " TEXT, " +
-                STORY_COLUMN_STORIES + " TEXT " + ")");
+                STORY_COLUMN_STORIES + " TEXT " +
+//                STORY_COLUMN_IMAGE + " TEXT" +
+                ")");
 
     }
 
@@ -229,7 +231,7 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
                 break;
             case 11:
                 sqLiteDatabase.execSQL("ALTER TABLE projectname ADD COLUMN " + PROJECT_COLUMN_IMAGE + " TEXT");
-                sqLiteDatabase.execSQL("ALTER TABLE story ADD COLUMN " + STORY_COLUMN_IMAGE + " TEXT");
+             //   sqLiteDatabase.execSQL("ALTER TABLE story ADD COLUMN " + STORY_COLUMN_IMAGE + " TEXT");
 
                 break;
         }

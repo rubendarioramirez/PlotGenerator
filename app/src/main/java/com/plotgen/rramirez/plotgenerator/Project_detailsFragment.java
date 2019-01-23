@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
@@ -33,6 +34,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
 
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -47,18 +56,22 @@ public class Project_detailsFragment extends Fragment {
 
     private static final int PERMISSION_REQUEST_GALLERY = 101;
     private static final int REQUEST_CODE_GALLERY = 102;
+    public Boolean updateMode;
     EditText project_name_et, project_plot_et;
     Spinner project_genre_spinner;
-    public Boolean updateMode;
     String project_name_text;
-    private FirebaseAnalytics mFirebaseAnalytics;
     FloatingActionButton fab_save;
     ArrayList<String> project_description;
+    private FirebaseAnalytics mFirebaseAnalytics;
     private ImageView project_icon_iv;
     private View myFragmentView;
     private String WRITE_EXTERNAL_STORAGE = Manifest.permission.WRITE_EXTERNAL_STORAGE;
     private Uri uri;
     private String filepath = "";
+    private FirebaseDatabase mDatabase;
+    private FirebaseAuth mAuth;
+    private FirebaseUser mUser;
+    private ArrayList<String> project_list_array = new ArrayList<>();
 
     public Project_detailsFragment() {
         // Required empty public constructor
@@ -79,6 +92,11 @@ public class Project_detailsFragment extends Fragment {
         final FloatingActionButton fab_delete = myFragmentView.findViewById(R.id.project_detail_delete);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(myFragmentView.getContext());
 
+        mDatabase = FirebaseDatabase.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+
+        mUser = mAuth.getCurrentUser();
+
         //Role spinner functions
         project_genre_spinner = myFragmentView.findViewById(R.id.project_genre_spinner);
         ArrayAdapter<CharSequence> genre_adapter = ArrayAdapter.createFromResource(myFragmentView.getContext(), R.array.genres_array, android.R.layout.simple_spinner_item);
@@ -94,14 +112,14 @@ public class Project_detailsFragment extends Fragment {
 
         if (project_name_text != "") {
             //Update mode
-            ArrayList<String> project_list_array = Utils.getProject(this.getContext(), project_name_text);
+            project_list_array = Utils.getProject(this.getContext(), project_name_text);
             if (project_list_array != null && !project_list_array.isEmpty()) {
                 project_name_et.setText(project_list_array.get(0));
                 project_name_et.setEnabled(false);
                 project_plot_et.setText(project_list_array.get(2));
 
-                if(project_list_array.size()>3 && !project_list_array.get(3).equalsIgnoreCase(null) && !project_list_array.get(3).equalsIgnoreCase("")) {
-                    project_icon_iv.setImageURI(Uri.parse(project_list_array.get(3)));
+                if (project_list_array.size() > 4 && !project_list_array.get(4).equalsIgnoreCase(null) && !project_list_array.get(3).equalsIgnoreCase("")) {
+                    project_icon_iv.setImageURI(Uri.parse(project_list_array.get(4)));
                 }
                 project_description = getProject(myFragmentView.getContext(), project_name_text);
                 String project_genre = project_description.get(1);
@@ -191,6 +209,7 @@ public class Project_detailsFragment extends Fragment {
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 // continue with delete
+                                deleteFromStories();
                                 Utils.deleteFromDB(view.getContext(), project_name_text);
                                 ProjectFragment nextFragment = new ProjectFragment();
                                 //Make the transaction
@@ -254,6 +273,52 @@ public class Project_detailsFragment extends Fragment {
         //transaction.addToBackStack(null);
     }
 
+    private void deleteFromStories() {
+        final String project_id = project_list_array.get(3);
+        final DatabaseReference mStoriesDatabase = mDatabase.getReference().child("stories");
+        final DatabaseReference mGenreDatabase = mDatabase.getReference().child("stories").child("genre");
+        if (mUser != null) {
+            mStoriesDatabase.runTransaction(new Transaction.Handler() {
+                @NonNull
+                @Override
+                public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                    if (mutableData.hasChild(mUser.getUid())) {
+                        if (mutableData.child(mUser.getUid()).hasChild(project_id)) {
+                            mStoriesDatabase.child(mUser.getUid()).child(project_id).removeValue();
+                        }
+                    }
+                    return Transaction.success(mutableData);
+                }
+
+                @Override
+                public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+                    Log.d("Updated token", "postTransaction:onComplete:" + databaseError);
+
+                }
+            });
+
+            mGenreDatabase.runTransaction(new Transaction.Handler() {
+                @NonNull
+                @Override
+                public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                    if (mutableData.hasChild(project_list_array.get(1))) {
+                        if (mutableData.child(project_list_array.get(1)).hasChild(mUser.getUid()))
+                            if (mutableData.child(project_list_array.get(1)).child(mUser.getUid()).hasChild(project_id)) {
+                                mGenreDatabase.child(project_list_array.get(1)).child(mUser.getUid()).child(project_id).removeValue();
+                            }
+                    }
+                    return Transaction.success(mutableData);
+                }
+
+                @Override
+                public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+                    Log.d("Updated token", "postTransaction:onComplete:" + databaseError);
+                }
+            });
+
+        }
+    }
+
     private boolean isEmpty(TextView etText) {
         if (etText.getText().toString().trim().length() > 0)
             return false;
@@ -273,7 +338,7 @@ public class Project_detailsFragment extends Fragment {
             char_list.add(cursor.getString(cursor.getColumnIndex("project")));
             char_list.add(cursor.getString(cursor.getColumnIndex("genre")));
             char_list.add(cursor.getString(cursor.getColumnIndex("plot")));
-            if(cursor.getColumnIndex("image") != -1 && cursor.getString(cursor.getColumnIndex("image"))!=null)
+            if (cursor.getColumnIndex("image") != -1 && cursor.getString(cursor.getColumnIndex("image")) != null)
                 char_list.add(cursor.getString(cursor.getColumnIndex("image")));
             cursor.moveToNext();
         }
@@ -289,7 +354,7 @@ public class Project_detailsFragment extends Fragment {
 
         TextView tvCancel = dialog.findViewById(R.id.tv_cancel);
         RelativeLayout tvSelectFromGallery = dialog.findViewById(R.id.select_from_gallery_container);
-        RelativeLayout tvRemovePhoto= dialog.findViewById(R.id.remove_photo_container);
+        RelativeLayout tvRemovePhoto = dialog.findViewById(R.id.remove_photo_container);
 
         tvCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -301,7 +366,7 @@ public class Project_detailsFragment extends Fragment {
         tvRemovePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                filepath="";
+                filepath = "";
                 project_icon_iv.setImageResource(R.drawable.writer_icon);
                 dialog.dismiss();
             }
@@ -362,8 +427,8 @@ public class Project_detailsFragment extends Fragment {
 
                         try {
                             filepath = Utils.getFilePath(myFragmentView.getContext(), uri);
-                            if(filepath!=null)
-                            project_icon_iv.setImageURI(Uri.parse(filepath));
+                            if (filepath != null)
+                                project_icon_iv.setImageURI(Uri.parse(filepath));
 
                         } catch (URISyntaxException e) {
                             e.printStackTrace();

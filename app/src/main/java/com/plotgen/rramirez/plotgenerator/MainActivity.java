@@ -45,6 +45,7 @@ import com.google.firebase.dynamiclinks.PendingDynamicLinkData;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
+import com.plotgen.rramirez.plotgenerator.Fragment.DiscoverFragment;
 import com.plotgen.rramirez.plotgenerator.Fragment.ProfileFragment;
 import com.plotgen.rramirez.plotgenerator.Fragment.StoryDetailFragment;
 import com.plotgen.rramirez.plotgenerator.Model.Story;
@@ -349,7 +350,12 @@ public class MainActivity extends AppCompatActivity
             ft.replace(R.id.flMain, new HeroJourneyFragment());
             mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
             ft.commit();
-        } else if (id == R.id.nav_trigger) {
+        } else if (id == R.id.nav_discover) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.flMain, new DiscoverFragment());
+            mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
+            ft.commit();
+        }else if (id == R.id.nav_trigger) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.flMain, new TriggerFragment());
             mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());

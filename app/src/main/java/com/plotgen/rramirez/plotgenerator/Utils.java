@@ -81,6 +81,7 @@ public class Utils {
             projects_list.add(cursor.getString(cursor.getColumnIndex("project")));
             projects_list.add(cursor.getString(cursor.getColumnIndex("genre")));
             projects_list.add(cursor.getString(cursor.getColumnIndex("plot")));
+            projects_list.add(cursor.getString(cursor.getColumnIndex("_id")));
             if (cursor.getColumnIndex("image") != -1 && cursor.getString(cursor.getColumnIndex("image")) != null)
                 projects_list.add(cursor.getString(cursor.getColumnIndex("image")));
 
@@ -100,9 +101,9 @@ public class Utils {
         while (!cursor.isAfterLast()) {
             String id = cursor.getString(cursor.getColumnIndex("_id"));
             String project_name = cursor.getString(cursor.getColumnIndex("project"));
-            if (cursor.getColumnIndex("image") != -1 && cursor.getString(cursor.getColumnIndex("image")) != null) {
+            /*if (cursor.getColumnIndex("image") != -1 && cursor.getString(cursor.getColumnIndex("image")) != null) {
                 String image = cursor.getString(cursor.getColumnIndex("image"));
-            }
+            }*/
             projects_list.add(id + "_" + project_name);
             cursor.moveToNext();
         }
