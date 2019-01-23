@@ -33,7 +33,7 @@ import com.plotgen.rramirez.plotgenerator.MainActivity;
 import com.plotgen.rramirez.plotgenerator.Model.Story;
 import com.plotgen.rramirez.plotgenerator.Model.User;
 import com.plotgen.rramirez.plotgenerator.R;
-import com.plotgen.rramirez.plotgenerator.Utils;
+import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.ViewHolder.StoryViewHolder;
 
 import java.util.concurrent.atomic.AtomicInteger;

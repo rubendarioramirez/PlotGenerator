@@ -1,4 +1,4 @@
-package com.plotgen.rramirez.plotgenerator;
+package com.plotgen.rramirez.plotgenerator.Common;
 
 public class Constants {
 

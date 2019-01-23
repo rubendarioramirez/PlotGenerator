@@ -1,4 +1,4 @@
-package com.plotgen.rramirez.plotgenerator;
+package com.plotgen.rramirez.plotgenerator.Common;
 
 import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
@@ -22,7 +22,7 @@ import android.util.Log;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.plotgen.rramirez.plotgenerator.Common.Common;
+import com.plotgen.rramirez.plotgenerator.R;
 
 import java.net.URISyntaxException;
 import java.util.ArrayList;

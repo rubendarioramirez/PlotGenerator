@@ -953,8 +953,8 @@ In order for your character to evolve in a positive way, he has to start out wit
 
     <!--<string name="remove_ads_product_id">android.test.purchased</string>-->
     <string name="remove_ads_product_id">no_ads</string>
-    <string name="invitation_title" translatable="false">Auctor</string>
-    <string name="invitation_message">This story is terrific, give it a try</string>
+    <string name="invitation_title">Auctor</string>
+    <string name="invitation_message">Support my story in Auctor</string>
     <string name="invitation_deep_link">com.plotgen.page.link</string>
     <string name="invitation_cta">Read</string>
 

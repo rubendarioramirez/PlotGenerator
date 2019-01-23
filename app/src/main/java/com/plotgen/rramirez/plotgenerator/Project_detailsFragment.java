@@ -20,7 +20,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +32,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.plotgen.rramirez.plotgenerator.Common.Utils;
+import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
 
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -302,7 +303,7 @@ public class Project_detailsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 filepath="";
-                project_icon_iv.setImageResource(R.drawable.ic_menu_gallery);
+                project_icon_iv.setImageResource(R.drawable.ic_menu_camera);
                 dialog.dismiss();
             }
         });

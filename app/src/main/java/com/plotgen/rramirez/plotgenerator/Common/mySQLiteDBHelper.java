@@ -1,4 +1,4 @@
-package com.plotgen.rramirez.plotgenerator;
+package com.plotgen.rramirez.plotgenerator.Common;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

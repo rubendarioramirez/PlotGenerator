@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,11 +17,11 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.reward.RewardItem;
 import com.google.android.gms.ads.reward.RewardedVideoAd;
 import com.google.android.gms.ads.reward.RewardedVideoAdListener;
-import com.plotgen.rramirez.plotgenerator.AntagonistFragment;
+import com.plotgen.rramirez.plotgenerator.Guides.AntagonistFragment;
 import com.plotgen.rramirez.plotgenerator.ChallengeTemplateFragment;
-import com.plotgen.rramirez.plotgenerator.GuideLajosFragment;
-import com.plotgen.rramirez.plotgenerator.GuideRoleFragment;
-import com.plotgen.rramirez.plotgenerator.GuideWeilandFragment;
+import com.plotgen.rramirez.plotgenerator.Guides.GuideLajosFragment;
+import com.plotgen.rramirez.plotgenerator.Guides.GuideRoleFragment;
+import com.plotgen.rramirez.plotgenerator.Guides.GuideWeilandFragment;
 import com.plotgen.rramirez.plotgenerator.R;
 import com.plotgen.rramirez.plotgenerator.item_herojourney;
 
@@ -72,8 +71,6 @@ public class Adapter_challenges extends RecyclerView.Adapter<Adapter_challenges.
         holder.hero_journey_card_act.setText(mData.get(position).getHerojourney_act());
         holder.hero_journey_card_desc.setText(mData.get(position).getHerojourney_desc());
 
-
-
     }
 
     @Override
@@ -94,6 +91,7 @@ public class Adapter_challenges extends RecyclerView.Adapter<Adapter_challenges.
             hero_journey_card_act = itemView.findViewById(R.id.hero_journey_card_act);
             hero_journey_card_title = itemView.findViewById(R.id.hero_journey_card_title);
             hero_journey_card_desc = itemView.findViewById(R.id.hero_journey_card_desc);
+
             this.mContext = mContext;
             this.mData = mData;
             itemView.setOnClickListener(this);
@@ -107,7 +105,6 @@ public class Adapter_challenges extends RecyclerView.Adapter<Adapter_challenges.
             String projectName = mData.get(getAdapterPosition()).getHerojourneyProject();
 
             nextFragment(mContext,charName,projectName,clicked);
-            Log.v("matilda", clicked);
              if (clicked.equals(view.getContext().getResources().getString(R.string.char_guide_title))){
                     //Send it to the next fragment
                     GuideRoleFragment nextFragment = new GuideRoleFragment();

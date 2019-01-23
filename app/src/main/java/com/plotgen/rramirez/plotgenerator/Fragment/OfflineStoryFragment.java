@@ -7,26 +7,22 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.ScrollView;
-import android.widget.TextView;
 
 import com.google.android.gms.ads.AdView;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.MainActivity;
 import com.plotgen.rramirez.plotgenerator.ProjectFragment;
 import com.plotgen.rramirez.plotgenerator.R;
-import com.plotgen.rramirez.plotgenerator.Utils;
-import com.plotgen.rramirez.plotgenerator.mySQLiteDBHelper;
+import com.plotgen.rramirez.plotgenerator.Common.Utils;
+import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
 
 import java.util.ArrayList;
 
@@ -34,8 +30,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import jp.wasabeef.richeditor.RichEditor;
-
-import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 /**
  * A simple {@link Fragment} subclass.

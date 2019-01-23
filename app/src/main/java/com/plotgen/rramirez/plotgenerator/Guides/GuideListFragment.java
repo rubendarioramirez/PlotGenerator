@@ -1,4 +1,4 @@
-package com.plotgen.rramirez.plotgenerator;
+package com.plotgen.rramirez.plotgenerator.Guides;
 
 
 import android.os.Bundle;
@@ -13,6 +13,9 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.plotgen.rramirez.plotgenerator.Common.Adapter_challenges;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
+import com.plotgen.rramirez.plotgenerator.MainActivity;
+import com.plotgen.rramirez.plotgenerator.R;
+import com.plotgen.rramirez.plotgenerator.item_herojourney;
 
 import java.util.ArrayList;
 import java.util.List;

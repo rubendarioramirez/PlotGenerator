@@ -12,6 +12,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.reward.RewardedVideoAd;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Adapter_challenges;
+import com.plotgen.rramirez.plotgenerator.Common.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,12 +68,12 @@ public class ChallengeListFragment extends Fragment {
         }
         //Generic list
         //TODO EDIT Challenges to show the character name and proper gender
-        mlist.add(new item_herojourney(R.drawable.typewriter, getString(R.string.challenge_1_title), (String) getString(R.string.challenge_1_desc), (String) getString(R.string.challenge_1_desc_long),(String) char_name, (String) project_name));
-        mlist.add(new item_herojourney(R.drawable.typewriter, getString(R.string.challenge_2_title), (String) getString(R.string.challenge_2_desc), (String) getString(R.string.challenge_2_desc_long),(String) char_name, (String) project_name));
-        mlist.add(new item_herojourney(R.drawable.typewriter, getString(R.string.challenge_3_title), (String) getString(R.string.challenge_3_desc), (String) getString(R.string.challenge_3_desc_long),(String) char_name, (String) project_name));
-        mlist.add(new item_herojourney(R.drawable.typewriter, getString(R.string.challenge_4_title), (String) getString(R.string.challenge_4_desc), (String) getString(R.string.challenge_4_desc_long),(String) char_name, (String) project_name));
-        mlist.add(new item_herojourney(R.drawable.typewriter, getString(R.string.challenge_5_title), (String) getString(R.string.challenge_5_desc), (String) getString(R.string.challenge_5_desc_long),(String) char_name, (String) project_name));
-        mlist.add(new item_herojourney(R.drawable.typewriter, getString(R.string.challenge_6_title), (String) getString(R.string.challenge_6_desc), (String) getString(R.string.challenge_6_desc_long),(String) char_name, (String) project_name));
+        mlist.add(new item_herojourney(R.drawable.ic_black_elevator, getString(R.string.challenge_1_title), (String) getString(R.string.challenge_1_desc), (String) getString(R.string.challenge_1_desc_long),(String) char_name, (String) project_name));
+        mlist.add(new item_herojourney(R.drawable.ic_lying, getString(R.string.challenge_2_title), (String) getString(R.string.challenge_2_desc), (String) getString(R.string.challenge_2_desc_long),(String) char_name, (String) project_name));
+        mlist.add(new item_herojourney(R.drawable.ic_history, getString(R.string.challenge_3_title), (String) getString(R.string.challenge_3_desc), (String) getString(R.string.challenge_3_desc_long),(String) char_name, (String) project_name));
+        mlist.add(new item_herojourney(R.drawable.ic_man_looks, getString(R.string.challenge_4_title), (String) getString(R.string.challenge_4_desc), (String) getString(R.string.challenge_4_desc_long),(String) char_name, (String) project_name));
+        mlist.add(new item_herojourney(R.drawable.ic_limits, getString(R.string.challenge_5_title), (String) getString(R.string.challenge_5_desc), (String) getString(R.string.challenge_5_desc_long),(String) char_name, (String) project_name));
+        mlist.add(new item_herojourney(R.drawable.ic_pockets, getString(R.string.challenge_6_title), (String) getString(R.string.challenge_6_desc), (String) getString(R.string.challenge_6_desc_long),(String) char_name, (String) project_name));
 
 
         String challenge7RawString = getString(R.string.challenge_7_desc_long);

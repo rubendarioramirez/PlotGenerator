@@ -54,7 +54,7 @@ import com.plotgen.rramirez.plotgenerator.MainActivity;
 import com.plotgen.rramirez.plotgenerator.Model.User;
 import com.plotgen.rramirez.plotgenerator.ProjectFragment;
 import com.plotgen.rramirez.plotgenerator.R;
-import com.plotgen.rramirez.plotgenerator.Utils;
+import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.io.InputStream;

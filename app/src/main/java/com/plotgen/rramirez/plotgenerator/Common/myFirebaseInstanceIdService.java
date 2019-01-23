@@ -1,10 +1,10 @@
-package com.plotgen.rramirez.plotgenerator;
+package com.plotgen.rramirez.plotgenerator.Common;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
+import com.plotgen.rramirez.plotgenerator.Common.Utils;
 
 import static android.widget.Toast.makeText;
 
