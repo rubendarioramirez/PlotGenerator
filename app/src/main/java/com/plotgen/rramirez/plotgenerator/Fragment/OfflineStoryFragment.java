@@ -34,11 +34,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
+import com.plotgen.rramirez.plotgenerator.Common.Utils;
+import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
 import com.plotgen.rramirez.plotgenerator.MainActivity;
 import com.plotgen.rramirez.plotgenerator.ProjectFragment;
 import com.plotgen.rramirez.plotgenerator.R;
-import com.plotgen.rramirez.plotgenerator.Utils;
-import com.plotgen.rramirez.plotgenerator.mySQLiteDBHelper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -85,28 +85,37 @@ public class OfflineStoryFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public void saveStoryToDB() {
+        SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(mySQLiteDBHelper.STORY_COLUMN_PROJECT, project_name);
+        values.put(mySQLiteDBHelper.STORY_COLUMN_PROJECT_ID, project_id);
+        values.put(mySQLiteDBHelper.STORY_COLUMN_STORIES, mStory);
+
+        if (isUpdate)
+            database.update(mySQLiteDBHelper.CHARACTER_TABLE_STORY, values, "project = ?", new String[]{project_name});
+        else
+            database.insert(mySQLiteDBHelper.CHARACTER_TABLE_STORY, null, values);
+    }
+
     @OnClick(R.id.formatBold)
     public void setBold(View v) {
         mEditor.setBold();
-
     }
 
     @OnClick(R.id.formatItalic)
     public void setItalic(View v) {
         mEditor.setItalic();
-
     }
 
     @OnClick(R.id.formatAlignLeft)
     public void setAlignLeft(View v) {
         mEditor.setAlignLeft();
-
     }
 
     @OnClick(R.id.formatAlignCenter)
     public void setAlignCenter(View v) {
         mEditor.setAlignCenter();
-
     }
 
     @OnClick(R.id.formatAlignRight)
@@ -144,7 +153,9 @@ public class OfflineStoryFragment extends Fragment {
         fabSaveStory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                saveStoryToDB(view);
+                saveStoryToDB();
+                changeFragment();
+
             }
         });
 
@@ -331,12 +342,47 @@ public class OfflineStoryFragment extends Fragment {
         }
     }
 
-    private void saveStoryToDB(View v) {
+   /* private void saveStoryToDB(View v) {
         SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(mySQLiteDBHelper.STORY_COLUMN_PROJECT, project_name);
         values.put(mySQLiteDBHelper.STORY_COLUMN_PROJECT_ID, project_id);
         values.put(mySQLiteDBHelper.STORY_COLUMN_STORIES, mStory);
+//      Auto saving
+//    private final static int INTERVAL = 1000 * 60; //1 minutes
+//    Handler mHandler = new Handler();
+//
+//    Runnable mHandlerTask = new Runnable()
+//    {
+//        @Override
+//        public void run() {
+//            saveStoryToDB();
+//            Log.v("matilda", "running");
+//            mHandler.postDelayed(mHandlerTask, INTERVAL);
+//        }
+//    };
+//
+//    void startRepeatingTask()
+//    {
+//        mHandlerTask.run();
+//    }
+//
+//    void stopRepeatingTask()
+//    {
+//        mHandler.removeCallbacks(mHandlerTask);
+//        Log.v("matilda", "stopped");
+//    }
+//
+//    @Override
+//    public void onDestroy () {
+//
+//        Log.v("matilda", "destroyed");
+//        mHandler.removeCallbacks(mHandlerTask);
+//        super.onDestroy ();
+//
+//
+//    }
+
 
         if (isUpdate)
             database.update(mySQLiteDBHelper.CHARACTER_TABLE_STORY, values, "project = ?", new String[]{project_name});
@@ -348,7 +394,7 @@ public class OfflineStoryFragment extends Fragment {
         Utils.changeFragment(nextFragment, transaction, "", "");
         getFragmentManager().popBackStack();
 
-    }
+    }*/
 
     private String getStoryFromDB(Context context, String project_name) {
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
@@ -370,4 +416,13 @@ public class OfflineStoryFragment extends Fragment {
         sqLiteDatabase.close();
         return s;
     }
+
+    private void changeFragment() {
+        ProjectFragment nextFragment = new ProjectFragment();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        Utils.changeFragment(nextFragment, transaction, "", "");
+        getFragmentManager().popBackStack();
+    }
+
+
 }

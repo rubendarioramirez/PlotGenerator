@@ -54,7 +54,7 @@ import com.plotgen.rramirez.plotgenerator.MainActivity;
 import com.plotgen.rramirez.plotgenerator.Model.User;
 import com.plotgen.rramirez.plotgenerator.ProjectFragment;
 import com.plotgen.rramirez.plotgenerator.R;
-import com.plotgen.rramirez.plotgenerator.Utils;
+import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.io.InputStream;
@@ -124,6 +124,7 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
         //Log clicked in IAP updated
         Bundle params = new Bundle();
         params.putString("user_email", Common.currentUser.getEmail());
+        params.putString("from", "profile");
         mFirebaseAnalytics.logEvent("Click_IAP_Purchase", params);
     }
 
@@ -202,7 +203,6 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
         mDatabase = FirebaseDatabase.getInstance();
         mUserDatabase = mDatabase.getReference().child("users");
 
-
         //handle notification
         if (Utils.getStringSharePref(getActivity(), "notifications").equalsIgnoreCase("true")) {
             cbNotification.setChecked(true);
@@ -268,6 +268,8 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
                 }
             }
         });
+
+
         remoteConfig.setConfigSettings(new FirebaseRemoteConfigSettings.Builder()
                 .setDeveloperModeEnabled(false)
                 .build());

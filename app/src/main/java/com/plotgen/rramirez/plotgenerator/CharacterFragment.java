@@ -22,6 +22,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.plotgen.rramirez.plotgenerator.Common.Utils;
+import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
 
 import org.apache.commons.lang3.text.WordUtils;
 

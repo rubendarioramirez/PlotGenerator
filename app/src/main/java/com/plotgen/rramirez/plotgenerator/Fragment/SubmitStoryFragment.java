@@ -17,12 +17,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.MainActivity;
 import com.plotgen.rramirez.plotgenerator.Model.Story;
 import com.plotgen.rramirez.plotgenerator.Model.User;
 import com.plotgen.rramirez.plotgenerator.R;
-import com.plotgen.rramirez.plotgenerator.Utils;
+import com.plotgen.rramirez.plotgenerator.Common.Utils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -49,6 +50,8 @@ public class SubmitStoryFragment extends Fragment {
 
     private FirebaseDatabase mDatabase;
     private DatabaseReference mReference;
+
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @OnClick(R.id.btnSubmit)
     public void submitStory(View view) {
@@ -114,9 +117,7 @@ public class SubmitStoryFragment extends Fragment {
 
         mDatabase = FirebaseDatabase.getInstance();
         mReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name));
-        //mReference = mDatabase.getReference().child("Weekly_Challenge_Beta");
 
-        //tvEmail.setText(Common.currentUser.getName());
         if (Common.currentChallenge != null) {
             etTitle.setText(Common.currentChallenge.getName());
             etTitle.setFocusable(false);

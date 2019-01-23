@@ -46,8 +46,12 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Fragment.DiscoverFragment;
+import com.plotgen.rramirez.plotgenerator.Common.Constants;
+import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Fragment.ProfileFragment;
 import com.plotgen.rramirez.plotgenerator.Fragment.StoryDetailFragment;
+import com.plotgen.rramirez.plotgenerator.Fragment.PremiumFragment;
+import com.plotgen.rramirez.plotgenerator.Fragment.weekly_challenge_container;
 import com.plotgen.rramirez.plotgenerator.Model.Story;
 import com.plotgen.rramirez.plotgenerator.Model.User;
 
@@ -92,9 +96,6 @@ public class MainActivity extends AppCompatActivity
 
         Common.isPAU = Utils.getSPIAP(this);
         FirebaseApp.initializeApp(this);
-
-//        if (Common.isPAU)
-//            Toast.makeText(this, "yeay maneh teh pau coy", Toast.LENGTH_LONG).show();
 
         if (!Common.isPAU) {
             //Init the ads
@@ -368,10 +369,17 @@ public class MainActivity extends AppCompatActivity
             ft.commit();
         } else if (id == R.id.nav_writting_challenge) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.flMain, new weeklyWriting());
+            ft.replace(R.id.flMain, new weekly_challenge_container());
             mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
             ft.commit();
-        } else if (id == R.id.nav_profile) {
+        }
+        else if (id == R.id.premium) {
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.flMain, new PremiumFragment());
+                mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
+                ft.commit();
+        }
+         else if (id == R.id.nav_profile) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.flMain, new ProfileFragment());
             mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
@@ -421,10 +429,5 @@ public class MainActivity extends AppCompatActivity
         }
         super.onDestroy();
     }
-
-    //    @Override
-//    public void onRewarded(RewardItem rewardItem) {
-//        Utils.saveOnSharePreg(getApplicationContext(),"weekly_challenge_visit",rewardItem.getAmount());
-//    }
 
 }

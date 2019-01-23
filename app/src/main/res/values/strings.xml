@@ -1,10 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">Plot story assistant</string>
+    <string name="app_name" translatable="false">Auctor</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="action_settings" tools:ignore="MissingTranslation">Settings</string>
 
 
     <string name="ad_account_id" translatable="false">ca-app-pub-6696437403163667~6953226633</string>
@@ -132,6 +132,7 @@
     <string name="bodybuild_bio">One could say that looks rather</string>
 
     <string name="job_bio">Works as</string>
+    <string name="nojob_bio">at the moment is</string>
     <string name="male_desire_bio">In his mind he wants </string>
     <string name="male_need_bio">But is that what he really wants? Or he actually needs</string>
     <string name="male_moment_bio">About his childhood we know that he</string>
@@ -151,7 +152,6 @@
     <string name="binary_moment_bio">About their childhood we know that they</string>
     <string name="binary_phrase_bio">A phrase that people will commonly associate with them is</string>
     <string name="binary_trait_bio">Also their friends says that they are</string>
-
     <!--Challenge I BIO-->
     <string name="challenge_1_bio_title">The elevator challenge:</string>
     <string name="challenge_1_bio_desc_1">What will be his first reaction if he gets stuck in a elevator?</string>
@@ -193,6 +193,20 @@
     <string name="challenge_6_bio_desc_2">Is there a picture in the wallet?</string>
     <string name="challenge_6_bio_desc_3">About the keychain (Keyring)</string>
     <string name="challenge_6_bio_desc_4">About the cellphone</string>
+    <!--Challenge VII BIO-->
+    <string name="challenge_7_bio_title">What\'s on stake?</string>
+    <string name="challenge_7_bio_subtitle">Why do we care if the character dies or fails? If you want the audience to care, it needs to matter</string>
+    <string name="challenge_7_bio_desc_1">What\'s the most important decision that has to be mame?</string>
+    <string name="challenge_7_bio_desc_2">What are the external consequences of these actions?</string>
+    <string name="challenge_7_bio_desc_3">The internal ones?</string>
+    <string name="challenge_7_bio_desc_4">Philosophically?</string>
+    <!--Challenge VIII BIO-->
+    <string name="challenge_8_bio_title">What about the house?</string>
+    <string name="challenge_8_bio_subtitle">How you lives tells a lot about yourself, your character is no exception on this.</string>
+    <string name="challenge_8_bio_desc_1">What type of place it\'s?</string>
+    <string name="challenge_8_bio_desc_2">What\'s around the place?</string>
+    <string name="challenge_8_bio_desc_3">About the bedroom</string>
+    <string name="challenge_8_bio_desc_4">What can be seen from the windows</string>
     <!--Challenge I Mentor-->
     <string name="c1_mentor_bio_title">Know your mentor.</string>
     <string name="c1_mentor_bio_subtitle">Not all mentors behave the same, neither teach or guide in the same way. What about yours?</string>
@@ -222,9 +236,10 @@
     <!--Add character-->
     <string name="character_add_name">Name</string>
     <string name="character_add_profession">Profession</string>
-    <string-array name="profession_array">
+    <string-array name="profession_array" tools:ignore="InconsistentArrays">
         <item>Retail salespersons</item>
         <item>Retired</item>
+        <item>Unemployed</item>
         <item>Cashier</item>
         <item>Office clerk</item>
         <item>Nurse</item>
@@ -720,7 +735,7 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="c1_antagonist_q1">The antagonist is the exact opposite of your protagonist. How in this case?</string>
     <string name="c1_antagonist_q2">Your Antagonist is not just evil, he doesn\'t want to destroy the protagonist, unless this one gets on his way. So what is your Antagonist\'s ultimate goal?</string>
     <string name="c1_antagonist_q3">What are the tactics he uses to reach his goals?</string>
-    <string name="c1_antagonist_q4">Think about the arc of change of your Antagonist. Does he start bad and ends bad? Not a great arc, then no? So how he is in Act 1, how he is in Act 3?</string>
+    <string name="c1_antagonist_q4" translatable="false">Think about the arc of change of your Antagonist. Does he start bad and ends bad? Not a great arc, then no? So how he is in Act 1, how he is in Act 3?</string>
     <!--Sidekick Challenge-->
     <string name="c1_sidekick_title">Sidekick Challenge</string>
     <string name="c1_sidekick_desc">Know your Sidekick.</string>
@@ -729,17 +744,29 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="c1_sidekick_q2">Why the goals of your protagonist are so strong that your sidekick decides to pursue them as well?</string>
     <string name="c1_sidekick_q3">What are the tools, tactics or weapons that your sidekick provides to your protagonist? How he protects him or defend him?</string>
     <string name="c1_sidekick_q4">Some sidekicks had a moment when they have to decide, if the protagonist worth their own lives. What\'s the case in yours? What\'s the most precious thing your sidekick will risk for your protagonist? Will be his life?</string>
-    <!--Coming soon challenge-->
+    <!--Stakes challenge-->
     <string name="challenge_7_title">Challenge VII</string>
-    <string name="challenge_7_desc">Coming soon</string>
-    <string name="challenge_7_desc_long">I\m currently working on more challenges. Don\'t hesitate to contact me with suggestions</string>
+    <string name="challenge_7_desc">Stakes</string>
+    <string name="challenge_7_desc_long">Why do we care about $char_name$? What could happen if $gender$ doesn\'t succeed? How important is $char_name$ for the audience?</string>
+    <string name="challenge_7_q1">Think about the most important choice that $char_name$ will have to make. What is at stake at that moment?</string>
+    <string name="challenge_7_q2">Stakes can be external or physical. Think about what external consequences we will see if the objective is not reached? Will the world explode? A person will die? For instance in the movie \"Brave\" the mother of the protagonist will be forever a bear if the spell is not broken.</string>
+    <string name="challenge_7_q3">Now consider internally, what will be the moral, or psychological consequences for $char_name$ if the objective is not met? Forget about trauma, think deeper. Will be possible for $char_name$ to overcome the failure?</string>
+    <string name="challenge_7_q4">Lastly what are the philosophical stakes? If the mother of Dragons doesn\'t stop the walkers, the evil and destruction will take over the world. What will happen in $char_name$\'s case?</string>
 
+    <!--Challenge 8 -->
+    <string name="challenge_8_title">Challenge VIII</string>
+    <string name="challenge_8_desc">What about the house?</string>
+    <string name="challenge_8_desc_long">Tell me how you live and I will tell you who you are.\n\nElaborate how $char_name$ lives and where.</string>
+    <string name="challenge_8_q1">Does $char_name$ live in a house or an apartment? It\'s a barn? Or just a room? Describe the place.</string>
+    <string name="challenge_8_q2">$char_name$ stands in the middle of the biggest room, what can be seen? What\'s on the walls? Who put that there?.</string>
+    <string name="challenge_8_q3">Go to the bedroom, how is it? Is it a double size bed? Is it a single one? Is the bed tidy? do you see anybody on the bed?</string>
+    <string name="challenge_8_q4">Open the windows, all of them. What does $char_name$ see from there? Can people see him? Can the noise from the street be heard? How noisy it\'s the place?</string>
 
     <!--GUIDE ROLES-->
     <string name="roles_title">Typical Character Roles</string>
     <string name="roles_desc">Roles</string>
     <string name="roles_desc_long">Picture your story as an engine, it contains gears and cogs that needs to work together for your engine to move. Characters in a story are no different.
-        Each character in your story has to have a role that moves the story forward, from the protagonist to the antogonist, but that\'s not all. What about the sidekicks? Or the Mentors? Dive in here to learn more about character roles</string>
+        Each character in your story has to have a role that moves the story forward, from the protagonist to the antagonist, but that\'s not all. What about the sidekicks? Or the Mentors? Dive in here to learn more about character roles</string>
     <string name="char_guide_title">Typical character roles</string>
     <string-array name="char_guide_types_titles">
         <item>Protagonist</item>
@@ -926,10 +953,20 @@ In order for your character to evolve in a positive way, he has to start out wit
 
     <!--<string name="remove_ads_product_id">android.test.purchased</string>-->
     <string name="remove_ads_product_id">no_ads</string>
-    <string name="invitation_title">PlotGenerator</string>
-    <string name="invitation_message">This story is terrific, give it a try</string>
+    <string name="invitation_title">Auctor</string>
+    <string name="invitation_message">Support my story in Auctor</string>
     <string name="invitation_deep_link">com.plotgen.page.link</string>
     <string name="invitation_cta">Read</string>
 
+
+    <string name="gender_male_article">he</string>
+    <string name="gender_female_article">she</string>
+    <string name="gender_male_posesive">his</string>
+    <string name="gender_female_posesive">her</string>
+
+    <!--Weekly writing strings-->
+    <string name="weekly_challenge_tab1">On Going</string>
+    <string name="weekly_challenge_tab2">Last winner</string>
+    <string name="weekly_challenge_author">By</string>
 
 </resources>

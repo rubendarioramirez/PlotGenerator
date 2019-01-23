@@ -1,15 +1,12 @@
-package com.plotgen.rramirez.plotgenerator;
+package com.plotgen.rramirez.plotgenerator.Common;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class mySQLiteDBHelper extends SQLiteOpenHelper {
-    //    Retail version it's 9
-    //private static final int DATABASE_VERSION = 9;
-    //private static final int DATABASE_VERSION = 10;
-    private static final int DATABASE_VERSION = 11;
-
     //public static final String DATABASE_NAME = "test_database";
     public static final String DATABASE_NAME = "production_database";
     public static final String CHARACTER_TABLE_CHARACTER = "character";
@@ -17,21 +14,17 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
     public static final String CHARACTER_COLUMN_ID = "_id";
     public static final String CHARACTER_COLUMN_PROJECT = "project";
     public static final String CHARACTER_COLUMN_PROJECT_ID = "project_id";
-
     public static final String PROJECT_COLUMN_ID = "_id";
     public static final String PROJECT_COLUMN_PROJECT = "project";
     public static final String PROJECT_COLUMN_GENRE = "genre";
     public static final String PROJECT_COLUMN_PLOT = "plot";
     public static final String PROJECT_COLUMN_IMAGE = "image";
-
     public static final String CHARACTER_TABLE_STORY = "story";
     public static final String STORY_COLUMN_ID = "_id";
     public static final String STORY_COLUMN_PROJECT = "project";
     public static final String STORY_COLUMN_PROJECT_ID = "project_id";
     public static final String STORY_COLUMN_STORIES = "stories";
     public static final String STORY_COLUMN_IMAGE = "image";
-
-
     //Character BIO
     public static final String CHARACTER_COLUMN_NAME = "name";
     public static final String CHARACTER_COLUMN_NICKNAME = "nickname";
@@ -39,12 +32,10 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
     public static final String CHARACTER_COLUMN_GENDER = "gender";
     public static final String CHARACTER_COLUMN_DESIRE = "desire";
     public static final String CHARACTER_COLUMN_JOB = "profession";
-
     public static final String CHARACTER_COLUMN_HEIGHT = "height";
     public static final String CHARACTER_COLUMN_HAIRCOLOR = "haircolor";
     public static final String CHARACTER_COLUMN_EYECOLOR = "eyecolor";
     public static final String CHARACTER_COLUMN_BODYBUILD = "bodybuild";
-
     public static final String CHARACTER_COLUMN_ROLE = "role";
     public static final String CHARACTER_COLUMN_DEFMOMENT = "defmoment";
     public static final String CHARACTER_COLUMN_NEED = "need";
@@ -84,6 +75,16 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
     public static final String CHARACTER_COLUMN_C6Q2 = "challenge_6_q2";
     public static final String CHARACTER_COLUMN_C6Q3 = "challenge_6_q3";
     public static final String CHARACTER_COLUMN_C6Q4 = "challenge_6_q4";
+    //Challenge VII.
+    public static final String CHARACTER_COLUMN_C7Q1 = "challenge_7_q1";
+    public static final String CHARACTER_COLUMN_C7Q2 = "challenge_7_q2";
+    public static final String CHARACTER_COLUMN_C7Q3 = "challenge_7_q3";
+    public static final String CHARACTER_COLUMN_C7Q4 = "challenge_7_q4";
+    //Challenge VIII.
+    public static final String CHARACTER_COLUMN_C8Q1 = "challenge_8_q1";
+    public static final String CHARACTER_COLUMN_C8Q2 = "challenge_8_q2";
+    public static final String CHARACTER_COLUMN_C8Q3 = "challenge_8_q3";
+    public static final String CHARACTER_COLUMN_C8Q4 = "challenge_8_q4";
     //Mentor Challenge.
     public static final String CHARACTER_COLUMN_C1_MENTOR_Q1 = "c1_mentor_q1";
     public static final String CHARACTER_COLUMN_C1_MENTOR_Q2 = "c1_mentor_q2";
@@ -99,6 +100,8 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
     public static final String CHARACTER_COLUMN_C1_sidekick_Q2 = "c1_sidekick_q2";
     public static final String CHARACTER_COLUMN_C1_sidekick_Q3 = "c1_sidekick_q3";
     public static final String CHARACTER_COLUMN_C1_sidekick_Q4 = "c1_sidekick_q4";
+    //  private static final int DATABASE_VERSION = 12;
+    private static final int DATABASE_VERSION = 13;
 
 
     public mySQLiteDBHelper(Context context) {
@@ -152,6 +155,14 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
                 CHARACTER_COLUMN_C6Q2 + " TEXT, " +
                 CHARACTER_COLUMN_C6Q3 + " TEXT, " +
                 CHARACTER_COLUMN_C6Q4 + " TEXT, " +
+                CHARACTER_COLUMN_C7Q1 + " TEXT, " +
+                CHARACTER_COLUMN_C7Q2 + " TEXT, " +
+                CHARACTER_COLUMN_C7Q3 + " TEXT, " +
+                CHARACTER_COLUMN_C7Q4 + " TEXT, " +
+                CHARACTER_COLUMN_C8Q1 + " TEXT, " +
+                CHARACTER_COLUMN_C8Q2 + " TEXT, " +
+                CHARACTER_COLUMN_C8Q3 + " TEXT, " +
+                CHARACTER_COLUMN_C8Q4 + " TEXT, " +
                 CHARACTER_COLUMN_C1_MENTOR_Q1 + " TEXT, " +
                 CHARACTER_COLUMN_C1_MENTOR_Q2 + " TEXT, " +
                 CHARACTER_COLUMN_C1_MENTOR_Q3 + " TEXT, " +
@@ -231,7 +242,47 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
                 break;
             case 11:
                 sqLiteDatabase.execSQL("ALTER TABLE projectname ADD COLUMN " + PROJECT_COLUMN_IMAGE + " TEXT");
-             //   sqLiteDatabase.execSQL("ALTER TABLE story ADD COLUMN " + STORY_COLUMN_IMAGE + " TEXT");
+                break;
+            case 12:
+                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_7_q1 TEXT");
+                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_7_q2 TEXT");
+                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_7_q3 TEXT");
+                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_7_q4 TEXT");
+
+                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_8_q1 TEXT");
+                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_8_q2 TEXT");
+                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_8_q3 TEXT");
+                sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_8_q4 TEXT");
+                break;
+            case 13:
+                try {
+                    sqLiteDatabase.execSQL("CREATE TABLE story (_id INTEGER PRIMARY KEY AUTOINCREMENT)");
+                    sqLiteDatabase.execSQL("ALTER TABLE story ADD COLUMN project  TEXT");
+                    sqLiteDatabase.execSQL("ALTER TABLE story ADD COLUMN project_id  TEXT");
+                    sqLiteDatabase.execSQL("ALTER TABLE story ADD COLUMN stories  TEXT");
+                } catch (SQLiteException ex) {
+                    Log.w("Matilda", "Altering: " + ex.getMessage());
+                }
+
+                try {
+                    sqLiteDatabase.execSQL("ALTER TABLE projectname ADD COLUMN " + PROJECT_COLUMN_IMAGE + " TEXT");
+                } catch (SQLiteException ex) {
+                    Log.w("Matilda", "Altering: " + ex.getMessage());
+                }
+
+                try {
+                    sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_7_q1 TEXT");
+                    sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_7_q2 TEXT");
+                    sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_7_q3 TEXT");
+                    sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_7_q4 TEXT");
+
+                    sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_8_q1 TEXT");
+                    sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_8_q2 TEXT");
+                    sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_8_q3 TEXT");
+                    sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN challenge_8_q4 TEXT");
+                } catch (SQLiteException ex) {
+                    Log.w("Matilda", "Altering: " + ex.getMessage());
+                }
 
                 break;
         }

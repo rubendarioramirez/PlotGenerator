@@ -117,6 +117,7 @@ Erstelle jetzt neue Charaktere.</string>
 <string name="bodybuild_bio">Man könnte sagen, es sieht mehr aus wie</string>
 
 <string name="job_bio">Arbeitet als</string>
+<string name="nojob_bio">Arbeitet als</string>
 <string name="male_desire_bio">In seiner Vorstellung wäre er lieber </string>
 <string name="male_need_bio">Aber ist es das, was er wirklich will? Oder braucht er eigentlich</string>
 <string name="male_moment_bio">Über seine Kindheit wissen wir, dass er</string>
@@ -178,6 +179,20 @@ Erstelle jetzt neue Charaktere.</string>
 <string name="challenge_6_bio_desc_2">Hat er ein Foto im Geldbeutel?</string>
 <string name="challenge_6_bio_desc_3">Über den Schlüsselanhänger</string>
 <string name="challenge_6_bio_desc_4">Über das Handy</string>
+<!--Challenge VII BIO-->
+<string name ="challenge_7_bio_title"> Was steht auf dem Spiel? </string>
+<string name ="challenge_7_bio_subtitle"> Warum ist es uns wichtig, wenn der Charakter stirbt oder versagt? Wenn Sie möchten, dass sich das Publikum dafür interessiert, muss es wichtig sein </string>
+<string name ="challenge_7_bio_desc_1"> Was ist die wichtigste Entscheidung, die mame sein muss? </string>
+<string name ="challenge_7_bio_desc_2"> Welche externen Konsequenzen haben diese Aktionen? </string>
+<string name ="challenge_7_bio_desc_3"> Die internen? </string>
+<string name ="challenge_7_bio_desc_4"> Philosophisch? </string>
+<!--Challenge VIII BIO-->
+<string name ="challenge_8_bio_title"> Was ist mit dem Haus? </string>
+<string name ="challenge_8_bio_subtitle">Wie du lebst, sagt viel über dich selbst aus, dein Charakter ist keine Ausnahme</string>
+<string name ="challenge_8_bio_desc_1">Welche Art von Ort ist das? </string>
+<string name ="challenge_8_bio_desc_2">Was ist in der Gegend? </string>
+<string name ="challenge_8_bio_desc_3">Über das Schlafzimmer</string>
+<string name ="challenge_8_bio_desc_4">Was kann man von den Fenstern sehen</string>
     <!--Challenge I Mentor-->
 <string name="c1_mentor_bio_title">Kenne deinen Mentor.</string>
 <string name="c1_mentor_bio_subtitle">Nicht alle Mentoren verhalten gleich. Nicht alle unterrichten gleich oder zeigen dir den selben Weg. Was ist mit deinem Mentor?</string>
@@ -210,6 +225,7 @@ Erstelle jetzt neue Charaktere.</string>
 <string-array name="profession_array">
 <item>Einzelhandelverkäufer/in</item>
 <item>Kassierer/in</item>
+<item>Arbeitslos</item>
 <item>Büroangestellte/r</item>
 <item>Krankenpfleger/in</item>
 <item>Bedienung</item>
@@ -641,8 +657,7 @@ Manchmal verliert in dieser Phase der Held seinen Mentor (z.B. Herr der Ringe un
 <string name="challenge_1_desc_long">Wie reagiert dein Charakter in einer Krise?\n
 Angenommen der Charakter befindet sich in einem Aufzug mit einem beliebigen Fremden. Es spielt dabei keine Rolle mit wem.\n
 Plötzlich bleibt der Aufzug stecken und die beiden sitzen fest. Wie reagiert dein Charakter? Ist er entspannt? Bekommt er Panik?
-\n Nimm dir für die Beantwortung die Zeit, die du brauchst.
-\n Diese Aufgabe hilft dir dabei, über deinen Charakter zu reflektieren und zu sehen, wie er sich in Grenzsituationen verhält.</string>
+</string>
 <string name="challenge_1_q1">Was ist seine erste Reaktion?</string>
 <string name="challenge_1_q2">Wartet er auf eine Rettung?</string>
 <string name="challenge_1_q3">Die andere Person im Aufzug bekommt Panik. Versucht dein Charakter sie zu beruhigen oder fängt er daraufhin auch an unruhig zu werden?</string>
@@ -660,7 +675,7 @@ Damit sich dein Charakter positiv entwickeln kann, muss er mit etwas beginnen, d
     <!--Third challenge-->
 <string name="challenge_3_title">Herausforderung III</string>
 <string name="challenge_3_desc">Hintergrundgeschichte - Finde das \'Warum\'!</string>
-<string name="challenge_3_desc_long">Wer dein Charakter heute ist, ist sehr wichtig. Welcher Arbeit geht er nach, was ist seine Leidenschaft etc. Wer er sein wird ist die Essenz deiner Geschichte. Was ist also mit seiner Vergangenheit? Die Vergangangenheit machte ihn zu dem, der er heute ist. Waren seine Eltern geschieden? Vielleicht war seine Mutter eine Alkoholikerin oder sein Bruder kam bei einem tragischen Unfall ums Leben. Lebensereignisse machen uns zu den Personen, die wir sind. Stürze dich in die Herausforderung einen dreidimensionalen Charakter zu erschaffen.</string>
+<string name="challenge_3_desc_long">Wer dein Charakter heute ist, ist sehr wichtig. Welcher Arbeit geht er nach, was ist seine Leidenschaft etc. Wer er sein wird ist die Essenz deiner Geschichte. Was ist also mit seiner Vergangenheit? Die Vergangangenheit machte ihn zu dem, der er heute ist. Waren seine Eltern geschieden?</string>
 <string name="challenge_3_q1">Beschreibe kurz seinen engen Familienkreis; Mutter, Vater, Geschwister. Sind noch alle am Leben? Sind die Eltern geschieden? Sind alle glücklich und zufrieden?</string>
 <string name="challenge_3_q2">Was ist seine beste Kindheitserinnerung?</string>
 <string name="challenge_3_q3">Was ist seine schlimmste Kindheitserinnerung?</string>
@@ -713,11 +728,22 @@ Damit sich dein Charakter positiv entwickeln kann, muss er mit etwas beginnen, d
 <string name="c1_sidekick_q2">Wieso sind die Ziele, die sich dein Protagonist gesetzt hat, so stark, dass auch der Sidekick sich dazu entscheidet sie zu verfolgen?</string>
 <string name="c1_sidekick_q3">Welche Werkzeuge, Taktiken oder Waffen stellt dein Sidekick deinem Protagonisten zur Verfügung? Wie verteidigt oder beschützt er ihn?</string>
 <string name="c1_sidekick_q4">Manche Sidekicks stehen irgendwann vor der Entscheidung sich selbst oder den Protagonisten zu retten. Wie verhält sich der Sidekick in deiner Geschichte? Was würde er für den Protagonisten opfern? Sein eigenes Leben?</string>
-    <!--Coming soon challenge-->
-<string name="challenge_7_title">Herausforderung VII</string>
-<string name="challenge_7_desc">Kommt bald</string>
-<string name="challenge_7_desc_long">Momentan arbeite ich an weiteren Herausforderungen. Falls du Ideen und Anregungen hast, kannst du mich gerne kontaktieren.</string>
-
+    <!--Challenge 7-->
+    <string name="challenge_7_title">Herausforderung VII</string>
+    <string name = "challenge_7_desc"> Einsätze </string>
+    <string name = "challenge_7_desc_long"> Warum interessieren uns $char_name$? Was könnte passieren, wenn $gender$ keinen Erfolg hat? Wie wichtig ist $char_name$ für das Publikum? </string>
+    <string name = "challenge_7_q1"> Denken Sie über die wichtigste Entscheidung nach, die $char_name$ treffen muss. Was steht in diesem Moment auf dem Spiel? </string>
+    <string name = "challenge_7_q2"> Einsätze können extern oder physisch sein. Überlegen Sie, welche externen Konsequenzen wir sehen werden, wenn das Ziel nicht erreicht wird? Wird die Welt explodieren? Eine Person wird sterben? Zum Beispiel wird die Mutter des Protagonisten in dem Film "Brave" für immer ein Bär sein, wenn der Zauber nicht gebrochen wird.</string>
+    <string name = "challenge_7_q3"> Betrachten Sie nun intern die moralischen oder psychologischen Konsequenzen für $char_name$, wenn das Ziel nicht erreicht wird. Vergiss das Trauma, denke tiefer. Kann $char_name$ den Fehler überwinden? </string>
+    <string name = "challenge_7_q4"> Was sind schließlich die philosophischen Einsätze? Wenn die Mutter von Dragons die Wanderer nicht aufhält, werden das Böse und die Zerstörung die Welt erobern. Was passiert in $char_name$ Fall? </string>
+    <!--Challenge 8 -->
+<string name="challenge_8_title">Herausforderung VIII</string>
+<string name ="challenge_8_desc"> Was ist mit dem Haus? </string>
+<string name ="challenge_8_desc_long">Sagen Sie mir, wie Sie leben, und ich sage Ihnen, wer Sie sind. \n\nBearbeiten Sie, wie und wo $char_name$ lebt.</string>
+<string name ="challenge_8_q1">Lebt $char_name$ in einem Haus oder einer Wohnung? Es ist eine Scheune? Oder nur ein Zimmer? Beschreiben Sie den Ort.</string>
+<string name ="challenge_8_q2">$char_name$ steht in der Mitte des größten Raums. Was ist zu sehen? Was ist an den Wänden? Wer hat das dort hingelegt?</string>
+<string name ="challenge_8_q3">Gehen Sie ins Schlafzimmer, wie ist es? Ist es ein Doppelbett? Ist es eine einzige? Ist das Bett aufgeräumt? Sehen Sie jemanden auf dem Bett?</string>
+<string name ="challenge_8_q4">Öffnen Sie alle Fenster. Was sieht $char_name$ von dort aus? Können die Leute ihn sehen? Kann man den Straßenlärm hören? Wie laut ist es hier?</string>
 
     <!--GUIDE ROLES-->
 <string name="roles_title">Typische Charakterrollen</string>
@@ -878,5 +904,14 @@ Lasse den Antagonisten verachtenswerte Handlungen ausführen, und wenn möglich,
 <item>Hindernis</item>
 <item>Ziel</item>
 </string-array>
+
+
+    <string name="gender_male_article">er</string>
+    <string name="gender_female_article">sie</string>
+    <string name="gender_male_posesive">seine</string>
+    <string name="gender_female_posesive">ihr</string>
+
+    <string name="weekly_challenge_tab1">in Bearbeitung</string>
+    <string name="weekly_challenge_tab2">Letzter Gewinner</string>
 
     </resources>

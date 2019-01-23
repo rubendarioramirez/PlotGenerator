@@ -42,6 +42,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
+import com.plotgen.rramirez.plotgenerator.Common.Utils;
+import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
+
 
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -366,8 +369,8 @@ public class Project_detailsFragment extends Fragment {
         tvRemovePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                filepath = "";
-                project_icon_iv.setImageResource(R.drawable.writer_icon);
+                filepath="";
+                project_icon_iv.setImageResource(R.drawable.ic_menu_camera);
                 dialog.dismiss();
             }
         });
@@ -376,8 +379,6 @@ public class Project_detailsFragment extends Fragment {
         tvSelectFromGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Todo : check for permission
-
                 if (ContextCompat.checkSelfPermission(myFragmentView.getContext(), WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(getActivity(), new String[]{WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSION_REQUEST_GALLERY);
                 } else {
@@ -397,7 +398,6 @@ public class Project_detailsFragment extends Fragment {
                 boolean isGalleryGranted = (grantResults[0] == PackageManager.PERMISSION_GRANTED);
 
                 if (isGalleryGranted) {
-                    //TODO all granted
                     openGallery();
                     return;
                 }

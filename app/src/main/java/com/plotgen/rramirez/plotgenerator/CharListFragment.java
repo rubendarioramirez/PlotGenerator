@@ -4,21 +4,29 @@ package com.plotgen.rramirez.plotgenerator;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdView;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.plotgen.rramirez.plotgenerator.Common.Adapter_challenges;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
+import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Fragment.OfflineStoryFragment;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,11 +39,12 @@ public class CharListFragment extends Fragment {
 
     TextView project_list_tv, empty_character_tv;
     ImageButton charlist_project_edit_btn;
-    ListView character_list_lv;
+    RecyclerView character_list_lv;
     ArrayList<String> char_list_array;
     ArrayAdapter<String> itemsAdapter;
     String project_info;
     private FirebaseAnalytics mFirebaseAnalytics;
+    List<item_character_list> mlist = new ArrayList<>();
 
 
     @BindView(R.id.fab_add_char)
@@ -66,7 +75,6 @@ public class CharListFragment extends Fragment {
         ButterKnife.bind(this, myFragmentView);
 
         //Declare elements
-        //FloatingActionButton fab_add = (FloatingActionButton) myFragmentView.findViewById(R.id.add_character_btn);
         project_list_tv = myFragmentView.findViewById(R.id.project_list_tv);
         character_list_lv = myFragmentView.findViewById(R.id.character_list_lv);
         empty_character_tv = myFragmentView.findViewById(R.id.empty_character_tv);
@@ -77,47 +85,69 @@ public class CharListFragment extends Fragment {
 
         project_list_tv.setText(project_name_text);
 
+
+        RecyclerView recyclerView = myFragmentView.findViewById(R.id.character_list_lv);
+        final Adapter_characterList adapter = new Adapter_characterList(this.getActivity(),mlist, project_name_text);
+        mlist.clear();
+
+        if(!char_list_array.isEmpty()){
+            empty_character_tv.setVisibility(View.INVISIBLE);
+        for (int i = 0; i<char_list_array.size();i++) {
+            String name = char_list_array.get(i).split("-")[0];
+            String role = char_list_array.get(i).split("-")[1];
+            mlist.add(new item_character_list(R.drawable.ic_lying, name, role, "89%"));
+        }
+        }
+
+
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+
+
         if (!Common.isPAU) {
             //Display the ad
             mAdView = (AdView) myFragmentView.findViewById(R.id.adView_char_list);
             Utils.loadAd(mAdView);
         }
 
-        //Display the adapter
-        itemsAdapter = new ArrayAdapter<String>(myFragmentView.getContext(), android.R.layout.simple_list_item_1, char_list_array);
 
-        character_list_lv.setAdapter(itemsAdapter);
-        character_list_lv.setEmptyView(empty_character_tv);
-        //When the item is click
-        character_list_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position,
-                                    long id) {
-                //Get the name that was touched
-                //String[] charNameRaw = itemsAdapter.getItem(position).split(" - ");
-                String charName = itemsAdapter.getItem(position);
-                String[] arrayList = getResources().getStringArray(R.array.char_guide_types_titles_for_comparison);
-                for (String s : arrayList) {
-                    if (charName.contains(s)) {
-                        charName = charName.replace(" - " + s, "");
-                    }
-                }
 
-                Bundle bundle = new Bundle();
-                bundle.putString("char_name", charName);
-                bundle.putString("project_name", project_name_text);
-                //Send it to the next fragment
-                BioFragment nextFragment = new BioFragment();
-                nextFragment.setArguments(bundle);
-                //Make the transaction
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
-                transaction.addToBackStack(null);
-                transaction.replace(R.id.flMain,nextFragment);
-                transaction.commit();
 
-            }
-        });
+
+//        itemsAdapter = new ArrayAdapter<String>(myFragmentView.getContext(), android.R.layout.simple_list_item_1, char_list_array);
+//
+//        character_list_lv.setAdapter(itemsAdapter);
+//        character_list_lv.setEmptyView(empty_character_tv);
+//        //When the item is click
+//        character_list_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position,
+//                                    long id) {
+//                //Get the name that was touched
+//                //String[] charNameRaw = itemsAdapter.getItem(position).split(" - ");
+//                String charName = itemsAdapter.getItem(position);
+//                String[] arrayList = getResources().getStringArray(R.array.char_guide_types_titles_for_comparison);
+//                for (String s : arrayList) {
+//                    if (charName.contains(s)) {
+//                        charName = charName.replace(" - " + s, "");
+//                    }
+//                }
+//
+//                Bundle bundle = new Bundle();
+//                bundle.putString("char_name", charName);
+//                bundle.putString("project_name", project_name_text);
+//                //Send it to the next fragment
+//                BioFragment nextFragment = new BioFragment();
+//                nextFragment.setArguments(bundle);
+//                //Make the transaction
+//                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//                transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
+//                transaction.addToBackStack(null);
+//                transaction.replace(R.id.flMain,nextFragment);
+//                transaction.commit();
+//
+//            }
+//        });
 
 
         fabAddChar.setOnClickListener(new View.OnClickListener() {

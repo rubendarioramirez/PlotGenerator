@@ -1,8 +1,6 @@
 package com.plotgen.rramirez.plotgenerator.Fragment;
 
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,16 +10,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -32,9 +25,6 @@ import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.dynamiclinks.DynamicLink;
-import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
-import com.google.firebase.dynamiclinks.ShortDynamicLink;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.RemoteMessage;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
@@ -43,7 +33,7 @@ import com.plotgen.rramirez.plotgenerator.MainActivity;
 import com.plotgen.rramirez.plotgenerator.Model.Story;
 import com.plotgen.rramirez.plotgenerator.Model.User;
 import com.plotgen.rramirez.plotgenerator.R;
-import com.plotgen.rramirez.plotgenerator.Utils;
+import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.ViewHolder.StoryViewHolder;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -60,11 +50,7 @@ public class WeeklyChallengeFragment extends Fragment {
     RecyclerView rvWeeklyChallenge;
 
     private FirebaseRecyclerAdapter<Story, StoryViewHolder> mAdapter;
-    private FirebaseRecyclerAdapter<Story, StoryViewHolder> mMyPostAdapter;
-    private FirebaseRecyclerAdapter<Story, StoryViewHolder> mRecentAdapter;
     FirebaseRecyclerOptions<Story> options;
-    FirebaseRecyclerOptions<Story> optionsMyPost;
-    FirebaseRecyclerOptions<Story> optionsMostRecent;
 
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
@@ -92,6 +78,8 @@ public class WeeklyChallengeFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
+        mDatabase = FirebaseDatabase.getInstance();
+
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
 
@@ -108,27 +96,15 @@ public class WeeklyChallengeFragment extends Fragment {
         mManager.setStackFromEnd(true);
         rvWeeklyChallenge.setLayoutManager(mManager);
 
-        mDatabase = FirebaseDatabase.getInstance();
+
         mReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts");
         mCommentReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("post-comments");
         mUserReference = mDatabase.getReference().child("users");
 
         Query query = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts").orderByChild("likeCount");
-        Query query_recents = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts").orderByChild("date");
-
-
         options = new FirebaseRecyclerOptions.Builder<Story>()
                 .setQuery(query, Story.class)
                 .build();
-
-        optionsMyPost = new FirebaseRecyclerOptions.Builder<Story>()
-                .setQuery(query, Story.class)
-                .build();
-
-        optionsMostRecent = new FirebaseRecyclerOptions.Builder<Story>()
-                .setQuery(query_recents, Story.class)
-                .build();
-
 
         populateWeeklyChallenge();
         rvWeeklyChallenge.setAdapter(mAdapter);
@@ -138,19 +114,20 @@ public class WeeklyChallengeFragment extends Fragment {
 
     private void populateWeeklyChallenge() {
 
+
         mAdapter = new FirebaseRecyclerAdapter<Story, StoryViewHolder>(options) {
 
             @Override
             public StoryViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                 LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
                 return new StoryViewHolder(inflater.inflate(R.layout.item_story, viewGroup, false));
+
             }
 
             @Override
             protected void onBindViewHolder(StoryViewHolder viewHolder, int position, final Story model) {
                 final DatabaseReference postRef = getRef(position);
                 final Story currentStory = model;
-
                 viewHolder.setIsRecyclable(false);
 
                 if (model.getTitle().contains(Common.currentChallenge.getName())) {
@@ -180,124 +157,8 @@ public class WeeklyChallengeFragment extends Fragment {
                         }
                     };
 
-                   /* View.OnClickListener shareListener = new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            onShareClicked(currentStory.getId());
-                        }
-                    };*/
 
                     viewHolder.bindToPost(model, likeClickListener, mCommentReference.child(postRef.getKey()));
-                } else {
-                    viewHolder.removeItem();
-                }
-
-            }
-        };
-        mMyPostAdapter = new FirebaseRecyclerAdapter<Story, StoryViewHolder>(optionsMyPost) {
-
-            @Override
-            public StoryViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-                LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
-                return new StoryViewHolder(inflater.inflate(R.layout.item_story, viewGroup, false));
-            }
-
-            @Override
-            protected void onBindViewHolder(StoryViewHolder viewHolder, int position, final Story model) {
-                final DatabaseReference postRef = getRef(position);
-                final Story currentStory = model;
-
-                viewHolder.setIsRecyclable(false);
-
-                if (model.getUser().getUid().equals(Common.currentUser.getUid())) {
-
-                    viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Common.currentStory = currentStory;
-                            StoryDetailFragment nextFragment = new StoryDetailFragment();
-                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                            Utils.changeFragment(nextFragment, transaction, "", "");
-                            transaction.addToBackStack(null);
-                        }
-                    });
-
-                    if (model.likes.containsKey(Common.currentUser.getUid())) {
-                        viewHolder.ivLoves.setImageResource(R.drawable.ic_love_red);
-                    } else {
-                        viewHolder.ivLoves.setImageResource(R.drawable.ic_love_outline);
-                    }
-
-                    View.OnClickListener likeClickListener = new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            DatabaseReference globalPostRef = mReference.child(postRef.getKey());
-                            onLikeClicked(globalPostRef);
-                        }
-                    };
-                  /*  View.OnClickListener shareListener = new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            onShareClicked(currentStory.getId());
-                        }
-                    };*/
-                    viewHolder.bindToPost(model, likeClickListener, mCommentReference.child(postRef.getKey()));
-                } else {
-                    viewHolder.removeItem();
-                }
-
-            }
-        };
-        mRecentAdapter = new FirebaseRecyclerAdapter<Story, StoryViewHolder>(optionsMostRecent) {
-
-            @Override
-            public StoryViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-                LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
-                return new StoryViewHolder(inflater.inflate(R.layout.item_story, viewGroup, false));
-            }
-
-            @Override
-            protected void onBindViewHolder(StoryViewHolder viewHolder, int position, final Story model) {
-                final DatabaseReference postRef = getRef(position);
-                final Story currentStory = model;
-
-                viewHolder.setIsRecyclable(false);
-
-                if (model.getTitle().contains(Common.currentChallenge.getName())) {
-
-                    viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Common.currentStory = currentStory;
-                            StoryDetailFragment nextFragment = new StoryDetailFragment();
-                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                            Utils.changeFragment(nextFragment, transaction, "", "");
-                            transaction.addToBackStack(null);
-                        }
-                    });
-
-                    if (model.likes.containsKey(Common.currentUser.getUid())) {
-                        viewHolder.ivLoves.setImageResource(R.drawable.ic_love_red);
-                    } else {
-                        viewHolder.ivLoves.setImageResource(R.drawable.ic_love_outline);
-                    }
-
-                    View.OnClickListener likeClickListener = new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            DatabaseReference globalPostRef = mReference.child(postRef.getKey());
-                            onLikeClicked(globalPostRef);
-                        }
-                    };
-
-/*                    View.OnClickListener shareListener = new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            onShareClicked(currentStory.getId());
-                        }
-                    };*/
-
-                    viewHolder.bindToPost(model, likeClickListener,  mCommentReference.child(postRef.getKey()));
                 } else {
                     viewHolder.removeItem();
                 }
@@ -305,48 +166,6 @@ public class WeeklyChallengeFragment extends Fragment {
             }
         };
     }
-
-    /*private void onShareClicked(String id) {
-        FirebaseDynamicLinks.getInstance().createDynamicLink()
-                .setLink(createShareUri(id))
-                .setDomainUriPrefix("https://plotgen.page.link")
-                .setAndroidParameters(new DynamicLink.AndroidParameters.Builder().build())
-                .buildShortDynamicLink()
-                .addOnCompleteListener(getActivity(), new OnCompleteListener<ShortDynamicLink>() {
-                    @Override
-                    public void onComplete(@NonNull Task<ShortDynamicLink> task) {
-                        if (task.isSuccessful()) {
-                            // Short link created
-                            Uri shortLink = task.getResult().getShortLink();
-                            Uri flowchartLink = task.getResult().getPreviewLink();
-
-                            Log.v("short link", String.valueOf(Uri.decode(shortLink + "")));
-                            Log.v("preview link", String.valueOf(Uri.decode(flowchartLink + "")));
-                            Intent shareIntent = new Intent();
-                            shareIntent.setAction(Intent.ACTION_SEND);
-                            shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.invitation_message) + " " + String.valueOf(shortLink));
-                            shareIntent.setType("text/plain");
-                            shareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getString(R.string.app_name));
-//                            shareIntent.putExtra(Intent.EXTRA_STREAM, getString(R.string.invitation_message));
-                            shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                            startActivity(Intent.createChooser(shareIntent, "Share Post"));
-
-                        } else {
-                            // Error
-                            // ...
-                        }
-                    }
-                });
-    }*/
-
-   /* private Uri createShareUri(String id) {
-        Uri.Builder builder = new Uri.Builder();
-        builder.scheme("http")
-                .authority("com.plotgen.rramirez")
-                .appendPath("post")
-                .appendQueryParameter("id", id);
-        return builder.build();
-    }*/
 
     private void onLikeClicked(final DatabaseReference postRef) {
 
@@ -395,8 +214,7 @@ public class WeeklyChallengeFragment extends Fragment {
         super.onStart();
         if (mAdapter != null) {
             mAdapter.startListening();
-            mMyPostAdapter.startListening();
-            mRecentAdapter.startListening();
+
         }
     }
 
@@ -405,8 +223,6 @@ public class WeeklyChallengeFragment extends Fragment {
         super.onStop();
         if (mAdapter != null) {
             mAdapter.stopListening();
-            mMyPostAdapter.stopListening();
-            mRecentAdapter.stopListening();
         }
     }
 
@@ -416,33 +232,33 @@ public class WeeklyChallengeFragment extends Fragment {
         setHasOptionsMenu(true);
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.menu_goto, menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.menu_goto) {
-            if (toggleMyPost == 1) {
-                rvWeeklyChallenge.swapAdapter(mMyPostAdapter, true);
-                toggleMyPost = 0;
-            } else if (toggleMyPost == 0) {
-                rvWeeklyChallenge.swapAdapter(mAdapter, true);
-                toggleMyPost = 1;
-            }
-            return true;
-        } else if (id == R.id.menu_recent) {
-            rvWeeklyChallenge.swapAdapter(mRecentAdapter, true);
-            return true;
-        } else if (id == R.id.menu_likes) {
-            rvWeeklyChallenge.swapAdapter(mAdapter, true);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+//        super.onCreateOptionsMenu(menu, inflater);
+//        inflater.inflate(R.menu.menu_goto, menu);
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        int id = item.getItemId();
+//        if (id == R.id.menu_goto) {
+//            if (toggleMyPost == 1) {
+//                rvWeeklyChallenge.swapAdapter(mMyPostAdapter, true);
+//                toggleMyPost = 0;
+//            } else if (toggleMyPost == 0) {
+//                rvWeeklyChallenge.swapAdapter(mAdapter, true);
+//                toggleMyPost = 1;
+//            }
+//            return true;
+//        } else if (id == R.id.menu_recent) {
+//            rvWeeklyChallenge.swapAdapter(mRecentAdapter, true);
+//            return true;
+//        } else if (id == R.id.menu_likes) {
+//            rvWeeklyChallenge.swapAdapter(mAdapter, true);
+//            return true;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     public void sendNotification(final String message, User user, final String id) {
         //String firebase_token = mUserReference.child(user.getUid()).child("token");
