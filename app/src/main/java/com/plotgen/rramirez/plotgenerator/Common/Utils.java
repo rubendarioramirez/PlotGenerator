@@ -142,7 +142,8 @@ public class Utils {
             while (!cursor.isAfterLast()) {
                 String charname = cursor.getString(cursor.getColumnIndex("name"));
                 String charRole = cursor.getString(cursor.getColumnIndex("role"));
-                char_list.add(charname + " - " + charRole);
+                String image = cursor.getString(cursor.getColumnIndex("image"));
+                char_list.add(charname + " - " + charRole + " - " + image);
                 cursor.moveToNext();
             }
             cursor.close();

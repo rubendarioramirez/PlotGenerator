@@ -20,6 +20,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -103,6 +104,8 @@ public class Project_detailsFragment extends Fragment {
 
                 if(project_list_array.size()>3 && !project_list_array.get(3).equalsIgnoreCase(null) && !project_list_array.get(3).equalsIgnoreCase("")) {
                     project_icon_iv.setImageURI(Uri.parse(project_list_array.get(3)));
+                    Log.v("matilda", Uri.parse(project_list_array.get(3)).toString());
+
                 }
                 project_description = getProject(myFragmentView.getContext(), project_name_text);
                 String project_genre = project_description.get(1);

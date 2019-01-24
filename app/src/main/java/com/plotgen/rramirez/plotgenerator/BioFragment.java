@@ -49,10 +49,6 @@ public class BioFragment extends Fragment {
         final String char_name = this.getArguments().getString("char_name");
         final String project_name = this.getArguments().getString("project_name");
 
-
-        Log.v("matilda","Got char_name " + char_name);
-        Log.v("matilda","Got project_name " + project_name);
-
         final View myFragmentView = inflater.inflate(R.layout.fragment_bio, container, false);
         ((MainActivity) getActivity()).setActionBarTitle(getString(R.string.character_list_tab));
         // Obtain the FirebaseAnalytics instance.
@@ -71,7 +67,6 @@ public class BioFragment extends Fragment {
 
         //Set the narrative
         char_description = getDescription(myFragmentView.getContext(), char_name);
-        Log.v("matilda","Char size is" + char_description.size());
 
         // changes done to check list size
         if (char_description.size() > 0) {

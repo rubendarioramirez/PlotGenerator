@@ -8,6 +8,17 @@
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="25dp">
 
+    <ImageView
+        android:id="@+id/character_picture"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_menu_camera"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/char_template_title" />
+
     <TextView
         android:id="@+id/char_template_title"
         android:layout_width="wrap_content"
@@ -27,15 +38,15 @@
         android:id="@+id/scrollView3"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/char_template_title"
+        app:layout_constraintTop_toBottomOf="@+id/character_picture"
         app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
@@ -265,8 +276,8 @@
                 android:id="@+id/notes_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:layout_marginBottom="60dp"
                 android:layout_marginTop="27dp"
+                android:layout_marginBottom="60dp"
                 android:ems="8"
                 android:hint="@string/character_notes_tv"
                 android:inputType="text|textMultiLine"

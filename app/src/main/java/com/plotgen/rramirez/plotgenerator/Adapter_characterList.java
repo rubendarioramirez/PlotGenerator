@@ -1,23 +1,17 @@
 package com.plotgen.rramirez.plotgenerator;
 
 
+import android.net.Uri;
 import android.support.v4.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.plotgen.rramirez.plotgenerator.Guides.AntagonistFragment;
-import com.plotgen.rramirez.plotgenerator.Guides.GuideLajosFragment;
-import com.plotgen.rramirez.plotgenerator.Guides.GuideRoleFragment;
-import com.plotgen.rramirez.plotgenerator.Guides.GuideWeilandFragment;
-
 import java.util.List;
 
 /**
@@ -47,7 +41,8 @@ public class Adapter_characterList extends RecyclerView.Adapter<Adapter_characte
 
     @Override
     public void onBindViewHolder(myViewHolder holder, int position) {
-        holder.image.setImageResource(mData.get(position).getImage());
+//        holder.image.setImageResource(mData.get(position).getImage());
+        holder.image.setImageURI(Uri.parse(mData.get(position).getImage()));
         holder.name.setText(mData.get(position).getName());
         holder.role.setText(mData.get(position).getRole());
         holder.completion.setText(mData.get(position).getCompletion());
