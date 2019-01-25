@@ -2,9 +2,9 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:shape="rectangle"
-    android:tint="@color/charListRecColor_2">
+    android:tint="?colorDivider">
 
     <stroke
-        android:width="4dp"
+        android:width="1dp"
         android:color="#FF000000" />
 </shape>

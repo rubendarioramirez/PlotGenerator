@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,8 +39,10 @@ public class PremiumFragment extends Fragment implements BillingProcessor.IBilli
 
     private FirebaseRemoteConfig remoteConfig_premium;
     private FirebaseAnalytics mFirebaseAnalytics;
+
     TextView title_tv, body_tv;
     Button premium_btn;
+    ImageView premium_owl;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,6 +53,8 @@ public class PremiumFragment extends Fragment implements BillingProcessor.IBilli
         title_tv = view.findViewById(R.id.premium_title_tv);
         body_tv = view.findViewById(R.id.premium_body_tv);
         premium_btn = view.findViewById(R.id.premium_btn);
+        premium_owl = view.findViewById(R.id.premium_owl);
+
         remoteConfig_premium = FirebaseRemoteConfig.getInstance();
 
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
@@ -58,10 +63,13 @@ public class PremiumFragment extends Fragment implements BillingProcessor.IBilli
         remoteConfig_premium.setConfigSettings(configSettings);
 
         HashMap<String, Object> defaults = new HashMap<>();
-        defaults.put("premium_text_title", "We're the premiums!");
-        defaults.put("premium_body_text", "La la la pun");
+        defaults.put("premium_text_title", "Why premium");
+        defaults.put("premium_body_text", "If you read this text your internet is not working, but that's not a problem. Just keep on trying");
+        defaults.put("button_bg_color", "#FFFFFF");
+        defaults.put("button_text_color", "#FFFFFF");
+        defaults.put("premium_owl_enabled", true);
         remoteConfig_premium.setDefaults(defaults);
-
+        updateTexts();
         //IAP Fields
         ((MainActivity) getActivity()).bp = new BillingProcessor(getContext(), null, this);
         ((MainActivity) getActivity()).bp.initialize();
@@ -104,7 +112,6 @@ public class PremiumFragment extends Fragment implements BillingProcessor.IBilli
 
                             Log.v("matilda", task.getException().toString());
                         }
-                        updateTexts();
                     }
                 });
 
@@ -116,24 +123,25 @@ public class PremiumFragment extends Fragment implements BillingProcessor.IBilli
         String button_text = (String) remoteConfig_premium.getString("premium_text_btn");
         int button_bg_color = Color.parseColor(remoteConfig_premium.getString("button_bg_color"));
         int button_text_color = Color.parseColor(remoteConfig_premium.getString("button_text_color"));
+        boolean premium_owl_boolean = remoteConfig_premium.getBoolean("premium_owl_enabled");
 
 
         title_tv.setText(title_text);
-        body_tv.setText(body_text);
+        String bodyparsed = body_text.replace("\\n", "\n");
+        body_tv.setText(bodyparsed);
         premium_btn.setText(button_text);
         premium_btn.setBackgroundColor(button_bg_color);
         premium_btn.setTextColor(button_text_color);
+        if(premium_owl_boolean){
+            premium_owl.setVisibility(View.VISIBLE);
+        } else {
+            premium_owl.setVisibility(View.INVISIBLE);
+        }
+
     }
 
     public void buyIAP(View v) {
         ((MainActivity) getActivity()).bp.purchase(this.getActivity(), getString(R.string.remove_ads_product_id));
-        //Log clicked in IAP updated
-//        Bundle params = new Bundle();
-//        params.putString("user_email", Common.currentUser.getEmail());
-//        params.putString("from", "premium section");
-//        mFirebaseAnalytics.logEvent("Click_IAP_Purchase", params);
-
-        Log.v("matilda", "this was clicked");
     }
 
     @Override

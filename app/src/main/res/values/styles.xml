@@ -10,6 +10,7 @@
         <item name="android:colorBackground">@color/background</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="colorDivider">#dcd9c8</item>
         <item name="android:textColor">@color/text_color</item>
         <item name="android:textColorPrimary">@color/headline</item>
         <item name="android:textColorSecondary">@color/content</item>
@@ -31,6 +32,7 @@
         <item name="android:textColorPrimary">@color/headline_2</item>
         <item name="android:textColorSecondary">@color/content_2</item>
         <item name="android:textColorHint">@color/hint_color</item>
+        <item name="colorDivider">#253036</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="alertDialogTheme">@style/AlertDialogCustom</item>
@@ -46,6 +48,7 @@
         <item name="colorAccent">@color/colorAccent_3</item>
         <item name="android:textColorPrimary">@color/headline_3</item>
         <item name="android:textColorSecondary">@color/content_3</item>
+        <item name="colorDivider">@color/charListRecColor_3</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="alertDialogTheme">@style/AlertDialogCustom</item>
@@ -59,6 +62,7 @@
         <item name="colorAccent">@color/colorAccent_4</item>
         <item name="android:textColorPrimary">@color/headline_4</item>
         <item name="android:colorBackground">@color/background_4</item>
+        <item name="colorDivider">@color/charListRecColor_4</item>
         <item name="alertDialogTheme">@style/AlertDialogCustom</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

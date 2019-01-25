@@ -109,10 +109,10 @@ public class CharListFragment extends Fragment {
                 String defaultImagePath = "android.resource://com.plotgen.rramirez.plotgenerator/drawable/ic_menu_camera";
 
                 if (!image.substring(1).equals("null") && !image.equals(" ")){
-                    mlist.add(new item_character_list(image.substring(1), name, role, "89%"));
+                    mlist.add(new item_character_list(image.substring(1), name, role, ""));
                 }
                 else {
-                    mlist.add(new item_character_list(defaultImagePath, name, role, "89%"));
+                    mlist.add(new item_character_list(defaultImagePath, name, role, ""));
                 }
                 }
              }

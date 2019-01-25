@@ -184,9 +184,11 @@ public class CharacterFragment extends Fragment {
                 String imageToShow = char_description.get(18);
                 if (imageToShow!=null && !imageToShow.isEmpty()){
                     char_image.setImageURI(Uri.parse(char_description.get(18)));
+                    filepath = char_description.get(18);
                 } else {
                     String defaultImagePath = "android.resource://com.plotgen.rramirez.plotgenerator/drawable/ic_menu_camera";
                     char_image.setImageURI(Uri.parse(defaultImagePath));
+                    filepath = char_description.get(18);
                 }
 
                 //Set the proper spinner value
@@ -462,6 +464,7 @@ public class CharacterFragment extends Fragment {
     private void updateDB(String name_text, String project_name) {
         SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
         ContentValues values = new ContentValues();
+        Log.v("matilda", "the path is: " + filepath);
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_NAME, nameEditText.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_JOB, profession_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_HEIGHT, height_et.getText().toString());
@@ -482,7 +485,7 @@ public class CharacterFragment extends Fragment {
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_ENOTES, notes_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PHRASE, phrase_et.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PHRASE, phrase_et.getText().toString());
-        values.put(mySQLiteDBHelper.PROJECT_COLUMN_IMAGE, filepath);
+        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_IMAGE, filepath);
         database.update(mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER, values, "name = ?", new String[]{name_text.toString()});
         //Come back to previous fragment
         fragmentTransition();
