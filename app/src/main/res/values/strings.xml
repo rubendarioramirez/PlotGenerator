@@ -934,6 +934,7 @@ In order for your character to evolve in a positive way, he has to start out wit
 
     <string-array name="themes">
         <item>Light Theme</item>
+        <item>Metal Theme</item>
         <item>Dark Theme</item>
         <item>Romance Theme</item>
         <item>Autumn Theme</item>

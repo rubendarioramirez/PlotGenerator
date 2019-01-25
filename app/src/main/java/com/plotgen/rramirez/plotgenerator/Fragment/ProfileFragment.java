@@ -295,7 +295,6 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
         etChooseTheme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Common.isPAU) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext())
                             .setTitle("Choose your theme")
                             .setSingleChoiceItems(R.array.themes, -1, new DialogInterface.OnClickListener() {
@@ -308,11 +307,35 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     if (selection.equals("Dark Theme")) {
-                                        Utils.saveOnSharePreg(getContext(), "selectedTheme", 1);
-                                        Bundle params = new Bundle();
-                                        params.putString("theme_chosen", "dark_theme");
-                                        mFirebaseAnalytics.logEvent("theme_selected", params);
-                                        getActivity().recreate();
+                                        if(Common.isPAU) {
+                                            Utils.saveOnSharePreg(getContext(), "selectedTheme", 1);
+                                            Bundle params = new Bundle();
+                                            params.putString("theme_chosen", "dark_theme");
+                                            mFirebaseAnalytics.logEvent("theme_selected", params);
+                                            getActivity().recreate();
+                                        } else {
+                                            displayPayDulu();
+                                        }
+                                    } else if (selection.equals("Romance Theme")) {
+                                        if(Common.isPAU) {
+                                            Utils.saveOnSharePreg(getContext(), "selectedTheme", 2);
+                                            Bundle params = new Bundle();
+                                            params.putString("theme_chosen", "romance_theme");
+                                            mFirebaseAnalytics.logEvent("theme_selected", params);
+                                            getActivity().recreate();
+                                        } else {
+                                            displayPayDulu();
+                                        }
+                                    } else if (selection.equals("Autumn Theme")) {
+                                        if(Common.isPAU) {
+                                            Utils.saveOnSharePreg(getContext(), "selectedTheme", 3);
+                                            Bundle params = new Bundle();
+                                            params.putString("theme_chosen", "autumn_theme");
+                                            mFirebaseAnalytics.logEvent("theme_selected", params);
+                                            getActivity().recreate();
+                                        } else {
+                                            displayPayDulu();
+                                        }
 
                                     } else if (selection.equals("Light Theme")) {
                                         Utils.saveOnSharePreg(getContext(), "selectedTheme", 0);
@@ -321,17 +344,10 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
                                         mFirebaseAnalytics.logEvent("theme_selected", params);
                                         getActivity().recreate();
 
-                                    } else if (selection.equals("Romance Theme")) {
-                                        Utils.saveOnSharePreg(getContext(), "selectedTheme", 2);
+                                    } else if (selection.equals("Metal Theme")) {
+                                        Utils.saveOnSharePreg(getContext(), "selectedTheme", 4);
                                         Bundle params = new Bundle();
-                                        params.putString("theme_chosen", "romance_theme");
-                                        mFirebaseAnalytics.logEvent("theme_selected", params);
-                                        getActivity().recreate();
-
-                                    } else if (selection.equals("Autumn Theme")) {
-                                        Utils.saveOnSharePreg(getContext(), "selectedTheme", 3);
-                                        Bundle params = new Bundle();
-                                        params.putString("theme_chosen", "autumn_theme");
+                                        params.putString("theme_chosen", "metal_theme");
                                         mFirebaseAnalytics.logEvent("theme_selected", params);
                                         getActivity().recreate();
                                     }
@@ -344,10 +360,7 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
                                 }
                             });
                     builder.show();
-                } else {
-                    Toast.makeText(getContext(), getResources().getString(R.string.themes_disclaimer), Toast.LENGTH_LONG).show();
                 }
-            }
         });
 
 
@@ -562,5 +575,9 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
                 }
             }
         return totalChar;
+    }
+
+    public void displayPayDulu(){
+        Toast.makeText(getContext(), getResources().getString(R.string.themes_disclaimer), Toast.LENGTH_LONG).show();
     }
 }

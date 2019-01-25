@@ -142,6 +142,10 @@ public class PremiumFragment extends Fragment implements BillingProcessor.IBilli
 
     public void buyIAP(View v) {
         ((MainActivity) getActivity()).bp.purchase(this.getActivity(), getString(R.string.remove_ads_product_id));
+        //Log clicked in IAP updated
+        Bundle params = new Bundle();
+        params.putString("from", "premium");
+        mFirebaseAnalytics.logEvent("Click_IAP_Purchase", params);
     }
 
     @Override

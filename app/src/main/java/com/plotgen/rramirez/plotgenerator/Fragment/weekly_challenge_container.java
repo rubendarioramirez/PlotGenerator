@@ -73,6 +73,7 @@ public class weekly_challenge_container extends Fragment {
         adapter.addFragment(new weeklyWriting(), getString(R.string.weekly_challenge_tab1));
         adapter.addFragment(new weekly_winners(), getString(R.string.weekly_challenge_tab2));
         viewPager.setAdapter(adapter);
+
     }
 
 }

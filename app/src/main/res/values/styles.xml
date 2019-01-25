@@ -10,16 +10,32 @@
         <item name="android:colorBackground">@color/background</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="colorDivider">#dcd9c8</item>
+        <item name="colorDivider">#356859</item>
         <item name="android:textColor">@color/text_color</item>
         <item name="android:textColorPrimary">@color/headline</item>
         <item name="android:textColorSecondary">@color/content</item>
         <item name="alertDialogTheme">@style/AlertDialogCustom</item>
-
-
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
     </style>
 
+
+    <!-- Metal theme. -->
+    <style name="MetalTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#546e7a</item>
+        <item name="colorPrimaryDark">#29434e</item>
+        <item name="colorAccent">#224339</item>
+        <item name="android:windowBackground">@color/colorMetalBackground</item>
+        <item name="android:colorBackground">@color/colorMetalBackground</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorDivider">#546e7a</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textColorPrimary">@color/headline</item>
+        <item name="android:textColorSecondary">@color/content</item>
+        <item name="alertDialogTheme">@style/AlertDialogCustom</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+    </style>
 
     <style name="DarkTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <!-- Customize your theme here. -->
@@ -48,7 +64,7 @@
         <item name="colorAccent">@color/colorAccent_3</item>
         <item name="android:textColorPrimary">@color/headline_3</item>
         <item name="android:textColorSecondary">@color/content_3</item>
-        <item name="colorDivider">@color/charListRecColor_3</item>
+        <item name="colorDivider">#7b880e4f</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="alertDialogTheme">@style/AlertDialogCustom</item>
@@ -62,7 +78,7 @@
         <item name="colorAccent">@color/colorAccent_4</item>
         <item name="android:textColorPrimary">@color/headline_4</item>
         <item name="android:colorBackground">@color/background_4</item>
-        <item name="colorDivider">@color/charListRecColor_4</item>
+        <item name="colorDivider">#d67748</item>
         <item name="alertDialogTheme">@style/AlertDialogCustom</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
