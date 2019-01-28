@@ -58,7 +58,7 @@ public class PremiumFragment extends Fragment implements BillingProcessor.IBilli
         remoteConfig_premium = FirebaseRemoteConfig.getInstance();
 
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
-                .setDeveloperModeEnabled(true)
+                .setDeveloperModeEnabled(false)
                 .build();
         remoteConfig_premium.setConfigSettings(configSettings);
 
@@ -78,6 +78,10 @@ public class PremiumFragment extends Fragment implements BillingProcessor.IBilli
             @Override
             public void onClick(View view) {
                 buyIAP(view);
+                //Log clicked in IAP updated
+//                Bundle params = new Bundle();
+//                params.putString("from", "premium");
+//                mFirebaseAnalytics.logEvent("Click_IAP_Purchase", params);
             }
         });
 
@@ -99,7 +103,7 @@ public class PremiumFragment extends Fragment implements BillingProcessor.IBilli
         if (remoteConfig_premium.getInfo().getConfigSettings().isDeveloperModeEnabled()) {
             cacheExpiration = 0;
         }
-        remoteConfig_premium.fetch(0)
+        remoteConfig_premium.fetch()
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -142,10 +146,6 @@ public class PremiumFragment extends Fragment implements BillingProcessor.IBilli
 
     public void buyIAP(View v) {
         ((MainActivity) getActivity()).bp.purchase(this.getActivity(), getString(R.string.remove_ads_product_id));
-        //Log clicked in IAP updated
-        Bundle params = new Bundle();
-        params.putString("from", "premium");
-        mFirebaseAnalytics.logEvent("Click_IAP_Purchase", params);
     }
 
     @Override

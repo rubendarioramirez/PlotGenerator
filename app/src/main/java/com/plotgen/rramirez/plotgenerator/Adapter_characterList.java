@@ -1,7 +1,9 @@
 package com.plotgen.rramirez.plotgenerator;
 
 
-import android.net.Uri;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.ThumbnailUtils;
 import android.support.v4.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
@@ -14,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
 
+import static com.plotgen.rramirez.plotgenerator.Common.Constants.THUMBNAIL_SIZE;
+
 /**
  * Created by macintosh on 22/08/18.
  */
@@ -23,6 +27,7 @@ public class Adapter_characterList extends RecyclerView.Adapter<Adapter_characte
     Context mContext;
     List<item_character_list> mData;
     String project_name;
+
 
     public Adapter_characterList(Context mContext, List<item_character_list> mData, String project_name) {
         this.mContext = mContext;
@@ -41,8 +46,10 @@ public class Adapter_characterList extends RecyclerView.Adapter<Adapter_characte
 
     @Override
     public void onBindViewHolder(myViewHolder holder, int position) {
-//        holder.image.setImageResource(mData.get(position).getImage());
-        holder.image.setImageURI(Uri.parse(mData.get(position).getImage()));
+
+        Bitmap ThumbImage = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(mData.get(position).getImage()), THUMBNAIL_SIZE, THUMBNAIL_SIZE);
+        holder.image.setImageBitmap(ThumbImage);
+//        holder.image.setImageURI(Uri.parse(mData.get(position).getImage()));
         holder.name.setText(mData.get(position).getName());
         holder.role.setText(mData.get(position).getRole());
         holder.completion.setText(mData.get(position).getCompletion());

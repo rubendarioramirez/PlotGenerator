@@ -105,11 +105,20 @@ public class CharListFragment extends Fragment {
             for (int i = 0; i<char_list_array.size();i++) {
                 String name = char_list_array.get(i).split("-")[0];
                 String role = char_list_array.get(i).split("-")[1];
-                String image = char_list_array.get(i).split("-")[2];
+//                String image = char_list_array.get(i).split("-")[2];
                 String defaultImagePath = "android.resource://com.plotgen.rramirez.plotgenerator/drawable/ic_menu_camera";
 
+                String image = "";
+                for (int x =0; x<char_list_array.get(i).split("-").length;x++)
+                {
+                    try {
+                        image += "-" + char_list_array.get(i).split("-")[x + 2];
+                    } catch (Exception e){
+                        Log.v("matilda", e.toString());
+                    }
+                }
                 if (!image.substring(1).equals("null") && !image.equals(" ")){
-                    mlist.add(new item_character_list(image.substring(1), name, role, ""));
+                    mlist.add(new item_character_list(image.substring(2), name, role, ""));
                 }
                 else {
                     mlist.add(new item_character_list(defaultImagePath, name, role, ""));

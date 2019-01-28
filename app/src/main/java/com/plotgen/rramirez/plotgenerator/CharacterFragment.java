@@ -10,6 +10,10 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -45,6 +49,7 @@ import java.util.Random;
 
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static android.app.Activity.RESULT_OK;
+import static com.plotgen.rramirez.plotgenerator.Common.Constants.THUMBNAIL_SIZE;
 
 
 public class CharacterFragment extends Fragment {
@@ -185,6 +190,7 @@ public class CharacterFragment extends Fragment {
                 if (imageToShow!=null && !imageToShow.isEmpty()){
                     char_image.setImageURI(Uri.parse(char_description.get(18)));
                     filepath = char_description.get(18);
+                    Log.v("matilda", "In character the filepath is: " + filepath);
                 } else {
                     String defaultImagePath = "android.resource://com.plotgen.rramirez.plotgenerator/drawable/ic_menu_camera";
                     char_image.setImageURI(Uri.parse(defaultImagePath));

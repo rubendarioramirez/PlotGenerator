@@ -19,6 +19,7 @@ public class weekly_challenge_container extends Fragment {
 
     private ViewPager mViewPager;
 
+
     public weekly_challenge_container() {
         // Required empty public constructor
     }
@@ -29,7 +30,6 @@ public class weekly_challenge_container extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_weekly_challenge_container, container, false);
-
         return view;
 
 
@@ -40,8 +40,7 @@ public class weekly_challenge_container extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mSectionsPageAdapter = new SectionsPageAdapter(getActivity().getSupportFragmentManager());
-
+        mSectionsPageAdapter = new SectionsPageAdapter(getChildFragmentManager());
         // Set up the ViewPager with the sections adapter.
         mViewPager = this.getActivity().findViewById(R.id.container);
         setupViewPager(mViewPager);
@@ -55,8 +54,7 @@ public class weekly_challenge_container extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        mSectionsPageAdapter = new SectionsPageAdapter(getActivity().getSupportFragmentManager());
-
+        mSectionsPageAdapter = new SectionsPageAdapter(getChildFragmentManager());
         // Set up the ViewPager with the sections adapter.
         mViewPager = this.getActivity().findViewById(R.id.container);
         setupViewPager(mViewPager);
@@ -69,7 +67,8 @@ public class weekly_challenge_container extends Fragment {
 
 
     private void setupViewPager(ViewPager viewPager) {
-        SectionsPageAdapter adapter = new SectionsPageAdapter(getActivity().getSupportFragmentManager());
+        //To fix already executing transactions.
+        SectionsPageAdapter adapter = new SectionsPageAdapter(getChildFragmentManager());
         adapter.addFragment(new weeklyWriting(), getString(R.string.weekly_challenge_tab1));
         adapter.addFragment(new weekly_winners(), getString(R.string.weekly_challenge_tab2));
         viewPager.setAdapter(adapter);

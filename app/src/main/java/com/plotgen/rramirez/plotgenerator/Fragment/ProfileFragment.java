@@ -514,6 +514,8 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
                 etChooseTheme.setText("Romance Theme");
             } else if (selectedTheme == 3) {
                 etChooseTheme.setText("Autumn Theme");
+            }else if (selectedTheme == 4) {
+                etChooseTheme.setText("Metal Theme");
             }
 
 
