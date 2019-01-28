@@ -1,23 +1,38 @@
 package com.plotgen.rramirez.plotgenerator;
 
 
+import android.Manifest;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
+import android.media.ThumbnailUtils;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -27,9 +42,14 @@ import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
 
 import org.apache.commons.lang3.text.WordUtils;
 
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
+
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+import static android.app.Activity.RESULT_OK;
+import static com.plotgen.rramirez.plotgenerator.Common.Constants.THUMBNAIL_SIZE;
 
 
 public class CharacterFragment extends Fragment {
@@ -40,12 +60,22 @@ public class CharacterFragment extends Fragment {
             trait2_edit_text, trait3_edit_text, notes_edit_text;
     public TextView project_name_tv;
     public ImageButton delete_btn, random_gen_char_btn;
+    public ImageView char_image;
     public Spinner gender_spinner, role_spinner;
     public String project_name;
     public String project_id;
     ArrayList<String> char_description;
     private FirebaseAnalytics mFirebaseAnalytics;
     private String fragmentTag = CharacterFragment.class.getSimpleName();
+
+    //Image elements
+    private static final int PERMISSION_REQUEST_GALLERY = 101;
+    private static final int REQUEST_CODE_GALLERY = 102;
+    private View myFragmentView;
+    private String WRITE_EXTERNAL_STORAGE = Manifest.permission.WRITE_EXTERNAL_STORAGE;
+    private Uri uri;
+    private String filepath = "";
+
 
     public CharacterFragment() {
         // Required empty public constructor
@@ -57,7 +87,7 @@ public class CharacterFragment extends Fragment {
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        final View myFragmentView = inflater.inflate(R.layout.fragment_character, container, false);
+        myFragmentView = inflater.inflate(R.layout.fragment_character, container, false);
 
         // Obtain the FirebaseAnalytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(myFragmentView.getContext());
@@ -109,6 +139,17 @@ public class CharacterFragment extends Fragment {
         FloatingActionButton fab = (FloatingActionButton) myFragmentView.findViewById(R.id.char_template_submit);
         random_gen_char_btn = myFragmentView.findViewById(R.id.random_gen_char_btn);
         delete_btn = myFragmentView.findViewById(R.id.char_edit_delete_btn);
+        char_image =myFragmentView.findViewById(R.id.character_picture);
+
+
+        //Image function
+        char_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showProfileImageDialog();
+            }
+        });
+
 
         //Set the title
         project_name_tv.setText(project_name);
@@ -145,6 +186,16 @@ public class CharacterFragment extends Fragment {
                 trait2_edit_text.setText(char_description.get(15));
                 trait3_edit_text.setText(char_description.get(16));
                 notes_edit_text.setText(char_description.get(17));
+                String imageToShow = char_description.get(18);
+                if (imageToShow!=null && !imageToShow.isEmpty()){
+                    char_image.setImageURI(Uri.parse(char_description.get(18)));
+                    filepath = char_description.get(18);
+                    Log.v("matilda", "In character the filepath is: " + filepath);
+                } else {
+                    String defaultImagePath = "android.resource://com.plotgen.rramirez.plotgenerator/drawable/ic_menu_camera";
+                    char_image.setImageURI(Uri.parse(defaultImagePath));
+                    filepath = char_description.get(18);
+                }
 
                 //Set the proper spinner value
                 String gender = char_description.get(2);
@@ -394,6 +445,7 @@ public class CharacterFragment extends Fragment {
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_TRAIT3, trait3_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_ENOTES, notes_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PHRASE, phrase_et.getText().toString());
+        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_IMAGE, filepath);
         database.insert(mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER, null, values);
 
         //Log challenges updated
@@ -418,6 +470,7 @@ public class CharacterFragment extends Fragment {
     private void updateDB(String name_text, String project_name) {
         SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
         ContentValues values = new ContentValues();
+        Log.v("matilda", "the path is: " + filepath);
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_NAME, nameEditText.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_JOB, profession_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_HEIGHT, height_et.getText().toString());
@@ -437,6 +490,8 @@ public class CharacterFragment extends Fragment {
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_TRAIT3, trait3_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_ENOTES, notes_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PHRASE, phrase_et.getText().toString());
+        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PHRASE, phrase_et.getText().toString());
+        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_IMAGE, filepath);
         database.update(mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER, values, "name = ?", new String[]{name_text.toString()});
         //Come back to previous fragment
         fragmentTransition();
@@ -470,6 +525,7 @@ public class CharacterFragment extends Fragment {
                 char_list.add(cursor.getString(cursor.getColumnIndex("trait2")));
                 char_list.add(cursor.getString(cursor.getColumnIndex("trait3")));
                 char_list.add(cursor.getString(cursor.getColumnIndex("elevator_notes")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("image")));
                 cursor.moveToNext();
             }
             cursor.close();
@@ -484,6 +540,97 @@ public class CharacterFragment extends Fragment {
         Utils.changeFragment(nextFragment, transaction, "", "");
         getFragmentManager().popBackStack();
 
+    }
+
+    private void showProfileImageDialog() {
+        final BottomSheetDialog dialog = new BottomSheetDialog(myFragmentView.getContext(), R.style.bottom_dialog_theme);
+        dialog.setContentView(R.layout.dialog_profile_image_selection);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.show();
+
+        TextView tvCancel = dialog.findViewById(R.id.tv_cancel);
+        RelativeLayout tvSelectFromGallery = dialog.findViewById(R.id.select_from_gallery_container);
+        RelativeLayout tvRemovePhoto= dialog.findViewById(R.id.remove_photo_container);
+
+        tvCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        tvRemovePhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filepath="";
+                char_image.setImageResource(R.drawable.ic_menu_camera);
+                dialog.dismiss();
+            }
+        });
+
+
+        tvSelectFromGallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ContextCompat.checkSelfPermission(myFragmentView.getContext(), WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(getActivity(), new String[]{WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSION_REQUEST_GALLERY);
+                } else {
+                    openGallery();
+                }
+
+                dialog.dismiss();
+            }
+        });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case PERMISSION_REQUEST_GALLERY:
+                boolean isGalleryGranted = (grantResults[0] == PackageManager.PERMISSION_GRANTED);
+
+                if (isGalleryGranted) {
+                    openGallery();
+                    return;
+                }
+
+                break;
+            default:
+        }
+    }
+
+    //open gallery
+    private void openGallery() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("image/*");
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), REQUEST_CODE_GALLERY);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            // request code gallery
+            case REQUEST_CODE_GALLERY:
+                if (resultCode == RESULT_OK) {
+                    if (data != null) {
+                        uri = data.getData();
+
+                        try {
+                            filepath = Utils.getFilePath(myFragmentView.getContext(), uri);
+                            if(filepath!=null)
+                                char_image.setImageURI(Uri.parse(filepath));
+
+                        } catch (URISyntaxException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                break;
+            default:
+        }
     }
 
 }

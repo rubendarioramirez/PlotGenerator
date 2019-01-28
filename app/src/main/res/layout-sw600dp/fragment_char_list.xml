@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.plotgen.rramirez.plotgenerator.CharListFragment"
+    android:background="?android:attr/colorBackground"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="25dp">
 
@@ -40,7 +41,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ListView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/character_list_lv"
         android:layout_width="0dp"
         android:layout_height="0dp"

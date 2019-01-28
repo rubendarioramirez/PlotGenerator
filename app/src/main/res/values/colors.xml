@@ -5,12 +5,16 @@
     <color name="colorPrimary">#37966F</color>
     <color name="colorPrimaryDark">#356859</color>
     <color name="colorAccent">#FD5523</color>
-    <color name="background">#FFFBE6</color>
-    <color name="text_color">#000000</color>
     <color name="headline_classic">#FD5523</color>
     <color name="content">#356859</color>
-    <color name="charListRecColor">#356859</color>
+    <color name="charListRecColor">#224339</color>
     <color name="content_lighter">#0537966f</color>
+    <color name="background">#FFFBE6</color>
+    <color name="text_color">#000000</color>
+
+    <!--Metal theme-->
+    <color name="colorMetalBackground">#e9e9e9</color>
+
 
 
     <!--Dark Theme -->
@@ -22,7 +26,7 @@
     <color name="headline_2">#F9AA33</color>
     <color name="content_2">#ffffff</color>
     <color name="hint_color">#9fffffff</color>
-    <color name="charListRecColor_2">#29363d</color>
+    <color name="charListRecColor_2">#c72acf</color>
     <color name="content_lighter_2">#0537966f</color>
 
     <color name="colorPrimary_3">#E91E63</color>
@@ -31,6 +35,7 @@
     <color name="background_3">#FCE4EC</color>
     <color name="headline_3">#C51162</color>
     <color name="content_3">#000a12</color>
+    <color name="charListRecColor_3">#000a12</color>
 
     <!--Autumn Theme -->
     <color name="colorPrimary_4">#f2b95d</color>
@@ -38,11 +43,10 @@
     <color name="colorAccent_4">#d67748</color>
     <color name="background_4">#FFFBE6</color>
     <color name="headline_4">#d67748</color>
+    <color name="charListRecColor_4">#d67748</color>
 
 
     <color name="headline">#FD5523</color>
-
-
 
     <color name="light_font">#fbfbfb</color>
     <color name="grey_font">#272121</color>

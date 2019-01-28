@@ -84,6 +84,8 @@ public class MainActivity extends AppCompatActivity
             setTheme(R.style.OpaqueTheme);
         } else if (selectedTheme == 3) {
             setTheme(R.style.AutumnTheme);
+        }else if (selectedTheme == 4) {
+            setTheme(R.style.MetalTheme);
         }
 
         setContentView(R.layout.activity_main);

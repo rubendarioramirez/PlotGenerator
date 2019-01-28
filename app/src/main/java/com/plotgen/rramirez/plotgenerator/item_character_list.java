@@ -6,23 +6,20 @@ package com.plotgen.rramirez.plotgenerator;
 
 public class item_character_list {
 
-    int image;
+    String image;
     String name;
     String role;
     String completion;
 
 
-    public item_character_list() {
-    }
-
-    public item_character_list(int image, String name, String role, String completion) {
+    public item_character_list(String image, String name, String role, String completion) {
         this.image = image;
         this.name = name;
         this.role = role;
         this.completion = completion;
     }
 
-    public int getImage() { return image; }
+    public String getImage() { return image; }
     public String getName() {
         return name;
     }
@@ -35,7 +32,7 @@ public class item_character_list {
         return completion;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

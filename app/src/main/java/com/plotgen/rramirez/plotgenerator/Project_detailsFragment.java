@@ -123,55 +123,58 @@ public class Project_detailsFragment extends Fragment {
 
                 if (project_list_array.size() > 4 && !project_list_array.get(4).equalsIgnoreCase(null) && !project_list_array.get(3).equalsIgnoreCase("")) {
                     project_icon_iv.setImageURI(Uri.parse(project_list_array.get(4)));
+                /*if(project_list_array.size()>3 && !project_list_array.get(3).equalsIgnoreCase(null) && !project_list_array.get(3).equalsIgnoreCase("")) {
+                    project_icon_iv.setImageURI(Uri.parse(project_list_array.get(3)));
+                    Log.v("matilda", Uri.parse(project_list_array.get(3)).toString());
+                }*/
+                    project_description = getProject(myFragmentView.getContext(), project_name_text);
+                    String project_genre = project_description.get(1);
+                    //Set the proper spinner value
+                    if (project_genre.equals("Tragedia") || project_genre.equals("Tragedy")) {
+                        project_genre_spinner.setSelection(0);
+                    } else if (project_genre.equals("Ciencía Ficción") || project_genre.equals("Science fiction")) {
+                        project_genre_spinner.setSelection(1);
+                    } else if (project_genre.equals("Fantasía") || project_genre.equals("Fantasy")) {
+                        project_genre_spinner.setSelection(2);
+                    } else if (project_genre.equals("Mitología") || project_genre.equals("Mythology")) {
+                        project_genre_spinner.setSelection(3);
+                    } else if (project_genre.equals("Aventura") || project_genre.equals("Adventure")) {
+                        project_genre_spinner.setSelection(4);
+                    } else if (project_genre.equals("Misterio") || project_genre.equals("Mistery")) {
+                        project_genre_spinner.setSelection(5);
+                    } else if (project_genre.equals("Drama")) {
+                        project_genre_spinner.setSelection(6);
+                    } else if (project_genre.equals("Romance")) {
+                        project_genre_spinner.setSelection(7);
+                    } else if (project_genre.equals("Acción") || project_genre.equals("Action / Adventure")) {
+                        project_genre_spinner.setSelection(8);
+                    } else if (project_genre.equals("Satira") || project_genre.equals("Satire")) {
+                        project_genre_spinner.setSelection(9);
+                    } else if (project_genre.equals("Horror")) {
+                        project_genre_spinner.setSelection(10);
+                    } else if (project_genre.equals("Tragedia comica") || project_genre.equals("Tragic comedy")) {
+                        project_genre_spinner.setSelection(11);
+                    } else if (project_genre.equals("Ficción para jovenes") || project_genre.equals("Young adult fiction") || project_genre.equals("Ficción para joveves")) {
+                        project_genre_spinner.setSelection(12);
+                    } else if (project_genre.equals("Dystopia")) {
+                        project_genre_spinner.setSelection(13);
+                    } else if (project_genre.equals("Thriller") || project_genre.equals("Action thriller")) {
+                        project_genre_spinner.setSelection(14);
+                    }
+                    //project_icon_iv.setImageURI(Uri.parse(project_description.get(2)));
+                    updateMode = true;
+                } else {
+                    //make it back to project
+                    ProjectFragment nextFragment = new ProjectFragment();
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    Utils.changeFragment(nextFragment, transaction, "", "");
+                    getFragmentManager().popBackStack();
+
                 }
-                project_description = getProject(myFragmentView.getContext(), project_name_text);
-                String project_genre = project_description.get(1);
-                //Set the proper spinner value
-                if (project_genre.equals("Tragedia") || project_genre.equals("Tragedy")) {
-                    project_genre_spinner.setSelection(0);
-                } else if (project_genre.equals("Ciencía Ficción") || project_genre.equals("Science fiction")) {
-                    project_genre_spinner.setSelection(1);
-                } else if (project_genre.equals("Fantasía") || project_genre.equals("Fantasy")) {
-                    project_genre_spinner.setSelection(2);
-                } else if (project_genre.equals("Mitología") || project_genre.equals("Mythology")) {
-                    project_genre_spinner.setSelection(3);
-                } else if (project_genre.equals("Aventura") || project_genre.equals("Adventure")) {
-                    project_genre_spinner.setSelection(4);
-                } else if (project_genre.equals("Misterio") || project_genre.equals("Mistery")) {
-                    project_genre_spinner.setSelection(5);
-                } else if (project_genre.equals("Drama")) {
-                    project_genre_spinner.setSelection(6);
-                } else if (project_genre.equals("Romance")) {
-                    project_genre_spinner.setSelection(7);
-                } else if (project_genre.equals("Acción") || project_genre.equals("Action / Adventure")) {
-                    project_genre_spinner.setSelection(8);
-                } else if (project_genre.equals("Satira") || project_genre.equals("Satire")) {
-                    project_genre_spinner.setSelection(9);
-                } else if (project_genre.equals("Horror")) {
-                    project_genre_spinner.setSelection(10);
-                } else if (project_genre.equals("Tragedia comica") || project_genre.equals("Tragic comedy")) {
-                    project_genre_spinner.setSelection(11);
-                } else if (project_genre.equals("Ficción para jovenes") || project_genre.equals("Young adult fiction") || project_genre.equals("Ficción para joveves")) {
-                    project_genre_spinner.setSelection(12);
-                } else if (project_genre.equals("Dystopia")) {
-                    project_genre_spinner.setSelection(13);
-                } else if (project_genre.equals("Thriller") || project_genre.equals("Action thriller")) {
-                    project_genre_spinner.setSelection(14);
-                }
-                //project_icon_iv.setImageURI(Uri.parse(project_description.get(2)));
-                updateMode = true;
             } else {
-                //make it back to project
-                ProjectFragment nextFragment = new ProjectFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                Utils.changeFragment(nextFragment, transaction, "", "");
-                getFragmentManager().popBackStack();
-
+                updateMode = false;
             }
-        } else {
-            updateMode = false;
         }
-
 
         fab_save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -212,7 +215,7 @@ public class Project_detailsFragment extends Fragment {
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 // continue with delete
-                                deleteFromStories();
+                                //deleteFromStories();
                                 Utils.deleteFromDB(view.getContext(), project_name_text);
                                 ProjectFragment nextFragment = new ProjectFragment();
                                 //Make the transaction
@@ -234,9 +237,7 @@ public class Project_detailsFragment extends Fragment {
             }
         });
 
-
         return myFragmentView;
-
     }
 
 

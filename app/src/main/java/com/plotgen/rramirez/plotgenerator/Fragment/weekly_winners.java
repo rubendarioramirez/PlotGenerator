@@ -3,6 +3,7 @@ package com.plotgen.rramirez.plotgenerator.Fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,11 +44,10 @@ public class weekly_winners extends Fragment {
         } else {
             mDocRef = FirebaseFirestore.getInstance().document("weekly_winners/current");
         }
-
             mDocRef.addSnapshotListener(this.getActivity(), new EventListener<DocumentSnapshot>() {
                 @Override
                 public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                    if(documentSnapshot.exists()){
+                    if (documentSnapshot.exists()) {
 
                         String title = documentSnapshot.getString("title");
                         String body = documentSnapshot.getString("body");
@@ -58,11 +58,14 @@ public class weekly_winners extends Fragment {
                         String bodyparsed = body.replace("\\n", "\n");
 
                         body_tv.setText(bodyparsed.replace("\\", ""));
-                        author_tv.setText(getString(R.string.weekly_challenge_author) + " - " + author);
+                        try {
+                            author_tv.setText(getString(R.string.weekly_challenge_author) + " - " + author);
+                        } catch (Exception exception){
+                            Log.v("matilda", exception.toString());
+                        }
                     }
                 }
             });
-
         return view;
     }
 

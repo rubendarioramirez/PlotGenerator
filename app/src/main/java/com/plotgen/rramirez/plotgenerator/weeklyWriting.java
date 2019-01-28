@@ -1,6 +1,7 @@
 package com.plotgen.rramirez.plotgenerator;
 
 
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -48,6 +49,7 @@ import java.util.Locale;
 
 import static android.app.Activity.RESULT_OK;
 import static android.content.ContentValues.TAG;
+import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 
 /**
@@ -61,14 +63,11 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
     private FirebaseAnalytics mFirebaseAnalytics;
     public int can_submit = 0;
     private RewardedVideoAd mRewardedVideoAd;
-
     private static final int RC_SIGN_IN = 123;
     private static final int RC_SIGN_IN_View_Participant = 124;
     private FirebaseDatabase mDatabase;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
-
-
     public weeklyWriting() {
         // Required empty public constructor
     }
@@ -82,14 +81,18 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
         View myFragmentView = inflater.inflate(R.layout.fragment_weekly_writing, container, false);
 
 
+        can_submit = Utils.getSharePref(myFragmentView.getContext(),"can_submit",0);
+
+
         if (!Common.isPAU) {
             //Rewarded ad
             mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(myFragmentView.getContext());
             mRewardedVideoAd.setRewardedVideoAdListener(this);
             loadRewardedVideoAd();
-        } else
+        } else {
+            Utils.saveOnSharePreg(myFragmentView.getContext(), "can_submit", 1);
             can_submit = 1;
-
+            }
 
         ad_desc = myFragmentView.findViewById(R.id.weekly_challenge_ad_desc);
         ad_submit_btn = myFragmentView.findViewById(R.id.weekly_challenge_btn);
@@ -97,6 +100,8 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
 
         ad_submit_btn.setVisibility(View.INVISIBLE);
         btViewParticipant.setVisibility(View.INVISIBLE);
+
+        Log.v("matilda", "on create it's saying that can submit is:" + can_submit);
 
         // Obtain the FirebaseAnalytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(myFragmentView.getContext());
@@ -225,10 +230,8 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
                         }
                     });
                 }
-                //
-                // change to submit fragment in main activity
                 SubmitStoryFragment nextFragment = new SubmitStoryFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 Utils.changeFragment(nextFragment, transaction, "", "");
                 transaction.addToBackStack(null);
             } else {
@@ -254,9 +257,8 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
             if (resultCode == RESULT_OK) {
                 //
                 // change to submit fragment in main activity
-//                WeeklyChallengeFragment nextFragment = new WeeklyChallengeFragment();
                 Wcc_stories nextFragment = new Wcc_stories();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 Utils.changeFragment(nextFragment, transaction, "", "");
                 transaction.addToBackStack(null);
             } else {
@@ -308,7 +310,8 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
     @Override
     public void onRewarded(RewardItem rewardItem) {
         //Get the reward
-        can_submit = 1;
+        Utils.saveOnSharePreg(getContext(), "can_submit", 1);
+        Log.v("matilda", "Now can submit is:" + can_submit);
         ad_submit_btn.setText(getString(R.string.weekly_challenge_submit_btn));
         ad_desc.setText("");
     }

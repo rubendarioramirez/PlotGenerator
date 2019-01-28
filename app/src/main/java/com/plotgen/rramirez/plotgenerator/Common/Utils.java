@@ -19,11 +19,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
-
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.plotgen.rramirez.plotgenerator.R;
-
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
@@ -143,7 +141,8 @@ public class Utils {
             while (!cursor.isAfterLast()) {
                 String charname = cursor.getString(cursor.getColumnIndex("name"));
                 String charRole = cursor.getString(cursor.getColumnIndex("role"));
-                char_list.add(charname + " - " + charRole);
+                String image = cursor.getString(cursor.getColumnIndex("image"));
+                char_list.add(charname + " - " + charRole + " - " + image);
                 cursor.moveToNext();
             }
             cursor.close();
@@ -205,8 +204,9 @@ public class Utils {
         transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
         transaction.replace(R.id.flMain, nextFragment);
 //        transaction.addToBackStack(null);
-        transaction.commit();
-        // transaction.commitAllowingStateLoss();
+//        transaction.commit();
+//        transaction.commitNow();
+         transaction.commitAllowingStateLoss();
     }
 
     public static void showRateDialogForRate(final Context context) {

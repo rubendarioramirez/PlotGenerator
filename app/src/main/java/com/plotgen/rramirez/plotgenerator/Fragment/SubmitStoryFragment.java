@@ -84,7 +84,10 @@ public class SubmitStoryFragment extends Fragment {
 
         etStory.setText("");
 
-        WeeklyChallengeFragment nextFragment = new WeeklyChallengeFragment();
+        //Make sure that on return to Weekly writing user has to watch an ad again.
+        Utils.saveOnSharePreg(getContext(), "can_submit", 0);
+
+        weekly_challenge_container nextFragment = new weekly_challenge_container();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         Utils.changeFragment(nextFragment, transaction, "", "");
     }

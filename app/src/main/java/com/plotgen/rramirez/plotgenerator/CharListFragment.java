@@ -1,7 +1,16 @@
 package com.plotgen.rramirez.plotgenerator;
 
 
+import android.content.ContentResolver;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.annotation.AnyRes;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,6 +34,8 @@ import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Fragment.OfflineStoryFragment;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,8 +86,8 @@ public class CharListFragment extends Fragment {
         ButterKnife.bind(this, myFragmentView);
 
         //Declare elements
+        RecyclerView recyclerView = myFragmentView.findViewById(R.id.character_list_lv);
         project_list_tv = myFragmentView.findViewById(R.id.project_list_tv);
-        character_list_lv = myFragmentView.findViewById(R.id.character_list_lv);
         empty_character_tv = myFragmentView.findViewById(R.id.empty_character_tv);
         charlist_project_edit_btn = myFragmentView.findViewById(R.id.charlist_project_edit_btn);
 
@@ -86,19 +97,34 @@ public class CharListFragment extends Fragment {
         project_list_tv.setText(project_name_text);
 
 
-        RecyclerView recyclerView = myFragmentView.findViewById(R.id.character_list_lv);
         final Adapter_characterList adapter = new Adapter_characterList(this.getActivity(),mlist, project_name_text);
         mlist.clear();
 
         if(!char_list_array.isEmpty()){
             empty_character_tv.setVisibility(View.INVISIBLE);
-        for (int i = 0; i<char_list_array.size();i++) {
-            String name = char_list_array.get(i).split("-")[0];
-            String role = char_list_array.get(i).split("-")[1];
-            mlist.add(new item_character_list(R.drawable.ic_lying, name, role, "89%"));
-        }
-        }
+            for (int i = 0; i<char_list_array.size();i++) {
+                String name = char_list_array.get(i).split("-")[0];
+                String role = char_list_array.get(i).split("-")[1];
+//                String image = char_list_array.get(i).split("-")[2];
+                String defaultImagePath = "android.resource://com.plotgen.rramirez.plotgenerator/drawable/ic_menu_camera";
 
+                String image = "";
+                for (int x =0; x<char_list_array.get(i).split("-").length;x++)
+                {
+                    try {
+                        image += "-" + char_list_array.get(i).split("-")[x + 2];
+                    } catch (Exception e){
+                        Log.v("matilda", e.toString());
+                    }
+                }
+                if (!image.substring(1).equals("null") && !image.equals(" ")){
+                    mlist.add(new item_character_list(image.substring(2), name, role, ""));
+                }
+                else {
+                    mlist.add(new item_character_list(defaultImagePath, name, role, ""));
+                }
+                }
+             }
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
