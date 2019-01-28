@@ -29,11 +29,11 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.RemoteMessage;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Notify;
+import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.MainActivity;
 import com.plotgen.rramirez.plotgenerator.Model.Story;
 import com.plotgen.rramirez.plotgenerator.Model.User;
 import com.plotgen.rramirez.plotgenerator.R;
-import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.ViewHolder.StoryViewHolder;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -48,10 +48,8 @@ public class WeeklyChallengeFragment extends Fragment {
 
     @BindView(R.id.rvWeeklyChalenge)
     RecyclerView rvWeeklyChallenge;
-
-    private FirebaseRecyclerAdapter<Story, StoryViewHolder> mAdapter;
     FirebaseRecyclerOptions<Story> options;
-
+    private FirebaseRecyclerAdapter<Story, StoryViewHolder> mAdapter;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
 
@@ -121,7 +119,6 @@ public class WeeklyChallengeFragment extends Fragment {
             public StoryViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                 LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
                 return new StoryViewHolder(inflater.inflate(R.layout.item_story, viewGroup, false));
-
             }
 
             @Override
@@ -271,7 +268,7 @@ public class WeeklyChallengeFragment extends Fragment {
 
                     String to = token; // the notification key
                     AtomicInteger msgId = new AtomicInteger();
-                    new Notify(to, message, id).execute();
+                    new Notify(to, message, id, "Weekly Challenge").execute();
                     //notifyMessage(to,message);
                     FirebaseMessaging.getInstance().send(new RemoteMessage.Builder(to)
                             .setMessageId(String.valueOf(msgId.get()))

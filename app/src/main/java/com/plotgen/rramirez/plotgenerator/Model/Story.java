@@ -23,7 +23,7 @@ public class Story {
 
     public Story(String id, String title, String genre, String chalenge, long date, User user) {
         this.id = id;
-        this.title = title;
+                this.title = title;
         this.genre = genre;
         this.chalenge = chalenge;
         this.submitDate = date;

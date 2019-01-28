@@ -46,15 +46,14 @@ import com.google.firebase.dynamiclinks.ShortDynamicLink;
 import com.google.firebase.storage.StorageReference;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Notify;
-import com.plotgen.rramirez.plotgenerator.Model.Comment;
-import com.plotgen.rramirez.plotgenerator.Model.Story;
-import com.plotgen.rramirez.plotgenerator.Model.User;
-import com.plotgen.rramirez.plotgenerator.R;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
+import com.plotgen.rramirez.plotgenerator.Model.Comment;
+import com.plotgen.rramirez.plotgenerator.Model.User;
+import com.plotgen.rramirez.plotgenerator.Model.UserStory;
+import com.plotgen.rramirez.plotgenerator.R;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.io.InputStream;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -63,9 +62,8 @@ import butterknife.OnClick;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class StoryDetailFragment extends Fragment {
+public class UserStoryDetailFragment extends Fragment {
 
-    private static final int REQUEST_INVITE = 101;
     @BindView(R.id.ivTemplatePic)
     ImageView ivTemplatePic;
 
@@ -99,9 +97,12 @@ public class StoryDetailFragment extends Fragment {
     FirebaseListAdapter<Comment> adapter;
     FirebaseListOptions<Comment> options;
 
-    private FirebaseDatabase mDatabase;
-    private DatabaseReference mCommentReference, mPostReference;
+    private DatabaseReference mCommentReference, mReference;
     private DatabaseReference mUserReference;
+
+    public UserStoryDetailFragment() {
+        // Required empty public constructor
+    }
 
     @OnClick(R.id.buttonPostComment)
     public void postComment(View v) {
@@ -120,14 +121,11 @@ public class StoryDetailFragment extends Fragment {
 
         // Push the comment, it will appear in the list
         mCommentReference.push().setValue(comment);
-        if (comment != null) {
-            sendNotification(Common.currentUser.getName() + " commented on your post",
-                    Common.currentStory.getUser(), Common.currentStory.getId());
-        }
+        /*sendNotification(Common.currentUser.getName() + " commented on your post",
+                Common.currentUserStory.getUser(), Common.currentUserStory.getId());*/
         // Clear the field
         etCommentText.setText(null);
     }
-
 
     @OnClick({R.id.tvshare, R.id.ivshare})
     public void share() {
@@ -150,14 +148,11 @@ public class StoryDetailFragment extends Fragment {
                             shareIntent.setAction(Intent.ACTION_SEND);
                             shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.invitation_message) + " " + String.valueOf(shortLink));
                             shareIntent.setType("text/plain");
-                            shareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getString(R.string.app_name));
+                            shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
 //                            shareIntent.putExtra(Intent.EXTRA_STREAM, getString(R.string.invitation_message));
                             shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                             startActivity(Intent.createChooser(shareIntent, "Share Post"));
 
-                        } else {
-                            // Error
-                            // ...
                         }
                     }
                 });
@@ -168,17 +163,12 @@ public class StoryDetailFragment extends Fragment {
         builder.scheme("http")
                 .authority("com.plotgen.rramirez")
                 .appendPath("post")
-                .appendQueryParameter("id", Common.currentStory.getId());
+                .appendQueryParameter("id", Common.currentUserStory.getId());
         return builder.build();
     }
 
-    public StoryDetailFragment() {
-        // Required empty public constructor
-    }
-
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_story_detail, container, false);
@@ -186,21 +176,19 @@ public class StoryDetailFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
-        mDatabase = FirebaseDatabase.getInstance();
-        mPostReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts").child(Common.currentStory.getId());
-        mCommentReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("post-comments").child(Common.currentStory.getId());
-        mUserReference = mDatabase.getReference().child("users");
+        FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
+        mReference = mDatabase.getReference().child("stories").child(Common.currentUserStory.getId());
+        mCommentReference = mDatabase.getReference().child("stories").child("post-comments").child(Common.currentUserStory.getId());
 
-//        mPostReference = mDatabase.getReference().child("Weekly_Challenge").child("posts").child(Common.currentStory.getId());
-//        mCommentReference = mDatabase.getReference().child("Weekly_Challenge").child("post-comments").child(Common.currentStory.getId());
+        mUserReference = mDatabase.getReference().child("users");
 
         ivTemplatePic.setImageResource(R.drawable.typewriter);
 
-        tvTitle.setText(Common.currentStory.getTitle());
-        tvGenre.setText(Common.currentStory.getGenre());
-        tvStory.setText(Common.currentStory.getChalenge());
+        tvTitle.setText(Common.currentUserStory.getProjectName());
+        tvGenre.setText(Common.currentUserStory.getGenre());
+        tvStory.setText(Common.currentUserStory.getStory());
 
-        if (Common.currentStory.likes.containsKey(Common.currentUser.getUid())) {
+        if (Common.currentUserStory.likes.containsKey(Common.currentUser.getUid())) {
             ivLoves.setImageResource(R.drawable.ic_love_red);
         } else {
             ivLoves.setImageResource(R.drawable.ic_love_outline);
@@ -209,10 +197,10 @@ public class StoryDetailFragment extends Fragment {
         ivLoves.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onLikeClicked(mPostReference);
+                onLikeClicked(mReference);
             }
         });
-        tvLoves.setText(String.valueOf(Common.currentStory.getLikeCount()));
+        tvLoves.setText(String.valueOf(Common.currentUserStory.getLikeCount()));
 
         options = new FirebaseListOptions.Builder<Comment>()
                 .setQuery(mCommentReference, Comment.class)
@@ -225,11 +213,12 @@ public class StoryDetailFragment extends Fragment {
         return view;
     }
 
-    private void onLikeClicked(DatabaseReference postRef) {
+    private void onLikeClicked(final DatabaseReference postRef) {
         postRef.runTransaction(new Transaction.Handler() {
+            @NonNull
             @Override
-            public Transaction.Result doTransaction(MutableData mutableData) {
-                Story p = mutableData.getValue(Story.class);
+            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                UserStory p = mutableData.getValue(UserStory.class);
                 if (p == null) {
                     return Transaction.success(mutableData);
                 }
@@ -242,12 +231,12 @@ public class StoryDetailFragment extends Fragment {
                     // Star the post and add self to stars
                     p.likeCount = p.likeCount + 1;
                     p.likes.put(Common.currentUser.getUid(), true);
-                    sendNotification(Common.currentUser.getName() + " liked your post", p.getUser(), p.getId());
+                    //  sendNotification(Common.currentUser.getName() + " liked your post", p.getUser(), postRef.getKey());
                 }
 
                 // Set value and report transaction success
                 mutableData.setValue(p);
-                Common.tempStory = p;
+                Common.tempUserStory = p;
                 return Transaction.success(mutableData);
             }
 
@@ -259,12 +248,12 @@ public class StoryDetailFragment extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if (Common.tempStory.likes.containsKey(Common.currentUser.getUid())) {
+                        if (Common.tempUserStory.likes.containsKey(Common.currentUser.getUid())) {
                             ivLoves.setImageResource(R.drawable.ic_love_red);
                         } else {
                             ivLoves.setImageResource(R.drawable.ic_love_outline);
                         }
-                        tvLoves.setText(String.valueOf(Common.tempStory.getLikeCount()));
+                        tvLoves.setText(String.valueOf(Common.tempUserStory.getLikeCount()));
                     }
                 });
             }
@@ -279,9 +268,7 @@ public class StoryDetailFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.hasChild("token")) {
                     String token = dataSnapshot.child("token").getValue().toString();
-                    String to = token; // the notification key
-                    AtomicInteger msgId = new AtomicInteger();
-                    new Notify(to, message, id,"Weekly Challenge").execute();
+                    new Notify(token, message, id, "Stories").execute();
                 }
             }
 
@@ -340,23 +327,12 @@ public class StoryDetailFragment extends Fragment {
         lvComments.setExpanded(true);
     }
 
-    @GlideModule
-    public class MyAppGlideModule extends AppGlideModule {
-
-        @Override
-        public void registerComponents(Context context, Glide glide, Registry registry) {
-            // Register FirebaseImageLoader to handle StorageReference
-            registry.append(StorageReference.class, InputStream.class,
-                    new FirebaseImageLoader.Factory());
-        }
-    }
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         Glide.with(getActivity().getApplicationContext())
-                .load(getHiResUrl(Common.currentStory.getUser().getUriString()))
+                .load(getHiResUrl(Common.currentUserStory.getUser().getUriString()))
                 .apply(RequestOptions.circleCropTransform())
                 .into(ivUserPicDetail);
     }
@@ -376,9 +352,8 @@ public class StoryDetailFragment extends Fragment {
             String photoPath = s.toString();
 
             // Replace the original part of the Url with the new part
-            String newString = photoPath.replace(originalPieceOfUrl, newPieceOfUrlToAdd);
 
-            return newString;
+            return photoPath.replace(originalPieceOfUrl, newPieceOfUrlToAdd);
         } else
             return s;
     }
@@ -401,11 +376,11 @@ public class StoryDetailFragment extends Fragment {
         inflater.inflate(R.menu.menu_edit, menu);
     }
 
-    @Override
+   /* @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (Common.currentStory != null && Common.currentStory.getUser() != null)
-            if (Common.currentStory.getUser().getUid().equals(Common.currentUser.getUid()))
+        if (Common.currentUserStory != null && Common.currentUserStory.getUser() != null)
+            if (Common.currentUserStory.getUser().getUid().equals(Common.currentUser.getUid()))
                 setHasOptionsMenu(true);
     }
 
@@ -413,12 +388,25 @@ public class StoryDetailFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.menu_edit) {
-            StoryEditFragment nextFragment = new StoryEditFragment();
+            String values = Common.currentUserStory.getId() + "_" + Common.currentUserStory.getProjectName();
+
+            OfflineStoryFragment nextFragment = new OfflineStoryFragment();
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            Utils.changeFragment(nextFragment, transaction, "", "");
+            Utils.changeFragment(nextFragment, transaction, "project_info", values);
             transaction.addToBackStack(null);
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }*/
+
+    @GlideModule
+    public class MyAppGlideModule extends AppGlideModule {
+
+        @Override
+        public void registerComponents(Context context, Glide glide, Registry registry) {
+            // Register FirebaseImageLoader to handle StorageReference
+            registry.append(StorageReference.class, InputStream.class,
+                    new FirebaseImageLoader.Factory());
+        }
     }
 }

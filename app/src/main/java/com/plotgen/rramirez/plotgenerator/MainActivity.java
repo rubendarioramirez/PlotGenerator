@@ -45,15 +45,17 @@ import com.google.firebase.dynamiclinks.PendingDynamicLinkData;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
-import com.plotgen.rramirez.plotgenerator.Fragment.DiscoverFragment;
 import com.plotgen.rramirez.plotgenerator.Common.Constants;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
+import com.plotgen.rramirez.plotgenerator.Fragment.DiscoverFragment;
+import com.plotgen.rramirez.plotgenerator.Fragment.PremiumFragment;
 import com.plotgen.rramirez.plotgenerator.Fragment.ProfileFragment;
 import com.plotgen.rramirez.plotgenerator.Fragment.StoryDetailFragment;
-import com.plotgen.rramirez.plotgenerator.Fragment.PremiumFragment;
+import com.plotgen.rramirez.plotgenerator.Fragment.UserStoryDetailFragment;
 import com.plotgen.rramirez.plotgenerator.Fragment.weekly_challenge_container;
 import com.plotgen.rramirez.plotgenerator.Model.Story;
 import com.plotgen.rramirez.plotgenerator.Model.User;
+import com.plotgen.rramirez.plotgenerator.Model.UserStory;
 
 import java.util.Random;
 
@@ -61,18 +63,13 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity
         implements BillingProcessor.IBillingHandler, NavigationView.OnNavigationItemSelectedListener {
 
+    public BillingProcessor bp;
+    NavigationView navigationView;
     private InterstitialAd mInterstitialAd;
     private FirebaseAnalytics mFirebaseAnalytics;
-
-    NavigationView navigationView;
-
-    private FirebaseAuth mAuth;
     private FirebaseUser mUser;
-
-    public BillingProcessor bp;
     private FirebaseDatabase mDatabase;
     private String firebase_token;
-    private String id;
 
 
     @Override
@@ -120,7 +117,7 @@ public class MainActivity extends AppCompatActivity
             });
         }
 
-        mAuth = FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         if (FirebaseInstanceId.getInstance() != null) {
             FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(MainActivity.this, new OnSuccessListener<InstanceIdResult>() {
@@ -128,7 +125,7 @@ public class MainActivity extends AppCompatActivity
                 public void onSuccess(InstanceIdResult instanceIdResult) {
                     if (instanceIdResult != null) {
                         firebase_token = instanceIdResult.getToken();
-                        if (firebase_token != null && !firebase_token.equals(""))
+                        if (!firebase_token.equals(""))
                             Utils.saveOnSharePreg(getApplicationContext(), "firebase_token", firebase_token);
                         Log.d("This app", "Refreshed token: " + firebase_token);
                     }
@@ -181,12 +178,19 @@ public class MainActivity extends AppCompatActivity
 
         //if (Utils.getStringSharePref(getApplicationContext(), "notifications").equalsIgnoreCase("true")) {
         if (getIntent() != null && getIntent().getStringExtra("tag") != null && getIntent().getStringExtra("tag").equalsIgnoreCase("post")) {
-            id = getIntent().getStringExtra("post_id");
+            String id = getIntent().getStringExtra("post_id");
+            String title = getIntent().getStringExtra("title");
             if (id == null) {
                 id = getIntent().getStringExtra("id");
             }
+            Log.e("post_id", id);
+
             if (id != null) {
-                openStoryFragment(id);
+                if (title.equalsIgnoreCase("Weekly Challenge")) {
+                    openStoryFragment(id);
+                } else if (title.equalsIgnoreCase("Stories")) {
+                    openUserStoryFragment(id);
+                }
             } else {
                 openHomeFragment();
             }
@@ -242,6 +246,37 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    private void openUserStoryFragment(final String id) {
+        final DatabaseReference mPostReference = mDatabase.getReference().child("stories");
+        Query query = mPostReference.child(id);
+
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot != null && dataSnapshot.getKey().equals(id)) {
+                    String photoUrl = null;
+                    if (mUser.getPhotoUrl() != null)
+                        photoUrl = mUser.getPhotoUrl().toString();
+                    Common.currentUser = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail(), photoUrl, mUser.getPhotoUrl());
+                    Common.currentUserStory = dataSnapshot.getValue(UserStory.class);
+                    UserStoryDetailFragment nextFragment = new UserStoryDetailFragment();
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    Utils.changeFragment(nextFragment, transaction, "", "");
+                    getSupportFragmentManager().popBackStack();
+                    navigationView.setCheckedItem(R.id.nav_discover);
+
+                } else {
+                    openHomeFragment();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("error", databaseError.getDetails());
+            }
+        });
+    }
+
     private void openStoryFragment(final String id) {
         final DatabaseReference mPostReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts");
         Query query = mPostReference.child(id).orderByChild("id");
@@ -249,7 +284,7 @@ public class MainActivity extends AppCompatActivity
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot != null && dataSnapshot.getKey().equals(id)) {
+                if (dataSnapshot.getKey().equals(id)) {
                     String photoUrl = null;
                     if (mUser.getPhotoUrl() != null)
                         photoUrl = mUser.getPhotoUrl().toString();
@@ -336,8 +371,6 @@ public class MainActivity extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -356,7 +389,7 @@ public class MainActivity extends AppCompatActivity
             ft.replace(R.id.flMain, new DiscoverFragment());
             mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
             ft.commit();
-        }else if (id == R.id.nav_trigger) {
+        } else if (id == R.id.nav_trigger) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.flMain, new TriggerFragment());
             mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
@@ -372,14 +405,12 @@ public class MainActivity extends AppCompatActivity
             ft.replace(R.id.flMain, new weekly_challenge_container());
             mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
             ft.commit();
-        }
-        else if (id == R.id.premium) {
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.flMain, new PremiumFragment());
-                mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
-                ft.commit();
-        }
-         else if (id == R.id.nav_profile) {
+        } else if (id == R.id.premium) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.flMain, new PremiumFragment());
+            mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
+            ft.commit();
+        } else if (id == R.id.nav_profile) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.flMain, new ProfileFragment());
             mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());

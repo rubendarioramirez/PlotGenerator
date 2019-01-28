@@ -12,13 +12,14 @@ import java.net.URL;
 import java.util.Scanner;
 
 public class Notify extends AsyncTask<Void, String, String> {
-    String to;
-    String message,id;
+    private String to;
+    private String message, id, title;
 
-    public Notify(String to, String message, String id) {
+    public Notify(String to, String message, String id, String title) {
         this.to = to;
         this.message = message;
         this.id = id;
+        this.title = title;
     }
 
     @Override
@@ -36,12 +37,12 @@ public class Notify extends AsyncTask<Void, String, String> {
             con.connect();
 
             JSONObject notification = new JSONObject();
-            notification.put("title", "Weekly Challenge");
+            notification.put("title", title);
             notification.put("body", message);
             notification.put("id", id);
             notification.put("tag", "post");
 
-            Log.e("notify",notification.toString());
+            Log.e("notify", notification.toString());
 
             // HTTP request
             JSONObject data = new JSONObject();

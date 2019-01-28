@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -27,21 +26,22 @@ import com.firebase.ui.auth.IdpResponse;
 import com.google.android.gms.ads.AdView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.MutableData;
-import com.google.firebase.database.Transaction;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
 import com.plotgen.rramirez.plotgenerator.MainActivity;
+import com.plotgen.rramirez.plotgenerator.Model.Genre;
+import com.plotgen.rramirez.plotgenerator.Model.User;
+import com.plotgen.rramirez.plotgenerator.Model.UserStory;
 import com.plotgen.rramirez.plotgenerator.ProjectFragment;
 import com.plotgen.rramirez.plotgenerator.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -70,9 +70,6 @@ public class OfflineStoryFragment extends Fragment {
     @BindView(R.id.formatAlignRight)
     ImageView ivAlignRight;
 
-    private AdView mAdView;
-    private boolean isBold = false;
-    private boolean isItalic = false;
     private boolean isUpdate = false;
     private String project_name, project_id;
     private String mStory;
@@ -125,7 +122,7 @@ public class OfflineStoryFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ((MainActivity) getActivity()).setActionBarTitle("My Story");
         // Inflate the layout for this fragment
@@ -135,6 +132,7 @@ public class OfflineStoryFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         final String project_info = this.getArguments().getString("project_info");
+        Log.e("project_info", project_info);
         project_name = project_info.substring(2);
         project_id = String.valueOf(project_info.charAt(0));
 
@@ -178,7 +176,7 @@ public class OfflineStoryFragment extends Fragment {
         });
 
         if (!Common.isPAU) {
-            mAdView = (AdView) view.findViewById(R.id.adView_offile_story);
+            AdView mAdView = (AdView) view.findViewById(R.id.adView_offile_story);
             Utils.loadAd(mAdView);
         }
 
@@ -230,20 +228,44 @@ public class OfflineStoryFragment extends Fragment {
     private void publishStory() {
         final ArrayList<String> project = Utils.getProject(this.getContext(), project_name);
         DatabaseReference mStoriesDatabase = mDatabase.getReference().child("stories");
-        DatabaseReference mGenreDatabase = mDatabase.getReference().child("stories").child("genre");
-        mStoriesDatabase.runTransaction(new Transaction.Handler() {
+
+        String key = mStoriesDatabase.push().getKey();
+        Long tsLong = System.currentTimeMillis() / 1000;
+
+
+        UserStory story = new UserStory(key, project_name, project_id,
+                project.get(1), project.get(2), mStory, tsLong,
+                new User(Common.currentUser.getUid(),
+                        Common.currentUser.getName(),
+                        Common.currentUser.getEmail(),
+                        Common.currentUser.getPicUrl().toString()));
+
+        Genre genre = new Genre(Common.currentUser.getUid(), key, project.get(1), project_id);
+        Map<String, Object> genreValues = genre.toMap();
+        Map<String, Object> storyValues = story.toMap();
+
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put(key, storyValues);
+        childUpdates.put("/genre/" + project.get(1) + "/" + key, genreValues);
+
+        mStoriesDatabase.updateChildren(childUpdates);
+
+
+      /*  mStoriesDatabase.runTransaction(new Transaction.Handler() {
             @NonNull
             @Override
             public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
                 if (mutableData.hasChild(mUser.getUid())) {
                     MutableData mUserData = mutableData.child(mUser.getUid());
-                    if (mUserData.hasChild(project_id)) {
+                    if (mUserData.hasChild(String.valueOf(project_id))) {
+                        mUserData.child(project_id).child("project_id").setValue(project_id);
                         mUserData.child(project_id).child("project_name").setValue(project_name);
                         mUserData.child(project_id).child("plot").setValue(project.get(2));
                         mUserData.child(project_id).child("genre").setValue(project.get(1));
                         mUserData.child(project_id).child("story").setValue(mStory);
                     } else {
-                        mUserData.child(project_id);
+                        mUserData.child(String.valueOf(project_id)).setValue(project_id);
+                        mUserData.child(project_id).child("project_id").setValue(project_id);
                         mUserData.child(project_id).child("project_name").setValue(project_name);
                         mUserData.child(project_id).child("plot").setValue(project.get(2));
                         mUserData.child(project_id).child("genre").setValue(project.get(1));
@@ -252,7 +274,9 @@ public class OfflineStoryFragment extends Fragment {
 
                 } else {
                     mutableData.child(mUser.getUid()).setValue(mUser.getUid());
-                    MutableData mUserData = mutableData.child(mUser.getUid()).child(project_id);
+                    MutableData mUserData = mutableData.child(mUser.getUid()).child(String.valueOf(project_id));
+                    //mUserData.setValue(project_id);
+                    mUserData.child(project_id).child("project_id").setValue(project_id);
                     mUserData.child(project_id).child("project_name").setValue(project_name);
                     mUserData.child(project_id).child("plot").setValue(project.get(2));
                     mUserData.child(project_id).child("genre").setValue(project.get(1));
@@ -270,10 +294,10 @@ public class OfflineStoryFragment extends Fragment {
                     Toast.makeText(getContext(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
                     databaseError.toException().printStackTrace();
                 }
-              /*  ProjectFragment nextFragment = new ProjectFragment();
+              *//*  ProjectFragment nextFragment = new ProjectFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 Utils.changeFragment(nextFragment, transaction, "", "");
-                getFragmentManager().popBackStack();*/
+                getFragmentManager().popBackStack();*//*
             }
         });
 
@@ -283,13 +307,16 @@ public class OfflineStoryFragment extends Fragment {
             public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
                 if (mutableData.hasChild(project.get(1))) {
                     MutableData mUserData = mutableData.child(project.get(1)).child(mUser.getUid());
-                    mUserData.child(project_id).setValue(project.get(3));
+                    mUserData.child(String.valueOf(project_id)).setValue(project.get(3));
+                    // mUserData.child(project_id).setValue(project.get(3));
 
                 } else {
                     mutableData.child(project.get(1)).setValue(project.get(1));
                     mutableData.child(project.get(1)).child("genre").setValue(project.get(1));
                     MutableData mUserData = mutableData.child(project.get(1)).child(mUser.getUid());
-                    mUserData.child(project_id).setValue(project.get(3));
+                    mUserData.child(String.valueOf(project_id)).setValue(project.get(3));
+
+                    //mUserData.child(project_id).setValue(project.get(3));
 
                 }
                 return Transaction.success(mutableData);
@@ -304,12 +331,12 @@ public class OfflineStoryFragment extends Fragment {
                     Toast.makeText(getContext(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
                     databaseError.toException().printStackTrace();
                 }
-               /* ProjectFragment nextFragment = new ProjectFragment();
+               *//* ProjectFragment nextFragment = new ProjectFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 Utils.changeFragment(nextFragment, transaction, "", "");
-                getFragmentManager().popBackStack();*/
+                getFragmentManager().popBackStack();*//*
             }
-        });
+        });*/
     }
 
     @Override

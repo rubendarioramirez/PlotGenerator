@@ -245,7 +245,7 @@ public class Wc_participants_recent extends Fragment {
 
                     String to = token; // the notification key
                     AtomicInteger msgId = new AtomicInteger();
-                    new Notify(to, message, id).execute();
+                    new Notify(to, message, id,"Weekly Challenge").execute();
                     //notifyMessage(to,message);
                     FirebaseMessaging.getInstance().send(new RemoteMessage.Builder(to)
                             .setMessageId(String.valueOf(msgId.get()))
