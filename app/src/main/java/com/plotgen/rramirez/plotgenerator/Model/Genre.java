@@ -9,7 +9,8 @@ import java.util.Map;
 @IgnoreExtraProperties
 public class Genre {
 
-    private String project_id, genre;
+    private String project_id;
+    private String genre;
     private String uid;
     private String id;
 
@@ -24,11 +25,11 @@ public class Genre {
     }
 
     public String getGenre() {
-        return uid;
+        return genre;
     }
 
     public void setGenre(String genre) {
-        this.uid = genre;
+        this.genre = genre;
     }
 
     public String getProject_id() {
@@ -45,6 +46,14 @@ public class Genre {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     @Exclude

@@ -78,9 +78,9 @@ public class DiscoverFragment extends Fragment {
 
         mUser = mAuth.getCurrentUser();
 
-        mReference = mDatabase.getReference().child("stories").child("genre");
+        mReference = mDatabase.getReference().child("stories");
 
-        Query myTopPostsQuery = mDatabase.getReference().child("stories").child("genre");
+        Query myTopPostsQuery = mReference.child("genre");
         options = new FirebaseRecyclerOptions.Builder<Genre>()
                 .setQuery(myTopPostsQuery, Genre.class)
                 .build();
@@ -105,18 +105,18 @@ public class DiscoverFragment extends Fragment {
                 final DatabaseReference postRef = getRef(position);
                 holder.setIsRecyclable(false);
 
-                Log.e("reff", mReference.child(postRef.getKey()).getKey() + "  ");
+                Log.e("reff", mReference.child("genre").child(postRef.getKey()).getKey() + "  ");
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Common.currentGenre = mReference.child(postRef.getKey()).getKey();
+                        Common.currentGenre = mReference.child("genre").child(postRef.getKey()).getKey();
                         StoryFragment nextFragment = new StoryFragment();
                         FragmentTransaction transaction = getFragmentManager().beginTransaction();
                         Utils.changeFragment(nextFragment, transaction, "", "");
                         transaction.addToBackStack(null);
                     }
                 });
-                holder.bindToPost(mReference.child(postRef.getKey()));
+                holder.bindToPost(mReference.child("genre").child(postRef.getKey()));
             }
 
         };

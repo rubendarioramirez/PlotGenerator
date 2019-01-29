@@ -9,11 +9,11 @@ import java.util.Map;
 @IgnoreExtraProperties
 public class UserStory {
 
-    private String id;
     public int likeCount = 0;
     public Map<String, Boolean> likes = new HashMap<>();
+    private String id;
     private String genre, project_id;
-    private String project_name, plot, story;
+    private String title, plot, story;
     private long submitDate;
     private User user;
 
@@ -23,7 +23,7 @@ public class UserStory {
 
     public UserStory(String key, String project_name, String project_id, String genre, String plot, String story, Long tsLong, User user) {
         this.id = key;
-        this.project_name = project_name;
+        this.title = project_name;
         this.project_id = project_id;
         this.genre = genre;
         this.plot = plot;
@@ -81,11 +81,11 @@ public class UserStory {
     }
 
     public String getProjectName() {
-        return project_name;
+        return title;
     }
 
     public void setProjectName(String project_name) {
-        this.project_name = project_name;
+        this.title = project_name;
     }
 
     public String getPlot() {
@@ -117,7 +117,7 @@ public class UserStory {
         HashMap<String, Object> result = new HashMap<>();
         result.put("genre", genre);
         result.put("project_id", project_id);
-        result.put("project_name", project_name);
+        result.put("title", title);
         result.put("plot", plot);
         result.put("story", story);
         result.put("id", id);
