@@ -1,7 +1,9 @@
 package com.plotgen.rramirez.plotgenerator.ViewHolder;
 
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,6 +16,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Model.UserStory;
 import com.plotgen.rramirez.plotgenerator.R;
 
@@ -66,7 +69,12 @@ public class UserStoryViewHolder extends RecyclerView.ViewHolder {
             tvUser.setText(story.getUser().getName());
         tvTitle.setText(story.getProjectName());
         tvGenre.setText(story.getGenre());
-        tvStory.setText(story.getStory());
+        /*tvStory.setText(story.getStory());*/
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            tvStory.setText(Html.fromHtml(story.getStory(), Html.FROM_HTML_MODE_COMPACT));
+        } else {
+            tvStory.setText(Html.fromHtml(story.getStory()));
+        }
         tvLoves.setText(String.valueOf(story.getLikeCount()));
         ivLoves.setOnClickListener(likeClickListener);
       /*        tvShare.setOnClickListener(shareListener);

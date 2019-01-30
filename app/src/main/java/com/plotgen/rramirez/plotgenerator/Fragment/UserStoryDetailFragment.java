@@ -4,17 +4,17 @@ package com.plotgen.rramirez.plotgenerator.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
+import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -46,7 +46,6 @@ import com.google.firebase.dynamiclinks.ShortDynamicLink;
 import com.google.firebase.storage.StorageReference;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Notify;
-import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Model.Comment;
 import com.plotgen.rramirez.plotgenerator.Model.User;
 import com.plotgen.rramirez.plotgenerator.Model.UserStory;
@@ -186,7 +185,12 @@ public class UserStoryDetailFragment extends Fragment {
 
         tvTitle.setText(Common.currentUserStory.getProjectName());
         tvGenre.setText(Common.currentUserStory.getGenre());
-        tvStory.setText(Common.currentUserStory.getStory());
+        //tvStory.setText(Common.currentUserStory.getStory());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            tvStory.setText(Html.fromHtml(Common.currentUserStory.getStory(), Html.FROM_HTML_MODE_COMPACT));
+        } else {
+            tvStory.setText(Html.fromHtml(Common.currentUserStory.getStory()));
+        }
 
         if (Common.currentUserStory.likes.containsKey(Common.currentUser.getUid())) {
             ivLoves.setImageResource(R.drawable.ic_love_red);
