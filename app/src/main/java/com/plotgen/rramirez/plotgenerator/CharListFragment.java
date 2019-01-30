@@ -77,8 +77,8 @@ public class CharListFragment extends Fragment {
         ((MainActivity) getActivity()).setActionBarTitle(getString(R.string.character_list_tab));
         //Get the data from the previous fragment
         project_info = this.getArguments().getString("project_info");
-        final String project_name_text = project_info.substring(2);
-        final String project_id = String.valueOf(project_info.charAt(0));
+        final String project_name_text = project_info.split("_")[1];
+        final String project_id = project_info.split("_")[0];
 
         final View myFragmentView = inflater.inflate(R.layout.fragment_char_list, container, false);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(myFragmentView.getContext());
@@ -91,11 +91,9 @@ public class CharListFragment extends Fragment {
         empty_character_tv = myFragmentView.findViewById(R.id.empty_character_tv);
         charlist_project_edit_btn = myFragmentView.findViewById(R.id.charlist_project_edit_btn);
 
-//      project_list_array = Utils.getCharList(myFragmentView.getContext(), project_id); TO SEARCH BY PROJECT ID
-        char_list_array = Utils.getCharList(myFragmentView.getContext(), project_name_text);
+        char_list_array = Utils.getCharListByID(myFragmentView.getContext(), project_id);
 
         project_list_tv.setText(project_name_text);
-
 
         final Adapter_characterList adapter = new Adapter_characterList(this.getActivity(),mlist, project_name_text);
         mlist.clear();
@@ -105,7 +103,6 @@ public class CharListFragment extends Fragment {
             for (int i = 0; i<char_list_array.size();i++) {
                 String name = char_list_array.get(i).split("-")[0];
                 String role = char_list_array.get(i).split("-")[1];
-//                String image = char_list_array.get(i).split("-")[2];
                 String defaultImagePath = "android.resource://com.plotgen.rramirez.plotgenerator/drawable/ic_menu_camera";
 
                 String image = "";
@@ -135,45 +132,6 @@ public class CharListFragment extends Fragment {
             mAdView = (AdView) myFragmentView.findViewById(R.id.adView_char_list);
             Utils.loadAd(mAdView);
         }
-
-
-
-
-
-//        itemsAdapter = new ArrayAdapter<String>(myFragmentView.getContext(), android.R.layout.simple_list_item_1, char_list_array);
-//
-//        character_list_lv.setAdapter(itemsAdapter);
-//        character_list_lv.setEmptyView(empty_character_tv);
-//        //When the item is click
-//        character_list_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position,
-//                                    long id) {
-//                //Get the name that was touched
-//                //String[] charNameRaw = itemsAdapter.getItem(position).split(" - ");
-//                String charName = itemsAdapter.getItem(position);
-//                String[] arrayList = getResources().getStringArray(R.array.char_guide_types_titles_for_comparison);
-//                for (String s : arrayList) {
-//                    if (charName.contains(s)) {
-//                        charName = charName.replace(" - " + s, "");
-//                    }
-//                }
-//
-//                Bundle bundle = new Bundle();
-//                bundle.putString("char_name", charName);
-//                bundle.putString("project_name", project_name_text);
-//                //Send it to the next fragment
-//                BioFragment nextFragment = new BioFragment();
-//                nextFragment.setArguments(bundle);
-//                //Make the transaction
-//                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-//                transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
-//                transaction.addToBackStack(null);
-//                transaction.replace(R.id.flMain,nextFragment);
-//                transaction.commit();
-//
-//            }
-//        });
 
 
         fabAddChar.setOnClickListener(new View.OnClickListener() {

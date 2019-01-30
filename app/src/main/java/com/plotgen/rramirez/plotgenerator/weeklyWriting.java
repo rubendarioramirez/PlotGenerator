@@ -261,6 +261,7 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 Utils.changeFragment(nextFragment, transaction, "", "");
                 transaction.addToBackStack(null);
+
             } else {
                 // Sign in failed
                 if (response == null) {

@@ -943,4 +943,10 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="weekly_challenge_tab1">En progreso</string>
     <string name="weekly_challenge_tab2">Último ganador</string>
     <string name="weekly_challenge_author">Por</string>
+
+    <!--Weekly challenge strings-->
+    <string name="wc_most_voted">Mas votado</string>
+    <string name="wc_recent">Recientes</string>
+    <string name="wc_mystory">Mi historia</string>
+
 </resources>

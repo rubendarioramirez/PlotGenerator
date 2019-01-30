@@ -134,7 +134,7 @@ public class WeeklyChallengeFragment extends Fragment {
                         public void onClick(View view) {
                             Common.currentStory = currentStory;
                             StoryDetailFragment nextFragment = new StoryDetailFragment();
-                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                             Utils.changeFragment(nextFragment, transaction, "", "");
                             transaction.addToBackStack(null);
                         }

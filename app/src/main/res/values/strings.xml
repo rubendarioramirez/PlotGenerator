@@ -11,8 +11,10 @@
     <string name="banner_ad_unit_id" translatable="false">ca-app-pub-6696437403163667/5982516625</string>
 
     <string name="interstitial_plot_gen" translatable="false">ca-app-pub-6696437403163667/3046586854</string>
-    <!--<string name="reward_ad_plot_gen" translatable="false">ca-app-pub-6696437403163667/2030936311</string>-->
-    <string name="reward_ad_plot_gen" translatable="false">ca-app-pub-3940256099942544/5224354917</string>
+    <string name="reward_ad_plot_gen" translatable="false">ca-app-pub-6696437403163667/2030936311</string>
+
+    <!--Test rewards-->
+    <!--<string name="reward_ad_plot_gen" translatable="false">ca-app-pub-3940256099942544/5224354917</string>-->
 
 
 
@@ -767,11 +769,11 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="challenge_8_q4">Open the windows, all of them. What does $char_name$ see from there? Can people see him? Can the noise from the street be heard? How noisy it\'s the place?</string>
 
     <!--GUIDE ROLES-->
-    <string name="roles_title">Typical Character Roles</string>
+    <string name="roles_title">Typical character Roles</string>
     <string name="roles_desc">Roles</string>
     <string name="roles_desc_long">Picture your story as an engine, it contains gears and cogs that needs to work together for your engine to move. Characters in a story are no different.
         Each character in your story has to have a role that moves the story forward, from the protagonist to the antagonist, but that\'s not all. What about the sidekicks? Or the Mentors? Dive in here to learn more about character roles</string>
-    <string name="char_guide_title">Typical character roles</string>
+    <string name="char_guide_title">Typical character Roles</string>
     <string-array name="char_guide_types_titles">
         <item>Protagonist</item>
         <item>Protagonist\'s Helper</item>
@@ -973,5 +975,10 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="weekly_challenge_tab1">On Going</string>
     <string name="weekly_challenge_tab2">Last winner</string>
     <string name="weekly_challenge_author">By</string>
+
+    <string name="wc_most_voted">Most voted</string>
+    <string name="wc_recent">Recent</string>
+    <string name="wc_mystory">My story</string>
+
 
 </resources>

@@ -113,12 +113,14 @@ public class Project_detailsFragment extends Fragment {
             }
         });
 
+        updateMode = false;
+
         if (project_name_text != "") {
             //Update mode
             project_list_array = Utils.getProject(this.getContext(), project_name_text);
             if (project_list_array != null && !project_list_array.isEmpty()) {
                 project_name_et.setText(project_list_array.get(0));
-                project_name_et.setEnabled(false);
+//                project_name_et.setEnabled(false);
                 project_plot_et.setText(project_list_array.get(2));
 
                 if (project_list_array.size() > 4 && !project_list_array.get(4).equalsIgnoreCase(null) && !project_list_array.get(3).equalsIgnoreCase("")) {

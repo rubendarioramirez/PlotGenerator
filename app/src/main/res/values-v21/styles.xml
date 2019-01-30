@@ -73,6 +73,8 @@
         <item name="colorPrimary">@color/colorPrimary_2</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark_2</item>
         <item name="colorAccent">@color/colorAccent_2</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@color/colorPrimary_2</item>
         <item name="android:navigationBarColor">@color/background_2</item>
         <item name="android:windowBackground">@color/background_2</item>
         <item name="android:colorBackground">@color/background_2</item>

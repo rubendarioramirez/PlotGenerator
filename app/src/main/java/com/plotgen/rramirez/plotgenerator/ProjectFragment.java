@@ -43,9 +43,6 @@ public class ProjectFragment extends Fragment {
 
         final View myFragmentView = inflater.inflate(R.layout.fragment_project, container, false);
 
-//        if(Common.isPAU)
-//            Toast.makeText(this.getContext(), "yeay maneh teh pau coy", Toast.LENGTH_LONG).show();
-
         project_lv = myFragmentView.findViewById(R.id.project_lv);
         empty_project_tv = myFragmentView.findViewById(R.id.empty_project_tv);
         mAdView = (AdView) myFragmentView.findViewById(R.id.adView_project_frag);
@@ -56,7 +53,9 @@ public class ProjectFragment extends Fragment {
         if (project_list_array != null && !project_list_array.isEmpty())
             for (int i = 0; i < project_list_array.size(); i++) {
                 if (!project_list_array.get(i).isEmpty()) {
-                    projects_ids.add(String.valueOf(project_list_array.get(i).charAt(0)));
+//                    projects_ids.add(String.valueOf(project_list_array.get(i).charAt(0)));
+                    projects_ids.add(String.valueOf(project_list_array.get(i).split("_")[0]));
+                    Log.v("matilda", project_list_array.get(i).split("_")[0]);
                     project_names.add(project_list_array.get(i).substring(2));
                 }
             }

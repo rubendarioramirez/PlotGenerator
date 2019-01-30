@@ -29,7 +29,6 @@ public class Wcc_stories extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.wcc_stories, container, false);
-
         return view;
 
 
@@ -40,7 +39,7 @@ public class Wcc_stories extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mSectionsPageAdapter = new SectionsPageAdapter(getActivity().getSupportFragmentManager());
+        mSectionsPageAdapter = new SectionsPageAdapter(getChildFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = this.getActivity().findViewById(R.id.wcc_stories_container);
@@ -55,7 +54,8 @@ public class Wcc_stories extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        mSectionsPageAdapter = new SectionsPageAdapter(getActivity().getSupportFragmentManager());
+        mSectionsPageAdapter = new SectionsPageAdapter(getChildFragmentManager());
+
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = this.getActivity().findViewById(R.id.wcc_stories_container);
@@ -69,10 +69,10 @@ public class Wcc_stories extends Fragment {
 
 
     private void setupViewPager(ViewPager viewPager) {
-        SectionsPageAdapter adapter = new SectionsPageAdapter(getActivity().getSupportFragmentManager());
-        adapter.addFragment(new WeeklyChallengeFragment(), "Most Voted");
-        adapter.addFragment(new Wc_participants_recent(), "Recent");
-        adapter.addFragment(new Wc_participants_mystory(), "My story");
+        SectionsPageAdapter adapter = new SectionsPageAdapter(getChildFragmentManager());
+        adapter.addFragment(new WeeklyChallengeFragment(), getString(R.string.wc_most_voted));
+        adapter.addFragment(new Wc_participants_recent(), getString(R.string.wc_recent));
+        adapter.addFragment(new Wc_participants_mystory(), getString(R.string.wc_mystory));
         viewPager.setAdapter(adapter);
     }
 

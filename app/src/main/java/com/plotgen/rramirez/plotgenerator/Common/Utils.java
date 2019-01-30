@@ -110,24 +110,25 @@ public class Utils {
         return projects_list;
     }
 
-//    This function to get projects by ID onces everybody saved the id.
-//    public static ArrayList<String> getCharList(Context context, String project_id){
-//        mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
-//        SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-//        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER  + " WHERE project_id = ?";
-//        Cursor cursor = sqLiteDatabase.rawQuery(query,new String[]{project_id});
-//        cursor.moveToFirst();
-//        ArrayList<String> projects_list = new ArrayList<String>();
-//        while(!cursor.isAfterLast()) {
-//            String charname = cursor.getString(cursor.getColumnIndex("name"));
-//            String charRole = cursor.getString(cursor.getColumnIndex("role"));
-//            projects_list.add(charname + " - " + charRole);
-//            cursor.moveToNext();
-//        }
-//        cursor.close();
-//        sqLiteDatabase.close();
-//        return projects_list;
-//    }
+    //This function to get projects by ID onces everybody saved the id.
+    public static ArrayList<String> getCharListByID(Context context, String project_id){
+        mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
+        SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
+        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER  + " WHERE project_id = ?";
+        Cursor cursor = sqLiteDatabase.rawQuery(query,new String[]{project_id});
+        cursor.moveToFirst();
+        ArrayList<String> projects_list = new ArrayList<String>();
+        while(!cursor.isAfterLast()) {
+            String charname = cursor.getString(cursor.getColumnIndex("name"));
+            String charRole = cursor.getString(cursor.getColumnIndex("role"));
+            String image = cursor.getString(cursor.getColumnIndex("image"));
+            projects_list.add(charname + " - " + charRole + " - " + image);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        sqLiteDatabase.close();
+        return projects_list;
+    }
 
     public static ArrayList<String> getCharList(Context context, String project_name) {
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
@@ -200,13 +201,9 @@ public class Utils {
         bundle.putString(bundleName, bundleValue);
         nextFragment.setArguments(bundle);
         //Make the transaction
-
         transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
         transaction.replace(R.id.flMain, nextFragment);
-//        transaction.addToBackStack(null);
-//        transaction.commit();
-//        transaction.commitNow();
-         transaction.commitAllowingStateLoss();
+        transaction.commit();
     }
 
     public static void showRateDialogForRate(final Context context) {

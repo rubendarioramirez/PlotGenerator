@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -103,12 +104,11 @@ public class Adapter_challenges extends RecyclerView.Adapter<Adapter_challenges.
             String clicked = mData.get(getAdapterPosition()).getHerojourney_title();
             String charName = mData.get(getAdapterPosition()).getHerojourneyChar();
             String projectName = mData.get(getAdapterPosition()).getHerojourneyProject();
-
-            nextFragment(mContext,charName,projectName,clicked);
              if (clicked.equals(view.getContext().getResources().getString(R.string.char_guide_title))){
-                    //Send it to the next fragment
+                 //Send it to the next fragment
                     GuideRoleFragment nextFragment = new GuideRoleFragment();
                     nextGuideFragment(view,nextFragment);
+
             }else if (clicked.equals(view.getContext().getResources().getString(R.string.lajos_character_title))){
                     //Send it to the next fragment
                     GuideLajosFragment nextFragment = new GuideLajosFragment();
@@ -121,7 +121,9 @@ public class Adapter_challenges extends RecyclerView.Adapter<Adapter_challenges.
                 //Send it to the next fragment
                 AntagonistFragment nextFragment = new AntagonistFragment();
                 nextGuideFragment(view,nextFragment);
-            }
+            } else {
+                 nextFragment(mContext, charName, projectName, clicked);
+             }
         }
     }
 

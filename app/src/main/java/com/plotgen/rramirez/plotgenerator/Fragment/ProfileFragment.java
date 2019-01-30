@@ -306,7 +306,7 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-                                    if (selection.equals("Dark Theme")) {
+                                        if (selection.equals("Dark Theme")) {
                                         if(Common.isPAU) {
                                             Utils.saveOnSharePreg(getContext(), "selectedTheme", 1);
                                             Bundle params = new Bundle();
