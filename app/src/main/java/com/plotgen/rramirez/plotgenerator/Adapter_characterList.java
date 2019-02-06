@@ -4,16 +4,22 @@ package com.plotgen.rramirez.plotgenerator;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.ThumbnailUtils;
+import android.net.Uri;
 import android.support.v4.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.plotgen.rramirez.plotgenerator.Common.Common;
+import com.plotgen.rramirez.plotgenerator.Model.Character;
+
 import java.util.List;
 
 import static com.plotgen.rramirez.plotgenerator.Common.Constants.THUMBNAIL_SIZE;
@@ -47,12 +53,16 @@ public class Adapter_characterList extends RecyclerView.Adapter<Adapter_characte
     @Override
     public void onBindViewHolder(myViewHolder holder, int position) {
 
-        Bitmap ThumbImage = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(mData.get(position).getImage()), THUMBNAIL_SIZE, THUMBNAIL_SIZE);
-        holder.image.setImageBitmap(ThumbImage);
-//        holder.image.setImageURI(Uri.parse(mData.get(position).getImage()));
+        if(mData.get(position).getImage().equals("android.resource://com.plotgen.rramirez.plotgenerator/drawable/ic_menu_camera"))
+        {
+            holder.image.setImageURI(Uri.parse(mData.get(position).getImage()));
+        } else {
+            Bitmap ThumbImage = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(mData.get(position).getImage()), THUMBNAIL_SIZE, THUMBNAIL_SIZE);
+            holder.image.setImageBitmap(ThumbImage);
+        }
         holder.name.setText(mData.get(position).getName());
         holder.role.setText(mData.get(position).getRole());
-        holder.completion.setText(mData.get(position).getCompletion());
+        holder.completion.setText(mData.get(position).getCompletion() + "%");
     }
 
     @Override
@@ -83,19 +93,21 @@ public class Adapter_characterList extends RecyclerView.Adapter<Adapter_characte
         public void onClick(View view)
         {
             String clicked = mData.get(getAdapterPosition()).getName();
-            nextFragment(mContext,clicked,project_name);
+//            String parsed_char_name = clicked.substring(0, clicked.length() - 1);
+
+            String role = mData.get(getAdapterPosition()).getRole();
+            String gender = mData.get(getAdapterPosition()).getGender();
+            Integer completion = Integer.valueOf(mData.get(getAdapterPosition()).getCompletion());
+            Character character = new Character("",clicked,project_name,role,gender,completion);
+            Common.currentCharacter = character;
+            nextFragment(mContext);
         }
 
     }
 
-    public void nextFragment(Context context, String charName,String projectName){
-                Bundle bundle = new Bundle();
-                String parsed_char_name = charName.substring(0, charName.length() - 1);
-                bundle.putString("char_name", parsed_char_name);
-                bundle.putString("project_name", projectName);
-                //Send it to the next fragment
+//    public void nextFragment(Context context, String charName,String projectName){
+    public void nextFragment(Context context){
                 BioFragment nextFragment = new BioFragment();
-                nextFragment.setArguments(bundle);
                 //Make the transaction
                 AppCompatActivity activity = (AppCompatActivity) context;
                 FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();

@@ -89,7 +89,7 @@ public class SubmitStoryFragment extends Fragment {
 
         weekly_challenge_container nextFragment = new weekly_challenge_container();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        Utils.changeFragment(nextFragment, transaction, "", "");
+        Utils.changeFragment(nextFragment, transaction);
     }
 
 
@@ -108,8 +108,8 @@ public class SubmitStoryFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
-        mAuth = FirebaseAuth.getInstance();
-        mUser = mAuth.getCurrentUser();
+        mAuth = Common.currentAuth;
+        mUser = Common.currentFirebaseUser;
 
         mAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
             @Override
@@ -118,7 +118,7 @@ public class SubmitStoryFragment extends Fragment {
             }
         });
 
-        mDatabase = FirebaseDatabase.getInstance();
+        mDatabase = Common.currentDatabase;
         mReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name));
 
         if (Common.currentChallenge != null) {

@@ -138,75 +138,45 @@
         app:layout_constraintTop_toBottomOf="@+id/character_bio_name_title"
         app:layout_constraintVertical_bias="0.0" />
 
-    <ImageButton
-        android:id="@+id/character_bio_edit_btn"
-        style="@style/Widget.AppCompat.ImageButton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="@+id/background_char_bio"
-        app:layout_constraintHorizontal_bias="0.97"
-        app:layout_constraintLeft_toLeftOf="@+id/background_char_bio"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        android:background="@color/content_lighter"
-        app:srcCompat="@android:drawable/ic_menu_edit" />
 
-    <ImageButton
-        android:id="@+id/character_bio_share_btn"
-        style="@style/Widget.AppCompat.ImageButton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/content_lighter"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="@+id/background_char_bio"
-        app:layout_constraintHorizontal_bias="0.857"
-        app:layout_constraintLeft_toLeftOf="@+id/background_char_bio"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@android:drawable/ic_menu_share" />
+    <com.robertlevonyan.views.customfloatingactionbutton.FloatingLayout
+        android:id="@+id/bio_floating_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:fabMenuGravity="bottom|end"
+        app:fabMenuStyle="popUp"
+        app:layout_constraintEnd_toEndOf="parent">
 
+        <com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_bio_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            app:fabElevation="10dp"
+            app:fabIcon="@android:drawable/ic_input_add"
+            app:fabSizes="mini" />
 
-    <ImageButton
-        android:id="@+id/guide_btn"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="8dp"
-        android:background="#00000000"
-        android:elevation="10dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/guide_bt"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        <com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_add_challenge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fabColor="#ff9c10"
+            app:fabIcon="@drawable/ic_character_black"
+            app:fabSizes="mini"
+            app:fabText="Challenge"/>
 
-    <ImageButton
-        android:id="@+id/bio_fragment_challenge_btn"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        android:background="#00000000"
-        android:elevation="10dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/challenge_icon"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guide_btn" />
+        <com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fabColor="#ff9c10"
+            app:fabIcon="@drawable/ic_book_black"
+            app:fabSizes="mini"
+            app:fabText="Guidelines"/>
+
+    </com.robertlevonyan.views.customfloatingactionbutton.FloatingLayout>
 
 </android.support.constraint.ConstraintLayout>

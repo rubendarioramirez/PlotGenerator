@@ -112,7 +112,7 @@ public class StoryFragment extends Fragment {
                                 Common.currentUserStory = model;
                                 UserStoryDetailFragment nextFragment = new UserStoryDetailFragment();
                                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                                Utils.changeFragment(nextFragment, transaction, "", "");
+                                Utils.changeFragment(nextFragment, transaction);
                                 transaction.addToBackStack(null);
                             }
                         });

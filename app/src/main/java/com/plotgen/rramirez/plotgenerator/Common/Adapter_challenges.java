@@ -122,15 +122,13 @@ public class Adapter_challenges extends RecyclerView.Adapter<Adapter_challenges.
                 AntagonistFragment nextFragment = new AntagonistFragment();
                 nextGuideFragment(view,nextFragment);
             } else {
-                 nextFragment(mContext, charName, projectName, clicked);
+                 nextFragment(mContext, clicked);
              }
         }
     }
 
-    public void nextFragment(Context context, String charName,String projectName,String clicked){
+    public void nextFragment(Context context,String clicked){
         Bundle bundle = new Bundle();
-        bundle.putString("char_name",charName);
-        bundle.putString("project_name",projectName);
         bundle.putString("challenge_number",clicked);
         //Send it to the next fragment
         ChallengeTemplateFragment nextFragment = new ChallengeTemplateFragment();

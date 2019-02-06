@@ -26,6 +26,9 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -35,10 +38,13 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
+import com.plotgen.rramirez.plotgenerator.Model.Character;
 
 import org.apache.commons.lang3.text.WordUtils;
 
@@ -58,8 +64,7 @@ public class CharacterFragment extends Fragment {
     public EditText nameEditText, profession_edit_text, desire_edit_text, age_edit_text, height_et, hair_color_et, eye_color_et, bodybuild_et,
             placebirth_edit_text, defmoment_edit_text, need_edit_text, phrase_et, trait_edit_text,
             trait2_edit_text, trait3_edit_text, notes_edit_text;
-    public TextView project_name_tv;
-    public ImageButton delete_btn, random_gen_char_btn;
+    public ImageButton random_gen_char_btn;
     public ImageView char_image;
     public Spinner gender_spinner, role_spinner;
     public String project_name;
@@ -67,6 +72,7 @@ public class CharacterFragment extends Fragment {
     ArrayList<String> char_description;
     private FirebaseAnalytics mFirebaseAnalytics;
     private String fragmentTag = CharacterFragment.class.getSimpleName();
+    private String name_text;
 
     //Image elements
     private static final int PERMISSION_REQUEST_GALLERY = 101;
@@ -81,7 +87,6 @@ public class CharacterFragment extends Fragment {
         // Required empty public constructor
     }
 
-    //TODO BE able to block certain parts to just randomize some others. Yep, a mess
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
@@ -91,16 +96,14 @@ public class CharacterFragment extends Fragment {
 
         // Obtain the FirebaseAnalytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(myFragmentView.getContext());
-        try {
-            final String project_info = this.getArguments().getString("project_info");
-            project_name = project_info.substring(2);
-            project_id = String.valueOf(project_info.charAt(0));
+
+        try{
+            project_name = Common.currentProject.getName();
+            project_id = Common.currentProject.getId();
+            name_text = Common.currentCharacter.getName();
         } catch (Exception e) {
-
+            name_text = "";
         }
-
-        final String project_name_fromEdit = this.getArguments().getString("project_name");
-        final String name_text = this.getArguments().getString("char_name");
 
         //Get if rated already
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(myFragmentView.getContext());
@@ -119,7 +122,6 @@ public class CharacterFragment extends Fragment {
 
 
         //Declare all the elements
-        project_name_tv = myFragmentView.findViewById(R.id.char_template_title);
         nameEditText = myFragmentView.findViewById(R.id.nameEditText);
         age_edit_text = myFragmentView.findViewById(R.id.age_edit_text);
         profession_edit_text = myFragmentView.findViewById(R.id.profession_edit_text);
@@ -138,7 +140,6 @@ public class CharacterFragment extends Fragment {
         notes_edit_text = myFragmentView.findViewById(R.id.notes_edit_text);
         FloatingActionButton fab = (FloatingActionButton) myFragmentView.findViewById(R.id.char_template_submit);
         random_gen_char_btn = myFragmentView.findViewById(R.id.random_gen_char_btn);
-        delete_btn = myFragmentView.findViewById(R.id.char_edit_delete_btn);
         char_image =myFragmentView.findViewById(R.id.character_picture);
 
 
@@ -150,23 +151,23 @@ public class CharacterFragment extends Fragment {
             }
         });
 
-
-        //Set the title
-        project_name_tv.setText(project_name);
-
-        if (name_text == null) { //If it's in create new character mode
+        if (Common.charCreationMode) { //If it's in create new character mode
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    saveToDB();
+                    if(nameEditText.getText().toString().equals("")){
+                        Toast.makeText(getContext(),getString(R.string.char_empty),Toast.LENGTH_LONG).show();
+                    } else {
+                        saveToDB();
+                    }
                 }
             });
-            delete_btn.setVisibility(View.INVISIBLE);
             // Inflate the layout for this fragment
             ((MainActivity) getActivity()).setActionBarTitle(getString(R.string.character_create));
         } else { //If it's in update mode
+            //Add the delete button on top
+            setHasOptionsMenu(true);
             ((MainActivity) getActivity()).setActionBarTitle(getString(R.string.character_update));
-            delete_btn.setVisibility(View.VISIBLE);
             //database getter
             char_description = getDescription(myFragmentView.getContext(), name_text);
             if (char_description.size() > 0) {
@@ -190,7 +191,6 @@ public class CharacterFragment extends Fragment {
                 if (imageToShow!=null && !imageToShow.isEmpty()){
                     char_image.setImageURI(Uri.parse(char_description.get(18)));
                     filepath = char_description.get(18);
-                    Log.v("matilda", "In character the filepath is: " + filepath);
                 } else {
                     String defaultImagePath = "android.resource://com.plotgen.rramirez.plotgenerator/drawable/ic_menu_camera";
                     char_image.setImageURI(Uri.parse(defaultImagePath));
@@ -241,7 +241,7 @@ public class CharacterFragment extends Fragment {
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    updateDB(name_text, project_name_fromEdit);
+                    updateDB(name_text, project_name);
                 }
             });
             if (rated == 0) {
@@ -274,25 +274,11 @@ public class CharacterFragment extends Fragment {
         });
 
 
-        android.support.v7.app.AlertDialog.Builder alertDialogBuilder = new android.support.v7.app.AlertDialog.Builder(myFragmentView.getContext());
-        // set prompts.xml to alertdialog builder
-        alertDialogBuilder.setTitle(getString(R.string.delete_character_btn));
-        // set dialog message
-        alertDialogBuilder.setCancelable(true).setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                deleteFromDB(name_text);
-            }
-        });
-        // create alert dialog
-        final android.support.v7.app.AlertDialog alertDialog = alertDialogBuilder.create();
+        if(Common.onBoarding == 4){
+            Common.onBoarding = 5;
+            Utils.displayDialog(myFragmentView.getContext(), getString(R.string.onBoardingTitle_5), getString(R.string.onBoarding_5), "Got it!");
+        }
 
-        //Delete
-        delete_btn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                alertDialog.show();
-
-            }
-        });
 
 
         return myFragmentView;
@@ -423,6 +409,7 @@ public class CharacterFragment extends Fragment {
 
 
     private void saveToDB() {
+        Common.charCreationMode = false;
         SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_NAME, nameEditText.getText().toString());
@@ -468,9 +455,9 @@ public class CharacterFragment extends Fragment {
 
 
     private void updateDB(String name_text, String project_name) {
+        Common.charCreationMode = false;
         SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
         ContentValues values = new ContentValues();
-        Log.v("matilda", "the path is: " + filepath);
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_NAME, nameEditText.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_JOB, profession_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_HEIGHT, height_et.getText().toString());
@@ -493,7 +480,6 @@ public class CharacterFragment extends Fragment {
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PHRASE, phrase_et.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_IMAGE, filepath);
         database.update(mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER, values, "name = ?", new String[]{name_text.toString()});
-        //Come back to previous fragment
         fragmentTransition();
 
     }
@@ -535,11 +521,9 @@ public class CharacterFragment extends Fragment {
 
 
     public void fragmentTransition() {
-        ProjectFragment nextFragment = new ProjectFragment();
+        CharListFragment nextFragment = new CharListFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        Utils.changeFragment(nextFragment, transaction, "", "");
-        getFragmentManager().popBackStack();
-
+        Utils.changeFragment(nextFragment, transaction);
     }
 
     private void showProfileImageDialog() {
@@ -632,5 +616,34 @@ public class CharacterFragment extends Fragment {
             default:
         }
     }
+
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_char_edit, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.menu_char_delete) {
+            android.support.v7.app.AlertDialog.Builder alertDialogBuilder = new android.support.v7.app.AlertDialog.Builder(myFragmentView.getContext());
+            // set prompts.xml to alertdialog builder
+            alertDialogBuilder.setTitle(getString(R.string.delete_character_btn));
+            // set dialog message
+            alertDialogBuilder.setCancelable(true).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    deleteFromDB(name_text);
+                }
+            });
+            // create alert dialog
+            final android.support.v7.app.AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
 
 }

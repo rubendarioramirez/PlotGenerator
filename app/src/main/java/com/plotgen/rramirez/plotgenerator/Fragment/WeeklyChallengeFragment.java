@@ -57,8 +57,9 @@ public class WeeklyChallengeFragment extends Fragment {
     private DatabaseReference mReference;
     private DatabaseReference mCommentReference;
     private DatabaseReference mUserReference;
-
     private LinearLayoutManager mManager;
+
+    private String userUID;
 
     private int toggleMyPost = 1;
 
@@ -76,10 +77,27 @@ public class WeeklyChallengeFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
-        mDatabase = FirebaseDatabase.getInstance();
 
-        mAuth = FirebaseAuth.getInstance();
-        mUser = mAuth.getCurrentUser();
+            mDatabase = Common.currentDatabase;
+            mAuth = Common.currentAuth;
+            mUser = Common.currentFirebaseUser;
+
+            try{
+                userUID = Common.currentUser.getUid();
+            } catch (Exception e){
+                Log.v("matida", e.toString());
+            }
+
+            mReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts");
+            mCommentReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("post-comments");
+            mUserReference = mDatabase.getReference().child("users");
+
+            Query query = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts");
+            Query mostVoted = query.orderByChild("likeCount");
+            Common.currentQuery = query;
+            Common.currentUserReference = mUserReference;
+            Common.currentCommentReference = mCommentReference;
+
 
         mAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
             @Override
@@ -95,14 +113,10 @@ public class WeeklyChallengeFragment extends Fragment {
         rvWeeklyChallenge.setLayoutManager(mManager);
 
 
-        mReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts");
-        mCommentReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("post-comments");
-        mUserReference = mDatabase.getReference().child("users");
-
-        Query query = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts").orderByChild("likeCount");
         options = new FirebaseRecyclerOptions.Builder<Story>()
-                .setQuery(query, Story.class)
+                .setQuery(mostVoted, Story.class)
                 .build();
+
 
         populateWeeklyChallenge();
         rvWeeklyChallenge.setAdapter(mAdapter);
@@ -135,12 +149,12 @@ public class WeeklyChallengeFragment extends Fragment {
                             Common.currentStory = currentStory;
                             StoryDetailFragment nextFragment = new StoryDetailFragment();
                             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                            Utils.changeFragment(nextFragment, transaction, "", "");
+                            Utils.changeFragment(nextFragment, transaction);
                             transaction.addToBackStack(null);
                         }
                     });
 
-                    if (model.likes.containsKey(Common.currentUser.getUid())) {
+                    if (model.likes.containsKey(userUID)) {
                         viewHolder.ivLoves.setImageResource(R.drawable.ic_love_red);
                     } else {
                         viewHolder.ivLoves.setImageResource(R.drawable.ic_love_outline);
@@ -174,14 +188,14 @@ public class WeeklyChallengeFragment extends Fragment {
                     return Transaction.success(mutableData);
                 }
 
-                if (p.likes.containsKey(Common.currentUser.getUid())) {
+                if (p.likes.containsKey(userUID)) {
                     // Unstar the post and remove self from stars
                     p.likeCount = p.likeCount - 1;
                     p.likes.remove(Common.currentUser.getUid());
                 } else {
                     // Star the post and add self to stars
                     p.likeCount = p.likeCount + 1;
-                    p.likes.put(Common.currentUser.getUid(), true);
+                    p.likes.put(userUID, true);
                     sendNotification(Common.currentUser.getName() + " liked your post", p.getUser(), p.getId());
                 }
 
@@ -228,34 +242,6 @@ public class WeeklyChallengeFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
     }
-
-//    @Override
-//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//        super.onCreateOptionsMenu(menu, inflater);
-//        inflater.inflate(R.menu.menu_goto, menu);
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        int id = item.getItemId();
-//        if (id == R.id.menu_goto) {
-//            if (toggleMyPost == 1) {
-//                rvWeeklyChallenge.swapAdapter(mMyPostAdapter, true);
-//                toggleMyPost = 0;
-//            } else if (toggleMyPost == 0) {
-//                rvWeeklyChallenge.swapAdapter(mAdapter, true);
-//                toggleMyPost = 1;
-//            }
-//            return true;
-//        } else if (id == R.id.menu_recent) {
-//            rvWeeklyChallenge.swapAdapter(mRecentAdapter, true);
-//            return true;
-//        } else if (id == R.id.menu_likes) {
-//            rvWeeklyChallenge.swapAdapter(mAdapter, true);
-//            return true;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
 
     public void sendNotification(final String message, User user, final String id) {
         //String firebase_token = mUserReference.child(user.getUid()).child("token");

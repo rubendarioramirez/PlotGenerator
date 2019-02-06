@@ -8,13 +8,13 @@
     android:layout_marginBottom="2dp"
     android:layout_width="match_parent"
     android:elevation="10dp"
-    android:layout_height="120dp">
+    android:layout_height="100dp">
 
 
     <ImageView
         android:id="@+id/character_image_list_view"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/add_char_icon" />
@@ -23,12 +23,13 @@
         android:id="@+id/character_name_list_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingLeft="24dp"
         android:layout_marginStart="2dp"
         android:layout_marginLeft="2dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="20dp"
         android:textColor="#FFFFFF"
         android:text="Name"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintStart_toEndOf="@+id/character_image_list_view"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,7 +42,8 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:text="Completion"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="#FFFFFF"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

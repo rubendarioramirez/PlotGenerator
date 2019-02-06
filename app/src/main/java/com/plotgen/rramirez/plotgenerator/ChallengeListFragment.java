@@ -38,11 +38,15 @@ public class ChallengeListFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         ((MainActivity)getActivity()).setActionBarTitle(getString(R.string.challenge_action_bar));
-        final String char_name = this.getArguments().getString("char_name");
-        final String project_name = this.getArguments().getString("project_name");
-        final String role = this.getArguments().getString("role");
-        final String gender = this.getArguments().getString("gender");
+//        final String char_name = this.getArguments().getString("char_name");
+//        final String project_name = this.getArguments().getString("project_name");
+//        final String role = this.getArguments().getString("role");
+//        final String gender = this.getArguments().getString("gender");
         // Inflate the layout for this fragment
+
+        final String char_name = Common.currentCharacter.getName();
+        final String project_name = Common.currentCharacter.getProject_name();
+
         View myFragmentView =  inflater.inflate(R.layout.fragment_challenge, container, false);
 
         if(!Common.isPAU) {
@@ -53,7 +57,7 @@ public class ChallengeListFragment extends Fragment {
         RecyclerView recyclerView = myFragmentView.findViewById(R.id.rv_challenge_fragment);
         final Adapter_challenges adapter = new Adapter_challenges(this.getActivity(),mlist);
         mlist.clear();
-        switch (role){
+        switch (Common.currentCharacter.getRole()){
             case "Mentor":
                 mlist.add(new item_herojourney(R.drawable.typewriter, getString(R.string.c1_mentor_title), getString(R.string.c1_mentor_desc), getString(R.string.c1_mentor_desc_long),(String) char_name, (String) project_name));
                 break;
@@ -82,7 +86,7 @@ public class ChallengeListFragment extends Fragment {
         String challenge8RawString = getString(R.string.challenge_8_desc_long);
         String result_c8 = challenge8RawString.replace("$char_name$", char_name);
 
-        switch (gender) {
+        switch (Common.currentCharacter.getGender()) {
             case "Female":
             case "Femenino":
                 //TODO ADD GERMAN CASE
@@ -101,13 +105,6 @@ public class ChallengeListFragment extends Fragment {
                 mlist.add(new item_herojourney(R.drawable.typewriter, getString(R.string.challenge_7_title), getString(R.string.challenge_7_desc), male_c7 , char_name,  project_name));
                 mlist.add(new item_herojourney(R.drawable.typewriter, getString(R.string.challenge_8_title), getString(R.string.challenge_8_desc),  male_c8, char_name, project_name));
         }
-
-
-
-
-
-
-
 
 
         recyclerView.setAdapter(adapter);

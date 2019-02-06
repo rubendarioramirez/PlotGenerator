@@ -42,6 +42,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
+import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
 
@@ -86,7 +87,6 @@ public class Project_detailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         myFragmentView = inflater.inflate(R.layout.fragment_project_details, container, false);
-        project_name_text = this.getArguments().getString("project_name");
 
         project_name_et = myFragmentView.findViewById(R.id.project_name_et);
         project_plot_et = myFragmentView.findViewById(R.id.project_plot_et);
@@ -95,10 +95,9 @@ public class Project_detailsFragment extends Fragment {
         final FloatingActionButton fab_delete = myFragmentView.findViewById(R.id.project_detail_delete);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(myFragmentView.getContext());
 
-        mDatabase = FirebaseDatabase.getInstance();
-        mAuth = FirebaseAuth.getInstance();
-
-        mUser = mAuth.getCurrentUser();
+        mDatabase = Common.currentDatabase;
+        mAuth = Common.currentAuth;
+        mUser = Common.currentFirebaseUser;
 
         //Role spinner functions
         project_genre_spinner = myFragmentView.findViewById(R.id.project_genre_spinner);
@@ -113,22 +112,16 @@ public class Project_detailsFragment extends Fragment {
             }
         });
 
-        updateMode = false;
-
-        if (project_name_text != "") {
+        if (!Common.projectCreationMode) {
             //Update mode
+            project_name_text = Common.currentProject.getName();
+            Log.v("matilda", "Called from projectDetails " + project_name_text);
             project_list_array = Utils.getProject(this.getContext(), project_name_text);
             if (project_list_array != null && !project_list_array.isEmpty()) {
                 project_name_et.setText(project_list_array.get(0));
-//                project_name_et.setEnabled(false);
                 project_plot_et.setText(project_list_array.get(2));
-
                 if (project_list_array.size() > 4 && !project_list_array.get(4).equalsIgnoreCase(null) && !project_list_array.get(3).equalsIgnoreCase("")) {
                     project_icon_iv.setImageURI(Uri.parse(project_list_array.get(4)));
-                /*if(project_list_array.size()>3 && !project_list_array.get(3).equalsIgnoreCase(null) && !project_list_array.get(3).equalsIgnoreCase("")) {
-                    project_icon_iv.setImageURI(Uri.parse(project_list_array.get(3)));
-                    Log.v("matilda", Uri.parse(project_list_array.get(3)).toString());
-                }*/
                     project_description = getProject(myFragmentView.getContext(), project_name_text);
                     String project_genre = project_description.get(1);
                     //Set the proper spinner value
@@ -165,16 +158,15 @@ public class Project_detailsFragment extends Fragment {
                     }
                     //project_icon_iv.setImageURI(Uri.parse(project_description.get(2)));
                     updateMode = true;
-                } else {
-                    //make it back to project
-                    ProjectFragment nextFragment = new ProjectFragment();
-                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    Utils.changeFragment(nextFragment, transaction, "", "");
-                    getFragmentManager().popBackStack();
-
                 }
-            } else {
-                updateMode = false;
+//                else {
+//                    //make it back to project
+//                    ProjectFragment nextFragment = new ProjectFragment();
+//                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//                    Utils.changeFragment(nextFragment, transaction);
+//                    getFragmentManager().popBackStack();
+//
+//                }
             }
         }
 
@@ -185,19 +177,18 @@ public class Project_detailsFragment extends Fragment {
                     Toast.makeText(getActivity(), getString(R.string.projects_empty),
                             Toast.LENGTH_SHORT).show();
                 } else {
-                    if (updateMode) {
+                    if (!Common.projectCreationMode) {
                         updateDB();
                         fab_delete.setVisibility(View.INVISIBLE);
                     } else {
                         saveToDB(project_name_et, project_plot_et, project_genre_spinner);
+                        Common.projectCreationMode = false;
                         fab_delete.setVisibility(View.VISIBLE);
                     }
                     ProjectFragment nextFragment = new ProjectFragment();
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-                    Utils.changeFragment(nextFragment, transaction, "", "");
+                    Utils.changeFragment(nextFragment, transaction);
                     getFragmentManager().popBackStack();
-
                 }
             }
         });
@@ -223,7 +214,7 @@ public class Project_detailsFragment extends Fragment {
                                 //Make the transaction
                                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
-                                Utils.changeFragment(nextFragment, transaction, "", "");
+                                Utils.changeFragment(nextFragment, transaction);
                                 getFragmentManager().popBackStack();
 
                                 //transaction.addToBackStack(null);
@@ -239,6 +230,10 @@ public class Project_detailsFragment extends Fragment {
             }
         });
 
+        if(Common.onBoarding == 1) {
+            Utils.displayDialog(myFragmentView.getContext(), getString(R.string.onBoardingTitle_2), getString(R.string.onBoarding_2), "Got it!");
+            Common.onBoarding = 2;
+        }
         return myFragmentView;
     }
 
@@ -273,7 +268,7 @@ public class Project_detailsFragment extends Fragment {
         ProjectFragment nextFragment = new ProjectFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
-        Utils.changeFragment(nextFragment, transaction, "", "");
+        Utils.changeFragment(nextFragment, transaction);
         getFragmentManager().popBackStack();
 
         //transaction.addToBackStack(null);

@@ -69,7 +69,10 @@ public class MainActivity extends AppCompatActivity
     private FirebaseAnalytics mFirebaseAnalytics;
     private FirebaseUser mUser;
     private FirebaseDatabase mDatabase;
+    private DatabaseReference mUserDatabase;
     private String firebase_token;
+    private FirebaseAuth mAuth;
+    static boolean calledAlready = false;
 
 
     @Override
@@ -92,6 +95,27 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+        //Set all databases
+        mAuth = FirebaseAuth.getInstance();
+        Common.currentAuth = mAuth;
+
+        mUser = mAuth.getCurrentUser();
+        Common.currentFirebaseUser = mUser;
+
+        if (!calledAlready)
+        {
+            mDatabase = FirebaseDatabase.getInstance();
+            mDatabase.setPersistenceEnabled(true);
+            calledAlready = true;
+        }
+        mDatabase = FirebaseDatabase.getInstance();
+        mUserDatabase = mDatabase.getReference().child("users");
+        Common.currentDatabase = mDatabase;
+
+
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         Common.isPAU = Utils.getSPIAP(this);
         FirebaseApp.initializeApp(this);
@@ -119,8 +143,6 @@ public class MainActivity extends AppCompatActivity
             });
         }
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        mUser = mAuth.getCurrentUser();
         if (FirebaseInstanceId.getInstance() != null) {
             FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(MainActivity.this, new OnSuccessListener<InstanceIdResult>() {
                 @Override
@@ -136,10 +158,6 @@ public class MainActivity extends AppCompatActivity
         }
 
         // Obtain the FirebaseAnalytics instance.
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        mDatabase = FirebaseDatabase.getInstance();
-        final DatabaseReference mUserDatabase = mDatabase.getReference().child("users");
-
         if (mUser != null) {
             mUserDatabase.runTransaction(new Transaction.Handler() {
                 @NonNull
@@ -263,9 +281,9 @@ public class MainActivity extends AppCompatActivity
                     Common.currentUserStory = dataSnapshot.getValue(UserStory.class);
                     UserStoryDetailFragment nextFragment = new UserStoryDetailFragment();
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    Utils.changeFragment(nextFragment, transaction, "", "");
+                    Utils.changeFragment(nextFragment, transaction);
                     getSupportFragmentManager().popBackStack();
-                    navigationView.setCheckedItem(R.id.nav_discover);
+//                    navigationView.setCheckedItem(R.id.nav_discover);
 
                 } else {
                     openHomeFragment();
@@ -294,7 +312,7 @@ public class MainActivity extends AppCompatActivity
                     Common.currentStory = dataSnapshot.getValue(Story.class);
                     StoryDetailFragment nextFragment = new StoryDetailFragment();
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    Utils.changeFragment(nextFragment, transaction, "", "");
+                    Utils.changeFragment(nextFragment, transaction);
                     getSupportFragmentManager().popBackStack();
                     navigationView.setCheckedItem(R.id.nav_writting_challenge);
 
@@ -343,7 +361,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onBackPressed() {
         Random r = new Random();
-        int inter_chance = r.nextInt(20);
+        int inter_chance = r.nextInt(30);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
@@ -387,12 +405,12 @@ public class MainActivity extends AppCompatActivity
             mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
             ft.commit();
         }
-        else if (id == R.id.nav_discover) {
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.flMain, new DiscoverFragment());
-            mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
-            ft.commit();
-        }
+//        else if (id == R.id.nav_discover) {
+//            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//            ft.replace(R.id.flMain, new DiscoverFragment());
+//            mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
+//            ft.commit();
+//        }
         else if (id == R.id.nav_trigger) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.flMain, new TriggerFragment());

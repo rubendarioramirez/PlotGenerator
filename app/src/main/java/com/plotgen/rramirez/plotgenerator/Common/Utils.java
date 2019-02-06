@@ -15,17 +15,20 @@ import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.View;
+
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.plotgen.rramirez.plotgenerator.R;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
-public class Utils {
+public class Utils extends Fragment{
 
     public static final String SP_HAS_BUY_IAP = "spHasBuyIap";
 
@@ -119,10 +122,12 @@ public class Utils {
         cursor.moveToFirst();
         ArrayList<String> projects_list = new ArrayList<String>();
         while(!cursor.isAfterLast()) {
-            String charname = cursor.getString(cursor.getColumnIndex("name"));
+            String charName = cursor.getString(cursor.getColumnIndex("name"));
             String charRole = cursor.getString(cursor.getColumnIndex("role"));
+            String charGender = cursor.getString(cursor.getColumnIndex("gender"));
+            Integer challengesDone = cursor.getInt(cursor.getColumnIndex("challengesCompleted"));
             String image = cursor.getString(cursor.getColumnIndex("image"));
-            projects_list.add(charname + " - " + charRole + " - " + image);
+            projects_list.add(charName + "/&&/" + charRole + "/&&/" + charGender + "/&&/" +challengesDone +  "/&&/" + image);
             cursor.moveToNext();
         }
         cursor.close();
@@ -153,11 +158,11 @@ public class Utils {
         return char_list;
     }
 
-    public static Boolean isHaveStoryFromDB(Context context, String project_name) {
+    public static Boolean isHaveStoryFromDB(Context context, String project_id) {
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_STORY + " WHERE project = ?";
-        Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{project_name});
+        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_STORY + " WHERE project_id = ?";
+        Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{project_id});
         cursor.moveToFirst();
         String s = "";
         ArrayList<String> story_list = new ArrayList<String>();
@@ -196,15 +201,24 @@ public class Utils {
     }
 
 
-    public static void changeFragment(Fragment nextFragment, FragmentTransaction transaction, String bundleName, String bundleValue) {
-        Bundle bundle = new Bundle();
-        bundle.putString(bundleName, bundleValue);
-        nextFragment.setArguments(bundle);
+    public static void changeFragment(Fragment nextFragment, FragmentTransaction transaction) {
         //Make the transaction
         transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
         transaction.replace(R.id.flMain, nextFragment);
         transaction.commit();
     }
+
+
+
+//    public static void changeFragment(Fragment nextFragment, FragmentTransaction transaction, String bundleName, String bundleValue) {
+//        Bundle bundle = new Bundle();
+//        bundle.putString(bundleName, bundleValue);
+//        nextFragment.setArguments(bundle);
+//        //Make the transaction
+//        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
+//        transaction.replace(R.id.flMain, nextFragment);
+//        transaction.commit();
+//    }
 
     public static void showRateDialogForRate(final Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context)
@@ -239,6 +253,20 @@ public class Utils {
                 })
                 .setNegativeButton(context.getString(R.string.rate_cancel), null);
         builder.show();
+    }
+
+
+    public static void displayDialog(Context context, String title, String body, String positiveBTN){
+        new AlertDialog.Builder(context, R.style.AlertDialogCustom)
+                .setTitle(title)
+                .setMessage(body)
+                .setPositiveButton(positiveBTN, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.d("MainActivity", "Got it!");
+                    }
+                })
+                .show();
     }
 
 

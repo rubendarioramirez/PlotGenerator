@@ -15,8 +15,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -33,6 +37,7 @@ import com.plotgen.rramirez.plotgenerator.Common.Adapter_challenges;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Fragment.OfflineStoryFragment;
+import com.plotgen.rramirez.plotgenerator.Fragment.StoryEditFragment;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -42,18 +47,23 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.plotgen.rramirez.plotgenerator.Common.Constants.TOTAL_CHALLENGES;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class CharListFragment extends Fragment {
 
-    TextView project_list_tv, empty_character_tv;
-    ImageButton charlist_project_edit_btn;
+    TextView empty_character_tv;
+//    ImageButton charlist_project_edit_btn;
     RecyclerView character_list_lv;
     ArrayList<String> char_list_array;
     ArrayAdapter<String> itemsAdapter;
     String project_info;
+    String project_name_text;
+    String project_id;
+    String completion;
     private FirebaseAnalytics mFirebaseAnalytics;
     List<item_character_list> mlist = new ArrayList<>();
 
@@ -74,26 +84,30 @@ public class CharListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        ((MainActivity) getActivity()).setActionBarTitle(getString(R.string.character_list_tab));
+
         //Get the data from the previous fragment
-        project_info = this.getArguments().getString("project_info");
-        final String project_name_text = project_info.split("_")[1];
-        final String project_id = project_info.split("_")[0];
 
+        try {
+            project_name_text = Common.currentProject.getName();
+            project_id = Common.currentProject.getId();
+        } catch (Exception e) {
+            Log.v("matilda", e.toString());
+        }
         final View myFragmentView = inflater.inflate(R.layout.fragment_char_list, container, false);
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(myFragmentView.getContext());
 
+        ((MainActivity) getActivity()).setActionBarTitle(project_name_text);
+        setHasOptionsMenu(true);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(myFragmentView.getContext());
         ButterKnife.bind(this, myFragmentView);
 
         //Declare elements
         RecyclerView recyclerView = myFragmentView.findViewById(R.id.character_list_lv);
-        project_list_tv = myFragmentView.findViewById(R.id.project_list_tv);
+
         empty_character_tv = myFragmentView.findViewById(R.id.empty_character_tv);
-        charlist_project_edit_btn = myFragmentView.findViewById(R.id.charlist_project_edit_btn);
+
 
         char_list_array = Utils.getCharListByID(myFragmentView.getContext(), project_id);
 
-        project_list_tv.setText(project_name_text);
 
         final Adapter_characterList adapter = new Adapter_characterList(this.getActivity(),mlist, project_name_text);
         mlist.clear();
@@ -101,24 +115,31 @@ public class CharListFragment extends Fragment {
         if(!char_list_array.isEmpty()){
             empty_character_tv.setVisibility(View.INVISIBLE);
             for (int i = 0; i<char_list_array.size();i++) {
-                String name = char_list_array.get(i).split("-")[0];
-                String role = char_list_array.get(i).split("-")[1];
+                String name = char_list_array.get(i).split("/&&/")[0];
+                String role = char_list_array.get(i).split("/&&/")[1];
+                String gender = char_list_array.get(i).split("/&&/")[2];
+                Integer challengesDone = Integer.valueOf(char_list_array.get(i).split("/&&/")[3]);
+                Integer completionCheck = challengesDone*100/TOTAL_CHALLENGES;
+                if (completionCheck>=100){
+                    completion = "100";
+                } else {
+                 completion = String.valueOf(challengesDone*100/TOTAL_CHALLENGES);
+                }
                 String defaultImagePath = "android.resource://com.plotgen.rramirez.plotgenerator/drawable/ic_menu_camera";
-
                 String image = "";
-                for (int x =0; x<char_list_array.get(i).split("-").length;x++)
+                for (int x =0; x<char_list_array.get(i).split("/&&/").length;x++)
                 {
                     try {
-                        image += "-" + char_list_array.get(i).split("-")[x + 2];
+                        image += "-" + char_list_array.get(i).split("/&&/")[x + 4];
                     } catch (Exception e){
-                        Log.v("matilda", e.toString());
+                        Log.v("exceptions", e.toString());
                     }
                 }
-                if (!image.substring(1).equals("null") && !image.equals(" ")){
-                    mlist.add(new item_character_list(image.substring(2), name, role, ""));
+                if (!image.isEmpty()){
+                    mlist.add(new item_character_list(image.substring(1), name, role, gender,completion));
                 }
                 else {
-                    mlist.add(new item_character_list(defaultImagePath, name, role, ""));
+                    mlist.add(new item_character_list(defaultImagePath, name, role, gender,completion));
                 }
                 }
              }
@@ -134,19 +155,19 @@ public class CharListFragment extends Fragment {
         }
 
 
+        fabAddChar.setFabText(getString(R.string.add_char));
         fabAddChar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Common.charCreationMode = true;
                 CharacterFragment nextFragment = new CharacterFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                //boolean fragmentPopped = getFragmentManager().popBackStackImmediate(fragmentTag, 0);
-
-                Utils.changeFragment(nextFragment, transaction, "project_info", project_info);
-
+                Utils.changeFragment(nextFragment, transaction);
             }
         });
 
-        if (Utils.isHaveStoryFromDB(myFragmentView.getContext(), project_name_text))
+        fabAddStory.setFabText(getString(R.string.write_story));
+        if (Utils.isHaveStoryFromDB(myFragmentView.getContext(), project_id))
             fabAddStory.setFabText(getString(R.string.edit_story));
 
         fabAddStory.setOnClickListener(new View.OnClickListener() {
@@ -154,31 +175,50 @@ public class CharListFragment extends Fragment {
             public void onClick(View view) {
                 OfflineStoryFragment nextFragment = new OfflineStoryFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                Utils.changeFragment(nextFragment,transaction,"project_info",project_info);
+                Utils.changeFragment(nextFragment,transaction);
                 Bundle params = new Bundle();
                 params.putString("created_story", "started");
                 mFirebaseAnalytics.logEvent("created_story", params);
             }
         });
 
+        if(Common.onBoarding == 3){
+            Common.onBoarding = 4;
+            Utils.displayDialog(myFragmentView.getContext(), getString(R.string.onBoardingTitle_4), getString(R.string.onBoarding_4), "Got it!");
+        }
 
-        //Click on Delete Button
-        charlist_project_edit_btn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //Send it to the next fragment
-                Project_detailsFragment nextFragment = new Project_detailsFragment();
-                //Make the transaction
-                Bundle bundle = new Bundle();
-                bundle.putString("project_name", project_name_text);
-                //Send it to the next fragment
-                nextFragment.setArguments(bundle);
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.flMain, nextFragment);
-                transaction.commit();
-            }
-        });
+        if(Common.onBoarding == 5){
+            Common.onBoarding = 6;
+            Utils.displayDialog(myFragmentView.getContext(), getString(R.string.onBoardingTitle_6), getString(R.string.onBoarding_6), "Got it!");
+        }
+
 
         return myFragmentView;
+    }
+
+
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_charlist, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.menu_charlist_edit) {
+            //Send it to the next fragment
+            Project_detailsFragment nextFragment = new Project_detailsFragment();
+            //Make the transaction
+            Bundle bundle = new Bundle();
+            bundle.putString("project_name", project_name_text);
+            //Send it to the next fragment
+            nextFragment.setArguments(bundle);
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.flMain, nextFragment);
+            transaction.commit();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

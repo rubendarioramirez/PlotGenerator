@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,7 @@ public class ChallengeTemplateFragment extends Fragment  {
     TextView charTemplateTitle, question1Title, question1, question2Title, question2, question3Title, question3, question4Title, question4;
     private FirebaseAnalytics mFirebaseAnalytics;
     private InterstitialAd mInterstitialAd_challenge;
+    private Integer challengesCompleted;
     ArrayList<String> challenge_info;
 
 
@@ -51,9 +53,8 @@ public class ChallengeTemplateFragment extends Fragment  {
         // Obtain the FirebaseAnalytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(myFragmentView.getContext());
 
-
-        final String project_name  = this.getArguments().getString("char_name");
-        final String char_name = this.getArguments().getString("project_name");
+        final String project_name  = Common.currentCharacter.getProject_name();
+        final String char_name = Common.currentCharacter.getName();
         final String challenge_number = this.getArguments().getString("challenge_number");
 
         //Save button
@@ -71,8 +72,16 @@ public class ChallengeTemplateFragment extends Fragment  {
 
         ((MainActivity)getActivity()).setActionBarTitle(project_name);
         challenge_info = getDescription(myFragmentView.getContext(),char_name);
+
         charTemplateTitle.setText(char_name);
         String short_name = char_name.split(" ")[0];
+        try{
+        challengesCompleted = Integer.valueOf(challenge_info.get(44));
+        } catch (Exception e){
+            challengesCompleted = 0;
+        }
+        Log.v("matilda", "amount of challenges is: " + challengesCompleted);
+
         //Set titles for challenge one
         if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_1_title))) {
             question1Title.setText(getString(R.string.challenge_1_q1));
@@ -249,6 +258,7 @@ public class ChallengeTemplateFragment extends Fragment  {
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_EWR, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_EHP, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_EEF, question4.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_challengesCompleted, challengesCompleted+1);
             params.putString("Challenge", "challenge_1");
         }
         else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_2_title))){
@@ -256,42 +266,49 @@ public class ChallengeTemplateFragment extends Fragment  {
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C2Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C2Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C2Q4, question4.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_challengesCompleted, challengesCompleted+1);
             params.putString("Challenge", "challenge_2");
         }else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_3_title))){
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C3Q1, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C3Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C3Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C3Q4, question4.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_challengesCompleted, challengesCompleted+1);
             params.putString("Challenge", "challenge_3");
         }else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_4_title))){
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C4Q1, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C4Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C4Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C4Q4, question4.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_challengesCompleted, challengesCompleted+1);
             params.putString("Challenge", "challenge_4");
         }else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_5_title))){
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C5Q1, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C5Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C5Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C5Q4, question4.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_challengesCompleted, challengesCompleted+1);
             params.putString("Challenge", "challenge_5");
         }else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_6_title))){
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C6Q1, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C6Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C6Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C6Q4, question4.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_challengesCompleted, challengesCompleted+1);
             params.putString("Challenge", "challenge_6");
         }else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_7_title))){
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C7Q1, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C7Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C7Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C7Q4, question4.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_challengesCompleted, challengesCompleted+1);
             params.putString("Challenge", "challenge_7");
         }else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_8_title))){
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C8Q1, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C8Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C8Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C8Q4, question4.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_challengesCompleted, challengesCompleted+1);
             params.putString("Challenge", "challenge_8");
         }
         else if(challenge_number.equals(getContext().getResources().getString(R.string.c1_mentor_title))){
@@ -299,24 +316,28 @@ public class ChallengeTemplateFragment extends Fragment  {
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_MENTOR_Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_MENTOR_Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_MENTOR_Q4, question4.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_challengesCompleted, challengesCompleted+1);
             params.putString("Challenge", "challenge_mentor");
         } else if(challenge_number.equals(getContext().getResources().getString(R.string.c1_antagonist_title))){
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_ANTAGONIST_Q1, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_ANTAGONIST_Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_ANTAGONIST_Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_ANTAGONIST_Q4, question4.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_challengesCompleted, challengesCompleted+1);
             params.putString("Challenge", "challenge_antagonist");
         }else if(challenge_number.equals(getContext().getResources().getString(R.string.c1_sidekick_title))){
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_sidekick_Q1, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_sidekick_Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_sidekick_Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_sidekick_Q4, question4.getText().toString());
+            values.put(mySQLiteDBHelper.CHARACTER_COLUMN_challengesCompleted, challengesCompleted+1);
             params.putString("Challenge", "challenge_sidekick");
         }
         mFirebaseAnalytics.logEvent("challenge_completed",params);
         database.update(mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER, values,   "name = ?", new String[]{char_name});
+        Common.currentCharacter.setChallengesDone(challengesCompleted);
         //Come back to previous fragment
-        fragmentTransition(project_name,char_name);
+        fragmentTransition();
     }
 
 
@@ -384,19 +405,16 @@ public class ChallengeTemplateFragment extends Fragment  {
             char_list.add(cursor.getString(cursor.getColumnIndex("c1_sidekick_q3")));
             char_list.add(cursor.getString(cursor.getColumnIndex("c1_sidekick_q4")));
 
+            char_list.add(cursor.getString(cursor.getColumnIndex("challengesCompleted")));
+
             cursor.moveToNext();
         }
         cursor.close();
         return char_list;
     }
 
-    public void fragmentTransition(String project_name, String char_name){
-        Bundle bundle = new Bundle();
-        bundle.putString("project_name",project_name);
-        bundle.putString("char_name",char_name);
-        //Send it to the next fragment
+    public void fragmentTransition(){
         BioFragment nextFragment = new BioFragment();
-        nextFragment.setArguments(bundle);
         //Make the transaction
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.flMain,nextFragment);

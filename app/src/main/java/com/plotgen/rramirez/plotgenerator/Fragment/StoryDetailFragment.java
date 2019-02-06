@@ -415,7 +415,7 @@ public class StoryDetailFragment extends Fragment {
         if (id == R.id.menu_edit) {
             StoryEditFragment nextFragment = new StoryEditFragment();
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            Utils.changeFragment(nextFragment, transaction, "", "");
+            Utils.changeFragment(nextFragment, transaction);
             transaction.addToBackStack(null);
             return true;
         }

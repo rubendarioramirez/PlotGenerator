@@ -112,7 +112,7 @@ public class DiscoverFragment extends Fragment {
                         Common.currentGenre = mReference.child("genre").child(postRef.getKey()).getKey();
                         StoryFragment nextFragment = new StoryFragment();
                         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                        Utils.changeFragment(nextFragment, transaction, "", "");
+                        Utils.changeFragment(nextFragment, transaction);
                         transaction.addToBackStack(null);
                     }
                 });

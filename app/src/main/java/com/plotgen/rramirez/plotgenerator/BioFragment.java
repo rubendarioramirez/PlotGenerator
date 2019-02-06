@@ -11,17 +11,25 @@ import android.support.v4.app.FragmentTransaction;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
 import com.plotgen.rramirez.plotgenerator.Guides.GuideListFragment;
+import com.plotgen.rramirez.plotgenerator.Model.Character;
 
 import java.util.ArrayList;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 /**
@@ -29,12 +37,22 @@ import java.util.ArrayList;
  */
 public class BioFragment extends Fragment {
 
-    TextView title, role_subtitle, intro_tv, char_role_challenge, character_bio_challenge;
+    TextView intro_tv, char_role_challenge, character_bio_challenge;
     ArrayList<String> char_description;
-    ImageButton character_bio_edit_btn, character_bio_share_btn, guide_btn, character_bio_challenge_btn;
+//    ImageButton guide_btn, character_bio_challenge_btn;
     private FirebaseAnalytics mFirebaseAnalytics;
     private String fragmentTag = BioFragment.class.getSimpleName();
+    String char_name;
+    String project_name;
 
+    @BindView(R.id.fab_add_challenge)
+    com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton fabAddChallenge;
+    @BindView(R.id.fab_guide)
+    com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton fabCheckGuide;
+    @BindView(R.id.character_bio_name_title)
+    TextView title;
+    @BindView(R.id.character_bio_role_title)
+    TextView role_subtitle;
 
     public BioFragment() {
         // Required empty public constructor
@@ -44,30 +62,32 @@ public class BioFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
-        final String char_name = this.getArguments().getString("char_name");
-        final String project_name = this.getArguments().getString("project_name");
 
         final View myFragmentView = inflater.inflate(R.layout.fragment_bio, container, false);
-        ((MainActivity) getActivity()).setActionBarTitle(getString(R.string.character_list_tab));
         // Obtain the FirebaseAnalytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(myFragmentView.getContext());
+        ButterKnife.bind(this, myFragmentView);
 
         //Bind the elements
-        title = myFragmentView.findViewById(R.id.character_bio_name_title);
-        role_subtitle = myFragmentView.findViewById(R.id.character_bio_role_title);
         intro_tv = myFragmentView.findViewById(R.id.character_bio_intro);
         character_bio_challenge = myFragmentView.findViewById(R.id.character_bio_challenge);
-        character_bio_edit_btn = myFragmentView.findViewById(R.id.character_bio_edit_btn);
-        character_bio_share_btn = myFragmentView.findViewById(R.id.character_bio_share_btn);
-        character_bio_challenge_btn = myFragmentView.findViewById(R.id.bio_fragment_challenge_btn);
         char_role_challenge = myFragmentView.findViewById(R.id.char_role_challenge);
-        guide_btn = myFragmentView.findViewById(R.id.guide_btn);
+        char_description = new ArrayList<String>();
 
-        //Set the narrative
+
+        try{
+            char_name = Common.currentCharacter.getName();
+            Log.v("matilda", "Name is: " + Common.currentCharacter.getName());
+            Log.v("matilda", "Challenges done are: " + Common.currentCharacter.getChallengesDone());
+        } catch (Exception e){
+            Log.v("matilda", e.toString());
+        }
+
+
+        ((MainActivity) getActivity()).setActionBarTitle(char_name);
+        setHasOptionsMenu(true);
+
         char_description = getDescription(myFragmentView.getContext(), char_name);
-
         // changes done to check list size
         if (char_description.size() > 0) {
             String name = char_description.get(0);
@@ -144,6 +164,9 @@ public class BioFragment extends Fragment {
             String challenge8_q3 = char_description.get(60);
             String challenge8_q4 = char_description.get(61);
 
+
+            Common.currentCharacter.setGender(gender);
+            Common.currentCharacter.setRole(role);
 
             //Titles
             title.setText(char_name);
@@ -297,32 +320,7 @@ public class BioFragment extends Fragment {
             character_bio_challenge.setVisibility(View.VISIBLE);
             character_bio_challenge.setText(Html.fromHtml(sb.toString()));
 
-
-            character_bio_edit_btn.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    try {
-                        Bundle bundle = new Bundle();
-                        bundle.putString("char_name", char_name);
-                        bundle.putString("project_name", project_name);
-
-                        //Send it to the next fragment
-                        CharacterFragment nextFragment = new CharacterFragment();
-                        nextFragment.setArguments(bundle);
-                        //Make the transaction
-                        FragmentTransaction transaction = getFragmentManager()
-                                .beginTransaction()
-                                .setCustomAnimations(R.anim.slide_up, 0, 0, R.anim.slide_down);
-
-                        transaction.add(R.id.flMain, nextFragment);
-                        transaction.commit();
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-
-            guide_btn.setOnClickListener(new View.OnClickListener() {
+            fabCheckGuide.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     GuideListFragment nextFragment = new GuideListFragment();
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -330,21 +328,14 @@ public class BioFragment extends Fragment {
                     if (!fragmentPopped && getFragmentManager().findFragmentByTag(fragmentTag) == null) {
                         transaction.addToBackStack(null);
                     }
-                    Utils.changeFragment(nextFragment, transaction, "", "");
+                    Utils.changeFragment(nextFragment, transaction);
                 }
             });
 
-            character_bio_challenge_btn.setOnClickListener(new View.OnClickListener() {
+            fabAddChallenge.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     try {
-                        Bundle bundle = new Bundle();
-                        bundle.putString("char_name", char_name);
-                        bundle.putString("project_name", project_name);
-                        bundle.putString("role", role);
-                        bundle.putString("gender", gender);
-                        //Send it to the next fragment
                         ChallengeListFragment nextFragment = new ChallengeListFragment();
-                        nextFragment.setArguments(bundle);
                         //Make the transaction
                         FragmentTransaction transaction = getFragmentManager()
                                 .beginTransaction()
@@ -362,19 +353,15 @@ public class BioFragment extends Fragment {
                 }
             });
 
-            character_bio_share_btn.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    try {
-                        String allbody = intro_tv.getText().toString() + " \n" + character_bio_challenge.getText().toString() + " \n";
-                        String char_role = project_name + ": " + char_name + " - " + role;
-                        SHARE(myFragmentView, allbody, char_role);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-
         }
+
+
+        if(Common.onBoarding == 6){
+            Common.onBoarding = 7;
+            Utils.displayDialog(myFragmentView.getContext(), getString(R.string.onBoardingTitle_7), getString(R.string.onBoarding_7), "Got it!");
+        }
+
+
         return myFragmentView;
     }
 
@@ -382,7 +369,7 @@ public class BioFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        ((MainActivity) getActivity()).setActionBarTitle(getString(R.string.character_list_tab));
+        ((MainActivity) getActivity()).setActionBarTitle("");
     }
 
     public void SHARE(View view, String body, String char_name) {
@@ -493,5 +480,43 @@ public class BioFragment extends Fragment {
         return char_list;
     }
 
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_bio, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.menu_bio_edit) {
+            //Send it to the next fragment
+            try {
+                Common.charCreationMode = false;
+                //Send it to the next fragment
+                CharacterFragment nextFragment = new CharacterFragment();
+                //Make the transaction
+                FragmentTransaction transaction = getFragmentManager()
+                        .beginTransaction()
+                        .setCustomAnimations(R.anim.slide_up, 0, 0, R.anim.slide_down);
+                transaction.add(R.id.flMain, nextFragment);
+                transaction.commit();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return true;
+        }
+        else if (id == R.id.menu_bio_share){
+            try {
+                String allbody = intro_tv.getText().toString() + " \n" + character_bio_challenge.getText().toString() + " \n";
+                String char_role = project_name + ": " + char_name;
+                SHARE(getView(), allbody, char_role);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 }

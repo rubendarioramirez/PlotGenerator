@@ -54,30 +54,6 @@ public class HeroJourneyFragment extends Fragment {
             mAdView.loadAd(adRequest);
         }
 
-        //Get a firebase reference
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("hero_journey");
-
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {;
-
-                for (DataSnapshot childSnap : dataSnapshot.getChildren()){
-//                    Log.v("tmz",""+ childSnap.getValue(String.class)); //displays the key for the node
-                    String data = childSnap.getValue(String.class);
-                    String[] data_split = data.split(",");
-//                    Log.v("tmz",""+ data_split[0] + data_split[2]);
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-//                Log.w(TAG, "Failed to read value.", error.toException());
-            }
-        });
-
-
         //set up the recycler view with the adapter
         RecyclerView recyclerView = myFragmentView.findViewById(R.id.rv_herojourney);
         final Adapter_herojourney adapter = new Adapter_herojourney(this.getActivity(),mlist);

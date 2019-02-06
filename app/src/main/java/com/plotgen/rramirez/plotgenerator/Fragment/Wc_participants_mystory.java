@@ -76,10 +76,12 @@ public class Wc_participants_mystory extends Fragment {
 
         ButterKnife.bind(this, view);
 
-        mDatabase = FirebaseDatabase.getInstance();
-
-        mAuth = FirebaseAuth.getInstance();
-        mUser = mAuth.getCurrentUser();
+        mDatabase = Common.currentDatabase;
+        mAuth = Common.currentAuth;
+        mUser = Common.currentFirebaseUser;
+        mCommentReference = Common.currentCommentReference;
+        mUserReference = Common.currentUserReference;
+        Query query = Common.currentQuery.orderByChild("likeCount");
 
         mAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
             @Override
@@ -96,11 +98,16 @@ public class Wc_participants_mystory extends Fragment {
 
 
         mReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts");
-        mCommentReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("post-comments");
-        mUserReference = mDatabase.getReference().child("users");
+//        mCommentReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("post-comments");
+//        mUserReference = mDatabase.getReference().child("users");
 
-        Query query = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts").orderByChild("likeCount");
+//        Query query = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts").orderByChild("likeCount");
 
+
+//        mReference = Common.currentReference;
+//        mCommentReference = Common.currentCommentReference;
+//        mUserReference = Common.currentUserReference;
+//        Query query = Common.currentQuery.orderByChild("date");
 
 
         optionsMyPost = new FirebaseRecyclerOptions.Builder<Story>()
@@ -140,7 +147,7 @@ public class Wc_participants_mystory extends Fragment {
                             Common.currentStory = currentStory;
                             StoryDetailFragment nextFragment = new StoryDetailFragment();
                             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                            Utils.changeFragment(nextFragment, transaction, "", "");
+                            Utils.changeFragment(nextFragment, transaction);
                             transaction.addToBackStack(null);
                         }
                     });

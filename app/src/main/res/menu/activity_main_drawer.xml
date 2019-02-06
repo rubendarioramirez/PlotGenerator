@@ -12,10 +12,10 @@
             android:icon="@drawable/ic_character_black"
             android:title="@string/character_tab" />
 
-        <item
-            android:id="@+id/nav_discover"
-            android:icon="@drawable/exploration"
-            android:title="@string/discover" />
+        <!--<item-->
+            <!--android:id="@+id/nav_discover"-->
+            <!--android:icon="@drawable/exploration"-->
+            <!--android:title="@string/discover" />-->
 
         <item
             android:id="@+id/nav_trigger"

@@ -7,4 +7,6 @@ public class Constants {
     public static final String CHANNEL_DESCRIPTION = "mychanneldescription";
     public static final int THUMBNAIL_SIZE = 256;
 
+    public static final int TOTAL_CHALLENGES = 8;
+
 }

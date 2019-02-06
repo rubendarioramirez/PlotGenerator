@@ -949,4 +949,22 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="wc_recent">Recientes</string>
     <string name="wc_mystory">Mi historia</string>
 
+    <string name="char_empty">Estoy seguro que eres mas creativo que esto...</string>
+
+    <string name="onBoardingTitle_1">Bievenido a Auctor.</string>
+    <string name="onBoardingTitle_2">Donde todo empieza.</string>
+    <string name="onBoardingTitle_3">Selecciona tu proyecto.</string>
+    <string name="onBoardingTitle_4">¡Es la hora del personaje!</string>
+    <string name="onBoardingTitle_5">Relajate y disfruta.</string>
+    <string name="onBoardingTitle_6">Ya conoces la rutina.</string>
+    <string name="onBoardingTitle_7">Voila!</string>
+
+    <string name="onBoarding_1">Comenzar a escribir es difícil. Quizás mas difícil que terminar.\n¡Pero no te preocupes!.\nEstamos contigo.\n\nAdelante, aprieta el botón + para crear tu primer proyecto.</string>
+    <string name="onBoarding_2">Si aun no lo has hecho, ve y prepárate un café.\n\aquí crearas los detalles de tu proyecto.\n\Titulo, Genero y brevemente de que se trata la historia. A esto ultimo lo llamamos PLOT.\n\n¡No te estreses mucho!, Si no estas seguro/a de algo, siempre puedes cambiarlo luego.\nAprieta el botón de guardado cuando estés listo/a.</string>
+    <string name="onBoarding_3">Aquí veras todos tus proyectos. Cuantos como desees tener.\n\nAprieta en el que acabas de crear para continuar.</string>
+    <string name="onBoarding_4">Ahora le estas agarrando la mano.\nAprieta el botón + y elije Personajes</string>
+    <string name="onBoarding_5">Si aun no lo has hecho, ahora es cuando buscar ese café.\n\nAquí crearas a tu primer personaje. Si no tienes ideas, no te preocupes. Puedes hacerlo al azar.\n\nO que te parece combinarlo?. Puedes apretar el botón del dado y cuando te guste algún personaje simplemente cambia aquello que no te conforma.\n\nAdelante, pruébalo, ¡y si! Siempre puedes cambiarlo mas adelante.</string>
+    <string name="onBoarding_6">Adelante, selecciona el personaje que acabas de crear.</string>
+    <string name="onBoarding_7">Este es tu personaje. Aquí puedes tener una vista rápida de quien es.\n\nPero esto esta lejos de terminarse. Chequea el botón + contiene guías para entender como desarrollar personajes.\n\nPero mas importante, también tienes desafíos.\n\nMe encantaría explicarte mas, pero creo que es mejor que lo veas por ti mismo/a.</string>
+
 </resources>

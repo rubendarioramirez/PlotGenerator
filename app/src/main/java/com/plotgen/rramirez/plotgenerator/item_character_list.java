@@ -9,13 +9,15 @@ public class item_character_list {
     String image;
     String name;
     String role;
+    String gender;
     String completion;
 
 
-    public item_character_list(String image, String name, String role, String completion) {
+    public item_character_list(String image, String name, String role, String gender, String completion) {
         this.image = image;
         this.name = name;
         this.role = role;
+        this.gender = gender;
         this.completion = completion;
     }
 
@@ -45,6 +47,14 @@ public class item_character_list {
 
     public void setCompletion(String completion) {
         this.completion = completion;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }
 

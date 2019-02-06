@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -84,7 +85,6 @@ public class OfflineStoryFragment extends Fragment {
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
 
-
     public OfflineStoryFragment() {
         // Required empty public constructor
     }
@@ -97,7 +97,7 @@ public class OfflineStoryFragment extends Fragment {
         values.put(mySQLiteDBHelper.STORY_COLUMN_STORIES, mStory);
 
         if (isUpdate)
-            database.update(mySQLiteDBHelper.CHARACTER_TABLE_STORY, values, "project = ?", new String[]{project_name});
+            database.update(mySQLiteDBHelper.CHARACTER_TABLE_STORY, values, "project_id = ?", new String[]{project_id});
         else
             database.insert(mySQLiteDBHelper.CHARACTER_TABLE_STORY, null, values);
     }
@@ -138,22 +138,24 @@ public class OfflineStoryFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
-        final String project_info = this.getArguments().getString("project_info");
-        Log.e("project_info", project_info);
-        project_name = project_info.substring(2);
-        project_id = String.valueOf(project_info.charAt(0));
+        try {
+            project_name = Common.currentProject.getName();
+            project_id = Common.currentProject.getId();
+        } catch (Exception e){
+            Log.v("matilda", e.toString());
+        }
 
         mDatabase = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
         mUser = mAuth.getCurrentUser();
 
-        mStory = getStoryFromDB(view.getContext(), project_name);
+        mStory = getStoryFromDB(view.getContext(), project_id);
         //Save button
         FloatingActionButton fabSaveStory = view.findViewById(R.id.btnSaveStory);
         //publish button
         FloatingActionButton fabPublish = view.findViewById(R.id.btnPublish);
-
+        fabPublish.setVisibility(View.INVISIBLE);
 
         fabSaveStory.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -412,11 +414,11 @@ public class OfflineStoryFragment extends Fragment {
 
     }*/
 
-    private String getStoryFromDB(Context context, String project_name) {
+    private String getStoryFromDB(Context context, String project_id) {
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_STORY + " WHERE project = ?";
-        Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{project_name});
+        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_STORY + " WHERE project_id = ?";
+        Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{project_id});
         cursor.moveToFirst();
         String s = "";
         ArrayList<String> story_list = new ArrayList<String>();
@@ -436,7 +438,7 @@ public class OfflineStoryFragment extends Fragment {
     private void changeFragment() {
         ProjectFragment nextFragment = new ProjectFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        Utils.changeFragment(nextFragment, transaction, "", "");
+        Utils.changeFragment(nextFragment, transaction);
         getFragmentManager().popBackStack();
     }
 

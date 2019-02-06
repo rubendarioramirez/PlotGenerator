@@ -131,7 +131,7 @@ public class HomeFragment extends Fragment {
         Log.v("matilda", "current user is: " + currentUser.getDisplayName());
         ProjectFragment nextFragment = new ProjectFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        Utils.changeFragment(nextFragment, transaction, "", "");
+        Utils.changeFragment(nextFragment, transaction);
     };
 
 }

@@ -76,8 +76,13 @@ public class Wc_participants_recent extends Fragment {
 
         ButterKnife.bind(this, view);
 
-        mAuth = FirebaseAuth.getInstance();
-        mUser = mAuth.getCurrentUser();
+        mDatabase_recent = Common.currentDatabase;
+        mAuth = Common.currentAuth;
+        mUser = Common.currentFirebaseUser;
+        mCommentReference_recent = Common.currentCommentReference;
+        mUserReference_recent = Common.currentUserReference;
+
+        Query query_recents = Common.currentQuery.orderByChild("date");
 
         mAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
             @Override
@@ -92,21 +97,20 @@ public class Wc_participants_recent extends Fragment {
         mManager.setStackFromEnd(true);
         rvWeeklyChallenge.setLayoutManager(mManager);
 
-        mDatabase_recent = FirebaseDatabase.getInstance();
+
         mReference_recent = mDatabase_recent.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts");
-        mCommentReference_recent = mDatabase_recent.getReference().child(getString(R.string.weekly_challenge_db_name)).child("post-comments");
-        mUserReference_recent = mDatabase_recent.getReference().child("users");
+//        mCommentReference_recent = mDatabase_recent.getReference().child(getString(R.string.weekly_challenge_db_name)).child("post-comments");
+//        mUserReference_recent = mDatabase_recent.getReference().child("users");
+//      Query query_recents = mDatabase_recent.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts").orderByChild("date");
 
-        Query query_recents = mDatabase_recent.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts").orderByChild("date");
 
-
+//        mReference_recent = Common.currentReference;
+//        mCommentReference_recent = Common.currentCommentReference;
+//        mUserReference_recent = Common.currentUserReference;
+//        Query query_recents = Common.currentQuery.orderByChild("date");
         optionsMostRecent = new FirebaseRecyclerOptions.Builder<Story>()
                 .setQuery(query_recents, Story.class)
                 .build();
-
-
-
-
 
         populateWeeklyChallenge();
         rvWeeklyChallenge.setAdapter(mRecentAdapter);
@@ -140,7 +144,7 @@ public class Wc_participants_recent extends Fragment {
                             Common.currentStory = currentStory;
                             StoryDetailFragment nextFragment = new StoryDetailFragment();
                             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                            Utils.changeFragment(nextFragment, transaction, "", "");
+                            Utils.changeFragment(nextFragment, transaction);
                             transaction.addToBackStack(null);
                         }
                     });

@@ -17,7 +17,7 @@
         <item name="android:textColorPrimary">@color/headline</item>
         <item name="android:textColorSecondary">@color/content</item>
         <item name="alertDialogTheme">@style/AlertDialogCustom</item>
-        <item name="colorDivider">#356859</item>
+        <item name="colorDivider">@color/colorPrimary</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
     </style>
 
@@ -107,6 +107,30 @@
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
     </style>
 
+    <style name="AlertDialogCustom" parent="Theme.AppCompat.DayNight.Dialog.Alert">
+        <item name="colorPrimary">#FFFF</item>
+        <item name="colorAccent">#FFFF</item>
+        <item name="android:colorBackground">#29434e</item>
+        <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
+        <item name="android:textColor">#3bc13d</item>
+        <item name="android:textColorPrimary">#FFFF</item>
+        <item name="android:windowAnimationStyle">@style/customDialogAnimation</item>
+    </style>
+
+    <style name="customDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/fade_in_animation</item>
+        <item name="android:windowExitAnimation">@anim/fade_out_animation</item>
+    </style>
+
+
+    <style name="NegativeButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">#f00</item>
+    </style>
+
+    <style name="PositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">#3bc13d</item>
+    </style>
 
 
 </resources>

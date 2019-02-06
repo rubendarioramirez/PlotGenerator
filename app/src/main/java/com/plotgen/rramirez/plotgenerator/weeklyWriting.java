@@ -232,7 +232,7 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
                 }
                 SubmitStoryFragment nextFragment = new SubmitStoryFragment();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                Utils.changeFragment(nextFragment, transaction, "", "");
+                Utils.changeFragment(nextFragment, transaction);
                 transaction.addToBackStack(null);
             } else {
                 // Sign in failed
@@ -259,7 +259,7 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
                 // change to submit fragment in main activity
                 Wcc_stories nextFragment = new Wcc_stories();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                Utils.changeFragment(nextFragment, transaction, "", "");
+                Utils.changeFragment(nextFragment, transaction);
                 transaction.addToBackStack(null);
 
             } else {

@@ -76,7 +76,7 @@ public class StoryEditFragment extends Fragment {
 
         weekly_challenge_container nextFragment = new weekly_challenge_container();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        Utils.changeFragment(nextFragment,transaction,"","");
+        Utils.changeFragment(nextFragment,transaction);
     }
 
 
