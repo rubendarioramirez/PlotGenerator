@@ -101,8 +101,6 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
         ad_submit_btn.setVisibility(View.INVISIBLE);
         btViewParticipant.setVisibility(View.INVISIBLE);
 
-        Log.v("matilda", "on create it's saying that can submit is:" + can_submit);
-
         // Obtain the FirebaseAnalytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(myFragmentView.getContext());
         //Log challenges updated
@@ -255,7 +253,7 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
 
             // Successfully signed in
             if (resultCode == RESULT_OK) {
-                //
+
                 // change to submit fragment in main activity
                 Wcc_stories nextFragment = new Wcc_stories();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();

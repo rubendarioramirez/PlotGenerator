@@ -82,11 +82,11 @@ public class WeeklyChallengeFragment extends Fragment {
             mAuth = Common.currentAuth;
             mUser = Common.currentFirebaseUser;
 
-            try{
-                userUID = Common.currentUser.getUid();
-            } catch (Exception e){
-                Log.v("matida", e.toString());
-            }
+//            if(Common.currentUser.getUid() != null){
+//                userUID = Common.currentUser.getUid();
+//            } else {
+//                userUID = "";
+//            }
 
             mReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts");
             mCommentReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("post-comments");
@@ -153,12 +153,11 @@ public class WeeklyChallengeFragment extends Fragment {
                             transaction.addToBackStack(null);
                         }
                     });
-
-                    if (model.likes.containsKey(userUID)) {
-                        viewHolder.ivLoves.setImageResource(R.drawable.ic_love_red);
-                    } else {
-                        viewHolder.ivLoves.setImageResource(R.drawable.ic_love_outline);
-                    }
+                        if (model.likes.containsKey(Common.currentUser.getUid())) {
+                            viewHolder.ivLoves.setImageResource(R.drawable.ic_love_red);
+                        } else {
+                            viewHolder.ivLoves.setImageResource(R.drawable.ic_love_outline);
+                        }
 
                     View.OnClickListener likeClickListener = new View.OnClickListener() {
                         @Override
@@ -188,7 +187,7 @@ public class WeeklyChallengeFragment extends Fragment {
                     return Transaction.success(mutableData);
                 }
 
-                if (p.likes.containsKey(userUID)) {
+                if (p.likes.containsKey(Common.currentUser.getUid())) {
                     // Unstar the post and remove self from stars
                     p.likeCount = p.likeCount - 1;
                     p.likes.remove(Common.currentUser.getUid());

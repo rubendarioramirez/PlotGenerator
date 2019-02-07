@@ -351,7 +351,6 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
                                         mFirebaseAnalytics.logEvent("theme_selected", params);
                                         getActivity().recreate();
                                     }
-
                                 }
                             })
                             .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

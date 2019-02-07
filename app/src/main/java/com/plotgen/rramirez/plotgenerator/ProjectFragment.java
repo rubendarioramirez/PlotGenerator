@@ -1,7 +1,5 @@
 package com.plotgen.rramirez.plotgenerator;
 
-
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -14,8 +12,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toolbar;
-
 import com.google.android.gms.ads.AdView;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
@@ -24,6 +20,7 @@ import com.plotgen.rramirez.plotgenerator.Model.Project;
 import java.util.ArrayList;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
+import static com.plotgen.rramirez.plotgenerator.Common.Constants.debugMode;
 
 
 public class ProjectFragment extends Fragment {
@@ -90,16 +87,16 @@ public class ProjectFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
                 CharListFragment nextFragment = new CharListFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-                boolean fragmentPopped = getFragmentManager().popBackStackImmediate(fragmentTag, 0);
-                if (!fragmentPopped && getFragmentManager().findFragmentByTag(fragmentTag) == null) {
-
-                    Project project = new Project(projects_ids.get(position),project_names.get(position));
-                    Common.currentProject = project;
-                    Utils.changeFragment(nextFragment, transaction);
-                    transaction.addToBackStack(fragmentTag);
-                }
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                boolean fragmentPopped = getFragmentManager().popBackStackImmediate(fragmentTag, 0);
+//                if (!fragmentPopped && getFragmentManager().findFragmentByTag(fragmentTag) == null) {
+                Project project = new Project(projects_ids.get(position),project_names.get(position));
+                Common.currentProject = project;
+                transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
+                transaction.replace(R.id.flMain, nextFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+//                }
             }
         });
 
@@ -109,13 +106,21 @@ public class ProjectFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Common.projectCreationMode = true;
+
+                if(debugMode)
+                Log.i("matilda", "Creation mode is: " + Common.projectCreationMode + " at Project ProjectList");
+
                 Project_detailsFragment nextFragment = new Project_detailsFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                Log.e("story stack size", getFragmentManager().getBackStackEntryCount() + " " + fragmentTag);
-                boolean fragmentPopped = getFragmentManager().popBackStackImmediate(fragmentTag, 0);
-                if (!fragmentPopped && getFragmentManager().findFragmentByTag(fragmentTag) == null) {
-                    Utils.changeFragment(nextFragment, transaction);
-                }
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+//  Log.e("story stack size", getFragmentManager().getBackStackEntryCount() + " " + fragmentTag);
+//                boolean fragmentPopped = getFragmentManager().popBackStackImmediate(fragmentTag, 0);
+//                if (!fragmentPopped && getFragmentManager().findFragmentByTag(fragmentTag) == null) {
+                transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
+                transaction.replace(R.id.flMain, nextFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+
+//                }
             }
         });
 

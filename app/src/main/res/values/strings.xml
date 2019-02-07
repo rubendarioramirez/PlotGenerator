@@ -109,6 +109,7 @@
         <item>Young adult fiction</item>
         <item>Dystopia</item>
         <item>Action thriller</item>
+        <item>Comedy</item>
     </string-array>
 
     <string name="project_summary">Plot Summary</string>
@@ -891,7 +892,7 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="comments">Comments</string>
     <string name="write_a_comment">Write a comment...</string>
     <string name="post">Post</string>
-    <string name="my_profile">My Profile</string>
+    <string name="my_profile">Profile</string>
     <string name="info">Info</string>
     <string name="must_login">You must logged in to see your profile</string>
 
@@ -971,6 +972,11 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="gender_male_posesive">his</string>
     <string name="gender_female_posesive">her</string>
 
+
+
+    <string name="challenge_fab">Challenges</string>
+    <string name="guides_fab">Guides</string>
+
     <!--Weekly writing strings-->
     <string name="weekly_challenge_tab1">On Going</string>
     <string name="weekly_challenge_tab2">Last winner</string>
@@ -979,7 +985,6 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="wc_most_voted">Most voted</string>
     <string name="wc_recent">Recent</string>
     <string name="wc_mystory">My story</string>
-
 
     <string name="char_empty">I\'m sure you are more creative than that...</string>
 

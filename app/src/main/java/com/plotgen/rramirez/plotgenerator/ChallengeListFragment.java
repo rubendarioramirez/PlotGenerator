@@ -38,11 +38,6 @@ public class ChallengeListFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         ((MainActivity)getActivity()).setActionBarTitle(getString(R.string.challenge_action_bar));
-//        final String char_name = this.getArguments().getString("char_name");
-//        final String project_name = this.getArguments().getString("project_name");
-//        final String role = this.getArguments().getString("role");
-//        final String gender = this.getArguments().getString("gender");
-        // Inflate the layout for this fragment
 
         final String char_name = Common.currentCharacter.getName();
         final String project_name = Common.currentCharacter.getProject_name();

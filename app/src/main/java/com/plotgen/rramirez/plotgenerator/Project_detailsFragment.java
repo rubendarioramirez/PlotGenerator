@@ -51,6 +51,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
+import static com.plotgen.rramirez.plotgenerator.Common.Constants.debugMode;
 
 
 /**
@@ -65,6 +66,7 @@ public class Project_detailsFragment extends Fragment {
     Spinner project_genre_spinner;
     String project_name_text;
     FloatingActionButton fab_save;
+    FloatingActionButton fab_delete;
     ArrayList<String> project_description;
     private FirebaseAnalytics mFirebaseAnalytics;
     private ImageView project_icon_iv;
@@ -91,13 +93,17 @@ public class Project_detailsFragment extends Fragment {
         project_name_et = myFragmentView.findViewById(R.id.project_name_et);
         project_plot_et = myFragmentView.findViewById(R.id.project_plot_et);
         project_icon_iv = myFragmentView.findViewById(R.id.project_icon);
-        final FloatingActionButton fab_save = myFragmentView.findViewById(R.id.project_add_submit);
-        final FloatingActionButton fab_delete = myFragmentView.findViewById(R.id.project_detail_delete);
+        fab_save = myFragmentView.findViewById(R.id.project_add_submit);
+        fab_delete = myFragmentView.findViewById(R.id.project_detail_delete);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(myFragmentView.getContext());
 
-        mDatabase = Common.currentDatabase;
-        mAuth = Common.currentAuth;
-        mUser = Common.currentFirebaseUser;
+//        mDatabase = Common.currentDatabase;
+//        mAuth = Common.currentAuth;
+//        mUser = Common.currentFirebaseUser;
+
+
+        if(debugMode)
+        Log.i("matilda", "Creation mode is: " + Common.projectCreationMode + " at Project details");
 
         //Role spinner functions
         project_genre_spinner = myFragmentView.findViewById(R.id.project_genre_spinner);
@@ -105,6 +111,10 @@ public class Project_detailsFragment extends Fragment {
         genre_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         project_genre_spinner.setAdapter(genre_adapter);
 
+        //Make sure the right buttons are appearing.
+        setupUI();
+
+        //Make sure you can click on the pick
         project_icon_iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -115,7 +125,6 @@ public class Project_detailsFragment extends Fragment {
         if (!Common.projectCreationMode) {
             //Update mode
             project_name_text = Common.currentProject.getName();
-            Log.v("matilda", "Called from projectDetails " + project_name_text);
             project_list_array = Utils.getProject(this.getContext(), project_name_text);
             if (project_list_array != null && !project_list_array.isEmpty()) {
                 project_name_et.setText(project_list_array.get(0));
@@ -156,17 +165,8 @@ public class Project_detailsFragment extends Fragment {
                     } else if (project_genre.equals("Thriller") || project_genre.equals("Action thriller")) {
                         project_genre_spinner.setSelection(14);
                     }
-                    //project_icon_iv.setImageURI(Uri.parse(project_description.get(2)));
                     updateMode = true;
                 }
-//                else {
-//                    //make it back to project
-//                    ProjectFragment nextFragment = new ProjectFragment();
-//                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-//                    Utils.changeFragment(nextFragment, transaction);
-//                    getFragmentManager().popBackStack();
-//
-//                }
             }
         }
 
@@ -179,16 +179,11 @@ public class Project_detailsFragment extends Fragment {
                 } else {
                     if (!Common.projectCreationMode) {
                         updateDB();
-                        fab_delete.setVisibility(View.INVISIBLE);
                     } else {
                         saveToDB(project_name_et, project_plot_et, project_genre_spinner);
                         Common.projectCreationMode = false;
-                        fab_delete.setVisibility(View.VISIBLE);
                     }
-                    ProjectFragment nextFragment = new ProjectFragment();
-                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    Utils.changeFragment(nextFragment, transaction);
-                    getFragmentManager().popBackStack();
+                    fragmentTransaction();
                 }
             }
         });
@@ -210,14 +205,7 @@ public class Project_detailsFragment extends Fragment {
                                 // continue with delete
                                 //deleteFromStories();
                                 Utils.deleteFromDB(view.getContext(), project_name_text);
-                                ProjectFragment nextFragment = new ProjectFragment();
-                                //Make the transaction
-                                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-                                Utils.changeFragment(nextFragment, transaction);
-                                getFragmentManager().popBackStack();
-
-                                //transaction.addToBackStack(null);
+                                fragmentTransaction();
                             }
                         })
                         .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -264,14 +252,6 @@ public class Project_detailsFragment extends Fragment {
         values.put(mySQLiteDBHelper.PROJECT_COLUMN_IMAGE, filepath);
         database.update(mySQLiteDBHelper.CHARACTER_TABLE_PROJECT, values, "project = ?", new String[]{project_name_text.toString()});
         database.close();
-        //Come back to previous fragment
-        ProjectFragment nextFragment = new ProjectFragment();
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-        Utils.changeFragment(nextFragment, transaction);
-        getFragmentManager().popBackStack();
-
-        //transaction.addToBackStack(null);
     }
 
     private void deleteFromStories() {
@@ -435,6 +415,24 @@ public class Project_detailsFragment extends Fragment {
                 }
                 break;
             default:
+        }
+    }
+
+    private void fragmentTransaction(){
+        ProjectFragment nextFragment = new ProjectFragment();
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
+        transaction.replace(R.id.flMain, nextFragment);
+        getActivity().getSupportFragmentManager().popBackStack();
+        transaction.commit();
+    }
+
+    private void setupUI(){
+        if(Common.projectCreationMode){
+            fab_delete.hide();
+        }
+        else{
+            fab_delete.show();
         }
     }
 

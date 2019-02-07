@@ -91,6 +91,7 @@
         <item>Ficción para jovenes</item>
         <item>Dystopia</item>
         <item>Thriller</item>
+        <item>Comedia</item>
     </string-array>
 
     <string name="project_summary">Resumen del Plot</string>
@@ -877,7 +878,7 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="comments">Comentarios</string>
     <string name="write_a_comment">Escribe un comentario</string>
     <string name="post">Post</string>
-    <string name="my_profile">Mi perfil</string>
+    <string name="my_profile">Perfil</string>
     <string name="info">Info</string>
     <string name="must_login">Debes iniciar sesion para ver esta parte</string>
 
@@ -948,6 +949,10 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="wc_most_voted">Mas votado</string>
     <string name="wc_recent">Recientes</string>
     <string name="wc_mystory">Mi historia</string>
+
+
+    <string name="challenge_fab">Desafíos</string>
+    <string name="guides_fab">Guías</string>
 
     <string name="char_empty">Estoy seguro que eres mas creativo que esto...</string>
 

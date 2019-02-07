@@ -62,7 +62,8 @@ public class Adapter_characterList extends RecyclerView.Adapter<Adapter_characte
         }
         holder.name.setText(mData.get(position).getName());
         holder.role.setText(mData.get(position).getRole());
-        holder.completion.setText(mData.get(position).getCompletion() + "%");
+//        holder.completion.setText(mData.get(position).getCompletion() + "%");
+        holder.completion.setText("");
     }
 
     @Override

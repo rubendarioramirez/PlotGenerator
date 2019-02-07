@@ -205,7 +205,9 @@ public class Utils extends Fragment{
         //Make the transaction
         transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
         transaction.replace(R.id.flMain, nextFragment);
+        transaction.addToBackStack(null);
         transaction.commit();
+
     }
 
 

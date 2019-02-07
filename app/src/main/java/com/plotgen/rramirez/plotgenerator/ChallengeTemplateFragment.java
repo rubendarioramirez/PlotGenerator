@@ -80,7 +80,6 @@ public class ChallengeTemplateFragment extends Fragment  {
         } catch (Exception e){
             challengesCompleted = 0;
         }
-        Log.v("matilda", "amount of challenges is: " + challengesCompleted);
 
         //Set titles for challenge one
         if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_1_title))) {
@@ -418,8 +417,8 @@ public class ChallengeTemplateFragment extends Fragment  {
         //Make the transaction
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.flMain,nextFragment);
+        transaction.addToBackStack(null);
         transaction.commit();
-        getFragmentManager().popBackStack();
 
     }
 

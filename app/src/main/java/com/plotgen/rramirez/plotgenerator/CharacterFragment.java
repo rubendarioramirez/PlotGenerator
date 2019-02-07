@@ -2,6 +2,7 @@ package com.plotgen.rramirez.plotgenerator;
 
 
 import android.Manifest;
+import android.app.FragmentManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -45,6 +46,7 @@ import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
 import com.plotgen.rramirez.plotgenerator.Model.Character;
+import com.plotgen.rramirez.plotgenerator.Model.Project;
 
 import org.apache.commons.lang3.text.WordUtils;
 
@@ -56,6 +58,7 @@ import java.util.Random;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static android.app.Activity.RESULT_OK;
 import static com.plotgen.rramirez.plotgenerator.Common.Constants.THUMBNAIL_SIZE;
+import static com.plotgen.rramirez.plotgenerator.Common.Constants.debugMode;
 
 
 public class CharacterFragment extends Fragment {
@@ -97,13 +100,14 @@ public class CharacterFragment extends Fragment {
         // Obtain the FirebaseAnalytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(myFragmentView.getContext());
 
-        try{
-            project_name = Common.currentProject.getName();
-            project_id = Common.currentProject.getId();
+        project_name = Common.currentProject.getName();
+        project_id = Common.currentProject.getId();
+        if(!Common.charCreationMode) {
             name_text = Common.currentCharacter.getName();
-        } catch (Exception e) {
-            name_text = "";
         }
+
+        if(debugMode)
+            Log.v("matilda", "In character fragments the name is " + project_name + " the id is " + project_id + "and the char name is " + name_text);
 
         //Get if rated already
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(myFragmentView.getContext());
@@ -439,7 +443,8 @@ public class CharacterFragment extends Fragment {
         Bundle params = new Bundle();
         params.putString("Character", "completed");
         mFirebaseAnalytics.logEvent("character_created", params);
-        fragmentTransition();
+
+      fragmentTransition();
     }
 
     private void deleteFromDB(String name_char) {
@@ -450,6 +455,7 @@ public class CharacterFragment extends Fragment {
         params.putString("Character", "deleted");
         mFirebaseAnalytics.logEvent("character_deleted", params);
 
+        //Make sure you can't come back here
         fragmentTransition();
     }
 
@@ -480,6 +486,8 @@ public class CharacterFragment extends Fragment {
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PHRASE, phrase_et.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_IMAGE, filepath);
         database.update(mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER, values, "name = ?", new String[]{name_text.toString()});
+
+        //Make sure you can't come back here
         fragmentTransition();
 
     }
@@ -521,10 +529,16 @@ public class CharacterFragment extends Fragment {
 
 
     public void fragmentTransition() {
-        CharListFragment nextFragment = new CharListFragment();
+        //Make sure you can't come back here
+        ProjectFragment nextFragment = new ProjectFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        Utils.changeFragment(nextFragment, transaction);
+        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
+        transaction.replace(R.id.flMain, nextFragment);
+        getActivity().getSupportFragmentManager().popBackStackImmediate();
+//        transaction.addToBackStack(null);
+        transaction.commit();
     }
+
 
     private void showProfileImageDialog() {
         final BottomSheetDialog dialog = new BottomSheetDialog(myFragmentView.getContext(), R.style.bottom_dialog_theme);
@@ -642,6 +656,8 @@ public class CharacterFragment extends Fragment {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 
 
 

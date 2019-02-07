@@ -1,21 +1,12 @@
 package com.plotgen.rramirez.plotgenerator;
 
 
-import android.content.ContentResolver;
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
+
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.support.annotation.AnyRes;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -23,27 +14,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
-
 import com.google.android.gms.ads.AdView;
 import com.google.firebase.analytics.FirebaseAnalytics;
-import com.plotgen.rramirez.plotgenerator.Common.Adapter_challenges;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Fragment.OfflineStoryFragment;
-import com.plotgen.rramirez.plotgenerator.Fragment.StoryEditFragment;
-
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -161,8 +140,12 @@ public class CharListFragment extends Fragment {
             public void onClick(View view) {
                 Common.charCreationMode = true;
                 CharacterFragment nextFragment = new CharacterFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                Utils.changeFragment(nextFragment, transaction);
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
+                transaction.replace(R.id.flMain, nextFragment);
+                getActivity().getSupportFragmentManager().popBackStack();
+                transaction.commit();
+                //                Utils.changeFragment(nextFragment, transaction);
             }
         });
 
@@ -206,17 +189,20 @@ public class CharListFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.menu_charlist_edit) {
-            //Send it to the next fragment
-            Project_detailsFragment nextFragment = new Project_detailsFragment();
-            //Make the transaction
-            Bundle bundle = new Bundle();
-            bundle.putString("project_name", project_name_text);
-            //Send it to the next fragment
-            nextFragment.setArguments(bundle);
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.replace(R.id.flMain, nextFragment);
-            transaction.commit();
-            return true;
+            if(Common.currentProject.getName() != null) {
+                //Send it to the next fragment
+                Project_detailsFragment nextFragment = new Project_detailsFragment();
+                //Make the transaction
+                Bundle bundle = new Bundle();
+                bundle.putString("project_name", project_name_text);
+                //Send it to the next fragment
+                nextFragment.setArguments(bundle);
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
+                transaction.replace(R.id.flMain, nextFragment);
+                transaction.commit();
+                return true;
+            }
         }
         return super.onOptionsItemSelected(item);
     }

@@ -112,7 +112,7 @@ public class Adapter_challenges extends RecyclerView.Adapter<Adapter_challenges.
             }else if (clicked.equals(view.getContext().getResources().getString(R.string.lajos_character_title))){
                     //Send it to the next fragment
                     GuideLajosFragment nextFragment = new GuideLajosFragment();
-                 nextGuideFragment(view,nextFragment);
+                    nextGuideFragment(view,nextFragment);
             }else if (clicked.equals(view.getContext().getResources().getString(R.string.change_arc_title))){
                     //Send it to the next fragment
                     GuideWeilandFragment nextFragment = new GuideWeilandFragment();
@@ -138,6 +138,7 @@ public class Adapter_challenges extends RecyclerView.Adapter<Adapter_challenges.
         FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
         transaction.replace(R.id.flMain, nextFragment);
+        transaction.addToBackStack(null);
         transaction.commit();
         }
 
@@ -148,6 +149,7 @@ public class Adapter_challenges extends RecyclerView.Adapter<Adapter_challenges.
             FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
             transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
             transaction.replace(R.id.flMain,nextFragment);
+            transaction.addToBackStack(null);
             transaction.commit();
 
         }

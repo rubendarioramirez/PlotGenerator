@@ -36,6 +36,7 @@ import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
+import com.plotgen.rramirez.plotgenerator.CharListFragment;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
@@ -436,10 +437,11 @@ public class OfflineStoryFragment extends Fragment {
     }
 
     private void changeFragment() {
-        ProjectFragment nextFragment = new ProjectFragment();
+        CharListFragment nextFragment = new CharListFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         Utils.changeFragment(nextFragment, transaction);
-        getFragmentManager().popBackStack();
+        transaction.addToBackStack(null);
+        // getFragmentManager().popBackStack();
     }
 
 

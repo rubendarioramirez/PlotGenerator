@@ -344,7 +344,7 @@ public class BioFragment extends Fragment {
                         if (!fragmentPopped && getFragmentManager().findFragmentByTag(fragmentTag) == null) {
                             transaction.addToBackStack(null);
                         }
-                        transaction.add(R.id.flMain, nextFragment);
+                        transaction.replace(R.id.flMain, nextFragment);
                         transaction.commit();
 
                     } catch (Exception e) {
@@ -498,7 +498,8 @@ public class BioFragment extends Fragment {
                 FragmentTransaction transaction = getFragmentManager()
                         .beginTransaction()
                         .setCustomAnimations(R.anim.slide_up, 0, 0, R.anim.slide_down);
-                transaction.add(R.id.flMain, nextFragment);
+                transaction.replace(R.id.flMain, nextFragment);
+                transaction.addToBackStack(null);
                 transaction.commit();
 
             } catch (Exception e) {
