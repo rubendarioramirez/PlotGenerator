@@ -9,8 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.R;
-import com.plotgen.rramirez.plotgenerator.weeklyWriting;
 
 
 public class Wcc_stories extends Fragment {
@@ -28,7 +31,18 @@ public class Wcc_stories extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.wcc_stories, container, false);
+        View view = inflater.inflate(R.layout.wcc_stories, container, false);
+
+        FirebaseDatabase mDatabase = Common.currentDatabase;
+        DatabaseReference mReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts");
+        DatabaseReference mCommentReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("post-comments");
+        DatabaseReference mUserReference = mDatabase.getReference().child("users");
+
+        Query query = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts");
+        Common.currentQuery = query;
+        Common.currentUserReference = mUserReference;
+        Common.currentCommentReference = mCommentReference;
+
         return view;
 
 
@@ -65,7 +79,6 @@ public class Wcc_stories extends Fragment {
         tabLayout.setupWithViewPager(mViewPager);
 
     }
-
 
 
     private void setupViewPager(ViewPager viewPager) {

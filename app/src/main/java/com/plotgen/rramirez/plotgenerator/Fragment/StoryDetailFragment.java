@@ -186,7 +186,7 @@ public class StoryDetailFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
-        mDatabase = FirebaseDatabase.getInstance();
+        mDatabase = Common.currentDatabase;
         mPostReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts").child(Common.currentStory.getId());
         mCommentReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("post-comments").child(Common.currentStory.getId());
         mUserReference = mDatabase.getReference().child("users");

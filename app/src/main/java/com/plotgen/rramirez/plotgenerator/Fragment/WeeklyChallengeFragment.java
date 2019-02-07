@@ -48,6 +48,7 @@ public class WeeklyChallengeFragment extends Fragment {
 
     @BindView(R.id.rvWeeklyChalenge)
     RecyclerView rvWeeklyChallenge;
+
     FirebaseRecyclerOptions<Story> options;
     private FirebaseRecyclerAdapter<Story, StoryViewHolder> mAdapter;
     private FirebaseAuth mAuth;
@@ -78,25 +79,27 @@ public class WeeklyChallengeFragment extends Fragment {
         ButterKnife.bind(this, view);
 
 
-            mDatabase = Common.currentDatabase;
-            mAuth = Common.currentAuth;
-            mUser = Common.currentFirebaseUser;
-
+        mDatabase = Common.currentDatabase;
+        mAuth = Common.currentAuth;
+        mUser = Common.currentFirebaseUser;
+        mCommentReference = Common.currentCommentReference;
+        mUserReference = Common.currentUserReference;
+        Query mostVoted = Common.currentQuery.orderByChild("likeCount");
 //            if(Common.currentUser.getUid() != null){
 //                userUID = Common.currentUser.getUid();
 //            } else {
 //                userUID = "";
 //            }
 
-            mReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts");
+            /*mReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts");
             mCommentReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("post-comments");
-            mUserReference = mDatabase.getReference().child("users");
+            mUserReference = mDatabase.getReference().child("users");*/
 
-            Query query = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts");
-            Query mostVoted = query.orderByChild("likeCount");
-            Common.currentQuery = query;
+        //   Query query = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts");
+
+           /* Common.currentQuery = query;
             Common.currentUserReference = mUserReference;
-            Common.currentCommentReference = mCommentReference;
+            Common.currentCommentReference = mCommentReference;*/
 
 
         mAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
@@ -111,7 +114,6 @@ public class WeeklyChallengeFragment extends Fragment {
         mManager.setReverseLayout(true);
         mManager.setStackFromEnd(true);
         rvWeeklyChallenge.setLayoutManager(mManager);
-
 
         options = new FirebaseRecyclerOptions.Builder<Story>()
                 .setQuery(mostVoted, Story.class)
@@ -153,11 +155,11 @@ public class WeeklyChallengeFragment extends Fragment {
                             transaction.addToBackStack(null);
                         }
                     });
-                        if (model.likes.containsKey(Common.currentUser.getUid())) {
-                            viewHolder.ivLoves.setImageResource(R.drawable.ic_love_red);
-                        } else {
-                            viewHolder.ivLoves.setImageResource(R.drawable.ic_love_outline);
-                        }
+                    if (model.likes.containsKey(Common.currentUser.getUid())) {
+                        viewHolder.ivLoves.setImageResource(R.drawable.ic_love_red);
+                    } else {
+                        viewHolder.ivLoves.setImageResource(R.drawable.ic_love_outline);
+                    }
 
                     View.OnClickListener likeClickListener = new View.OnClickListener() {
                         @Override

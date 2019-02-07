@@ -47,7 +47,6 @@ import com.google.firebase.iid.InstanceIdResult;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Constants;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
-import com.plotgen.rramirez.plotgenerator.Fragment.DiscoverFragment;
 import com.plotgen.rramirez.plotgenerator.Fragment.PremiumFragment;
 import com.plotgen.rramirez.plotgenerator.Fragment.ProfileFragment;
 import com.plotgen.rramirez.plotgenerator.Fragment.StoryDetailFragment;
@@ -63,6 +62,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity
         implements BillingProcessor.IBillingHandler, NavigationView.OnNavigationItemSelectedListener {
 
+    static boolean calledAlready = false;
     public BillingProcessor bp;
     NavigationView navigationView;
     private InterstitialAd mInterstitialAd;
@@ -72,8 +72,6 @@ public class MainActivity extends AppCompatActivity
     private DatabaseReference mUserDatabase;
     private String firebase_token;
     private FirebaseAuth mAuth;
-    static boolean calledAlready = false;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +85,7 @@ public class MainActivity extends AppCompatActivity
             setTheme(R.style.OpaqueTheme);
         } else if (selectedTheme == 3) {
             setTheme(R.style.AutumnTheme);
-        }else if (selectedTheme == 4) {
+        } else if (selectedTheme == 4) {
             setTheme(R.style.MetalTheme);
         }
 
@@ -103,8 +101,7 @@ public class MainActivity extends AppCompatActivity
         mUser = mAuth.getCurrentUser();
         Common.currentFirebaseUser = mUser;
 
-        if (!calledAlready)
-        {
+        if (!calledAlready) {
             mDatabase = FirebaseDatabase.getInstance();
             mDatabase.setPersistenceEnabled(true);
             calledAlready = true;
@@ -207,6 +204,7 @@ public class MainActivity extends AppCompatActivity
 
             if (id != null) {
                 if (title.equalsIgnoreCase("Weekly Challenge")) {
+                    Log.v("story fragment", id);
                     openStoryFragment(id);
                 } else if (title.equalsIgnoreCase("Stories")) {
                     openUserStoryFragment(id);
@@ -230,6 +228,7 @@ public class MainActivity extends AppCompatActivity
                         // Get the deep link
                         Uri deepLink = data.getLink();
                         String id = deepLink.getQueryParameter("id");
+                        Log.v("story fragment", id + " " + deepLink);
                         openStoryFragment(id);
                     }
                 })
@@ -263,6 +262,8 @@ public class MainActivity extends AppCompatActivity
         });
 
         updateUI();
+
+        System.gc();
 
     }
 
@@ -300,7 +301,7 @@ public class MainActivity extends AppCompatActivity
     private void openStoryFragment(final String id) {
         final DatabaseReference mPostReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts");
         Query query = mPostReference.child(id).orderByChild("id");
-
+        Log.e("story fragments", id);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -310,10 +311,11 @@ public class MainActivity extends AppCompatActivity
                         photoUrl = mUser.getPhotoUrl().toString();
                     Common.currentUser = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail(), photoUrl, mUser.getPhotoUrl());
                     Common.currentStory = dataSnapshot.getValue(Story.class);
+                    Log.e("story fragments", dataSnapshot.getKey());
                     StoryDetailFragment nextFragment = new StoryDetailFragment();
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                     Utils.changeFragment(nextFragment, transaction);
-                    getSupportFragmentManager().popBackStack();
+                    //getSupportFragmentManager().popBackStack();
                     navigationView.setCheckedItem(R.id.nav_writting_challenge);
 
                 } else {
