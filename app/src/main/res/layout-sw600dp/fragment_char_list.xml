@@ -8,39 +8,6 @@
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="25dp">
 
-
-    <!--<TextView-->
-        <!--android:id="@+id/project_list_tv"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="16dp"-->
-        <!--android:text="Project Name - Drama"-->
-        <!--android:textAppearance="@style/TextAppearance.AppCompat.Display1"-->
-        <!--android:textColor="?android:attr/textColorPrimary"-->
-        <!--app:layout_constraintHorizontal_bias="0.498"-->
-        <!--app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--app:layout_constraintRight_toRightOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent"-->
-        <!--tools:layout_constraintLeft_creator="1"-->
-        <!--tools:layout_constraintRight_creator="1"-->
-        <!--tools:layout_constraintTop_creator="1" />-->
-
-    <!--<ImageButton-->
-        <!--android:id="@+id/charlist_project_edit_btn"-->
-        <!--android:layout_width="40dp"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_marginEnd="8dp"-->
-        <!--android:layout_marginLeft="8dp"-->
-        <!--android:layout_marginRight="8dp"-->
-        <!--android:layout_marginStart="8dp"-->
-        <!--android:layout_marginTop="16dp"-->
-        <!--android:background="#00000000"-->
-        <!--android:src="@android:drawable/ic_menu_edit"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintHorizontal_bias="0.974"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent" />-->
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/character_list_lv"
         android:layout_width="0dp"
@@ -73,21 +40,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <!--<android.support.design.widget.FloatingActionButton-->
-        <!--android:id="@+id/add_character_btn"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="bottom|end"-->
-        <!--android:layout_margin="@dimen/fab_margin"-->
-        <!--android:layout_marginBottom="8dp"-->
-        <!--android:layout_marginEnd="8dp"-->
-        <!--android:layout_marginRight="8dp"-->
-        <!--android:elevation="10dp"-->
-        <!--android:src="@android:drawable/ic_input_add"-->
-        <!--app:borderWidth="0dp"-->
-        <!--app:layout_constraintBottom_toTopOf="@+id/adView_char_list"-->
-        <!--app:layout_constraintEnd_toEndOf="parent" />-->
 
     <TextView
 

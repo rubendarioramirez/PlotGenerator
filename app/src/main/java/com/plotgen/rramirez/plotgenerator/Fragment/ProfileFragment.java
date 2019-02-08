@@ -78,7 +78,7 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
     private FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.getInstance();
 
 
-    String selection;
+    String selection = "";
     String[] themes;
 
     @BindView(R.id.loginLayout)
@@ -306,50 +306,52 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
+                                    if (!selection.equals("")) {
                                         if (selection.equals("Dark Theme")) {
-                                        if(Common.isPAU) {
-                                            Utils.saveOnSharePreg(getContext(), "selectedTheme", 1);
-                                            Bundle params = new Bundle();
-                                            params.putString("theme_chosen", "dark_theme");
-                                            mFirebaseAnalytics.logEvent("theme_selected", params);
-                                            getActivity().recreate();
-                                        } else {
-                                            displayPayDulu();
-                                        }
-                                    } else if (selection.equals("Romance Theme")) {
-                                        if(Common.isPAU) {
-                                            Utils.saveOnSharePreg(getContext(), "selectedTheme", 2);
-                                            Bundle params = new Bundle();
-                                            params.putString("theme_chosen", "romance_theme");
-                                            mFirebaseAnalytics.logEvent("theme_selected", params);
-                                            getActivity().recreate();
-                                        } else {
-                                            displayPayDulu();
-                                        }
-                                    } else if (selection.equals("Autumn Theme")) {
-                                        if(Common.isPAU) {
-                                            Utils.saveOnSharePreg(getContext(), "selectedTheme", 3);
-                                            Bundle params = new Bundle();
-                                            params.putString("theme_chosen", "autumn_theme");
-                                            mFirebaseAnalytics.logEvent("theme_selected", params);
-                                            getActivity().recreate();
-                                        } else {
-                                            displayPayDulu();
-                                        }
+                                            if (Common.isPAU) {
+                                                Utils.saveOnSharePreg(getContext(), "selectedTheme", 1);
+                                                Bundle params = new Bundle();
+                                                params.putString("theme_chosen", "dark_theme");
+                                                mFirebaseAnalytics.logEvent("theme_selected", params);
+                                                getActivity().recreate();
+                                            } else {
+                                                displayPayDulu();
+                                            }
+                                        } else if (selection.equals("Romance Theme")) {
+                                            if (Common.isPAU) {
+                                                Utils.saveOnSharePreg(getContext(), "selectedTheme", 2);
+                                                Bundle params = new Bundle();
+                                                params.putString("theme_chosen", "romance_theme");
+                                                mFirebaseAnalytics.logEvent("theme_selected", params);
+                                                getActivity().recreate();
+                                            } else {
+                                                displayPayDulu();
+                                            }
+                                        } else if (selection.equals("Autumn Theme")) {
+                                            if (Common.isPAU) {
+                                                Utils.saveOnSharePreg(getContext(), "selectedTheme", 3);
+                                                Bundle params = new Bundle();
+                                                params.putString("theme_chosen", "autumn_theme");
+                                                mFirebaseAnalytics.logEvent("theme_selected", params);
+                                                getActivity().recreate();
+                                            } else {
+                                                displayPayDulu();
+                                            }
 
-                                    } else if (selection.equals("Light Theme")) {
-                                        Utils.saveOnSharePreg(getContext(), "selectedTheme", 0);
-                                        Bundle params = new Bundle();
-                                        params.putString("theme_chosen", "light_theme");
-                                        mFirebaseAnalytics.logEvent("theme_selected", params);
-                                        getActivity().recreate();
+                                        } else if (selection.equals("Light Theme")) {
+                                            Utils.saveOnSharePreg(getContext(), "selectedTheme", 0);
+                                            Bundle params = new Bundle();
+                                            params.putString("theme_chosen", "light_theme");
+                                            mFirebaseAnalytics.logEvent("theme_selected", params);
+                                            getActivity().recreate();
 
-                                    } else if (selection.equals("Metal Theme")) {
-                                        Utils.saveOnSharePreg(getContext(), "selectedTheme", 4);
-                                        Bundle params = new Bundle();
-                                        params.putString("theme_chosen", "metal_theme");
-                                        mFirebaseAnalytics.logEvent("theme_selected", params);
-                                        getActivity().recreate();
+                                        } else if (selection.equals("Metal Theme")) {
+                                            Utils.saveOnSharePreg(getContext(), "selectedTheme", 4);
+                                            Bundle params = new Bundle();
+                                            params.putString("theme_chosen", "metal_theme");
+                                            mFirebaseAnalytics.logEvent("theme_selected", params);
+                                            getActivity().recreate();
+                                        }
                                     }
                                 }
                             })

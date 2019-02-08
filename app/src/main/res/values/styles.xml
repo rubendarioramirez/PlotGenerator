@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -14,8 +14,8 @@
         <item name="android:textColor">@color/text_color</item>
         <item name="android:textColorPrimary">@color/headline</item>
         <item name="android:textColorSecondary">@color/content</item>
-        <item name="alertDialogTheme">@style/AlertDialogCustom</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+        <item name="alertDialogTheme">@style/AlertDialogCustom</item>
     </style>
 
 
@@ -129,9 +129,6 @@
     <style name="PositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
         <item name="android:textColor">#3bc13d</item>
     </style>
-
-
-
 
 
 
