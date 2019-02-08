@@ -1,7 +1,6 @@
 package com.plotgen.rramirez.plotgenerator;
 
 
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -43,13 +42,13 @@ import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Fragment.SubmitStoryFragment;
 import com.plotgen.rramirez.plotgenerator.Fragment.Wcc_stories;
 import com.plotgen.rramirez.plotgenerator.Model.Challenge;
+import com.plotgen.rramirez.plotgenerator.Model.User;
 
 import java.util.Arrays;
 import java.util.Locale;
 
 import static android.app.Activity.RESULT_OK;
 import static android.content.ContentValues.TAG;
-import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 
 /**
@@ -57,17 +56,18 @@ import static com.firebase.ui.auth.AuthUI.getApplicationContext;
  */
 public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
 
+    private static final int RC_SIGN_IN = 123;
+    private static final int RC_SIGN_IN_View_Participant = 124;
+    public int can_submit = 0;
     private TextView title_tv, body_tv, ad_desc;
     private Button ad_submit_btn;
     private Button btViewParticipant;
     private FirebaseAnalytics mFirebaseAnalytics;
-    public int can_submit = 0;
     private RewardedVideoAd mRewardedVideoAd;
-    private static final int RC_SIGN_IN = 123;
-    private static final int RC_SIGN_IN_View_Participant = 124;
     private FirebaseDatabase mDatabase;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
+
     public weeklyWriting() {
         // Required empty public constructor
     }
@@ -81,7 +81,7 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
         View myFragmentView = inflater.inflate(R.layout.fragment_weekly_writing, container, false);
 
 
-        can_submit = Utils.getSharePref(myFragmentView.getContext(),"can_submit",0);
+        can_submit = Utils.getSharePref(myFragmentView.getContext(), "can_submit", 0);
 
 
         if (!Common.isPAU) {
@@ -92,7 +92,7 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
         } else {
             Utils.saveOnSharePreg(myFragmentView.getContext(), "can_submit", 1);
             can_submit = 1;
-            }
+        }
 
         ad_desc = myFragmentView.findViewById(R.id.weekly_challenge_ad_desc);
         ad_submit_btn = myFragmentView.findViewById(R.id.weekly_challenge_btn);
@@ -114,16 +114,16 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
         body_tv = myFragmentView.findViewById(R.id.writing_challenge_desc);
 
         DocumentReference mDocRef;
-          if (Locale.getDefault().getDisplayLanguage().equals("español")) {
-                mDocRef = FirebaseFirestore.getInstance().document("weekly_challenge_es/current");
-            } else {
-                mDocRef = FirebaseFirestore.getInstance().document("weekly_challenge/current");
-            }
+        if (Locale.getDefault().getDisplayLanguage().equals("español")) {
+            mDocRef = FirebaseFirestore.getInstance().document("weekly_challenge_es/current");
+        } else {
+            mDocRef = FirebaseFirestore.getInstance().document("weekly_challenge/current");
+        }
 
         mDocRef.addSnapshotListener(this.getActivity(), new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
-                if(documentSnapshot.exists()){
+                if (documentSnapshot.exists()) {
 
                     String title = documentSnapshot.getString("title");
                     String body = documentSnapshot.getString("body");
@@ -253,6 +253,9 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
 
             // Successfully signed in
             if (resultCode == RESULT_OK) {
+                mAuth = FirebaseAuth.getInstance();
+                mUser = mAuth.getCurrentUser();
+                Common.currentUser = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail(), mUser.getPhotoUrl().toString(), mUser.getPhotoUrl());
 
                 // change to submit fragment in main activity
                 Wcc_stories nextFragment = new Wcc_stories();
