@@ -100,10 +100,10 @@ public class CharacterFragment extends Fragment {
         // Obtain the FirebaseAnalytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(myFragmentView.getContext());
 
-        project_name = Common.currentProject.getName();
         project_id = Common.currentProject.getId();
         if(!Common.charCreationMode) {
             name_text = Common.currentCharacter.getName();
+            Log.v("matilda", "Current Char id is : " + Common.currentCharacter.getId());
         }
 
         if(debugMode)
@@ -245,7 +245,7 @@ public class CharacterFragment extends Fragment {
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    updateDB(name_text, project_name);
+                    updateDB();
                 }
             });
             if (rated == 0) {
@@ -447,9 +447,9 @@ public class CharacterFragment extends Fragment {
       fragmentTransition();
     }
 
-    private void deleteFromDB(String name_char) {
+    private void deleteFromDB(String char_id) {
         SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
-        database.delete(mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER, "name = ?", new String[]{name_char});
+        database.delete(mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER, "_id = ?", new String[]{char_id});
         //Log challenges updated
         Bundle params = new Bundle();
         params.putString("Character", "deleted");
@@ -460,7 +460,7 @@ public class CharacterFragment extends Fragment {
     }
 
 
-    private void updateDB(String name_text, String project_name) {
+    private void updateDB() {
         Common.charCreationMode = false;
         SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -477,7 +477,6 @@ public class CharacterFragment extends Fragment {
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_DEFMOMENT, defmoment_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_NEED, need_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PLACEBIRTH, placebirth_edit_text.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PROJECT, project_name);
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_TRAIT1, trait_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_TRAIT2, trait2_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_TRAIT3, trait3_edit_text.getText().toString());
@@ -485,8 +484,7 @@ public class CharacterFragment extends Fragment {
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PHRASE, phrase_et.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PHRASE, phrase_et.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_IMAGE, filepath);
-        database.update(mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER, values, "name = ?", new String[]{name_text.toString()});
-
+        database.update(mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER, values, "_id = ?", new String[]{Common.currentCharacter.getId()});
         //Make sure you can't come back here
         fragmentTransition();
 
@@ -646,7 +644,7 @@ public class CharacterFragment extends Fragment {
             // set dialog message
             alertDialogBuilder.setCancelable(true).setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    deleteFromDB(name_text);
+                    deleteFromDB(Common.currentCharacter.getId());
                 }
             });
             // create alert dialog
@@ -658,8 +656,8 @@ public class CharacterFragment extends Fragment {
     }
 
 
-
-
-
-
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 }

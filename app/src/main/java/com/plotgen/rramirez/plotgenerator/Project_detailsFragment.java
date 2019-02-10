@@ -64,7 +64,7 @@ public class Project_detailsFragment extends Fragment {
     public Boolean updateMode;
     EditText project_name_et, project_plot_et;
     Spinner project_genre_spinner;
-    String project_name_text;
+    String project_name_text, projectID;
     FloatingActionButton fab_save;
     FloatingActionButton fab_delete;
     ArrayList<String> project_description;
@@ -97,15 +97,9 @@ public class Project_detailsFragment extends Fragment {
         fab_delete = myFragmentView.findViewById(R.id.project_detail_delete);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(myFragmentView.getContext());
 
-//        mDatabase = Common.currentDatabase;
-//        mAuth = Common.currentAuth;
-//        mUser = Common.currentFirebaseUser;
-
-
-        if(debugMode)
-        Log.i("matilda", "Creation mode is: " + Common.projectCreationMode + " at Project details");
 
         //Role spinner functions
+        project_genre_spinner = myFragmentView.findViewById(R.id.project_genre_spinner);
         project_genre_spinner = myFragmentView.findViewById(R.id.project_genre_spinner);
         ArrayAdapter<CharSequence> genre_adapter = ArrayAdapter.createFromResource(myFragmentView.getContext(), R.array.genres_array, android.R.layout.simple_spinner_item);
         genre_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -124,49 +118,65 @@ public class Project_detailsFragment extends Fragment {
 
         if (!Common.projectCreationMode) {
             //Update mode
-            project_name_text = Common.currentProject.getName();
-            project_list_array = Utils.getProject(this.getContext(), project_name_text);
+            if(Common.currentProject !=null) {
+                project_name_text = Common.currentProject.getName();
+                projectID = Common.currentProject.getId();
+            } else {
+                project_name_text = "Rambo";
+            }
+
+
+            if(debugMode) {
+                Log.i("matilda", "Creation mode is: " + Common.projectCreationMode + " at Project details");
+                Log.i("matilda", "ProjectID is: " + Common.currentProject.getId());
+            }
+
+
+            project_list_array = getProject(this.getContext());
             if (project_list_array != null && !project_list_array.isEmpty()) {
                 project_name_et.setText(project_list_array.get(0));
+                String project_genre =  project_list_array.get(1);
                 project_plot_et.setText(project_list_array.get(2));
-                if (project_list_array.size() > 4 && !project_list_array.get(4).equalsIgnoreCase(null) && !project_list_array.get(3).equalsIgnoreCase("")) {
-                    project_icon_iv.setImageURI(Uri.parse(project_list_array.get(4)));
-                    project_description = getProject(myFragmentView.getContext(), project_name_text);
-                    String project_genre = project_description.get(1);
-                    //Set the proper spinner value
-                    if (project_genre.equals("Tragedia") || project_genre.equals("Tragedy")) {
+                String[] possibleGenres = getResources().getStringArray(R.array.genres_array);
+//                if (project_list_array.size() >= 4 && !project_list_array.get(3).equalsIgnoreCase(null) && !project_list_array.get(3).equalsIgnoreCase("")) {
+                  if(project_list_array.size() >= 4 )
+                    {
+                    project_icon_iv.setImageURI(Uri.parse(project_list_array.get(3)));
+                    }
+
+                    //Update the spinner
+                    if (project_genre.equals(possibleGenres[0])) {
                         project_genre_spinner.setSelection(0);
-                    } else if (project_genre.equals("Ciencía Ficción") || project_genre.equals("Science fiction")) {
+                    } else if (project_genre.equals(possibleGenres[1])) {
                         project_genre_spinner.setSelection(1);
-                    } else if (project_genre.equals("Fantasía") || project_genre.equals("Fantasy")) {
+                    } else if (project_genre.equals(possibleGenres[2])) {
                         project_genre_spinner.setSelection(2);
-                    } else if (project_genre.equals("Mitología") || project_genre.equals("Mythology")) {
+                    } else if (project_genre.equals(possibleGenres[3])) {
                         project_genre_spinner.setSelection(3);
-                    } else if (project_genre.equals("Aventura") || project_genre.equals("Adventure")) {
+                    } else if (project_genre.equals(possibleGenres[4])) {
                         project_genre_spinner.setSelection(4);
-                    } else if (project_genre.equals("Misterio") || project_genre.equals("Mistery")) {
+                    } else if (project_genre.equals(possibleGenres[5])) {
                         project_genre_spinner.setSelection(5);
-                    } else if (project_genre.equals("Drama")) {
+                    } else if (project_genre.equals(possibleGenres[6])) {
                         project_genre_spinner.setSelection(6);
-                    } else if (project_genre.equals("Romance")) {
+                    } else if (project_genre.equals(possibleGenres[7])) {
                         project_genre_spinner.setSelection(7);
-                    } else if (project_genre.equals("Acción") || project_genre.equals("Action / Adventure")) {
+                    } else if (project_genre.equals(possibleGenres[8])) {
                         project_genre_spinner.setSelection(8);
-                    } else if (project_genre.equals("Satira") || project_genre.equals("Satire")) {
+                    } else if (project_genre.equals(possibleGenres[9])) {
                         project_genre_spinner.setSelection(9);
-                    } else if (project_genre.equals("Horror")) {
+                    } else if (project_genre.equals(possibleGenres[10])) {
                         project_genre_spinner.setSelection(10);
-                    } else if (project_genre.equals("Tragedia comica") || project_genre.equals("Tragic comedy")) {
+                    } else if (project_genre.equals(possibleGenres[11])) {
                         project_genre_spinner.setSelection(11);
-                    } else if (project_genre.equals("Ficción para jovenes") || project_genre.equals("Young adult fiction") || project_genre.equals("Ficción para joveves")) {
+                    } else if (project_genre.equals(possibleGenres[12])) {
                         project_genre_spinner.setSelection(12);
-                    } else if (project_genre.equals("Dystopia")) {
+                    } else if (project_genre.equals(possibleGenres[13])) {
                         project_genre_spinner.setSelection(13);
-                    } else if (project_genre.equals("Thriller") || project_genre.equals("Action thriller")) {
+                    } else if (project_genre.equals(possibleGenres[14])) {
                         project_genre_spinner.setSelection(14);
                     }
                     updateMode = true;
-                }
             }
         }
 
@@ -204,7 +214,7 @@ public class Project_detailsFragment extends Fragment {
                             public void onClick(DialogInterface dialog, int which) {
                                 // continue with delete
                                 //deleteFromStories();
-                                Utils.deleteFromDB(view.getContext(), project_name_text);
+                                Utils.deleteFromDB(view.getContext(), projectID);
                                 fragmentTransaction();
                             }
                         })
@@ -250,7 +260,7 @@ public class Project_detailsFragment extends Fragment {
         values.put(mySQLiteDBHelper.PROJECT_COLUMN_GENRE, project_genre_spinner.getSelectedItem().toString());
         values.put(mySQLiteDBHelper.PROJECT_COLUMN_PLOT, project_plot_et.getText().toString());
         values.put(mySQLiteDBHelper.PROJECT_COLUMN_IMAGE, filepath);
-        database.update(mySQLiteDBHelper.CHARACTER_TABLE_PROJECT, values, "project = ?", new String[]{project_name_text.toString()});
+        database.update(mySQLiteDBHelper.CHARACTER_TABLE_PROJECT, values, "_id = ?", new String[]{projectID});
         database.close();
     }
 
@@ -308,11 +318,11 @@ public class Project_detailsFragment extends Fragment {
     }
 
 
-    public ArrayList<String> getProject(Context context, String project_name) {
+    public ArrayList<String> getProject(Context context) {
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_PROJECT + " WHERE project = ?";
-        Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{project_name});
+        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_PROJECT + " WHERE _id = ?";
+        Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{projectID});
         cursor.moveToFirst();
         ArrayList<String> char_list = new ArrayList<String>();
         while (!cursor.isAfterLast()) {

@@ -42,7 +42,7 @@ public class BioFragment extends Fragment {
 //    ImageButton guide_btn, character_bio_challenge_btn;
     private FirebaseAnalytics mFirebaseAnalytics;
     private String fragmentTag = BioFragment.class.getSimpleName();
-    String char_name;
+    String char_name, charID;
     String project_name;
 
     @BindView(R.id.fab_add_challenge)
@@ -77,8 +77,7 @@ public class BioFragment extends Fragment {
 
         try{
             char_name = Common.currentCharacter.getName();
-            Log.v("matilda", "Name is: " + Common.currentCharacter.getName());
-            Log.v("matilda", "Challenges done are: " + Common.currentCharacter.getChallengesDone());
+            charID = Common.currentCharacter.getId();
         } catch (Exception e){
             Log.v("matilda", e.toString());
         }
@@ -87,7 +86,7 @@ public class BioFragment extends Fragment {
         ((MainActivity) getActivity()).setActionBarTitle(char_name);
         setHasOptionsMenu(true);
 
-        char_description = getDescription(myFragmentView.getContext(), char_name);
+        char_description = getDescription(myFragmentView.getContext(), charID);
         // changes done to check list size
         if (char_description.size() > 0) {
             String name = char_description.get(0);
@@ -392,8 +391,8 @@ public class BioFragment extends Fragment {
     public ArrayList<String> getDescription(Context context, String char_name) {
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER + " WHERE name = ?";
-        Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{char_name});
+        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER + " WHERE _id = ?";
+        Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{charID});
         Log.e("cursor count",cursor.getCount()+"");
         ArrayList<String> char_list = new ArrayList<String>();
         // changes done to check is cursor size is greator than 0
@@ -493,6 +492,7 @@ public class BioFragment extends Fragment {
             try {
                 Common.charCreationMode = false;
                 //Send it to the next fragment
+                Common.currentProject.setName(null);
                 CharacterFragment nextFragment = new CharacterFragment();
                 //Make the transaction
                 FragmentTransaction transaction = getFragmentManager()

@@ -94,10 +94,11 @@ public class CharListFragment extends Fragment {
         if(!char_list_array.isEmpty()){
             empty_character_tv.setVisibility(View.INVISIBLE);
             for (int i = 0; i<char_list_array.size();i++) {
-                String name = char_list_array.get(i).split("/&&/")[0];
-                String role = char_list_array.get(i).split("/&&/")[1];
-                String gender = char_list_array.get(i).split("/&&/")[2];
-                Integer challengesDone = Integer.valueOf(char_list_array.get(i).split("/&&/")[3]);
+                String id = char_list_array.get(i).split("/&&/")[0];
+                String name = char_list_array.get(i).split("/&&/")[1];
+                String role = char_list_array.get(i).split("/&&/")[2];
+                String gender = char_list_array.get(i).split("/&&/")[3];
+                Integer challengesDone = Integer.valueOf(char_list_array.get(i).split("/&&/")[4]);
                 Integer completionCheck = challengesDone*100/TOTAL_CHALLENGES;
                 if (completionCheck>=100){
                     completion = "100";
@@ -109,16 +110,16 @@ public class CharListFragment extends Fragment {
                 for (int x =0; x<char_list_array.get(i).split("/&&/").length;x++)
                 {
                     try {
-                        image += "-" + char_list_array.get(i).split("/&&/")[x + 4];
+                        image += "-" + char_list_array.get(i).split("/&&/")[x + 5];
                     } catch (Exception e){
                         Log.v("exceptions", e.toString());
                     }
                 }
                 if (!image.isEmpty()){
-                    mlist.add(new item_character_list(image.substring(1), name, role, gender,completion));
+                    mlist.add(new item_character_list(id,image.substring(1), name, role, gender,completion));
                 }
                 else {
-                    mlist.add(new item_character_list(defaultImagePath, name, role, gender,completion));
+                    mlist.add(new item_character_list(id,defaultImagePath, name, role, gender,completion));
                 }
                 }
              }
@@ -189,7 +190,7 @@ public class CharListFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.menu_charlist_edit) {
-            if(Common.currentProject.getName() != null) {
+            if(Common.currentProject != null) {
                 //Send it to the next fragment
                 Project_detailsFragment nextFragment = new Project_detailsFragment();
                 //Make the transaction

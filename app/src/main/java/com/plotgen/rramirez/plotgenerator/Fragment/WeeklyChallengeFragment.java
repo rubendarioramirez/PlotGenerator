@@ -84,6 +84,7 @@ public class WeeklyChallengeFragment extends Fragment {
         mUser = Common.currentFirebaseUser;
         mCommentReference = Common.currentCommentReference;
         mUserReference = Common.currentUserReference;
+        mReference = Common.currentReference;
         Query mostVoted = Common.currentQuery.orderByChild("likeCount");
 //            if(Common.currentUser.getUid() != null){
 //                userUID = Common.currentUser.getUid();

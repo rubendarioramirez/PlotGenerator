@@ -105,7 +105,7 @@ public class Utils extends Fragment{
             /*if (cursor.getColumnIndex("image") != -1 && cursor.getString(cursor.getColumnIndex("image")) != null) {
                 String image = cursor.getString(cursor.getColumnIndex("image"));
             }*/
-            projects_list.add(id + "_" + project_name);
+            projects_list.add(id + "/&&/" + project_name);
             cursor.moveToNext();
         }
         cursor.close();
@@ -122,12 +122,13 @@ public class Utils extends Fragment{
         cursor.moveToFirst();
         ArrayList<String> projects_list = new ArrayList<String>();
         while(!cursor.isAfterLast()) {
+            String charID = cursor.getString(cursor.getColumnIndex("_id"));
             String charName = cursor.getString(cursor.getColumnIndex("name"));
             String charRole = cursor.getString(cursor.getColumnIndex("role"));
             String charGender = cursor.getString(cursor.getColumnIndex("gender"));
             Integer challengesDone = cursor.getInt(cursor.getColumnIndex("challengesCompleted"));
             String image = cursor.getString(cursor.getColumnIndex("image"));
-            projects_list.add(charName + "/&&/" + charRole + "/&&/" + charGender + "/&&/" +challengesDone +  "/&&/" + image);
+            projects_list.add(charID + "/&&/" + charName + "/&&/" + charRole + "/&&/" + charGender + "/&&/" +challengesDone +  "/&&/" + image);
             cursor.moveToNext();
         }
         cursor.close();
@@ -183,9 +184,9 @@ public class Utils extends Fragment{
     }
 
 
-    public static void deleteFromDB(Context context, String project_name) {
+    public static void deleteFromDB(Context context, String projectID) {
         SQLiteDatabase database = new mySQLiteDBHelper(context).getWritableDatabase();
-        database.delete(mySQLiteDBHelper.CHARACTER_TABLE_PROJECT, "project = ?", new String[]{project_name});
+        database.delete(mySQLiteDBHelper.CHARACTER_TABLE_PROJECT, "_id = ?", new String[]{projectID});
         database.close();
     }
 

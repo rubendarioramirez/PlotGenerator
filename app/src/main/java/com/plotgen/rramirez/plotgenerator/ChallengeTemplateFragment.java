@@ -35,6 +35,7 @@ public class ChallengeTemplateFragment extends Fragment  {
     private FirebaseAnalytics mFirebaseAnalytics;
     private InterstitialAd mInterstitialAd_challenge;
     private Integer challengesCompleted;
+    private String charID;
     ArrayList<String> challenge_info;
 
 
@@ -55,6 +56,7 @@ public class ChallengeTemplateFragment extends Fragment  {
 
         final String project_name  = Common.currentCharacter.getProject_name();
         final String char_name = Common.currentCharacter.getName();
+        final String charID = Common.currentCharacter.getId();
         final String challenge_number = this.getArguments().getString("challenge_number");
 
         //Save button
@@ -71,7 +73,7 @@ public class ChallengeTemplateFragment extends Fragment  {
         question4 = myFragmentView.findViewById(R.id.char_template_q4_et);
 
         ((MainActivity)getActivity()).setActionBarTitle(project_name);
-        challenge_info = getDescription(myFragmentView.getContext(),char_name);
+        challenge_info = getDescription(myFragmentView.getContext(),charID);
 
         charTemplateTitle.setText(char_name);
         String short_name = char_name.split(" ")[0];
@@ -220,7 +222,7 @@ public class ChallengeTemplateFragment extends Fragment  {
             @Override
             public void onClick(View view) {
                 // Perform action on click
-                updateDB(char_name, project_name, challenge_number);
+                updateDB(charID, challenge_number);
 
 
             }
@@ -247,7 +249,7 @@ public class ChallengeTemplateFragment extends Fragment  {
         return myFragmentView;
     }
 
-    private void updateDB(String char_name, String project_name, String challenge_number){
+    private void updateDB(String charID, String challenge_number){
         SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
         ContentValues values = new ContentValues();
         //Log challenges updated
@@ -333,18 +335,18 @@ public class ChallengeTemplateFragment extends Fragment  {
             params.putString("Challenge", "challenge_sidekick");
         }
         mFirebaseAnalytics.logEvent("challenge_completed",params);
-        database.update(mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER, values,   "name = ?", new String[]{char_name});
+        database.update(mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER, values,   "_id = ?", new String[]{charID});
         Common.currentCharacter.setChallengesDone(challengesCompleted);
         //Come back to previous fragment
         fragmentTransition();
     }
 
 
-    public ArrayList<String> getDescription(Context context, String char_name){
+    public ArrayList<String> getDescription(Context context, String charID){
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER  + " WHERE name = ?";
-        Cursor cursor = sqLiteDatabase.rawQuery(query,new String[]{char_name});
+        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER  + " WHERE _id = ?";
+        Cursor cursor = sqLiteDatabase.rawQuery(query,new String[]{charID});
         cursor.moveToFirst();
         ArrayList<String> char_list = new ArrayList<String>();
         while(!cursor.isAfterLast()) {

@@ -53,9 +53,11 @@ public class Wcc_stories extends Fragment {
         });
 */
         Query query = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts");
+        Common.currentReference = mReference;
         Common.currentQuery = query;
         Common.currentUserReference = mUserReference;
         Common.currentCommentReference = mCommentReference;
+
 
 
         return view;

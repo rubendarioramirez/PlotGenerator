@@ -68,11 +68,10 @@ public class ProjectFragment extends Fragment {
         if (project_list_array != null && !project_list_array.isEmpty())
             for (int i = 0; i < project_list_array.size(); i++) {
                 if (!project_list_array.get(i).isEmpty()) {
-                    projects_ids.add(String.valueOf(project_list_array.get(i).split("_")[0]));
-                    project_names.add(project_list_array.get(i).substring(2));
+                    projects_ids.add(String.valueOf(project_list_array.get(i).split("/&&/")[0]));
+                    project_names.add(project_list_array.get(i).split("/&&/")[1]);
                 }
             }
-
         itemsAdapter = new ArrayAdapter<String>(myFragmentView.getContext(), android.R.layout.simple_list_item_1, project_names);
         project_lv.setAdapter(itemsAdapter);
         project_lv.setEmptyView(empty_project_tv);

@@ -33,6 +33,7 @@ public class Adapter_characterList extends RecyclerView.Adapter<Adapter_characte
     Context mContext;
     List<item_character_list> mData;
     String project_name;
+    String charID;
 
 
     public Adapter_characterList(Context mContext, List<item_character_list> mData, String project_name) {
@@ -64,6 +65,7 @@ public class Adapter_characterList extends RecyclerView.Adapter<Adapter_characte
         holder.role.setText(mData.get(position).getRole());
 //        holder.completion.setText(mData.get(position).getCompletion() + "%");
         holder.completion.setText("");
+        charID = mData.get(position).getId();
     }
 
     @Override
@@ -99,7 +101,7 @@ public class Adapter_characterList extends RecyclerView.Adapter<Adapter_characte
             String role = mData.get(getAdapterPosition()).getRole();
             String gender = mData.get(getAdapterPosition()).getGender();
             Integer completion = Integer.valueOf(mData.get(getAdapterPosition()).getCompletion());
-            Character character = new Character("",clicked,project_name,role,gender,completion);
+            Character character = new Character(charID,clicked,project_name,role,gender,completion);
             Common.currentCharacter = character;
             nextFragment(mContext);
         }
