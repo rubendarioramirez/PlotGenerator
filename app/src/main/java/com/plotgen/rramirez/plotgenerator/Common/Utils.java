@@ -118,20 +118,24 @@ public class Utils extends Fragment{
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
         String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER  + " WHERE project_id = ?";
-        Cursor cursor = sqLiteDatabase.rawQuery(query,new String[]{project_id});
-        cursor.moveToFirst();
         ArrayList<String> projects_list = new ArrayList<String>();
-        while(!cursor.isAfterLast()) {
-            String charID = cursor.getString(cursor.getColumnIndex("_id"));
-            String charName = cursor.getString(cursor.getColumnIndex("name"));
-            String charRole = cursor.getString(cursor.getColumnIndex("role"));
-            String charGender = cursor.getString(cursor.getColumnIndex("gender"));
-            Integer challengesDone = cursor.getInt(cursor.getColumnIndex("challengesCompleted"));
-            String image = cursor.getString(cursor.getColumnIndex("image"));
-            projects_list.add(charID + "/&&/" + charName + "/&&/" + charRole + "/&&/" + charGender + "/&&/" +challengesDone +  "/&&/" + image);
-            cursor.moveToNext();
+        try {
+            Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{project_id});
+            cursor.moveToFirst();
+            while(!cursor.isAfterLast()) {
+                String charID = cursor.getString(cursor.getColumnIndex("_id"));
+                String charName = cursor.getString(cursor.getColumnIndex("name"));
+                String charRole = cursor.getString(cursor.getColumnIndex("role"));
+                String charGender = cursor.getString(cursor.getColumnIndex("gender"));
+                Integer challengesDone = cursor.getInt(cursor.getColumnIndex("challengesCompleted"));
+                String image = cursor.getString(cursor.getColumnIndex("image"));
+                projects_list.add(charID + "/&&/" + charName + "/&&/" + charRole + "/&&/" + charGender + "/&&/" +challengesDone +  "/&&/" + image);
+                cursor.moveToNext();
+            }
+            cursor.close();
+        } catch (Exception e){
+            Log.v("matilda", "Project ID is null" + e.toString());
         }
-        cursor.close();
         sqLiteDatabase.close();
         return projects_list;
     }
@@ -163,20 +167,24 @@ public class Utils extends Fragment{
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
         String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_STORY + " WHERE project_id = ?";
-        Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{project_id});
-        cursor.moveToFirst();
-        String s = "";
         ArrayList<String> story_list = new ArrayList<String>();
-        while (!cursor.isAfterLast()) {
-            story_list.add(cursor.getString(cursor.getColumnIndex("project")));
-            story_list.add(cursor.getString(cursor.getColumnIndex("project_id")));
-            story_list.add(cursor.getString(cursor.getColumnIndex("stories")));
+        String s = "";
+        try {
+            Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{project_id});
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                story_list.add(cursor.getString(cursor.getColumnIndex("project")));
+                story_list.add(cursor.getString(cursor.getColumnIndex("project_id")));
+                story_list.add(cursor.getString(cursor.getColumnIndex("stories")));
+                s = cursor.getString(cursor.getColumnIndex("stories"));
+                cursor.moveToNext();
+            }
+            cursor.close();
+            sqLiteDatabase.close();
 
-            s = cursor.getString(cursor.getColumnIndex("stories"));
-            cursor.moveToNext();
+        } catch (Exception e){
+            Log.v("matilda", "IshaveStory got n exception " + e.toString());
         }
-        cursor.close();
-        sqLiteDatabase.close();
         if (s != "")
             return true;
         else

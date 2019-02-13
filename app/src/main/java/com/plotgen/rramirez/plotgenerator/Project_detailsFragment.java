@@ -126,12 +126,6 @@ public class Project_detailsFragment extends Fragment {
             }
 
 
-            if(debugMode) {
-                Log.i("matilda", "Creation mode is: " + Common.projectCreationMode + " at Project details");
-                Log.i("matilda", "ProjectID is: " + Common.currentProject.getId());
-            }
-
-
             project_list_array = getProject(this.getContext());
             if (project_list_array != null && !project_list_array.isEmpty()) {
                 project_name_et.setText(project_list_array.get(0));
@@ -322,18 +316,22 @@ public class Project_detailsFragment extends Fragment {
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
         String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_PROJECT + " WHERE _id = ?";
-        Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{projectID});
-        cursor.moveToFirst();
         ArrayList<String> char_list = new ArrayList<String>();
-        while (!cursor.isAfterLast()) {
-            char_list.add(cursor.getString(cursor.getColumnIndex("project")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("genre")));
-            char_list.add(cursor.getString(cursor.getColumnIndex("plot")));
-            if (cursor.getColumnIndex("image") != -1 && cursor.getString(cursor.getColumnIndex("image")) != null)
-                char_list.add(cursor.getString(cursor.getColumnIndex("image")));
-            cursor.moveToNext();
+        try {
+            Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{projectID});
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                char_list.add(cursor.getString(cursor.getColumnIndex("project")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("genre")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("plot")));
+                if (cursor.getColumnIndex("image") != -1 && cursor.getString(cursor.getColumnIndex("image")) != null)
+                    char_list.add(cursor.getString(cursor.getColumnIndex("image")));
+                cursor.moveToNext();
+            }
+            cursor.close();
+        } catch (Exception e){
+            Log.v("matilda", e.toString());
         }
-        cursor.close();
         return char_list;
     }
 

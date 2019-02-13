@@ -21,6 +21,7 @@ import com.google.android.gms.ads.InterstitialAd;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
+import com.plotgen.rramirez.plotgenerator.Fragment.Container_charbio;
 
 import java.util.ArrayList;
 
@@ -35,8 +36,9 @@ public class ChallengeTemplateFragment extends Fragment  {
     private FirebaseAnalytics mFirebaseAnalytics;
     private InterstitialAd mInterstitialAd_challenge;
     private Integer challengesCompleted;
-    private String charID;
+    private String charID, project_name,char_name, challenge_number;
     ArrayList<String> challenge_info;
+    private boolean challengeCreation;
 
 
     public ChallengeTemplateFragment() {
@@ -54,14 +56,19 @@ public class ChallengeTemplateFragment extends Fragment  {
         // Obtain the FirebaseAnalytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(myFragmentView.getContext());
 
-        final String project_name  = Common.currentCharacter.getProject_name();
-        final String char_name = Common.currentCharacter.getName();
-        final String charID = Common.currentCharacter.getId();
-        final String challenge_number = this.getArguments().getString("challenge_number");
+        if(Common.currentCharacter !=null) {
+            project_name = Common.currentCharacter.getProject_name();
+            char_name = Common.currentCharacter.getName();
+            charID = Common.currentCharacter.getId();
+        } else {
+            project_name = "rambo";
+            char_name = "rambo";
+            charID = "";
+        }
+        challenge_number = this.getArguments().getString("challenge_number");
 
         //Save button
         FloatingActionButton fab = myFragmentView.findViewById(R.id.challenge_template_submit);
-
         charTemplateTitle = myFragmentView.findViewById(R.id.char_template_title);
         question1Title = myFragmentView.findViewById(R.id.char_template_question1_title);
         question1 = myFragmentView.findViewById(R.id.char_template_q1_et);
@@ -90,6 +97,8 @@ public class ChallengeTemplateFragment extends Fragment  {
             question3Title.setText(getString(R.string.challenge_1_q3));
             question4Title.setText(getString(R.string.challenge_1_q4));
             if(challenge_info.size()>0) {
+                //Check if creationMODE
+               setCreationMode(0);
                 question1.setText(challenge_info.get(0));
                 question2.setText(challenge_info.get(1));
                 question3.setText(challenge_info.get(2));
@@ -103,6 +112,8 @@ public class ChallengeTemplateFragment extends Fragment  {
             question3Title.setText(getString(R.string.challenge_2_q3));
             question4Title.setText(getString(R.string.challenge_2_q4));
             if(challenge_info.size()>0) {
+                //Check if creationMODE
+                setCreationMode(4);
                 question1.setText(challenge_info.get(4));
                 question2.setText(challenge_info.get(5));
                 question3.setText(challenge_info.get(6));
@@ -116,6 +127,8 @@ public class ChallengeTemplateFragment extends Fragment  {
             question3Title.setText(getString(R.string.challenge_3_q3));
             question4Title.setText(getString(R.string.challenge_3_q4));
             if(challenge_info.size()>0) {
+                //Check if creationMODE
+                setCreationMode(8);
                 question1.setText(challenge_info.get(8));
                 question2.setText(challenge_info.get(9));
                 question3.setText(challenge_info.get(10));
@@ -129,6 +142,7 @@ public class ChallengeTemplateFragment extends Fragment  {
             question3Title.setText(getString(R.string.challenge_4_q3));
             question4Title.setText(getString(R.string.challenge_4_q4));
             if(challenge_info.size()>0) {
+            setCreationMode(12);
             question1.setText(challenge_info.get(12));
             question2.setText(challenge_info.get(13));
             question3.setText(challenge_info.get(14));
@@ -142,6 +156,7 @@ public class ChallengeTemplateFragment extends Fragment  {
             question3Title.setText(getString(R.string.challenge_5_q3));
             question4Title.setText(getString(R.string.challenge_5_q4));
             if(challenge_info.size()>0) {
+                setCreationMode(16);
                 question1.setText(challenge_info.get(16));
                 question2.setText(challenge_info.get(17));
                 question3.setText(challenge_info.get(18));
@@ -155,6 +170,7 @@ public class ChallengeTemplateFragment extends Fragment  {
             question3Title.setText(getString(R.string.challenge_6_q3));
             question4Title.setText(getString(R.string.challenge_6_q4));
             if(challenge_info.size()>0) {
+                setCreationMode(20);
                 question1.setText(challenge_info.get(20));
                 question2.setText(challenge_info.get(21));
                 question3.setText(challenge_info.get(22));
@@ -168,6 +184,7 @@ public class ChallengeTemplateFragment extends Fragment  {
             question3Title.setText(getString(R.string.challenge_7_q3).replace("$char_name$", short_name));
             question4Title.setText(getString(R.string.challenge_7_q4).replace("$char_name$", short_name));
             if(challenge_info.size()>0) {
+                setCreationMode(24);
                 question1.setText(challenge_info.get(24));
                 question2.setText(challenge_info.get(25));
                 question3.setText(challenge_info.get(26));
@@ -181,6 +198,7 @@ public class ChallengeTemplateFragment extends Fragment  {
             question3Title.setText(getString(R.string.challenge_8_q3).replace("$char_name$", short_name));
             question4Title.setText(getString(R.string.challenge_8_q4).replace("$char_name$", short_name));
             if(challenge_info.size()>0) {
+                setCreationMode(28);
                 question1.setText(challenge_info.get(28));
                 question2.setText(challenge_info.get(29));
                 question3.setText(challenge_info.get(30));
@@ -194,6 +212,7 @@ public class ChallengeTemplateFragment extends Fragment  {
             question2Title.setText(getString(R.string.c1_mentor_q2));
             question3Title.setText(getString(R.string.c1_mentor_q3));
             question4Title.setText(getString(R.string.c1_mentor_q4));
+            setCreationMode(32);
             question1.setText(challenge_info.get(32));
             question2.setText(challenge_info.get(33));
             question3.setText(challenge_info.get(34));
@@ -203,6 +222,7 @@ public class ChallengeTemplateFragment extends Fragment  {
             question2Title.setText(getString(R.string.c1_antagonist_q2));
             question3Title.setText(getString(R.string.c1_antagonist_q3));
             question4Title.setText(getString(R.string.c1_antagonist_q4));
+            setCreationMode(36);
             question1.setText(challenge_info.get(36));
             question2.setText(challenge_info.get(37));
             question3.setText(challenge_info.get(38));
@@ -212,6 +232,7 @@ public class ChallengeTemplateFragment extends Fragment  {
             question2Title.setText(getString(R.string.c1_sidekick_q2));
             question3Title.setText(getString(R.string.c1_sidekick_q3));
             question4Title.setText(getString(R.string.c1_sidekick_q4));
+            setCreationMode(40);
             question1.setText(challenge_info.get(40));
             question2.setText(challenge_info.get(41));
             question3.setText(challenge_info.get(42));
@@ -259,7 +280,11 @@ public class ChallengeTemplateFragment extends Fragment  {
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_EWR, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_EHP, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_EEF, question4.getText().toString());
+
+            //Just add to challenge completed if creation is TRUE
+            if(challengeCreation)
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_challengesCompleted, challengesCompleted+1);
+
             params.putString("Challenge", "challenge_1");
         }
         else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_2_title))){
@@ -267,49 +292,75 @@ public class ChallengeTemplateFragment extends Fragment  {
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C2Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C2Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C2Q4, question4.getText().toString());
+            //Just add to challenge completed if creation is TRUE
+            if(challengeCreation)
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_challengesCompleted, challengesCompleted+1);
+
             params.putString("Challenge", "challenge_2");
         }else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_3_title))){
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C3Q1, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C3Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C3Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C3Q4, question4.getText().toString());
+
+            //Just add to challenge completed if creation is TRUE
+            if(challengeCreation)
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_challengesCompleted, challengesCompleted+1);
+
             params.putString("Challenge", "challenge_3");
         }else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_4_title))){
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C4Q1, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C4Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C4Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C4Q4, question4.getText().toString());
+
+            //Just add to challenge completed if creation is TRUE
+            if(challengeCreation)
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_challengesCompleted, challengesCompleted+1);
+
             params.putString("Challenge", "challenge_4");
         }else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_5_title))){
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C5Q1, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C5Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C5Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C5Q4, question4.getText().toString());
+
+            //Just add to challenge completed if creation is TRUE
+            if(challengeCreation)
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_challengesCompleted, challengesCompleted+1);
             params.putString("Challenge", "challenge_5");
+
         }else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_6_title))){
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C6Q1, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C6Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C6Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C6Q4, question4.getText().toString());
+            //Just add to challenge completed if creation is TRUE
+            if(challengeCreation)
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_challengesCompleted, challengesCompleted+1);
+
             params.putString("Challenge", "challenge_6");
         }else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_7_title))){
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C7Q1, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C7Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C7Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C7Q4, question4.getText().toString());
+
+            //Just add to challenge completed if creation is TRUE
+            if(challengeCreation)
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_challengesCompleted, challengesCompleted+1);
+
             params.putString("Challenge", "challenge_7");
         }else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_8_title))){
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C8Q1, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C8Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C8Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C8Q4, question4.getText().toString());
+
+            //Just add to challenge completed if creation is TRUE
+            if(challengeCreation)
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_challengesCompleted, challengesCompleted+1);
+
             params.putString("Challenge", "challenge_8");
         }
         else if(challenge_number.equals(getContext().getResources().getString(R.string.c1_mentor_title))){
@@ -317,13 +368,20 @@ public class ChallengeTemplateFragment extends Fragment  {
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_MENTOR_Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_MENTOR_Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_MENTOR_Q4, question4.getText().toString());
+
+            //Just add to challenge completed if creation is TRUE
+            if(challengeCreation)
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_challengesCompleted, challengesCompleted+1);
+
             params.putString("Challenge", "challenge_mentor");
         } else if(challenge_number.equals(getContext().getResources().getString(R.string.c1_antagonist_title))){
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_ANTAGONIST_Q1, question1.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_ANTAGONIST_Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_ANTAGONIST_Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_ANTAGONIST_Q4, question4.getText().toString());
+
+            //Just add to challenge completed if creation is TRUE
+            if(challengeCreation)
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_challengesCompleted, challengesCompleted+1);
             params.putString("Challenge", "challenge_antagonist");
         }else if(challenge_number.equals(getContext().getResources().getString(R.string.c1_sidekick_title))){
@@ -331,6 +389,8 @@ public class ChallengeTemplateFragment extends Fragment  {
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_sidekick_Q2, question2.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_sidekick_Q3, question3.getText().toString());
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_C1_sidekick_Q4, question4.getText().toString());
+            //Just add to challenge completed if creation is TRUE
+            if(challengeCreation)
             values.put(mySQLiteDBHelper.CHARACTER_COLUMN_challengesCompleted, challengesCompleted+1);
             params.putString("Challenge", "challenge_sidekick");
         }
@@ -415,7 +475,7 @@ public class ChallengeTemplateFragment extends Fragment  {
     }
 
     public void fragmentTransition(){
-        BioFragment nextFragment = new BioFragment();
+        Container_charbio nextFragment = new Container_charbio();
         //Make the transaction
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.flMain,nextFragment);
@@ -431,4 +491,11 @@ public class ChallengeTemplateFragment extends Fragment  {
         question4.setText("Please refresh the challenge");
     }
 
+    private void setCreationMode(int index){
+        if(challenge_info.get(index) == null) {
+            challengeCreation = true;
+        } else {
+            challengeCreation = false;
+        }
+    }
 }

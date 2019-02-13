@@ -38,40 +38,6 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="?android:attr/textColorSecondary" />
 
-            <TextView
-                android:id="@+id/placeholder"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="22dp"
-                android:elevation="30dp"
-                android:fontFamily="@font/typewcond_bold"
-                android:gravity="center"
-                android:text="@string/challenge_action_bar"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:textColor="?android:attr/textColorPrimary"
-                android:textSize="36sp" />
-            <TextView
-                android:id="@+id/char_role_challenge"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="22dp"
-                android:background="@color/content_lighter"
-                android:fontFamily="@font/typewcond_regular"
-                android:gravity="left"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="?android:attr/textColorSecondary" />
-
-            <TextView
-                android:id="@+id/character_bio_challenge"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="22dp"
-                android:background="@color/content_lighter"
-                android:fontFamily="@font/typewcond_regular"
-                android:gravity="left"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="?android:attr/textColorSecondary" />
-
         </LinearLayout>
     </ScrollView>
 
@@ -137,46 +103,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/character_bio_name_title"
         app:layout_constraintVertical_bias="0.0" />
-
-
-    <com.robertlevonyan.views.customfloatingactionbutton.FloatingLayout
-        android:id="@+id/bio_floating_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:fabMenuGravity="bottom|end"
-        app:fabMenuStyle="popUp"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_bio_container"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fab_margin"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            app:fabElevation="10dp"
-            app:fabIcon="@android:drawable/ic_input_add"
-            app:fabSizes="mini" />
-
-        <com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_add_challenge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fabColor="#ff9c10"
-            app:fabIcon="@drawable/ic_character_black"
-            app:fabSizes="mini"
-            app:fabText="Challenge"/>
-
-        <com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_guide"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fabColor="#ff9c10"
-            app:fabIcon="@drawable/ic_book_black"
-            app:fabSizes="mini"
-            app:fabText="Guidelines"/>
-
-    </com.robertlevonyan.views.customfloatingactionbutton.FloatingLayout>
 
 </android.support.constraint.ConstraintLayout>

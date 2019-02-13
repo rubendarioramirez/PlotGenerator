@@ -151,7 +151,13 @@ public class OfflineStoryFragment extends Fragment {
 
         mUser = mAuth.getCurrentUser();
 
-        mStory = getStoryFromDB(view.getContext(), project_id);
+        //Make sure ProjectID is not null
+        if(project_id !=null) {
+            mStory = getStoryFromDB(view.getContext(), project_id);
+        } else {
+            mStory = "";
+        }
+
         //Save button
         FloatingActionButton fabSaveStory = view.findViewById(R.id.btnSaveStory);
         //publish button
@@ -419,20 +425,24 @@ public class OfflineStoryFragment extends Fragment {
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
         String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_STORY + " WHERE project_id = ?";
-        Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{project_id});
-        cursor.moveToFirst();
         String s = "";
         ArrayList<String> story_list = new ArrayList<String>();
-        while (!cursor.isAfterLast()) {
-            story_list.add(cursor.getString(cursor.getColumnIndex("project")));
-            story_list.add(cursor.getString(cursor.getColumnIndex("project_id")));
-            story_list.add(cursor.getString(cursor.getColumnIndex("stories")));
+        try {
+            Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{project_id});
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                story_list.add(cursor.getString(cursor.getColumnIndex("project")));
+                story_list.add(cursor.getString(cursor.getColumnIndex("project_id")));
+                story_list.add(cursor.getString(cursor.getColumnIndex("stories")));
 
-            s = cursor.getString(cursor.getColumnIndex("stories"));
-            cursor.moveToNext();
+                s = cursor.getString(cursor.getColumnIndex("stories"));
+                cursor.moveToNext();
+            }
+            cursor.close();
+            sqLiteDatabase.close();
+        } catch (Exception e){
+            Log.v("matilda", "The exception at OfflineStory is "  + e.toString());
         }
-        cursor.close();
-        sqLiteDatabase.close();
         return s;
     }
 

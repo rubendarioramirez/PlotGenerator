@@ -27,6 +27,7 @@ public class ChallengeListFragment extends Fragment {
     private AdView mAdView;
     public int challenge_unlocked = 0;
     private RewardedVideoAd mRewardedVideoAd;
+    String char_name, project_name;
 
     public ChallengeListFragment() {
         // Required empty public constructor
@@ -39,9 +40,10 @@ public class ChallengeListFragment extends Fragment {
 
         ((MainActivity)getActivity()).setActionBarTitle(getString(R.string.challenge_action_bar));
 
-        final String char_name = Common.currentCharacter.getName();
-        final String project_name = Common.currentCharacter.getProject_name();
-
+        if(Common.currentCharacter != null) {
+            char_name = Common.currentCharacter.getName();
+            project_name = Common.currentCharacter.getProject_name();
+        }
         View myFragmentView =  inflater.inflate(R.layout.fragment_challenge, container, false);
 
         if(!Common.isPAU) {

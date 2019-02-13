@@ -10,6 +10,6 @@ public class Constants {
     public static final int TOTAL_CHALLENGES = 8;
 
     //TODO Set FALSE On release
-    public static final boolean debugMode = true;
+    public static final boolean debugMode = false;
 
 }

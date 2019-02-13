@@ -28,16 +28,26 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/character_bio_intro"
+                android:id="@+id/biochallenge_role"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="24sp"
+                android:layout_marginTop="22dp"
+                android:background="@color/content_lighter"
                 android:fontFamily="@font/typewcond_regular"
-                android:text="His name is Rambo, he is XX years "
-                android:gravity="center"
+                android:gravity="left"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="?android:attr/textColorSecondary"
-                android:textSize="22sp" />
+                android:textColor="?android:attr/textColorSecondary" />
+
+            <TextView
+                android:id="@+id/biochallenge_body"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="22dp"
+                android:background="@color/content_lighter"
+                android:fontFamily="@font/typewcond_regular"
+                android:gravity="left"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="?android:attr/textColorSecondary" />
 
         </LinearLayout>
     </ScrollView>
@@ -59,7 +69,7 @@
 
 
     <TextView
-        android:id="@+id/character_bio_name_title"
+        android:id="@+id/biochallenge_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
@@ -83,7 +93,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/character_bio_role_title"
+        android:id="@+id/biochallenge_subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
@@ -97,7 +107,7 @@
         android:shadowDx="1"
         android:shadowDy="1"
         android:shadowRadius="2"
-        android:text="Role"
+        android:text="@string/biocontainer_challenge"
         android:elevation="21dp"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
@@ -108,8 +118,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/character_bio_name_title"
+        app:layout_constraintTop_toBottomOf="@+id/biochallenge_title"
         app:layout_constraintVertical_bias="0.0" />
+
 
 
 

@@ -81,14 +81,11 @@ public class CharListFragment extends Fragment {
 
         //Declare elements
         RecyclerView recyclerView = myFragmentView.findViewById(R.id.character_list_lv);
-
         empty_character_tv = myFragmentView.findViewById(R.id.empty_character_tv);
-
-
         char_list_array = Utils.getCharListByID(myFragmentView.getContext(), project_id);
 
 
-        final Adapter_characterList adapter = new Adapter_characterList(this.getActivity(),mlist, project_name_text);
+        final Adapter_characterList adapter = new Adapter_characterList(this.getActivity(),mlist);
         mlist.clear();
 
         if(!char_list_array.isEmpty()){

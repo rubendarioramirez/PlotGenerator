@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.plotgen.rramirez.plotgenerator.Common.Common;
+import com.plotgen.rramirez.plotgenerator.Fragment.Container_charbio;
 import com.plotgen.rramirez.plotgenerator.Model.Character;
 
 import java.util.List;
@@ -32,14 +33,12 @@ public class Adapter_characterList extends RecyclerView.Adapter<Adapter_characte
 
     Context mContext;
     List<item_character_list> mData;
-    String project_name;
     String charID;
 
 
-    public Adapter_characterList(Context mContext, List<item_character_list> mData, String project_name) {
+    public Adapter_characterList(Context mContext, List<item_character_list> mData) {
         this.mContext = mContext;
         this.mData = mData;
-        this.project_name = project_name;
     }
 
 
@@ -63,8 +62,8 @@ public class Adapter_characterList extends RecyclerView.Adapter<Adapter_characte
         }
         holder.name.setText(mData.get(position).getName());
         holder.role.setText(mData.get(position).getRole());
-//        holder.completion.setText(mData.get(position).getCompletion() + "%");
-        holder.completion.setText("");
+        holder.completion.setText(mData.get(position).getCompletion() + "%");
+//        holder.completion.setText("");
         charID = mData.get(position).getId();
     }
 
@@ -79,6 +78,7 @@ public class Adapter_characterList extends RecyclerView.Adapter<Adapter_characte
         TextView name,role,completion;
         Context mContext;
         List<item_character_list> mData;
+        String charID;
 
         public myViewHolder(View itemView, Context mContext, List<item_character_list> mData){
             super (itemView);
@@ -97,11 +97,12 @@ public class Adapter_characterList extends RecyclerView.Adapter<Adapter_characte
         {
             String clicked = mData.get(getAdapterPosition()).getName();
 //            String parsed_char_name = clicked.substring(0, clicked.length() - 1);
-
             String role = mData.get(getAdapterPosition()).getRole();
             String gender = mData.get(getAdapterPosition()).getGender();
             Integer completion = Integer.valueOf(mData.get(getAdapterPosition()).getCompletion());
-            Character character = new Character(charID,clicked,project_name,role,gender,completion);
+            charID = mData.get(getAdapterPosition()).getId();
+            Character character = new Character(charID,clicked,Common.currentProject.getName(),role,gender,completion);
+//            Log.v("matilda", "Charid: " + charID + " Project Name is: " + Common.currentProject.getName() + " Role is: " + role + " Gender: " + gender);
             Common.currentCharacter = character;
             nextFragment(mContext);
         }
@@ -110,7 +111,7 @@ public class Adapter_characterList extends RecyclerView.Adapter<Adapter_characte
 
 //    public void nextFragment(Context context, String charName,String projectName){
     public void nextFragment(Context context){
-                BioFragment nextFragment = new BioFragment();
+                Container_charbio nextFragment = new Container_charbio();
                 //Make the transaction
                 AppCompatActivity activity = (AppCompatActivity) context;
                 FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
