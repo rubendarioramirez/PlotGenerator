@@ -499,8 +499,9 @@ public class CharacterFragment extends Fragment {
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
         String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER + " WHERE name = ?";
-        Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{char_name});
         ArrayList<String> char_list = new ArrayList<String>();
+        try{
+        Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{char_name});
         if (cursor != null && cursor.getCount() > 0) {
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
@@ -527,6 +528,11 @@ public class CharacterFragment extends Fragment {
             }
             cursor.close();
         }
+            }
+
+            catch (Exception e) {
+                Log.v("matilda", e.toString());
+            }
         return char_list;
     }
 

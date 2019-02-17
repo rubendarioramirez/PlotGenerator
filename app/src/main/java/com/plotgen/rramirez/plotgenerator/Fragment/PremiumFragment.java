@@ -49,6 +49,7 @@ public class PremiumFragment extends Fragment implements BillingProcessor.IBilli
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_premium, container, false);
+        ((MainActivity) getActivity()).setActionBarTitle("Premium");
 
         title_tv = view.findViewById(R.id.premium_title_tv);
         body_tv = view.findViewById(R.id.premium_body_tv);
@@ -103,7 +104,7 @@ public class PremiumFragment extends Fragment implements BillingProcessor.IBilli
         if (remoteConfig_premium.getInfo().getConfigSettings().isDeveloperModeEnabled()) {
             cacheExpiration = 0;
         }
-        remoteConfig_premium.fetch()
+        remoteConfig_premium.fetch(cacheExpiration)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {

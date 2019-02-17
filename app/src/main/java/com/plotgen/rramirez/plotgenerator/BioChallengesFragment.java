@@ -44,10 +44,10 @@ public class BioChallengesFragment extends Fragment {
 
     @BindView(R.id.biochallenge_body)
     TextView biochallenge_body;
-    @BindView(R.id.biochallenge_title)
-    TextView title;
-    @BindView(R.id.biochallenge_subtitle)
-    TextView subtitle;
+//    @BindView(R.id.biochallenge_title)
+//    TextView title;
+//    @BindView(R.id.biochallenge_subtitle)
+//    TextView subtitle;
     @BindView(R.id.biochallenge_role)
     TextView biochallenge_role;
 
@@ -138,13 +138,13 @@ public class BioChallengesFragment extends Fragment {
             String role = char_description.get(44);
 
             //Titles
-            title.setText(char_name);
+//            title.setText(char_name);
 
             switch (role) {
                 case "Mentor":
                     if (c1_mentor_q1 != null) {
                         StringBuffer sb = new StringBuffer();
-                        sb.append("<b>" + getString(R.string.c1_mentor_bio_title) + "</b>");
+                        sb.append("<b><font color='red'>" + getString(R.string.c1_mentor_bio_title) + "</font></b>");
                         sb.append("<br><i><b>" + getString(R.string.c1_mentor_bio_desc_1) + " " + char_name + "?" + "</b></i><br> " + c1_mentor_q1);
                         sb.append("<br><i><b>" + getString(R.string.c1_mentor_bio_desc_2) + "</b></i><br> " + c1_mentor_q2);
                         sb.append("<br><i><b>" + getString(R.string.c1_mentor_bio_desc_3) + "</b></i><br> " + c1_mentor_q3);
@@ -157,7 +157,7 @@ public class BioChallengesFragment extends Fragment {
                 case "Antagonista":
                     if (c1_antagonist_q1 != null) {
                         StringBuffer sb = new StringBuffer();
-                        sb.append("<b>" + getString(R.string.c1_antagonist_bio_title) + "</b>");
+                        sb.append("<b><font color='red'>" + getString(R.string.c1_antagonist_bio_title) + "</font></b>");
                         sb.append("<br><i><b>" + getString(R.string.c1_antagonist_bio_desc_1) + "</b></i><br> " + c1_antagonist_q1);
                         sb.append("<br><i><b>" + getString(R.string.c1_antagonist_bio_desc_2) + "</b></i><br> " + c1_antagonist_q2);
                         sb.append("<br><i><b>" + getString(R.string.c1_antagonist_bio_desc_3) + "</b></i><br> " + c1_antagonist_q3);
@@ -170,7 +170,7 @@ public class BioChallengesFragment extends Fragment {
                 case "Escudero":
                     if (c1_sidekick_q1 != null) {
                         StringBuffer sb = new StringBuffer();
-                        sb.append("<b>" + getString(R.string.c1_sidekick_bio_title) + "</b>");
+                        sb.append("<b><font color='red'>" + getString(R.string.c1_sidekick_bio_title) + "</font></b>");
                         sb.append("<br><i><b>" + getString(R.string.c1_sidekick_bio_desc_1) + "</b></i><br> " + c1_sidekick_q1);
                         sb.append("<br><i><b>" + getString(R.string.c1_sidekick_bio_desc_2) + "</b></i><br> " + c1_sidekick_q2);
                         sb.append("<br><i><b>" + getString(R.string.c1_sidekick_bio_desc_3) + "</b></i><br> " + c1_sidekick_q3);
@@ -183,7 +183,7 @@ public class BioChallengesFragment extends Fragment {
 
             StringBuffer sb = new StringBuffer();
             if (firstReaction != null) {
-                sb.append("<b>" + getString(R.string.challenge_1_bio_title) + "</b>");
+                sb.append("<b><font color='red'>" + getString(R.string.challenge_1_bio_title) + "</font></b>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_1_bio_desc_1) + "</b></i><br> " + firstReaction);
                 sb.append("<br><i><b>" + getString(R.string.challenge_1_bio_desc_2) + "</b></i><br> " + waitRescue);
                 sb.append("<br><i><b>" + getString(R.string.challenge_1_bio_desc_3) + "</b></i><br> " + helpPartner);
@@ -191,7 +191,7 @@ public class BioChallengesFragment extends Fragment {
                 sb.append("<br><br>");
             }
             if (challenge2_q1 != null) {
-                sb.append("<br><b>" + getString(R.string.challenge_2_bio_title) + "</b> " + getString(R.string.challenge_2_bio_subtitle) + " <br>");
+                sb.append("<br><b><font color='red'>" + getString(R.string.challenge_2_bio_title) + "</font></b> " + getString(R.string.challenge_2_bio_subtitle) + " <br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_2_bio_desc_1) + "</b></i><br>" + challenge2_q1 + "<br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_2_bio_desc_2) + "</b></i><br>" + challenge2_q2 + "<br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_2_bio_desc_3) + "</b></i><br>" + challenge2_q3 + "<br>");
@@ -199,7 +199,7 @@ public class BioChallengesFragment extends Fragment {
                 sb.append("<br><br>");
             }
             if (challenge3_q1 != null) {
-                sb.append("<br><b>" + getString(R.string.challenge_3_bio_title) + "</b> " + getString(R.string.challenge_3_bio_subtitle) + " <br>");
+                sb.append("<br><b><font color='red'>" + getString(R.string.challenge_3_bio_title) + "</font></b> " + getString(R.string.challenge_3_bio_subtitle) + " <br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_3_bio_desc_1) + "</b></i><br>" + challenge3_q1 + "<br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_3_bio_desc_2) + "</b></i><br>" + challenge3_q2 + "<br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_3_bio_desc_3) + "</b></i><br>" + challenge3_q3 + "<br>");
@@ -207,7 +207,7 @@ public class BioChallengesFragment extends Fragment {
                 sb.append("<br><br>");
             }
             if (challenge4_q1 != null) {
-                sb.append("<br><b>" + getString(R.string.challenge_4_bio_title) + "</b> " + getString(R.string.challenge_4_bio_subtitle) + " <br>");
+                sb.append("<br><b><font color='red'>" + getString(R.string.challenge_4_bio_title) + "</font></b> " + getString(R.string.challenge_4_bio_subtitle) + " <br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_4_bio_desc_1) + "</b></i><br>" + challenge4_q1 + "<br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_4_bio_desc_2) + "</b></i><br>" + challenge4_q2 + "<br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_4_bio_desc_3) + "</b></i><br>" + challenge4_q3 + "<br>");
@@ -216,7 +216,7 @@ public class BioChallengesFragment extends Fragment {
             }
 
             if (challenge5_q1 != null) {
-                sb.append("<br><b>" + getString(R.string.challenge_5_bio_title) + "</b> " + getString(R.string.challenge_5_bio_subtitle) + " <br>");
+                sb.append("<br><b><font color='red'>" + getString(R.string.challenge_5_bio_title) + "</font></b> " + getString(R.string.challenge_5_bio_subtitle) + " <br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_5_bio_desc_1) + "</b></i><br>" + challenge5_q1 + "<br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_5_bio_desc_2) + "</b></i><br>" + challenge5_q2 + "<br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_5_bio_desc_3) + "</b></i><br>" + challenge5_q3 + "<br>");
@@ -224,7 +224,7 @@ public class BioChallengesFragment extends Fragment {
                 sb.append("<br><br>");
             }
             if (challenge6_q1 != null) {
-                sb.append("<br><b>" + getString(R.string.challenge_6_bio_title) + "</b> " + getString(R.string.challenge_6_bio_subtitle) + " <br>");
+                sb.append("<br><b><font color='red'>" + getString(R.string.challenge_6_bio_title) + "</font></b> " + getString(R.string.challenge_6_bio_subtitle) + " <br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_6_bio_desc_1) + "</b></i><br>" + challenge6_q1 + "<br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_6_bio_desc_2) + "</b></i><br>" + challenge6_q2 + "<br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_6_bio_desc_3) + "</b></i><br>" + challenge6_q3 + "<br>");
@@ -233,14 +233,14 @@ public class BioChallengesFragment extends Fragment {
             }
 
             if (challenge7_q1 != null) {
-                sb.append("<br><b>" + getString(R.string.challenge_7_bio_title) + "</b> " + getString(R.string.challenge_7_bio_subtitle) + " <br>");
+                sb.append("<br><b><font color='red'>" + getString(R.string.challenge_7_bio_title) + "</font></b> " + getString(R.string.challenge_7_bio_subtitle) + " <br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_7_bio_desc_1) + "</b></i><br>" + challenge7_q1 + "<br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_7_bio_desc_2) + "</b></i><br>" + challenge7_q2 + "<br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_7_bio_desc_3) + "</b></i><br>" + challenge7_q3 + "<br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_7_bio_desc_4) + "</b></i><br>" + challenge7_q4);
                 sb.append("<br><br>");
             }if (challenge8_q1 != null) {
-                sb.append("<br><b>" + getString(R.string.challenge_8_bio_title) + "</b> " + getString(R.string.challenge_8_bio_subtitle) + " <br>");
+                sb.append("<br><b><font color='red'>" + getString(R.string.challenge_8_bio_title) + "</font></b> " + getString(R.string.challenge_8_bio_subtitle) + " <br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_8_bio_desc_1) + "</b></i><br>" + challenge8_q1 + "<br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_8_bio_desc_2) + "</b></i><br>" + challenge8_q2 + "<br>");
                 sb.append("<br><i><b>" + getString(R.string.challenge_8_bio_desc_3) + "</b></i><br>" + challenge8_q3 + "<br>");

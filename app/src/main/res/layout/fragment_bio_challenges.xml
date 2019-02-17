@@ -11,16 +11,16 @@
         android:id="@+id/scrollView2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/background_char_bio">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -51,77 +51,5 @@
 
         </LinearLayout>
     </ScrollView>
-
-    <ImageView
-        android:id="@+id/background_char_bio"
-        android:layout_width="wrap_content"
-        android:layout_height="150dp"
-        android:layout_marginEnd="7dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginTop="0dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/writting" />
-
-
-    <TextView
-        android:id="@+id/biochallenge_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="40dp"
-        android:fontFamily="serif"
-        android:gravity="center_horizontal"
-        android:shadowColor="@color/text_shadow"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:shadowRadius="2"
-        android:text="Rambo"
-        android:elevation="21dp"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-        android:textColor="@color/light_font"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/biochallenge_subtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:fontFamily="serif"
-        android:gravity="center_horizontal"
-        android:shadowColor="@color/text_shadow"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:shadowRadius="2"
-        android:text="@string/biocontainer_challenge"
-        android:elevation="21dp"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-        android:textColor="@color/light_font"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/biochallenge_title"
-        app:layout_constraintVertical_bias="0.0" />
-
-
-
 
 </android.support.constraint.ConstraintLayout>

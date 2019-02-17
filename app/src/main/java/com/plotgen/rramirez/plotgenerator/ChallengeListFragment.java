@@ -28,6 +28,7 @@ public class ChallengeListFragment extends Fragment {
     public int challenge_unlocked = 0;
     private RewardedVideoAd mRewardedVideoAd;
     String char_name, project_name;
+    String role;
 
     public ChallengeListFragment() {
         // Required empty public constructor
@@ -54,7 +55,16 @@ public class ChallengeListFragment extends Fragment {
         RecyclerView recyclerView = myFragmentView.findViewById(R.id.rv_challenge_fragment);
         final Adapter_challenges adapter = new Adapter_challenges(this.getActivity(),mlist);
         mlist.clear();
-        switch (Common.currentCharacter.getRole()){
+
+
+        if(Common.currentCharacter != null){
+            role = Common.currentCharacter.getRole();
+        } else {
+            role = "";
+        }
+
+
+        switch (role){
             case "Mentor":
                 mlist.add(new item_herojourney(R.drawable.typewriter, getString(R.string.c1_mentor_title), getString(R.string.c1_mentor_desc), getString(R.string.c1_mentor_desc_long),(String) char_name, (String) project_name));
                 break;

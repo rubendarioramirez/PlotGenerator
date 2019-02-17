@@ -5,6 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.ThumbnailUtils;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -17,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -31,6 +36,8 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.plotgen.rramirez.plotgenerator.Common.Constants.THUMBNAIL_SIZE;
 
 
 /**
@@ -53,7 +60,10 @@ public class BioFragment extends Fragment {
     TextView role_subtitle;
     @BindView(R.id.character_bio_intro)
     TextView intro_tv;
+    @BindView(R.id.bio_charimage)
+    ImageView bio_charimage;
 
+    private String filepath = "";
 
 
     public BioFragment() {
@@ -84,8 +94,6 @@ public class BioFragment extends Fragment {
         }
 
 
-
-
         ((MainActivity) getActivity()).setActionBarTitle(char_name);
         char_description = getDescription(myFragmentView.getContext());
         // changes done to check list size
@@ -107,7 +115,18 @@ public class BioFragment extends Fragment {
             final String trait1 = char_description.get(14);
             String trait2 = char_description.get(15);
             String trait3 = char_description.get(16);
-            String notes = char_description.get(17); //Always update notes to the last index. Because of reasons.
+            String notes = char_description.get(17);
+            String imageToShow = char_description.get(18);
+            if (imageToShow!=null && !imageToShow.isEmpty()){
+                Bitmap ThumbImage = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(char_description.get(18)), THUMBNAIL_SIZE, THUMBNAIL_SIZE);
+                bio_charimage.setImageBitmap(ThumbImage);
+                filepath = char_description.get(18);
+            } else {
+                String defaultImagePath = "android.resource://com.plotgen.rramirez.plotgenerator/drawable/ic_menu_camera";
+                bio_charimage.setImageURI(Uri.parse(defaultImagePath));
+                filepath = char_description.get(18);
+            }
+
 
             Common.currentCharacter.setGender(gender);
             Common.currentCharacter.setRole(role);
@@ -221,6 +240,7 @@ public class BioFragment extends Fragment {
                     char_list.add(cursor.getString(cursor.getColumnIndex("trait2")));
                     char_list.add(cursor.getString(cursor.getColumnIndex("trait3")));
                     char_list.add(cursor.getString(cursor.getColumnIndex("elevator_notes")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("image")));
                     cursor.moveToNext();
                 }
             }

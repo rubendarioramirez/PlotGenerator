@@ -28,6 +28,8 @@ import com.plotgen.rramirez.plotgenerator.R;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
+import static com.firebase.ui.auth.AuthUI.getApplicationContext;
+
 public class Utils extends Fragment{
 
     public static final String SP_HAS_BUY_IAP = "spHasBuyIap";
@@ -393,6 +395,18 @@ public class Utils extends Fragment{
 
     public static void populateChallenges(){
         //TODO Move the function to populate BIO here
+    }
+
+
+    public static boolean checkFirstTime(Context context){
+        int first_time = getSharePref(context,"first_time",0);
+
+        if(first_time == 0){
+            saveOnSharePreg(context,"first_time",1);
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

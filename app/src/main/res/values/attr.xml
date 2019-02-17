@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
         <attr name="colorDivider" format="reference|color" />
+
+        <!--Bio top menu items-->
+        <attr name="backgroundDarker" format="reference|color" />
+        <attr name="bio_titles_fontColor" format="reference|color" />
+        <attr name="bio_shadow_color" format="reference|color" />
 </resources>
