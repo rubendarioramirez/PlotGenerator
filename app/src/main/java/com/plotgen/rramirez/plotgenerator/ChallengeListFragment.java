@@ -10,9 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.reward.RewardedVideoAd;
+import com.plotgen.rramirez.plotgenerator.Common.AdsHelper;
+import com.plotgen.rramirez.plotgenerator.Common.CharacterUtils;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Adapter_challenges;
-import com.plotgen.rramirez.plotgenerator.Common.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,9 +28,7 @@ public class ChallengeListFragment extends Fragment {
     private AdView mAdView;
     public int challenge_unlocked = 0;
     private RewardedVideoAd mRewardedVideoAd;
-    String char_name, project_name;
-    String role;
-
+    String char_name, project_name, role;
     public ChallengeListFragment() {
         // Required empty public constructor
     }
@@ -49,7 +48,7 @@ public class ChallengeListFragment extends Fragment {
 
         if(!Common.isPAU) {
             mAdView = (AdView) myFragmentView.findViewById(R.id.adView_challenge_list);
-            Utils.loadAd(mAdView);
+            AdsHelper.loadAd(mAdView);
         }
 
         RecyclerView recyclerView = myFragmentView.findViewById(R.id.rv_challenge_fragment);
@@ -66,53 +65,26 @@ public class ChallengeListFragment extends Fragment {
 
         switch (role){
             case "Mentor":
-                mlist.add(new item_herojourney(R.drawable.typewriter, getString(R.string.c1_mentor_title), getString(R.string.c1_mentor_desc), getString(R.string.c1_mentor_desc_long),(String) char_name, (String) project_name));
+                mlist.add(new item_herojourney(R.drawable.typewriter, getString(R.string.c1_mentor_title), getString(R.string.c1_mentor_desc), getString(R.string.c1_mentor_desc_long)));
                 break;
             case "Sidekick":
             case "Escudero":
-                mlist.add(new item_herojourney(R.drawable.typewriter, getString(R.string.c1_sidekick_title), getString(R.string.c1_sidekick_desc), getString(R.string.c1_sidekick_desc_long), char_name, project_name));
+                mlist.add(new item_herojourney(R.drawable.typewriter, getString(R.string.c1_sidekick_title), getString(R.string.c1_sidekick_desc), getString(R.string.c1_sidekick_desc_long)));
                 break;
             case "Antagonist":
             case "Antagonista":
-                mlist.add(new item_herojourney(R.drawable.typewriter, getString(R.string.c1_antagonist_title), getString(R.string.c1_antagonist_desc), getString(R.string.c1_antagonist_desc_long), char_name, project_name));
+                mlist.add(new item_herojourney(R.drawable.typewriter, getString(R.string.c1_antagonist_title), getString(R.string.c1_antagonist_desc), getString(R.string.c1_antagonist_desc_long)));
                 break;
         }
         //Generic list
-        //TODO EDIT Challenges to show the character name and proper gender
-        mlist.add(new item_herojourney(R.drawable.ic_black_elevator, getString(R.string.challenge_1_title), (String) getString(R.string.challenge_1_desc), (String) getString(R.string.challenge_1_desc_long),(String) char_name, (String) project_name));
-        mlist.add(new item_herojourney(R.drawable.ic_lying, getString(R.string.challenge_2_title), (String) getString(R.string.challenge_2_desc), (String) getString(R.string.challenge_2_desc_long),(String) char_name, (String) project_name));
-        mlist.add(new item_herojourney(R.drawable.ic_history, getString(R.string.challenge_3_title), (String) getString(R.string.challenge_3_desc), (String) getString(R.string.challenge_3_desc_long),(String) char_name, (String) project_name));
-        mlist.add(new item_herojourney(R.drawable.ic_man_looks, getString(R.string.challenge_4_title), (String) getString(R.string.challenge_4_desc), (String) getString(R.string.challenge_4_desc_long),(String) char_name, (String) project_name));
-        mlist.add(new item_herojourney(R.drawable.ic_limits, getString(R.string.challenge_5_title), (String) getString(R.string.challenge_5_desc), (String) getString(R.string.challenge_5_desc_long),(String) char_name, (String) project_name));
-        mlist.add(new item_herojourney(R.drawable.ic_pockets, getString(R.string.challenge_6_title), (String) getString(R.string.challenge_6_desc), (String) getString(R.string.challenge_6_desc_long),(String) char_name, (String) project_name));
-
-
-        String challenge7RawString = getString(R.string.challenge_7_desc_long);
-        String result_c7 = challenge7RawString.replace("$char_name$", char_name);
-
-        String challenge8RawString = getString(R.string.challenge_8_desc_long);
-        String result_c8 = challenge8RawString.replace("$char_name$", char_name);
-
-        switch (Common.currentCharacter.getGender()) {
-            case "Female":
-            case "Femenino":
-                //TODO ADD GERMAN CASE
-                String female_c7 = result_c7.replace("$gender$", getString(R.string.gender_female_article));
-                String female_c8 = result_c8.replace("$gender$", getString(R.string.gender_female_article));
-
-                mlist.add(new item_herojourney(R.drawable.typewriter, getString(R.string.challenge_7_title), getString(R.string.challenge_7_desc), female_c7 , char_name,  project_name));
-                mlist.add(new item_herojourney(R.drawable.typewriter, getString(R.string.challenge_8_title), getString(R.string.challenge_8_desc),  female_c8, char_name, project_name));
-
-                break;
-            case "Male":
-            case "Masculino":
-                //TODO ADD GERMAN CASE
-                String male_c7 = result_c7.replace("$gender$", getString(R.string.gender_male_article));
-                String male_c8 = result_c8.replace("$gender$", getString(R.string.gender_male_article));
-                mlist.add(new item_herojourney(R.drawable.typewriter, getString(R.string.challenge_7_title), getString(R.string.challenge_7_desc), male_c7 , char_name,  project_name));
-                mlist.add(new item_herojourney(R.drawable.typewriter, getString(R.string.challenge_8_title), getString(R.string.challenge_8_desc),  male_c8, char_name, project_name));
-        }
-
+        mlist.add(new item_herojourney(R.color.color_trigger_1, getString(R.string.challenge_1_title), getString(R.string.challenge_1_desc), CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_1_desc_long),getContext())));
+        mlist.add(new item_herojourney(R.color.color_trigger_2, getString(R.string.challenge_2_title),  getString(R.string.challenge_2_desc),  CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_2_desc_long),getContext())));
+        mlist.add(new item_herojourney(R.color.color_trigger_3, getString(R.string.challenge_3_title),  getString(R.string.challenge_3_desc),  CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_3_desc_long),getContext())));
+        mlist.add(new item_herojourney(R.color.color_trigger_4, getString(R.string.challenge_4_title),  getString(R.string.challenge_4_desc), CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_4_desc_long),getContext())));
+        mlist.add(new item_herojourney(R.color.color_trigger_5, getString(R.string.challenge_5_title),  getString(R.string.challenge_5_desc),  CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_5_desc_long),getContext())));
+        mlist.add(new item_herojourney(R.color.color_trigger_1, getString(R.string.challenge_6_title), getString(R.string.challenge_6_desc),  CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_6_desc_long),getContext())));
+        mlist.add(new item_herojourney(R.color.color_trigger_2, getString(R.string.challenge_7_title), getString(R.string.challenge_7_desc),  CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_7_desc_long),getContext())));
+        mlist.add(new item_herojourney(R.color.color_trigger_3, getString(R.string.challenge_8_title), getString(R.string.challenge_8_desc),  CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_8_desc_long),getContext())));
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));

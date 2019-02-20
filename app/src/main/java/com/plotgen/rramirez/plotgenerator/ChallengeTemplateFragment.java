@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +18,7 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.plotgen.rramirez.plotgenerator.Common.CharacterUtils;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
 import com.plotgen.rramirez.plotgenerator.Fragment.Container_charbio;
@@ -67,7 +67,7 @@ public class ChallengeTemplateFragment extends Fragment  {
         }
         challenge_number = this.getArguments().getString("challenge_number");
 
-        //Save button
+        //region Setup all UI elements
         FloatingActionButton fab = myFragmentView.findViewById(R.id.challenge_template_submit);
         charTemplateTitle = myFragmentView.findViewById(R.id.char_template_title);
         question1Title = myFragmentView.findViewById(R.id.char_template_question1_title);
@@ -78,24 +78,24 @@ public class ChallengeTemplateFragment extends Fragment  {
         question3 = myFragmentView.findViewById(R.id.char_template_q3_et);
         question4Title = myFragmentView.findViewById(R.id.char_template_question4_title);
         question4 = myFragmentView.findViewById(R.id.char_template_q4_et);
+        //endregion
 
         ((MainActivity)getActivity()).setActionBarTitle(project_name);
         challenge_info = getDescription(myFragmentView.getContext(),charID);
 
         charTemplateTitle.setText(char_name);
-        String short_name = char_name.split(" ")[0];
         try{
         challengesCompleted = Integer.valueOf(challenge_info.get(44));
         } catch (Exception e){
             challengesCompleted = 0;
         }
 
-        //Set titles for challenge one
+        //region Set questions and Answers
         if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_1_title))) {
-            question1Title.setText(getString(R.string.challenge_1_q1));
-            question2Title.setText(getString(R.string.challenge_1_q2));
-            question3Title.setText(getString(R.string.challenge_1_q3));
-            question4Title.setText(getString(R.string.challenge_1_q4));
+            question1Title.setText(CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_1_q1),getContext()));
+            question2Title.setText(CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_1_q2),getContext()));
+            question3Title.setText(CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_1_q3),getContext()));
+            question4Title.setText(CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_1_q4),getContext()));
             if(challenge_info.size()>0) {
                 //Check if creationMODE
                setCreationMode(0);
@@ -107,10 +107,10 @@ public class ChallengeTemplateFragment extends Fragment  {
                 default_questions_text();
             }
         } else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_2_title))){
-            question1Title.setText(getString(R.string.challenge_2_q1));
-            question2Title.setText(getString(R.string.challenge_2_q2));
-            question3Title.setText(getString(R.string.challenge_2_q3));
-            question4Title.setText(getString(R.string.challenge_2_q4));
+            question1Title.setText(CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_2_q1),getContext()));
+            question2Title.setText(CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_2_q2),getContext()));
+            question3Title.setText(CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_2_q3),getContext()));
+            question4Title.setText(CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_2_q4),getContext()));
             if(challenge_info.size()>0) {
                 //Check if creationMODE
                 setCreationMode(4);
@@ -122,10 +122,10 @@ public class ChallengeTemplateFragment extends Fragment  {
                 default_questions_text();
             }
         }else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_3_title))){
-            question1Title.setText(getString(R.string.challenge_3_q1));
-            question2Title.setText(getString(R.string.challenge_3_q2));
-            question3Title.setText(getString(R.string.challenge_3_q3));
-            question4Title.setText(getString(R.string.challenge_3_q4));
+            question1Title.setText(CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_3_q1),getContext()));
+            question2Title.setText(CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_3_q2),getContext()));
+            question3Title.setText(CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_3_q3),getContext()));
+            question4Title.setText(CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_3_q4),getContext()));
             if(challenge_info.size()>0) {
                 //Check if creationMODE
                 setCreationMode(8);
@@ -137,10 +137,10 @@ public class ChallengeTemplateFragment extends Fragment  {
                 default_questions_text();
             }
         }else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_4_title))){
-            question1Title.setText(getString(R.string.challenge_4_q1));
-            question2Title.setText(getString(R.string.challenge_4_q2));
-            question3Title.setText(getString(R.string.challenge_4_q3));
-            question4Title.setText(getString(R.string.challenge_4_q4));
+            question1Title.setText(CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_4_q1),getContext()));
+            question2Title.setText(CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_4_q2),getContext()));
+            question3Title.setText(CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_4_q3),getContext()));
+            question4Title.setText(CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_4_q4),getContext()));
             if(challenge_info.size()>0) {
             setCreationMode(12);
             question1.setText(challenge_info.get(12));
@@ -151,10 +151,10 @@ public class ChallengeTemplateFragment extends Fragment  {
                 default_questions_text();
             }
         }else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_5_title))){
-            question1Title.setText(getString(R.string.challenge_5_q1));
-            question2Title.setText(getString(R.string.challenge_5_q2));
-            question3Title.setText(getString(R.string.challenge_5_q3));
-            question4Title.setText(getString(R.string.challenge_5_q4));
+            question1Title.setText(CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_5_q1),getContext()));
+            question2Title.setText(CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_5_q2),getContext()));
+            question3Title.setText(CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_5_q3),getContext()));
+            question4Title.setText(CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_5_q4),getContext()));
             if(challenge_info.size()>0) {
                 setCreationMode(16);
                 question1.setText(challenge_info.get(16));
@@ -165,10 +165,10 @@ public class ChallengeTemplateFragment extends Fragment  {
                 default_questions_text();
             }
         } else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_6_title))){
-            question1Title.setText(getString(R.string.challenge_6_q1));
-            question2Title.setText(getString(R.string.challenge_6_q2));
-            question3Title.setText(getString(R.string.challenge_6_q3));
-            question4Title.setText(getString(R.string.challenge_6_q4));
+            question1Title.setText(CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_6_q1),getContext()));
+            question2Title.setText(CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_6_q2),getContext()));
+            question3Title.setText(CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_6_q3),getContext()));
+            question4Title.setText(CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_6_q4),getContext()));
             if(challenge_info.size()>0) {
                 setCreationMode(20);
                 question1.setText(challenge_info.get(20));
@@ -179,10 +179,10 @@ public class ChallengeTemplateFragment extends Fragment  {
                 default_questions_text();
             }
         } else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_7_title))){
-            question1Title.setText(getString(R.string.challenge_7_q1).replace("$char_name$", short_name));
-            question2Title.setText(getString(R.string.challenge_7_q2).replace("$char_name$", short_name));
-            question3Title.setText(getString(R.string.challenge_7_q3).replace("$char_name$", short_name));
-            question4Title.setText(getString(R.string.challenge_7_q4).replace("$char_name$", short_name));
+            question1Title.setText(CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_7_q1),getContext()));
+            question2Title.setText(CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_7_q2),getContext()));
+            question3Title.setText(CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_7_q3),getContext()));
+            question4Title.setText(CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_7_q4),getContext()));
             if(challenge_info.size()>0) {
                 setCreationMode(24);
                 question1.setText(challenge_info.get(24));
@@ -193,10 +193,10 @@ public class ChallengeTemplateFragment extends Fragment  {
                 default_questions_text();
             }
         }else if(challenge_number.equals(getContext().getResources().getString(R.string.challenge_8_title))){
-            question1Title.setText(getString(R.string.challenge_8_q1).replace("$char_name$", short_name));
-            question2Title.setText(getString(R.string.challenge_8_q2).replace("$char_name$", short_name));
-            question3Title.setText(getString(R.string.challenge_8_q3).replace("$char_name$", short_name));
-            question4Title.setText(getString(R.string.challenge_8_q4).replace("$char_name$", short_name));
+            question1Title.setText(CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_8_q1),getContext()));
+            question2Title.setText(CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_8_q2),getContext()));
+            question3Title.setText(CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_8_q3),getContext()));
+            question4Title.setText(CharacterUtils.addCharNameOnChallenge(getString(R.string.challenge_8_q4),getContext()));
             if(challenge_info.size()>0) {
                 setCreationMode(28);
                 question1.setText(challenge_info.get(28));
@@ -238,14 +238,15 @@ public class ChallengeTemplateFragment extends Fragment  {
             question3.setText(challenge_info.get(42));
             question4.setText(challenge_info.get(43));
         }
+//endregion
+
+
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Perform action on click
                 updateDB(charID, challenge_number);
-
-
             }
         });
 
@@ -270,6 +271,7 @@ public class ChallengeTemplateFragment extends Fragment  {
         return myFragmentView;
     }
 
+    //Save to DB
     private void updateDB(String charID, String challenge_number){
         SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -498,4 +500,5 @@ public class ChallengeTemplateFragment extends Fragment  {
             challengeCreation = false;
         }
     }
+
 }

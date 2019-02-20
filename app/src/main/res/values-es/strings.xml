@@ -655,53 +655,53 @@ A veces, el héroe puede incluso perder a su mentor en esta etapa (Ejemplo: LOTR
     <!--Primer desafio-->
     <string name="challenge_1_title">Desafio I</string>
     <string name="challenge_1_desc">Desafio del ascensor</string>
-    <string name="challenge_1_desc_long">¿Como reaccionaria tu personaje en una crisis?\n
+    <string name="challenge_1_desc_long">¿Cómo reaccionaría $char_name$ en una crisis?\n
     Pongamoslo en un elevador con un extraño. No importa con quien.\n
-    De pronto el ascensor se queda atascado y ambos están atrapados.\n ¿Como reacciona? ¿Estara calmado? ¿Entrara en panico?
-    \nTomate tu tiempo para constar.
+    De pronto el ascensor se queda atascado y ambos están atrapados.\n ¿Cómo reacciona? ¿Estara calmado? ¿Entrara en panico?
+    \nTomate tu tiempo para contestar.
     \nEste ejercicio te permitira reflexionar sobre tu personaje y conocer como actua en situaciones limites.</string>
     <string name="challenge_1_q1">¿Cual es su primera reaccion?</string>
     <string name="challenge_1_q2">¿Esperara a ser rescatado?</string>
-    <string name="challenge_1_q3">La persona que esta con el de pronto entra en panico. Tu personaje lo calmaria? O entraria en panico también?</string>
-    <string name="challenge_1_q4">Luego de estar atrapados por mas de una hora, repentinamente una voz les habla. Hey, aquí arriba. Puedo sacar a uno, pero el otro debera esperar la ayuda…
-        \n¿Iria tu personaje primero o dejaria a su compañero?</string>
+    <string name="challenge_1_q3">La persona que esta con él de pronto entra en panico. ¿$char_name$ lo calmaria? ¿O entraria en panico también?</string>
+    <string name="challenge_1_q4">Luego de estar atrapados por mas de una hora, repentinamente una voz les habla. \"Hey, aquí arriba. Puedo sacar a uno, pero el otro debera esperar la ayuda…\"
+        \n¿Iria $char_name$ primero?</string>
     <!--Segundo desafio-->
     <string name="challenge_2_title">Desafio II</string>
     <string name="challenge_2_desc">¿Cual es la mentira?</string>
-    <string name="challenge_2_desc_long">El arco de cambio se trata de la mentira que tu personaje cree. Su vida puede ser genial u horrenda. Pero, acechando en la superfice de su vida, ahí esta la mentira.
-Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenzar con algo que le falte en su vida, alguna razon que haga su cambio necesario.</string>
-    <string name="challenge_2_q1">¿Cual es el concepto errado que tiene sobre el o sobre el mundo?</string>
+    <string name="challenge_2_desc_long">El arco de cambio se trata de la mentira que $char_name$ cree. Su vida puede ser genial u horrenda. Pero, acechando en la superfice, ahí esta la mentira.
+Para que el personaje pueda evolucionar en una manera positiva, tiene que comenzar con algo que le falte en su vida, alguna razon que haga su cambio necesario.</string>
+    <string name="challenge_2_q1">¿Cual es el concepto errado que tiene sobre $gender$ o sobre el mundo?</string>
     <string name="challenge_2_q2">¿Esta mentira hace su vida miserable cuando comienza la historia? De ser así, ¿Cómo?</string>
-    <string name="challenge_2_q3">Si no fuese, durante el plot inicial vemos como su mentira lo pone incomodo?</string>
-    <string name="challenge_2_q4">¿Cuales son los sintomas de la mentira de tu personaje?</string>
+    <string name="challenge_2_q3">Si no fuese, durante el plot inicial vemos como su mentira incomoda a $char_name$?</string>
+    <string name="challenge_2_q4">¿Cuales son los sintomas de la mentira de $char_name$?</string>
     <!--Tercer desafio-->
     <string name="challenge_3_title">Desafio III</string>
     <string name="challenge_3_desc">Historia</string>
-    <string name="challenge_3_desc_long">Quien es tu personaje es muy importante, cual es su trabajo, cuales son sus pasiones, etc. Quien será en el futuro, es lo esencial de la historia, por eso la contamos. Pero entonces, que pasa con su pasado? Su pasado explica el por qué es como es. Se divorciaron sus padres? Quizás su madre era alcoholica? Puede algo de eso afectar quien será? Sumergite en este desafio para desarrollar un personaje realmente tridimensional.</string>
+    <string name="challenge_3_desc_long">Quien es tu personaje es muy importante, cual es su trabajo, cuales son sus pasiones, etc. Quien será en el futuro, es lo esencial de la historia, por eso la contamos. Pero entonces, que pasa con su pasado? Su pasado explica el por qué es como es. ¿Se divorciaron sus padres? ¿Quizás su madre era alcoholica? ¿Puede algo de eso afectar quien será? Sumergete en este desafio para desarrollar un personaje realmente tridimensional.</string>
     <string name="challenge_3_q1">Describe brevemente su familia mas cercana, madre, padre, hermanos. ¿Todos viven? ¿Sus padres están divorciados? ¿Fueron una familia feliz quizás?</string>
     <string name="challenge_3_q2">¿Cual es su mejor recuerdo de la infancia?</string>
     <string name="challenge_3_q3">¿Cual es su peor recuerdo de la infancia?</string>
-    <string name="challenge_3_q4">¿Tenia amigos de pequeño? ¿Cómo lo describirian sus amigos? Si no tenia amigos, ¿Por qué?</string>
+    <string name="challenge_3_q4">¿Tenia amigos de pequeño? ¿Cómo describirian sus amigos a $char_name$? Si no tenia amigos, ¿Por qué?</string>
     <!--Cuarto desafio-->
     <string name="challenge_4_title">Desafio IV</string>
     <string name="challenge_4_desc">¿Como luce?</string>
-    <string name="challenge_4_desc_long">Lajos Egri decia que como te ves, determina quien seras. ¿No te parece? Imaginate que tu personaje estuvo paralizado cuando era pequeño, debido a esto pasaba sus días en la cama y jamas pudo jugar con los demas niños, por lo tanto se volco a la lectura ya que no tenia otra cosa para hacer. No crees que cuando sea un adulto esto podria afectar quien es? Quizás mas introvertido pero altamente inteligente?</string>
-    <string name="challenge_4_q1">Tomate un momento para reflexionar. Escribi cinco adjetivos que describan a tu personaje fisicamente</string>
-    <string name="challenge_4_q2">Tiene alguna marca de nacimiento? Tatuajes quizás que lo hagan único? </string>
-    <string name="challenge_4_q3">Alguna condicion medica? Alergias? Algo que se manifieste fisicamente incluso si pueda estar oculto debajo de su ropa?</string>
-    <string name="challenge_4_q4">Considera por un segundo su postura, podrias describirla? Además, su apariencia? Es limpio? Es prolijo? Dirias que apesar de todo es atractivo?</string>
+    <string name="challenge_4_desc_long">Lajos Egri decia que como te ves, determina quien seras. ¿No te parece? Imaginate que $char_name$ estuvo paralizado de pequeño, debido a esto pasaba sus días en la cama y jamas pudo jugar con los demas niños, por lo tanto se volco a la lectura ya que no tenia otra cosa para hacer. ¿No crees que cuando sea un adulto esto podria afectar quien es? ¿Quizás mas introvertido pero altamente inteligente?</string>
+    <string name="challenge_4_q1">Tomate un momento para reflexionar. Escribe cinco adjetivos que describan a $char_name$ fisicamente</string>
+    <string name="challenge_4_q2">¿Tiene alguna marca de nacimiento? ¿Tatuajes quizás que lo hagan único? </string>
+    <string name="challenge_4_q3">¿Alguna condicion medica? ¿Alergias? ¿Algo que se manifieste fisicamente incluso si pueda estar oculto debajo de su ropa?</string>
+    <string name="challenge_4_q4">Considera por un segundo su postura, ¿Podrias describirla? Además, su apariencia: ¿Es limpio? ¿Es prolijo? ¿Dirias que apesar de todo es atractivo?</string>
     <!--Quinto desafio-->
     <string name="challenge_5_title">Desafio V</string>
     <string name="challenge_5_desc">Pon a prueba sus limites.</string>
     <string name="challenge_5_desc_long">Si el carbon y los diamantes son basicamente la misma cosa, que hace a uno tan común y al otro tan raro y hermoso?\n Presion.\nEsto mismo es verdad para los personajes, Quieres saber si tu personaje es uno mas del montón o el héroe que tu historia necesita? Solo falta aplicarle la presion necesaria y vas a descubrir de que esta hecho.</string>
-    <string name="challenge_5_q1">Como reaccionaria si alguien que ama esta en peligro?</string>
-    <string name="challenge_5_q2">Seria capaz de matar? </string>
-    <string name="challenge_5_q3">Diria tu personaje que el fin justifica los medios cuando se trata de proteger a quien ama?</string>
-    <string name="challenge_5_q4">Supongamos que no cruzara sus limites para salvar a alguien que quiere, sea por miedo o por valores morales. Como resolveria esta situacion sin dejar de ser quien es?</string>
+    <string name="challenge_5_q1">¿Cómo reaccionaria $char_name$ si alguien que ama esta en peligro?</string>
+    <string name="challenge_5_q2">¿Seria capaz de matar? </string>
+    <string name="challenge_5_q3">¿Diría $char_name$ que el fin justifica los medios cuando se trata de proteger a quien ama?</string>
+    <string name="challenge_5_q4">Supongamos que no cruzara sus limites para salvar a alguien que quiere, sea por miedo o por valores morales. ¿Cómo resolveria esta situacion sin dejar de ser quien es?</string>
     <!--Sexto Challenge-->
     <string name="challenge_6_title">Desafio VI</string>
     <string name="challenge_6_desc">¿Qué hay en sus bolsillos?</string>
-    <string name="challenge_6_desc_long">Lo que llevas contigo, habla generalmente de aquello que mas te importa. ¿Llevarias algo que no te importa perder? Probablemente no. Lo mismo ocurre con tu personaje. Sumergete en este desafío para entender mas que lleva tu personaje en sus bolsillo. O mejor dicho, que le imoprta mas.</string>
+    <string name="challenge_6_desc_long">Lo que llevas contigo, habla generalmente de aquello que mas te importa. ¿Llevarias algo que no te importa perder? Probablemente no. Lo mismo ocurre con $char_name$. Sumergete en este desafío para entender mas que lleva tu personaje en sus bolsillo. O mejor dicho, que le imoprta mas.</string>
     <string name="challenge_6_q1">Tu personaje esta apunto de salir de la casa. ¿Qué toma y se pone en los bolsillos? ¿Billetera/Cartera? ¿Lllaves? ¿Es una llave de auto o moto? ¿Qué vehiculo tiene?</string>
     <string name="challenge_6_q2">Abre su cartera/billetera, ¿Tiene una foto? ¿Quién esta en la foto? ¿Por qué esta ahí y desde cuando la tiene?</string>
     <string name="challenge_6_q3">Toma las llaves de su bolsillo, presta atencíon al llavero. ¿Qué es? ¿Donde lo consiguio? ¿Acaso fue un regalo? Si es el icono o la bandera de algún país. ¿Qué país es ese?</string>
@@ -746,7 +746,7 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="challenge_8_q3">Vé al dormitorio, ¿Cómo es? ¿Tiene una cama doble? ¿Es una simple? ¿Esta la cama hecha? ¿Acaso hay alguien en la cama?</string>
     <string name="challenge_8_q4">Abre las ventanas, todas ellas. ¿Qué es lo que $char_name$ ve desde ahí? ¿Puede verlo la gente? ¿Puede escucharse el ruido de la calle? ¿Qué tan ruidoso es ese lugar?</string>
 
-    <!--GUIDE ME Strings-->
+    <!--region Guides -->
     <string name="char_guide_title">Roles de personajes tipicos</string>
     <string name="roles_title">Roles de personajes tipicos</string>
     <string name="roles_desc">Roles</string>
@@ -860,6 +860,13 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
         ¿Por qué quiere la bruja mala destruir la raza humana? Quizás porque los humanos la expulsaron de su casa miles de años atras y ahora no ve mas salida que destruirlos. Esto no hace a la bruja menos malvada, pero si mas creible.</item>
     </string-array>
 
+    <string name="herojourney_guide_title">Joseph Campbell</string>
+    <string name="herojourney_guide_desc">El heroe de las mil caras</string>
+    <string name="herojourney_guide_desc_long">Hay muchas maneras de comenzar a escribir una historia. Depende enteramente de ti, sin embargo, algunas reglas al ser rotas son muy faciles de notar.\n\nDale una leida a esta guía para entender un poco mas como organizar tu historia.</string>
+    <!--endregion-->
+
+
+
     <string name="weekly_challenge_title_default">Sin conexion</string>
     <string name="weekly_challenge_desc_default">Si ves este texto es que no tienes acceso a internet. Comprueba tu conexion y vuelve a ingresar</string>
     <string name="weekly_challenge_view_ad_btn">Ver anuncio</string>
@@ -936,10 +943,18 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="invitation_cta">Leer</string>
 
 
+    <!--Gender Helpers-->
     <string name="gender_male_article">el</string>
     <string name="gender_female_article">ella</string>
+    <string name="gender_nonbinary_article">ellos</string>
     <string name="gender_male_posesive">su</string>
     <string name="gender_female_posesive">su</string>
+    <string name="gender_female">Femenino</string>
+    <string name="gender_male">Masculino</string>
+
+
+
+
 
     <string name="weekly_challenge_tab1">En progreso</string>
     <string name="weekly_challenge_tab2">Último ganador</string>
@@ -970,10 +985,10 @@ Para que tu personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="onBoardingTitle_7">Voila!</string>
 
     <string name="onBoarding_1">Comenzar a escribir es difícil. Quizás mas difícil que terminar.\n¡Pero no te preocupes!.\nEstamos contigo.\n\nAdelante, aprieta el botón + para crear tu primer proyecto.</string>
-    <string name="onBoarding_2">Si aun no lo has hecho, ve y prepárate un café.\n\aquí crearas los detalles de tu proyecto.\n\Titulo, Genero y brevemente de que se trata la historia. A esto ultimo lo llamamos PLOT.\n\n¡No te estreses mucho!, Si no estas seguro/a de algo, siempre puedes cambiarlo luego.\nAprieta el botón de guardado cuando estés listo/a.</string>
+    <string name="onBoarding_2">Si aun no lo has hecho, ve y prepárate un café.\n\aquí crearas los detalles de tu proyecto.\n\Titulo, Genero y brevemente de que se trata la historia. A esto último lo llamamos PLOT.\n\n¡No te estreses mucho!, Si no estas seguro/a de algo, siempre puedes cambiarlo luego.\nAprieta el botón de guardado cuando estés listo/a.</string>
     <string name="onBoarding_3">Aquí veras todos tus proyectos. Cuantos como desees tener.\n\nAprieta en el que acabas de crear para continuar.</string>
     <string name="onBoarding_4">Ahora le estas tomando la mano.\n\nAprieta el botón + y elije Personajes para crear el primero</string>
-    <string name="onBoarding_5">Si aun no lo has hecho, ahora es cuando buscar ese café.\n\nAquí crearas a tu primer personaje. Si no tienes ideas, no te preocupes. Puedes hacerlo al azar.\n\nO que te parece combinarlo?. Puedes apretar el botón del dado y cuando te guste algún personaje simplemente cambia aquello que no te conforma.\n\nAdelante, pruébalo, ¡y si! Siempre puedes cambiarlo mas adelante.</string>
+    <string name="onBoarding_5">Si aun no lo has hecho, ahora es cuando buscar ese café.\n\nAquí crearas a tu primer personaje. Si no tienes ideas, no te preocupes. Puedes hacerlo al azar.\n\n¿O qué te parece combinarlo? Puedes apretar el botón del dado y cuando te guste algún personaje simplemente cambia aquello que no te conforma.\n\nAdelante, pruébalo, ¡y si! Siempre puedes cambiarlo mas adelante.</string>
     <string name="onBoarding_6">Aquí veras al personaje que acabas de crear junto a los demas que hayas hecho.\n\nNombre, rol en tu historia y cuan desarrollado esta.\nAdelante, selecciona el personaje que acabas de crear para continuar.</string>
     <string name="onBoarding_7">Este es tu personaje. Aquí puedes tener una vista rápida de quien es.\n\nPero esto esta lejos de terminarse. Chequea el botón + contiene guías para entender como desarrollar personajes.\n\nPero mas importante, también tienes desafíos.\n\nMe encantaría explicarte mas, pero creo que es mejor que lo veas por ti mismo/a.</string>
 

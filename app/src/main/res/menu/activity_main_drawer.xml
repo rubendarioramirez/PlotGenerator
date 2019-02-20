@@ -17,10 +17,6 @@
             android:icon="@drawable/writer_icon"
             android:title="@string/writing_challenge_tab" />
 
-        <item
-            android:id="@+id/premium"
-            android:icon="@drawable/ic_love_red"
-            android:title="Premium" />
 
         <!--<item-->
             <!--android:id="@+id/nav_discover"-->
@@ -33,9 +29,14 @@
             android:title="@string/trigger_tab" />
 
         <item
-            android:id="@+id/nav_genre"
-            android:icon="@drawable/ic_book_black"
-            android:title="@string/hero_journey_tab" />
+            android:id="@+id/premium"
+            android:icon="@drawable/ic_love_red"
+            android:title="Premium" />
+
+        <!--<item-->
+            <!--android:id="@+id/nav_genre"-->
+            <!--android:icon="@drawable/ic_book_black"-->
+            <!--android:title="@string/hero_journey_tab" />-->
 
 
 

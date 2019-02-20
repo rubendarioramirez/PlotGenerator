@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
+        Common.isPAU = Utils.getSPIAP(this);
         firstTime = Utils.checkFirstTime(getApplicationContext());
         if (firstTime) {
             remoteConfig_main = FirebaseRemoteConfig.getInstance();
@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity
         // Obtain the FirebaseAnalytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
-        Common.isPAU = Utils.getSPIAP(this);
+
         FirebaseApp.initializeApp(this);
 
         if (!Common.isPAU) {
@@ -201,6 +201,10 @@ public class MainActivity extends AppCompatActivity
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        if (Common.isPAU)
+            hideItem();
+
+
 
 
         //handle notification on post like and comment
@@ -417,19 +421,13 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        if (id == R.id.nav_genre) {
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.flMain, new HeroJourneyFragment());
-            mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
-            ft.commit();
-        }
 //        else if (id == R.id.nav_discover) {
 //            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 //            ft.replace(R.id.flMain, new DiscoverFragment());
 //            mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
 //            ft.commit();
 //        }
-        else if (id == R.id.nav_trigger) {
+        if (id == R.id.nav_trigger) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.flMain, new TriggerFragment());
             mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
@@ -553,5 +551,13 @@ public class MainActivity extends AppCompatActivity
         }
 
     }
+
+    private void hideItem()
+    {
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        Menu nav_Menu = navigationView.getMenu();
+        nav_Menu.findItem(R.id.premium).setVisible(false);
+    }
+
 
 }

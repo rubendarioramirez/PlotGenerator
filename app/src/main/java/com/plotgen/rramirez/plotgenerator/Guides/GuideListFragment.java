@@ -47,10 +47,11 @@ public class GuideListFragment extends Fragment {
         RecyclerView recyclerView = myFragmentView.findViewById(R.id.rv_guide_list_fragment);
         final Adapter_challenges adapter = new Adapter_challenges(this.getActivity(),mlist);
         mlist.clear();
-        mlist.add(new item_herojourney(R.drawable.typewriter, (String) getString(R.string.roles_title), (String) getString(R.string.roles_desc), (String) getString(R.string.roles_desc_long),(String) "dumi", (String) "dumi"));
-        mlist.add(new item_herojourney(R.drawable.typewriter, (String) getString(R.string.lajos_character_title), (String) getString(R.string.lajos_character_desc), (String) getString(R.string.lajos_character_long),(String) "dumi", (String) "dumi"));
-        mlist.add(new item_herojourney(R.drawable.typewriter, (String) getString(R.string.change_arc_title), (String) getString(R.string.change_arc_desc), (String) getString(R.string.change_arc_desc_long),(String) "dumi", (String) "dumi"));
-        mlist.add(new item_herojourney(R.drawable.typewriter, (String) getString(R.string.antagonist_guide_title), (String) getString(R.string.antagonist_guide_desc), (String) getString(R.string.antagonist_guide_desc_long),(String) "dumi", (String) "dumi"));
+        mlist.add(new item_herojourney(R.color.color_trigger_1, (String) getString(R.string.roles_title), (String) getString(R.string.roles_desc), (String) getString(R.string.roles_desc_long)));
+        mlist.add(new item_herojourney(R.color.color_trigger_2, (String) getString(R.string.lajos_character_title), (String) getString(R.string.lajos_character_desc), (String) getString(R.string.lajos_character_long)));
+        mlist.add(new item_herojourney(R.color.color_trigger_3, (String) getString(R.string.change_arc_title), (String) getString(R.string.change_arc_desc), (String) getString(R.string.change_arc_desc_long)));
+        mlist.add(new item_herojourney(R.color.color_trigger_4, (String) getString(R.string.antagonist_guide_title), (String) getString(R.string.antagonist_guide_desc), (String) getString(R.string.antagonist_guide_desc_long)));
+        mlist.add(new item_herojourney(R.color.color_trigger_5, getString(R.string.herojourney_guide_title), getString(R.string.herojourney_guide_desc), getString(R.string.herojourney_guide_desc_long)));
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));

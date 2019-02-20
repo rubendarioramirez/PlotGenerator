@@ -11,27 +11,19 @@ import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
-import com.plotgen.rramirez.plotgenerator.Common.Utils;
+import com.plotgen.rramirez.plotgenerator.Common.Tutorial;
 import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
-import com.plotgen.rramirez.plotgenerator.Guides.GuideListFragment;
-import com.plotgen.rramirez.plotgenerator.Model.Character;
 
-import java.net.CookieManager;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -47,13 +39,8 @@ public class BioFragment extends Fragment {
 
     ArrayList<String> char_description;
     private FirebaseAnalytics mFirebaseAnalytics;
-//    private String fragmentTag = BioFragment.class.getSimpleName();
     String char_name, charID, project_name, charRole;
 
-//    @BindView(R.id.fab_add_challenge)
-//    com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton fabAddChallenge;
-//    @BindView(R.id.fab_guide)
-//    com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton fabCheckGuide;
     @BindView(R.id.character_bio_name_title)
     TextView title;
     @BindView(R.id.character_bio_role_title)
@@ -80,7 +67,6 @@ public class BioFragment extends Fragment {
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(myFragmentView.getContext());
         ButterKnife.bind(this, myFragmentView);
 
-        //Bind the elements
         char_description = new ArrayList<String>();
 
         if(Common.currentCharacter !=null) {
@@ -178,11 +164,7 @@ public class BioFragment extends Fragment {
         }
 
 
-        if(Common.onBoarding == 6){
-            Common.onBoarding = 7;
-            Utils.displayDialog(myFragmentView.getContext(), getString(R.string.onBoardingTitle_7), getString(R.string.onBoarding_7), "Got it!");
-        }
-
+        Tutorial.checkTutorial(myFragmentView,getActivity());
 
         return myFragmentView;
     }

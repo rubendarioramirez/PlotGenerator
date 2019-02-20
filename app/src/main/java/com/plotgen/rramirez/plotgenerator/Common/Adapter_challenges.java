@@ -23,6 +23,7 @@ import com.plotgen.rramirez.plotgenerator.ChallengeTemplateFragment;
 import com.plotgen.rramirez.plotgenerator.Guides.GuideLajosFragment;
 import com.plotgen.rramirez.plotgenerator.Guides.GuideRoleFragment;
 import com.plotgen.rramirez.plotgenerator.Guides.GuideWeilandFragment;
+import com.plotgen.rramirez.plotgenerator.HeroJourneyFragment;
 import com.plotgen.rramirez.plotgenerator.R;
 import com.plotgen.rramirez.plotgenerator.item_herojourney;
 
@@ -102,8 +103,6 @@ public class Adapter_challenges extends RecyclerView.Adapter<Adapter_challenges.
         public void onClick(View view)
         {
             String clicked = mData.get(getAdapterPosition()).getHerojourney_title();
-            String charName = mData.get(getAdapterPosition()).getHerojourneyChar();
-            String projectName = mData.get(getAdapterPosition()).getHerojourneyProject();
              if (clicked.equals(view.getContext().getResources().getString(R.string.char_guide_title))){
                  //Send it to the next fragment
                     GuideRoleFragment nextFragment = new GuideRoleFragment();
@@ -121,7 +120,12 @@ public class Adapter_challenges extends RecyclerView.Adapter<Adapter_challenges.
                 //Send it to the next fragment
                 AntagonistFragment nextFragment = new AntagonistFragment();
                 nextGuideFragment(view,nextFragment);
-            } else {
+            } else if (clicked.equals(view.getContext().getResources().getString(R.string.herojourney_guide_title))){
+                 //Send it to the next fragment
+                 HeroJourneyFragment nextFragment = new HeroJourneyFragment();
+                 nextGuideFragment(view,nextFragment);
+             }
+             else {
                  nextFragment(mContext, clicked);
              }
         }

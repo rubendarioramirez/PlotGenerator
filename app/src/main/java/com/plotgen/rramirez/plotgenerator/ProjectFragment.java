@@ -13,26 +13,36 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.google.android.gms.ads.AdView;
+import com.plotgen.rramirez.plotgenerator.Common.AdsHelper;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
+import com.plotgen.rramirez.plotgenerator.Common.Tutorial;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Model.Project;
 
 import java.util.ArrayList;
 
-import static android.content.Context.LAYOUT_INFLATER_SERVICE;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 import static com.plotgen.rramirez.plotgenerator.Common.Constants.debugMode;
 
 
 public class ProjectFragment extends Fragment {
+    //region Declare elements
     String fragmentTag = ProjectFragment.class.getSimpleName();
-    ListView project_lv;
     ArrayList<String> project_list_array;
     ArrayAdapter<String> itemsAdapter;
-    TextView empty_project_tv;
     ArrayList<String> project_names;
     ArrayList<String> projects_ids;
+    boolean alreadyCalled;
 
-    private AdView mAdView;
+    @BindView(R.id.project_lv)
+    ListView project_lv;
+    @BindView(R.id.empty_project_tv)
+    TextView empty_project_tv;
+    @BindView(R.id.adView_project_frag)
+    AdView mAdView;
+    //endregion
 
     public ProjectFragment() {
         // Required empty public constructor
@@ -42,29 +52,13 @@ public class ProjectFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ((MainActivity) getActivity()).setActionBarTitle(getString(R.string.projects_tab));
-        // Inflate the layout for this fragment
-
         final View myFragmentView = inflater.inflate(R.layout.fragment_project, container, false);
+        ButterKnife.bind(this, myFragmentView);
 
-        project_lv = myFragmentView.findViewById(R.id.project_lv);
-        empty_project_tv = myFragmentView.findViewById(R.id.empty_project_tv);
-        mAdView = (AdView) myFragmentView.findViewById(R.id.adView_project_frag);
+        //region Populate Project list
         project_names = new ArrayList<String>();
         projects_ids = new ArrayList<String>();
-
         project_list_array = Utils.getProjects_list(myFragmentView.getContext());
-
-        if(project_list_array.isEmpty()) {
-            Common.onBoarding = 1;
-            Utils.displayDialog(myFragmentView.getContext(), getString(R.string.onBoardingTitle_1), getString(R.string.onBoarding_1), "Got it!");
-        }
-
-        if(Common.onBoarding == 2){
-            Common.onBoarding = 3;
-            Utils.displayDialog(myFragmentView.getContext(), getString(R.string.onBoardingTitle_3), getString(R.string.onBoarding_3), "Got it!");
-        }
-
-
         if (project_list_array != null && !project_list_array.isEmpty())
             for (int i = 0; i < project_list_array.size(); i++) {
                 if (!project_list_array.get(i).isEmpty()) {
@@ -75,12 +69,24 @@ public class ProjectFragment extends Fragment {
         itemsAdapter = new ArrayAdapter<String>(myFragmentView.getContext(), android.R.layout.simple_list_item_1, project_names);
         project_lv.setAdapter(itemsAdapter);
         project_lv.setEmptyView(empty_project_tv);
+        //endregion
 
-        if (!Common.isPAU) {
-            Utils.loadAd(mAdView);
+        //region Tutorial
+        if(project_list_array.isEmpty()){
+            Common.onBoarding = 1;
+            Common.tutorialMODE = true;
         }
 
+        if(!alreadyCalled){
+        Tutorial.checkTutorial(myFragmentView,getActivity());
+        alreadyCalled=true;
+        }
+        //endregion Tutorial
 
+        //Load ad
+        AdsHelper.loadAd(mAdView);
+
+        //region handle Click on projects
         project_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
@@ -98,8 +104,9 @@ public class ProjectFragment extends Fragment {
 //                }
             }
         });
+        //endregion
 
-
+        //region handle Add project button
         FloatingActionButton fab = (FloatingActionButton) myFragmentView.findViewById(R.id.add_project_btn);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,10 +129,13 @@ public class ProjectFragment extends Fragment {
 //                }
             }
         });
-
-
+        //endregion
 
         return myFragmentView;
     }
+
+
+
+
 
 }

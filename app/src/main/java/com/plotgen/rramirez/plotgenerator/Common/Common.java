@@ -29,6 +29,7 @@ public class Common {
     public static boolean projectCreationMode;
 
     public static int onBoarding;
+    public static boolean tutorialMODE;
 
 
     //Database references

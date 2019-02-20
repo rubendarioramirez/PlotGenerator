@@ -64,6 +64,8 @@ dependencies {
     implementation 'com.robertlevonyan.view:CustomFloatingActionButton:2.1.1'
     implementation 'jp.wasabeef:richeditor-android:1.2.2'
     implementation 'com.anjlab.android.iab.v3:library:1.0.44'
+    implementation 'uk.co.samuelwall:material-tap-target-prompt:2.0.1'
+
 
     implementation 'com.google.firebase:firebase-crash:16.2.1'
     implementation 'com.firebaseui:firebase-ui-database:4.2.0'

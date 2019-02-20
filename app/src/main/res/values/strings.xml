@@ -20,6 +20,7 @@
 
     <string name="reward_ad_challenge" translatable="false">ca-app-pub-6696437403163667/6917012049</string>
 
+    <!--region Writing Prompts-->
     <string name="trigger_tab">Writing Prompts</string>
     <string-array name="triggers_list" tools:ignore="InconsistentArrays">
         <item>He didn\’t tell anyone where he was going.</item>
@@ -72,7 +73,7 @@
         <item>That day I missed her for first time.</item>
         <item>It wasn\'t a problem that she left with another women, but it has to be my sister?</item>
     </string-array>
-
+<!--endregion-->
 
     <string name="character_tab">Character Workshop</string>
     <string name="character_create">Create Character</string>
@@ -88,7 +89,7 @@
         \n\nLast but not least, check out the workshop. It contains what you need to track and develop your characters. Create a project, then add characters and don\t worry if you are a bit block. I got your back with the generator function, that will generate traits, desires and needs for you.\n\nHave a great writing!</string>
 
 
-    <!--Projects String-->
+    <!--region Projects String-->
     <string name="projects_tab">Projects</string>
     <string name="projects_empty">Really no name for your project? Try again with something more creative</string>
     <string name="project_name">Project Name</string>
@@ -114,20 +115,21 @@
 
     <string name="project_summary">Plot Summary</string>
 
-
     <string name="add_projects_btn">Add project</string>
     <string name="edit_projects_btn">Edit project</string>
     <string name="delete_project_btn">Are you sure you want to delete this project?</string>
     <string name="delete_project_btn_message">All characters associated to it will be deleted</string>
     <string name="projects_empty_text">Seems that you don\'t have any project yet.
     Please go ahead and create a new one to get started.</string>
+    <!--endregion-->
 
-    <!--Character String-->
+
+    <!--region BIOGRAPHY TEXT-->
     <string name="character_bio_title">Biography</string>
     <string name="character_list_tab">Characters</string>
     <string name="character_empty_text">Seems that you don\'t have any character yet.
     Please go ahead and create a new one to get started.</string>
-    <!--BIOGRAPHY TEXT-->
+
     <string name="age_bio_1">is</string>
     <string name="age_bio_2">years old.</string>
     <string name="placebirth_bio">Born in</string>
@@ -611,14 +613,13 @@
     <string name="character_story_tv">Story</string>
     <string name="character_notes_tv">Notes</string>
     <string name="character_personality_tv">Personality</string>
+<!--endregion-->
 
-
-    <!--Journey Strings-->
+    <!--region Journey Strings-->
     <string name="hero_journey_tab">The hero journey</string>
     <string name="hj_act1">Act 1: The Departure</string>
     <string name="hj_act2">Act 2: Initiation</string>
     <string name="hj_act3">Act 3: The Return</string>
-
     <string name="hj_title1">The call to adventure</string>
     <string name="hj_title2">Refusal of the call</string>
     <string name="hj_title3">Supernatural Aid</string>
@@ -635,8 +636,6 @@
     <string name="hj_title14">Rescue from without</string>
     <string name="hj_title15">The crossing of the return threshold</string>
     <string name="hj_title16">Master of two worlds</string>
-
-
     <string name="hj_desc1">The hero is presented with a problem, challenge or adventure.
 The hero must face beginning of change.  This call must be accepted, this can happen willingly,
 reluctantly, consciously or accidentally</string>
@@ -659,7 +658,7 @@ Sometimes, the heroes lose their mentor in this stage (e.g. LOTR and Star Wars).
     <string name="hj_desc14">The hero often has (and needs) guides and helpers, sometimes the helpers are the one that need to bring him back to every day life. Especially if the hero has been severely wounded.</string>
     <string name="hj_desc15">Now that he gained all this knowledge and experience, he needs to retain it and integrate it into his human life and or share it with the world.</string>
     <string name="hj_desc16">This step occurs if the hero is a transcendental hero such as Jesus or Buddha. If the hero is human, this may be simply achieving a balance between the material and spiritual world. The hero becomes comfortable and competent in both the inner and outer world.</string>
-
+<!--endregion-->
 
     <!--Rate app-->
     <string name="rate_app">Help me improve it!</string>
@@ -668,6 +667,7 @@ Sometimes, the heroes lose their mentor in this stage (e.g. LOTR and Star Wars).
     <string name="rate_cancel">Not yet</string>
 
 
+    <!--region Challenges-->
     <!--Challenge fragment-->
     <string name="challenge_answer_placeholder">Answer…</string>
     <string name="challenge_nochallenge_placeholder">You have no challenges yet for this character.</string>
@@ -768,8 +768,10 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="challenge_8_q2">$char_name$ stands in the middle of the biggest room, what can be seen? What\'s on the walls? Who put that there?.</string>
     <string name="challenge_8_q3">Go to the bedroom, how is it? Is it a double size bed? Is it a single one? Is the bed tidy? do you see anybody on the bed?</string>
     <string name="challenge_8_q4">Open the windows, all of them. What does $char_name$ see from there? Can people see him? Can the noise from the street be heard? How noisy it\'s the place?</string>
+    <!--endregion-->
 
-    <!--GUIDE ROLES-->
+
+    <!--region Guides -->
     <string name="roles_title">Typical character Roles</string>
     <string name="roles_desc">Roles</string>
     <string name="roles_desc_long">Picture your story as an engine, it contains gears and cogs that needs to work together for your engine to move. Characters in a story are no different.
@@ -875,6 +877,14 @@ In order for your character to evolve in a positive way, he has to start out wit
         <item>What\'s the goal of your antagonist? What is the purpose behind all of the trouble that they are causing? Don\'t be tempted to explain that their wicked deeds are simply a product of their evil nature. People don\'t just randomly do bad things. They usually have a reason for their actions. Come up with a strong motivation and your character becomes that much more believable.</item>
     </string-array>
 
+
+    <string name="herojourney_guide_title">Joseph Campbell</string>
+    <string name="herojourney_guide_desc">The Hero with a Thousand Faces</string>
+    <string name="herojourney_guide_desc_long">There is several ways to write a book or a play. That\'s entirely up to you, however there are rules that when broken, the audience will notice.\n\nDive into Joseph Campbell\'s Hero Journey to find how to outline a compelling story.</string>
+    <!--endregion Guides -->
+
+
+    <!--region Weekly Challenge-->
     <string name="weekly_challenge_title_default">No Connection</string>
     <string name="weekly_challenge_desc_default">If you see this text means you have no internet connection. Please check your internet and re-enter this section</string>
     <string name="weekly_challenge_view_ad_btn">View ad</string>
@@ -906,6 +916,8 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="go_to_my_story">Show/Hide others stories</string>
     <string name="go_to_most_likes">Sort by Votes</string>
     <string name="go_to_most_recent">Sort by Recent</string>
+<!--endregion-->
+
 
     <string-array name="char_guide_types_titles_for_comparison">
         <item>Protagonista</item>
@@ -967,10 +979,14 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="invitation_cta">Read</string>
 
 
+    <!--Gender Helpers-->
     <string name="gender_male_article">he</string>
     <string name="gender_female_article">she</string>
     <string name="gender_male_posesive">his</string>
     <string name="gender_female_posesive">her</string>
+    <string name="gender_nonbinary_article">they</string>
+    <string name="gender_female">Female</string>
+    <string name="gender_male">Male</string>
 
 
 
@@ -994,6 +1010,8 @@ In order for your character to evolve in a positive way, he has to start out wit
 
     <string name="biocontainer_challenge_empty">This section is a bit empty. What about creating some challenges?</string>
 
+
+    <!--region Tutorial-->
     <string name="onBoardingTitle_1">Welcome to Auctor.</string>
     <string name="onBoardingTitle_2">Where all begins.</string>
     <string name="onBoardingTitle_3">Select your project.</string>
@@ -1009,5 +1027,5 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="onBoarding_5">If you didn\'t yet, it\'s really time to get that coffee.\n\nHere you will create your first character. If you have no ideas, don\'t worry. Just make it random.\n\nOr a combination of it?. What about randomizing first and then freely editing what you feel it\'s needed? Go ahead and explore.\n\nAnd yes, you can edit this later.</string>
     <string name="onBoarding_6">Good work, here you will see all your characters.\n\nName, role and how developed it\'s.\n\nGo ahead, choose the character you just created to get going.</string>
     <string name="onBoarding_7">This is your character. Here you can have a quick snapshot of him/her.\n\nBut this is far from over. You\'re just starting. Check at the + button, you will unfold guidelines to keep developing your character.\n\nBut more important you also have challenges.\n\nI would love to tell you what are those. But you better see it by yourself.</string>
-
+    <!--endregion Tutorial-->
 </resources>

@@ -2,7 +2,6 @@ package com.plotgen.rramirez.plotgenerator;
 
 
 import android.Manifest;
-import android.app.FragmentManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,10 +10,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.Image;
-import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -43,10 +38,9 @@ import android.widget.Toast;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
+import com.plotgen.rramirez.plotgenerator.Common.Tutorial;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
-import com.plotgen.rramirez.plotgenerator.Model.Character;
-import com.plotgen.rramirez.plotgenerator.Model.Project;
 
 import org.apache.commons.lang3.text.WordUtils;
 
@@ -55,10 +49,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
-import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static android.app.Activity.RESULT_OK;
-import static com.plotgen.rramirez.plotgenerator.Common.Constants.THUMBNAIL_SIZE;
-import static com.plotgen.rramirez.plotgenerator.Common.Constants.debugMode;
 
 
 public class CharacterFragment extends Fragment {
@@ -283,12 +274,8 @@ public class CharacterFragment extends Fragment {
         });
 
 
-        if(Common.onBoarding == 4){
-            Common.onBoarding = 5;
-            Utils.displayDialog(myFragmentView.getContext(), getString(R.string.onBoardingTitle_5), getString(R.string.onBoarding_5), "Got it!");
-        }
 
-
+        Tutorial.checkTutorial(myFragmentView,getActivity());
 
         return myFragmentView;
     }
@@ -539,7 +526,7 @@ public class CharacterFragment extends Fragment {
 
     public void fragmentTransition() {
         //Make sure you can't come back here
-        ProjectFragment nextFragment = new ProjectFragment();
+        CharListFragment nextFragment = new CharListFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
         transaction.replace(R.id.flMain, nextFragment);
@@ -624,7 +611,6 @@ public class CharacterFragment extends Fragment {
                 if (resultCode == RESULT_OK) {
                     if (data != null) {
                         uri = data.getData();
-
                         try {
                             filepath = Utils.getFilePath(myFragmentView.getContext(), uri);
                             if(filepath!=null)

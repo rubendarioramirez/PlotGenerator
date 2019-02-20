@@ -18,7 +18,9 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import com.google.android.gms.ads.AdView;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.plotgen.rramirez.plotgenerator.Common.AdsHelper;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
+import com.plotgen.rramirez.plotgenerator.Common.Tutorial;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Fragment.OfflineStoryFragment;
 import java.util.ArrayList;
@@ -128,7 +130,7 @@ public class CharListFragment extends Fragment {
         if (!Common.isPAU) {
             //Display the ad
             mAdView = (AdView) myFragmentView.findViewById(R.id.adView_char_list);
-            Utils.loadAd(mAdView);
+            AdsHelper.loadAd(mAdView);
         }
 
 
@@ -163,16 +165,8 @@ public class CharListFragment extends Fragment {
             }
         });
 
-        if(Common.onBoarding == 3){
-            Common.onBoarding = 4;
-            Utils.displayDialog(myFragmentView.getContext(), getString(R.string.onBoardingTitle_4), getString(R.string.onBoarding_4), "Got it!");
-        }
 
-        if(Common.onBoarding == 5){
-            Common.onBoarding = 6;
-            Utils.displayDialog(myFragmentView.getContext(), getString(R.string.onBoardingTitle_6), getString(R.string.onBoarding_6), "Got it!");
-        }
-
+        Tutorial.checkTutorial(myFragmentView,getActivity());
 
         return myFragmentView;
     }

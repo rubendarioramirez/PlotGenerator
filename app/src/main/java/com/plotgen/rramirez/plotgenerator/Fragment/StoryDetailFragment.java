@@ -129,7 +129,7 @@ public class StoryDetailFragment extends Fragment {
     }
 
 
-    @OnClick({R.id.tvshare, R.id.ivshare})
+    @OnClick({ R.id.ivshare})
     public void share() {
         FirebaseDynamicLinks.getInstance().createDynamicLink()
                 .setLink(createShareUri())

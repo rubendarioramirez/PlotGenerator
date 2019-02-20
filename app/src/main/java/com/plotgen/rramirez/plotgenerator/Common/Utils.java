@@ -201,17 +201,6 @@ public class Utils extends Fragment{
     }
 
 
-    public static void loadAd(AdView mAdView) {
-        if (!Common.isPAU) {
-            //Display the ad
-            AdRequest adRequest = new AdRequest.Builder()
-                    .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
-                    .build();
-            mAdView.loadAd(adRequest);
-        }
-    }
-
-
     public static void changeFragment(Fragment nextFragment, FragmentTransaction transaction) {
         //Make the transaction
         transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
@@ -266,20 +255,6 @@ public class Utils extends Fragment{
                 })
                 .setNegativeButton(context.getString(R.string.rate_cancel), null);
         builder.show();
-    }
-
-
-    public static void displayDialog(Context context, String title, String body, String positiveBTN){
-        new AlertDialog.Builder(context, R.style.AlertDialogCustom)
-                .setTitle(title)
-                .setMessage(body)
-                .setPositiveButton(positiveBTN, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Log.d("MainActivity", "Got it!");
-                    }
-                })
-                .show();
     }
 
 

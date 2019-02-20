@@ -28,6 +28,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -43,6 +44,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
+import com.plotgen.rramirez.plotgenerator.Common.Tutorial;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
 
@@ -50,26 +52,21 @@ import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 import static android.app.Activity.RESULT_OK;
-import static com.plotgen.rramirez.plotgenerator.Common.Constants.debugMode;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class Project_detailsFragment extends Fragment {
 
+    //region Declare elements
     private static final int PERMISSION_REQUEST_GALLERY = 101;
     private static final int REQUEST_CODE_GALLERY = 102;
     public Boolean updateMode;
-    EditText project_name_et, project_plot_et;
-    Spinner project_genre_spinner;
     String project_name_text, projectID;
-    FloatingActionButton fab_save;
-    FloatingActionButton fab_delete;
     ArrayList<String> project_description;
     private FirebaseAnalytics mFirebaseAnalytics;
-    private ImageView project_icon_iv;
     private View myFragmentView;
     private String WRITE_EXTERNAL_STORAGE = Manifest.permission.WRITE_EXTERNAL_STORAGE;
     private Uri uri;
@@ -78,6 +75,20 @@ public class Project_detailsFragment extends Fragment {
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private ArrayList<String> project_list_array = new ArrayList<>();
+
+    @BindView(R.id.project_name_et)
+    EditText project_name_et;
+    @BindView(R.id.project_plot_et)
+    EditText project_plot_et;
+    @BindView(R.id.project_genre_spinner)
+    Spinner project_genre_spinner;
+    @BindView(R.id.project_icon)
+    ImageView project_icon_iv;
+    @BindView(R.id.project_add_submit)
+    FloatingActionButton fab_save;
+    @BindView(R.id.project_detail_delete)
+    FloatingActionButton fab_delete;
+    //endregion
 
     public Project_detailsFragment() {
         // Required empty public constructor
@@ -89,18 +100,11 @@ public class Project_detailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         myFragmentView = inflater.inflate(R.layout.fragment_project_details, container, false);
+        ButterKnife.bind(this, myFragmentView);
 
-        project_name_et = myFragmentView.findViewById(R.id.project_name_et);
-        project_plot_et = myFragmentView.findViewById(R.id.project_plot_et);
-        project_icon_iv = myFragmentView.findViewById(R.id.project_icon);
-        fab_save = myFragmentView.findViewById(R.id.project_add_submit);
-        fab_delete = myFragmentView.findViewById(R.id.project_detail_delete);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(myFragmentView.getContext());
 
 
-        //Role spinner functions
-        project_genre_spinner = myFragmentView.findViewById(R.id.project_genre_spinner);
-        project_genre_spinner = myFragmentView.findViewById(R.id.project_genre_spinner);
         ArrayAdapter<CharSequence> genre_adapter = ArrayAdapter.createFromResource(myFragmentView.getContext(), R.array.genres_array, android.R.layout.simple_spinner_item);
         genre_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         project_genre_spinner.setAdapter(genre_adapter);
@@ -116,6 +120,7 @@ public class Project_detailsFragment extends Fragment {
             }
         });
 
+        //region Populate elements if in update
         if (!Common.projectCreationMode) {
             //Update mode
             if(Common.currentProject !=null) {
@@ -124,8 +129,6 @@ public class Project_detailsFragment extends Fragment {
             } else {
                 project_name_text = "Rambo";
             }
-
-
             project_list_array = getProject(this.getContext());
             if (project_list_array != null && !project_list_array.isEmpty()) {
                 project_name_et.setText(project_list_array.get(0));
@@ -173,7 +176,9 @@ public class Project_detailsFragment extends Fragment {
                     updateMode = true;
             }
         }
+        //endregion
 
+        //region Saving button
         fab_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -191,8 +196,9 @@ public class Project_detailsFragment extends Fragment {
                 }
             }
         });
+        //endregion
 
-
+        //region Delete button
         fab_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
@@ -221,11 +227,11 @@ public class Project_detailsFragment extends Fragment {
                         .show();
             }
         });
+        //endregion
 
-        if(Common.onBoarding == 1) {
-            Utils.displayDialog(myFragmentView.getContext(), getString(R.string.onBoardingTitle_2), getString(R.string.onBoarding_2), "Got it!");
-            Common.onBoarding = 2;
-        }
+        //Check if in tutorial mode
+        Tutorial.checkTutorial(myFragmentView,getActivity());
+
         return myFragmentView;
     }
 
