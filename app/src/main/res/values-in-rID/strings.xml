@@ -1,0 +1,990 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="trigger_tab">Bantuan Menulis</string>
+    <string-array name="triggers_list" tools:ignore="InconsistentArrays">
+        <item>Dia tidak memberitahu kepada siapa pun kemana dia pergi.</item>
+        <item>Dia membuka surat itu dan dengan cepat membuangnya ke dalam api.</item>
+        <item>Batu bata di dinding rumah tua itu sudah longgar.</item>
+        <item>Jalan yang biasanya dikerumuni banyak orang sekarang sunyi.</item>
+        <item>Kuncinya tidak dapat lagi membuka pintu.</item>
+        <item>Saat itu jam dua pagi ketika dia berbaring di sana mendengarkan suara itu.</item>
+        <item>Semakin banyak orang berdesakan ke dalam stadium.</item>
+        <item>5 keping uang receh ada di dalam tas beledu</item>
+        <item>Dia tidak menyangka kalau dia dapat berlari sangat cepat dari sebelumnya.</item>
+        <item>Itu suara teriakan, tapi bukan suara yang dikeluarkan oleh manusia</item>
+        <item>Dia menunggu, tetapi tidak seorangpun yang datang.</item>
+        <item>Di puncak gunung hijau.</item>
+        <item>Itu pertama kalinya dia memegang pistol, tetapi dia tidak merasa asing.</item>,
+        <item>Dia menatap bocah itu dengan tajam.</item>
+        <item>Sungai itu mulai meluap.</item>
+        <item>Dia bahkan tidak punya waktu untuk berkemas.</item>
+        <item>Rumahnya tampak berbeda dengan jendela dan pintu baru.</item>
+        <item>Laki-laki itu mencoba membaur di kegelapan, tetapi gadis itu dapat melihatnya dengan jelas.</item>
+        <item>Itu bukanlah manusia maupun binatang.</item>
+        <item>Aku yakin dengan apa yang kulihat. Aku hanya kesulitan menjelaskannya.</item>
+        <item>Bukannya aku tidak percaya pada dia. Aku hanya tidak peduli.</item>
+        <item>Sebelum saya datang, ini jalan buntu.</item>
+        <item>Sekarang, aku lebih takut untuk hidup daripada mati.</item>
+        <item>Ini bukan kesepakatan kita. Tapi kita tidak punya jalan untuk kembali.</item>
+        <item>Aku tidak menyangka akan memaafkannya</item>
+        <item>Aku mendengar mereka di bawah...</item>
+        <item>Ada sesuatu yang manis saat mengetahui kamu akan segera meninggal...</item>
+        <item>Teman sejati tidak akan meninggalkanmu. Kurasa aku bukanlah seorang teman sejati.</item>
+        <item>Aku tidak perlu menjadi Sherlock Holmes untuk menyadari bahwa pisaunya telah hilang.</item>
+        <item>Saya tidak percaya pada malaikat. Yah, tidak sampai saat itu…</item>
+        <item>Aku tidak bersumpah, tidak pernah. Bahkan saat itu juga.</item>
+        <item>Dia melihat sekeliling untuk memastikan tidak ada yang melihatnya. Dia pun mengambil USB tersebut dan memasukannya kedalam saku...</item>
+        <item>Dia melihat ke senapannya. Sudah lama sekali sejak terakhir kalinya…</item>
+        <item>Hal yang lebih buruk dari sebuah kapal yang tenggelam adalah menjadi orang satu-satunya yang selamat.</item>
+        <item>Aku kelihatan terkena flu. Kami yakin kalau itu flu. Masalahnya, aku tidak terkena flu.</item>
+        <item>Kita sedang berperang, perang yang akan kalah. Tapi tahukah kamu, kita diajari bertarung hanya untuk berdiri di tanah kita, kemenangan itu hal yang kecil.</item>
+        <item>Itu krisis keuangan terburuk yang pernah kulihat. Dan aku melihat banyak hal itu sebelumnya.</item>
+        <item>Aku bahkan akan menembaknya di tempat. Sayangnya, aku kehabisan peluru.</item>
+        <item>Tunggu, apa itu senter?</item>
+        <item>Aku tidak memilih profesi ini. Profesi ini yang memilihku.</item>
+        <item>Suhu 42 derajat di Afrika bukanlah masalah. Orang yang mengejarku itu barulah masalah.</item>
+        <item>Disewa sebagai penyelidik pribadi. Kasus pertama saya menjadi sebuah kesalahpahaman.</item>
+        <item>Aku akan menelepon polisi, tetapi aku seorang polisi dan aku tidak tahu harus melakukan apa.</item>
+        <item>Cahaya mulai meredup.</item>
+        <item>Kami hampir tenggelam, tetapi aku tidak peduli.</item>
+        <item>Itu pertama kalinya aku mengendarai sebuah truk dan kupikir akan menjadi yang terakhir kalinya juga.</item>
+        <item>Polisi itu sekejap menatapku. Aku yakin dia tahu, dan kami berdua tidak mengatakan apapun.</item>
+        <item>Hari itu pertama kalinya aku kangen dia.</item>
+        <item>Dia pergi bersama wanita lain bukanlah masalahnya, tapi haruskah wanita itu kakakku?</item>
+    </string-array>
+
+
+    <string name="character_tab">Workshop Karakter</string>
+    <string name="character_create">Buat Karakter</string>
+    <string name="character_update">Edit Karakter</string>
+    <string name="writing_challenge_tab">Tantangan Menulis Mingguan</string>
+
+    <string name="discover">Temukan</string>
+    <!--HOME Strings-->
+    <string name="home_title">Satu-satunya hal yang benar-benar\n diketahui tentang sifat manusia adalah\n bahwa sifat manusia berubah.\n      Oscar Wilde</string>
+    <string name="home_tab">Berkamu</string>
+    <string name="home_header">Fokuslah pada menulis…</string>
+    <string name="home_desc">Jika kamu suka menulis, maka kamu ada di tempat yang benar.\nSaya membuat aplikasi ini karena saya juga suka menulis, tetapi saya tahu kesulitan seorang penulis ketika tersesat atau hanya kehilangan fokus.\nSebenarnya, saya membuat aplikasi ini khusus untuk saya tetapi saya yakin ini dapat juga membantu kamu.\nSaat ini, ada 3 hal yang mungkin menarik bagi kamu.\n\nBantuan menulis, kapan pun kamu merasa tersesat atau kamu tidak tahu harus memulai dari mana ataupun bagaimana melanjutkannya, silakan kamu lihat.\nKalimat sederhana yang dapat membiarkan imajinasi kamu bermain. Dan jangan khawatir, saya akan memberikan kalimat baru setiap minggu.\n\nThe Hero Journey. Jika kamu tidak membacanya, kamu harus. Itu warisan dari Joseph Campbell untuk para penulis.\nNamun, jika kamu telah membacanya dan ingin ringkasannya, lihat bagian The Hero Journey. Di sana terdapat semua yang harus kamu ketahui untuk pelaku utama kamu dan perjalanannya.
+\n\nDan yang terakhir, lihat bagian workshop. Di sana terdapat apa yang kamu butuhkan untuk mengembangkan karakter kamu. Buat sebuah proyek, kemudian tambahkan karakter. Dan jangan khawatir jika kamu tersesat, saya dapat membantu kamu dengan hasil acak yang akan membuat sifat-sifat, keinginan dan kebutuhan untuk kamu.\n\nSelamat menulis!</string>
+
+
+    <!--Projects String-->
+    <string name="projects_tab">Proyek</string>
+    <string name="projects_empty">Tidak ada nama untuk proyek kamu? Coba dengan sesuatu yang kreatif</string>
+    <string name="project_name">Nama Proyek</string>
+    <string name="project_genre">Genre</string>
+    <string-array name="genres_array">
+        <item>Tragedi</item>
+        <item>Fiksi Ilmiah</item>
+        <item>Fantasi</item>
+        <item>Mitologi</item>
+        <item>Pertualangan</item>
+        <item>Misteri</item>
+        <item>Drama</item>
+        <item>Roman</item>
+        <item>Aksi / Pertualangan</item>
+        <item>Satire</item>
+        <item>Horror</item>
+        <item>Tragikomedi</item>
+        <item>Fiksi Remaja</item>
+        <item>Distopia</item>
+        <item>Aksi Horor</item>
+        <item>Komedi</item>
+    </string-array>
+
+    <string name="project_summary">Ringkasan Plot</string>
+
+
+    <string name="add_projects_btn">Tambah proyek</string>
+    <string name="edit_projects_btn">Edit proyek</string>
+    <string name="delete_project_btn">kamu yakin ingin menghapus proyek ini?</string>
+    <string name="delete_project_btn_message">Semua karakter yang terkait akan dihapus</string>
+    <string name="projects_empty_text">kamu belum memiliki sebuah proyek.
+Silakan buat proyek yang baru untuk memulai.</string>
+
+    <!--Character String-->
+    <string name="character_bio_title">Biografi</string>
+    <string name="character_list_tab">Karakter</string>
+    <string name="character_empty_text">kamu belum memiliki karakter.
+Silakan buat karakter yang baru untuk memulai</string>
+    <!--BIOGRAPHY TEXT-->
+    <string name="age_bio_1">berumur</string>
+    <string name="age_bio_2">tahun.</string>
+    <string name="placebirth_bio">Lahir di</string>
+
+    <string name="height_bio">Tinggi</string>
+    <string name="hair_bio_1">dengan rambut</string>
+    <string name="hair_bio_2">dan</string>
+    <string name="eyes_bio">warna mata</string>
+    <string name="bodybuild_bio">Bisa dikatakan dia terlihat agak</string>
+
+    <string name="job_bio">Bekerja sebagai</string>
+    <string name="nojob_bio">at the moment is</string>
+    <string name="male_desire_bio">Dalam pikirannya, dia ingin </string>
+    <string name="male_need_bio">Tetapi, apakah itu yang sangat dia inginkan? Atau dia sebenarnya lebih membutuhkan</string>
+    <string name="male_moment_bio">Dari masa kecilnya, kita tahu kalau dia</string>
+    <string name="male_phrase_bio">Frasa yang orang-orang biasa kaitkan dengannya adalah</string>
+    <string name="male_trait_bio">Dan juga teman-temannya mengatakan kalau dia</string>
+    <string name="notes_bio">Catatan</string>
+
+    <string name="female_desire_bio">Dalam pikirannya, dia ingin </string>
+    <string name="female_need_bio">Tetapi, apakah itu yang sangat dia inginkan? Atau dia sebenarnya lebih membutuhkan</string>
+    <string name="female_moment_bio">Dari masa kecilnya, kita tahu kalau dia</string>
+    <string name="female_phrase_bio">Frasa yang orang-orang biasa kaitkan dengannya adalah</string>
+    <string name="female_trait_bio">Dan juga teman-temannya mengatakan kalau dia</string>
+    <string name="female_notes_bio">Catatan</string>
+
+    <string name="binary_desire_bio">Dalam pikiran mereka, mereka ingin </string>
+    <string name="binary_need_bio">Tetapi, apakah itu yang sangat mereka inginkan? Atau mereka sebenarnya lebih membutuhkan</string>
+    <string name="binary_moment_bio">Dari masa kecil mereka, kita tahu kalau mereka </string>
+    <string name="binary_phrase_bio">Frasa yang orang-orang biasa kaitkan dengan mereka adalah</string>
+    <string name="binary_trait_bio">Dan juga teman-teman mereka mengatakan kalau mereka</string>
+    <!--Challenge I BIO-->
+    <string name="challenge_1_bio_title">Tantangan elevator:</string>
+    <string name="challenge_1_bio_desc_1">Apa reaksi pertama dia ketika dia terjebak di elevator?</string>
+    <string name="challenge_1_bio_desc_2">Apakah karakter kamu menunggu untuk diselamatkan?</string>
+    <string name="challenge_1_bio_desc_3">Apa yang akan terjadi jika ada orang yang berada di sebelah karakter kamu mengalami serangan panik?</string>
+    <string name="challenge_1_bio_desc_4">Terakhir, apa yang karakter kamu akan lakukan ketika hanya satu orang yang dapat keluar sedangkan yang satunya lagi harus menunggu?</string>
+    <!--Challenge II BIO-->
+    <string name="challenge_2_bio_title">Kebohongan yang Dipercayai Karakter kamu</string>
+    <string name="challenge_2_bio_subtitle">adalah dasar untuk alur karakternya. Inilah yang salah di dunianya. Setelah kamu tahu apa yang salah, kamu kemudian mulai mencari tahu bagaimana memperbaikinya.</string>
+    <string name="challenge_2_bio_desc_1">Kesalahpahaman apa yang dimiliki protagonis kamu tentang dirinya sendiri terhadap dunia?</string>
+    <string name="challenge_2_bio_desc_2">Apakah kebohongan itu membuat hidupnya sengsara ketika ceritanya dimulai? Jika iya, bagaimana bisa?</string>
+    <string name="challenge_2_bio_desc_3">Jika tidak, akankah peristiwa itu membuat dirinya tidak nyaman?</string>
+    <string name="challenge_2_bio_desc_4">Apa saja gejala kebohongan karakter kamu?</string>
+    <!--Challenge III BIO-->
+    <string name="challenge_3_bio_title">Latar Belakang</string>
+    <string name="challenge_3_bio_subtitle">Kenapa dia karakter kamu?</string>
+    <string name="challenge_3_bio_desc_1">Keluarga dia</string>
+    <string name="challenge_3_bio_desc_2">Kenangan masa kecil yang terbaik?</string>
+    <string name="challenge_3_bio_desc_3">Kenangan masa kecil yang terburuk?</string>
+    <string name="challenge_3_bio_desc_4">Apakah dia punya teman? Apa yang mereka katakan tentang dia?</string>
+    <!--Challenge IV BIO-->
+    <string name="challenge_4_bio_title">Bagaimana penampilannya?</string>
+    <string name="challenge_4_bio_subtitle">Di dunia yang sempurna, penampilan kamu tidak akan mempengaruhi siapa diri kamu. Tapi, ini bukan dunia yang sempurna.</string>
+    <string name="challenge_4_bio_desc_1">Deskripsikan penampilan karakter kamu dalam 5 kata.</string>
+    <string name="challenge_4_bio_desc_2">Tkamu lahir? Tato?</string>
+    <string name="challenge_4_bio_desc_3">Kondisi medis? Alergi?</string>
+    <string name="challenge_4_bio_desc_4">Bagaimana bentuk tubuh dan penampilannya?</string>
+    <!--Challenge V BIO-->
+    <string name="challenge_5_bio_title">Ketika di bawah tekanan</string>
+    <string name="challenge_5_bio_subtitle">Karakter kamu dapat bereaksi dengan cara yang berbeda, apa yang dia lakukan ketika seseorang yang dia cintai berada dalam bahaya?</string>
+    <string name="challenge_5_bio_desc_1">Bagaimana reaksi dia ketika seseorang yang dia cintai berada dalam bahaya?</string>
+    <string name="challenge_5_bio_desc_2">Akankah dia membunuh?</string>
+    <string name="challenge_5_bio_desc_3">Apakah dia meyakini bahwa menghalalkan banyak jalan yang salah demi mengutamakan hasil dari tindakan yang baik?</string>
+    <string name="challenge_5_bio_desc_4">OK, dia tidak melewati batas kemampuannya. Bagaimana reaksi dia?</string>
+    <!--Challenge VI BIO-->
+    <string name="challenge_6_bio_title">Apa yang ada di sakunya?</string>
+    <string name="challenge_6_bio_subtitle">Kita semua mempunyai sesuatu di saku kita, kita semua peduli tentang sesuatu sebelum meninggalkan rumah kita. Apa itu untuk karakter kamu?</string>
+    <string name="challenge_6_bio_desc_1">Ketika meninggalkan rumah, apa saja yang ada di saku?</string>
+    <string name="challenge_6_bio_desc_2">Apakah ada foto di dalam dompet?</string>
+    <string name="challenge_6_bio_desc_3">Tentang gantungan kunci</string>
+    <string name="challenge_6_bio_desc_4">Tentang ponsel</string>
+    <!--Challenge VII BIO-->
+    <string name="challenge_7_bio_title">Apa yang dipertaruhkan?</string>
+    <string name="challenge_7_bio_subtitle">Kenapa kita peduli jika karakter mati atau gagal? Jika kamu ingin pembaca untuk peduli, itu penting.</string>
+    <string name="challenge_7_bio_desc_1">Apa keputusan penting yang harus dibuat?</string>
+    <string name="challenge_7_bio_desc_2">Apa konsekuensi eksternal dari tindakan ini?</string>
+    <string name="challenge_7_bio_desc_3">Bagian internal?</string>
+    <string name="challenge_7_bio_desc_4">Secara filosofis?</string>
+    <!--Challenge VIII BIO-->
+    <string name="challenge_8_bio_title">Bagaimana dengan rumah?</string>
+    <string name="challenge_8_bio_subtitle">Bagaimana kamu hidup menceritakan banyak hal tentang diri kamu, tidak terkecuali karakter kamu.</string>
+    <string name="challenge_8_bio_desc_1">Apa jenis tempat itu?</string>
+    <string name="challenge_8_bio_desc_2">Ada apa saja di sekitar tempat itu?</string>
+    <string name="challenge_8_bio_desc_3">Tentang tempat tidur</string>
+    <string name="challenge_8_bio_desc_4">Apa yang bisa dilihat dari jendela?</string>
+    <!--Challenge I Mentor-->
+    <string name="c1_mentor_bio_title">Kenali Mentor kamu.</string>
+    <string name="c1_mentor_bio_subtitle">Tidak semua mentor berperilaku sama, tidak ada yang mengajar atau membimbing dengan cara yang sama. Bagaimana dengan kamu?</string>
+    <string name="c1_mentor_bio_desc_1">Kenapa si protagonis membutuhkan seorang mentor? Kenapa harus begitu?</string>
+    <string name="c1_mentor_bio_desc_2">Bagaimana dia membimbing si protagonis?</string>
+    <string name="c1_mentor_bio_desc_3">Akankah sang mentor memberikan artefak? Yang mana?</string>
+    <string name="c1_mentor_bio_desc_4">Selama cerita kamu, kapan sang mentor akan pergi?</string>
+    <!--Challenge I Antagonist-->
+    <string name="c1_antagonist_bio_title">Kenali Antagonis kamu.</string>
+    <string name="c1_antagonist_bio_subtitle">Antagonis tidak hanya sumber dari segala kejahatan. Mereka sebenarnya punya alasan untuk hidup.</string>
+    <string name="c1_antagonist_bio_desc_1">Bagaimana si Antagonis kebalikan dari Protagonis kamu?</string>
+    <string name="c1_antagonist_bio_desc_2">Apa tujuan dia?</string>
+    <string name="c1_antagonist_bio_desc_3">Apa taktik yang digunakan dia untuk mencapai tujuannya?</string>
+    <string name="c1_antagonist_bio_desc_4">Bagaimana dengan perubahan alur?</string>
+    <!--Challenge I Sidekick-->
+    <string name="c1_sidekick_bio_title">Kenali Pendamping kamu.</string>
+    <string name="c1_sidekick_bio_subtitle">Siapa saja pendamping kamu?</string>
+    <string name="c1_sidekick_bio_desc_1">Mengapa dia memutuskan untuk mengikuti protagonis kamu?</string>
+    <string name="c1_sidekick_bio_desc_2">Mengapa dia memutuskan untuk mengejar tujuan si protagonis?</string>
+    <string name="c1_sidekick_bio_desc_3">Alat, Taktik, Senjata</string>
+    <string name="c1_sidekick_bio_desc_4">Apa upaya pamungkas yang akan dilakukan pendamping kamu untuk protagonis kamu?</string>
+
+
+    <string name="add_character_btn">Tambah Karakter</string>
+    <string name="delete_character_btn">Apakah kamu yakin ingin menghapus karakter ini?</string>
+    <string name="guide_character_btn">Tuntun saya</string>
+    <!--Add character-->
+    <string name="character_add_name">Nama</string>
+    <string name="character_add_profession">Profesi</string>
+    <string-array name="profession_array" tools:ignore="InconsistentArrays">
+        <item>Penjual eceran</item>
+        <item>Pensiun</item>
+        <item>Penganggur</item>
+        <item>Kasir</item>
+        <item>Pegawai kantor</item>
+        <item>Perawat</item>
+        <item>Pelayan</item>
+        <item>Layanan Pelanggan</item>
+        <item>Cleaning Service</item>
+        <item>Cleaning Service</item>
+        <item>Sekretaris</item>
+        <item>Petugas toko</item>
+        <item>Manajer umum</item>
+        <item>Manajer operasi</item>
+        <item>Petugas audit</item>
+        <item>Supir truk</item>
+        <item>Sale representative</item>
+        <item>Guru</item>
+        <item>Asisten guru</item>
+        <item>Tukang</item>
+        <item>Akuntan</item>
+        <item>Penjaga keamanan</item>
+        <item>Resepsionis</item>
+        <item>Petugas informasi</item>
+        <item>Juru masak restoran</item>
+        <item>Tata graha</item>
+        <item>Pekerja konstruksi</item>
+        <item>Polisi</item>
+        <item>Polisi</item>
+        <item>Tukang kayu</item>
+        <item>Pemadam kebakaran</item>
+        <item>Pedagang</item>
+        <item>Pelaut</item>
+        <item>Kapten kapal</item>
+        <item>Montir</item>
+        <item>Programmer</item>
+        <item>Konsultan TI</item>
+        <item>Pengacara</item>
+        <item>Peramal</item>
+        <item>Juru masak makanan cepat saji</item>
+        <item>Montir listrik</item>
+        <item>Pencuci piring</item>
+        <item>Bartender</item>
+        <item>Inspektur</item>
+        <item>Penguji</item>
+        <item>Human resource manager</item>
+        <item>Juru mesin</item>
+        <item>Penata rambut</item>
+        <item>Layanan pos</item>
+        <item>Asisten dokter gigi</item>
+    </string-array>
+    <string name="character_add_age">Umur</string>
+    <string name="character_add_gender">Jenis kelamin</string>
+    <string-array name="gender_spinner_array">
+        <item>Jenis Kelamin</item>
+        <item>Pria</item>
+        <item>Wanita</item>
+        <item>Waria</item>
+        <item>Biner</item>
+        <item>Non-Biner</item>
+    </string-array>
+    <string name="character_add_role">Peran</string>
+    <string name="character_add_height">Tinggi</string>
+    <string-array name="heights">
+        <item>150 cm</item>
+        <item>155 cm</item>
+        <item>160 cm</item>
+        <item>165 cm</item>
+        <item>170 cm</item>
+        <item>175 cm</item>
+        <item>180 cm</item>
+        <item>185 cm</item>
+        <item>190 cm</item>
+    </string-array>
+    <string name="character_add_haircolor">Warna rambut</string>
+    <string-array name="haircolors">
+        <item>Cokelat</item>
+        <item>Abu-Abu</item>
+        <item>Hitam</item>
+        <item>Cokelat Gandum</item>
+        <item>Perak</item>
+        <item>Pirang</item>
+        <item>Merah</item>
+        <item>Putih</item>
+    </string-array>
+    <string name="character_add_eyecolor">Warna mata</string>
+    <string-array name="eyecolors">
+        <item>Cokelat</item>
+        <item>Hijau</item>
+        <item>Hijau Muda</item>
+        <item>Biru</item>
+        <item>Biru Muda</item>
+        <item>Hitam</item>
+        <item>Cokelat Muda</item>
+    </string-array>
+    <string name="character_add_bodybuild">Bentuk tubuh</string>
+    <string-array name="bodytypes">
+        <item>Kurus</item>
+        <item>Kurus</item>
+        <item>Berotot</item>
+        <item>Gemuk</item>
+        <item>Fit</item>
+    </string-array>
+    <string name="character_add_placebirth">Tempat Lahir</string>
+    <string name="character_add_phrase">Slogan</string>
+    <string name="character_add_trait">Watak</string>
+    <string-array name="trait_array">
+        <item>Perhatian</item>
+        <item>Ambisius</item>
+        <item>Altruistis</item>
+        <item>Terus terang</item>
+        <item>Percaya diri</item>
+        <item>Tenang</item>
+        <item>Pemberani</item>
+        <item>Dapat dikamulkan</item>
+        <item>Tekad kuat</item>
+        <item>Mudah bergaul</item>
+        <item>Kreatif</item>
+        <item>Etis</item>
+        <item>Adil</item>
+        <item>Berbakti</item>
+        <item>Keibuan</item>
+        <item>Tidak berdosa</item>
+        <item>Baik</item>
+        <item>Penuh kasih sayang</item>
+        <item>Tanpa pamrih</item>
+        <item>Tulus</item>
+        <item>Pintar</item>
+        <item>Cerdas</item>
+        <item>Loyal</item>
+        <item>Dewasa</item>
+        <item>Sederhana</item>
+        <item>Sabar</item>
+        <item>Jenaka</item>
+        <item>Serius</item>
+        <item>Menarik</item>
+        <item>Penuh hormat</item>
+        <item>Bertanggung jawab</item>
+        <item>Kerja keras</item>
+        <item>Ceria</item>
+        <item>Penuh waspada</item>
+        <item>Suka menolong</item>
+        <item>Berpikiran terbuka</item>
+        <item>Penurut</item>
+        <item>Optimis</item>
+        <item>Teratur</item>
+        <item>Suka bergaul</item>
+        <item>Tangguh</item>
+        <item>Keras</item>
+        <item>Pemimpin baik</item>
+        <item>Teman baik</item>
+        <item>Tidak dapat diprediksi</item>
+    </string-array>
+
+    <string-array name="phrases">
+        <item>Mungkin semua orang di seluruh dunia ini takut akan satu sama yang lain.</item>
+        <item>Hidup harus dijalani, bukan dikendalikan; dan kemanusiaan dimenangkan dengan terus bermain dalam menghadapi kekalahan tertentu.</item>
+        <item>Teror membuatku kejam</item>
+        <item>Kami adalah orang-orang yang tidak ada di koran. Kami tinggal di ruang putih kosong di tepi cetakan. Itu memberi kami lebih banyak kebebasan. Kami hidup di celah di antara kisah-kisah itu.</item>
+        <item>Kedengarannya cukup masuk akal malam ini, tapi tunggu sampai besok. Tunggu akal sehat pagi hari.</item>
+        <item>Jauh lebih baik berbuat baik dengan cara yang tidak ada yang tahu tentang itu.</item>
+        <item>Bagi saya hidup ini terlalu singkat untuk dihabiskan dalam permusuhan atau menghitung kesalahan.</item>
+        <item>kamu lupa apa yang ingin kamu ingat, dan kamu ingat apa yang ingin kamu lupakan.</item>
+        <item>Akhirnya, karena sedikit tidur dan terlalu banyak membaca, otaknya mengering dan dia menjadi gila..</item>
+        <item>Kenangan menghangatkan kamu dari dalam. Tetapi mereka juga membuat kamu sedih.</item>
+        <item>Sejarah, kata Stephen, adalah mimpi buruk yang saya coba bangun.</item>
+        <item>Sangat disayangkan menjadi sendirian, teman-teman saya; dan harus diyakini bahwa kesendirian dapat dengan cepat menghancurkan akal.</item>
+        <item>Dan sementara itu, waktu terus berjalan seperti biasanya yang membuat setiap orang terlihat dan merasa seperti sampah.</item>
+        <item>Tidak ada seorang pun, untuk periode yang cukup lama, dapat mengenakan satu wajah kepada dirinya sendiri dan wajah lainnya kepada orang banyak, tanpa akhirnya menjadi bingung yang mana mungkin benar.</item>
+        <item>Orang-orang saat ini tahu harga dari segalanya dan tidak tahu nilai dari segalanya.</item>
+        <item>Tidak ada yang melupakan kebenaran; mereka cuma lebih pintar dalam berbohong.</item>
+        <item>Dia telah menunggu seumur hidupnya untuk sesuatu, dan itu telah membunuhnya ketika menemukannya.</item>
+        <item>Kita tidak perlu malu dengan air mata kita.</item>
+        <item>Tidak ada yang begitu menyakitkan bagi pikiran manusia dalam perubahan besar dan tiba-tiba.</item>
+        <item>Terkadang respons yang tepat terhadap kenyataan adalah menjadi gila.</item>
+        <item>Tidak masalah siapa kamu atau seperti apa penampilan kamu, selama seseorang mencintai kamu.</item>
+        <item>Aku tahu. Saya ada di sana. Aku melihat kekosongan besar di jiwamu, dan kau melihat milikku.</item>
+        <item>Mungkin kebebasan itu sendiri yang mencekiknya.</item>
+        <item>Siapa pun yang pernah memberi kamu kepercayaan diri, kamu berutang banyak pada mereka.</item>
+        <item>Satu-satunya kebohongan yang membuat kita benar-benar dihukum adalah kebohongan yang kita katakan pada diri kita sendiri.</item>
+        <item>Saya tidak tahu semua yang akan datang, tetapi apa pun itu, saya akan tertawa.</item>
+    </string-array>
+    <string-array name="placebirth_array">
+        <item>São Paulo - Brazil</item>
+        <item>Mumbai - India</item>
+        <item>JAKARTA - Indonesia</item>
+        <item>Karachi - Pakistan</item>
+        <item>MOSKVA (Moscow) - Rusia</item>
+        <item>Istanbul - Turki</item>
+        <item>MEKSIKO (Kota Meksico) - Meksiko</item>
+        <item>Shanghai - Tiongkok</item>
+        <item>TOKYO - Jepang</item>
+        <item>New York (NY) - AS</item>
+        <item>BANGKOK - Thailand</item>
+        <item>BEIJING - Tiongkok</item>
+        <item>Delhi - India</item>
+        <item>LONDON - Britania Raya</item>
+        <item>HongKong - Tiongkok</item>
+        <item>KAIRO - Mesir</item>
+        <item>TEHRAN - Iran</item>
+        <item>BOGOTA - Kolombia</item>
+        <item>Bandung - Indonesia</item>
+        <item>Tianjin - Tiongkok</item>
+        <item>LIMA - Peru</item>
+        <item>Rio de Janeiro - Brazil</item>
+        <item>Lahore - Pakistan</item>
+        <item>SANTIAGO - Chili</item>
+        <item>St Petersburg - Rusia</item>
+        <item>Shenyang - Tiongkok</item>
+        <item>Calcutta - India</item>
+        <item>Wuhan - Tiongkok</item>
+        <item>Sydney - Australia</item>
+        <item>Guangzhou - Tiongkok</item>
+        <item>SINGAPURA - Singapura</item>
+        <item>Madras - India</item>
+        <item>BAGHDAD - Irak</item>
+        <item>Pusan - Korea Selatan</item>
+        <item>Los Angeles (CA) - AS</item>
+        <item>Yokohama - Jepang</item>
+        <item>DHAKA - Bangladesh</item>
+        <item>BERLIN - Jerman</item>
+        <item>Alexandria - Mesir</item>
+        <item>Bangalore - India</item>
+        <item>Hyderabad - India</item>
+        <item>Kota Ho Chi Minh - Vietnam</item>
+        <item>Hanoi - Vietnam</item>
+        <item>Harbin - Tiongkok</item>
+        <item>ANKARA - Turki</item>
+        <item>BUENOS AIRES - Argentina</item>
+        <item>Chengdu  - Tiongkok</item>
+        <item>Ahmedabad - India</item>
+        <item>Casablanca - Maroko</item>
+        <item>Chicago (IL) - AS</item>
+        <item>Xian - Tiongkok</item>
+        <item>MADRID - Spanyol</item>
+        <item>Barcelona - Spanyol</item>
+        <item>PYONGYANG - Korea Utara</item>
+        <item>Nanjing - Tiongkok</item>
+        <item>KINSHASA - Kongo (Zaire)</item>
+        <item>ROMA - Italia</item>
+        <item>Taipei - Taiwan</item>
+        <item>Osaka - Jepang</item>
+        <item>KIEV - Ukraina</item>
+        <item>YANGON - Myanmar</item>
+        <item>Toronto - Kanada</item>
+        <item>Daegu - Korea Selatan</item>
+        <item>ADDIS ABABA - Ethiopia</item>
+        <item>Jinan - Tiongkok</item>
+        <item>Salvador - Brazil</item>
+        <item>Inchon - Korea Selatan</item>
+        <item>Giza - Mesir</item>
+        <item>Changchun - Tiongkok</item>
+        <item>Havana - Kuba</item>
+        <item>Nagoya - Jepang</item>
+        <item>Belo Horizonte - Brazil</item>
+        <item>PARIS - Prancis</item>
+        <item>TASHKENT - Uzbekistan</item>
+        <item>Cali - Kolombia</item>
+        <item>Guayaquil - Ekuador</item>
+        <item>Taiyuan - Tiongkok</item>
+        <item>BRASILIA - Brazil</item>
+        <item>BUCURESTI - Romania</item>
+        <item>Faisalabad - Pakistan</item>
+        <item>Kota Quezon - Filipina</item>
+        <item>Houston (TX) - AS</item>
+        <item>Abidjan - Côte d’Ivoire</item>
+        <item>Mashhad - Iran</item>
+        <item>Medellín - Kolombia</item>
+        <item>Kanpur - India</item>
+        <item>Budapest - Hungaria</item>
+        <item>CARACAS - Venezuela</item>
+        <item>Praha - Republik Ceko</item>
+    </string-array>
+    <string name="character_add_defmoment">Momen masa kecil</string>
+    <string-array name="defmoment_array">
+        <item>orang tuanya terbunuh</item>
+        <item>mengalami kerugian besar</item>
+        <item>melakukan perjalanan ke negara asing</item>
+        <item>tersesat</item>
+        <item>menyaksikan pembunuhan</item>
+        <item>menemukan artefak</item>
+        <item>menyembunyikan rahasia besar</item>
+        <item>orang tuanya bercerai</item>
+        <item>diintimidasi di sekolah</item>
+        <item>mengalami kecelakaan mobil</item>
+        <item>mengalami kecelakaan besar</item>
+        <item>diadopsi</item>
+        <item>pindah ke kota lain</item>
+        <item>tidak punya teman</item>
+        <item>lumpuh</item>
+    </string-array>
+    <string name="character_add_desire">Apa yang dia inginkan?</string>
+    <string-array name="desire_array">
+        <item>dicintai</item>
+        <item>ditakuti</item>
+        <item>diterima</item>
+        <item>menjadi kaya</item>
+        <item>mencapai kesempurnaan</item>
+        <item>meminta maaf</item>
+        <item>menghindari konflik</item>
+        <item>menghindari rasa sakit</item>
+        <item>diakui</item>
+        <item>menjadi buruk</item>
+        <item>menjadi baik</item>
+        <item>menjadi normal</item>
+        <item>diingat</item>
+        <item>dihormati</item>
+        <item>menjadi orang lain</item>
+        <item>menjadi spesial</item>
+        <item>menjadi cantik</item>
+        <item>menjadi kuat</item>
+        <item>menipu kematian</item>
+        <item>kenyamanan</item>
+        <item>menghadapi ketakutan</item>
+        <item>menjadi terkenal</item>
+        <item>rezeki</item>
+        <item>menemukan tujuan</item>
+        <item>menemukan pertualangan</item>
+        <item>menyesuaikan diri</item>
+        <item>kebebasan</item>
+        <item>menjadi mandiri</item>
+        <item>pergi ke suatu tempat</item>
+        <item>meninggalkan kota</item>
+        <item>kejayaan</item>
+        <item>balas dendam</item>
+        <item>keadilan</item>
+        <item>pengetahuan</item>
+        <item>tidak sendirian</item>
+        <item>kekuasaan</item>
+        <item>penebusan</item>
+        <item>membayar hutang</item>
+        <item>keamanan</item>
+        <item>menonjol</item>
+        <item>mati</item>
+        <item>hidup</item>
+    </string-array>
+    <string name="character_add_need">Apa yang dia butuhkan?</string>
+    <string-array name="need_array" tools:ignore="InconsistentArrays">
+        <item>diterima</item>
+        <item>dicintai</item>
+        <item>mempercayai orang lain</item>
+        <item>melarikan diri</item>
+        <item>diakui</item>
+        <item>melawan</item>
+        <item>menghadapi ketakutan</item>
+        <item>berdiri sendiri</item>
+        <item>menerima kenyataan</item>
+        <item>mencintai keluarganya</item>
+        <item>kembali ke rumah</item>
+        <item>menemukan cinta</item>
+        <item>dapat percaya lagi</item>
+        <item>tanggung jawab</item>
+        <item>menjadi dewasa</item>
+        <item>menjadi dewasa</item>
+        <item>mendorong batas kemampuannya</item>
+        <item>berhenti menerima status-quo</item>
+    </string-array>
+
+    <string name="character_save_btn">Simpan</string>
+    <string name="character_random_btn">Acak</string>
+
+
+    <!--Subtitles-->
+    <string name="character_basic_tv">Dasar</string>
+    <string name="character_story_tv">Cerita</string>
+    <string name="character_notes_tv">Catatan</string>
+    <string name="character_personality_tv">Kepribadian</string>
+
+
+    <!--Journey Strings-->
+    <string name="hero_journey_tab">The hero journey</string>
+    <string name="hj_act1">Babak 1: Keberangkatan</string>
+    <string name="hj_act2">Babak 2: Inisiasi</string>
+    <string name="hj_act3">Babak 3: Kepulangan</string>
+
+    <string name="hj_title1">Panggilan untuk Bertualang</string>
+    <string name="hj_title2">Penolakan Panggilan</string>
+    <string name="hj_title3">Bantuan Supernatural</string>
+    <string name="hj_title4">Penyeberangan Ringtangan Pertama</string>
+    <string name="hj_title5">Perut Paus</string>
+    <string name="hj_title6">Jalan Penuh Ujian</string>
+    <string name="hj_title7">Pertemuan dengan Dewi</string>
+    <string name="hj_title8">Wanita sebagai Penggoda</string>
+    <string name="hj_title9">Penembusan Dosa dengan Ayah</string>
+    <string name="hj_title10">Klimaks</string>
+    <string name="hj_title11">Puncak Anugerah</string>
+    <string name="hj_title12">Penolakan Kepulangan</string>
+    <string name="hj_title13">Penerbangan Ajaib</string>
+    <string name="hj_title14">Penyelamatan dari Luar</string>
+    <string name="hj_title15">Penyeberangan Ambang Kembali</string>
+    <string name="hj_title16">Master Dua Dunia</string>
+
+
+    <string name="hj_desc1">Pelaku utama dihadapkan dengan masalah, tantangan atau petualangan.
+Pelaku utama harus menghadapi awal perubahan. Panggilan ini harus diterima, ini bisa terjadi dengan sukarela,
+dengan enggan, sadar atau tidak sengaja</string>
+    <string name="hj_desc2">Pelaku utama tidak langsung menerima panggilan. Ini bisa terjadi karena berbagai macam alasan, seperti tidak mau, penyangkalan atau dicegah agar tidak bisa merespons.
+Pelaku utama menemukan motivasi dan atau peluang untuk menjawab panggilan. </string>
+    <string name="hj_desc3">Pelaku utama sekarang berkomitmen untuk pencarian (sadar atau tidak sadar) dan pembimbing / penolongnya menjadi dikenal.
+Seringkali, mentor akan memberikan jimat atau artefak kepada pelaku utama untuk membantunya nanti dalam pencarian. </string>
+    <string name="hj_desc4">Pelaku utama menyeberang ke bidang petualangan, meninggalkan semua yang dikenal dan melangkah ke yang tidak dikenal. Di sini, perbatasan, aturan dan batasan belum diketahui.
+Tidak ada jalan untuk kembali, di sinilah petualangan terjadi. </string>
+    <string name="hj_desc5">Perut paus mewakili pemisahan terakhir dari dunia pelaku utama yang dikenal. Pada tahap ini, ia menunjukkan kesediaan untuk menjalani perubahan dan adaptasi.</string>
+    <string name="hj_desc6">Ini adalah serangkaian ujian, tugas, dan cobaan yang harus dijalani pelaku utama untuk memulai transformasinya. Seringkali tes terjadi tiga tahap dan pelaku utama biasanya gagal satu kali maupun lebih.
+Terkadang, pelaku utama kehilangan mentor mereka di tahap ini (contohnya, LOTR dan Star Wars). </string>
+    <string name="hj_desc7">Pelaku utama merasakan cinta yang sangat kuat, mencakup dan tanpa syarat.</string>
+    <string name="hj_desc8">Pelaku utama menghadapi godaan (fisik atau kesenangan) yang menuntunnya untuk menyimpang dari misinya atau bahkan meninggalkannya. Godaan ini tidak perlu datang dari seorang wanita.</string>
+    <string name="hj_desc9">Pelaku utama berhadapan dengan kekuatan tertinggi dalam hidupnya. Ini adalah titik pusat dari cerita ini. Semua langkah sebelumnya telah membawanya ke sini dan langkah-langkah yang datang menjauhkannya.</string>
+    <string name="hj_desc10">Ada masa istirahat, kedamaian dan kepuasan sebelum pelaku utama memulai perjalanannya pulang.</string>
+    <string name="hj_desc11">Pencapaian sebuah tujuan atau pencarian. Pelaku utama mendapatkan apa yang dia cari.</string>
+    <string name="hj_desc12">Pelaku utama mungkin tidak ingin kembali ke dunia biasa.</string>
+    <string name="hj_desc13">Terkadang pelaku utama harus melarikan diri dengan artefak yang ia datangi (contohya, Cawan Suci) dan orang lain datang untuk mengklaimnya kembali. Dalam hal ini, perjalanan kembali bisa sama berbahayanya dan penuh petualangan.</string>
+    <string name="hj_desc14">Pelaku utama biasanya memiliki (dan membutuhkan) panduan dan penolong, kadang-kadang para penolong adalah orang yang perlu membawanya kembali ke kehidupan sehari-hari. Apalagi jika pelaku utama terluka parah.</string>
+    <string name="hj_desc15">Sekarang setelah ia memperoleh semua pengetahuan dan pengalaman ini, ia perlu mempertahankannya dan mengintegrasikannya ke dalam kehidupan manusianya dan atau membagikannya dengan dunia.</string>
+    <string name="hj_desc16">Langkah ini terjadi jika pelaku utama adalah pahlawan transendental seperti Yesus atau Buddha. Jika pelaku utama adalah manusia, ini mungkin hanya mencapai keseimbangan antara dunia material dan spiritual. Pelaku utama menjadi nyaman dan kompeten di dunia batin dan dunia luar.</string>
+
+
+    <!--Rate app-->
+    <string name="rate_app">Bantu saya membuat aplikasi ini menjadi lebih baik!</string>
+    <string name="rate_app_des">Tidak mudah membuat aplikasi. Lebih sulit lagi jika gratis. Jika kamu menyukainya! Bantu saya menyebarkannya dengan memberi peringkat.</string>
+    <string name="rate_submit">Beri nilai!</string>
+    <string name="rate_cancel">Belum</string>
+
+
+    <!--Challenge fragment-->
+    <string name="challenge_answer_placeholder">Jawaban…</string>
+    <string name="challenge_nochallenge_placeholder">kamu belum memiliki tantangan untuk karakter ini.</string>
+    <string name="challenge_action_bar">Tantangan</string>
+
+    <!--First challenge-->
+    <string name="challenge_1_title">Tantangan I</string>
+    <string name="challenge_1_desc">Tantangan Elevator</string>
+    <string name="challenge_1_desc_long">Bagaimana karakter kamu bereaksi dalam keadaan krisis?\n
+Mari kita menaruh dia di dalam elevator dengan orang asing. Tidak masalah siapa.\n
+Tiba-tiba elevator macet dan mereka berdua terperangkap di dalam.\n Bagaimana dia bereaksi? Apakah dia tenang? Apakah dia panik?
+\nLuangkan waktu yang kamu butuhkan untuk menjawab.
+\nLatihan ini akan memungkinkan kamu untuk merefleksikan karakter kamu, bagaimana dia berperilaku dalam situasi terbatas.</string>
+    <string name="challenge_1_q1">Apa reaksi pertamanya?</string>
+    <string name="challenge_1_q2">Apakah dia menunggu untuk diselamatkan?</string>
+    <string name="challenge_1_q3">Orang di sebelahnya tiba-tiba panik. Apakah karakter kamu akan menenangkannya? Apakah dia akan panik juga?</string>
+    <string name="challenge_1_q4">Setelah lebih dari satu jam terperangkap di elevator, tiba-tiba ada celah terbuka. Ayo, kata suara itu, tapi aku hanya bisa menyelamatkan satu
+\nyang satunya harus menunggu sampai lebih banyak bantuan datang. Akankah karakter kamu duluan?</string>
+    <!--Second challenge-->
+    <string name="challenge_2_title">Tantangan II</string>
+    <string name="challenge_2_desc">Apa kebohongannya?</string>
+    <string name="challenge_2_desc_long">Perubahan alur adalah tentang kebohongan yang dipercayai karakter kamu. Hidupnya mungkin mengerikan, atau hidupnya mungkin tampak sangat hebat. Tapi, bernanah di bawah permukaan adalah kebohongan.
+Agar karakter kamu dapat berkembang secara positif, ia harus memulai dengan sesuatu yang kurang dalam hidupnya, alasan yang membuat perubahan itu diperlukan. </string>
+    <string name="challenge_2_q1">Kesalahpahaman apa yang dimiliki protagonis kamu tentang dirinya atau dunia?</string>
+    <string name="challenge_2_q2">Apakah kebohongan tersebut membuat hidupnya sengsara ketika cerita berjalan? Jika ya, bagaimana bisa?</string>
+    <string name="challenge_2_q3">Jika tidak, apakah peristiwa itu dan atau Poin Plot Pertama mulai membuatnya tidak nyaman karena kebohongannya?</string>
+    <string name="challenge_2_q4">Apa saja gejala kebohongan karakter kamu?</string>
+    <!--Third challenge-->
+    <string name="challenge_3_title">Tantangan III</string>
+    <string name="challenge_3_desc">Latar Belakang - Temukan alasannya!</string>
+    <string name="challenge_3_desc_long">Siapa karakter kamu hari ini sangatlah penting, apa pekerjaannya, apa hasratnya, dan lain-lain. Siapa dia nanti adalah daging cerita kamu. Itu lah yang kamu ceritakan. Jadi bagaimana dengan masa lalunya? Masa lalunya adalah mengapa dia seperti ini. Apakah orang tuanya bercerai? Mungkin ibunya seorang pecandu alkohol, apakah saudaranya meninggal dalam kecelakaan tragis? Peristiwa kehidupan membentuk siapa diri kita. Gali lebih dalam tantangan ini untuk mengembangkan karakter tiga dimensi kamu sepenuhnya.</string>
+    <string name="challenge_3_q1">Jelaskan secara singkat keluarga dekatnya, ibu, ayah, saudara kandungnya! Apakah mereka semua hidup? Apakah orang tuanya bercerai? Atau mungkin keluarga yang bahagia?</string>
+    <string name="challenge_3_q2">Apa kenangan terbaik masa kecilnya?</string>
+    <string name="challenge_3_q3">Apa kenangan terburuk masa kecilnya?</string>
+    <string name="challenge_3_q4">Apakah dia punya teman ketika dia masih kecil? Bagaimana teman-temannya saat itu akan menggambarkan dirinya? Jika dia tidak punya teman, mengapa begitu?</string>
+    <!--Fourth Challenge-->
+    <string name="challenge_4_title">Tantangan IV</string>
+    <string name="challenge_4_desc">Bagaimana penampilannya?</string>
+    <string name="challenge_4_desc_long">Lajos Egri mengatakan bagian dari siapa dirimu, itu karena bagaimana penampilanmu. kamu tidak percaya? Bayangkan karakter kamu lumpuh ketika dia masih kecil, karena itu dia sepanjang hari di tempat tidurnya, jadi dia tidak bisa berbuat banyak seperti anak-anak yang lain, seperti bermain di luar. Pada akhirnya dia menghabiskan sebagian besar waktunya membaca dan mempelajari hal-hal baru. Aneh untuk anak normal, tetapi satu-satunya kehidupan yang diketahui karakter kamu. Apakah dia akan berbeda dari orang dewasa yang lain ketika dia dewasa? Mungkin sedikit lebih pintar? Gali lebih dalam untuk mengetahui bagaimana karakter kamu terlihat.</string>
+    <string name="challenge_4_q1">Luangkan waktu sejenak untuk merenung. Catat 5 kata sifat yang akan menggambarkan karakter kamu secara fisik!</string>
+    <string name="challenge_4_q2">Apakah dia memiliki tkamu lahir? Mungkin tato yang akan membuatnya unik?</string>
+    <string name="challenge_4_q3">Adakah kondisi medis? Alergi? Sesuatu yang bermanifestasi secara fisik bahkan jika dia menyembunyikannya di balik pakaiannya?</string>
+    <string name="challenge_4_q4">Pertimbangkan posturnya, bisakah kamu menggambarkannya? Dan juga, bagaimana dengan penampilannya? Apakah dia bersih? Apakah dia rapi? Akankah kamu mengatakan bahwa dia tampan secara keseluruhan?</string>
+    <!--Fifth Challenge-->
+    <string name="challenge_5_title">Tantangan V</string>
+    <string name="challenge_5_desc">Uji batasnya.</string>
+    <string name="challenge_5_desc_long">Jika batu bara dan berlian pada dasarnya adalah hal yang sama, apa yang membuat batu bara sangat umum dan berlian begitu langka?\n Tekanan.\nHal ini sama dalam karakter, apakah kamu ingin tahu apakah karakter kamu hanyalah seorang yang berada di tengah kerumunan atau apakah dia pahlawan unik yang dibutuhkan cerita kamu? Mari kita berikan tekanan padanya dan cari tahu siapa dia sebenarnya.</string>
+    <string name="challenge_5_q1">Bagaimana dia akan bereaksi jika seseorang yang dia sayangi berada dalam bahaya?</string>
+    <string name="challenge_5_q2">Apakah dia sanggup membunuh? </string>
+    <string name="challenge_5_q3">Akankah karakter kamu menghalalkan segala cara ketika itu tentang melindungi orang yang dicintai?</string>
+    <string name="challenge_5_q4">Katakanlah dia tidak berani melewati batas kemampuannya sendiri untuk menyelamatkan nyawa orang yang dia sayangi. Apa yang ada dalam batas/perbatasan yang akan dia lakukan untuk menyelesaikan situasi tersebut?</string>
+    <!--Sixth Challenge-->
+    <string name="challenge_6_title">Tantangan VI</string>
+    <string name="challenge_6_desc">Apa yang ada di sakunya?</string>
+    <string name="challenge_6_desc_long">Apa pun yang kamu bawa bersama kamu, berbicara dengan cara tentang apa yang kamu peduli. Apakah kamu akan membawa sesuatu yang tidak kamu pedulikan? kamu mungkin tidak akan. Sama halnya dengan karakter kamu. Gali lebih dalam untuk menemukan apa yang dia miliki di sakunya, temukan apa yang benar-benar dia pedulikan.</string>
+    <string name="challenge_6_q1">Karakter kamu akan meninggalkan rumah. Apa yang akan dia ambil dan masukkan ke dalam sakunya? Dompet? Kunci? Apakan itu kunci mobil? Mobil apa yang dia miliki?</string>
+    <string name="challenge_6_q2">Buka dompet, apakah ada foto? Siapa yang ada dalam foto? Kenapa ada di sana? Sejak kapan?</string>
+    <string name="challenge_6_q3">Ambil kunci dari sakunya, perhatikan dengan hati-hati gantungan kunci. Apa itu? Di mana dia mendapatkannya? Apakah itu hadiah? Apakah itu ikon atau bendera negara? Negara mana?</string>
+    <string name="challenge_6_q4">Apakah dia membawa ponsel? Apakah ada baterai? Atau selalu hampir kosong ketika saatnya untuk pergi? Apakah ponsel dalam mode hening? Lihatlah lebih dekat, apa wallpaper teleponnya?</string>
+    <!--Mentor Challenge-->
+    <string name="c1_mentor_title">Tantangan Mentor</string>
+    <string name="c1_mentor_desc">Kenali mentor kamu.</string>
+    <string name="c1_mentor_desc_long">Mentor adalah tipe karakter yang langka. Tidak semua cerita memilikinya, tetapi ketika ada, itu pasti karena ada suatu alasan. \nApa motif Yoda untuk mengajar Luke Skywalker? Siapa yang menempatkannya di rawa menunggu untuk ditemukan? Apakah dia hanya menawarkan pengetahuan atau juga sebuah artefak? Apakah artefak ini sumber kekuatan Luke? Gali lebih dalam untuk mencari tahu tentang mentor kamu.</string>
+    <string name="c1_mentor_q1">Mengapa protagonis kamu membutuhkan seorang mentor? Mengapa yang satu ini akan persis apa yang dia butuhkan?</string>
+    <string name="c1_mentor_q2">Akankah mentor memberikan pengetahuan kepada protagonis? Atau dia akan membantu protagonis menemukannya sendiri?</string>
+    <string name="c1_mentor_q3">Apakah kekuatan protagonis kamu akan dibuka oleh artefak yang diberikan oleh mentor? Jika demikian, kekuatan apa dan artefak yang mana?</string>
+    <string name="c1_mentor_q4">Mentor mati. Sebagai bagian dari perjalanan yang dramatis, mentor biasanya harus pergi sedikit sebelum protagonis benar-benar siap. Atau mungkin dia sudah siap tetapi dia belum mengetahuinya.\nPada saat kapan mentor kamu akan pergi atau mati? Bagaimana hal itu akan terjadi?</string>
+    <!--Antagonist Challenge-->
+    <string name="c1_antagonist_title">Tantangan Antagonis</string>
+    <string name="c1_antagonist_desc">Kenali Antagonis kamu.</string>
+    <string name="c1_antagonist_desc_long">Cerita adalah permainan kekuasaan. Tidak ada yang peduli dengan perjalanan "Tuan, saya bisa melakukan segalanya", jika protagonis kamu tidak menghadapi semacam rintangan yang mencegahnya untuk mendapatkan apa yang diinginkannya, maka tidak ada tantangan, dan tidak ada tantangan berarti tidak ada pertumbuhan, yang berlanjut kepada tidak ada cerita sama sekali. Namun, menambahkan hambatan demi cerita juga bukan praktik yang baik. Gali lebih dalam untuk memahami siapa sebenarnya tokoh antagonis kamu, dan apa peran dia sebenarnya dalam kisah kamu.</string>
+    <string name="c1_antagonist_q1">Antagonis adalah kebalikan dari protagonis kamu. Bagaimana bisa?</string>
+    <string name="c1_antagonist_q2">Antagonis kamu bukan hanya jahat, ia tidak ingin menghancurkan protagonis, kecuali dia menghalanginya. Jadi apa tujuan utama Antagonis kamu?</string>
+    <string name="c1_antagonist_q3">Apa taktik yang dia gunakan untuk mencapai tujuannya?</string>
+    <string name="c1_antagonist_q4" translatable="false">Pikirkan tentang perubahan alur dari antagonis kamu. Apakah dia memulai dengan jahat atau berakhir dengan jahat? Bukan alur yang bagus, maka tidak? Jadi bagaimana dia di alur pertama, bagaimana dia di alur ketiga?</string>
+    <!--Sidekick Challenge-->
+    <string name="c1_sidekick_title">Tantangan Pendamping</string>
+    <string name="c1_sidekick_desc">Kenali Pendamping kamu.</string>
+    <string name="c1_sidekick_desc_long">Pendamping sering dianggap remeh, tapi bisakah Frodo mencapai tujuannya tanpa Sam? Don Quixote adalah karakternya sendiri, tetapi dapatkah kamu bayangkan jika dia melawan kincir angin tanpa Sancho Panza? Pendamping punya alasan untuk hidup. Temukan alasan pendamping kamu dalam tantangan ini.</string>
+    <string name="c1_sidekick_q1">Kenapa pendamping kamu memutuskan untuk mengikuti protagonis kamu?</string>
+    <string name="c1_sidekick_q2">Mengapa tujuan protagonis kamu begitu kuat sehingga pedamping kamu memutuskan untuk mengejar tujuan itu juga?</string>
+    <string name="c1_sidekick_q3">Apa alat, taktik, atau senjata yang diberikan pendamping kamu kepada protagonis kamu? Bagaimana dia melindunginya atau membelanya?</string>
+    <string name="c1_sidekick_q4">Beberapa pendamping memiliki momen ketika mereka harus memutuskan, apakah sang protagonis senilai dengan nyawa mereka sendiri. Bagaimana dengan kamu? Apa hal yang paling berisiko yang dilakukan pendamping kamu untuk protagonis kamu? Mungkinkan itu nyawanya?</string>
+    <!--Stakes challenge-->
+    <string name="challenge_7_title">Tantangan VII</string>
+    <string name="challenge_7_desc">Taruhannya.</string>
+    <string name="challenge_7_desc_long">Mengapa kita peduli dengan $char_name$? Apa yang bisa terjadi jika $gender$ tidak berhasil? Seberapa penting $char_name$ untuk para pembaca?</string>
+    <string name="challenge_7_q1">Pikirkan tentang pilihan paling penting yang harus dibuat $char_name$. Apa yang dipertaruhkan saat itu?</string>
+    <string name="challenge_7_q2">Taruhannya bisa eksternal atau fisik. Pikirkan konsekuensi eksternal yang akan kita lihat jika tujuannya tidak tercapai? Akankah dunia meledak? Seseorang akan mati? Misalnya dalam film \"Berani\" ibu dari protagonis akan selamanya menjadi beruang jika mantranya tidak musnah.</string>
+    <string name="challenge_7_q3">Sekarang pertimbangkan secara internal, apa yang akan menjadi moralnya, atau konsekuensi psikologis untuk $char_name$ jika tujuannya tidak terpenuhi? Lupakan tentang trauma, dan pikirkan lebih mendalam. Mungkinkah $char_name$ untuk mengatasi kegagalannya?</string>
+    <string name="challenge_7_q4">Terakhir, apa taruhan filosofisnya? Jika \"mother of Dragons\" tidak menghentikan \"walkers\", kejahatan dan kehancuran akan mengambil alih dunia. Apa yang akan terjadi dalam kasus $char_name$?</string>
+
+    <!--Challenge 8 -->
+    <string name="challenge_8_title">Tantangan VIII</string>
+    <string name="challenge_8_desc">Bagaimana dengan rumah?</string>
+    <string name="challenge_8_desc_long">Ceritakan bagaimana kamu hidup dan saya akan memberi tahu kamu siapa diri kamu.\n\nUraikan bagaimana $char_name$ tinggal dan di mana.</string>
+    <string name="challenge_8_q1">Apakah $char_name$ tinggal di rumah atau apartemen? Apakah itu gudang? Atau hanya sebuah kamar? Jelaskan tempat itu.</string>
+    <string name="challenge_8_q2">$char_name$ berdiri di tengah ruangan terbesar, apa yang bisa dilihat? Apa yang ada di dinding? Siapa yang menaruh itu di sana?</string>
+    <string name="challenge_8_q3">Pergi ke kamar tidur, bagaimana? Apakah itu tempat tidur untuk 2 orang? Apakah itu untuk satu orang? Apakah tempat tidurnya rapi? Apakah kamu melihat seseorang di tempat tidur?</string>
+    <string name="challenge_8_q4">Buka semua jendelanya. Apa yang $char_name$ lihat dari sana? Bisakah orang melihatnya? Bisakah suara dari jalan terdengar? Seberapa berisiknya tempat itu?</string>
+
+    <!--GUIDE ROLES-->
+    <string name="roles_title">Peran karakter yang khas</string>
+    <string name="roles_desc">Peran</string>
+    <string name="roles_desc_long">Bayangkan kisah kamu seperti sebuah mesin, yang berisi roda gigi yang perlu bekerja sama agar mesin kamu dapat bergerak. Karakter dalam sebuah cerita tidaklah berbeda.
+Setiap karakter dalam cerita kamu harus memiliki peran yang menggerakkan cerita ke depan, dari protagonis ke antagonis, tetapi bukan hany itu saja. Bagaimana dengan para pendamping? Atau para mentor? Gali lebih dalam untuk mempelajari lebih lanjut tentang peran sebuah karakter</string>
+    <string name="char_guide_title">Peran karakter yang khas</string>
+    <string-array name="char_guide_types_titles">
+        <item>Protagonis</item>
+        <item>Pembantu Protagonis</item>
+        <item>Pendamping</item>
+        <item>Pelindung</item>
+        <item>Mentor</item>
+        <item>Impak</item>
+        <item>Antagonis</item>
+        <item>Pembantu Antagonis</item>
+        <item>Skeptis</item>
+        <item>Penghambat</item>
+        <item>Tujuan</item>
+    </string-array>
+    <string-array name="char_guide_types_desc">
+        <item>Ini karakter utama dari sebuah plot, apapun terjadi padanya. Misalnya, ia mendorong kegiatan dari awal hingga akhir cerita. Semua cerita memiliki setidaknya satu protagonis utama dan umumnya tindakan ini dimotivasi oleh tujuannya.</item>
+        <item>Dapat disalahartikan dengan protagonis, namun perannya adalah membantu protagonis untuk mencapai tujuannya dalam cerita, tidak ada yang lain.</item>
+        <item>Ini tidak selalu muncul di semua cerita, pendamping dapat dilihat dalam banyak genre yang berbeda. Ia adalah karakter yang bergabung dan menemani protagonis dalam kemenangan atau kekalahannya, ia akan selalu membantu protagonis pada apa pun yang dibutuhkannya, dari dukungan fisik hingga moral. Pedamping, juga sering dikhususkan untuk protagonis dan akan melakukan apa pun untuknya. Bahkan mati sekalipun.</item>
+        <item>Ini bukan karakter wajib maupun yang utama, namun muncul di banyak novel. Ini adalah orang yang menyimpan sesuatu, ia menjaganya (biasanya sesuatu yang sangat penting dan terkait dengan tujuan protagonis). Ia akan berperilaku sebagai penghalang bagi protagonis untuk mencapai tujuannya.</item>
+        <item>Karakter lain yang tidak wajib namun sangat kuat ketika ada. Dia adalah Yoda dari Star Wars, atau pendeta dalam Pangeran Montecristo. Karakter yang akan membimbing dan mengubah protagonis (Sang Pahlawan) sehingga ia siap untuk pertempuran terakhir, karakter yang harus ia perjuangkan untuk mencapai tujuannya.</item>
+        <item>Karakter impak adalah karakter sekunder dengan pertunjukan singkat di tempat kejadian, tetapi sangat penting. Ia adalah karakter yang pada saat tertentu di cerita akan memberikan protagonis dorongan terakhir untuk terus berjalan; atau dia bahkan mungkin memberinya petunjuk yang dapat dia gunakan nanti (dalam klimaks misalnya) untuk memecahkan sesuatu, untuk menemukan nilai yang dia butuhkan, atau petunjuk untuk menemukan pembunuh.</item>
+        <item>Di sisi lain meja, kita menemukan karakter yang bertolak belakang dengan tokoh protagonis: Antagonis atau Penjahat dari cerita. Ini tidak berarti bahwa antagonis selalu buruk. Namun ia memiliki tujuan yang sangat berlawanan dari protagonis dan ia akan berjuang sampai akhir untuk mencapainya. Bentrokan tujuan inilah tempat kamu menemukan konflik kamu.</item>
+        <item>Sama seperti protagonis, antagonis dapat memiliki pembantu. Lebih baik dikatakan, karakter yang membantu antagonis untuk mencapai tujuannya. Ini bukan karakter wajib, tentu saja, tetapi mereka bisa sangat berguna untuk membuat plot kamu.</item>
+        <item>Karakter skeptis adalah karakter yang tidak percaya pada tujuan protagonis. Bisa dikatakan, lawan dari pendamping, dia tidak benar-benar memberikan hambatan pada protagonis namun dia akan mencoba untuk menurunkan moral dia.</item>
+        <item>Karakter semacam ini mirip dengan pembantu antagonis namun mereka bertindak lebih seperti pelawak, karakter yang akan muncul sebentar untuk menyulitkan atau menyimpang protagonis dari tujuannya.</item>
+        <item>Terkadang tujuan sang protagonis bisa menjadi karakter lain. Misalnya, seseorang telah diculik dan protagonis harus menemukannya. Karakter ini jika dia tidak memiliki fungsi atau peran lain dalam cerita, dapat dijadikan sebagai tujuan.</item>
+    </string-array>
+
+
+    <string name="lajos_character_title">Karakter 3D - Lajos Egri</string>
+    <string name="lajos_character_desc">Karakter Tiga Dimensi</string>
+    <string name="lajos_character_long">Setiap objek memiliki tiga dimensi: kedalaman, tinggi, lebar. Manusia memiliki tiga dimensi tambahan: fisiologi; sosiologi; psikologi. Tanpa pengetahuan tentang tiga dimensi ini kita tidak bisa menaksir manusia. Dalam studi kamu tentang manusia, tidaklah cukup untuk mengetahui apakah dia kasar, sopan, religius, ateistik, bermoral, merosot. kamu harus tahu kenapa</string>
+    <string name="lajos_text">Hanya ada satu ranah ketika karakter menentang hukum alam dan tetap sama - ranah penulisan bar.\n- Lajos Egri -\n\nSebuah karakter yang menarik akan selalu memiliki tiga dimensi, jika gagal melakukannya akan menghasilkan karakter yang tidak realistis dan tidak menarik yang tujuannya hanya untuk hadir sebagai pengisi.\nTidak semua karakter harus memiliki tiga dimensi adalah benar, tetapi setidaknya kamu harus fokus pada yang utama.\n\nLajos Egri dalam bukunya "The Art of Dramatic Writing" menuliskan tiga kategori (tiga dimensi) yang harus dimiliki karakter kamu.\nLihat di bawah ini:\n\nFisiologi\n
+1.Jenis kelamin\n
+2.Umur\n
+3.Tinggi &amp; Berat\n
+4.Warna rambut, mata, kulit\n
+5.Postur\n
+6.Penampilan: tampan, kelebihan atau kurangan berat badan , bersih, rapi, menyenangkan, tidak rapi. Bentuk kepala, wajah, anggota badan.\n
+7.Cacat: kelainan bentuk, abnormalitas, tkamu lahir. Penyakit.\n
+8.Hereditas.\n
+\nSosiologi\n
+1.Golongan: bawah, tengah, atas.\n
+2.Pekerjaan: jenis pekerjaan, jam kerja, pendapatan, kondisi kerja, serikat buruh ataupun yang tidak mengakui serikat buruh, sikap terhadap organisasi, kesesuaian untuk bekerja.\n
+3.Pendidikan: jumlah, jenis sekolah, nilai, mata pelajaran favorit, mata pelajaran terburuk, bakat.\n
+4.Kehidupan rumah tangga: kehidupan orang tua, penghasilan, anak yatim, orang tua yang terpisah atau bercerai, kebiasaan orang tua, perkembangan mental orang tua, sifat buruk orang tua, pengabaian. Status pernikahan karakter.\n
+5.Agama\n
+6.Ras, kebangsaan\n
+7.Kedudukan di komunitas: pemimpin di antara teman, klub, olahraga.\n
+8.Afiliasi politik\n
+9.Hiburan, hobi: buku, koran, majalah yang dia baca.\n
+\nPsikologi\n
+1.Kehidupan seks, stkamur moral\n
+2.Premis pribadi, ambisi\n
+3.Frustrasi, kekecewaan utama\n
+4.Temperamen: mudah tersinggung, mudah bergaul, pesimis, optimis.\n
+5.Sikap terhadap kehidupan: pasrah, militan, pengalah.\n
+6.Kompleks: obsesi, hambatan, takhayul, fobia.\n
+7.Ekstrovert, introvert, ambivert.\n
+8.Kemampuan: bahasa, bakat.\n
+9.Kualitas: imajinasi, penilaian, selera, ketenangan.\n
+10.I.Q.\n\n\n
+</string>
+
+
+    <string name="change_arc_title">Perubahan alur - K.M Weiland</string>
+    <string name="change_arc_desc">Cara membuat alur untuk karakter?</string>
+    <string name="change_arc_desc_long">Aristoteles menulis bahwa cerita adalah tentang plot, namun hari ini kita tahu bahwa plot adalah tentang bagaimana karakter bereaksi terhadapnya. Apakah Indiana Jones akan bereaksi yang sama terhadap pengkhianatan daripada Scarface? Bisakah kita berasumsi bahwa apa yang menarik bagi Batman
+mungkin membosankan untuk Francis Underwood? Karakter dalam situasi yang sama bereaksi sangat berbeda.\nGali lebih dalam bagian ini untuk mempelajari lebih lanjut tentang bagaimana karakter bereaksi terhadap situasi dan bagaimana mereka berubah karenanya</string>
+    <string-array name="change_arc_array_titles">
+        <item>Alur Positif</item>
+        <item>Alur Datar</item>
+        <item>Alur Negatif</item>
+    </string-array>
+    <string-array name="change_arc_array_desc">
+        <item>Ini adalah alur karakter yang paling populer dan seringkali paling resonan. Protagonis akan mulai dengan berbagai tingkat ketidakpuasan dan penolakan pribadi. Selama jalannya cerita, ia akan dipaksa untuk menantang keyakinannya tentang dirinya dan dunia, sampai akhirnya ia menaklukkan iblis dalam dirinya (dan, sebagai hasilnya, mungkin antagonis luarnya juga) dan akhir alurnya berubah dalam cara positif.</item>
+        <item>Banyak cerita populer menampilkan karakter yang pada dasarnya sudah lengkap bagi diri mereka sendiri. Mereka sudah menjadi pahlawan dan tidak membutuhkan pertumbuhan pribadi yang nyata untuk mendapatkan kekuatan batin untuk mengalahkan antagonis eksternalnya. Karakter ini mengalami sedikit atau tidak ada perubahan selama jalannya cerita, membuat alur mereka statis atau "datar." Kadang-kadang karakter ini adalah katalisator untuk perubahan dalam dunia cerita di sekitar mereka, sehingga kita dapat menemukan alur yang lebih menonjol dalam karakter minor..</item>
+        "<item>Alur negatif karakter menawarkan, bisa dibilang, lebih banyak variasi dari alur lainnya. Namun, pada level paling dasar, alur negatif hanyalah alur perubahan yang terbalik.
+Daripada karakter yang tumbuh dari kesalahannya menjadi orang yang lebih baik, alur negatif memulai cerita dengan karakter yang berakhir dalam keadaan yang lebih buruk.</item>"
+    </string-array>
+
+    <string name="antagonist_guide_title">Anatomi Antagonis yang Sempurna</string>
+    <string name="antagonist_guide_desc">Bagaimana antagonis dibuat?</string>
+    <string name="antagonist_guide_desc_long">Lajos Egri membahas dalam bukunya "The art of dramatic writing" pentingnya kesatuan yang berlawanan (Unity of Opposites). Artinya, jika Batman menginginkan ketertiban, maka Joker menginginkan kekacauan, jika Gkamulf menginginkan perdamaian, maka Sauron menginginkan perang.
+Kesatuan yang berlawanan merujuk pada fakta bahwa keduanya, protagonis dan antagonis, menginginkan yang sebaliknya dan itulah mengapa mereka berbenturan. Gagal menerapkan konsep ini dalam antagonis kamu akan membuatnya bosan atau tidak realistis. Gali lebih dalam untuk memahami bagaimana antagonis yang baik dibuat.</string>
+    <string-array name="antagonist_guide_array_titles">
+        <item>Antagonis adalah kebalikan dari protagonis kamu</item>
+        <item>Antagonis itu kompleks</item>
+        <item>Antagonis adalah lawan yang tangguh</item>
+        <item>Antagonis memiliki motif yang kuat</item>
+    </string-array>
+    <string-array name="antagonist_guide_array_desc">
+<item>Cukup sering dalam literatur, antagonis hanyalah kebalikan dari pelaku utama/protagonis. Sebagai contoh, jika protagonis kamu kurang ajar dan berotak, maka antagonis itu tenang dan sangat mengendalikan emosi mereka. Kontras antara keduanya membantu menciptakan konflik yang meyakinkan dan membuat interaksi lebih menarik.\n
+Tapi hati-hati, oposisi mereka bukan hanya taktik mereka untuk mencapai tujuan mereka, ini lebih dalam dari itu, ini berjalan jauh ke sifat mereka, dengan cara bahwa pertempuran terakhir di antara mereka itu tidak dapat dihindari sejak baris pertama dari cerita kamu.</item>
+        <item>Meski menggoda, jangan jadikan antagonis kamu lambang kejahatan. Kenapa tidak? Karena itu membosankan dan tidak realistis. Berapa banyak orang yang kamu temui dalam hidup kamu yang benar-benar jahat? Mungkin nol. Tidak peduli seberapa jahat seseorang, kamu selalu dapat menemukan kualitas penebusan dalam karakter mereka.\n
+Berikan antagonis kamu beberapa kualitas yang baik dan tunjukkan hal positif dalam beberapa adegan/bab. Ini akan menciptakan kontras yang tajam ketika mereka mau tidak mau bertindak atas keinginan jahat mereka dan apa pun yang mereka lakukan akan tampak lebih mengerikan daripada jika kamu telah menggambarkan mereka sebagai makhluk yang murni jahatnya.\n
+Untuk memberikan kedalaman pada antagonis kamu , jelajahi latar belakangnya. Apakah dia pernah menjadi orang yang baik? Apakah dia selalu memiliki kecenderungan jahat? Apa yang terjadi padanya sehingga dia penuh dengan kebencian? Menambahkan lapisan itu kepada antagonis kamu akan membuat bacaan kamu mendorong antagonis kamu dan benar-benar percaya pada cerita kamu.</item>
+        <item>Tidak ada cerita jika antagonis kamu tidak sekuat protagonis kamu. Bahkan, banyak cerita yang bagus dimulai dari ujung yang lain, itu adalah tokoh protagonis yang harus mengembangkan keterampilan mereka agar cocok dengan tokoh antagonis yang jahat. Gagal memiliki antagonis yang kuat dalam cerita kamu akan menghasilkan perselisihan yang membosankan dan cerita yang membosankan karena tidak ada tantangan yang sebenarnya untuk protagonis.
+Buat antagonis kamu melakukan tindakan yang benar-benar tercela dan jika mungkin kamu juga ingin protagonis kamu kalah dalam beberapa pertempuran sebelum yang terakhir, ketika dia menunjukkan kepada kita seberapa jauh dia berjalan untuk mengalahkan antagonis.</item>
+        <item>Apa tujuan antagonis kamu? Apa tujuan di balik semua masalah yang mereka sebabkan? Jangan tergoda untuk menjelaskan bahwa perbuatan jahat mereka hanyalah produk dari sifat jahat mereka. Orang tidak hanya melakukan hal-hal buruk secara acak. Mereka biasanya punya alasan untuk tindakan mereka. Munculkan motivasi yang kuat dan karakter kamu akan menjadi jauh lebih dapat dipercaya.</item>
+    </string-array>
+
+    <string name="weekly_challenge_title_default">Tidak Ada Koneksi</string>
+    <string name="weekly_challenge_desc_default">Jika kamu melihat teks ini berarti kamu tidak memiliki koneksi internet. Silakan periksa internet kamu dan kembali ke bagian ini</string>
+    <string name="weekly_challenge_view_ad_btn">Lihat iklan</string>
+    <string name="weekly_challenge_view_ad_desc">Untuk menjaga aplikasi ini tetap gratis, untuk berpartisipasi, saya meminta kamu untuk menonton iklan singkat.</string>
+    <string name="weekly_challenge_submit_btn">Partisipasi</string>
+    <string name="weekly_challenge_email_desc">Jangan lupa untuk menambahkan nama kamu jika kamu ingin disebutkan namanya. Dan terima kasih telah berpartisipasi!</string>
+
+    <string name="sign_out">Keluar</string>
+    <string name="characters_created">Karakter yang Dibuat</string>
+    <string name="projects_created">Proyek yang Dibuat</string>
+    <string name="name">Nama</string>
+    <string name="email">Email</string>
+    <string name="view_participant">Baca</string>
+    <string name="likes">Suka</string>
+    <string name="comments">Komentar</string>
+    <string name="write_a_comment">Tulis komentar...</string>
+    <string name="post">Bagikan</string>
+    <string name="my_profile">Profil</string>
+    <string name="info">Info</string>
+    <string name="must_login">kamu harus masuk untuk melihat profil kamu</string>
+
+    <!-- Submit -->
+    <string name="submit_welcome">Selamat datang</string>
+    <string name="submit_title">Judul</string>
+    <string name="write_here_hint">Tulis cerita kamu di sini</string>
+    <string name="submit_prompt">Kirim tantangan mingguan kamu sekarang!</string>
+    <string name="submit_button">Kirim</string>
+    <string name="edit_your_story">Edit cerita kamu</string>
+    <string name="go_to_my_story">Tunjukan/Sembunyikan cerita yang lain</string>
+    <string name="go_to_most_likes">Urutkan Berdasarkan Pilihan</string>
+    <string name="go_to_most_recent">Urutkan Berdasarkan Terbaru</string>
+
+    <string-array name="char_guide_types_titles_for_comparison">
+        <item>Protagonista</item>
+        <item>Ayudante de protagonista</item>
+        <item>Escudero</item>
+        <item>Guardian</item>
+        <item>Mentor</item>
+        <item>De Impacto</item>
+        <item>Antagonista</item>
+        <item>Ayudante de Antagonista</item>
+        <item>Esceptico</item>
+        <item>Obstaculo</item>
+        <item>Meta</item>
+        <item>Protagonist\'s Helper</item>
+        <item>Protagonist</item>
+        <item>Sidekick</item>
+        <item>Guardian</item>
+        <item>Mentor</item>
+        <item>Impact</item>
+        <item>Antagonist\'s Helper</item>
+        <item>Antagonist</item>
+        <item>Skeptic</item>
+        <item>Obstacle</item>
+        <item>Goal</item>
+    </string-array>
+
+    <!-- Firebase Database name  -->
+    <string name="weekly_challenge_db_name">Tantangan_Mingguan_Beta</string>
+
+    <string name="edit_story">Edit Cerita</string>
+    <string name="write_story">Tulis Cerita</string>
+    <string name="add_char">Tambah Karakter</string>
+
+    <string-array name="themes">
+        <item>Tema Terang</item>
+        <item>Tema Logam</item>
+        <item>Tema Gelap</item>
+        <item>Tema Roman</item>
+        <item>Tema Musim Gugur</item>
+    </string-array>
+
+    <string name="please_select_the_one_option">Silakan pilih satu opsi</string>
+    <string name="select_from_photo_gallery">Pilih dari Galeri Foto</string>
+    <string name="remove_photo">Hapus Foto</string>
+    <string name="cancel">Batal</string>
+    <string name="iap_title">Akan segera hadir</string>
+    <string name="iap_desc">Versi pro tanpa iklan akan tersedia pada pembaruan berikutnya</string>
+    <string name="iap_btn">Tanpa iklan!</string>
+    <string name="share">Bagikan</string>
+
+    <string name="themes_disclaimer">kamu harus menjadi premium untuk mengubah tema kamu</string>
+
+
+    <!--<string name="remove_ads_product_id">android.test.purchased</string>-->
+    <string name="remove_ads_product_id">tanpa_iklan</string>
+    <string name="invitation_title">Auctor</string>
+    <string name="invitation_message">Dukung cerita saya di Auctor</string>
+    <string name="invitation_deep_link">com.plotgen.page.link</string>
+    <string name="invitation_cta">Baca</string>
+
+
+    <string name="gender_male_article">dia</string>
+    <string name="gender_female_article">dia</string>
+    <string name="gender_male_posesive">dia</string>
+    <string name="gender_female_posesive">dia</string>
+
+
+
+    <string name="challenge_fab">Tantangan</string>
+    <string name="guides_fab">Panduan</string>
+
+    <!--Weekly writing strings-->
+    <string name="weekly_challenge_tab1">Sedang Berlangsung</string>
+    <string name="weekly_challenge_tab2">Pemenang terakhir</string>
+    <string name="weekly_challenge_author">Oleh</string>
+
+    <string name="wc_most_voted">Paling banyak dipilih</string>
+    <string name="wc_recent">Baru</string>
+    <string name="wc_mystory">Cerita saya</string>
+
+    <string name="char_empty">Saya yakin kamu lebih kreatif dari itu...</string>
+
+
+    <string name="onBoardingTitle_1">Selamat Datang di Auctor.</string>
+    <string name="onBoardingTitle_2">Di mana semua dimulai.</string>
+    <string name="onBoardingTitle_3">Pilih proyekmu.</string>
+    <string name="onBoardingTitle_4">Waktunya karakter!</string>
+    <string name="onBoardingTitle_5">Santai dan nikmati.</string>
+    <string name="onBoardingTitle_6">Kamu tahu latihannya.</string>
+    <string name="onBoardingTitle_7">Voila!</string>
+
+    <string name="onBoarding_1">Memulai menulis itu sulit, mungkin lebih sulit daripada menyelesaikannya\nTetapi jangan khawatir.\nKami akan membantu mu.\n\nLanjutkan dan tekan tombol + untuk membuat proyek pertama kamu.</string>
+    <string name="onBoarding_2">Aku sarankan buatlah secangkir kopi dulu.\n\nDi sini kamu akan membuat detail proyekmu.\n\nJudul, genre, dan secara singkat tentang apa proyekmu. Kami menyebutnya "RINGKASAN PLOT".\n\nJangan terlalu stres, jika kamu tidak yakin tentang sesuatu, itu dapat diubah nanti.\nKlik simpan ketika kamu siap. Aku akan menunggu.</string>
+    <string name="onBoarding_3">Di sini kamu akan melihat semua proyek kamu. Sebanyak yang kamu ingin miliki.\n\nKlik proyek yang baru saja kamu buat untuk memulai.</string>
+    <string name="onBoarding_4">Sekarang kamu sudah mulai memahami ini.\nTekan tombol + dan pilih tambah karakter</string>
+    <string name="onBoarding_5">Sudah minum kopinya? Mungkin ini saatnya untuk menikmati kopimu.\n\nDi sini kamu akan membuat karakter pertama kamu. Jika kamu tidak punya ide, jangan khawatir. Buat saja acak.\n\natau kombinasi dari itu? Bagaimana jika buat acak dulu kemudian kamu bebas mengedit apa yang kamu rasa butuhkan? Yuk dan jelajahi.\n\nDan ya, kamu dapat mengedit ini nanti.</string>
+    <string name="onBoarding_6">Silakan pilih Karakter yang baru saja kamu buat untuk melanjutkan.</string>
+    <string name="onBoarding_7">Ini karakter kamu. Di sini kamu dapat memasang foto dia.\n\nTapi ini masih jauh dari selesai, kamu baru saja mulai. Lihat pada tombol +, kamu akan membuka panduan untuk terus mengembangkan karaktermu.\n\nTetapi yang lebih penting, kamu juga memiliki tantangan.\n\nSaya ingin sekali memberi tahu kamu apa saja itu, tetapi kamu lebih baik melihatnya sendiri.</string>
+
+</resources>

@@ -122,9 +122,9 @@ public class BioFragment extends Fragment {
             role_subtitle.setText(charRole);
 
             StringBuffer bio_text = new StringBuffer();
-            bio_text.append(name + " " + getString(R.string.age_bio_1) + "<br> " + age + " " + getString(R.string.age_bio_2) + "<br>");
-            bio_text.append(getString(R.string.placebirth_bio) + "<br> " + placebirth + "<br>");
-            if(job.equals("Arbeitslos") || job.equals("Desempleado") || job.equals("Desempleada") || job.equals("Unemployed")){
+            bio_text.append(name + " " + getString(R.string.age_bio_1) + " " + age + " " + getString(R.string.age_bio_2) + "<br>");
+            bio_text.append(getString(R.string.placebirth_bio) + " " + placebirth + "<br>");
+            if(job.equals("Arbeitslos") || job.equals("Desempleado") || job.equals("Desempleada") || job.equals("Unemployed")|| job.equals("Pensiun")){
                 bio_text.append(getString(R.string.nojob_bio) + " " + job + "<br>");
             } else {
                 bio_text.append(getString(R.string.job_bio) + " " + job + "<br>");
@@ -135,13 +135,13 @@ public class BioFragment extends Fragment {
             bio_text.append(getString(R.string.bodybuild_bio) + " " + bodybuild + "<br>");
 
 
-            if (gender.equals("Masculino") || gender.equals("Male")) {
+            if (gender.equals("Masculino") || gender.equals("Male") || gender.equals("Pria")) {
                 bio_text.append(getString(R.string.male_desire_bio) + " " + desire + "<br>");
                 bio_text.append(getString(R.string.male_need_bio) + " " + need + "?<br>");
                 bio_text.append(getString(R.string.male_moment_bio) + " " + moment + "<br>");
                 bio_text.append(getString(R.string.male_trait_bio) + " " + trait1 + ", " + trait2 + ", " + trait3 + "<br><br>");
                 bio_text.append(getString(R.string.male_phrase_bio) + "<br> " + phrase + "<br><br>");
-            } else if (gender.equals("Femenino") || gender.equals("Female")) {
+            } else if (gender.equals("Femenino") || gender.equals("Female") || gender.equals("Wanita")) {
                 bio_text.append(getString(R.string.female_desire_bio) + " " + desire + "<br>");
                 bio_text.append(getString(R.string.female_need_bio) + " " + need + "?<br>");
                 bio_text.append(getString(R.string.female_moment_bio) + " " + moment + "<br>");
@@ -155,7 +155,7 @@ public class BioFragment extends Fragment {
                 bio_text.append(getString(R.string.binary_phrase_bio) + "<br> " + phrase + "<br><br>");
             }
 
-            bio_text.append(getString(R.string.notes_bio) + "<br> " + notes);
+            bio_text.append(getString(R.string.notes_bio) + "<br> " + notes + "<br><br><br><br><br><br>");
             intro_tv.setText(Html.fromHtml(bio_text.toString()));
 
 

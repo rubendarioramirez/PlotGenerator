@@ -28,21 +28,14 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/biochallenge_role"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="22dp"
-                android:background="@color/content_lighter"
-                android:fontFamily="@font/typewcond_regular"
-                android:gravity="left"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="?android:attr/textColorSecondary" />
-
-            <TextView
                 android:id="@+id/biochallenge_body"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="22dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
                 android:background="@color/content_lighter"
                 android:fontFamily="@font/typewcond_regular"
                 android:gravity="left"

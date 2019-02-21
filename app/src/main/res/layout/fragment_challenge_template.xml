@@ -21,6 +21,8 @@
         android:elevation="15dp"
         android:src="@android:drawable/ic_menu_save"
         app:borderWidth="0dp"
+        android:backgroundTint="?colorPrimary"
+        android:tint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
