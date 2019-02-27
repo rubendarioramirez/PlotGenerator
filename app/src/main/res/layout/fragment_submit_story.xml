@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -8,88 +8,107 @@
     tools:context=".Fragment.SubmitStoryFragment">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
         android:gravity="top"
-        android:layout_marginTop="16dp"
+        android:orientation="vertical"
         android:padding="16dp"
-        android:orientation="vertical">
+        app:layout_constraintBottom_toTopOf="@+id/btnSubmit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textSize="24sp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/submit_welcome"
             android:textColor="?android:attr/textColorPrimary"
-            android:fontFamily="@font/typewcond_bold"
-            android:text="@string/submit_welcome"/>
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/tvEmail"
-            android:layout_marginTop="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textSize="20sp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="someone@email.com"
             android:textColor="?android:attr/textColorSecondary"
-            android:fontFamily="@font/typewcond_regular"
-            android:text="someone@email.com"/>
+            android:textSize="20sp" />
 
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/etTitle"
-            android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_rectangle_edittext"
+            android:fontFamily="@font/roboto_bold"
             android:hint="@string/submit_title"
+            android:inputType="textPersonName"
+            android:padding="8dp"
+            android:textColorHint="@color/content_lighter"
             app:met_floatingLabel="highlight"
             app:met_floatingLabelText="Title"
-            android:textColorHint="@color/content_lighter"
-            android:padding="8dp"
-            android:inputType="textPersonName"
-            android:background="@drawable/bg_rectangle_edittext"
-            app:met_textColor="?android:attr/textColorSecondary"
 
-            android:fontFamily="@font/typewcond_regular"/>
+            app:met_textColor="?android:attr/textColorSecondary" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/etStory"
-            android:lines="10"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="60dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="60dp"
+            android:background="@drawable/bg_rectangle_edittext"
+            android:fontFamily="@font/roboto_light"
             android:hint="@string/write_here_hint"
+            android:inputType="textCapSentences|textMultiLine"
+            android:lines="10"
+            android:padding="8dp"
+            android:textColorHint="@color/content_lighter"
             app:met_floatingLabel="highlight"
             app:met_floatingLabelText="Story Challenge"
-            android:textColorHint="@color/content_lighter"
-            android:inputType="textCapSentences|textMultiLine"
-            android:padding="8dp"
-            android:background="@drawable/bg_rectangle_edittext"
-            app:met_textColor="?android:attr/textColorSecondary"
-            android:fontFamily="@font/typewcond_regular"/>
+            app:met_textColor="?android:attr/textColorSecondary" />
 
         <TextView
-            android:layout_marginTop="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textSize="20sp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/submit_prompt"
             android:textColor="?android:attr/textColorPrimary"
-            android:fontFamily="@font/typewcond_bold"
-            android:text="@string/submit_prompt"/>
+            android:textSize="20sp" />
 
     </LinearLayout>
 
     <Button
         android:id="@+id/btnSubmit"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_margin="8dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="?colorPrimary"
+        android:fontFamily="@font/roboto_medium"
         android:text="@string/submit_button"
-        android:fontFamily="@font/typewcond_regular"
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button.Colored"
-        android:background="@color/colorAccent"/>
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

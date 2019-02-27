@@ -87,6 +87,7 @@
             android:drawableTint="@color/white"
             app:fabColor="?colorPrimary"
             app:fabElevation="10dp"
+            app:fabSizes="mini"
             app:fabIcon="@android:drawable/ic_input_add" />
 
         <com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton
@@ -95,6 +96,7 @@
             android:layout_height="wrap_content"
             app:fabColor="?colorPrimary"
             app:fabIcon="@drawable/ic_character_black"
+            app:fabSizes="mini"
             app:fabText="Add Character" />
 
         <com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton
@@ -103,6 +105,7 @@
             android:layout_height="wrap_content"
             app:fabColor="?colorPrimary"
             app:fabIcon="@drawable/ic_book_black"
+            app:fabSizes="mini"
             app:fabText="Add Story" />
 
     </com.robertlevonyan.views.customfloatingactionbutton.FloatingLayout>

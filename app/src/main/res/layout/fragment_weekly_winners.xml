@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?android:attr/colorBackground"
     tools:context=".Fragment.weekly_winners">
 
         <LinearLayout
@@ -34,15 +35,15 @@
                         android:id="@+id/wwtitle_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
                         android:layout_marginTop="16dp"
-                        android:fontFamily="@font/typewcond_bold"
-                        android:gravity="center_horizontal"
+                        android:fontFamily="@font/roboto_lightitalic"
+                        android:textSize="24sp"
                         android:text="@string/weekly_challenge_title_default"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:gravity="center"
                         android:textColor="?android:attr/textColorPrimary" />
 
                     <TextView
@@ -54,10 +55,10 @@
                         android:layout_marginRight="8dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="16dp"
-                        android:fontFamily="@font/typewcond_bold"
+                        android:fontFamily="@font/roboto_regular"
                         android:gravity="center_horizontal"
                         android:text="@string/weekly_challenge_title_default"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textSize="16sp"
                         android:textColor="?android:attr/textColorSecondary" />
 
                     <TextView
@@ -65,15 +66,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="8dp"
+                        android:layout_marginEnd="16dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
-                        android:fontFamily="@font/typewcond_regular"
-                        android:gravity="center_horizontal"
+                        android:fontFamily="@font/roboto_regular"
                         android:text="@string/weekly_challenge_desc_default"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textSize="18sp"
                         android:textColor="?android:attr/textColorSecondary" />
 
                 </LinearLayout>

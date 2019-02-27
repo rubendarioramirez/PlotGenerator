@@ -1,5 +1,7 @@
 package com.plotgen.rramirez.plotgenerator.Fragment;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -15,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.android.gms.appinvite.AppInviteInvitation;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -25,6 +28,7 @@ import com.plotgen.rramirez.plotgenerator.BioFragment;
 import com.plotgen.rramirez.plotgenerator.ChallengeListFragment;
 import com.plotgen.rramirez.plotgenerator.CharacterFragment;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
+import com.plotgen.rramirez.plotgenerator.Common.Constants;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Guides.GuideListFragment;
 import com.plotgen.rramirez.plotgenerator.R;
@@ -32,8 +36,12 @@ import com.plotgen.rramirez.plotgenerator.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static android.app.Activity.RESULT_OK;
+import static com.plotgen.rramirez.plotgenerator.Common.Constants.REQUEST_INVITE;
+
 
 public class Container_charbio extends Fragment {
+
 
     private SectionsPageAdapter mSectionsPageAdapter;
     private String fragmentTag = Container_charbio.class.getSimpleName();
@@ -169,8 +177,8 @@ public class Container_charbio extends Fragment {
 //                String allbody = intro_tv.getText().toString() + " \n" + " \n" + "https://play.google.com/store/apps/details?id=com.plotgen.rramirez.plotgenerator";
 //                String char_role = project_name + ": " + char_name;
 //                SHARE(getView(), allbody, char_role);
-                Toast.makeText(getContext(),"Coming back soon", Toast.LENGTH_LONG).show();
-                Log.v("matilda", "edit has been pressed");
+                Toast.makeText(getContext(),"Coming soon",Toast.LENGTH_LONG).show();
+//                onInviteClicked();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -179,5 +187,34 @@ public class Container_charbio extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
+
+    private void onInviteClicked() {
+        Intent intent = new AppInviteInvitation.IntentBuilder(getString(R.string.invitation_title))
+                .setMessage(getString(R.string.invitation_message))
+                .setDeepLink(Uri.parse(getString(R.string.invitation_deep_link)))
+                .setCallToActionText(getString(R.string.invitation_cta))
+                .build();
+        startActivityForResult(intent, REQUEST_INVITE);
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d("matilda", "onActivityResult: requestCode=" + requestCode + ", resultCode=" + resultCode);
+
+        if (requestCode == REQUEST_INVITE) {
+            if (resultCode == RESULT_OK) {
+                // Get the invitation IDs of all sent messages
+                String[] ids = AppInviteInvitation.getInvitationIds(resultCode, data);
+                for (String id : ids) {
+                    Log.d("matilda", "onActivityResult: sent invitation " + id);
+                }
+            } else {
+                // Sending failed or it was canceled, show failure message to the user
+                // ...
+            }
+        }
+    }
 
 }

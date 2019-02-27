@@ -36,8 +36,8 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
-                android:background="@color/content_lighter"
-                android:fontFamily="@font/typewcond_regular"
+                android:fontFamily="@font/roboto_light"
+                android:textSize="18sp"
                 android:gravity="left"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="?android:attr/textColorSecondary" />

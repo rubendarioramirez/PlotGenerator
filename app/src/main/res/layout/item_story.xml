@@ -37,7 +37,7 @@
                     android:layout_height="50dp"
                     android:gravity="center"
                     android:textStyle="bold"
-                    android:fontFamily="@font/typewcond_bold"
+                    android:fontFamily="@font/roboto_lightitalic"
                     android:text="Joe Higashi"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title"
                     android:textColor="?android:attr/textColorPrimary"/>
@@ -63,8 +63,8 @@
                     android:text="Fatal Fury 2018"
                     android:textStyle="bold"
                     android:layout_margin="8dp"
-                    android:fontFamily="@font/typewcond_bold"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:fontFamily="@font/roboto_lightitalic"
+                    android:textSize="20sp"
                     android:textColor="?android:attr/textColorPrimary"/>
 
             </LinearLayout>
@@ -96,9 +96,9 @@
                     android:layout_margin="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="100dp"
-                    android:fontFamily="@font/typewcond_regular"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="Lorem Ipsum Dolor Sit Amet, The Quick Brown Lazy Fox Jump Out Over The Fence"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textSize="18sp"
                     android:textColor="?android:attr/textColorSecondary"/>
 
             </LinearLayout>

@@ -40,27 +40,27 @@
                     android:layout_marginRight="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
-                    android:fontFamily="@font/typewcond_bold"
+                    android:fontFamily="@font/roboto_lightitalic"
                     android:gravity="center_horizontal"
                     android:text="@string/weekly_challenge_title_default"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textSize="32sp"
                     android:textColor="?android:attr/textColorPrimary" />
 
                 <TextView
                     android:id="@+id/writing_challenge_desc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:fontFamily="@font/typewcond_regular"
-                    android:gravity="center_horizontal"
+                    android:textSize="24sp"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="@string/weekly_challenge_desc_default"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textColor="?android:attr/textColorSecondary" />
+
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

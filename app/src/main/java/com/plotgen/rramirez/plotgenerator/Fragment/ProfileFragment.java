@@ -351,6 +351,13 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
                                             params.putString("theme_chosen", "metal_theme");
                                             mFirebaseAnalytics.logEvent("theme_selected", params);
                                             getActivity().recreate();
+
+                                        }else if (selection.equals("Black & White Theme")) {
+                                            Utils.saveOnSharePreg(getContext(), "selectedTheme", 5);
+                                            Bundle params = new Bundle();
+                                            params.putString("theme_chosen", "white_theme");
+                                            mFirebaseAnalytics.logEvent("theme_selected", params);
+                                            getActivity().recreate();
                                         }
                                     }
                                 }
@@ -518,6 +525,8 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
                 etChooseTheme.setText("Autumn Theme");
             }else if (selectedTheme == 4) {
                 etChooseTheme.setText("Metal Theme");
+            }else if (selectedTheme == 5) {
+                etChooseTheme.setText("White Theme");
             }
 
 

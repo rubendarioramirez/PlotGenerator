@@ -957,6 +957,7 @@ In order for your character to evolve in a positive way, he has to start out wit
         <item>Dark Theme</item>
         <item>Romance Theme</item>
         <item>Autumn Theme</item>
+        <item>Black &amp; White Theme</item>
     </string-array>
 
     <string name="please_select_the_one_option">Please select the one option</string>

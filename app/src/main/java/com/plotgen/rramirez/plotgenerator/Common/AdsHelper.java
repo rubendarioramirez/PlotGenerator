@@ -1,7 +1,13 @@
 package com.plotgen.rramirez.plotgenerator.Common;
 
+import android.app.Activity;
+import android.content.Context;
+
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.plotgen.rramirez.plotgenerator.R;
 
 public class AdsHelper {
 
@@ -15,4 +21,5 @@ public class AdsHelper {
             mAdView.loadAd(adRequest);
         }
     }
+
 }

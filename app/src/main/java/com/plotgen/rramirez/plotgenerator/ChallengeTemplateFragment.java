@@ -251,6 +251,7 @@ public class ChallengeTemplateFragment extends Fragment  {
         });
 
 
+
         if(!Common.isPAU) {
             //Interstitial
             mInterstitialAd_challenge = new InterstitialAd(this.getContext());

@@ -44,8 +44,8 @@
 
         <!--Char List items-->
         <item name="backgroundDarker">#5b7581</item>
-        <item name="bio_titles_fontColor">#FFFFFF</item>
-        <item name="bio_shadow_color">#000000</item>
+        <item name="bio_titles_fontColor">@color/content</item>
+        <item name="bio_shadow_color">#FFFFFF</item>
     </style>
 
     <style name="DarkTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
@@ -106,6 +106,29 @@
         <item name="bio_titles_fontColor">#FFFFFF</item>
         <item name="bio_shadow_color">#000000</item>
     </style>
+
+
+    <!--WhiteTHeme THEME-->
+    <style name="whiteTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#000000</item>
+        <item name="colorPrimaryDark">#000000</item>
+        <item name="colorAccent">#FF9800</item>
+        <item name="android:colorBackground">#FFFFFF</item>
+        <item name="android:textColorPrimary">#000000</item>
+        <item name="android:textColorSecondary">@color/content_3</item>
+        <item name="colorDivider">#383838</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="alertDialogTheme">@style/AlertDialogCustom</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+
+        <!--Char List items-->
+        <item name="backgroundDarker">#FFFFFF</item>
+        <item name="bio_titles_fontColor">#000000</item>
+        <item name="bio_shadow_color">#FFFFFF</item>
+    </style>
+
 
 
     <!-- This will set the fade in animation on all your activities by default -->

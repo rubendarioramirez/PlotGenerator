@@ -37,7 +37,7 @@ public class AntagonistFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         ((MainActivity)getActivity()).setActionBarTitle(getString(R.string.antagonist_guide_title));
-        View myFragmentView = inflater.inflate(R.layout.fragment_antagonist, container, false);
+        View myFragmentView = inflater.inflate(R.layout.fragment_guide_antagonist, container, false);
 
         if(!Common.isPAU) {
             mAdView = (AdView) myFragmentView.findViewById(R.id.adView_guide_antagonist);

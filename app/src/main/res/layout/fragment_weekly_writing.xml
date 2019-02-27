@@ -40,26 +40,25 @@
                     android:layout_marginRight="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
-                    android:fontFamily="@font/typewcond_bold"
+                    android:fontFamily="@font/roboto_lightitalic"
                     android:gravity="center_horizontal"
                     android:text="@string/weekly_challenge_title_default"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textSize="24sp"
                     android:textColor="?android:attr/textColorPrimary" />
 
                 <TextView
                     android:id="@+id/writing_challenge_desc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:fontFamily="@font/typewcond_regular"
-                    android:gravity="center_horizontal"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="@string/weekly_challenge_desc_default"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textColor="?android:attr/textColorSecondary" />
 
             </LinearLayout>
@@ -85,15 +84,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/button_weekly"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-
-    </LinearLayout>
-
     <Button
         android:id="@+id/weekly_challenge_btn"
         android:layout_width="wrap_content"
@@ -104,7 +94,9 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:background="@color/colorAccent"
+        android:padding="8dp"
+        android:background="?colorPrimary"
+        android:textColor="@color/white"
         android:elevation="10dp"
         android:text="View ad"
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button.Colored"
@@ -122,9 +114,11 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:background="@color/colorAccent"
         android:elevation="10dp"
+        android:padding="8dp"
         android:text="@string/view_participant"
+        android:background="?colorPrimary"
+        android:textColor="@color/white"
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button.Colored"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

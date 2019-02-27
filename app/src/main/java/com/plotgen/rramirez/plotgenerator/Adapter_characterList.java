@@ -1,6 +1,7 @@
 package com.plotgen.rramirez.plotgenerator;
 
 
+import android.animation.ValueAnimator;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.ThumbnailUtils;
@@ -51,7 +52,7 @@ public class Adapter_characterList extends RecyclerView.Adapter<Adapter_characte
     }
 
     @Override
-    public void onBindViewHolder(myViewHolder holder, int position) {
+    public void onBindViewHolder(final myViewHolder holder, int position) {
 
         if(mData.get(position).getImage().equals("android.resource://com.plotgen.rramirez.plotgenerator/drawable/ic_menu_camera"))
         {
@@ -62,8 +63,19 @@ public class Adapter_characterList extends RecyclerView.Adapter<Adapter_characte
         }
         holder.name.setText(mData.get(position).getName());
         holder.role.setText(mData.get(position).getRole());
-        holder.completion.setText(mData.get(position).getCompletion() + "%");
-//        holder.completion.setText("");
+
+        //Animated text
+        ValueAnimator projectsAnimator = new ValueAnimator();
+        projectsAnimator.setObjectValues(0, Integer.parseInt(mData.get(position).getCompletion()));// here you set the range, from 0 to "count" value
+        projectsAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            public void onAnimationUpdate(ValueAnimator animation) {
+                holder.completion.setText(String.valueOf(animation.getAnimatedValue()) + "%");
+            }
+        });
+        projectsAnimator.setDuration(500); // here you set the duration of the anim
+        projectsAnimator.start();
+
+
         charID = mData.get(position).getId();
     }
 

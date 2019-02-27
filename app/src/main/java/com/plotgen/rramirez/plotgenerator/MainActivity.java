@@ -48,6 +48,11 @@ import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
 import com.google.firebase.dynamiclinks.PendingDynamicLinkData;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
@@ -65,6 +70,7 @@ import com.plotgen.rramirez.plotgenerator.Model.User;
 import com.plotgen.rramirez.plotgenerator.Model.UserStory;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Random;
 
 
@@ -117,6 +123,8 @@ public class MainActivity extends AppCompatActivity
         mUser = mAuth.getCurrentUser();
         Common.currentFirebaseUser = mUser;
 
+
+
         if (!calledAlready) {
             mDatabase = FirebaseDatabase.getInstance();
             mDatabase.setPersistenceEnabled(true);
@@ -127,11 +135,35 @@ public class MainActivity extends AppCompatActivity
         Common.currentDatabase = mDatabase;
 
 
+
         // Obtain the FirebaseAnalytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
 
         FirebaseApp.initializeApp(this);
+
+
+        DocumentReference mDocRef;
+        if(mUser != null){
+            String email = mUser.getEmail();
+            mDocRef = FirebaseFirestore.getInstance().document("premium_users/" + email);
+            mDocRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+                @Override
+                public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
+                    if (documentSnapshot.exists()) {
+                        Boolean premium = documentSnapshot.getBoolean("premium");
+                        if(premium)
+                            Common.isPAU = true;
+                        Log.v("matilda", "Im here and pau is " + Common.isPAU);
+                    }
+                }
+            });
+        }
+
+
+
+
+
 
         if (!Common.isPAU) {
             //Init the ads
@@ -548,6 +580,8 @@ public class MainActivity extends AppCompatActivity
             setTheme(R.style.AutumnTheme);
         } else if (selectedTheme == 4) {
             setTheme(R.style.MetalTheme);
+        }else if (selectedTheme == 5) {
+            setTheme(R.style.whiteTheme);
         }
 
     }

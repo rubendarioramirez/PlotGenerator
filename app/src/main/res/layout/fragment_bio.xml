@@ -65,9 +65,9 @@
                         android:id="@+id/character_bio_name_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="serif"
                         android:layout_marginStart="16dp"
                         android:layout_marginLeft="16dp"
+                        android:fontFamily="@font/roboto_bold"
                         android:shadowColor="?bio_shadow_color"
                         android:shadowDx="1"
                         android:shadowDy="1"
@@ -81,10 +81,10 @@
                         android:id="@+id/character_bio_role_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginLeft="16dp"
-                        android:fontFamily="serif"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/roboto_bold"
                         android:shadowColor="?bio_shadow_color"
                         android:shadowDx="1"
                         android:shadowDy="1"
@@ -102,22 +102,20 @@
             </LinearLayout>
 
 
-
             <TextView
                 android:id="@+id/character_bio_intro"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginStart="16dp"
-                android:fontFamily="@font/typewcond_regular"
+                android:fontFamily="@font/roboto_light"
+                android:textColor="?android:attr/textColorSecondary"
                 android:gravity="left"
                 android:text="His name is Rambo, he is XX years "
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="?android:attr/textColorSecondary"
-                android:textSize="22sp" />
+                android:textSize="18sp" />
 
         </LinearLayout>
     </ScrollView>
