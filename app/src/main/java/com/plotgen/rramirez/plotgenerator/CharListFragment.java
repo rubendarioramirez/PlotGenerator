@@ -53,7 +53,7 @@ public class CharListFragment extends Fragment {
     com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton fabAddChar;
     @BindView(R.id.fab_add_story)
     com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton fabAddStory;
-    private AdView mAdView;
+//    private AdView mAdView;
     private String fragmentTag = CharListFragment.class.getSimpleName();
 
     public CharListFragment() {
@@ -127,11 +127,11 @@ public class CharListFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
 
-        if (!Common.isPAU) {
-            //Display the ad
-            mAdView = (AdView) myFragmentView.findViewById(R.id.adView_char_list);
-            AdsHelper.loadAd(mAdView);
-        }
+//        if (!Common.isPAU) {
+//            //Display the ad
+//            mAdView = (AdView) myFragmentView.findViewById(R.id.adView_char_list);
+//            AdsHelper.loadAd(mAdView);
+//        }
 
 
         fabAddChar.setFabText(getString(R.string.add_char));

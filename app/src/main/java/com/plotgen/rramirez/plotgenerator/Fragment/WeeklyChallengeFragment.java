@@ -110,11 +110,13 @@ public class WeeklyChallengeFragment extends Fragment {
             }
         });
 
+
         // Set up Layout Manager, reverse layout
         mManager = new LinearLayoutManager(getActivity());
         mManager.setReverseLayout(true);
         mManager.setStackFromEnd(true);
         rvWeeklyChallenge.setLayoutManager(mManager);
+
 
         options = new FirebaseRecyclerOptions.Builder<Story>()
                 .setQuery(mostVoted, Story.class)

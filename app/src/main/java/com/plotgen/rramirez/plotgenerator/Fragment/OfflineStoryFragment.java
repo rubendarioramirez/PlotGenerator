@@ -24,7 +24,12 @@ import android.widget.Toast;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.ErrorCodes;
 import com.firebase.ui.auth.IdpResponse;
+import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.reward.RewardItem;
+import com.google.android.gms.ads.reward.RewardedVideoAd;
+import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -49,6 +54,7 @@ import com.plotgen.rramirez.plotgenerator.R;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -62,7 +68,7 @@ import static android.content.ContentValues.TAG;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class OfflineStoryFragment extends Fragment {
+public class OfflineStoryFragment extends Fragment implements RewardedVideoAdListener {
 
     private static final int RC_SIGN_IN = 123;
     @BindView(R.id.editor)
@@ -84,6 +90,9 @@ public class OfflineStoryFragment extends Fragment {
     private FirebaseDatabase mDatabase;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
+    private RewardedVideoAd mRewardedVideoAd;
+    private String language;
+    private boolean canPublish = false;
 
     public OfflineStoryFragment() {
         // Required empty public constructor
@@ -138,6 +147,7 @@ public class OfflineStoryFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
+
         try {
             project_name = Common.currentProject.getName();
             project_id = Common.currentProject.getId();
@@ -157,11 +167,23 @@ public class OfflineStoryFragment extends Fragment {
             mStory = "";
         }
 
+
+        if (!Common.isPAU) {
+            //Rewarded ad
+            mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this.getContext());
+            mRewardedVideoAd.setRewardedVideoAdListener(this);
+            loadRewardedVideoAd();
+        } else {
+            canPublish = true;
+        }
+
+        language = Locale.getDefault().getDisplayLanguage();
+
         //Save button
         FloatingActionButton fabSaveStory = view.findViewById(R.id.btnSaveStory);
         //publish button
         FloatingActionButton fabPublish = view.findViewById(R.id.btnPublish);
-        fabPublish.setVisibility(View.INVISIBLE);
+        fabPublish.setVisibility(View.VISIBLE);
 
         fabSaveStory.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -185,7 +207,13 @@ public class OfflineStoryFragment extends Fragment {
                                     .build(),
                             RC_SIGN_IN);
                 } else {
-                    publishStory();
+                    if (canPublish) {
+                        publishStory();
+                    } else {
+                        if (mRewardedVideoAd.isLoaded()) {
+                            mRewardedVideoAd.show();
+                        }
+                    }
                 }
             }
         });
@@ -266,7 +294,7 @@ public class OfflineStoryFragment extends Fragment {
                     String key = dataSnapshot.getKey();
                     Long tsLong = System.currentTimeMillis() / 1000;
                     UserStory story = new UserStory(key, project_name, project_id,
-                            project.get(1), project.get(2), mStory, tsLong,
+                            project.get(1), project.get(2), mStory, language, tsLong,
                             new User(Common.currentUser.getUid(),
                                     Common.currentUser.getName(),
                                     Common.currentUser.getEmail(),
@@ -281,6 +309,7 @@ public class OfflineStoryFragment extends Fragment {
                     childUpdates.put("/genre/" + project.get(1) + "/" + key, genreValues);
 
                       mStoriesDatabase.updateChildren(childUpdates);
+                      Toast.makeText(getContext(),"Success",Toast.LENGTH_LONG).show();
 
                 } else {
                     //  String key = mStoriesDatabase.push().getKey();
@@ -288,7 +317,7 @@ public class OfflineStoryFragment extends Fragment {
                     Long tsLong = System.currentTimeMillis() / 1000;
 
                     UserStory story = new UserStory(key, project_name, project_id,
-                            project.get(1), project.get(2), mStory, tsLong,
+                            project.get(1), project.get(2), mStory,language, tsLong,
                             new User(Common.currentUser.getUid(),
                                     Common.currentUser.getName(),
                                     Common.currentUser.getEmail(),
@@ -303,6 +332,7 @@ public class OfflineStoryFragment extends Fragment {
                     childUpdates.put("/genre/" + project.get(1) + "/" + key, genreValues);
 
                     mStoriesDatabase.updateChildren(childUpdates);
+                    Toast.makeText(getContext(),"Success",Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -453,5 +483,52 @@ public class OfflineStoryFragment extends Fragment {
         // getFragmentManager().popBackStack();
     }
 
+    private void loadRewardedVideoAd() {
+        mRewardedVideoAd.loadAd(getString(R.string.reward_ad_plot_gen),
+                new AdRequest.Builder()
+                        .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
+                        .build());
+    }
+
+    @Override
+    public void onRewardedVideoAdLoaded() {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdOpened() {
+
+    }
+
+    @Override
+    public void onRewardedVideoStarted() {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdClosed() {
+        loadRewardedVideoAd();
+    }
+
+    @Override
+    public void onRewarded(RewardItem rewardItem) {
+        //Get the reward
+        canPublish = true;
+    }
+
+    @Override
+    public void onRewardedVideoAdLeftApplication() {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdFailedToLoad(int i) {
+
+    }
+
+    @Override
+    public void onRewardedVideoCompleted() {
+
+    }
 
 }

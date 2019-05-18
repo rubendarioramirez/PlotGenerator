@@ -1029,4 +1029,9 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="onBoarding_6">Good work, here you will see all your characters.\n\nName, role and how developed it\'s.\n\nGo ahead, choose the character you just created to get going.</string>
     <string name="onBoarding_7">This is your character. Here you can have a quick snapshot of him/her.\n\nBut this is far from over. You\'re just starting. Check at the + button, you will unfold guidelines to keep developing your character.\n\nBut more important you also have challenges.\n\nI would love to tell you what are those. But you better see it by yourself.</string>
     <!--endregion Tutorial-->
+
+    <string name="developmenTitle">Warning!.</string>
+    <string name="developmentDesc">Hey! Thanks for checking this feature out but its currently under development. Please try it and share your feedback, but be ready for weird problems. Yes, problems so weird that I dont dare to describe.</string>
+
+
 </resources>

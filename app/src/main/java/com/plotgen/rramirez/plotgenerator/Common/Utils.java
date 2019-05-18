@@ -258,14 +258,11 @@ public class Utils extends Fragment{
     }
 
 
-    public static void showComingSoonPopup(final Context context) {
-
-        String[] themes = context.getResources().getStringArray(R.array.themes);
-
+    public static void popUp(final Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context)
-                .setTitle("Choose your theme")
-                .setMessage(context.getString(R.string.iap_desc))
-                .setNeutralButton(context.getString(R.string.iap_btn), null);
+                .setTitle(context.getString(R.string.developmenTitle))
+                .setMessage(context.getString(R.string.developmentDesc))
+                .setNeutralButton("Ok", null);
         builder.show();
     }
 

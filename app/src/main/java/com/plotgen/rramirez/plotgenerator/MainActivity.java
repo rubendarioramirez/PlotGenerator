@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
+import com.applovin.sdk.AppLovinSdk;
 import com.bumptech.glide.util.Util;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -57,9 +58,12 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
+import com.ironsource.mediationsdk.IronSource;
+import com.ironsource.mediationsdk.integration.IntegrationHelper;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Constants;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
+import com.plotgen.rramirez.plotgenerator.Fragment.DiscoverFragment;
 import com.plotgen.rramirez.plotgenerator.Fragment.PremiumFragment;
 import com.plotgen.rramirez.plotgenerator.Fragment.ProfileFragment;
 import com.plotgen.rramirez.plotgenerator.Fragment.StoryDetailFragment;
@@ -93,6 +97,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        AppLovinSdk.initializeSdk(this.getApplicationContext());
+        IronSource.init(this, "92412865");
+        //IntegrationHelper.validateIntegration(this);
 
         Common.isPAU = Utils.getSPIAP(this);
         firstTime = Utils.checkFirstTime(getApplicationContext());
@@ -159,8 +167,6 @@ public class MainActivity extends AppCompatActivity
                 }
             });
         }
-
-
 
 
 
@@ -453,12 +459,12 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-//        else if (id == R.id.nav_discover) {
-//            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//            ft.replace(R.id.flMain, new DiscoverFragment());
-//            mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
-//            ft.commit();
-//        }
+        if (id == R.id.nav_discover) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.flMain, new DiscoverFragment());
+            mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
+            ft.commit();
+        }
         if (id == R.id.nav_trigger) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.flMain, new TriggerFragment());
@@ -593,5 +599,13 @@ public class MainActivity extends AppCompatActivity
         nav_Menu.findItem(R.id.premium).setVisible(false);
     }
 
+    protected void onResume() {
+        super.onResume();
+        IronSource.onResume(this);
+    }
+    protected void onPause() {
+        super.onPause();
+        IronSource.onPause(this);
+    }
 
 }

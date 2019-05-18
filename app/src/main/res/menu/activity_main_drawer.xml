@@ -18,10 +18,11 @@
             android:title="@string/writing_challenge_tab" />
 
 
-        <!--<item-->
-            <!--android:id="@+id/nav_discover"-->
-            <!--android:icon="@drawable/exploration"-->
-            <!--android:title="@string/discover" />-->
+        <item
+            android:id="@+id/nav_discover"
+            android:icon="@drawable/places_ic_search"
+            android:iconTint="@color/black"
+            android:title="@string/discover" />
 
         <item
             android:id="@+id/nav_trigger"

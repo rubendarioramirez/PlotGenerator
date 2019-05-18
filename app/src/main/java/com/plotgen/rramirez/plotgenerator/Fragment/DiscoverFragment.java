@@ -14,6 +14,10 @@ import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -37,6 +41,7 @@ public class DiscoverFragment extends Fragment {
     @BindView(R.id.empty_project_tv)
     TextView emptyGenreTv;
 
+    private InterstitialAd mInterstitialAd;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private LinearLayoutManager mManager;
@@ -78,6 +83,28 @@ public class DiscoverFragment extends Fragment {
 
         mUser = mAuth.getCurrentUser();
 
+        MobileAds.initialize(this.getContext(), getString(R.string.ad_account_id));
+
+
+//        if (!Common.isPAU) {
+//        //Init the ads
+//        // Interstitial
+//            mInterstitialAd = new InterstitialAd(this.getContext());
+//            mInterstitialAd.setAdUnitId(getString(R.string.interstitial_plot_gen));
+//            mInterstitialAd.loadAd(new AdRequest.Builder()
+//                    .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
+//                    .build());
+//            mInterstitialAd.setAdListener(new AdListener() {
+//                @Override
+//                public void onAdClosed() {
+//                    // Load the next interstitial.
+//                    mInterstitialAd.loadAd(new AdRequest.Builder()
+//                            .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
+//                            .build());
+//                }
+//            });
+//        }
+
         mReference = mDatabase.getReference().child("stories");
 
         Query myTopPostsQuery = mReference.child("genre");
@@ -86,8 +113,14 @@ public class DiscoverFragment extends Fragment {
                 .build();
         populateDiscoverGenre();
 
+
+        Utils.popUp(this.getContext());
+
+
+
         return view;
     }
+
 
     private void populateDiscoverGenre() {
 
@@ -120,6 +153,14 @@ public class DiscoverFragment extends Fragment {
             }
 
         };
+//        if (!Common.isPAU) {
+//            if (mInterstitialAd.isLoaded()) {
+//                mInterstitialAd.show();
+//
+//            } else {
+//                Log.d("TAG", "The interstitial wasn't loaded yet.");
+//            }
+//        }
         rvGenre.setAdapter(mAdapter);
     }
 }

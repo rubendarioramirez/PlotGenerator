@@ -375,6 +375,7 @@
                     android:ems="8"
                     android:hint="@string/character_notes_tv"
                     android:inputType="textMultiLine"
+                    android:minLines="6"
                     android:textColor="?android:attr/textColorSecondary"
                     android:textSize="14sp" />
 

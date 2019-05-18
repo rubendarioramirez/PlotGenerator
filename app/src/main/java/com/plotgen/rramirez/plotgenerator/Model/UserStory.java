@@ -13,7 +13,7 @@ public class UserStory {
     public Map<String, Boolean> likes = new HashMap<>();
     private String id;
     private String genre, project_id;
-    private String title, plot, story;
+    private String title, plot, story, lang;
     private long submitDate;
     private User user;
 
@@ -21,13 +21,14 @@ public class UserStory {
 
     }
 
-    public UserStory(String key, String project_name, String project_id, String genre, String plot, String story, Long tsLong, User user) {
+    public UserStory(String key, String project_name, String project_id, String genre, String plot, String story, String lang, Long tsLong, User user) {
         this.id = key;
         this.title = project_name;
         this.project_id = project_id;
         this.genre = genre;
         this.plot = plot;
         this.story = story;
+        this.lang = lang;
         this.submitDate = tsLong;
         this.user = user;
     }
@@ -104,6 +105,14 @@ public class UserStory {
         this.story = story;
     }
 
+    public String getLang() {
+        return lang;
+    }
+
+    public void setLang(String lang) {
+        this.lang = lang;
+    }
+
     public String getGenre() {
         return genre;
     }
@@ -120,6 +129,7 @@ public class UserStory {
         result.put("title", title);
         result.put("plot", plot);
         result.put("story", story);
+        result.put("lang", lang);
         result.put("id", id);
         result.put("user", user);
         result.put("date", submitDate);

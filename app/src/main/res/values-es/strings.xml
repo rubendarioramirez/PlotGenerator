@@ -60,7 +60,7 @@
     <string name="character_tab">Taller de personajes</string>
     <string name="character_create">Crear Personaje</string>
     <string name="character_update">Editar Personaje</string>
-    <string name="writing_challenge_tab">Desafio creativo semanal</string>
+    <string name="writing_challenge_tab">Desafío creativo semanal</string>
 
     <!--HOME Strings-->
     <string name="home_title">La única cosa que realmente\n sabemos
@@ -72,7 +72,7 @@
 
     <!--Projects String-->
     <string name="projects_tab">Proyectos</string>
-    <string name="projects_empty">De verdad, ¿Ningun nombre para tu proyecto? Intenta de nuevo con algo mas creativo.</string>
+    <string name="projects_empty">De verdad, ¿Ningún nombre para tu proyecto? Intenta de nuevo con algo mas creativo.</string>
     <string name="project_name">Nombre del proyecto</string>
     <string name="project_genre">Genero</string>
     <string-array name="genres_array">
@@ -518,7 +518,7 @@
 
     <!--Challenge I BIO-->
     <string name="challenge_1_bio_title">El desafio del elevador:</string>
-    <string name="challenge_1_bio_desc_1">¿Cual seria su primera reaccion de quedarse atrapado?</string>
+    <string name="challenge_1_bio_desc_1">¿Cual seria su primera reacción de quedarse atrapado?</string>
     <string name="challenge_1_bio_desc_2">¿Esperaria a ser rescatado?</string>
     <string name="challenge_1_bio_desc_3">Si la persona que esta con el entrara en panico. ¿Lo ayudaria?</string>
     <string name="challenge_1_bio_desc_4">Finalmente. Si solo uno pudiese escapar, ¿Quien iria primero?</string>
@@ -992,4 +992,7 @@ Para que el personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="onBoarding_6">Aquí veras al personaje que acabas de crear junto a los demas que hayas hecho.\n\nNombre, rol en tu historia y cuan desarrollado esta.\nAdelante, selecciona el personaje que acabas de crear para continuar.</string>
     <string name="onBoarding_7">Este es tu personaje. Aquí puedes tener una vista rápida de quien es.\n\nPero esto esta lejos de terminarse. Chequea el botón + contiene guías para entender como desarrollar personajes.\n\nPero mas importante, también tienes desafíos.\n\nMe encantaría explicarte mas, pero creo que es mejor que lo veas por ti mismo/a.</string>
 
+
+    <string name="developmenTitle">Precaucion!.</string>
+    <string name="developmentDesc">Hola! Esta feature esta ahora mismo en modo Beta, quiere decir que puede funcionar bien, pero también puede funcionar muy mal! Enviame feedback y diviertete probandola.\n\nExplora historias y comparte la tuya!</string>
 </resources>

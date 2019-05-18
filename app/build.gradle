@@ -8,8 +8,8 @@ android {
         applicationId "com.plotgen.rramirez.plotgenerator"
         minSdkVersion 16
         targetSdkVersion 26
-        versionCode 117
-        versionName "1.1.7"
+        versionCode 119
+        versionName "1.1.9"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         lintOptions {
@@ -74,6 +74,11 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-storage:4.2.1'
     implementation 'com.google.firebase:firebase-firestore:18.0.0'
 
+
+    //Iron Source
+    implementation files('libs/mediationsdk-6.8.4.jar')
+    //AppLovin
+    implementation 'com.applovin:applovin-sdk:+'
 
 
 
