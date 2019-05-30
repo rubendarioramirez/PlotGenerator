@@ -2,14 +2,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.plotgen.rramirez.plotgenerator"
         minSdkVersion 16
         targetSdkVersion 26
-        versionCode 119
-        versionName "1.1.9"
+        versionCode 120
+        versionName "1.2.0"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         lintOptions {
@@ -33,27 +33,31 @@ dependencies {
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation 'com.google.firebase:firebase-core:16.0.7'
+    implementation 'com.google.firebase:firebase-core:16.0.9'
+    //implementation 'com.google.firebase:firebase-database:17.0.0'
     implementation 'org.apache.commons:commons-lang3:3.1'
-    implementation 'com.google.firebase:firebase-database:16.0.6'
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support:design:27.1.1'
-    implementation 'com.android.support:support-v4:27.1.1'
-    implementation 'com.android.support:cardview-v7:27.1.1'
-    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    implementation 'com.google.firebase:firebase-ads:17.1.3'
-    implementation 'com.google.android.gms:play-services:12.0.1'
+    implementation 'com.google.firebase:firebase-ads:17.2.1'
+    //implementation 'com.google.android.gms:play-services:12.0.1'
+
+    implementation 'com.google.android.gms:play-services-base:16.1.0'
+    implementation 'com.google.android.gms:play-services-ads:17.2.1'
+
     testImplementation 'junit:junit:4.12'
-    implementation 'com.google.firebase:firebase-messaging:17.3.4'
-    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.8'
-    implementation 'com.google.firebase:firebase-auth:16.1.0'
+    implementation 'com.google.firebase:firebase-messaging:18.0.0'
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
+    implementation 'com.google.firebase:firebase-auth:17.0.0'
     implementation 'com.google.android.gms:play-services-auth:16.0.1'
     implementation 'com.android.support:multidex:1.0.3'
-    implementation 'com.google.firebase:firebase-config:16.1.3'
-    implementation 'com.google.firebase:firebase-inappmessaging-display:17.0.5'
-    implementation 'com.google.firebase:firebase-invites:16.0.6'
-    implementation 'com.google.firebase:firebase-dynamic-links:16.1.5'
+    implementation 'com.google.firebase:firebase-config:17.0.0'
+    implementation 'com.google.firebase:firebase-inappmessaging-display:17.2.0'
+    implementation 'com.google.firebase:firebase-invites:17.0.0'
+    implementation 'com.google.firebase:firebase-dynamic-links:17.0.0'
 
     //external libs
     implementation 'com.jakewharton:butterknife:8.8.1'
@@ -72,15 +76,18 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-database:4.2.0'
     implementation 'com.firebaseui:firebase-ui-auth:4.2.1'
     implementation 'com.firebaseui:firebase-ui-storage:4.2.1'
-    implementation 'com.google.firebase:firebase-firestore:18.0.0'
+    implementation 'com.google.firebase:firebase-firestore:19.0.1'
+    implementation 'com.google.firebase:firebase-database:17.0.0'
 
-
+    implementation 'com.google.android.ads:mediation-test-suite:1.0.0'
     //Iron Source
-    implementation files('libs/mediationsdk-6.8.4.jar')
+    implementation 'com.google.ads.mediation:ironsource:6.8.4.0'
+    implementation files('libs/mediationsdk-6.8.4@jar')
     //AppLovin
     implementation 'com.applovin:applovin-sdk:+'
-
-
+    implementation 'com.google.ads.mediation:applovin:9.4.2.0'
+    //implementation files('libs/applovin-sdk-9.7.0@jar')
+    //implementation files('libs/applovin-9.4.2.0@aar')
 
 
 }

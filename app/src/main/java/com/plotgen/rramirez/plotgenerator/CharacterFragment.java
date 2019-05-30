@@ -11,9 +11,11 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
@@ -45,9 +47,17 @@ import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
 import org.apache.commons.lang3.text.WordUtils;
 
 import java.net.URISyntaxException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -57,7 +67,7 @@ public class CharacterFragment extends Fragment {
     public static int rated;
     public EditText nameEditText, profession_edit_text, desire_edit_text, age_edit_text, height_et, hair_color_et, eye_color_et, bodybuild_et,
             placebirth_edit_text, defmoment_edit_text, need_edit_text, phrase_et, trait_edit_text,
-            trait2_edit_text, trait3_edit_text, notes_edit_text;
+            trait2_edit_text, trait3_edit_text, notes_edit_text, birthdate_edit_text;
     public ImageButton random_gen_char_btn;
     public ImageView char_image;
     public Spinner gender_spinner, role_spinner;
@@ -82,6 +92,7 @@ public class CharacterFragment extends Fragment {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -109,7 +120,7 @@ public class CharacterFragment extends Fragment {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(myFragmentView.getContext());
         rated = preferences.getInt("rated", 0);
 
-        //Gender spinner functions
+        //region Gender spinner functions
         gender_spinner = myFragmentView.findViewById(R.id.gender_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(myFragmentView.getContext(), R.array.gender_spinner_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -119,9 +130,9 @@ public class CharacterFragment extends Fragment {
         ArrayAdapter<CharSequence> role_adapter = ArrayAdapter.createFromResource(myFragmentView.getContext(), R.array.char_guide_types_titles, android.R.layout.simple_spinner_item);
         role_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         role_spinner.setAdapter(role_adapter);
+        //endregion
 
-
-        //Declare all the elements
+        //region Declare all the elements
         nameEditText = myFragmentView.findViewById(R.id.nameEditText);
         age_edit_text = myFragmentView.findViewById(R.id.age_edit_text);
         profession_edit_text = myFragmentView.findViewById(R.id.profession_edit_text);
@@ -141,7 +152,8 @@ public class CharacterFragment extends Fragment {
         FloatingActionButton fab = (FloatingActionButton) myFragmentView.findViewById(R.id.char_template_submit);
         random_gen_char_btn = myFragmentView.findViewById(R.id.random_gen_char_btn);
         char_image =myFragmentView.findViewById(R.id.character_picture);
-
+        birthdate_edit_text =myFragmentView.findViewById(R.id.birthdate_edit_text);
+        //endregion
 
         //Image function
         char_image.setOnClickListener(new View.OnClickListener() {
@@ -179,22 +191,23 @@ public class CharacterFragment extends Fragment {
                 hair_color_et.setText(char_description.get(6));
                 eye_color_et.setText(char_description.get(7));
                 bodybuild_et.setText(char_description.get(8));
-                desire_edit_text.setText(char_description.get(9));
-                defmoment_edit_text.setText(char_description.get(11));
-                need_edit_text.setText(char_description.get(12));
-                phrase_et.setText(char_description.get(13));
-                trait_edit_text.setText(char_description.get(14));
-                trait2_edit_text.setText(char_description.get(15));
-                trait3_edit_text.setText(char_description.get(16));
-                notes_edit_text.setText(char_description.get(17));
-                String imageToShow = char_description.get(18);
+                birthdate_edit_text.setText(char_description.get(9));
+                desire_edit_text.setText(char_description.get(11));
+                defmoment_edit_text.setText(char_description.get(12));
+                need_edit_text.setText(char_description.get(13));
+                phrase_et.setText(char_description.get(14));
+                trait_edit_text.setText(char_description.get(15));
+                trait2_edit_text.setText(char_description.get(16));
+                trait3_edit_text.setText(char_description.get(17));
+                notes_edit_text.setText(char_description.get(18));
+                String imageToShow = char_description.get(19);
                 if (imageToShow!=null && !imageToShow.isEmpty()){
-                    char_image.setImageURI(Uri.parse(char_description.get(18)));
-                    filepath = char_description.get(18);
+                    char_image.setImageURI(Uri.parse(char_description.get(19)));
+                    filepath = char_description.get(19);
                 } else {
                     String defaultImagePath = "android.resource://com.plotgen.rramirez.plotgenerator/drawable/ic_menu_camera";
                     char_image.setImageURI(Uri.parse(defaultImagePath));
-                    filepath = char_description.get(18);
+                    filepath = char_description.get(19);
                 }
 
                 //Set the proper spinner value
@@ -270,16 +283,31 @@ public class CharacterFragment extends Fragment {
                 trait3_edit_text.setText(info.get(13));
                 need_edit_text.setText(info.get(14));
                 phrase_et.setText(info.get(15));
+                birthdate_edit_text.setText(info.get(16));
             }
         });
 
-
-
         Tutorial.checkTutorial(myFragmentView,getActivity());
+
+
 
         return myFragmentView;
     }
 
+    private long getRandomTimeBetweenTwoDates () {
+        Long beginTime = Timestamp.valueOf("1900-01-01 00:00:00").getTime();
+        Long endTime = Timestamp.valueOf("2019-12-31 00:58:00").getTime();
+        long diff = endTime - beginTime + 1;
+        return beginTime + (long) (Math.random() * diff);
+    }
+
+    public String generate_random_date() {
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date randomDate = new Date(getRandomTimeBetweenTwoDates());
+        return  dateFormat.format(randomDate);
+
+    }
 
     private ArrayList<String> generateBIO(Context context) {
 
@@ -383,6 +411,10 @@ public class CharacterFragment extends Fragment {
         int index11 = (r.nextInt(needs.size()));
         String need = needs.get(index11);
 
+        //Birthdate
+        String birthdate = generate_random_date();
+
+
         //Fill the list
         bio.add(completeName);
         bio.add(placeBirth);
@@ -400,6 +432,7 @@ public class CharacterFragment extends Fragment {
         bio.add(trait3);
         bio.add(need);
         bio.add(phrase_text);
+        bio.add(birthdate);
         return bio;
     }
 
@@ -415,6 +448,7 @@ public class CharacterFragment extends Fragment {
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_HAIRCOLOR, hair_color_et.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_EYECOLOR, eye_color_et.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_BODYBUILD, bodybuild_et.getText().toString());
+        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_BIRTHDATE, birthdate_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_DESIRE, desire_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_AGE, age_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_GENDER, gender_spinner.getSelectedItem().toString());
@@ -430,7 +464,7 @@ public class CharacterFragment extends Fragment {
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PHRASE, phrase_et.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_IMAGE, filepath);
         database.insert(mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER, null, values);
-
+        database.close();
         //Log challenges updated
         Bundle params = new Bundle();
         params.putString("Character", "completed");
@@ -448,6 +482,7 @@ public class CharacterFragment extends Fragment {
         mFirebaseAnalytics.logEvent("character_deleted", params);
 
         //Make sure you can't come back here
+        database.close();
         fragmentTransition();
     }
 
@@ -462,6 +497,7 @@ public class CharacterFragment extends Fragment {
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_HAIRCOLOR, hair_color_et.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_EYECOLOR, eye_color_et.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_BODYBUILD, bodybuild_et.getText().toString());
+        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_BIRTHDATE, birthdate_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_DESIRE, desire_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_AGE, age_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_GENDER, gender_spinner.getSelectedItem().toString());
@@ -478,8 +514,8 @@ public class CharacterFragment extends Fragment {
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_IMAGE, filepath);
         database.update(mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER, values, "_id = ?", new String[]{Common.currentCharacter.getId()});
         //Make sure you can't come back here
+        database.close();
         fragmentTransition();
-
     }
 
     public ArrayList<String> getDescription(Context context, String char_name) {
@@ -501,6 +537,7 @@ public class CharacterFragment extends Fragment {
                 char_list.add(cursor.getString(cursor.getColumnIndex("haircolor")));
                 char_list.add(cursor.getString(cursor.getColumnIndex("eyecolor")));
                 char_list.add(cursor.getString(cursor.getColumnIndex("bodybuild")));
+                char_list.add(cursor.getString(cursor.getColumnIndex("birthdate")));
                 char_list.add(cursor.getString(cursor.getColumnIndex("desire")));
                 char_list.add(cursor.getString(cursor.getColumnIndex("role")));
                 char_list.add(cursor.getString(cursor.getColumnIndex("defmoment")));

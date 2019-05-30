@@ -995,4 +995,7 @@ Para que el personaje pueda evolucionar en una manera positiva, tiene que comenz
 
     <string name="developmenTitle">Precaucion!.</string>
     <string name="developmentDesc">Hola! Esta feature esta ahora mismo en modo Beta, quiere decir que puede funcionar bien, pero también puede funcionar muy mal! Enviame feedback y diviertete probandola.\n\nExplora historias y comparte la tuya!</string>
+
+    <string name="birthdate_add_text">Fecha de nacimiento</string>
+
 </resources>

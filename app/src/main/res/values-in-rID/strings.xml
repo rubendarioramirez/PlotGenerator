@@ -987,4 +987,6 @@ Buat antagonis kamu melakukan tindakan yang benar-benar tercela dan jika mungkin
     <string name="onBoarding_6">Silakan pilih Karakter yang baru saja kamu buat untuk melanjutkan.</string>
     <string name="onBoarding_7">Ini karakter kamu. Di sini kamu dapat memasang foto dia.\n\nTapi ini masih jauh dari selesai, kamu baru saja mulai. Lihat pada tombol +, kamu akan membuka panduan untuk terus mengembangkan karaktermu.\n\nTetapi yang lebih penting, kamu juga memiliki tantangan.\n\nSaya ingin sekali memberi tahu kamu apa saja itu, tetapi kamu lebih baik melihatnya sendiri.</string>
 
+    <string name="birthdate_add_text">Tangal Lahir</string>
+
 </resources>

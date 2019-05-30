@@ -136,7 +136,7 @@ public class Wc_participants_recent extends Fragment {
                 viewHolder.setIsRecyclable(false);
 
 
-                if (model.getTitle().contains(Common.currentChallenge.getName())) {
+//                if (model.getTitle().contains(Common.currentChallenge.getName())) {
 
                     viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -165,9 +165,9 @@ public class Wc_participants_recent extends Fragment {
 
 
                     viewHolder.bindToPost(model, likeClickListener, mCommentReference_recent.child(postRef.getKey()));
-                } else {
-                    viewHolder.removeItem();
-                }
+//                } else {
+//                    viewHolder.removeItem();
+//                }
 
             }
         };

@@ -159,8 +159,6 @@ public class BioFragment extends Fragment {
             intro_tv.setText(Html.fromHtml(bio_text.toString()));
 
 
-
-
         }
 
 

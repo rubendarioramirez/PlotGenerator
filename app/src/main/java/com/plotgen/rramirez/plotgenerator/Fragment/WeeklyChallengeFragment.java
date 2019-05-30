@@ -144,9 +144,11 @@ public class WeeklyChallengeFragment extends Fragment {
             protected void onBindViewHolder(StoryViewHolder viewHolder, int position, final Story model) {
                 final DatabaseReference postRef = getRef(position);
                 final Story currentStory = model;
+
+
                 viewHolder.setIsRecyclable(false);
 
-                if (model.getTitle().contains(Common.currentChallenge.getName())) {
+//                if (model.getTitle().contains(Common.currentChallenge.getName())) {
 
                     viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -174,9 +176,9 @@ public class WeeklyChallengeFragment extends Fragment {
 
 
                     viewHolder.bindToPost(model, likeClickListener, mCommentReference.child(postRef.getKey()));
-                } else {
-                    viewHolder.removeItem();
-                }
+//                } else {
+//                    viewHolder.removeItem();
+//                }
 
             }
         };

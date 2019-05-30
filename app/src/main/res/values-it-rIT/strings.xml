@@ -915,4 +915,6 @@ Fare sei antagonista eseguire azioni veramente spregevoli e, se possibile, si po
 <string name = "invitation_deep_link"> com.plotgen.page.link </string>
 <string name = "invitation_cta"> Leggi </string>
 
-    </resources>
+<string name="birthdate_add_text">Data di nascita</string>
+
+</resources>

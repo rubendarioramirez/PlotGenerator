@@ -24,8 +24,12 @@ import android.widget.Toast;
 
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
+import com.applovin.sdk.AppLovinAd;
+import com.applovin.sdk.AppLovinAdLoadListener;
+import com.applovin.sdk.AppLovinAdSize;
 import com.applovin.sdk.AppLovinSdk;
 import com.bumptech.glide.util.Util;
+import com.google.android.ads.mediationtestsuite.MediationTestSuite;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
@@ -93,6 +97,7 @@ public class MainActivity extends AppCompatActivity
     private FirebaseAuth mAuth;
     private boolean firstTime;
     private FirebaseRemoteConfig remoteConfig_main;
+    private AppLovinAd loadedAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +105,29 @@ public class MainActivity extends AppCompatActivity
 
         AppLovinSdk.initializeSdk(this.getApplicationContext());
         IronSource.init(this, "92412865");
-        //IntegrationHelper.validateIntegration(this);
+        IntegrationHelper.validateIntegration(this);
+
+        //MediationTestSuite.launch(MainActivity.this, "ca-app-pub-6696437403163667~6953226633");
+
+
+
+        // Load an Interstitial Ad
+        AppLovinSdk.getInstance( this ).getAdService().loadNextAd( AppLovinAdSize.INTERSTITIAL, new AppLovinAdLoadListener()
+        {
+            @Override
+            public void adReceived(AppLovinAd ad)
+            {
+                loadedAd = ad;
+            }
+
+            @Override
+            public void failedToReceiveAd(int errorCode)
+            {
+                // Look at AppLovinErrorCodes.java for list of error codes.
+            }
+        } );
+
+
 
         Common.isPAU = Utils.getSPIAP(this);
         firstTime = Utils.checkFirstTime(getApplicationContext());
@@ -324,6 +351,8 @@ public class MainActivity extends AppCompatActivity
         System.gc();
 
     }
+
+
 
     private void openUserStoryFragment(final String id) {
         final DatabaseReference mPostReference = mDatabase.getReference().child("stories");

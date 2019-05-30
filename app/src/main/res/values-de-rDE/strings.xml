@@ -914,4 +914,6 @@ Lasse den Antagonisten verachtenswerte Handlungen ausführen, und wenn möglich,
     <string name="weekly_challenge_tab1">in Bearbeitung</string>
     <string name="weekly_challenge_tab2">Letzter Gewinner</string>
 
+    <string name="birthdate_add_text">Birthdate</string>
+
     </resources>
