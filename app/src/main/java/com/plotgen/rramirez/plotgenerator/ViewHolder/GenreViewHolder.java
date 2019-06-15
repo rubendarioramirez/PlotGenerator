@@ -6,6 +6,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.plotgen.rramirez.plotgenerator.Model.Genre;
 import com.plotgen.rramirez.plotgenerator.R;
 
@@ -27,9 +28,9 @@ public class GenreViewHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
-    public void bindToPost(DatabaseReference genreRef) {
+    public void bindToPost(DocumentReference genreRef) {
 
-        tvGenre.setText(genreRef.getKey());
+        tvGenre.setText(genreRef.getId());
 
     }
 

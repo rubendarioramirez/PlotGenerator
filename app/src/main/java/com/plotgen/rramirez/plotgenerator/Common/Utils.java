@@ -248,8 +248,6 @@ public class Utils extends Fragment{
                                 context.startActivity(new Intent(Intent.ACTION_VIEW,
                                         Uri.parse("http://play.google.com/store/apps/details?id=" + context.getPackageName())));
                             }
-
-
                         }
                     }
                 })

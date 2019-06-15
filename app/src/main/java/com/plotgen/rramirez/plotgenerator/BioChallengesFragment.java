@@ -45,7 +45,6 @@ public class BioChallengesFragment extends Fragment {
     @BindView(R.id.biochallenge_body)
     TextView biochallenge_body;
 
-
     public BioChallengesFragment() {
         // Required empty public constructor
     }

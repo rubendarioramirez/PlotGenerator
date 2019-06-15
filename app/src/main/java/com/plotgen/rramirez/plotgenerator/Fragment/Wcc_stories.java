@@ -15,6 +15,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Model.User;
 import com.plotgen.rramirez.plotgenerator.R;
@@ -30,19 +32,31 @@ public class Wcc_stories extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.wcc_stories, container, false);
 
-        FirebaseDatabase mDatabase = Common.currentDatabase;
+        //FirebaseDatabase mDatabase = Common.currentDatabase;
+
+        FirebaseFirestore mDatabase = Common.currentDatabase;
+
         FirebaseAuth mAuth = Common.currentAuth;
         final FirebaseUser mUser = Common.currentFirebaseUser;
-        DatabaseReference mReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts");
-        DatabaseReference mCommentReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("post-comments");
-        DatabaseReference mUserReference = mDatabase.getReference().child("users");
+
+        //DatabaseReference mReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts");
+        CollectionReference mReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name)+"_1")
+                .document("posts").collection("posts");
+
+        //DatabaseReference mCommentReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name))
+        // .child("post-comments");
+        CollectionReference mCommentReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name)+"_1")
+                .document("post-comments").collection("post-comments");
+
+        //DatabaseReference mUserReference = mDatabase.getReference().child("users");
+        CollectionReference mUserReference = mDatabase.collection("users_1");
+
        /* mAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -50,19 +64,18 @@ public class Wcc_stories extends Fragment {
                     Common.currentUser = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail(), mUser.getPhotoUrl().toString(), mUser.getPhotoUrl());
                 }
             }
-        });
-*/
-        Query query = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts");
+        });*/
+
+        //Query query = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts");
+        CollectionReference query = mDatabase.collection(getString(R.string.weekly_challenge_db_name)+"_1")
+                .document("posts").collection("posts");
+
         Common.currentReference = mReference;
         Common.currentQuery = query;
         Common.currentUserReference = mUserReference;
         Common.currentCommentReference = mCommentReference;
 
-
-
         return view;
-
-
     }
 
 

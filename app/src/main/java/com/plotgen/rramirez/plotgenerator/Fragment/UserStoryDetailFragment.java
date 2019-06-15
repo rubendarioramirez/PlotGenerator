@@ -19,7 +19,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Registry;
@@ -28,21 +30,34 @@ import com.bumptech.glide.module.AppGlideModule;
 import com.bumptech.glide.request.RequestOptions;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter_LifecycleAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.dynamiclinks.DynamicLink;
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
 import com.google.firebase.dynamiclinks.ShortDynamicLink;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.RemoteMessage;
 import com.google.firebase.storage.StorageReference;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Notify;
@@ -50,9 +65,12 @@ import com.plotgen.rramirez.plotgenerator.Model.Comment;
 import com.plotgen.rramirez.plotgenerator.Model.User;
 import com.plotgen.rramirez.plotgenerator.Model.UserStory;
 import com.plotgen.rramirez.plotgenerator.R;
+import com.plotgen.rramirez.plotgenerator.ViewHolder.CommentViewHolder;
+import com.plotgen.rramirez.plotgenerator.ViewHolder.StoryViewHolder;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.io.InputStream;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -93,11 +111,13 @@ public class UserStoryDetailFragment extends Fragment {
     @BindView(R.id.fieldCommentText)
     MaterialEditText etCommentText;
 
-    FirebaseListAdapter<Comment> adapter;
-    FirebaseListOptions<Comment> options;
+    //FirestoreRecyclerAdapter_LifecycleAdapter adapter;
+    FirestoreRecyclerAdapter<Comment, CommentViewHolder> adapter;
+    FirestoreRecyclerOptions<Comment> options;
 
-    private DatabaseReference mCommentReference, mReference;
-    private DatabaseReference mUserReference;
+    private CollectionReference mCommentReference;
+    private DocumentReference mReference;
+    private CollectionReference mUserReference;
 
     public UserStoryDetailFragment() {
         // Required empty public constructor
@@ -119,7 +139,17 @@ public class UserStoryDetailFragment extends Fragment {
                 etCommentText.getText().toString());
 
         // Push the comment, it will appear in the list
-        mCommentReference.push().setValue(comment);
+        mCommentReference.add(comment).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Toast.makeText(getActivity(), "Added Successfully", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getActivity(), "Added Failed", Toast.LENGTH_SHORT).show();
+            }
+        });
         /*sendNotification(Common.currentUser.getName() + " commented on your post",
                 Common.currentUserStory.getUser(), Common.currentUserStory.getId());*/
         // Clear the field
@@ -174,12 +204,14 @@ public class UserStoryDetailFragment extends Fragment {
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         ButterKnife.bind(this, view);
+        Common.currentCommentReference = mCommentReference;
+        Common.currentUserReference = mUserReference;
 
-        FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
-        mReference = mDatabase.getReference().child("stories").child(Common.currentUserStory.getId());
-        mCommentReference = mDatabase.getReference().child("stories").child("post-comments").child(Common.currentUserStory.getId());
+        FirebaseFirestore mDatabase = FirebaseFirestore.getInstance();
+        mReference = mDatabase.collection("stories").document(Common.currentUserStory.getId());
+        mCommentReference = mDatabase.collection("stories").document("post-comments").collection(Common.currentUserStory.getId());
 
-        mUserReference = mDatabase.getReference().child("users");
+        mUserReference = mDatabase.collection("users");
 
         ivTemplatePic.setImageResource(R.drawable.typewriter);
 
@@ -201,14 +233,15 @@ public class UserStoryDetailFragment extends Fragment {
         ivLoves.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onLikeClicked(mReference);
+                //onLikeClicked(mReference);
             }
         });
         tvLoves.setText(String.valueOf(Common.currentUserStory.getLikeCount()));
+        com.google.firebase.firestore.Query query = Common.currentQuery.orderBy("likeCount");
 
-        options = new FirebaseListOptions.Builder<Comment>()
-                .setQuery(mCommentReference, Comment.class)
-                .setLayout(R.layout.item_comment)
+
+        options = new FirestoreRecyclerOptions.Builder<Comment>()
+                .setQuery(query, Comment.class)
                 .build();
 
         populateComments();
@@ -217,8 +250,8 @@ public class UserStoryDetailFragment extends Fragment {
         return view;
     }
 
-    private void onLikeClicked(final DatabaseReference postRef) {
-        postRef.runTransaction(new Transaction.Handler() {
+    private void onLikeClicked(final DocumentReference postRef) {
+       /* postRef.runTransaction(new Transaction.Handler() {
             @NonNull
             @Override
             public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
@@ -261,12 +294,36 @@ public class UserStoryDetailFragment extends Fragment {
                     }
                 });
             }
+        });*/
+    }
+    public void sendNotification(final String message, User user, final String id) {
+        //String firebase_token = mUserReference.child(user.getUid()).child("token");
+
+        mCommentReference.document(user.getUid()).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
+                if (documentSnapshot.exists()) {
+                    String token = documentSnapshot.getString("token");
+                    String to = token; // the notification key
+                    AtomicInteger msgId = new AtomicInteger();
+                    new Notify(token, message, id, "Stories").execute();
+                    //notifyMessage(to,message);
+                    FirebaseMessaging.getInstance().send(new RemoteMessage.Builder(to)
+                            .setMessageId(String.valueOf(msgId.get()))
+                            .addData("title", "Stories")
+                            .addData("body", message)
+                            .build());
+                    Log.e("message", new RemoteMessage.Builder(to).setMessageId(String.valueOf(msgId.get()))
+                            .addData("title", "Stories")
+                            .addData("body", message).toString());
+                }
+            }
         });
     }
 
-    public void sendNotification(final String message, User user, final String id) {
+    /*public void sendNotification(final String message, User user, final String id) {
         //String firebase_token = mUserReference.child(user.getUid()).child("token");
-        Query query = mUserReference.child(user.getUid()).orderByChild("token");
+        Query query = mUserReference.document(user.getUid()).collection("token");
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -283,9 +340,9 @@ public class UserStoryDetailFragment extends Fragment {
         });
 
     }
-
+*/
     private void checkCommentCount() {
-        mCommentReference.addValueEventListener(new ValueEventListener() {
+        mCommentReference.add(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int commentCount = 0;
@@ -305,8 +362,21 @@ public class UserStoryDetailFragment extends Fragment {
     }
 
     private void populateComments() {
-        adapter = new FirebaseListAdapter<Comment>(options) {
+        adapter = new FirestoreRecyclerAdapter<Comment,CommentViewHolder>(options) {
+            @NonNull
             @Override
+            public CommentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+                return new CommentViewHolder(inflater.inflate(R.layout.item_comment, parent, false));            }
+
+            @Override
+            protected void onBindViewHolder(@NonNull CommentViewHolder holder, int position, @NonNull Comment model) {
+                final Comment comment = model;
+                holder.setIsRecyclable(false);
+                holder.bindToPost(model);
+
+            }
+           /* @Override
             protected void populateView(@NonNull View v, @NonNull Comment model, int position) {
 
                 ImageView ivCommentPic;
@@ -324,10 +394,10 @@ public class UserStoryDetailFragment extends Fragment {
                 tvCommentUser.setText(model.getUserName());
                 tvCommentBody.setText(model.getUserComment());
 
-            }
+            }*/
         };
         lvComments.setFocusable(false);
-        lvComments.setAdapter(adapter);
+        lvComments.setAdapter((ListAdapter) adapter);
         lvComments.setExpanded(true);
     }
 

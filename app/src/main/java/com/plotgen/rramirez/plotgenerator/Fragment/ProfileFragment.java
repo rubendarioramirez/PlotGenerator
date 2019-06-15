@@ -46,6 +46,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.google.firebase.storage.StorageReference;
@@ -114,8 +120,8 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
     @BindView(R.id.btnIAP)
     Button btnIAP;
     private String firebase_token;
-    private FirebaseDatabase mDatabase;
-    private DatabaseReference mUserDatabase;
+    private FirebaseFirestore mDatabase;
+    private CollectionReference mUserDatabase;
 
     @OnClick(R.id.btnIAP)
     public void buyIAP(View v) {
@@ -135,19 +141,15 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
                 .signOut(this.getContext())
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     public void onComplete(@NonNull Task<Void> task) {
-                        mUserDatabase.runTransaction(new Transaction.Handler() {
-                            @NonNull
+                        mDatabase.collection("users_1").document(Common.currentUser.getUid()).addSnapshotListener(new EventListener<DocumentSnapshot>() {
                             @Override
-                            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
-                                if (mutableData.hasChild(Common.currentUser.getUid())) {
-                                    mutableData.child(Common.currentUser.getUid()).child("token").setValue("");
-                                }
-                                return Transaction.success(mutableData);
-                            }
+                            public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
 
-                            @Override
-                            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
-                                Log.d("Updated token", "postTransaction:onComplete:" + databaseError);
+                                if (documentSnapshot != null && documentSnapshot.exists()) {
+                                    Log.d(TAG, "Current data: " + documentSnapshot.getData());
+                                } else {
+                                    Log.d(TAG, "Current data: null");
+                                }
 
                             }
                         });
@@ -200,8 +202,8 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
         mUser = mAuth.getCurrentUser();
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(view.getContext());
         firebase_token = Utils.getStringSharePref((MainActivity) getActivity(), "firebase_token");
-        mDatabase = FirebaseDatabase.getInstance();
-        mUserDatabase = mDatabase.getReference().child("users");
+        mDatabase = FirebaseFirestore.getInstance();
+        mUserDatabase = mDatabase.collection("users");
 
         //handle notification
         if (Utils.getStringSharePref(getActivity(), "notifications").equalsIgnoreCase("true")) {
@@ -219,7 +221,20 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
                 if (cbNotification.isChecked()) {
                     //cbNotification.setChecked(false);
                     cbNotification.setButtonDrawable(R.drawable.ic_check_box);
-                    mUserDatabase.runTransaction(new Transaction.Handler() {
+                    final DocumentReference documentReference = mDatabase.collection("users_1").document(Common.currentUser.getUid());
+                    mDatabase.runTransaction(new com.google.firebase.firestore.Transaction.Function<Void>() {
+                        @Nullable
+                        @Override
+                        public Void apply(@NonNull com.google.firebase.firestore.Transaction transaction) throws FirebaseFirestoreException {
+                            DocumentSnapshot snapshot = transaction.get(documentReference);
+                          //  snapshot.getData().put("new token",firebase_token);
+
+
+
+                            return null;
+                        }
+                    });
+                  /*  mUserDatabase.add(new Transaction.Handler() {
                         @NonNull
                         @Override
                         public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
@@ -239,11 +254,24 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
 
                         }
                     });
-
+*/
                     Utils.saveOnSharePreg(getActivity(), "notifications", "true");
                 } else {
+                    final DocumentReference documentReference = mDatabase.collection("users_1").document(Common.currentUser.getUid());
+                    mDatabase.runTransaction(new com.google.firebase.firestore.Transaction.Function<Void>() {
+                        @Nullable
+                        @Override
+                        public Void apply(@NonNull com.google.firebase.firestore.Transaction transaction) throws FirebaseFirestoreException {
+                            DocumentSnapshot snapshot = transaction.get(documentReference);
+                          //  snapshot.getData().put("new token",firebase_token);
+
+
+
+                            return null;
+                        }
+                    });
                     //cbNotification.setChecked(true);
-                    mUserDatabase.runTransaction(new Transaction.Handler() {
+                   /* mUserDatabase.add(new Transaction.Handler() {
                         @NonNull
                         @Override
                         public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
@@ -262,7 +290,7 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
                             Log.d("Updated token", "postTransaction:onComplete:" + databaseError);
 
                         }
-                    });
+                    });*/
                     cbNotification.setButtonDrawable(R.drawable.ic_uncheck_box);
                     Utils.saveOnSharePreg(getActivity(), "notifications", "false");
                 }
@@ -446,7 +474,20 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
             if (resultCode == RESULT_OK) {
 
                 mUser = mAuth.getCurrentUser();
-                mUserDatabase.runTransaction(new Transaction.Handler() {
+                final DocumentReference documentReference = mDatabase.collection("users_1").document(Common.currentUser.getUid());
+                mDatabase.runTransaction(new com.google.firebase.firestore.Transaction.Function<Void>() {
+                    @Nullable
+                    @Override
+                    public Void apply(@NonNull com.google.firebase.firestore.Transaction transaction) throws FirebaseFirestoreException {
+                        DocumentSnapshot snapshot = transaction.get(documentReference);
+                        snapshot.getData().put("new token",firebase_token);
+
+
+
+                        return null;
+                    }
+                });
+                /*mUserDatabase.add(new Transaction.Handler() {
                     @NonNull
                     @Override
                     public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
@@ -469,7 +510,7 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
 
                     }
                 });
-
+*/
 
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.flMain, new ProfileFragment());

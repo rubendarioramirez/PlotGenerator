@@ -6,18 +6,28 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.ServerTimestamp;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.MainActivity;
 import com.plotgen.rramirez.plotgenerator.Model.Story;
@@ -32,10 +42,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.firebase.ui.auth.AuthUI.TAG;
+
 /**
  * A simple {@link Fragment} subclass.
  */
 public class SubmitStoryFragment extends Fragment {
+
 
     @BindView(R.id.tvEmail)
     TextView tvEmail;
@@ -48,14 +61,18 @@ public class SubmitStoryFragment extends Fragment {
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
 
-    private FirebaseDatabase mDatabase;
-    private DatabaseReference mReference;
+    String id = "";
+
+    private FirebaseFirestore mDatabase;
+    private CollectionReference mReference;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @OnClick(R.id.btnSubmit)
     public void submitStory(View view) {
         final String s = etStory.getText().toString();
+        mDatabase = FirebaseFirestore.getInstance();
+        mUser = Common.currentFirebaseUser;
 
         // Title is required
         if (TextUtils.isEmpty(s)) {
@@ -63,11 +80,11 @@ public class SubmitStoryFragment extends Fragment {
             return;
         }
 
-        String key = mReference.child("posts").push().getKey();
+        CollectionReference collectionReference = mReference.document("posts").collection("posts");
+        String key = mReference.document().getId();
         Long tsLong = System.currentTimeMillis() / 1000;
 
-
-        Story story = new Story(key, etTitle.getText().toString(),
+        final Story story = new Story(key, etTitle.getText().toString(),etStory.getText().toString(),
                 "",
                 etStory.getText().toString(), tsLong,
                 new User(Common.currentUser.getUid(),
@@ -78,11 +95,19 @@ public class SubmitStoryFragment extends Fragment {
         Map<String, Object> postValues = story.toMap();
 
         Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/posts/" + key, postValues);
+        childUpdates.put( key, postValues);
+       collectionReference.document(key).update(childUpdates);
 
-        mReference.updateChildren(childUpdates);
+       collectionReference.document(key).set(postValues).addOnCompleteListener(new OnCompleteListener<Void>() {
+           @Override
+           public void onComplete(@NonNull Task<Void> task) {
+               Toast.makeText(getContext(), " Story Added", Toast.LENGTH_SHORT).show();
+
+           }
+       });
 
         etStory.setText("");
+
 
         //Make sure that on return to Weekly writing user has to watch an ad again.
         Utils.saveOnSharePreg(getContext(), "can_submit", 0);
@@ -119,7 +144,8 @@ public class SubmitStoryFragment extends Fragment {
         });
 
         mDatabase = Common.currentDatabase;
-        mReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name));
+         mReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name));
+      //  mReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name));
 
         if (Common.currentChallenge != null) {
             etTitle.setText(Common.currentChallenge.getName());

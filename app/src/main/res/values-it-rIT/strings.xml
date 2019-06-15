@@ -885,7 +885,7 @@ Fare sei antagonista eseguire azioni veramente spregevoli e, se possibile, si po
 </string-array>
     
 <!--Nome database Firebase -->
-<string name = "weekly_challenge_db_name">Weekly_Challenge_Beta</string>
+<string name = "weekly_challenge_db_name">Weekly_Challenge_Beta_1</string>
     
 <string name = "edit_story"> Modifica brano </string>
 <string name = "write_story"> Scrivi Story </string>

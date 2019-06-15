@@ -1,6 +1,5 @@
 package com.plotgen.rramirez.plotgenerator.ViewHolder;
 
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -10,12 +9,15 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.plotgen.rramirez.plotgenerator.Model.Story;
 import com.plotgen.rramirez.plotgenerator.R;
+
+import javax.annotation.Nullable;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,7 +55,7 @@ public class StoryViewHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
-    public void bindToPost(Story story, View.OnClickListener likeClickListener,
+    /*public void bindToPost(Story story, View.OnClickListener likeClickListener,
                             DatabaseReference commentRef) {
 
         Glide.with(itemView.getContext())
@@ -68,8 +70,8 @@ public class StoryViewHolder extends RecyclerView.ViewHolder {
         tvStory.setText(story.getChalenge());
         tvLoves.setText(String.valueOf(story.getLikeCount()));
         ivLoves.setOnClickListener(likeClickListener);
-/*        tvShare.setOnClickListener(shareListener);
-        ivShare.setOnClickListener(shareListener);*/
+*//*        tvShare.setOnClickListener(shareListener);
+        ivShare.setOnClickListener(shareListener);*//*
 
         Log.v("matilda", "Called bindToPost");
 
@@ -89,7 +91,43 @@ public class StoryViewHolder extends RecyclerView.ViewHolder {
 
             }
         });
+    }*/
+
+    public void bindToPost(Story story, View.OnClickListener likeClickListener,
+                           CollectionReference commentRef) {
+
+        Glide.with(itemView.getContext())
+                .load(story.getUser().getUriString())
+                .apply(RequestOptions.circleCropTransform())
+                .into(ivUser);
+
+        ivTemplatePic.setImageResource(R.drawable.typewriter);
+        tvUser.setText(story.getUser().getName());
+        tvTitle.setText(story.getTitle());
+        tvGenre.setText(story.getGenre());
+        tvStory.setText(story.getChalenge());
+        tvLoves.setText(String.valueOf(story.getLikeCount()));
+        ivLoves.setOnClickListener(likeClickListener);
+/*        tvShare.setOnClickListener(shareListener);
+        ivShare.setOnClickListener(shareListener);*/
+
+        Log.v("matilda", "Called bindToPost");
+
+        commentRef.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                int commentCount = 0;
+                for (DocumentSnapshot commentData : queryDocumentSnapshots.getDocuments()) {
+                    commentCount++;
+                }
+                tvComments.setText(String.valueOf(commentCount));
+            }
+        });
+
     }
+
+
+
 
     public void removeItem() {
 

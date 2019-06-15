@@ -11,18 +11,27 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Model.Story;
 import com.plotgen.rramirez.plotgenerator.R;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.rengwuxian.materialedittext.MaterialEditText;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,9 +45,9 @@ public class StoryEditFragment extends Fragment {
     @BindView(R.id.etEditStory)
     MaterialEditText etEditStory;
 
-    private FirebaseDatabase mDatabase;
-    private DatabaseReference mReference;
-    private DatabaseReference mNewStoryReference;
+    private FirebaseFirestore mDatabase;
+    private CollectionReference mReference;
+    private DocumentReference mNewStoryReference;
 
     @OnClick(R.id.btnSaveEdit)
     public void saveEdit(View v)
@@ -50,10 +59,20 @@ public class StoryEditFragment extends Fragment {
             etEditStory.setError("Required");
             return;
         }
-
+         mDatabase = FirebaseFirestore.getInstance();
         String key = Common.currentStory.getId();
-        mNewStoryReference = mReference.child(key);
-        mNewStoryReference.runTransaction(new Transaction.Handler() {
+         mReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name)).document("posts").collection("posts");
+
+        mNewStoryReference = mReference.document(key);
+
+        mNewStoryReference.update("chalenge",newStory).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Toast.makeText(getActivity(), "Updated Successfully", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        /*mNewStoryReference.runTransaction(new Transaction.Handler() {
             @NonNull
             @Override
             public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
@@ -72,8 +91,7 @@ public class StoryEditFragment extends Fragment {
                 Log.d("UpdateStory", "postTransaction:onComplete:" + databaseError);
             }
         });
-
-
+*/
         weekly_challenge_container nextFragment = new weekly_challenge_container();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         Utils.changeFragment(nextFragment,transaction);
@@ -93,8 +111,8 @@ public class StoryEditFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
-        mDatabase = FirebaseDatabase.getInstance();
-        mReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts");
+        mDatabase = FirebaseFirestore.getInstance();
+        mReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name)).document("posts").collection("posts");
 
         etEditStory.setText(Common.currentStory.getChalenge());
 

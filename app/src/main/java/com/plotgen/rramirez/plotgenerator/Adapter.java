@@ -24,8 +24,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.myViewHolder> {
         this.mData = mData;
     }
 
-
-
     @Override
     public myViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
@@ -46,16 +44,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.myViewHolder> {
     }
 
     public class myViewHolder extends RecyclerView.ViewHolder{
-
         ImageView card_background;
         TextView trigger_title;
-
-
         public myViewHolder(View itemView){
             super (itemView);
             card_background = itemView.findViewById(R.id.card_background_herojourney);
             trigger_title = itemView.findViewById(R.id.trigger_title);
         }
-
     }
 }

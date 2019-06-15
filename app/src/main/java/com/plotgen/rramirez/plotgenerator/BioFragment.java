@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.database.FirebaseDatabase;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Tutorial;
 import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
@@ -158,9 +159,6 @@ public class BioFragment extends Fragment {
             bio_text.append(getString(R.string.notes_bio) + "<br> " + notes + "<br><br><br><br><br><br>");
             intro_tv.setText(Html.fromHtml(bio_text.toString()));
 
-
-
-
         }
 
 
@@ -232,7 +230,5 @@ public class BioFragment extends Fragment {
         }
         return char_list;
     }
-
-
 
 }
