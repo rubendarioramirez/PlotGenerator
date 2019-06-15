@@ -82,6 +82,7 @@ import java.util.Locale;
 import java.util.Random;
 
 
+
 public class MainActivity extends AppCompatActivity
         implements BillingProcessor.IBillingHandler, NavigationView.OnNavigationItemSelectedListener {
 
@@ -105,7 +106,8 @@ public class MainActivity extends AppCompatActivity
 
         AppLovinSdk.initializeSdk(this.getApplicationContext());
         IronSource.init(this, "92412865");
-        IntegrationHelper.validateIntegration(this);
+
+        //IntegrationHelper.validateIntegration(this);
 
         //MediationTestSuite.launch(MainActivity.this, "ca-app-pub-6696437403163667~6953226633");
 
