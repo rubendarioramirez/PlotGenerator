@@ -67,7 +67,6 @@ public class CharListFragment extends Fragment {
         // Inflate the layout for this fragment
 
         //Get the data from the previous fragment
-
         try {
             project_name_text = Common.currentProject.getName();
             project_id = Common.currentProject.getId();
@@ -164,7 +163,6 @@ public class CharListFragment extends Fragment {
                 mFirebaseAnalytics.logEvent("created_story", params);
             }
         });
-
 
         Tutorial.checkTutorial(myFragmentView,getActivity());
 

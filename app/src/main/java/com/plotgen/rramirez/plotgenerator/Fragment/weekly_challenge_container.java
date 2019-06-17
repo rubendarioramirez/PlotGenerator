@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.plotgen.rramirez.plotgenerator.R;
 import com.plotgen.rramirez.plotgenerator.weeklyWriting;
+//import com.plotgen.rramirez.plotgenerator.weeklyWriting;
 
 
 public class weekly_challenge_container extends Fragment {

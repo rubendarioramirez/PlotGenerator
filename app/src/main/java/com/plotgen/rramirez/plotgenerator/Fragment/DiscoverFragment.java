@@ -12,17 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.MobileAds;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.MainActivity;
@@ -41,14 +37,13 @@ public class DiscoverFragment extends Fragment {
     @BindView(R.id.empty_project_tv)
     TextView emptyGenreTv;
 
-    private InterstitialAd mInterstitialAd;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private LinearLayoutManager mManager;
-    private FirebaseDatabase mDatabase;
-    private DatabaseReference mReference;
-    private FirebaseRecyclerOptions<Genre> options;
-    private FirebaseRecyclerAdapter mAdapter;
+    private FirebaseFirestore mDatabase;
+    private CollectionReference mReference;
+    private FirestoreRecyclerOptions<Genre> options;
+    private FirestoreRecyclerAdapter<Genre, GenreViewHolder> mAdapter;
 
     @Override
     public void onStart() {
@@ -78,53 +73,24 @@ public class DiscoverFragment extends Fragment {
         // rvGenre.setLayoutManager(mManager);
         rvGenre.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
 
-        mDatabase = FirebaseDatabase.getInstance();
+        mDatabase = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
         mUser = mAuth.getCurrentUser();
 
-        MobileAds.initialize(this.getContext(), getString(R.string.ad_account_id));
+        mReference = mDatabase.collection("stories");
 
-
-//        if (!Common.isPAU) {
-//        //Init the ads
-//        // Interstitial
-//            mInterstitialAd = new InterstitialAd(this.getContext());
-//            mInterstitialAd.setAdUnitId(getString(R.string.interstitial_plot_gen));
-//            mInterstitialAd.loadAd(new AdRequest.Builder()
-//                    .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
-//                    .build());
-//            mInterstitialAd.setAdListener(new AdListener() {
-//                @Override
-//                public void onAdClosed() {
-//                    // Load the next interstitial.
-//                    mInterstitialAd.loadAd(new AdRequest.Builder()
-//                            .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
-//                            .build());
-//                }
-//            });
-//        }
-
-        mReference = mDatabase.getReference().child("stories");
-
-        Query myTopPostsQuery = mReference.child("genre");
-        options = new FirebaseRecyclerOptions.Builder<Genre>()
+        Query myTopPostsQuery = mReference.orderBy("genre");
+        options = new FirestoreRecyclerOptions.Builder<Genre>()
                 .setQuery(myTopPostsQuery, Genre.class)
                 .build();
         populateDiscoverGenre();
 
-
-        Utils.popUp(this.getContext());
-
-
-
         return view;
     }
 
-
     private void populateDiscoverGenre() {
-
-        mAdapter = new FirebaseRecyclerAdapter<Genre, GenreViewHolder>(options) {
+        mAdapter = new FirestoreRecyclerAdapter<Genre, GenreViewHolder>(options) {
             @NonNull
             @Override
             public GenreViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -132,35 +98,26 @@ public class DiscoverFragment extends Fragment {
                 return new GenreViewHolder(inflater.inflate(
                         R.layout.story_genre, parent, false));
             }
-
             @Override
             protected void onBindViewHolder(@NonNull GenreViewHolder holder, int position, @NonNull final Genre model) {
-                final DatabaseReference postRef = getRef(position);
+              //  final DatabaseReference postRef = getRef(position);
+                final Genre genre = model;
                 holder.setIsRecyclable(false);
-
-                Log.e("reff", mReference.child("genre").child(postRef.getKey()).getKey() + "  ");
+                Log.e("reff", mReference.document("genre").collection(model.getGenre()).getId() + "  ");
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Common.currentGenre = mReference.child("genre").child(postRef.getKey()).getKey();
+                           Common.currentGenre = genre;
+                     //   Common.currentGenre = mReference.document("genre").collection(model.getGenre()).getId();
                         StoryFragment nextFragment = new StoryFragment();
                         FragmentTransaction transaction = getFragmentManager().beginTransaction();
                         Utils.changeFragment(nextFragment, transaction);
                         transaction.addToBackStack(null);
                     }
                 });
-                holder.bindToPost(mReference.child("genre").child(postRef.getKey()));
+                holder.bindToPost(mReference.document(model.getId()));
             }
-
         };
-//        if (!Common.isPAU) {
-//            if (mInterstitialAd.isLoaded()) {
-//                mInterstitialAd.show();
-//
-//            } else {
-//                Log.d("TAG", "The interstitial wasn't loaded yet.");
-//            }
-//        }
         rvGenre.setAdapter(mAdapter);
     }
 }

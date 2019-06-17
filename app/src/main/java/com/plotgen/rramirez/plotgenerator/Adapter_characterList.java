@@ -74,8 +74,6 @@ public class Adapter_characterList extends RecyclerView.Adapter<Adapter_characte
         });
         projectsAnimator.setDuration(500); // here you set the duration of the anim
         projectsAnimator.start();
-
-
         charID = mData.get(position).getId();
     }
 

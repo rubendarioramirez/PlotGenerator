@@ -17,7 +17,7 @@ public class UserStory {
     private long submitDate;
     private User user;
 
-    public UserStory() {
+    public UserStory(String key, String project_name, String project_id, String s, String s1, String mStory, Long tsLong, User user) {
 
     }
 

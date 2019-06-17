@@ -14,14 +14,19 @@ import android.view.ViewGroup;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Notify;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
@@ -38,11 +43,11 @@ public class StoryFragment extends Fragment {
     @BindView(R.id.rvWeeklyChalenge)
     RecyclerView rvWeeklyChalenge;
 
-    private DatabaseReference mReference;
-    private FirebaseRecyclerOptions<UserStory> options;
-    private FirebaseRecyclerAdapter<UserStory, UserStoryViewHolder> mAdapter;
-    private DatabaseReference mCommentReference;
-    private DatabaseReference mUserReference;
+    private CollectionReference mReference;
+    private FirestoreRecyclerOptions<UserStory> options;
+    private FirestoreRecyclerAdapter<UserStory, UserStoryViewHolder> mAdapter;
+    private CollectionReference mCommentReference;
+    private CollectionReference mUserReference;
 
     public StoryFragment() {
     }
@@ -72,15 +77,16 @@ public class StoryFragment extends Fragment {
         mManager.setStackFromEnd(true);
         rvWeeklyChalenge.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
 
-        FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
+        FirebaseFirestore mDatabase = FirebaseFirestore.getInstance();
 
-        mReference = mDatabase.getReference().child("stories");
-        mUserReference = mDatabase.getReference().child("users");
+        mReference = mDatabase.collection("stories");
+        mUserReference = mDatabase.collection("users");
 
-        mCommentReference = mDatabase.getReference().child("stories").child("post-comments");
-        Query myTopPostsQuery = mDatabase.getReference().child("stories").orderByChild(Common.currentGenre);
+        mCommentReference = mDatabase.document("stories").collection("post-comments");
+      //  Query myTopPostsQuery = mDatabase.getReference().child("stories").orderByChild(Common.currentGenre);
+        com.google.firebase.firestore.Query myTopPostsQuery = Common.currentQuery.orderBy("stories");
 
-        options = new FirebaseRecyclerOptions.Builder<UserStory>()
+        options = new FirestoreRecyclerOptions.Builder<UserStory>()
                 .setQuery(myTopPostsQuery, UserStory.class)
                 .build();
 
@@ -90,7 +96,7 @@ public class StoryFragment extends Fragment {
     }
 
     private void populateStories() {
-        mAdapter = new FirebaseRecyclerAdapter<UserStory, UserStoryViewHolder>(options) {
+        mAdapter = new FirestoreRecyclerAdapter<UserStory, UserStoryViewHolder>(options) {
             @NonNull
             @Override
             public UserStoryViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
@@ -100,9 +106,10 @@ public class StoryFragment extends Fragment {
 
             @Override
             protected void onBindViewHolder(@NonNull UserStoryViewHolder viewHolder, int position, @NonNull final UserStory model) {
-                final DatabaseReference postRef = getRef(position);
+             //   final DatabaseReference postRef = getRef(position);
+                final UserStory userStory = model;
                 viewHolder.setIsRecyclable(false);
-                Log.e("reff model", mReference.child(postRef.getKey()).getKey() + "  " + model.getGenre());
+                Log.e("reff model", String.valueOf(mReference.document(userStory.getId() + "  " + model.getGenre())));
 
                 if (model.getGenre() != null) {
                     if (model.getGenre().equals(Common.currentGenre)) {
@@ -126,12 +133,12 @@ public class StoryFragment extends Fragment {
                         View.OnClickListener likeClickListener = new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                DatabaseReference globalPostRef = mReference.child(postRef.getKey());
+                                DocumentReference globalPostRef = mReference.document(userStory.getId());
                                 onLikeClicked(globalPostRef);
                             }
                         };
 
-                        viewHolder.bindToPost(model, likeClickListener, mCommentReference.child(model.getId()));
+                        viewHolder.bindToPost(model, likeClickListener, mCommentReference.document(model.getId()));
                     } else {
                         viewHolder.removeItem();
                     }
@@ -142,9 +149,9 @@ public class StoryFragment extends Fragment {
         };
     }
 
-    private void onLikeClicked(final DatabaseReference postRef) {
+    private void onLikeClicked(final DocumentReference postRef) {
 
-        postRef.runTransaction(new Transaction.Handler() {
+       /* postRef.runTransacation(new Transaction.Handler() {
             @NonNull
             @Override
             public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
@@ -175,12 +182,12 @@ public class StoryFragment extends Fragment {
 
                 Log.d("UpdateLikeCount", "postTransaction:onComplete:" + databaseError);
             }
-        });
+        });*/
     }
 
     public void sendNotification(final String message, User user, final String id) {
-        //String firebase_token = mUserReference.child(user.getUid()).child("token");
-        Query query = mUserReference.child(user.getUid()).orderByChild("token");
+      /*  //String firebase_token = mUserReference.child(user.getUid()).child("token");
+        Query query = mUserReference.document(user.getUid()).collection("token");
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -197,7 +204,7 @@ public class StoryFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.e("notification action", databaseError.getDetails());
             }
-        });
+        });*/
 
     }
 

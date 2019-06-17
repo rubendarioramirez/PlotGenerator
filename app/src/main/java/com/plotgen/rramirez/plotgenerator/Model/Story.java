@@ -2,10 +2,10 @@ package com.plotgen.rramirez.plotgenerator.Model;
 
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
+import com.google.firebase.firestore.ServerTimestamp;
 
 import java.util.HashMap;
 import java.util.Map;
-
 @IgnoreExtraProperties
 public class Story {
 
@@ -13,21 +13,24 @@ public class Story {
     private String title;
     private String genre;
     private String chalenge;
-    private long submitDate;
+    private long date;
     private User user;
+    private String story;
+
     public int likeCount = 0;
     public Map<String, Boolean> likes = new HashMap<>();
 
     public Story() {
     }
 
-    public Story(String id, String title, String genre, String chalenge, long date, User user) {
+    public Story(String id, String title,String story, String genre, String chalenge, long date, User user) {
         this.id = id;
-                this.title = title;
+        this.title = title;
         this.genre = genre;
         this.chalenge = chalenge;
-        this.submitDate = date;
+        this.date = date;
         this.user = user;
+        this.story = story;
     }
 
     public String getId() {
@@ -63,11 +66,11 @@ public class Story {
     }
 
     public long getSubmitDate() {
-        return submitDate;
+        return date;
     }
 
     public void setSubmitDate(long submitDate) {
-        this.submitDate = submitDate;
+        this.date = submitDate;
     }
 
     public User getUser() {
@@ -86,6 +89,14 @@ public class Story {
         this.likeCount = likeCount;
     }
 
+    public String getStory() {
+        return story;
+    }
+
+    public void setStory(String story) {
+        this.story = story;
+    }
+
     @Exclude
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
@@ -94,7 +105,7 @@ public class Story {
         result.put("title", title);
         result.put("genre", genre);
         result.put("chalenge", chalenge);
-        result.put("date", submitDate);
+        result.put("date", date);
         result.put("likeCount", likeCount);
         result.put("likes", likes);
 

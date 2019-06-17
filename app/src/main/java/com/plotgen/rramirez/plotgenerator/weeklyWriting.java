@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.ErrorCodes;
 import com.firebase.ui.auth.IdpResponse;
@@ -23,15 +22,10 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.reward.RewardItem;
 import com.google.android.gms.ads.reward.RewardedVideoAd;
 import com.google.android.gms.ads.reward.RewardedVideoAdListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.MutableData;
-import com.google.firebase.database.Transaction;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -45,15 +39,13 @@ import com.plotgen.rramirez.plotgenerator.Model.Challenge;
 import com.plotgen.rramirez.plotgenerator.Model.User;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import static android.app.Activity.RESULT_OK;
 import static android.content.ContentValues.TAG;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
 
     private static final int RC_SIGN_IN = 123;
@@ -64,9 +56,12 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
     private Button btViewParticipant;
     private FirebaseAnalytics mFirebaseAnalytics;
     private RewardedVideoAd mRewardedVideoAd;
-    private FirebaseDatabase mDatabase;
+    //private FirebaseDatabase mDatabase;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
+
+    FirebaseFirestore mFirestore;
+
 
     public weeklyWriting() {
         // Required empty public constructor
@@ -90,10 +85,9 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
             mRewardedVideoAd.setRewardedVideoAdListener(this);
             loadRewardedVideoAd();
         } else {
-            Utils.saveOnSharePreg(myFragmentView.getContext(), "can_submit", 1);
-            can_submit = 1;
+                Utils.saveOnSharePreg(myFragmentView.getContext(), "can_submit", 1);
+                can_submit = 1;
         }
-
         ad_desc = myFragmentView.findViewById(R.id.weekly_challenge_ad_desc);
         ad_submit_btn = myFragmentView.findViewById(R.id.weekly_challenge_btn);
         btViewParticipant = myFragmentView.findViewById(R.id.weekly_challenge_list_btn);
@@ -198,36 +192,46 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
 
             // Successfully signed in
             if (resultCode == RESULT_OK) {
-                mDatabase = FirebaseDatabase.getInstance();
+                //mDatabase = FirebaseDatabase.getInstance();
+                mFirestore = FirebaseFirestore.getInstance();
                 mAuth = FirebaseAuth.getInstance();
+                mUser = mAuth.getCurrentUser();
+                if (mUser != null) {
+                    final String firebase_token = Utils.getStringSharePref((MainActivity) getActivity(), "firebase_token");
+                    Map<String, String> map = new HashMap<>();
+                    map.put("token", firebase_token);
+                    DocumentReference ref = mFirestore.collection("users_1").document(mUser.getUid());
+                    ref.set(map);
 
-                final DatabaseReference mUserDatabase = mDatabase.getReference().child("users");
+                }
+                final DocumentReference ref = mFirestore.collection("users_1").document(mUser.getUid());
                 mUser = mAuth.getCurrentUser();
                 final String firebase_token = Utils.getStringSharePref((MainActivity) getActivity(), "firebase_token");
+                mFirestore.runTransaction(new com.google.firebase.firestore.Transaction.Function<Object>() {
+                    @Nullable
+                    @Override
+                    public Object apply(@NonNull com.google.firebase.firestore.Transaction transaction) throws FirebaseFirestoreException {
+                        DocumentSnapshot snapshot = transaction.get(ref);
 
-
-                if (mUser != null) {
-                    mUserDatabase.runTransaction(new Transaction.Handler() {
-                        @NonNull
-                        @Override
-                        public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
-                            if (mutableData.hasChild(mUser.getUid())) {
-                                mutableData.child(mUser.getUid()).child("token").setValue(firebase_token);
-                            } else {
-                                mutableData.child(mUser.getUid());
-                                mutableData.child(mUser.getUid()).setValue(mUser.getUid());
-                                mutableData.child(mUser.getUid()).child("token").setValue(firebase_token);
-                            }
-                            return Transaction.success(mutableData);
+                        if (snapshot.contains(mUser.getUid())) {
+                          ref.update("token",firebase_token);
+                        }
+                        else {
+                            ref.set(firebase_token);
                         }
 
-                        @Override
-                        public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
-                            Log.d("Updated token", "postTransaction:onComplete:" + databaseError);
 
-                        }
-                    });
-                }
+
+                        return null;
+                    }
+                }).addOnSuccessListener(new OnSuccessListener<Object>() {
+                    @Override
+                    public void onSuccess(Object o) {
+                        Log.d("Updated token", "postTransaction:onComplete:" + o);
+
+                    }
+                });
+
                 SubmitStoryFragment nextFragment = new SubmitStoryFragment();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 Utils.changeFragment(nextFragment, transaction);

@@ -7,6 +7,7 @@
     android:background="@color/colorPrimaryDark"
     tools:context=".Fragment.WeeklyChallengeFragment">
 
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvWeeklyChalenge"
         android:layout_alignParentTop="true"

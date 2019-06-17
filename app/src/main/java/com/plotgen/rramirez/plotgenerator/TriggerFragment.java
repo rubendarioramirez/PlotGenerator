@@ -8,9 +8,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
@@ -26,7 +28,7 @@ public class TriggerFragment extends Fragment {
     ArrayList trigger_backgrounds;
     List<item> mlist = new ArrayList<>();
 
-//    private String databaseToUse;
+    //    private String databaseToUse;
     private AdView mAdView;
 
     public TriggerFragment() {
@@ -38,45 +40,45 @@ public class TriggerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        ((MainActivity)getActivity()).setActionBarTitle(getString(R.string.trigger_tab));
+        ((MainActivity) getActivity()).setActionBarTitle(getString(R.string.trigger_tab));
         View myFragmentView = inflater.inflate(R.layout.fragment_trigger, container, false);
 
-        if(!Common.isPAU) {
+        if (!Common.isPAU) {
             //Add the ads
             mAdView = (AdView) myFragmentView.findViewById(R.id.adView);
             AdRequest adRequest = new AdRequest.Builder().build();
             mAdView.loadAd(adRequest);
         }
 
-
         //set up the recycler view with the adapter
         RecyclerView recyclerView = myFragmentView.findViewById(R.id.rv_list);
-        final Adapter adapter = new Adapter(this.getActivity(),mlist);
+        final Adapter adapter = new Adapter(this.getActivity(), mlist);
 
         //The arrays
         trigger_list = new ArrayList();
         trigger_backgrounds = new ArrayList();
 
         //Fill up the background trigger list
-        trigger_backgrounds.addAll(Arrays.asList(R.color.color_trigger_1,R.color.color_trigger_2,R.color.color_trigger_3,R.color.color_trigger_4,R.color.color_trigger_5));
+        trigger_backgrounds.addAll(Arrays.asList(R.color.color_trigger_1, R.color.color_trigger_2, R.color.color_trigger_3, R.color.color_trigger_4, R.color.color_trigger_5));
         String[] stringArray = getResources().getStringArray(R.array.triggers_list);
         int x = 0;
-        for(int i = 0; i<stringArray.length;i++){
+
+        for (int i = 0; i < stringArray.length; i++) {
             mlist.add(new item((Integer) trigger_backgrounds.get(x), (String) stringArray[i]));
             adapter.notifyDataSetChanged();
             x++;
-            if(x>=trigger_backgrounds.size()){
-                    x = 0;
-                }
+            if (x >= trigger_backgrounds.size()) {
+                x = 0;
             }
+        }
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        return  myFragmentView;
+        return myFragmentView;
     }
 
 
-    public void onStart(){
+    public void onStart() {
         super.onStart();
 
 

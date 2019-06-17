@@ -53,11 +53,13 @@ import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
 import com.google.firebase.dynamiclinks.PendingDynamicLinkData;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
@@ -79,6 +81,7 @@ import com.plotgen.rramirez.plotgenerator.Model.UserStory;
 
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Random;
 
 
@@ -92,8 +95,10 @@ public class MainActivity extends AppCompatActivity
     private InterstitialAd mInterstitialAd;
     private FirebaseAnalytics mFirebaseAnalytics;
     private FirebaseUser mUser;
-    private FirebaseDatabase mDatabase;
-    private DatabaseReference mUserDatabase;
+    //private FirebaseDatabase mDatabase;
+    private  FirebaseFirestore mDatabase;
+    //private DatabaseReference mUserDatabase;
+    private CollectionReference mUserDatabase;
     private String firebase_token;
     private FirebaseAuth mAuth;
     private boolean firstTime;
@@ -163,22 +168,27 @@ public class MainActivity extends AppCompatActivity
 
 
         if (!calledAlready) {
-            mDatabase = FirebaseDatabase.getInstance();
-            mDatabase.setPersistenceEnabled(true);
+            //mDatabase = FirebaseDatabase.getInstance();
+            mDatabase = FirebaseFirestore.getInstance();
+            //mDatabase.setPersistenceEnabled(true);
+            FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                    .setPersistenceEnabled(true)
+                    .build();
+            mDatabase.setFirestoreSettings(settings);
             calledAlready = true;
         }
-        mDatabase = FirebaseDatabase.getInstance();
-        mUserDatabase = mDatabase.getReference().child("users");
+        //mDatabase = FirebaseDatabase.getInstance();
+        mDatabase = FirebaseFirestore.getInstance();
+        //mUserDatabase = mDatabase.getReference().child("users");
+        mUserDatabase = mDatabase.collection("users_1");
         Common.currentDatabase = mDatabase;
 
-
+        //new DbPorter(this).loadNode("users","");
 
         // Obtain the FirebaseAnalytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
-
         FirebaseApp.initializeApp(this);
-
 
         DocumentReference mDocRef;
         if(mUser != null){
@@ -198,12 +208,9 @@ public class MainActivity extends AppCompatActivity
         }
 
 
-
-
         if (!Common.isPAU) {
             //Init the ads
             MobileAds.initialize(this, getString(R.string.ad_account_id));
-
             //Interstitial
             mInterstitialAd = new InterstitialAd(this);
             mInterstitialAd.setAdUnitId(getString(R.string.interstitial_plot_gen));
@@ -224,7 +231,8 @@ public class MainActivity extends AppCompatActivity
         }
 
         if (FirebaseInstanceId.getInstance() != null) {
-            FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(MainActivity.this, new OnSuccessListener<InstanceIdResult>() {
+            FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(MainActivity.this,
+                    new OnSuccessListener<InstanceIdResult>() {
                 @Override
                 public void onSuccess(InstanceIdResult instanceIdResult) {
                     if (instanceIdResult != null) {
@@ -239,7 +247,20 @@ public class MainActivity extends AppCompatActivity
 
         // Obtain the FirebaseAnalytics instance.
         if (mUser != null) {
-            mUserDatabase.runTransaction(new Transaction.Handler() {
+            final DocumentReference documentReference = mDatabase.collection("users_1").document(mUser.getUid());
+            mDatabase.runTransaction(new com.google.firebase.firestore.Transaction.Function<Void>() {
+                @Nullable
+                @Override
+                public Void apply(@NonNull com.google.firebase.firestore.Transaction transaction) throws FirebaseFirestoreException {
+                    DocumentSnapshot snapshot = transaction.get(documentReference);
+                      snapshot.getData().put("new token",firebase_token);
+
+
+
+                    return null;
+                }
+            });
+            /*mUserDatabase.runTransaction(new Transaction.Handler() {
                 @NonNull
                 @Override
                 public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
@@ -252,14 +273,18 @@ public class MainActivity extends AppCompatActivity
                     }
                     return Transaction.success(mutableData);
                 }
-
                 @Override
                 public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
                     Log.d("Updated token", "postTransaction:onComplete:" + databaseError);
-
                 }
-            });
+            });*/
+
+            Map<String, String> map = new HashMap<>();
+            map.put("token", firebase_token);
+            mUserDatabase.document(mUser.getUid()).set(map);
         }
+
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -354,10 +379,37 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-
-
     private void openUserStoryFragment(final String id) {
-        final DatabaseReference mPostReference = mDatabase.getReference().child("stories");
+
+        CollectionReference storyRef = mDatabase.collection("stories_1");
+        storyRef.document(id).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
+                if (documentSnapshot.exists()){
+                    if (documentSnapshot.getId().equals(id)) {
+                        String photoUrl = null;
+                        if (mUser.getPhotoUrl() != null)
+                            photoUrl = mUser.getPhotoUrl().toString();
+                        Common.currentUser = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail(), photoUrl, mUser.getPhotoUrl());
+                        Common.currentUserStory = documentSnapshot.toObject(UserStory.class);
+                        UserStoryDetailFragment nextFragment = new UserStoryDetailFragment();
+                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                        Utils.changeFragment(nextFragment, transaction);
+                        getSupportFragmentManager().popBackStack();
+//                    navigationView.setCheckedItem(R.id.nav_discover);
+
+                    } else {
+                        openHomeFragment();
+                    }
+                }else {
+                    openHomeFragment();
+                }
+            }
+        });
+
+
+
+       /* final DatabaseReference mPostReference = mDatabase.getReference().child("stories");
         Query query = mPostReference.child(id);
 
         query.addValueEventListener(new ValueEventListener() {
@@ -384,11 +436,41 @@ public class MainActivity extends AppCompatActivity
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.e("error", databaseError.getDetails());
             }
-        });
+        });*/
     }
 
     private void openStoryFragment(final String id) {
-        final DatabaseReference mPostReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts");
+
+        CollectionReference postRef = mDatabase.collection(getString(R.string.weekly_challenge_db_name))
+                .document("posts").collection("posts");
+
+        postRef.document(id).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
+                if (documentSnapshot.exists()){
+                    if (documentSnapshot.getId().equals(id)) {
+                        String photoUrl = null;
+                        if (mUser.getPhotoUrl() != null)
+                            photoUrl = mUser.getPhotoUrl().toString();
+                        Common.currentUser = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail(), photoUrl, mUser.getPhotoUrl());
+                        Common.currentStory = documentSnapshot.toObject(Story.class);
+                        Log.e("story fragments", documentSnapshot.getId());
+                        StoryDetailFragment nextFragment = new StoryDetailFragment();
+                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                        Utils.changeFragment(nextFragment, transaction);
+                        //getSupportFragmentManager().popBackStack();
+                        navigationView.setCheckedItem(R.id.nav_writting_challenge);
+                    } else {
+                        openHomeFragment();
+                    }
+                }else {
+                    openHomeFragment();
+                }
+            }
+        });
+
+
+        /*final DatabaseReference mPostReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts");
         Query query = mPostReference.child(id).orderByChild("id");
         Log.e("story fragments", id);
         query.addValueEventListener(new ValueEventListener() {
@@ -406,17 +488,15 @@ public class MainActivity extends AppCompatActivity
                     Utils.changeFragment(nextFragment, transaction);
                     //getSupportFragmentManager().popBackStack();
                     navigationView.setCheckedItem(R.id.nav_writting_challenge);
-
                 } else {
                     openHomeFragment();
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.e("error", databaseError.getDetails());
             }
-        });
+        });*/
     }
 
     public void openHomeFragment() {
@@ -596,6 +676,7 @@ public class MainActivity extends AppCompatActivity
 
 
     private void updateThemes(boolean firstTime) {
+
         int selectedTheme;
         if(firstTime) {
             selectedTheme = (int) remoteConfig_main.getLong("default_theme");

@@ -927,7 +927,7 @@ Para que el personaje pueda evolucionar en una manera positiva, tiene que comenz
     </string-array>
 
     <!-- Firebase Database name  -->
-    <string name="weekly_challenge_db_name">Weekly_Challenge_test</string>
+    <string name="weekly_challenge_db_name">Weekly_Challenge_test_1</string>
 
     <string name="edit_story">Editar historia</string>
     <string name="write_story">Escribir historia</string>

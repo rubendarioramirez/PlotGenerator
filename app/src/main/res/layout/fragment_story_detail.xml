@@ -232,7 +232,7 @@
         android:layout_marginLeft="8dp"
         android:orientation="vertical">
 
-        <com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView
+<android.support.v7.widget.RecyclerView
             android:id="@+id/lvComments"
             android:dividerHeight="1dp"
             android:textColor="?android:attr/textColorSecondary"

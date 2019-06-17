@@ -24,12 +24,7 @@ import android.widget.Toast;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.ErrorCodes;
 import com.firebase.ui.auth.IdpResponse;
-import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.reward.RewardItem;
-import com.google.android.gms.ads.reward.RewardedVideoAd;
-import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -37,9 +32,16 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.plotgen.rramirez.plotgenerator.CharListFragment;
 import com.plotgen.rramirez.plotgenerator.Common.AdsHelper;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
@@ -49,12 +51,12 @@ import com.plotgen.rramirez.plotgenerator.MainActivity;
 import com.plotgen.rramirez.plotgenerator.Model.Genre;
 import com.plotgen.rramirez.plotgenerator.Model.User;
 import com.plotgen.rramirez.plotgenerator.Model.UserStory;
+import com.plotgen.rramirez.plotgenerator.ProjectFragment;
 import com.plotgen.rramirez.plotgenerator.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -68,7 +70,7 @@ import static android.content.ContentValues.TAG;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class OfflineStoryFragment extends Fragment implements RewardedVideoAdListener {
+public class OfflineStoryFragment extends Fragment {
 
     private static final int RC_SIGN_IN = 123;
     @BindView(R.id.editor)
@@ -87,12 +89,9 @@ public class OfflineStoryFragment extends Fragment implements RewardedVideoAdLis
     private boolean isUpdate = false;
     private String project_name, project_id;
     private String mStory;
-    private FirebaseDatabase mDatabase;
+    private FirebaseFirestore mDatabase;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
-    private RewardedVideoAd mRewardedVideoAd;
-    private String language;
-    private boolean canPublish = false;
 
     public OfflineStoryFragment() {
         // Required empty public constructor
@@ -147,7 +146,6 @@ public class OfflineStoryFragment extends Fragment implements RewardedVideoAdLis
 
         ButterKnife.bind(this, view);
 
-
         try {
             project_name = Common.currentProject.getName();
             project_id = Common.currentProject.getId();
@@ -155,7 +153,7 @@ public class OfflineStoryFragment extends Fragment implements RewardedVideoAdLis
             Log.v("matilda", e.toString());
         }
 
-        mDatabase = FirebaseDatabase.getInstance();
+        mDatabase = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
         mUser = mAuth.getCurrentUser();
@@ -166,18 +164,6 @@ public class OfflineStoryFragment extends Fragment implements RewardedVideoAdLis
         } else {
             mStory = "";
         }
-
-
-        if (!Common.isPAU) {
-            //Rewarded ad
-            mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this.getContext());
-            mRewardedVideoAd.setRewardedVideoAdListener(this);
-            loadRewardedVideoAd();
-        } else {
-            canPublish = true;
-        }
-
-        language = Locale.getDefault().getDisplayLanguage();
 
         //Save button
         FloatingActionButton fabSaveStory = view.findViewById(R.id.btnSaveStory);
@@ -207,13 +193,7 @@ public class OfflineStoryFragment extends Fragment implements RewardedVideoAdLis
                                     .build(),
                             RC_SIGN_IN);
                 } else {
-                    if (canPublish) {
-                        publishStory();
-                    } else {
-                        if (mRewardedVideoAd.isLoaded()) {
-                            mRewardedVideoAd.show();
-                        }
-                    }
+                    publishStory();
                 }
             }
         });
@@ -247,7 +227,6 @@ public class OfflineStoryFragment extends Fragment implements RewardedVideoAdLis
             mEditor.setTextBackgroundColor(getResources().getColor(R.color.background_4));
         }
 
-
         mEditor.setPadding(10, 10, 10, 10);
         if (mStory.equals("")) {
             mEditor.setPlaceholder("Insert text here...");
@@ -260,7 +239,6 @@ public class OfflineStoryFragment extends Fragment implements RewardedVideoAdLis
         mEditor.setOnTextChangeListener(new RichEditor.OnTextChangeListener() {
             @Override
             public void onTextChange(String text) {
-
                 mStory = text;
             }
         });
@@ -270,11 +248,32 @@ public class OfflineStoryFragment extends Fragment implements RewardedVideoAdLis
 
     private void publishStory() {
         final ArrayList<String> project = Utils.getProject(this.getContext(), project_name);
-        final DatabaseReference mStoriesDatabase = mDatabase.getReference().child("stories");
-        Query myTopPostsQuery = mStoriesDatabase.child(mUser.getUid() + "_" + project_id);
+        final CollectionReference mStoriesDatabase = mDatabase.collection("stories");
+        String key = mStoriesDatabase.getId();
+
+        Long tsLong = System.currentTimeMillis() / 1000;
+        UserStory story = new UserStory(key, project_name, project_id,
+                project.get(1), project.get(2), mStory, tsLong,
+                new User(Common.currentUser.getUid(),
+                        Common.currentUser.getName(),
+                        Common.currentUser.getEmail(),
+                        Common.currentUser.getPicUrl().toString()));
+
+        Genre genre = new Genre(Common.currentUser.getUid(), key, project.get(1), project_id);
+        Map<String, Object> genreValues = genre.toMap();
+        Map<String, Object> storyValues = story.toMap();
+        mStoriesDatabase.add(storyValues);
+
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put(key, storyValues);
+        childUpdates.put("/genre/" + project.get(1) + "/" + key, genreValues);
+
+        mStoriesDatabase.document().update(childUpdates);
+
+        Query myTopPostsQuery = mStoriesDatabase;
 
 
-        mStoriesDatabase.runTransaction(new Transaction.Handler() {
+        mStoriesDatabase.add(new Transaction.Handler() {
             @NonNull
             @Override
             public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
@@ -287,14 +286,19 @@ public class OfflineStoryFragment extends Fragment implements RewardedVideoAdLis
             }
         });
 
-        myTopPostsQuery.addValueEventListener(new ValueEventListener() {
+
+
+
+        myTopPostsQuery.addSnapshotListener(new EventListener<QuerySnapshot>() {
+         String key = mStoriesDatabase.getId();
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    String key = dataSnapshot.getKey();
+            public void onEvent(@javax.annotation.Nullable QuerySnapshot queryDocumentSnapshots, @javax.annotation.Nullable FirebaseFirestoreException e) {
+                if (!queryDocumentSnapshots.isEmpty())
+                {
+                  //  String key = queryDocumentSnapshots.key();
                     Long tsLong = System.currentTimeMillis() / 1000;
                     UserStory story = new UserStory(key, project_name, project_id,
-                            project.get(1), project.get(2), mStory, language, tsLong,
+                            project.get(1), project.get(2), mStory, tsLong,
                             new User(Common.currentUser.getUid(),
                                     Common.currentUser.getName(),
                                     Common.currentUser.getEmail(),
@@ -303,13 +307,13 @@ public class OfflineStoryFragment extends Fragment implements RewardedVideoAdLis
                     Genre genre = new Genre(Common.currentUser.getUid(), key, project.get(1), project_id);
                     Map<String, Object> genreValues = genre.toMap();
                     Map<String, Object> storyValues = story.toMap();
+                    mStoriesDatabase.add(storyValues);
 
                     Map<String, Object> childUpdates = new HashMap<>();
                     childUpdates.put(key, storyValues);
                     childUpdates.put("/genre/" + project.get(1) + "/" + key, genreValues);
 
-                      mStoriesDatabase.updateChildren(childUpdates);
-                      Toast.makeText(getContext(),"Success",Toast.LENGTH_LONG).show();
+                    mStoriesDatabase.document().update(childUpdates);
 
                 } else {
                     //  String key = mStoriesDatabase.push().getKey();
@@ -317,7 +321,7 @@ public class OfflineStoryFragment extends Fragment implements RewardedVideoAdLis
                     Long tsLong = System.currentTimeMillis() / 1000;
 
                     UserStory story = new UserStory(key, project_name, project_id,
-                            project.get(1), project.get(2), mStory,language, tsLong,
+                            project.get(1), project.get(2), mStory, tsLong,
                             new User(Common.currentUser.getUid(),
                                     Common.currentUser.getName(),
                                     Common.currentUser.getEmail(),
@@ -331,8 +335,55 @@ public class OfflineStoryFragment extends Fragment implements RewardedVideoAdLis
                     childUpdates.put(key, storyValues);
                     childUpdates.put("/genre/" + project.get(1) + "/" + key, genreValues);
 
-                    mStoriesDatabase.updateChildren(childUpdates);
-                    Toast.makeText(getContext(),"Success",Toast.LENGTH_LONG).show();
+                    mStoriesDatabase.document().update(childUpdates);
+                }
+            }
+
+
+
+          /*  @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    String key = dataSnapshot.getKey();
+                    Long tsLong = System.currentTimeMillis() / 1000;
+                    UserStory story = new UserStory(key, project_name, project_id,
+                            project.get(1), project.get(2), mStory, tsLong,
+                            new User(Common.currentUser.getUid(),
+                                    Common.currentUser.getName(),
+                                    Common.currentUser.getEmail(),
+                                    Common.currentUser.getPicUrl().toString()));
+
+                    Genre genre = new Genre(Common.currentUser.getUid(), key, project.get(1), project_id);
+                    Map<String, Object> genreValues = genre.toMap();
+                    Map<String, Object> storyValues = story.toMap();
+
+                    Map<String, Object> childUpdates = new HashMap<>();
+                    childUpdates.put(key, storyValues);
+                    childUpdates.put("/genre/" + project.get(1) + "/" + key, genreValues);
+
+                      mStoriesDatabase.document().update(childUpdates);
+
+                } else {
+                    //  String key = mStoriesDatabase.push().getKey();
+                    String key = mUser.getUid().concat("_" + project_id);
+                    Long tsLong = System.currentTimeMillis() / 1000;
+
+                    UserStory story = new UserStory(key, project_name, project_id,
+                            project.get(1), project.get(2), mStory, tsLong,
+                            new User(Common.currentUser.getUid(),
+                                    Common.currentUser.getName(),
+                                    Common.currentUser.getEmail(),
+                                    Common.currentUser.getPicUrl().toString()));
+
+                    Genre genre = new Genre(Common.currentUser.getUid(), key, project.get(1), project_id);
+                    Map<String, Object> genreValues = genre.toMap();
+                    Map<String, Object> storyValues = story.toMap();
+
+                    Map<String, Object> childUpdates = new HashMap<>();
+                    childUpdates.put(key, storyValues);
+                    childUpdates.put("/genre/" + project.get(1) + "/" + key, genreValues);
+
+                    mStoriesDatabase.document().update(childUpdates);
                 }
             }
 
@@ -340,11 +391,10 @@ public class OfflineStoryFragment extends Fragment implements RewardedVideoAdLis
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.e("error", databaseError.getDetails());
 
-            }
+            }*/
         });
 
-     /*   String key = mStoriesDatabase.push().getKey();
-        Long tsLong = System.currentTimeMillis() / 1000;
+      /*  Long tsLong = System.currentTimeMillis() / 1000;
 
 
         UserStory story = new UserStory(key, project_name, project_id,
@@ -362,7 +412,7 @@ public class OfflineStoryFragment extends Fragment implements RewardedVideoAdLis
         childUpdates.put(key, storyValues);
         childUpdates.put("/genre/" + project.get(1) + "/" + key, genreValues);
 
-        mStoriesDatabase.updateChildren(childUpdates);*/
+        mStoriesDatabase.document().update(childUpdates);*/
 
     }
 
@@ -396,7 +446,7 @@ public class OfflineStoryFragment extends Fragment implements RewardedVideoAdLis
         }
     }
 
-   /* private void saveStoryToDB(View v) {
+    private void saveStoryToDB(View v) {
         SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(mySQLiteDBHelper.STORY_COLUMN_PROJECT, project_name);
@@ -445,10 +495,10 @@ public class OfflineStoryFragment extends Fragment implements RewardedVideoAdLis
 
         ProjectFragment nextFragment = new ProjectFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        Utils.changeFragment(nextFragment, transaction, "", "");
+        Utils.changeFragment(nextFragment, transaction);
         getFragmentManager().popBackStack();
 
-    }*/
+    }
 
     private String getStoryFromDB(Context context, String project_id) {
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
@@ -483,52 +533,5 @@ public class OfflineStoryFragment extends Fragment implements RewardedVideoAdLis
         // getFragmentManager().popBackStack();
     }
 
-    private void loadRewardedVideoAd() {
-        mRewardedVideoAd.loadAd(getString(R.string.reward_ad_plot_gen),
-                new AdRequest.Builder()
-                        .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
-                        .build());
-    }
-
-    @Override
-    public void onRewardedVideoAdLoaded() {
-
-    }
-
-    @Override
-    public void onRewardedVideoAdOpened() {
-
-    }
-
-    @Override
-    public void onRewardedVideoStarted() {
-
-    }
-
-    @Override
-    public void onRewardedVideoAdClosed() {
-        loadRewardedVideoAd();
-    }
-
-    @Override
-    public void onRewarded(RewardItem rewardItem) {
-        //Get the reward
-        canPublish = true;
-    }
-
-    @Override
-    public void onRewardedVideoAdLeftApplication() {
-
-    }
-
-    @Override
-    public void onRewardedVideoAdFailedToLoad(int i) {
-
-    }
-
-    @Override
-    public void onRewardedVideoCompleted() {
-
-    }
 
 }

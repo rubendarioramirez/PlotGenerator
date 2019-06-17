@@ -105,7 +105,8 @@ public class Project_detailsFragment extends Fragment {
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(myFragmentView.getContext());
 
 
-        ArrayAdapter<CharSequence> genre_adapter = ArrayAdapter.createFromResource(myFragmentView.getContext(), R.array.genres_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> genre_adapter = ArrayAdapter.createFromResource(myFragmentView.getContext(),
+                R.array.genres_array, android.R.layout.simple_spinner_item);
         genre_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         project_genre_spinner.setAdapter(genre_adapter);
 
@@ -284,7 +285,6 @@ public class Project_detailsFragment extends Fragment {
                 @Override
                 public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
                     Log.d("Updated token", "postTransaction:onComplete:" + databaseError);
-
                 }
             });
 
@@ -300,7 +300,6 @@ public class Project_detailsFragment extends Fragment {
                     }
                     return Transaction.success(mutableData);
                 }
-
                 @Override
                 public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
                     Log.d("Updated token", "postTransaction:onComplete:" + databaseError);
@@ -313,10 +312,8 @@ public class Project_detailsFragment extends Fragment {
     private boolean isEmpty(TextView etText) {
         if (etText.getText().toString().trim().length() > 0)
             return false;
-
         return true;
     }
-
 
     public ArrayList<String> getProject(Context context) {
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
@@ -376,7 +373,6 @@ public class Project_detailsFragment extends Fragment {
                 } else {
                     openGallery();
                 }
-
                 dialog.dismiss();
             }
         });
@@ -416,12 +412,10 @@ public class Project_detailsFragment extends Fragment {
                 if (resultCode == RESULT_OK) {
                     if (data != null) {
                         uri = data.getData();
-
                         try {
                             filepath = Utils.getFilePath(myFragmentView.getContext(), uri);
                             if (filepath != null)
                                 project_icon_iv.setImageURI(Uri.parse(filepath));
-
                         } catch (URISyntaxException e) {
                             e.printStackTrace();
                         }

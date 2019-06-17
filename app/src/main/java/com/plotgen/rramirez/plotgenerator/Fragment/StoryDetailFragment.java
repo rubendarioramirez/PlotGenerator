@@ -9,6 +9,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,7 +21,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Registry;
@@ -28,21 +32,35 @@ import com.bumptech.glide.module.AppGlideModule;
 import com.bumptech.glide.request.RequestOptions;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.dynamiclinks.DynamicLink;
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
 import com.google.firebase.dynamiclinks.ShortDynamicLink;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
+import com.google.firebase.firestore.Transaction;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.RemoteMessage;
 import com.google.firebase.storage.StorageReference;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Notify;
@@ -51,9 +69,13 @@ import com.plotgen.rramirez.plotgenerator.Model.Story;
 import com.plotgen.rramirez.plotgenerator.Model.User;
 import com.plotgen.rramirez.plotgenerator.R;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
+import com.plotgen.rramirez.plotgenerator.ViewHolder.CommentViewHolder;
+import com.plotgen.rramirez.plotgenerator.ViewHolder.StoryViewHolder;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import butterknife.BindView;
@@ -91,17 +113,22 @@ public class StoryDetailFragment extends Fragment {
     TextView tvComments;
 
     @BindView(R.id.lvComments)
-    ExpandableHeightListView lvComments;
+    RecyclerView lvComments;
 
     @BindView(R.id.fieldCommentText)
     MaterialEditText etCommentText;
+    private FirestoreRecyclerAdapter<Story, StoryViewHolder> mMyPostAdapter;
 
-    FirebaseListAdapter<Comment> adapter;
-    FirebaseListOptions<Comment> options;
+    FirestoreRecyclerAdapter<Comment, CommentViewHolder> adapter;
+    FirestoreRecyclerOptions<Comment> options;
 
-    private FirebaseDatabase mDatabase;
-    private DatabaseReference mCommentReference, mPostReference;
-    private DatabaseReference mUserReference;
+    private FirebaseFirestore mDatabase;
+    private CollectionReference mCommentReference;
+    private CollectionReference mPostReference;
+    private CollectionReference mUserReference;
+    public Map<String,Object> map = new HashMap<>();
+
+    private  LinearLayoutManager manager;
 
     @OnClick(R.id.buttonPostComment)
     public void postComment(View v) {
@@ -113,16 +140,37 @@ public class StoryDetailFragment extends Fragment {
             return;
         }
 
+
         final Comment comment = new Comment(Common.currentUser.getUid(),
                 Common.currentUser.getName(),
                 Common.currentUser.getPicUrl().toString(),
                 etCommentText.getText().toString());
 
         // Push the comment, it will appear in the list
-        mCommentReference.push().setValue(comment);
+        CollectionReference documentReference =  mDatabase.collection(getString(R.string.weekly_challenge_db_name)).document("post-comments").collection("post-comments").document(Common.currentStory.getId()).collection("Comments");
+        documentReference.add(comment).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Toast.makeText(getActivity(), "Added  Successfully", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+      /*  mCommentReference.add(comment).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Toast.makeText(getActivity(), "Added  Successfully", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getActivity(), "Added  Failed", Toast.LENGTH_SHORT).show();
+
+            }
+        });*/
         if (comment != null) {
-            sendNotification(Common.currentUser.getName() + " commented on your post",
-                    Common.currentStory.getUser(), Common.currentStory.getId());
+            //sendNotification(Common.currentUser.getName() + " commented on your post",
+              //      Common.currentStory.getUser(), Common.currentStory.getId());
         }
         // Clear the field
         etCommentText.setText(null);
@@ -183,13 +231,30 @@ public class StoryDetailFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_story_detail, container, false);
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        mDatabase = FirebaseFirestore.getInstance();
+        mDatabase = Common.currentDatabase;
+        mCommentReference = Common.currentCommentReference;
+        mUserReference = Common.currentUserReference;
+        Query query = Common.currentQuery.orderBy("likeCount");
+
 
         ButterKnife.bind(this, view);
 
         mDatabase = Common.currentDatabase;
-        mPostReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts").child(Common.currentStory.getId());
-        mCommentReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("post-comments").child(Common.currentStory.getId());
-        mUserReference = mDatabase.getReference().child("users");
+
+        mCommentReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name)).document("post-comments").collection("post-comments").document(Common.currentStory.getId()).collection("Comments");
+      //  final CollectionReference mPostReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name))
+               // .document("posts").collection(Common.currentStory.getId());
+       // mPostReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name)).document("posts").collection(Common.currentStory.getId());
+       // final CollectionReference mCommentReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name))
+         //       .document("post-comments").collection(Common.currentStory.getId());
+       // mCommentReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name)).document("post-comments").collection(Common.currentStory.getId());
+       // CollectionReference mUserReference = mDatabase.collection("users");
+        Query query1 = mCommentReference;
+
+        final CollectionReference collectionReference1 = mDatabase.collection(getString(R.string.weekly_challenge_db_name)).document("posts").collection("posts");
+
+      //  mUserReference = mDatabase.collection("users");
 
 //        mPostReference = mDatabase.getReference().child("Weekly_Challenge").child("posts").child(Common.currentStory.getId());
 //        mCommentReference = mDatabase.getReference().child("Weekly_Challenge").child("post-comments").child(Common.currentStory.getId());
@@ -200,6 +265,12 @@ public class StoryDetailFragment extends Fragment {
         tvGenre.setText(Common.currentStory.getGenre());
         tvStory.setText(Common.currentStory.getChalenge());
 
+        manager = new LinearLayoutManager(getActivity());
+        manager.setReverseLayout(true);
+        manager.setStackFromEnd(true);
+        lvComments.setLayoutManager(manager);
+
+
         if (Common.currentStory.likes.containsKey(Common.currentUser.getUid())) {
             ivLoves.setImageResource(R.drawable.ic_love_red);
         } else {
@@ -209,25 +280,84 @@ public class StoryDetailFragment extends Fragment {
         ivLoves.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onLikeClicked(mPostReference);
+              //  Toast.makeText(getActivity(), "Liked", Toast.LENGTH_SHORT).show();
+                DocumentReference documentReference = collectionReference1.document(Common.currentStory.getId());
+
+                onLikeClicked(documentReference);
             }
         });
         tvLoves.setText(String.valueOf(Common.currentStory.getLikeCount()));
 
-        options = new FirebaseListOptions.Builder<Comment>()
-                .setQuery(mCommentReference, Comment.class)
-                .setLayout(R.layout.item_comment)
+        options = new FirestoreRecyclerOptions.Builder<Comment>()
+                .setQuery(query1, Comment.class)
                 .build();
 
         populateComments();
+        lvComments.setAdapter(adapter);
         checkCommentCount();
+
 
         return view;
     }
 
-    private void onLikeClicked(DatabaseReference postRef) {
-        postRef.runTransaction(new Transaction.Handler() {
+
+    private void onLikeClicked(final DocumentReference documentReference1) {
+        final DocumentReference documentReference = documentReference1.collection("likes").document();
+
+        mDatabase.runTransaction(new Transaction.Function<Void>() {
+            @Nullable
             @Override
+            public Void apply(@NonNull Transaction transaction) throws FirebaseFirestoreException {
+
+                Story p = transaction.get(documentReference1).toObject(Story.class);
+
+
+                if (p.likes.containsKey(Common.currentUser.getUid())) {
+                    // Unstar the post and remove self from stars
+                    p.likeCount = p.likeCount - 1;
+                    p.likes.remove(Common.currentUser.getUid());
+                } else {
+                    // Star the post and add self to stars
+                    p.likeCount = p.likeCount + 1;
+                    p.likes.put(Common.currentUser.getUid(), true);
+                   // sendNotification(Common.currentUser.getName() + " liked your post", p.getUser(), p.getId());
+                }
+
+                // Set value and report transaction success
+
+                transaction.set(documentReference1,p);
+               // documentReference.set(p);
+                Common.tempStory = p;
+                return null;
+
+            }
+        }).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (Common.tempStory.likes.containsKey(Common.currentUser.getUid())) {
+                            ivLoves.setImageResource(R.drawable.ic_love_red);
+                        } else {
+                            ivLoves.setImageResource(R.drawable.ic_love_outline);
+                        }
+                        tvLoves.setText(String.valueOf(Common.tempStory.getLikeCount()));
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getActivity(), "Failed", Toast.LENGTH_SHORT).show();
+                Log.e("Failed","like failed"+e);
+            }
+        });
+
+    }
+
+
+           /* @Override
             public Transaction.Result doTransaction(MutableData mutableData) {
                 Story p = mutableData.getValue(Story.class);
                 if (p == null) {
@@ -269,11 +399,38 @@ public class StoryDetailFragment extends Fragment {
                 });
             }
         });
-    }
-
+    }*/
     public void sendNotification(final String message, User user, final String id) {
         //String firebase_token = mUserReference.child(user.getUid()).child("token");
-        Query query = mUserReference.child(user.getUid()).orderByChild("token");
+
+        mUserReference.document(user.getUid()).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
+                if (documentSnapshot.exists()) {
+                    String token = documentSnapshot.getString("token");
+                    String to = token; // the notification key
+                    AtomicInteger msgId = new AtomicInteger();
+                    new Notify(to, message, id, "Weekly Challenge").execute();
+                    //notifyMessage(to,message);
+                    FirebaseMessaging.getInstance().send(new RemoteMessage.Builder(to)
+                            .setMessageId(String.valueOf(msgId.get()))
+                            .addData("title", "Weekly Challenge")
+                            .addData("body", message)
+                            .build());
+                    Log.e("message", new RemoteMessage.Builder(to).setMessageId(String.valueOf(msgId.get()))
+                            .addData("title", "Weekly Challenge")
+                            .addData("body", message).toString());
+                }
+            }
+        });
+    }
+
+   /* public void sendNotification(final String message, User user, final String id) {
+        //String firebase_token = mUserReference.child(user.getUid()).child("token");
+      //  Query query = mUserReference.document(user.getUid()).collection("token");
+        CollectionReference query = mDatabase.collection(user.getUid())
+                .document("token").collection("");
+
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -291,11 +448,23 @@ public class StoryDetailFragment extends Fragment {
             }
         });
 
-    }
+    }*/
 
     private void checkCommentCount() {
-        mCommentReference.addValueEventListener(new ValueEventListener() {
+        mCommentReference.addSnapshotListener(new EventListener<QuerySnapshot>() {
+
+
             @Override
+            public void onEvent(@javax.annotation.Nullable QuerySnapshot queryDocumentSnapshots, @javax.annotation.Nullable FirebaseFirestoreException e) {
+                int commentCount = 0;
+                for (DocumentSnapshot commentData : queryDocumentSnapshots.getDocuments()) {
+                    commentCount++;
+                }
+                tvComments.setText(String.valueOf(commentCount));
+
+            }
+
+         /*   @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int commentCount = 0;
                 for (DataSnapshot commentData : dataSnapshot.getChildren()) {
@@ -309,13 +478,38 @@ public class StoryDetailFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
+            }*/
         });
     }
 
     private void populateComments() {
-        adapter = new FirebaseListAdapter<Comment>(options) {
+        adapter = new FirestoreRecyclerAdapter<Comment, CommentViewHolder>(options) {
+            @NonNull
             @Override
+            public CommentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+                return new CommentViewHolder(inflater.inflate(R.layout.item_comment, parent, false));
+            }
+
+                @Override
+            protected void onBindViewHolder(@NonNull CommentViewHolder holder, int position, @NonNull Comment model) {
+
+                    final Comment comment = model;
+                    holder.tvCommentBody.setText(model.getUserComment());
+
+                    Glide.with(getActivity().getApplicationContext())
+                            .load(model.getUserPic())
+                            .apply(RequestOptions.circleCropTransform())
+                            .into(holder.ivCommentPic);
+                    holder.tvCommentUser.setText(model.getUserName());
+                    holder.setIsRecyclable(false);
+
+
+
+                      holder.bindToPost(model);
+            }
+
+           /* @Override
             protected void populateView(@NonNull View v, @NonNull Comment model, int position) {
 
                 ImageView ivCommentPic;
@@ -333,11 +527,11 @@ public class StoryDetailFragment extends Fragment {
                 tvCommentUser.setText(model.getUserName());
                 tvCommentBody.setText(model.getUserComment());
 
-            }
+            }*/
         };
-        lvComments.setFocusable(false);
-        lvComments.setAdapter(adapter);
-        lvComments.setExpanded(true);
+      //  lvComments.setFocusable(false);
+        //lvComments.setAdapter(adapter);
+       // lvComments.setExpanded(true);
     }
 
     @GlideModule

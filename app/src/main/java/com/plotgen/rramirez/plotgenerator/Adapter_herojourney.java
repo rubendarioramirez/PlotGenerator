@@ -30,7 +30,6 @@ public class Adapter_herojourney extends RecyclerView.Adapter<Adapter_herojourne
     public myViewHolder_heroJourney onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View v = inflater.inflate(R.layout.hero_jouney_card_item, parent, false);
-
         return new Adapter_herojourney.myViewHolder_heroJourney(v, mContext, mData);
     }
 
@@ -40,8 +39,6 @@ public class Adapter_herojourney extends RecyclerView.Adapter<Adapter_herojourne
         holder.hero_journey_card_title.setText(mData.get(position).getHerojourney_title());
         holder.hero_journey_card_act.setText(mData.get(position).getHerojourney_act());
         holder.hero_journey_card_desc.setText(mData.get(position).getHerojourney_desc());
-
-
     }
 
     @Override

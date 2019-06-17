@@ -16,9 +16,15 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Model.UserStory;
 import com.plotgen.rramirez.plotgenerator.R;
+
+import javax.annotation.Nullable;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -57,7 +63,7 @@ public class UserStoryViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bindToPost(UserStory story, View.OnClickListener likeClickListener,
-                           DatabaseReference commentRef) {
+                           DocumentReference commentRef) {
         if (story.getUser() != null)
             Glide.with(itemView.getContext())
                     .load(story.getUser().getUriString())
@@ -82,8 +88,20 @@ public class UserStoryViewHolder extends RecyclerView.ViewHolder {
 
         Log.v("matilda", "Called bindToPost");
 
-        commentRef.addValueEventListener(new ValueEventListener() {
+        commentRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                if (documentSnapshot.exists()){
+                    int commentCount = 0;
+                    if (documentSnapshot.getData()!=null){
+                        commentCount = documentSnapshot.getData().size();
+                    }
+                    tvComments.setText(String.valueOf(commentCount));
+                }
+
+            }
+
+          /*  @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int commentCount = 0;
                 for (DataSnapshot commentData : dataSnapshot.getChildren()) {
@@ -96,7 +114,7 @@ public class UserStoryViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
+            }*/
         });
     }
 
