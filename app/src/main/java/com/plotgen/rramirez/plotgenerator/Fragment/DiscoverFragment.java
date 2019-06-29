@@ -103,7 +103,7 @@ public class DiscoverFragment extends Fragment {
               //  final DatabaseReference postRef = getRef(position);
                 final Genre genre = model;
                 holder.setIsRecyclable(false);
-                Log.e("reff", mReference.document("genre").collection(model.getGenre()).getId() + "  ");
+                //Log.e("reff", mReference.document("genre").collection(model.getGenre()).getId() + "  ");
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

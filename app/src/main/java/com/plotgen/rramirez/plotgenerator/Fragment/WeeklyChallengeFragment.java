@@ -102,11 +102,9 @@ public class WeeklyChallengeFragment extends Fragment {
         mReference = Common.currentReference;
         mCommentReference = Common.currentCommentReference;
 
-
-        Query query1 = mDatabase.collection(getString(R.string.weekly_challenge_db_name));
-        collectionReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name)).document("posts").collection("posts");
-        Query query2 = collectionReference.orderBy("likeCount");
-
+        //collectionReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name)).document("posts").collection("posts");
+        //Query query2 = collectionReference.orderBy("likeCount", Query.Direction.ASCENDING);
+        Query query2 = Common.currentQuery.orderBy("likeCount", Query.Direction.ASCENDING);
 
         mAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
             @Override

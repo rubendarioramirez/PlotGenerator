@@ -5,15 +5,19 @@ public class Comment {
     private String userName;
     private String userPic;
     private String userComment;
+    private long userDate;
 
     public Comment() {
     }
 
-    public Comment(String userId, String userName, String userPic, String userComment) {
+
+
+    public Comment(String userId, String userName, String userPic, String userComment, long userDate) {
         this.userId = userId;
         this.userName = userName;
         this.userPic = userPic;
         this.userComment = userComment;
+        this.userDate = userDate;
     }
 
     public String getUserComment() {
@@ -46,6 +50,14 @@ public class Comment {
 
     public void setUserPic(String userPic) {
         this.userPic = userPic;
+    }
+
+    public long getUserDate() {
+        return userDate;
+    }
+
+    public void setUserDate(long userDate) {
+        this.userDate = userDate;
     }
 }
 

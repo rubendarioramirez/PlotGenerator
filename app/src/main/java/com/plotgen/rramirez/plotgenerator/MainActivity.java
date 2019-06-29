@@ -570,12 +570,12 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        if (id == R.id.nav_discover) {
+        /*if (id == R.id.nav_discover) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.flMain, new DiscoverFragment());
             mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
             ft.commit();
-        }
+        }*/
         if (id == R.id.nav_trigger) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.flMain, new TriggerFragment());
@@ -682,10 +682,8 @@ public class MainActivity extends AppCompatActivity
             selectedTheme = (int) remoteConfig_main.getLong("default_theme");
             Utils.saveOnSharePreg(getApplicationContext(), "selectedTheme", selectedTheme);
             MainActivity.this.recreate();
-            Log.v("matilda", "value is " + selectedTheme);
         } else {
             selectedTheme = Utils.getSharePref(getApplicationContext(), "selectedTheme", 0);
-            Log.v("matilda", "Theme selected is " + selectedTheme);
         }
 
         if (selectedTheme == 0) {

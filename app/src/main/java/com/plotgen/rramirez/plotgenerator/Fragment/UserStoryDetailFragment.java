@@ -133,10 +133,11 @@ public class UserStoryDetailFragment extends Fragment {
             return;
         }
 
+        Long tsLong = System.currentTimeMillis() / 1000;
         final Comment comment = new Comment(Common.currentUser.getUid(),
                 Common.currentUser.getName(),
                 Common.currentUser.getPicUrl().toString(),
-                etCommentText.getText().toString());
+                etCommentText.getText().toString(), tsLong);
 
         // Push the comment, it will appear in the list
         mCommentReference.add(comment).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -150,8 +151,6 @@ public class UserStoryDetailFragment extends Fragment {
                 Toast.makeText(getActivity(), "Added Failed", Toast.LENGTH_SHORT).show();
             }
         });
-        /*sendNotification(Common.currentUser.getName() + " commented on your post",
-                Common.currentUserStory.getUser(), Common.currentUserStory.getId());*/
         // Clear the field
         etCommentText.setText(null);
     }
@@ -321,26 +320,6 @@ public class UserStoryDetailFragment extends Fragment {
         });
     }
 
-    /*public void sendNotification(final String message, User user, final String id) {
-        //String firebase_token = mUserReference.child(user.getUid()).child("token");
-        Query query = mUserReference.document(user.getUid()).collection("token");
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.hasChild("token")) {
-                    String token = dataSnapshot.child("token").getValue().toString();
-                    new Notify(token, message, id, "Stories").execute();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e("notification action", databaseError.getDetails());
-            }
-        });
-
-    }
-*/
     private void checkCommentCount() {
         mCommentReference.add(new ValueEventListener() {
             @Override
@@ -376,25 +355,6 @@ public class UserStoryDetailFragment extends Fragment {
                 holder.bindToPost(model);
 
             }
-           /* @Override
-            protected void populateView(@NonNull View v, @NonNull Comment model, int position) {
-
-                ImageView ivCommentPic;
-                TextView tvCommentUser, tvCommentBody;
-
-                ivCommentPic = v.findViewById(R.id.ivCommentPic);
-                tvCommentUser = v.findViewById(R.id.tvCommentUser);
-                tvCommentBody = v.findViewById(R.id.tvCommentBody);
-
-                Glide.with(getActivity().getApplicationContext())
-                        .load(model.getUserPic())
-                        .apply(RequestOptions.circleCropTransform())
-                        .into(ivCommentPic);
-
-                tvCommentUser.setText(model.getUserName());
-                tvCommentBody.setText(model.getUserComment());
-
-            }*/
         };
         lvComments.setFocusable(false);
         lvComments.setAdapter((ListAdapter) adapter);

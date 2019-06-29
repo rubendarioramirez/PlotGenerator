@@ -72,6 +72,7 @@ public class Wc_participants_recent extends Fragment {
     private CollectionReference mReference_recent;
     private CollectionReference mCommentReference_recent;
     private CollectionReference mUserReference_recent;
+    CollectionReference collectionReference_recent;
 
     private LinearLayoutManager mManager;
 
@@ -93,10 +94,13 @@ public class Wc_participants_recent extends Fragment {
         mDatabase_recent = Common.currentDatabase;
         mAuth = Common.currentAuth;
         mUser = Common.currentFirebaseUser;
-        mCommentReference_recent = Common.currentCommentReference;
         mUserReference_recent = Common.currentUserReference;
+        mReference_recent = Common.currentReference;
+        mUserReference_recent = Common.currentCommentReference;
 
-        com.google.firebase.firestore.Query query_recents = Common.currentQuery.orderBy("date");
+        //collectionReference_recent = mDatabase_recent.collection(getString(R.string.weekly_challenge_db_name)).document("posts").collection("posts");
+        //Query query2 = collectionReference_recent.orderBy("submitDate", Query.Direction.DESCENDING);
+        Query query2 = Common.currentQuery.orderBy("submitDate", Query.Direction.DESCENDING);
 
         mAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
             @Override
@@ -111,16 +115,13 @@ public class Wc_participants_recent extends Fragment {
         mManager.setStackFromEnd(true);
         rvWeeklyChallenge.setLayoutManager(mManager);
 
-
-        mReference_recent = mDatabase_recent.collection(getString(R.string.weekly_challenge_db_name)).document("posts").collection("posts");
-        Query query = mReference_recent.orderBy("date");
         optionsMostRecent = new FirestoreRecyclerOptions.Builder<Story>()
-                .setQuery(query, Story.class)
+                .setQuery(query2, Story.class)
                 .build();
+
 
         populateWeeklyChallenge();
         rvWeeklyChallenge.setAdapter(mRecentAdapter);
-        mRecentAdapter.notifyDataSetChanged();
 
         return view;
     }
@@ -137,11 +138,11 @@ public class Wc_participants_recent extends Fragment {
 
             @Override
             protected void onBindViewHolder(StoryViewHolder viewHolder, int position, final Story model) {
+                //   final DatabaseReference postRef = getRef(position);
                 final Story currentStory = model;
+
+                Integer i = getActivity().getIntent().getIntExtra("comments",0);
                 viewHolder.setIsRecyclable(false);
-
-
-                //  if (model.getTitle().contains(Common.currentChallenge.getName())) {
 
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -153,7 +154,6 @@ public class Wc_participants_recent extends Fragment {
                         transaction.addToBackStack(null);
                     }
                 });
-
                 if (model.likes.containsKey(Common.currentUser.getUid())) {
                     viewHolder.ivLoves.setImageResource(R.drawable.ic_love_red);
                 } else {
@@ -163,20 +163,17 @@ public class Wc_participants_recent extends Fragment {
                 View.OnClickListener likeClickListener = new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        DocumentReference documentReference = mReference_recent.document(model.getId());
-                          onLikeClicked(documentReference);
+                        DocumentReference globalPostRef = collectionReference_recent.document(model.getId());
                     }
                 };
-
 
                 mCommentReference_recent = mDatabase_recent.collection(getString(R.string.weekly_challenge_db_name)).document("post-comments").collection("post-comments").document(model.getId()).collection("Comments");
 
                 viewHolder.bindToPost(model, likeClickListener, mCommentReference_recent);
 
             }
-
         };
-        mRecentAdapter.notifyDataSetChanged();
+
     }
 
 

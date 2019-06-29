@@ -38,36 +38,21 @@ public class Wcc_stories extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.wcc_stories, container, false);
 
-        //FirebaseDatabase mDatabase = Common.currentDatabase;
-
         FirebaseFirestore mDatabase = Common.currentDatabase;
 
         FirebaseAuth mAuth = Common.currentAuth;
         final FirebaseUser mUser = Common.currentFirebaseUser;
 
-        //DatabaseReference mReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts");
-        CollectionReference mReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name)+"_1")
+
+        CollectionReference mReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name))
                 .document("posts").collection("posts");
 
-        //DatabaseReference mCommentReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name))
-        // .child("post-comments");
-        CollectionReference mCommentReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name)+"_1")
+        CollectionReference mCommentReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name))
                 .document("post-comments").collection("post-comments");
 
-        //DatabaseReference mUserReference = mDatabase.getReference().child("users");
         CollectionReference mUserReference = mDatabase.collection("users_1");
 
-       /* mAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if (mUser != null) {
-                    Common.currentUser = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail(), mUser.getPhotoUrl().toString(), mUser.getPhotoUrl());
-                }
-            }
-        });*/
-
-        //Query query = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts");
-        CollectionReference query = mDatabase.collection(getString(R.string.weekly_challenge_db_name)+"_1")
+        CollectionReference query = mDatabase.collection(getString(R.string.weekly_challenge_db_name))
                 .document("posts").collection("posts");
 
         Common.currentReference = mReference;

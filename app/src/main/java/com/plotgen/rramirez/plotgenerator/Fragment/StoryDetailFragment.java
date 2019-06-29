@@ -144,10 +144,11 @@ public class StoryDetailFragment extends Fragment {
         }
 
 
+        Long tsLong = System.currentTimeMillis() / 1000;
         final Comment comment = new Comment(Common.currentUser.getUid(),
                 Common.currentUser.getName(),
                 Common.currentUser.getPicUrl().toString(),
-                etCommentText.getText().toString());
+                etCommentText.getText().toString(),tsLong);
 
         // Push the comment, it will appear in the list
         CollectionReference documentReference =  mDatabase.collection(getString(R.string.weekly_challenge_db_name)).document("post-comments").collection("post-comments").document(Common.currentStory.getId()).collection("Comments");
@@ -159,18 +160,7 @@ public class StoryDetailFragment extends Fragment {
 
             }
         });
-      /*  mCommentReference.add(comment).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-            @Override
-            public void onSuccess(DocumentReference documentReference) {
-                Toast.makeText(getActivity(), "Added  Successfully", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getActivity(), "Added  Failed", Toast.LENGTH_SHORT).show();
 
-            }
-        });*/
         if (comment != null) {
             //sendNotification(Common.currentUser.getName() + " commented on your post",
               //      Common.currentStory.getUser(), Common.currentStory.getId());
@@ -238,7 +228,7 @@ public class StoryDetailFragment extends Fragment {
         mDatabase = Common.currentDatabase;
         mCommentReference = Common.currentCommentReference;
         mUserReference = Common.currentUserReference;
-        Query query = Common.currentQuery.orderBy("likeCount");
+        //Query query = Common.currentQuery.orderBy("likeCount");
 
 
         ButterKnife.bind(this, view);
@@ -246,7 +236,7 @@ public class StoryDetailFragment extends Fragment {
         mDatabase = Common.currentDatabase;
 
         mCommentReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name)).document("post-comments").collection("post-comments").document(Common.currentStory.getId()).collection("Comments");
-        Query query1 = mCommentReference.orderBy("date", DESCENDING);
+        Query query1 = mCommentReference.orderBy("userDate", DESCENDING);
 
         final CollectionReference collectionReference1 = mDatabase.collection(getString(R.string.weekly_challenge_db_name)).document("posts").collection("posts");
 
@@ -347,50 +337,6 @@ public class StoryDetailFragment extends Fragment {
 
     }
 
-
-           /* @Override
-            public Transaction.Result doTransaction(MutableData mutableData) {
-                Story p = mutableData.getValue(Story.class);
-                if (p == null) {
-                    return Transaction.success(mutableData);
-                }
-
-                if (p.likes.containsKey(Common.currentUser.getUid())) {
-                    // Unstar the post and remove self from stars
-                    p.likeCount = p.likeCount - 1;
-                    p.likes.remove(Common.currentUser.getUid());
-                } else {
-                    // Star the post and add self to stars
-                    p.likeCount = p.likeCount + 1;
-                    p.likes.put(Common.currentUser.getUid(), true);
-                    sendNotification(Common.currentUser.getName() + " liked your post", p.getUser(), p.getId());
-                }
-
-                // Set value and report transaction success
-                mutableData.setValue(p);
-                Common.tempStory = p;
-                return Transaction.success(mutableData);
-            }
-
-            @Override
-            public void onComplete(DatabaseError databaseError, boolean b,
-                                   DataSnapshot dataSnapshot) {
-                Log.d("UpdateLikeCount", "postTransaction:onComplete:" + databaseError);
-
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (Common.tempStory.likes.containsKey(Common.currentUser.getUid())) {
-                            ivLoves.setImageResource(R.drawable.ic_love_red);
-                        } else {
-                            ivLoves.setImageResource(R.drawable.ic_love_outline);
-                        }
-                        tvLoves.setText(String.valueOf(Common.tempStory.getLikeCount()));
-                    }
-                });
-            }
-        });
-    }*/
     public void sendNotification(final String message, User user, final String id) {
         //String firebase_token = mUserReference.child(user.getUid()).child("token");
 
@@ -415,31 +361,6 @@ public class StoryDetailFragment extends Fragment {
             }
         });
     }
-
-   /* public void sendNotification(final String message, User user, final String id) {
-        //String firebase_token = mUserReference.child(user.getUid()).child("token");
-      //  Query query = mUserReference.document(user.getUid()).collection("token");
-        CollectionReference query = mDatabase.collection(user.getUid())
-                .document("token").collection("");
-
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.hasChild("token")) {
-                    String token = dataSnapshot.child("token").getValue().toString();
-                    String to = token; // the notification key
-                    AtomicInteger msgId = new AtomicInteger();
-                    new Notify(to, message, id,"Weekly Challenge").execute();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e("notification action", databaseError.getDetails());
-            }
-        });
-
-    }*/
 
     private void checkCommentCount() {
         mCommentReference.addSnapshotListener(new EventListener<QuerySnapshot>() {
@@ -487,6 +408,7 @@ public class StoryDetailFragment extends Fragment {
 
                     final Comment comment = model;
                     holder.tvCommentBody.setText(model.getUserComment());
+                    Log.v("matilda", model.getUserComment());
 
                     Glide.with(getActivity().getApplicationContext())
                             .load(model.getUserPic())
@@ -499,31 +421,10 @@ public class StoryDetailFragment extends Fragment {
 
                       holder.bindToPost(model);
             }
-
-           /* @Override
-            protected void populateView(@NonNull View v, @NonNull Comment model, int position) {
-
-                ImageView ivCommentPic;
-                TextView tvCommentUser, tvCommentBody;
-
-                ivCommentPic = v.findViewById(R.id.ivCommentPic);
-                tvCommentUser = v.findViewById(R.id.tvCommentUser);
-                tvCommentBody = v.findViewById(R.id.tvCommentBody);
-
-                Glide.with(getActivity().getApplicationContext())
-                        .load(model.getUserPic())
-                        .apply(RequestOptions.circleCropTransform())
-                        .into(ivCommentPic);
-
-                tvCommentUser.setText(model.getUserName());
-                tvCommentBody.setText(model.getUserComment());
-
-            }*/
         };
-      //  lvComments.setFocusable(false);
-        //lvComments.setAdapter(adapter);
-       // lvComments.setExpanded(true);
+
     }
+
 
     @GlideModule
     public class MyAppGlideModule extends AppGlideModule {

@@ -58,23 +58,16 @@ public class Wc_participants_mystory extends Fragment {
     @BindView(R.id.rvWeeklyChalenge)
     RecyclerView rvWeeklyChallenge;
 
-    //private FirebaseRecyclerAdapter<Story, StoryViewHolder> mMyPostAdapter;
     private FirestoreRecyclerAdapter<Story, StoryViewHolder> mMyPostAdapter;
-    //FirebaseRecyclerOptions<Story> optionsMyPost;
     FirestoreRecyclerOptions optionsMyPost;
 
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
 
-    //private FirebaseDatabase mDatabase;
-
     FirebaseFirestore mDatabase;
 
-    //private DatabaseReference mReference;
     private CollectionReference mReference;
-    //private DatabaseReference mCommentReference;
     CollectionReference mCommentReference;
-    //private DatabaseReference mUserReference;
     CollectionReference mUserReference;
 
     private LinearLayoutManager mManager;
@@ -113,23 +106,9 @@ public class Wc_participants_mystory extends Fragment {
         mManager.setStackFromEnd(true);
         rvWeeklyChallenge.setLayoutManager(mManager);
 
-
-        //mReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts");
         mReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name))
                 .document("posts").collection("posts");
 
-        //Below are old comments
-//        mCommentReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("post-comments");
-//        mUserReference = mDatabase.getReference().child("users");
-
-//        Query query = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts").orderByChild("likeCount");
-
-
-//        mReference = Common.currentReference;
-//        mCommentReference = Common.currentCommentReference;
-//        mUserReference = Common.currentUserReference;
-//        Query query = Common.currentQuery.orderByChild("date");
-        // old comments ended here
         Query query = mReference;
 
         optionsMyPost = new FirestoreRecyclerOptions.Builder<Story>()
@@ -146,54 +125,6 @@ public class Wc_participants_mystory extends Fragment {
 
     private void populateWeeklyChallenge() {
 
-       /* mMyPostAdapter = new FirebaseRecyclerAdapter<Story, StoryViewHolder>(optionsMyPost) {
-
-            @Override
-            public StoryViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-                LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
-                return new StoryViewHolder(inflater.inflate(R.layout.item_story, viewGroup, false));
-            }
-
-            @Override
-            protected void onBindViewHolder(StoryViewHolder viewHolder, int position, final Story model) {
-                final DatabaseReference postRef = getRef(position);
-                final Story currentStory = model;
-
-                viewHolder.setIsRecyclable(false);
-
-                if (model.getUser().getUid().equals(Common.currentUser.getUid())) {
-
-                    viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Common.currentStory = currentStory;
-                            StoryDetailFragment nextFragment = new StoryDetailFragment();
-                            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                            Utils.changeFragment(nextFragment, transaction);
-                            transaction.addToBackStack(null);
-                        }
-                    });
-
-                    if (model.likes.containsKey(Common.currentUser.getUid())) {
-                        viewHolder.ivLoves.setImageResource(R.drawable.ic_love_red);
-                    } else {
-                        viewHolder.ivLoves.setImageResource(R.drawable.ic_love_outline);
-                    }
-
-                    View.OnClickListener likeClickListener = new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                           DatabaseReference globalPostRef = mReference.child(postRef.getKey());
-                           onLikeClicked(globalPostRef);
-                        }
-                    };
-                    viewHolder.bindToPost(model, likeClickListener, mCommentReference.child(postRef.getKey()));
-                } else {
-                    viewHolder.removeItem();
-                }
-
-            }
-        };*/
         mMyPostAdapter = new FirestoreRecyclerAdapter<Story, StoryViewHolder>(optionsMyPost) {
             @Override
             protected void onBindViewHolder(@NonNull StoryViewHolder viewHolder, int position, @NonNull final Story model) {
@@ -250,40 +181,6 @@ public class Wc_participants_mystory extends Fragment {
     private void onLikeClicked(final DocumentReference postRef) {
 
     }
-    /*private void onLikeClicked(final DatabaseReference postRef) {
-
-        postRef.runTransaction(new Transaction.Handler() {
-            @Override
-            public Transaction.Result doTransaction(MutableData mutableData) {
-                final Story p = mutableData.getValue(Story.class);
-                if (p == null) {
-                    return Transaction.success(mutableData);
-                }
-
-                if (p.likes.containsKey(Common.currentUser.getUid())) {
-                    // Unstar the post and remove self from stars
-                    p.likeCount = p.likeCount - 1;
-                    p.likes.remove(Common.currentUser.getUid());
-                } else {
-                    // Star the post and add self to stars
-                    p.likeCount = p.likeCount + 1;
-                    p.likes.put(Common.currentUser.getUid(), true);
-                    sendNotification(Common.currentUser.getName() + " liked your post", p.getUser(), p.getId());
-                }
-
-                // Set value and report transaction success
-                mutableData.setValue(p);
-                return Transaction.success(mutableData);
-            }
-
-            @Override
-            public void onComplete(DatabaseError databaseError, boolean b,
-                                   DataSnapshot dataSnapshot) {
-
-                Log.d("UpdateLikeCount", "postTransaction:onComplete:" + databaseError);
-            }
-        });
-    }*/
 
     private void updateUI() {
         if (mUser != null) {
@@ -339,33 +236,6 @@ public class Wc_participants_mystory extends Fragment {
             }
         });
 
-       /* Query query = mUserReference.child(user.getUid()).orderByChild("token");
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.hasChild("token")) {
-                    String token = dataSnapshot.child("token").getValue().toString();
-
-                    String to = token; // the notification key
-                    AtomicInteger msgId = new AtomicInteger();
-                    new Notify(to, message, id,"Weekly Challenge").execute();
-                    //notifyMessage(to,message);
-                    FirebaseMessaging.getInstance().send(new RemoteMessage.Builder(to)
-                            .setMessageId(String.valueOf(msgId.get()))
-                            .addData("title", "Weekly Challenge")
-                            .addData("body", message)
-                            .build());
-                    Log.e("message", new RemoteMessage.Builder(to).setMessageId(String.valueOf(msgId.get()))
-                            .addData("title", "Weekly Challenge")
-                            .addData("body", message).toString());
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e("notification action", databaseError.getDetails());
-            }
-        });*/
 
     }
 

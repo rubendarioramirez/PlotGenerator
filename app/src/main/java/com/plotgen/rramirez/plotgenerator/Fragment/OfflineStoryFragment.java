@@ -169,7 +169,7 @@ public class OfflineStoryFragment extends Fragment {
         FloatingActionButton fabSaveStory = view.findViewById(R.id.btnSaveStory);
         //publish button
         FloatingActionButton fabPublish = view.findViewById(R.id.btnPublish);
-        fabPublish.setVisibility(View.VISIBLE);
+        fabPublish.setVisibility(View.INVISIBLE);
 
         fabSaveStory.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -266,7 +266,7 @@ public class OfflineStoryFragment extends Fragment {
 
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put(key, storyValues);
-        childUpdates.put("/genre/" + project.get(1) + "/" + key, genreValues);
+        childUpdates.put("genre" + project.get(1) + key, genreValues);
 
         mStoriesDatabase.document().update(childUpdates);
 
