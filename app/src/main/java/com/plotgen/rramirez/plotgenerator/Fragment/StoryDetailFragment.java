@@ -82,6 +82,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.google.firebase.firestore.Query.Direction.ASCENDING;
+import static com.google.firebase.firestore.Query.Direction.DESCENDING;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -243,21 +246,9 @@ public class StoryDetailFragment extends Fragment {
         mDatabase = Common.currentDatabase;
 
         mCommentReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name)).document("post-comments").collection("post-comments").document(Common.currentStory.getId()).collection("Comments");
-      //  final CollectionReference mPostReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name))
-               // .document("posts").collection(Common.currentStory.getId());
-       // mPostReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name)).document("posts").collection(Common.currentStory.getId());
-       // final CollectionReference mCommentReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name))
-         //       .document("post-comments").collection(Common.currentStory.getId());
-       // mCommentReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name)).document("post-comments").collection(Common.currentStory.getId());
-       // CollectionReference mUserReference = mDatabase.collection("users");
-        Query query1 = mCommentReference;
+        Query query1 = mCommentReference.orderBy("date", DESCENDING);
 
         final CollectionReference collectionReference1 = mDatabase.collection(getString(R.string.weekly_challenge_db_name)).document("posts").collection("posts");
-
-      //  mUserReference = mDatabase.collection("users");
-
-//        mPostReference = mDatabase.getReference().child("Weekly_Challenge").child("posts").child(Common.currentStory.getId());
-//        mCommentReference = mDatabase.getReference().child("Weekly_Challenge").child("post-comments").child(Common.currentStory.getId());
 
         ivTemplatePic.setImageResource(R.drawable.typewriter);
 
