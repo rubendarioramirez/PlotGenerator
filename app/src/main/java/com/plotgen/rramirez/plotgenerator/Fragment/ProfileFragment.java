@@ -487,30 +487,6 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
                         return null;
                     }
                 });
-                /*mUserDatabase.add(new Transaction.Handler() {
-                    @NonNull
-                    @Override
-                    public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
-                        if (mutableData.hasChild("users")) {
-                            if (mutableData.child("users").hasChild(mUser.getUid())) {
-                                mutableData.child("users").child(mUser.getUid()).child("token").setValue(firebase_token);
-                            }
-
-                        } else {
-                            mutableData.child(mUser.getUid());
-                            mutableData.child(mUser.getUid()).setValue(mUser.getUid());
-                            mutableData.child(mUser.getUid()).child("token").setValue(firebase_token);
-                        }
-                        return Transaction.success(mutableData);
-                    }
-
-                    @Override
-                    public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
-                        Log.d("Updated token", "postTransaction:onComplete:" + databaseError);
-
-                    }
-                });
-*/
 
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.flMain, new ProfileFragment());

@@ -7,6 +7,8 @@ import com.google.firebase.messaging.RemoteMessage;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.Objects;
+
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -17,7 +19,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         if(Utils.getStringSharePref(getApplicationContext(),"notifications").equalsIgnoreCase("true")) {
             if (remoteMessage.getData() != null) {
-                if (remoteMessage.getData().get("tag").equalsIgnoreCase("post")) {
+                if (Objects.requireNonNull(remoteMessage.getData().get("tag")).equalsIgnoreCase("post")) {
                     String tag = remoteMessage.getData().get("tag");
                     String id = remoteMessage.getData().get("id");
                     MyNotificationManager.getInstance(getApplicationContext())

@@ -183,6 +183,9 @@ public class CharacterFragment extends Fragment {
             //database getter
             char_description = getDescription(myFragmentView.getContext(), name_text);
             if (char_description.size() > 0) {
+                for (int i = 0; i < char_description.size(); i++) {
+                    System.out.println("Position: " + i + " it's " +char_description.get(i));
+                }
                 nameEditText.setText(char_description.get(0));
                 age_edit_text.setText(char_description.get(1));
                 placebirth_edit_text.setText(char_description.get(3));
@@ -192,7 +195,7 @@ public class CharacterFragment extends Fragment {
                 eye_color_et.setText(char_description.get(7));
                 bodybuild_et.setText(char_description.get(8));
                 birthdate_edit_text.setText(char_description.get(9));
-                desire_edit_text.setText(char_description.get(11));
+                desire_edit_text.setText(char_description.get(10));
                 defmoment_edit_text.setText(char_description.get(12));
                 need_edit_text.setText(char_description.get(13));
                 phrase_et.setText(char_description.get(14));
@@ -201,6 +204,7 @@ public class CharacterFragment extends Fragment {
                 trait3_edit_text.setText(char_description.get(17));
                 notes_edit_text.setText(char_description.get(18));
                 String imageToShow = char_description.get(19);
+
                 if (imageToShow!=null && !imageToShow.isEmpty()){
                     char_image.setImageURI(Uri.parse(char_description.get(19)));
                     filepath = char_description.get(19);
@@ -225,7 +229,7 @@ public class CharacterFragment extends Fragment {
                 }
 
                 //Set the proper spinner value
-                String role = char_description.get(10);
+                String role = char_description.get(11);
                 if (role.equals("Protagonist") || role.equals("Protagonista")) {
                     role_spinner.setSelection(0);
                 } else if (role.equals("Protagonist's Helper") || role.equals("Ayudante de protagonista")) {

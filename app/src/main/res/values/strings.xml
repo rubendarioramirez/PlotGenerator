@@ -1033,7 +1033,7 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="developmenTitle">Warning!.</string>
     <string name="developmentDesc">Hey! Thanks for checking this feature out but its currently under development. Please try it and share your feedback, but be ready for weird problems. Yes, problems so weird that I dont dare to describe.</string>
 
-    <string name="birthdate_add_text">Geburtsdatum</string>
+    <string name="birthdate_add_text">Birthdate</string>
 
 
 </resources>

@@ -1,6 +1,9 @@
 package com.plotgen.rramirez.plotgenerator.Fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,6 +11,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -18,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.google.android.gms.appinvite.AppInviteInvitation;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -30,8 +35,11 @@ import com.plotgen.rramirez.plotgenerator.CharacterFragment;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Constants;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
+import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
 import com.plotgen.rramirez.plotgenerator.Guides.GuideListFragment;
 import com.plotgen.rramirez.plotgenerator.R;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,13 +52,14 @@ public class Container_charbio extends Fragment {
 
 
     private SectionsPageAdapter mSectionsPageAdapter;
+    private FirebaseAnalytics mFirebaseAnalytics;
     private String fragmentTag = Container_charbio.class.getSimpleName();
     private ViewPager mViewPager;
     @BindView(R.id.fab_add_challenge)
     com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton fabAddChallenge;
     @BindView(R.id.fab_guide)
     com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton fabCheckGuide;
-
+    ArrayList<String> char_description;
     public Container_charbio() {
         // Required empty public constructor
     }
@@ -63,7 +72,9 @@ public class Container_charbio extends Fragment {
         View view = inflater.inflate(R.layout.container_charbio, container, false);
         ButterKnife.bind(this, view);
         setHasOptionsMenu(true);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(getContext());
 
+        char_description = new ArrayList<String>();
 
         fabCheckGuide.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -174,17 +185,34 @@ public class Container_charbio extends Fragment {
         }
         else if (id == R.id.menu_bio_share){
             try {
-//                String allbody = intro_tv.getText().toString() + " \n" + " \n" + "https://play.google.com/store/apps/details?id=com.plotgen.rramirez.plotgenerator";
-//                String char_role = project_name + ": " + char_name;
-//                SHARE(getView(), allbody, char_role);
-                Toast.makeText(getContext(),"Coming soon",Toast.LENGTH_LONG).show();
-//                onInviteClicked();
+                    String bio = Utils.generateBIO(getContext(),Common.currentCharacter.getId());
+                    StringBuffer challenges = Utils.generateChallenges(getContext(),Common.currentCharacter.getId());
+                    String body = bio + "<BR><BR>" + challenges;
+                    SHARE(body, Common.currentCharacter.getName());
             } catch (Exception e) {
                 e.printStackTrace();
             }
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+
+    public void SHARE(String body, String char_name) {
+
+        // Do something in response to button
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Auctor:" + char_name);
+        sharingIntent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(body));
+        startActivity(Intent.createChooser(sharingIntent, "share"));
+
+        //Log challenges updated
+        Bundle params = new Bundle();
+        params.putString("Share", "completed");
+        mFirebaseAnalytics.logEvent("share_completed", params);
+
     }
 
 

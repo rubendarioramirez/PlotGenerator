@@ -8,6 +8,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,6 +22,7 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 
@@ -29,10 +33,12 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 import static com.firebase.ui.auth.AuthUI.getApplicationContext;
+import static com.plotgen.rramirez.plotgenerator.Common.Constants.THUMBNAIL_SIZE;
 
 public class Utils extends Fragment{
 
     public static final String SP_HAS_BUY_IAP = "spHasBuyIap";
+
 
     public static void saveOnSharePreg(Context context, String variable, String value) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -163,6 +169,384 @@ public class Utils extends Fragment{
         sqLiteDatabase.close();
 
         return char_list;
+    }
+
+    public static ArrayList<String> getBIO(Context context, String charID) {
+        mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
+        SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
+        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER + " WHERE _id = ?";
+        ArrayList<String> char_list = new ArrayList<String>();
+        try {
+            Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{charID});
+            // changes done to check is cursor size is greator than 0
+            if (cursor != null && cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                while (!cursor.isAfterLast()) {
+                    char_list.add(cursor.getString(cursor.getColumnIndex("name")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("age")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("gender")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("placebirth")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("profession")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("height")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("haircolor")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("eyecolor")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("bodybuild")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("desire")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("role")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("defmoment")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("need")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("phrase")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("trait1")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("trait2")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("trait3")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("elevator_notes")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("image")));
+                    cursor.moveToNext();
+                }
+            }
+            cursor.close();
+        } catch (Exception e){
+            Log.v("matilda", e.toString());
+        }
+        return char_list;
+    }
+
+
+    public static ArrayList<String> getChallenges(Context context, String charID) {
+        mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
+        SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
+        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER + " WHERE _id = ?";
+        ArrayList<String> char_list = new ArrayList<String>();
+        try {
+            Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{charID});
+            // changes done to check is cursor size is greator than 0
+            if (cursor != null && cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                while (!cursor.isAfterLast()) {
+                    //First challenge
+                    char_list.add(cursor.getString(cursor.getColumnIndex("elevator_initial_reaction")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("elevator_wait_rescue")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("elevator_help_partner")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("elevator_escape_first")));
+                    //Second Challenge
+                    char_list.add(cursor.getString(cursor.getColumnIndex("challenge_2_q1")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("challenge_2_q2")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("challenge_2_q3")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("challenge_2_q4")));
+                    //Third Challenge
+                    char_list.add(cursor.getString(cursor.getColumnIndex("challenge_3_q1")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("challenge_3_q2")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("challenge_3_q3")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("challenge_3_q4")));
+                    //Fourth Challenge
+                    char_list.add(cursor.getString(cursor.getColumnIndex("challenge_4_q1")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("challenge_4_q2")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("challenge_4_q3")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("challenge_4_q4")));
+                    //Fifth Challenge
+                    char_list.add(cursor.getString(cursor.getColumnIndex("challenge_5_q1")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("challenge_5_q2")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("challenge_5_q3")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("challenge_5_q4")));
+                    //Sixth Challenge
+                    char_list.add(cursor.getString(cursor.getColumnIndex("challenge_6_q1")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("challenge_6_q2")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("challenge_6_q3")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("challenge_6_q4")));
+                    //Mentor Challenge
+                    char_list.add(cursor.getString(cursor.getColumnIndex("c1_mentor_q1")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("c1_mentor_q2")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("c1_mentor_q3")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("c1_mentor_q4")));
+                    //Antagonist Challenge
+                    char_list.add(cursor.getString(cursor.getColumnIndex("c1_antagonist_q1")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("c1_antagonist_q2")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("c1_antagonist_q3")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("c1_antagonist_q4")));
+                    //Sidekick Challenge
+                    char_list.add(cursor.getString(cursor.getColumnIndex("c1_sidekick_q1")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("c1_sidekick_q2")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("c1_sidekick_q3")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("c1_sidekick_q4")));
+                    //Challenge 7 Challenge
+                    char_list.add(cursor.getString(cursor.getColumnIndex("challenge_7_q1")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("challenge_7_q2")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("challenge_7_q3")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("challenge_7_q4")));
+                    //Challenge 8 Challenge
+                    char_list.add(cursor.getString(cursor.getColumnIndex("challenge_8_q1")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("challenge_8_q2")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("challenge_8_q3")));
+                    char_list.add(cursor.getString(cursor.getColumnIndex("challenge_8_q4")));
+
+                    char_list.add(cursor.getString(cursor.getColumnIndex("role")));
+                    cursor.moveToNext();
+                }
+            }
+            cursor.close();
+        } catch (Exception e){
+            Log.v("matilda", e.toString());
+        }
+        return char_list;
+    }
+
+
+    public static StringBuffer generateChallenges(Context context, String charID) {
+        ArrayList<String> char_description = new ArrayList<String>();
+        char_description = getChallenges(context,charID);
+        StringBuffer sb = new StringBuffer();
+        // changes done to check list size
+        if (char_description.size() > 0) {
+            //First challenge
+            String firstReaction = char_description.get(0);
+            String waitRescue = char_description.get(1);
+            String helpPartner = char_description.get(2);
+            String escapeFirst = char_description.get(3);
+            //Second challenge
+            String challenge2_q1 = char_description.get(4);
+            String challenge2_q2 = char_description.get(5);
+            String challenge2_q3 = char_description.get(6);
+            String challenge2_q4 = char_description.get(7);
+            //Third challenge
+            String challenge3_q1 = char_description.get(8);
+            String challenge3_q2 = char_description.get(9);
+            String challenge3_q3 = char_description.get(10);
+            String challenge3_q4 = char_description.get(11);
+            //Fourth challenge
+            String challenge4_q1 = char_description.get(12);
+            String challenge4_q2 = char_description.get(13);
+            String challenge4_q3 = char_description.get(14);
+            String challenge4_q4 = char_description.get(15);
+            //Fifth challenge
+            String challenge5_q1 = char_description.get(16);
+            String challenge5_q2 = char_description.get(17);
+            String challenge5_q3 = char_description.get(18);
+            String challenge5_q4 = char_description.get(19);
+            //Sixth challenge
+            String challenge6_q1 = char_description.get(20);
+            String challenge6_q2 = char_description.get(21);
+            String challenge6_q3 = char_description.get(22);
+            String challenge6_q4 = char_description.get(23);
+            //Mentor challenge
+            String c1_mentor_q1 = char_description.get(24);
+            String c1_mentor_q2 = char_description.get(25);
+            String c1_mentor_q3 = char_description.get(26);
+            String c1_mentor_q4 = char_description.get(27);
+            //Antagonist challenge
+            String c1_antagonist_q1 = char_description.get(28);
+            String c1_antagonist_q2 = char_description.get(29);
+            String c1_antagonist_q3 = char_description.get(30);
+            String c1_antagonist_q4 = char_description.get(31);
+            //Sidekick challenge
+            String c1_sidekick_q1 = char_description.get(32);
+            String c1_sidekick_q2 = char_description.get(33);
+            String c1_sidekick_q3 = char_description.get(34);
+            String c1_sidekick_q4 = char_description.get(35);
+            //Seventh challenge
+            String challenge7_q1 = char_description.get(36);
+            String challenge7_q2 = char_description.get(37);
+            String challenge7_q3 = char_description.get(38);
+            String challenge7_q4 = char_description.get(39);
+            //Eight challenge
+            String challenge8_q1 = char_description.get(40);
+            String challenge8_q2 = char_description.get(41);
+            String challenge8_q3 = char_description.get(42);
+            String challenge8_q4 = char_description.get(43);
+
+            String role = char_description.get(44);
+
+
+            switch (role) {
+                case "Mentor":
+                    if (c1_mentor_q1 != null) {
+                        sb.append("<b><font color='red'>" + context.getString(R.string.c1_mentor_bio_title) + "</font></b>");
+                        sb.append("<br><b>" + context.getString(R.string.c1_mentor_bio_desc_1) + " " + Common.currentCharacter.getName() + "?" + "</b><br> " + c1_mentor_q1);
+                        sb.append("<br><b>" + context.getString(R.string.c1_mentor_bio_desc_2) + "</b><br> " + c1_mentor_q2);
+                        sb.append("<br><b>" + context.getString(R.string.c1_mentor_bio_desc_3) + "</b><br> " + c1_mentor_q3);
+                        sb.append("<br><b>" + context.getString(R.string.c1_mentor_bio_desc_4) + "</b><br> " + c1_mentor_q4);
+                    }
+                    break;
+                case "Antagonist":
+                case "Antagonista":
+                    if (c1_antagonist_q1 != null) {
+                        sb.append("<b><font color='red'>" + context.getString(R.string.c1_antagonist_bio_title) + "</font></b>");
+                        sb.append("<br><b>" + context.getString(R.string.c1_antagonist_bio_desc_1) + "</b><br> " + c1_antagonist_q1);
+                        sb.append("<br><b>" + context.getString(R.string.c1_antagonist_bio_desc_2) + "</b><br> " + c1_antagonist_q2);
+                        sb.append("<br><b>" + context.getString(R.string.c1_antagonist_bio_desc_3) + "</b><br> " + c1_antagonist_q3);
+                        sb.append("<br><b>" + context.getString(R.string.c1_antagonist_bio_desc_4) + "</b><br> " + c1_antagonist_q4);
+                    }
+                    break;
+                case "Sidekick":
+                case "Escudero":
+                    if (c1_sidekick_q1 != null) {
+                        sb.append("<b><font color='red'>" + context.getString(R.string.c1_sidekick_bio_title) + "</font></b>");
+                        sb.append("<br><b>" + context.getString(R.string.c1_sidekick_bio_desc_1) + "</b><br> " + c1_sidekick_q1);
+                        sb.append("<br><b>" + context.getString(R.string.c1_sidekick_bio_desc_2) + "</b><br> " + c1_sidekick_q2);
+                        sb.append("<br><b>" + context.getString(R.string.c1_sidekick_bio_desc_3) + "</b><br> " + c1_sidekick_q3);
+                        sb.append("<br><b>" + context.getString(R.string.c1_sidekick_bio_desc_4) + "</b><br> " + c1_sidekick_q4);
+                    }
+                    break;
+            }
+
+
+            if (firstReaction != null) {
+                sb.append("<b><font color='red'>" + context.getString(R.string.challenge_1_bio_title) + "</font></b>");
+                sb.append("<br><b>" + context.getString(R.string.challenge_1_bio_desc_1) + "</b><br> " + firstReaction);
+                sb.append("<br><b>" + context.getString(R.string.challenge_1_bio_desc_2) + "</b><br> " + waitRescue);
+                sb.append("<br><b>" + context.getString(R.string.challenge_1_bio_desc_3) + "</b><br> " + helpPartner);
+                sb.append("<br><b>" + context.getString(R.string.challenge_1_bio_desc_4) + "</b><br> " + escapeFirst);
+                sb.append("<br><br>");
+            }
+            if (challenge2_q1 != null) {
+                sb.append("<br><b><font color='red'>" + context.getString(R.string.challenge_2_bio_title) + "</font></b> " + context.getString(R.string.challenge_2_bio_subtitle) + " <br>");
+                sb.append("<br><b>" + context.getString(R.string.challenge_2_bio_desc_1) + "</b><br>" + challenge2_q1);
+                sb.append("<br><b>" + context.getString(R.string.challenge_2_bio_desc_2) + "</b><br>" + challenge2_q2);
+                sb.append("<br><b>" + context.getString(R.string.challenge_2_bio_desc_3) + "</b><br>" + challenge2_q3);
+                sb.append("<br><b>" + context.getString(R.string.challenge_2_bio_desc_4) + "</b><br>" + challenge2_q4);
+                sb.append("<br><br>");
+            }
+            if (challenge3_q1 != null) {
+                sb.append("<br><b><font color='red'>" + context.getString(R.string.challenge_3_bio_title) + "</font></b> " + context.getString(R.string.challenge_3_bio_subtitle) + " <br>");
+                sb.append("<br><b>" + context.getString(R.string.challenge_3_bio_desc_1) + "</b><br>" + challenge3_q1);
+                sb.append("<br><b>" + context.getString(R.string.challenge_3_bio_desc_2) + "</b><br>" + challenge3_q2);
+                sb.append("<br><b>" + context.getString(R.string.challenge_3_bio_desc_3) + "</b><br>" + challenge3_q3);
+                sb.append("<br><b>" + context.getString(R.string.challenge_3_bio_desc_4) + "</b><br>" + challenge3_q4);
+                sb.append("<br><br>");
+            }
+            if (challenge4_q1 != null) {
+                sb.append("<br><b><font color='red'>" + context.getString(R.string.challenge_4_bio_title) + "</font></b> " + context.getString(R.string.challenge_4_bio_subtitle) + " <br>");
+                sb.append("<br><b>" + context.getString(R.string.challenge_4_bio_desc_1) + "</b><br>" + challenge4_q1);
+                sb.append("<br><b>" + context.getString(R.string.challenge_4_bio_desc_2) + "</b><br>" + challenge4_q2);
+                sb.append("<br><b>" + context.getString(R.string.challenge_4_bio_desc_3) + "</b><br>" + challenge4_q3);
+                sb.append("<br><b>" + context.getString(R.string.challenge_4_bio_desc_4) + "</b><br>" + challenge4_q4);
+                sb.append("<br><br>");
+            }
+
+            if (challenge5_q1 != null) {
+                sb.append("<br><b><font color='red'>" + context.getString(R.string.challenge_5_bio_title) + "</font></b> " + context.getString(R.string.challenge_5_bio_subtitle) + " <br>");
+                sb.append("<br><b>" + context.getString(R.string.challenge_5_bio_desc_1) + "</b><br>" + challenge5_q1);
+                sb.append("<br><b>" + context.getString(R.string.challenge_5_bio_desc_2) + "</b><br>" + challenge5_q2);
+                sb.append("<br><b>" + context.getString(R.string.challenge_5_bio_desc_3) + "</b><br>" + challenge5_q3);
+                sb.append("<br><b>" + context.getString(R.string.challenge_5_bio_desc_4) + "</b><br>" + challenge5_q4);
+                sb.append("<br><br>");
+            }
+            if (challenge6_q1 != null) {
+                sb.append("<br><b><font color='red'>" + context.getString(R.string.challenge_6_bio_title) + "</font></b> " + context.getString(R.string.challenge_6_bio_subtitle) + " <br>");
+                sb.append("<br><b>" + context.getString(R.string.challenge_6_bio_desc_1) + "</b><br>" + challenge6_q1);
+                sb.append("<br><b>" + context.getString(R.string.challenge_6_bio_desc_2) + "</b><br>" + challenge6_q2);
+                sb.append("<br><b>" + context.getString(R.string.challenge_6_bio_desc_3) + "</b><br>" + challenge6_q3);
+                sb.append("<br><b>" + context.getString(R.string.challenge_6_bio_desc_4) + "</b><br>" + challenge6_q4);
+                sb.append("<br><br>");
+            }
+
+            if (challenge7_q1 != null) {
+                sb.append("<br><b><font color='red'>" + context.getString(R.string.challenge_7_bio_title) + "</font></b> " + context.getString(R.string.challenge_7_bio_subtitle) + " <br>");
+                sb.append("<br><b>" + context.getString(R.string.challenge_7_bio_desc_1) + "</b><br>" + challenge7_q1);
+                sb.append("<br><b>" + context.getString(R.string.challenge_7_bio_desc_2) + "</b><br>" + challenge7_q2);
+                sb.append("<br><b>" + context.getString(R.string.challenge_7_bio_desc_3) + "</b><br>" + challenge7_q3);
+                sb.append("<br><b>" + context.getString(R.string.challenge_7_bio_desc_4) + "</b><br>" + challenge7_q4);
+                sb.append("<br><br>");
+            }if (challenge8_q1 != null) {
+                sb.append("<br><b><font color='red'>" + context.getString(R.string.challenge_8_bio_title) + "</font></b> " + context.getString(R.string.challenge_8_bio_subtitle) + " <br>");
+                sb.append("<br><b>" + context.getString(R.string.challenge_8_bio_desc_1) + "</b><br>" + challenge8_q1);
+                sb.append("<br><b>" + context.getString(R.string.challenge_8_bio_desc_2) + "</b><br>" + challenge8_q2);
+                sb.append("<br><b>" + context.getString(R.string.challenge_8_bio_desc_3) + "</b><br>" + challenge8_q3);
+                sb.append("<br><b>" + context.getString(R.string.challenge_8_bio_desc_4) + "</b><br>" + challenge8_q4);
+                sb.append("<br><br>");
+            }
+        }
+            return sb;
+        }
+
+    public static ArrayList<String> getPhoto(Context context, String charID) {
+        mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
+        SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
+        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER + " WHERE _id = ?";
+        ArrayList<String> char_list = new ArrayList<String>();
+        try {
+            Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{charID});
+            // changes done to check is cursor size is greator than 0
+            if (cursor != null && cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                while (!cursor.isAfterLast()) {
+                    char_list.add(cursor.getString(cursor.getColumnIndex("image")));
+                    cursor.moveToNext();
+                }
+            }
+            cursor.close();
+        } catch (Exception e){
+            Log.v("matilda", e.toString());
+        }
+        return char_list;
+    }
+
+    public static String generateBIO(Context context, String charID){
+        ArrayList<String> char_description = new ArrayList<String>();
+
+        char_description = Utils.getBIO(context, charID);
+        StringBuffer bio_text = new StringBuffer();
+
+        if (char_description.size() > 0) {
+            String name = char_description.get(0);
+            String age = char_description.get(1);
+            final String gender = char_description.get(2);
+            String placebirth = char_description.get(3);
+            String job = char_description.get(4);
+            String height = char_description.get(5);
+            String haircolor = char_description.get(6);
+            String eyecolor = char_description.get(7);
+            String bodybuild = char_description.get(8);
+            String desire = char_description.get(9);
+            String role = char_description.get(10);
+            String moment = char_description.get(11);
+            String need = char_description.get(12);
+            String phrase = char_description.get(13);
+            final String trait1 = char_description.get(14);
+            String trait2 = char_description.get(15);
+            String trait3 = char_description.get(16);
+            String notes = char_description.get(17);
+
+            Common.currentCharacter.setGender(gender);
+            Common.currentCharacter.setRole(role);
+
+            bio_text.append(name + " " + context.getString(R.string.age_bio_1) + " " + age + " " + context.getString(R.string.age_bio_2) + "<br>");
+            bio_text.append(context.getString(R.string.placebirth_bio) + " " + placebirth + "<br>");
+            if(job.equals("Arbeitslos") || job.equals("Desempleado") || job.equals("Desempleada") || job.equals("Unemployed")|| job.equals("Pensiun")){
+                bio_text.append(context.getString(R.string.nojob_bio) + " " + job + "<br>");
+            } else {
+                bio_text.append(context.getString(R.string.job_bio) + " " + job + "<br>");
+            }
+            bio_text.append(context.getString(R.string.height_bio) + " " + height + "<br>");
+            bio_text.append(context.getString(R.string.hair_bio_1) + " " + haircolor + " " + context.getString(R.string.hair_bio_2));
+            bio_text.append(" " + context.getString(R.string.eyes_bio) + " " + eyecolor + "<br>");
+            bio_text.append(context.getString(R.string.bodybuild_bio) + " " + bodybuild + "<br>");
+
+
+            if (gender.equals("Masculino") || gender.equals("Male") || gender.equals("Pria")) {
+                bio_text.append(context.getString(R.string.male_desire_bio) + " " + desire + "<br>");
+                bio_text.append(context.getString(R.string.male_need_bio) + " " + need + "?<br>");
+                bio_text.append(context.getString(R.string.male_moment_bio) + " " + moment + "<br>");
+                bio_text.append(context.getString(R.string.male_trait_bio) + " " + trait1 + ", " + trait2 + ", " + trait3 + "<br><br>");
+                bio_text.append(context.getString(R.string.male_phrase_bio) + "<br> " + phrase + "<br><br>");
+            } else if (gender.equals("Femenino") || gender.equals("Female") || gender.equals("Wanita")) {
+                bio_text.append(context.getString(R.string.female_desire_bio) + " " + desire + "<br>");
+                bio_text.append(context.getString(R.string.female_need_bio) + " " + need + "?<br>");
+                bio_text.append(context.getString(R.string.female_moment_bio) + " " + moment + "<br>");
+                bio_text.append(context.getString(R.string.female_trait_bio) + " " + trait1 + ", " + trait2 + ", " + trait3 + "<br><br>");
+                bio_text.append(context.getString(R.string.female_phrase_bio) + "<br> " + phrase + "<br><br>");
+            } else {
+                bio_text.append(context.getString(R.string.binary_desire_bio) + " " + desire + "<br>");
+                bio_text.append(context.getString(R.string.binary_need_bio) + " " + need + "?<br>");
+                bio_text.append(context.getString(R.string.binary_moment_bio) + " " + moment + "<br>");
+                bio_text.append(context.getString(R.string.binary_trait_bio) + " " + trait1 + ", " + trait2 + ", " + trait3 + "<br><br>");
+                bio_text.append(context.getString(R.string.binary_phrase_bio) + "<br> " + phrase + "<br><br>");
+            }
+
+            bio_text.append(context.getString(R.string.notes_bio) + "<br> " + notes + "<br><br><br><br><br><br>");
+
+        }
+
+        return bio_text.toString();
     }
 
     public static Boolean isHaveStoryFromDB(Context context, String project_id) {
@@ -363,9 +747,7 @@ public class Utils extends Fragment{
     }
 
 
-    public static void populateChallenges(){
-        //TODO Move the function to populate BIO here
-    }
+
 
 
     public static boolean checkFirstTime(Context context){
