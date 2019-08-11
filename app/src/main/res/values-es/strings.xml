@@ -998,4 +998,9 @@ Para que el personaje pueda evolucionar en una manera positiva, tiene que comenz
 
     <string name="birthdate_add_text">Fecha de nacimiento</string>
 
+
+    <string name="promptSubmitTeaser">Envia tu disparador creativo ahora mismo!</string>
+    <string name="promptHint">Escribe tu disparador aquí!</string>
+    <string name="promptSubmit">Enviar</string>
+
 </resources>

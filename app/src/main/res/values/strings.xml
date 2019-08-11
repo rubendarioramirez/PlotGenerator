@@ -1036,4 +1036,9 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="birthdate_add_text">Birthdate</string>
 
 
+    <string name="promptSubmitTeaser">Send your prompt now!</string>
+    <string name="promptHint">Write your prompt here!</string>
+    <string name="promptSubmit">Submit</string>
+
+
 </resources>

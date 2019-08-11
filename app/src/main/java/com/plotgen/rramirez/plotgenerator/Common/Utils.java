@@ -640,10 +640,10 @@ public class Utils extends Fragment{
     }
 
 
-    public static void popUp(final Context context) {
+    public static void popUp(final Context context, String title, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context)
-                .setTitle(context.getString(R.string.developmenTitle))
-                .setMessage(context.getString(R.string.developmentDesc))
+                .setTitle(title)
+                .setMessage(message)
                 .setNeutralButton("Ok", null);
         builder.show();
     }

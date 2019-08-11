@@ -15,6 +15,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -43,6 +46,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.plotgen.rramirez.plotgenerator.CharListFragment;
+import com.plotgen.rramirez.plotgenerator.CharacterFragment;
 import com.plotgen.rramirez.plotgenerator.Common.AdsHelper;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
@@ -143,7 +147,7 @@ public class OfflineStoryFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_offline_story, container, false);
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-
+        setHasOptionsMenu(true);
         ButterKnife.bind(this, view);
 
         try {
@@ -165,20 +169,10 @@ public class OfflineStoryFragment extends Fragment {
             mStory = "";
         }
 
-        //Save button
-        FloatingActionButton fabSaveStory = view.findViewById(R.id.btnSaveStory);
         //publish button
         FloatingActionButton fabPublish = view.findViewById(R.id.btnPublish);
         fabPublish.setVisibility(View.INVISIBLE);
 
-        fabSaveStory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                saveStoryToDB();
-                changeFragment();
-
-            }
-        });
 
         fabPublish.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -341,78 +335,9 @@ public class OfflineStoryFragment extends Fragment {
 
 
 
-          /*  @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    String key = dataSnapshot.getKey();
-                    Long tsLong = System.currentTimeMillis() / 1000;
-                    UserStory story = new UserStory(key, project_name, project_id,
-                            project.get(1), project.get(2), mStory, tsLong,
-                            new User(Common.currentUser.getUid(),
-                                    Common.currentUser.getName(),
-                                    Common.currentUser.getEmail(),
-                                    Common.currentUser.getPicUrl().toString()));
 
-                    Genre genre = new Genre(Common.currentUser.getUid(), key, project.get(1), project_id);
-                    Map<String, Object> genreValues = genre.toMap();
-                    Map<String, Object> storyValues = story.toMap();
-
-                    Map<String, Object> childUpdates = new HashMap<>();
-                    childUpdates.put(key, storyValues);
-                    childUpdates.put("/genre/" + project.get(1) + "/" + key, genreValues);
-
-                      mStoriesDatabase.document().update(childUpdates);
-
-                } else {
-                    //  String key = mStoriesDatabase.push().getKey();
-                    String key = mUser.getUid().concat("_" + project_id);
-                    Long tsLong = System.currentTimeMillis() / 1000;
-
-                    UserStory story = new UserStory(key, project_name, project_id,
-                            project.get(1), project.get(2), mStory, tsLong,
-                            new User(Common.currentUser.getUid(),
-                                    Common.currentUser.getName(),
-                                    Common.currentUser.getEmail(),
-                                    Common.currentUser.getPicUrl().toString()));
-
-                    Genre genre = new Genre(Common.currentUser.getUid(), key, project.get(1), project_id);
-                    Map<String, Object> genreValues = genre.toMap();
-                    Map<String, Object> storyValues = story.toMap();
-
-                    Map<String, Object> childUpdates = new HashMap<>();
-                    childUpdates.put(key, storyValues);
-                    childUpdates.put("/genre/" + project.get(1) + "/" + key, genreValues);
-
-                    mStoriesDatabase.document().update(childUpdates);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e("error", databaseError.getDetails());
-
-            }*/
         });
 
-      /*  Long tsLong = System.currentTimeMillis() / 1000;
-
-
-        UserStory story = new UserStory(key, project_name, project_id,
-                project.get(1), project.get(2), mStory, tsLong,
-                new User(Common.currentUser.getUid(),
-                        Common.currentUser.getName(),
-                        Common.currentUser.getEmail(),
-                        Common.currentUser.getPicUrl().toString()));
-
-        Genre genre = new Genre(Common.currentUser.getUid(), key, project.get(1), project_id);
-        Map<String, Object> genreValues = genre.toMap();
-        Map<String, Object> storyValues = story.toMap();
-
-        Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put(key, storyValues);
-        childUpdates.put("/genre/" + project.get(1) + "/" + key, genreValues);
-
-        mStoriesDatabase.document().update(childUpdates);*/
 
     }
 
@@ -452,40 +377,6 @@ public class OfflineStoryFragment extends Fragment {
         values.put(mySQLiteDBHelper.STORY_COLUMN_PROJECT, project_name);
         values.put(mySQLiteDBHelper.STORY_COLUMN_PROJECT_ID, project_id);
         values.put(mySQLiteDBHelper.STORY_COLUMN_STORIES, mStory);
-//      Auto saving
-//    private final static int INTERVAL = 1000 * 60; //1 minutes
-//    Handler mHandler = new Handler();
-//
-//    Runnable mHandlerTask = new Runnable()
-//    {
-//        @Override
-//        public void run() {
-//            saveStoryToDB();
-//            Log.v("matilda", "running");
-//            mHandler.postDelayed(mHandlerTask, INTERVAL);
-//        }
-//    };
-//
-//    void startRepeatingTask()
-//    {
-//        mHandlerTask.run();
-//    }
-//
-//    void stopRepeatingTask()
-//    {
-//        mHandler.removeCallbacks(mHandlerTask);
-//        Log.v("matilda", "stopped");
-//    }
-//
-//    @Override
-//    public void onDestroy () {
-//
-//        Log.v("matilda", "destroyed");
-//        mHandler.removeCallbacks(mHandlerTask);
-//        super.onDestroy ();
-//
-//
-//    }
 
 
         if (isUpdate)
@@ -531,6 +422,27 @@ public class OfflineStoryFragment extends Fragment {
         Utils.changeFragment(nextFragment, transaction);
         transaction.addToBackStack(null);
         // getFragmentManager().popBackStack();
+    }
+
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_story, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.menu_story_save) {
+            //Send it to the next fragment
+            try {
+                saveStoryToDB();
+                Toast.makeText(getContext(),"Saved successfully", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 
