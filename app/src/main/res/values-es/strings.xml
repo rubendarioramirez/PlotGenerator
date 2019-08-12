@@ -7,7 +7,7 @@
 
 
     <!--Tabs-->
-    <string name="trigger_tab">Disparadores Creativos</string>
+    <string name="trigger_tab">Disparadores Creativos Semanales</string>
     <string-array name="triggers_list" tools:ignore="InconsistentArrays">
         <item>No le dijo a nadie a donde se dirigia.</item>
         <item>Abrio la carta y rapidamente la tiro al fuego.</item>
@@ -1002,5 +1002,8 @@ Para que el personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="promptSubmitTeaser">Envia tu disparador creativo ahora mismo!</string>
     <string name="promptHint">Escribe tu disparador aquí!</string>
     <string name="promptSubmit">Enviar</string>
+
+
+    <string name="premiumOnly">Disponible para usuarios Premium</string>
 
 </resources>

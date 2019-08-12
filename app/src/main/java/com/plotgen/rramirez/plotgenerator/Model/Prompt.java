@@ -13,17 +13,19 @@ public class Prompt {
     private long date;
     private User user;
     private String story;
+    private Boolean selected;
 
     public Map<String, Boolean> likes = new HashMap<>();
 
     public Prompt() {
     }
 
-    public Prompt(String id, String story, long date, User user) {
+    public Prompt(String id, String story, long date, User user, Boolean selected) {
         this.id = id;
         this.date = date;
         this.user = user;
         this.story = story;
+        this.selected = selected;
     }
 
     public String getId() {
@@ -50,6 +52,13 @@ public class Prompt {
         this.user = user;
     }
 
+    public Boolean getSelected() {
+        return selected;
+    }
+
+    public void setSelected(Boolean selected) {
+        this.selected = selected;
+    }
 
     public String getStory() {
         return story;
@@ -66,6 +75,7 @@ public class Prompt {
         result.put("user", user);
         result.put("date", date);
         result.put("story", story);
+        result.put("selected", selected);
 
         return result;
     }

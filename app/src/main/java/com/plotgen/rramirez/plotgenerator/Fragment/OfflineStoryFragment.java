@@ -12,7 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -28,25 +28,19 @@ import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.ErrorCodes;
 import com.firebase.ui.auth.IdpResponse;
 import com.google.android.gms.ads.AdView;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.plotgen.rramirez.plotgenerator.CharListFragment;
-import com.plotgen.rramirez.plotgenerator.CharacterFragment;
 import com.plotgen.rramirez.plotgenerator.Common.AdsHelper;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
@@ -55,7 +49,6 @@ import com.plotgen.rramirez.plotgenerator.MainActivity;
 import com.plotgen.rramirez.plotgenerator.Model.Genre;
 import com.plotgen.rramirez.plotgenerator.Model.User;
 import com.plotgen.rramirez.plotgenerator.Model.UserStory;
-import com.plotgen.rramirez.plotgenerator.ProjectFragment;
 import com.plotgen.rramirez.plotgenerator.R;
 
 import java.util.ArrayList;
@@ -96,6 +89,8 @@ public class OfflineStoryFragment extends Fragment {
     private FirebaseFirestore mDatabase;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
+
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     public OfflineStoryFragment() {
         // Required empty public constructor
@@ -143,12 +138,13 @@ public class OfflineStoryFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((MainActivity) getActivity()).setActionBarTitle("My Story");
+        ((MainActivity) getActivity()).setActionBarTitle(Common.currentProject.getName());
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_offline_story, container, false);
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         setHasOptionsMenu(true);
         ButterKnife.bind(this, view);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(getContext());
 
         try {
             project_name = Common.currentProject.getName();
@@ -371,26 +367,6 @@ public class OfflineStoryFragment extends Fragment {
         }
     }
 
-    private void saveStoryToDB(View v) {
-        SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(mySQLiteDBHelper.STORY_COLUMN_PROJECT, project_name);
-        values.put(mySQLiteDBHelper.STORY_COLUMN_PROJECT_ID, project_id);
-        values.put(mySQLiteDBHelper.STORY_COLUMN_STORIES, mStory);
-
-
-        if (isUpdate)
-            database.update(mySQLiteDBHelper.CHARACTER_TABLE_STORY, values, "project = ?", new String[]{project_name});
-        else
-            database.insert(mySQLiteDBHelper.CHARACTER_TABLE_STORY, null, values);
-
-        ProjectFragment nextFragment = new ProjectFragment();
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        Utils.changeFragment(nextFragment, transaction);
-        getFragmentManager().popBackStack();
-
-    }
-
     private String getStoryFromDB(Context context, String project_id) {
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
@@ -416,14 +392,6 @@ public class OfflineStoryFragment extends Fragment {
         return s;
     }
 
-    private void changeFragment() {
-        CharListFragment nextFragment = new CharListFragment();
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        Utils.changeFragment(nextFragment, transaction);
-        transaction.addToBackStack(null);
-        // getFragmentManager().popBackStack();
-    }
-
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_story, menu);
@@ -442,8 +410,36 @@ public class OfflineStoryFragment extends Fragment {
             }
             return true;
         }
+        else if (id == R.id.menu_story_share) {
+                //Send it to the next fragment
+                try {
+                    if(Common.isPAU)
+                    {
+                        SHARE(mEditor.getHtml(),Common.currentProject.getName());
+                    } else
+                    {
+                        Toast.makeText(getContext(),getResources().getString(R.string.premiumOnly), Toast.LENGTH_LONG).show();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            return true;
+            }
+
         return super.onOptionsItemSelected(item);
     }
 
+        public void SHARE(String body, String char_name) {
+            // Do something in response to button
+            Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+            sharingIntent.setType("text/plain");
+            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Auctor:" + char_name);
+            sharingIntent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(body));
+            startActivity(Intent.createChooser(sharingIntent, "share"));
 
+            //Log challenges updated
+            Bundle params = new Bundle();
+            params.putString("Share", "completed");
+            mFirebaseAnalytics.logEvent("share_completed", params);
+        }
 }

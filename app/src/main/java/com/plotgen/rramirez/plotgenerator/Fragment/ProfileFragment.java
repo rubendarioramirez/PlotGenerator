@@ -594,13 +594,19 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
     }
 
     private int getCharCreated() {
+        ArrayList<String> projects_id = new ArrayList<String>();
         ArrayList<String> projects = Utils.getProjects_list(getContext());
+        for(int i = 0; i < projects.size(); i++)
+        {
+            projects_id.add(projects.get(i).split("/")[0]);
+        }
+
         ArrayList<String> chars;
         int totalChar = 0;
         if (projects != null && !projects.isEmpty())
             for (int i = 0; i < projects.size(); i++) {
                 if (!projects.get(i).isEmpty()) {
-                    chars = Utils.getCharList(getContext(), projects.get(i).substring(2));
+                    chars = Utils.getCharListByID(getContext(), projects_id.get(i));
                     totalChar = totalChar + chars.size();
                 }
             }

@@ -2,11 +2,13 @@ package com.plotgen.rramirez.plotgenerator;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +17,20 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Fragment.SubmitTriggerFragment;
@@ -32,8 +45,7 @@ import butterknife.ButterKnife;
 public class TriggerFragment extends Fragment {
 
 
-    ArrayList trigger_list;
-    ArrayList trigger_backgrounds;
+    ArrayList trigger_list,trigger_backgrounds,promptsList;
     List<item> mlist = new ArrayList<>();
     private String fragmentTag = TriggerFragment.class.getSimpleName();
 
@@ -53,7 +65,7 @@ public class TriggerFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         ((MainActivity) getActivity()).setActionBarTitle(getString(R.string.trigger_tab));
-        View myFragmentView = inflater.inflate(R.layout.fragment_trigger, container, false);
+        final View myFragmentView = inflater.inflate(R.layout.fragment_trigger, container, false);
         ButterKnife.bind(this, myFragmentView);
 
         if (!Common.isPAU) {
@@ -63,30 +75,34 @@ public class TriggerFragment extends Fragment {
             mAdView.loadAd(adRequest);
         }
 
-        //set up the recycler view with the adapter
-        RecyclerView recyclerView = myFragmentView.findViewById(R.id.rv_list);
-        final Adapter adapter = new Adapter(this.getActivity(), mlist);
-
-        //The arrays
-        trigger_list = new ArrayList();
-        trigger_backgrounds = new ArrayList();
-
-        //Fill up the background trigger list
-        trigger_backgrounds.addAll(Arrays.asList(R.color.color_trigger_1, R.color.color_trigger_2, R.color.color_trigger_3, R.color.color_trigger_4, R.color.color_trigger_5));
-        String[] stringArray = getResources().getStringArray(R.array.triggers_list);
-        int x = 0;
-
-        for (int i = 0; i < stringArray.length; i++) {
-            mlist.add(new item((Integer) trigger_backgrounds.get(x), (String) stringArray[i]));
-            adapter.notifyDataSetChanged();
-            x++;
-            if (x >= trigger_backgrounds.size()) {
-                x = 0;
-            }
+        //Get the array data
+        CollectionReference mCollectionRef;
+        if (Locale.getDefault().getDisplayLanguage().equals("español")) {
+            mCollectionRef = FirebaseFirestore.getInstance().collection("triggers_es");
+        } else {
+            mCollectionRef = FirebaseFirestore.getInstance().collection("triggers");
         }
+        promptsList = new ArrayList();
+        mCollectionRef.document("0").collection("special").whereEqualTo("selected",true)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
+                                //Log.d("TAG", document.getId() + " => " + document.getData().get("story").toString());
+                                promptsList.add(Objects.requireNonNull(document.getData().get("story")).toString());
 
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+                            }
+                        } else {
+                            Log.d("TAG", "Error getting documents: ", task.getException());
+                        }
+
+                        populateTriggers(myFragmentView);
+                    }
+
+                });
+
 
 
         fab_addTrigger.setOnClickListener(new View.OnClickListener() {
@@ -107,12 +123,41 @@ public class TriggerFragment extends Fragment {
 
 
 
+
         return myFragmentView;
     }
 
 
     public void onStart() {
         super.onStart();
+    }
+
+    public void populateTriggers(View view)
+    {
+
+        //set up the recycler view with the adapter
+        RecyclerView recyclerView = view.findViewById(R.id.rv_list);
+        final Adapter adapter = new Adapter(this.getActivity(), mlist);
+
+        //The arrays
+        trigger_list = new ArrayList();
+        trigger_backgrounds = new ArrayList();
+
+        //Fill up the background trigger list
+        trigger_backgrounds.addAll(Arrays.asList(R.color.color_trigger_1, R.color.color_trigger_2, R.color.color_trigger_3, R.color.color_trigger_4, R.color.color_trigger_5));
+        int x = 0;
+        for (int i = 0; i < promptsList.size(); i++) {
+            mlist.add(new item((Integer) trigger_backgrounds.get(x), (String) promptsList.get(i)));
+            adapter.notifyDataSetChanged();
+            x++;
+            if (x >= trigger_backgrounds.size()) {
+                x = 0;
+            }
+        }
+
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+
 
 
     }

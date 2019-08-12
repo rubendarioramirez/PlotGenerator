@@ -21,7 +21,7 @@
     <string name="reward_ad_challenge" translatable="false">ca-app-pub-6696437403163667/6917012049</string>
 
     <!--region Writing Prompts-->
-    <string name="trigger_tab">Writing Prompts</string>
+    <string name="trigger_tab">Weekly writing Prompts</string>
     <string-array name="triggers_list" tools:ignore="InconsistentArrays">
         <item>He didn\’t tell anyone where he was going.</item>
         <item>He opened the letter and quickly threw it in the fire.</item>
@@ -1039,6 +1039,8 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="promptSubmitTeaser">Send your prompt now!</string>
     <string name="promptHint">Write your prompt here!</string>
     <string name="promptSubmit">Submit</string>
+
+    <string name="premiumOnly">Available for premium users</string>
 
 
 </resources>

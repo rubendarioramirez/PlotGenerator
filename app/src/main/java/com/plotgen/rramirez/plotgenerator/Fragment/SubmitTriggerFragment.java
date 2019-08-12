@@ -30,6 +30,7 @@ import com.plotgen.rramirez.plotgenerator.R;
 import com.plotgen.rramirez.plotgenerator.TriggerFragment;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -67,6 +68,7 @@ public class SubmitTriggerFragment extends Fragment {
             return;
         }
 
+
         CollectionReference collectionReference = mReference.document("0").collection("special");
         String key = mReference.document().getId();
         Long tsLong = System.currentTimeMillis() / 1000;
@@ -75,7 +77,8 @@ public class SubmitTriggerFragment extends Fragment {
                 new User(Common.currentUser.getUid(),
                         Common.currentUser.getName(),
                         Common.currentUser.getEmail(),
-                        Common.currentUser.getPicUrl().toString()));
+                        Common.currentUser.getPicUrl().toString()),
+                        false);
 
         Map<String, Object> postValues = prompt.toMap();
 
@@ -125,8 +128,11 @@ public class SubmitTriggerFragment extends Fragment {
         });
 
         mDatabase = Common.currentDatabase;
-        mReference = mDatabase.collection("triggers");
-
+        if (Locale.getDefault().getDisplayLanguage().equals("español")) {
+            mReference = FirebaseFirestore.getInstance().collection("triggers_es");
+        } else {
+            mReference = FirebaseFirestore.getInstance().collection("triggers");
+        }
 
         return view;
     }
