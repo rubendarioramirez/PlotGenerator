@@ -185,10 +185,16 @@ public class Container_charbio extends Fragment {
         }
         else if (id == R.id.menu_bio_share){
             try {
+                if(Common.isPAU)
+                {
                     String bio = Utils.generateBIO(getContext(),Common.currentCharacter.getId());
                     StringBuffer challenges = Utils.generateChallenges(getContext(),Common.currentCharacter.getId());
                     String body = bio + "<BR><BR>" + challenges;
                     SHARE(body, Common.currentCharacter.getName());
+                } else
+                {
+                    Toast.makeText(getContext(),getResources().getString(R.string.premiumOnly), Toast.LENGTH_LONG).show();
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

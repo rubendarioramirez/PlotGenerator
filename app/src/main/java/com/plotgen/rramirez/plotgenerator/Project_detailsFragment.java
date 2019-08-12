@@ -183,17 +183,22 @@ public class Project_detailsFragment extends Fragment {
         fab_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isEmpty(project_name_et)) {
-                    Toast.makeText(getActivity(), getString(R.string.projects_empty),
-                            Toast.LENGTH_SHORT).show();
-                } else {
-                    if (!Common.projectCreationMode) {
-                        updateDB();
+                if (Common.isPAU || getProjectCreated() < 2)
+                {
+                    if (isEmpty(project_name_et)) {
+                        Toast.makeText(getActivity(), getString(R.string.projects_empty),
+                                Toast.LENGTH_SHORT).show();
                     } else {
-                        saveToDB(project_name_et, project_plot_et, project_genre_spinner);
-                        Common.projectCreationMode = false;
+                        if (!Common.projectCreationMode) {
+                            updateDB();
+                        } else {
+                            saveToDB(project_name_et, project_plot_et, project_genre_spinner);
+                            Common.projectCreationMode = false;
+                        }
+                        fragmentTransaction();
                     }
-                    fragmentTransaction();
+                } else {
+                    Utils.popUp(getContext(),getString((R.string.premiumOnlyPopTitle)), getString((R.string.premiumOnlyPopBody)));
                 }
             }
         });
@@ -442,6 +447,11 @@ public class Project_detailsFragment extends Fragment {
         else{
             fab_delete.show();
         }
+    }
+
+    private int getProjectCreated() {
+        ArrayList<String> projects = Utils.getProjects_list(getContext());
+        return projects.size();
     }
 
 }

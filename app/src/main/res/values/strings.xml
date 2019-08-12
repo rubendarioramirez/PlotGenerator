@@ -1042,5 +1042,8 @@ In order for your character to evolve in a positive way, he has to start out wit
 
     <string name="premiumOnly">Available for premium users</string>
 
+    <string name="premiumOnlyPopTitle">Become premium!</string>
+    <string name="premiumOnlyPopBody">Howdy, it looks like you\'re enjoying the app. Unfortunately your current project limit is 2. But don\'t worry! You can become a Premium user to create unlimited projects.</string>
+
 
 </resources>

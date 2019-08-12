@@ -1006,4 +1006,7 @@ Para que el personaje pueda evolucionar en una manera positiva, tiene que comenz
 
     <string name="premiumOnly">Disponible para usuarios Premium</string>
 
+    <string name="premiumOnlyPopTitle">Conviertete en Premium!</string>
+    <string name="premiumOnlyPopBody">Hola! Al parecer estas disfrutando de la app. Lamentablemente solo puedes crear dos proyectos con tu tipo de cuenta. Pero no te preocupes, siempre puedes convertirte en Premium para poder crear una cantidad ilimitada de proyectos.</string>
+
 </resources>
