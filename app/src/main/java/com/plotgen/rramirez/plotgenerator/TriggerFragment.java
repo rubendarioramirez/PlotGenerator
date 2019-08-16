@@ -12,13 +12,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.Objects;
 
 import com.google.android.gms.ads.AdRequest;
@@ -26,8 +25,6 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -45,8 +42,8 @@ import butterknife.ButterKnife;
 public class TriggerFragment extends Fragment {
 
 
-    ArrayList trigger_list,trigger_backgrounds,promptsList;
-    List<item> mlist = new ArrayList<>();
+    ArrayList trigger_list,trigger_backgrounds,promptsList, authorsList;
+    List<item_trigger> mlist = new ArrayList<>();
     private String fragmentTag = TriggerFragment.class.getSimpleName();
 
     //    private String databaseToUse;
@@ -83,6 +80,7 @@ public class TriggerFragment extends Fragment {
             mCollectionRef = FirebaseFirestore.getInstance().collection("triggers");
         }
         promptsList = new ArrayList();
+        authorsList = new ArrayList();
         mCollectionRef.document("0").collection("special").whereEqualTo("selected",true)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -90,9 +88,9 @@ public class TriggerFragment extends Fragment {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
-                                //Log.d("TAG", document.getId() + " => " + document.getData().get("story").toString());
                                 promptsList.add(Objects.requireNonNull(document.getData().get("story")).toString());
-
+                                HashMap map = (HashMap) document.getData().get("user");
+                                authorsList.add(map.get("name").toString());
                             }
                         } else {
                             Log.d("TAG", "Error getting documents: ", task.getException());
@@ -137,7 +135,7 @@ public class TriggerFragment extends Fragment {
 
         //set up the recycler view with the adapter
         RecyclerView recyclerView = view.findViewById(R.id.rv_list);
-        final Adapter adapter = new Adapter(this.getActivity(), mlist);
+        final Adapter_trigger adapter = new Adapter_trigger(this.getActivity(), mlist);
 
         //The arrays
         trigger_list = new ArrayList();
@@ -147,7 +145,7 @@ public class TriggerFragment extends Fragment {
         trigger_backgrounds.addAll(Arrays.asList(R.color.color_trigger_1, R.color.color_trigger_2, R.color.color_trigger_3, R.color.color_trigger_4, R.color.color_trigger_5));
         int x = 0;
         for (int i = 0; i < promptsList.size(); i++) {
-            mlist.add(new item((Integer) trigger_backgrounds.get(x), (String) promptsList.get(i)));
+            mlist.add(new item_trigger((Integer) trigger_backgrounds.get(x), (String) promptsList.get(i), "By " + (String) authorsList.get(i)));
             adapter.notifyDataSetChanged();
             x++;
             if (x >= trigger_backgrounds.size()) {
@@ -157,8 +155,6 @@ public class TriggerFragment extends Fragment {
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-
-
 
     }
 }

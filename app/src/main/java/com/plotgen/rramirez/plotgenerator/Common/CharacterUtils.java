@@ -25,11 +25,13 @@ public class CharacterUtils extends Fragment {
             case "Masculino":
                 result = withName.replace("$gender$", context.getString(R.string.gender_male_article));
                 break;
-            case "Binario":
             case "No-Binario":
-            case "Transgenero":
+            case "Transgenero Masculino":
+            case "Transgenero Femenino":
+            case "Transgender Male":
+            case "Transgender Female":
             case "Transgender":
-            case "Binary":
+            case "Transgenero":
             case "Non-Binary":
                 result = withName.replace("$gender$", context.getString(R.string.gender_nonbinary_article));
                 break;

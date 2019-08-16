@@ -419,8 +419,8 @@ public class UserStoryDetailFragment extends Fragment {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
+    public boolean onOptionsItemSelected(MenuItem item_trigger) {
+        int id = item_trigger.getItemId();
         if (id == R.id.menu_edit) {
             String values = Common.currentUserStory.getId() + "_" + Common.currentUserStory.getProjectName();
 
@@ -430,7 +430,7 @@ public class UserStoryDetailFragment extends Fragment {
             transaction.addToBackStack(null);
             return true;
         }
-        return super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item_trigger);
     }*/
 
     @GlideModule

@@ -14,12 +14,12 @@ import java.util.List;
  * Created by macintosh on 22/08/18.
  */
 
-public class Adapter extends RecyclerView.Adapter<Adapter.myViewHolder> {
+public class Adapter_trigger extends RecyclerView.Adapter<Adapter_trigger.myViewHolder> {
 
     Context mContext;
-    List<item> mData;
+    List<item_trigger> mData;
 
-    public Adapter(Context mContext, List<item> mData) {
+    public Adapter_trigger(Context mContext, List<item_trigger> mData) {
         this.mContext = mContext;
         this.mData = mData;
     }
@@ -27,7 +27,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.myViewHolder> {
     @Override
     public myViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        View v = inflater.inflate(R.layout.card_item, parent, false);
+        View v = inflater.inflate(R.layout.trigger_item, parent, false);
         return new myViewHolder(v);
     }
 
@@ -35,6 +35,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.myViewHolder> {
     public void onBindViewHolder(myViewHolder holder, int position) {
         holder.card_background.setImageResource(mData.get(position).getBackground());
         holder.trigger_title.setText(mData.get(position).getTrigger_title());
+        holder.trigger_author.setText(mData.get(position).getTrigger_author());
 
     }
 
@@ -46,10 +47,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.myViewHolder> {
     public class myViewHolder extends RecyclerView.ViewHolder{
         ImageView card_background;
         TextView trigger_title;
+        TextView trigger_author;
         public myViewHolder(View itemView){
             super (itemView);
             card_background = itemView.findViewById(R.id.card_background_herojourney);
             trigger_title = itemView.findViewById(R.id.trigger_title);
+            trigger_author = itemView.findViewById(R.id.trigger_author);
         }
     }
 }

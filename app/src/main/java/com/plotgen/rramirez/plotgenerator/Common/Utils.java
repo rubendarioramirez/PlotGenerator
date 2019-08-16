@@ -110,10 +110,11 @@ public class Utils extends Fragment{
         while (!cursor.isAfterLast()) {
             String id = cursor.getString(cursor.getColumnIndex("_id"));
             String project_name = cursor.getString(cursor.getColumnIndex("project"));
+            String genre = cursor.getString(cursor.getColumnIndex("genre"));
             /*if (cursor.getColumnIndex("image") != -1 && cursor.getString(cursor.getColumnIndex("image")) != null) {
                 String image = cursor.getString(cursor.getColumnIndex("image"));
             }*/
-            projects_list.add(id + "/&&/" + project_name);
+            projects_list.add(id + "/&&/" + project_name + "/&&/" + genre);
             cursor.moveToNext();
         }
         cursor.close();
@@ -146,29 +147,6 @@ public class Utils extends Fragment{
         }
         sqLiteDatabase.close();
         return projects_list;
-    }
-
-    public static ArrayList<String> getCharList(Context context, String project_name) {
-        mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
-        SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER + " WHERE project = ?";
-        Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{project_name});
-        ArrayList<String> char_list = new ArrayList<String>();
-        if (cursor != null) {
-            cursor.moveToFirst();
-
-            while (!cursor.isAfterLast()) {
-                String charname = cursor.getString(cursor.getColumnIndex("name"));
-                String charRole = cursor.getString(cursor.getColumnIndex("role"));
-                String image = cursor.getString(cursor.getColumnIndex("image"));
-                char_list.add(charname + " - " + charRole + " - " + image);
-                cursor.moveToNext();
-            }
-            cursor.close();
-        }
-        sqLiteDatabase.close();
-
-        return char_list;
     }
 
     public static ArrayList<String> getBIO(Context context, String charID) {
@@ -593,18 +571,6 @@ public class Utils extends Fragment{
         transaction.commit();
 
     }
-
-
-
-//    public static void changeFragment(Fragment nextFragment, FragmentTransaction transaction, String bundleName, String bundleValue) {
-//        Bundle bundle = new Bundle();
-//        bundle.putString(bundleName, bundleValue);
-//        nextFragment.setArguments(bundle);
-//        //Make the transaction
-//        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
-//        transaction.replace(R.id.flMain, nextFragment);
-//        transaction.commit();
-//    }
 
     public static void showRateDialogForRate(final Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context)

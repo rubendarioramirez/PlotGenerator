@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-        <!--<item-->
+        <!--<item_trigger-->
             <!--android:id="@+id/nav_home"-->
             <!--android:icon="@drawable/ic_home_black"-->
             <!--android:title="@string/home_tab" />-->
@@ -18,7 +18,7 @@
             android:title="@string/writing_challenge_tab" />
 
         <!--
-        <item
+        <item_trigger
             android:id="@+id/nav_discover"
             android:icon="@drawable/ic_book_black"
             android:iconTint="@color/black"

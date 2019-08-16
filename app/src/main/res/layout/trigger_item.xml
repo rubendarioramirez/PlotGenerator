@@ -21,22 +21,32 @@
         android:id="@+id/trigger_title"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:fontFamily="@font/typewcond_regular"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="cursive"
         android:gravity="center_vertical|center_horizontal"
         android:text="Im a trigger"
         android:textAlignment="center"
-        android:textColor="#AACCFF"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="#AACCFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/card_background_herojourney" />
+
+    <TextView
+        android:id="@+id/trigger_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="By Author"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#AACCFF"
+        app:layout_constraintBottom_toBottomOf="@+id/trigger_title"
+        app:layout_constraintEnd_toEndOf="@+id/trigger_title" />
 
 </android.support.constraint.ConstraintLayout>

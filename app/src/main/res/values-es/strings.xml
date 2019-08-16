@@ -216,9 +216,9 @@
         <item>Género</item>
         <item>Masculino</item>
         <item>Femenino</item>
-        <item>Binario</item>
+        <item>Transgenero Masculino</item>
+        <item>Transgenero Femenino</item>
         <item>No-Binario</item>
-        <item>Transgenero</item>
     </string-array>
     <string name="character_add_defmoment">Momento de su infancia</string>
     <string-array name="defmoment_array">

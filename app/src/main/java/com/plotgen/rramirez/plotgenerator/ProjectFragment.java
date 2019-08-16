@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,10 +22,12 @@ import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Model.Project;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.plotgen.rramirez.plotgenerator.Common.Constants.TOTAL_CHALLENGES;
 import static com.plotgen.rramirez.plotgenerator.Common.Constants.debugMode;
 
 
@@ -31,13 +35,11 @@ public class ProjectFragment extends Fragment {
     //region Declare elements
     String fragmentTag = ProjectFragment.class.getSimpleName();
     ArrayList<String> project_list_array;
-    ArrayAdapter<String> itemsAdapter;
-    ArrayList<String> project_names;
-    ArrayList<String> projects_ids;
     boolean alreadyCalled;
+    List<item_project_list> mlist = new ArrayList<>();
 
     @BindView(R.id.project_lv)
-    ListView project_lv;
+    RecyclerView project_lv;
     @BindView(R.id.empty_project_tv)
     TextView empty_project_tv;
     @BindView(R.id.adView_project_frag)
@@ -55,20 +57,25 @@ public class ProjectFragment extends Fragment {
         final View myFragmentView = inflater.inflate(R.layout.fragment_project, container, false);
         ButterKnife.bind(this, myFragmentView);
 
-        //region Populate Project list
-        project_names = new ArrayList<String>();
-        projects_ids = new ArrayList<String>();
         project_list_array = Utils.getProjects_list(myFragmentView.getContext());
-        if (project_list_array != null && !project_list_array.isEmpty())
-            for (int i = 0; i < project_list_array.size(); i++) {
-                if (!project_list_array.get(i).isEmpty()) {
-                    projects_ids.add(String.valueOf(project_list_array.get(i).split("/&&/")[0]));
-                    project_names.add(project_list_array.get(i).split("/&&/")[1]);
+        final Adapter_projectList adapter = new Adapter_projectList(this.getActivity(),mlist);
+        mlist.clear();
+
+        if(!project_list_array.isEmpty()){
+            empty_project_tv.setVisibility(View.INVISIBLE);
+            for (int i = 0; i<project_list_array.size();i++) {
+                String id = project_list_array.get(i).split("/&&/")[0];
+                String name = project_list_array.get(i).split("/&&/")[1];
+                String genre = project_list_array.get(i).split("/&&/")[2];
+                String characters = String.valueOf(Utils.getCharListByID(getContext(),id).size());
+                mlist.add(new item_project_list(id, name, genre, characters));
                 }
             }
-        itemsAdapter = new ArrayAdapter<String>(myFragmentView.getContext(), android.R.layout.simple_list_item_1, project_names);
-        project_lv.setAdapter(itemsAdapter);
-        project_lv.setEmptyView(empty_project_tv);
+
+        project_lv.setAdapter(adapter);
+        project_lv.setLayoutManager(new LinearLayoutManager(this.getContext()));
+
+
         //endregion
 
         //region Tutorial
@@ -86,25 +93,6 @@ public class ProjectFragment extends Fragment {
         //Load ad
         AdsHelper.loadAd(mAdView);
 
-        //region handle Click on projects
-        project_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position,
-                                    long id) {
-                CharListFragment nextFragment = new CharListFragment();
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-//                boolean fragmentPopped = getFragmentManager().popBackStackImmediate(fragmentTag, 0);
-//                if (!fragmentPopped && getFragmentManager().findFragmentByTag(fragmentTag) == null) {
-                Project project = new Project(projects_ids.get(position),project_names.get(position));
-                Common.currentProject = project;
-                transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
-                transaction.replace(R.id.flMain, nextFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
-//                }
-            }
-        });
-        //endregion
 
         //region handle Add project button
         FloatingActionButton fab = (FloatingActionButton) myFragmentView.findViewById(R.id.add_project_btn);
@@ -118,9 +106,6 @@ public class ProjectFragment extends Fragment {
 
                 Project_detailsFragment nextFragment = new Project_detailsFragment();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-//  Log.e("story stack size", getFragmentManager().getBackStackEntryCount() + " " + fragmentTag);
-//                boolean fragmentPopped = getFragmentManager().popBackStackImmediate(fragmentTag, 0);
-//                if (!fragmentPopped && getFragmentManager().findFragmentByTag(fragmentTag) == null) {
                 transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
                 transaction.replace(R.id.flMain, nextFragment);
                 transaction.addToBackStack(null);

@@ -303,8 +303,8 @@
         <item>Gender</item>
         <item>Male</item>
         <item>Female</item>
-        <item>Transgender</item>
-        <item>Binary</item>
+        <item>Transgender Male</item>
+        <item>Transgender Female</item>
         <item>Non-Binary</item>
     </string-array>
     <string name="character_add_role">Role</string>
