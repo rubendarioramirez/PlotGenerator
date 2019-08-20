@@ -262,8 +262,8 @@
 <item> Sesso </item>
 <item> Male </item>
 <item> Donna </item>
-<item> Transgender </item>
-<item> Binary </item>
+<item> Transgender-Male </item>
+<item> Transgender-Donna </item>
 <item> Non-Binary </item>
     </string-array>
 <string name = "character_add_role"> Ruolo </string>

@@ -11,11 +11,11 @@ import android.view.ViewGroup;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.plotgen.rramirez.plotgenerator.Common.Adapter_challenges;
+import com.plotgen.rramirez.plotgenerator.Adapters.Adapter_challenges;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.MainActivity;
 import com.plotgen.rramirez.plotgenerator.R;
-import com.plotgen.rramirez.plotgenerator.item_herojourney;
+import com.plotgen.rramirez.plotgenerator.items.item_herojourney;
 
 import java.util.ArrayList;
 import java.util.List;

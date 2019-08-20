@@ -1,4 +1,4 @@
-package com.plotgen.rramirez.plotgenerator;
+package com.plotgen.rramirez.plotgenerator.items;
 
 /**
  * Created by macintosh on 22/08/18.

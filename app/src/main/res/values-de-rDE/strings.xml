@@ -279,8 +279,8 @@ Erstelle jetzt neue Charaktere.</string>
 <item>Geschlecht</item>
 <item>Männlich</item>
 <item>Weiblich</item>
-<item>Transsexuell</item>
-<item>Binär</item>
+<item>Transsexuell-Männlich</item>
+<item>Transsexuell-Weiblich</item>
 <item>Nicht-binär</item>
 </string-array>
 <string name="character_add_role">Rolle</string>

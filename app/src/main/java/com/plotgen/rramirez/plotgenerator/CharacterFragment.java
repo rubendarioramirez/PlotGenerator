@@ -216,14 +216,17 @@ public class CharacterFragment extends Fragment {
 
                 //Set the proper spinner value
                 String gender = char_description.get(2);
-                if (gender.equals("Masculino") || gender.equals("Male")) {
+                if (gender.equals(getResources().getStringArray(R.array.gender_spinner_array)[1])) {
                     gender_spinner.setSelection(1);
-                } else if (gender.equals("Female") || gender.equals("Femenino")) {
+                } else if (gender.equals(getResources().getStringArray(R.array.gender_spinner_array)[2])) {
                     gender_spinner.setSelection(2);
-                } else if (gender.equals("Transgender") || gender.equals("Transgenero")) {
+                } else if (gender.equals(getResources().getStringArray(R.array.gender_spinner_array)[3])) {
                     gender_spinner.setSelection(3);
-                } else if (gender.equals("Binario") || gender.equals("Binary")) {
-                    gender_spinner.setSelection(4);
+                } else if (gender.equals(getResources().getStringArray(R.array.gender_spinner_array)[4])){
+                    gender_spinner.setSelection(5);
+                }
+                 else if (gender.equals(getResources().getStringArray(R.array.gender_spinner_array)[5])) {
+                    gender_spinner.setSelection(5);
                 } else {
                     gender_spinner.setSelection(5);
                 }

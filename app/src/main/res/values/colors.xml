@@ -56,11 +56,13 @@
     <color name="text_shadow">#7f050000</color>
     <color name="text_shadow_white">#383737</color>
 
+
     <color name="color_trigger_1">#5f5f8c</color>
     <color name="color_trigger_2">#52527b</color>
     <color name="color_trigger_3">#373753</color>
     <color name="color_trigger_4">#28283d</color>
     <color name="color_trigger_5">#13131d</color>
+    <color name="color_trigger_6">#F8F7F7</color>
     <color name="background_material_light">#baa647</color>
 
 </resources>

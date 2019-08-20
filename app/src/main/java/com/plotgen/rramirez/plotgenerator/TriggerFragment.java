@@ -28,9 +28,11 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.plotgen.rramirez.plotgenerator.Adapters.Adapter_trigger;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Fragment.SubmitTriggerFragment;
+import com.plotgen.rramirez.plotgenerator.items.item_trigger;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

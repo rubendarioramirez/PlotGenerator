@@ -282,8 +282,8 @@ Silakan buat karakter yang baru untuk memulai</string>
         <item>Jenis Kelamin</item>
         <item>Pria</item>
         <item>Wanita</item>
-        <item>Waria</item>
-        <item>Biner</item>
+        <item>Waria-Pria</item>
+        <item>Waria-Wanita</item>
         <item>Non-Biner</item>
     </string-array>
     <string name="character_add_role">Peran</string>

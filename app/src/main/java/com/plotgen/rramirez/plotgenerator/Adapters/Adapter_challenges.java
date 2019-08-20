@@ -1,4 +1,4 @@
-package com.plotgen.rramirez.plotgenerator.Common;
+package com.plotgen.rramirez.plotgenerator.Adapters;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +17,7 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.reward.RewardItem;
 import com.google.android.gms.ads.reward.RewardedVideoAd;
 import com.google.android.gms.ads.reward.RewardedVideoAdListener;
+import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Guides.AntagonistFragment;
 import com.plotgen.rramirez.plotgenerator.ChallengeTemplateFragment;
 import com.plotgen.rramirez.plotgenerator.Guides.GuideLajosFragment;
@@ -25,7 +25,7 @@ import com.plotgen.rramirez.plotgenerator.Guides.GuideRoleFragment;
 import com.plotgen.rramirez.plotgenerator.Guides.GuideWeilandFragment;
 import com.plotgen.rramirez.plotgenerator.HeroJourneyFragment;
 import com.plotgen.rramirez.plotgenerator.R;
-import com.plotgen.rramirez.plotgenerator.item_herojourney;
+import com.plotgen.rramirez.plotgenerator.items.item_herojourney;
 
 import java.util.List;
 

@@ -10,16 +10,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 import com.google.android.gms.ads.AdView;
+import com.plotgen.rramirez.plotgenerator.Adapters.Adapter_projectList;
 import com.plotgen.rramirez.plotgenerator.Common.AdsHelper;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Tutorial;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
-import com.plotgen.rramirez.plotgenerator.Model.Project;
+import com.plotgen.rramirez.plotgenerator.items.item_project_list;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +25,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.plotgen.rramirez.plotgenerator.Common.Constants.TOTAL_CHALLENGES;
 import static com.plotgen.rramirez.plotgenerator.Common.Constants.debugMode;
 
 

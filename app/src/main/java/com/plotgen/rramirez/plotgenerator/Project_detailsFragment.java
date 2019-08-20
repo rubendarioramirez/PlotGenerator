@@ -136,7 +136,6 @@ public class Project_detailsFragment extends Fragment {
                 String project_genre =  project_list_array.get(1);
                 project_plot_et.setText(project_list_array.get(2));
                 String[] possibleGenres = getResources().getStringArray(R.array.genres_array);
-//                if (project_list_array.size() >= 4 && !project_list_array.get(3).equalsIgnoreCase(null) && !project_list_array.get(3).equalsIgnoreCase("")) {
                   if(project_list_array.size() >= 4 )
                     {
                     project_icon_iv.setImageURI(Uri.parse(project_list_array.get(3)));

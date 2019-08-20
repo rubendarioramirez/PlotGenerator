@@ -8,16 +8,6 @@
     tools:context="com.plotgen.rramirez.plotgenerator.BioFragment">
 
 
-    <!--<ImageView-->
-        <!--android:id="@+id/background_char_bio"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="80dp"-->
-        <!--android:background="?backgroundDarker"-->
-        <!--android:scaleType="centerCrop"-->
-        <!--android:elevation="20dp"-->
-        <!--app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent" />-->
-
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="0dp"

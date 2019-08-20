@@ -13,7 +13,8 @@ import com.google.android.gms.ads.reward.RewardedVideoAd;
 import com.plotgen.rramirez.plotgenerator.Common.AdsHelper;
 import com.plotgen.rramirez.plotgenerator.Common.CharacterUtils;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
-import com.plotgen.rramirez.plotgenerator.Common.Adapter_challenges;
+import com.plotgen.rramirez.plotgenerator.Adapters.Adapter_challenges;
+import com.plotgen.rramirez.plotgenerator.items.item_herojourney;
 
 import java.util.ArrayList;
 import java.util.List;

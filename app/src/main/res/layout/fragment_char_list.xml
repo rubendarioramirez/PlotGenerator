@@ -106,6 +106,14 @@
             app:fabIcon="@drawable/ic_book_black"
             app:fabText="Add Story" />
 
+        <com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_add_outline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fabColor="?colorPrimary"
+            app:fabIcon="@drawable/ic_book_black"
+            app:fabText="Add Outline" />
+
     </com.robertlevonyan.views.customfloatingactionbutton.FloatingLayout>
 
 </android.support.constraint.ConstraintLayout>

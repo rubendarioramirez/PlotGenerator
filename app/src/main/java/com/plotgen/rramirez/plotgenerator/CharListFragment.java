@@ -3,10 +3,12 @@ package com.plotgen.rramirez.plotgenerator;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -14,16 +16,18 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import com.google.android.gms.ads.AdView;
+
 import com.google.firebase.analytics.FirebaseAnalytics;
-import com.plotgen.rramirez.plotgenerator.Common.AdsHelper;
+import com.plotgen.rramirez.plotgenerator.Adapters.Adapter_characterList;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Tutorial;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Fragment.OfflineStoryFragment;
+import com.plotgen.rramirez.plotgenerator.items.item_character_list;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,7 +53,8 @@ public class CharListFragment extends Fragment {
     com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton fabAddChar;
     @BindView(R.id.fab_add_story)
     com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton fabAddStory;
-    private String fragmentTag = CharListFragment.class.getSimpleName();
+    @BindView(R.id.fab_add_outline_charlist)
+    com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton fab_add_outline_charlist;
 
     public CharListFragment() {
         // Required empty public constructor
@@ -120,7 +125,24 @@ public class CharListFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
+        ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,0) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder dragged, @NonNull RecyclerView.ViewHolder target) {
+                int position_dragged = dragged.getAdapterPosition();
+                int position_target= target.getAdapterPosition();
 
+                Collections.swap(mlist, position_dragged,position_target);
+                adapter.notifyItemMoved(position_dragged,position_target);
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+
+            }
+        });
+
+        helper.attachToRecyclerView(recyclerView);
 
         fabAddChar.setFabText(getString(R.string.add_char));
         fabAddChar.setOnClickListener(new View.OnClickListener() {
@@ -133,7 +155,6 @@ public class CharListFragment extends Fragment {
                 transaction.replace(R.id.flMain, nextFragment);
                 getActivity().getSupportFragmentManager().popBackStack();
                 transaction.commit();
-                //                Utils.changeFragment(nextFragment, transaction);
             }
         });
 
@@ -150,6 +171,16 @@ public class CharListFragment extends Fragment {
                 Bundle params = new Bundle();
                 params.putString("created_story", "started");
                 mFirebaseAnalytics.logEvent("created_story", params);
+            }
+        });
+
+        fab_add_outline_charlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                OutlineFragment nextFragment = new OutlineFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                Utils.changeFragment(nextFragment,transaction);
+
             }
         });
 
@@ -185,5 +216,6 @@ public class CharListFragment extends Fragment {
         }
         return super.onOptionsItemSelected(item);
     }
+
 
 }
