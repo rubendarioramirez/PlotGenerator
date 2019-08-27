@@ -8,32 +8,20 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
-import android.text.Html;
 import android.util.Log;
-import android.view.View;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.plotgen.rramirez.plotgenerator.R;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-
-import static com.firebase.ui.auth.AuthUI.getApplicationContext;
-import static com.plotgen.rramirez.plotgenerator.Common.Constants.THUMBNAIL_SIZE;
 
 public class Utils extends Fragment{
 
@@ -82,7 +70,7 @@ public class Utils extends Fragment{
     public static ArrayList<String> getProject(Context context, String project_name) {
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_PROJECT + " WHERE project = ?";
+        String query = "SELECT * FROM  " + mySQLiteDBHelper.TABLE_PROJECT + " WHERE project = ?";
         Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{project_name});
         cursor.moveToFirst();
         ArrayList<String> projects_list = new ArrayList<String>();
@@ -104,17 +92,18 @@ public class Utils extends Fragment{
     public static ArrayList<String> getProjects_list(Context context) {
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        Cursor cursor = sqLiteDatabase.query(mySQLiteDBHelper.CHARACTER_TABLE_PROJECT, null, null, null, null, null, null);
+        Cursor cursor = sqLiteDatabase.query(mySQLiteDBHelper.TABLE_PROJECT, null, null, null, null, null, null);
         cursor.moveToFirst();
         ArrayList<String> projects_list = new ArrayList<String>();
+        String image = "";
         while (!cursor.isAfterLast()) {
             String id = cursor.getString(cursor.getColumnIndex("_id"));
             String project_name = cursor.getString(cursor.getColumnIndex("project"));
             String genre = cursor.getString(cursor.getColumnIndex("genre"));
-            /*if (cursor.getColumnIndex("image") != -1 && cursor.getString(cursor.getColumnIndex("image")) != null) {
-                String image = cursor.getString(cursor.getColumnIndex("image"));
-            }*/
-            projects_list.add(id + "/&&/" + project_name + "/&&/" + genre);
+            if (cursor.getColumnIndex("image") != -1 && cursor.getString(cursor.getColumnIndex("image")) != null) {
+                 image = cursor.getString(cursor.getColumnIndex("image"));
+            }
+            projects_list.add(id + "/&&/" + project_name + "/&&/" + genre + "/&&/" + image);
             cursor.moveToNext();
         }
         cursor.close();
@@ -126,7 +115,7 @@ public class Utils extends Fragment{
     public static ArrayList<String> getCharListByID(Context context, String project_id){
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER  + " WHERE project_id = ?";
+        String query = "SELECT * FROM  " + mySQLiteDBHelper.TABLE_CHARACTER + " WHERE project_id = ?";
         ArrayList<String> projects_list = new ArrayList<String>();
         try {
             Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{project_id});
@@ -152,7 +141,7 @@ public class Utils extends Fragment{
     public static ArrayList<String> getBIO(Context context, String charID) {
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER + " WHERE _id = ?";
+        String query = "SELECT * FROM  " + mySQLiteDBHelper.TABLE_CHARACTER + " WHERE _id = ?";
         ArrayList<String> char_list = new ArrayList<String>();
         try {
             Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{charID});
@@ -193,7 +182,7 @@ public class Utils extends Fragment{
     public static ArrayList<String> getChallenges(Context context, String charID) {
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER + " WHERE _id = ?";
+        String query = "SELECT * FROM  " + mySQLiteDBHelper.TABLE_CHARACTER + " WHERE _id = ?";
         ArrayList<String> char_list = new ArrayList<String>();
         try {
             Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{charID});
@@ -439,7 +428,7 @@ public class Utils extends Fragment{
     public static ArrayList<String> getPhoto(Context context, String charID) {
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER + " WHERE _id = ?";
+        String query = "SELECT * FROM  " + mySQLiteDBHelper.TABLE_CHARACTER + " WHERE _id = ?";
         ArrayList<String> char_list = new ArrayList<String>();
         try {
             Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{charID});
@@ -558,7 +547,7 @@ public class Utils extends Fragment{
 
     public static void deleteFromDB(Context context, String projectID) {
         SQLiteDatabase database = new mySQLiteDBHelper(context).getWritableDatabase();
-        database.delete(mySQLiteDBHelper.CHARACTER_TABLE_PROJECT, "_id = ?", new String[]{projectID});
+        database.delete(mySQLiteDBHelper.TABLE_PROJECT, "_id = ?", new String[]{projectID});
         database.close();
     }
 

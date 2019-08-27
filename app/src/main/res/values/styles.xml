@@ -109,7 +109,7 @@
 
 
     <!--WhiteTHeme THEME-->
-    <style name="whiteTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="whiteTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#000000</item>
         <item name="colorPrimaryDark">#000000</item>

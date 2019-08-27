@@ -1003,6 +1003,9 @@ Para que el personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="promptHint">Escribe tu disparador aquí!</string>
     <string name="promptSubmit">Enviar</string>
 
+    <string name="add_outline">Escaleta</string>
+    <string name="outline_share_title">Titulo</string>
+    <string name="outline_share_characters">Personajes</string>
 
     <string name="premiumOnly">Disponible para usuarios Premium</string>
 

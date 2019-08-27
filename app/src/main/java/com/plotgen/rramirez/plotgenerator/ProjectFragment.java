@@ -11,9 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.google.android.gms.ads.AdView;
 import com.plotgen.rramirez.plotgenerator.Adapters.Adapter_projectList;
-import com.plotgen.rramirez.plotgenerator.Common.AdsHelper;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Tutorial;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
@@ -39,8 +37,6 @@ public class ProjectFragment extends Fragment {
     RecyclerView project_lv;
     @BindView(R.id.empty_project_tv)
     TextView empty_project_tv;
-    @BindView(R.id.adView_project_frag)
-    AdView mAdView;
     //endregion
 
     public ProjectFragment() {
@@ -61,11 +57,21 @@ public class ProjectFragment extends Fragment {
         if(!project_list_array.isEmpty()){
             empty_project_tv.setVisibility(View.INVISIBLE);
             for (int i = 0; i<project_list_array.size();i++) {
+                String image = "";
                 String id = project_list_array.get(i).split("/&&/")[0];
                 String name = project_list_array.get(i).split("/&&/")[1];
+                if (name.length() > 20){
+                    String preName = name.substring(0,20);
+                    String postName = name.substring(20,name.length());
+                    name = preName + "\n" + postName;
+                }
                 String genre = project_list_array.get(i).split("/&&/")[2];
                 String characters = String.valueOf(Utils.getCharListByID(getContext(),id).size());
-                mlist.add(new item_project_list(id, name, genre, characters));
+                if (project_list_array.get(i).split("/&&/").length >= 4){
+                    image = project_list_array.get(i).split("/&&/")[3];
+                }
+                Log.v("matilda", image);
+                mlist.add(new item_project_list(id, name, genre, characters, image));
                 }
             }
 
@@ -86,9 +92,6 @@ public class ProjectFragment extends Fragment {
         alreadyCalled=true;
         }
         //endregion Tutorial
-
-        //Load ad
-        AdsHelper.loadAd(mAdView);
 
 
         //region handle Add project button

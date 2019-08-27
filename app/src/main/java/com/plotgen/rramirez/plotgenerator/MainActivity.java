@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
         AppLovinSdk.initializeSdk(this.getApplicationContext());
+
         IronSource.init(this, "92412865");
 
         //IntegrationHelper.validateIntegration(this);
@@ -260,24 +261,7 @@ public class MainActivity extends AppCompatActivity
                     return null;
                 }
             });
-            /*mUserDatabase.runTransaction(new Transaction.Handler() {
-                @NonNull
-                @Override
-                public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
-                    if (mutableData.hasChild(mUser.getUid())) {
-                        mutableData.child(mUser.getUid()).child("token").setValue(firebase_token);
-                    } else {
-                        mutableData.child(mUser.getUid());
-                        mutableData.child(mUser.getUid()).setValue(mUser.getUid());
-                        mutableData.child(mUser.getUid()).child("token").setValue(firebase_token);
-                    }
-                    return Transaction.success(mutableData);
-                }
-                @Override
-                public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
-                    Log.d("Updated token", "postTransaction:onComplete:" + databaseError);
-                }
-            });*/
+
 
             Map<String, String> map = new HashMap<>();
             map.put("token", firebase_token);
@@ -407,36 +391,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-
-
-       /* final DatabaseReference mPostReference = mDatabase.getReference().child("stories");
-        Query query = mPostReference.child(id);
-
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot != null && dataSnapshot.getKey().equals(id)) {
-                    String photoUrl = null;
-                    if (mUser.getPhotoUrl() != null)
-                        photoUrl = mUser.getPhotoUrl().toString();
-                    Common.currentUser = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail(), photoUrl, mUser.getPhotoUrl());
-                    Common.currentUserStory = dataSnapshot.getValue(UserStory.class);
-                    UserStoryDetailFragment nextFragment = new UserStoryDetailFragment();
-                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    Utils.changeFragment(nextFragment, transaction);
-                    getSupportFragmentManager().popBackStack();
-//                    navigationView.setCheckedItem(R.id.nav_discover);
-
-                } else {
-                    openHomeFragment();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e("error", databaseError.getDetails());
-            }
-        });*/
     }
 
     private void openStoryFragment(final String id) {
@@ -470,33 +424,6 @@ public class MainActivity extends AppCompatActivity
         });
 
 
-        /*final DatabaseReference mPostReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name)).child("posts");
-        Query query = mPostReference.child(id).orderByChild("id");
-        Log.e("story fragments", id);
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.getKey().equals(id)) {
-                    String photoUrl = null;
-                    if (mUser.getPhotoUrl() != null)
-                        photoUrl = mUser.getPhotoUrl().toString();
-                    Common.currentUser = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail(), photoUrl, mUser.getPhotoUrl());
-                    Common.currentStory = dataSnapshot.getValue(Story.class);
-                    Log.e("story fragments", dataSnapshot.getKey());
-                    StoryDetailFragment nextFragment = new StoryDetailFragment();
-                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    Utils.changeFragment(nextFragment, transaction);
-                    //getSupportFragmentManager().popBackStack();
-                    navigationView.setCheckedItem(R.id.nav_writting_challenge);
-                } else {
-                    openHomeFragment();
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e("error", databaseError.getDetails());
-            }
-        });*/
     }
 
     public void openHomeFragment() {

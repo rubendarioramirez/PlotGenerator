@@ -1040,6 +1040,10 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="promptHint">Write your prompt here!</string>
     <string name="promptSubmit">Submit</string>
 
+    <string name="add_outline">Outline</string>
+    <string name="outline_share_title">Title</string>
+    <string name="outline_share_characters">Characters</string>
+
     <string name="premiumOnly">Available for premium users</string>
 
     <string name="premiumOnlyPopTitle">Become premium!</string>

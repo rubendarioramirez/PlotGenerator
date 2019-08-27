@@ -2,58 +2,31 @@ package com.plotgen.rramirez.plotgenerator;
 
 
 import android.Manifest;
-import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.MutableData;
-import com.google.firebase.database.Transaction;
-import com.plotgen.rramirez.plotgenerator.Common.Common;
-import com.plotgen.rramirez.plotgenerator.Common.Tutorial;
-import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
 
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static android.app.Activity.RESULT_OK;
 
 
 public class Chapter_creation extends Fragment {
@@ -108,7 +81,7 @@ public class Chapter_creation extends Fragment {
         ContentValues values = new ContentValues();
         values.put(mySQLiteDBHelper.PROJECT_COLUMN_PROJECT, chapter_name_et.getText().toString());
         values.put(mySQLiteDBHelper.PROJECT_COLUMN_PLOT, chapter_summary_et.getText().toString());
-        database.insert(mySQLiteDBHelper.CHARACTER_TABLE_PROJECT, null, values);
+        database.insert(mySQLiteDBHelper.TABLE_PROJECT, null, values);
         database.close();
 
     }
@@ -119,7 +92,7 @@ public class Chapter_creation extends Fragment {
         values.put(mySQLiteDBHelper.PROJECT_COLUMN_PROJECT, chapter_name_et.getText().toString());
         values.put(mySQLiteDBHelper.PROJECT_COLUMN_PLOT, chapter_summary_et.getText().toString());
         values.put(mySQLiteDBHelper.PROJECT_COLUMN_IMAGE, filepath);
-        database.update(mySQLiteDBHelper.CHARACTER_TABLE_PROJECT, values, "_id = ?", new String[]{projectID});
+        database.update(mySQLiteDBHelper.TABLE_PROJECT, values, "_id = ?", new String[]{projectID});
         database.close();
     }
 
@@ -127,7 +100,7 @@ public class Chapter_creation extends Fragment {
     public ArrayList<String> getProject(Context context) {
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_PROJECT + " WHERE _id = ?";
+        String query = "SELECT * FROM  " + mySQLiteDBHelper.TABLE_PROJECT + " WHERE _id = ?";
         ArrayList<String> char_list = new ArrayList<String>();
         try {
             Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{projectID});

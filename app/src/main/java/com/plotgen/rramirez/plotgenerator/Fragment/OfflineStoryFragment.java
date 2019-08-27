@@ -165,6 +165,7 @@ public class OfflineStoryFragment extends Fragment {
             mStory = "";
         }
 
+
         //publish button
         FloatingActionButton fabPublish = view.findViewById(R.id.btnPublish);
         fabPublish.setVisibility(View.INVISIBLE);
@@ -229,6 +230,7 @@ public class OfflineStoryFragment extends Fragment {
         mEditor.setOnTextChangeListener(new RichEditor.OnTextChangeListener() {
             @Override
             public void onTextChange(String text) {
+                //Log.v("matilda", "Characters are " + mEditor.getHtml().length());
                 mStory = text;
             }
         });

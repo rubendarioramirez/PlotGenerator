@@ -21,7 +21,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
         android:elevation="15dp"
-        android:backgroundTint="?colorPrimary"
+        android:backgroundTint="?colorAccent"
         android:tint="@color/white"
         android:src="@android:drawable/ic_menu_save"
         app:borderWidth="0dp"

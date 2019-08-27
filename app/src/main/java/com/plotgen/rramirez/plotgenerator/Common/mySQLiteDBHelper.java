@@ -11,9 +11,9 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 19;
 
     public static final String DATABASE_NAME = "production_database";
-    public static final String CHARACTER_TABLE_CHARACTER = "character";
-    public static final String CHARACTER_TABLE_PROJECT = "projectname";
-    public static final String CHARACTER_TABLE_OUTLINE = "outline";
+    public static final String TABLE_CHARACTER = "character";
+    public static final String TABLE_PROJECT = "projectname";
+    public static final String TABLE_OUTLINE = "outline";
 
     public static final String CHARACTER_COLUMN_ID = "_id";
     public static final String CHARACTER_COLUMN_PROJECT = "project";
@@ -133,7 +133,7 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("CREATE TABLE " + CHARACTER_TABLE_CHARACTER + " (" +
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_CHARACTER + " (" +
                 CHARACTER_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 CHARACTER_COLUMN_PROJECT + " TEXT, " +
                 CHARACTER_COLUMN_NAME + " TEXT, " +
@@ -205,7 +205,7 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
                 CHARACTER_COLUMN_challengesCompleted + " INTEGER " +
                 ")");
 
-        sqLiteDatabase.execSQL("CREATE TABLE " + CHARACTER_TABLE_PROJECT + " (" +
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_PROJECT + " (" +
                 PROJECT_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 PROJECT_COLUMN_PROJECT + " TEXT, " +
                 PROJECT_COLUMN_GENRE + " TEXT, " +
@@ -220,7 +220,7 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
                 STORY_COLUMN_STORIES + " TEXT " +
                 ")");
 
-        sqLiteDatabase.execSQL("CREATE TABLE " + CHARACTER_TABLE_OUTLINE + " (" +
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_OUTLINE + " (" +
                 OUTLINE_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 OUTLINE_COLUMN_NAME + " TEXT, " +
                 OUTLINE_COLUMN_DESCRIPTION + " TEXT, " +

@@ -398,7 +398,7 @@ public class ChallengeTemplateFragment extends Fragment  {
             params.putString("Challenge", "challenge_sidekick");
         }
         mFirebaseAnalytics.logEvent("challenge_completed",params);
-        database.update(mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER, values,   "_id = ?", new String[]{charID});
+        database.update(mySQLiteDBHelper.TABLE_CHARACTER, values,   "_id = ?", new String[]{charID});
         Common.currentCharacter.setChallengesDone(challengesCompleted);
         //Come back to previous fragment
         fragmentTransition();
@@ -408,7 +408,7 @@ public class ChallengeTemplateFragment extends Fragment  {
     public ArrayList<String> getDescription(Context context, String charID){
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER  + " WHERE _id = ?";
+        String query = "SELECT * FROM  " + mySQLiteDBHelper.TABLE_CHARACTER + " WHERE _id = ?";
         Cursor cursor = sqLiteDatabase.rawQuery(query,new String[]{charID});
         cursor.moveToFirst();
         ArrayList<String> char_list = new ArrayList<String>();

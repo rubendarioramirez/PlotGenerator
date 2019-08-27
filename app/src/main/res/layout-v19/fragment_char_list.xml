@@ -85,7 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/fab_margin"
             android:drawableTint="@color/white"
-            app:fabColor="?colorPrimary"
+            app:fabColor="?colorAccent"
             app:fabElevation="10dp"
             app:fabSizes="mini"
             app:fabIcon="@android:drawable/ic_input_add" />
@@ -94,7 +94,7 @@
             android:id="@+id/fab_add_char"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fabColor="?colorPrimary"
+            app:fabColor="?colorAccent"
             app:fabIcon="@drawable/ic_character_black"
             app:fabSizes="mini"
             app:fabText="Add Character" />
@@ -103,7 +103,7 @@
             android:id="@+id/fab_add_story"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fabColor="?colorPrimary"
+            app:fabColor="?colorAccent"
             app:fabIcon="@drawable/ic_book_black"
             app:fabSizes="mini"
             app:fabText="Add Story" />
@@ -112,10 +112,10 @@
             android:id="@+id/fab_add_outline_charlist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fabColor="?colorPrimary"
+            app:fabColor="?colorAccent"
             app:fabIcon="@drawable/ic_book_black"
             app:fabSizes="mini"
-            app:fabText="Add Outline" />
+            app:fabText="@string/add_outline" />
 
     </com.robertlevonyan.views.customfloatingactionbutton.FloatingLayout>
 

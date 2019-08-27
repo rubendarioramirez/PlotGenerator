@@ -43,21 +43,18 @@ import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Tutorial;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
+import com.plotgen.rramirez.plotgenerator.Model.Project;
 
 import org.apache.commons.lang3.text.WordUtils;
 
 import java.net.URISyntaxException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Month;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Objects;
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -470,7 +467,7 @@ public class CharacterFragment extends Fragment {
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_ENOTES, notes_edit_text.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PHRASE, phrase_et.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_IMAGE, filepath);
-        database.insert(mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER, null, values);
+        database.insert(mySQLiteDBHelper.TABLE_CHARACTER, null, values);
         database.close();
         //Log challenges updated
         Bundle params = new Bundle();
@@ -482,7 +479,7 @@ public class CharacterFragment extends Fragment {
 
     private void deleteFromDB(String char_id) {
         SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
-        database.delete(mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER, "_id = ?", new String[]{char_id});
+        database.delete(mySQLiteDBHelper.TABLE_CHARACTER, "_id = ?", new String[]{char_id});
         //Log challenges updated
         Bundle params = new Bundle();
         params.putString("Character", "deleted");
@@ -490,7 +487,13 @@ public class CharacterFragment extends Fragment {
 
         //Make sure you can't come back here
         database.close();
-        fragmentTransition();
+        //Make sure you can't come back here
+        ProjectFragment nextFragment = new ProjectFragment();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
+        transaction.replace(R.id.flMain, nextFragment);
+        Objects.requireNonNull(getActivity()).getSupportFragmentManager().popBackStackImmediate();
+        transaction.commit();
     }
 
 
@@ -519,7 +522,7 @@ public class CharacterFragment extends Fragment {
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PHRASE, phrase_et.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PHRASE, phrase_et.getText().toString());
         values.put(mySQLiteDBHelper.CHARACTER_COLUMN_IMAGE, filepath);
-        database.update(mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER, values, "_id = ?", new String[]{Common.currentCharacter.getId()});
+        database.update(mySQLiteDBHelper.TABLE_CHARACTER, values, "_id = ?", new String[]{Common.currentCharacter.getId()});
         //Make sure you can't come back here
         database.close();
         fragmentTransition();
@@ -528,7 +531,7 @@ public class CharacterFragment extends Fragment {
     public ArrayList<String> getDescription(Context context, String char_name) {
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_CHARACTER + " WHERE name = ?";
+        String query = "SELECT * FROM  " + mySQLiteDBHelper.TABLE_CHARACTER + " WHERE name = ?";
         ArrayList<String> char_list = new ArrayList<String>();
         try{
         Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{char_name});
@@ -575,7 +578,6 @@ public class CharacterFragment extends Fragment {
         transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
         transaction.replace(R.id.flMain, nextFragment);
         getActivity().getSupportFragmentManager().popBackStackImmediate();
-//        transaction.addToBackStack(null);
         transaction.commit();
     }
 

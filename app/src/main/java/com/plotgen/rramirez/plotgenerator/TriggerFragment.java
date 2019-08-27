@@ -70,7 +70,9 @@ public class TriggerFragment extends Fragment {
         if (!Common.isPAU) {
             //Add the ads
             mAdView = (AdView) myFragmentView.findViewById(R.id.adView);
-            AdRequest adRequest = new AdRequest.Builder().build();
+            AdRequest adRequest = new AdRequest.Builder()
+                    .addTestDevice("8426c1d7-abae-4e15-92ae-06cd1e5d5002")
+                    .build();
             mAdView.loadAd(adRequest);
         }
 

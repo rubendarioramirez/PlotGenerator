@@ -28,7 +28,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -248,7 +247,7 @@ public class Project_detailsFragment extends Fragment {
         values.put(mySQLiteDBHelper.PROJECT_COLUMN_GENRE, project_genre_spinner.getSelectedItem().toString());
         values.put(mySQLiteDBHelper.PROJECT_COLUMN_PLOT, project_plot_et.getText().toString());
         values.put(mySQLiteDBHelper.PROJECT_COLUMN_IMAGE, filepath);
-        long newRowId = database.insert(mySQLiteDBHelper.CHARACTER_TABLE_PROJECT, null, values);
+        long newRowId = database.insert(mySQLiteDBHelper.TABLE_PROJECT, null, values);
 
         //Log challenges updated
         Bundle params = new Bundle();
@@ -265,7 +264,7 @@ public class Project_detailsFragment extends Fragment {
         values.put(mySQLiteDBHelper.PROJECT_COLUMN_GENRE, project_genre_spinner.getSelectedItem().toString());
         values.put(mySQLiteDBHelper.PROJECT_COLUMN_PLOT, project_plot_et.getText().toString());
         values.put(mySQLiteDBHelper.PROJECT_COLUMN_IMAGE, filepath);
-        database.update(mySQLiteDBHelper.CHARACTER_TABLE_PROJECT, values, "_id = ?", new String[]{projectID});
+        database.update(mySQLiteDBHelper.TABLE_PROJECT, values, "_id = ?", new String[]{projectID});
         database.close();
     }
 
@@ -322,7 +321,7 @@ public class Project_detailsFragment extends Fragment {
     public ArrayList<String> getProject(Context context) {
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_PROJECT + " WHERE _id = ?";
+        String query = "SELECT * FROM  " + mySQLiteDBHelper.TABLE_PROJECT + " WHERE _id = ?";
         ArrayList<String> char_list = new ArrayList<String>();
         try {
             Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{projectID});

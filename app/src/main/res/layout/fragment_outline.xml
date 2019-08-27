@@ -13,15 +13,29 @@
         android:id="@+id/outline_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton
+        android:id="@+id/outline_add_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:fabColor="?colorAccent"
+        app:fabIcon="@android:drawable/ic_input_add"
+        android:drawableTint="@color/white"
+        app:fabSizes="mini"
+        app:fabElevation="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/adView"
+        app:layout_constraintEnd_toEndOf="@+id/outline_list" />
+
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
@@ -44,6 +58,22 @@
         android:layout_marginTop="8dp"
         app:layout_constraintVertical_bias="0.983">
     </com.google.android.gms.ads.AdView>
+
+    <TextView
+        android:id="@+id/outline_empty_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:text="This section is a bit empty. \n\nWhat about creating your outline?"
+        android:fontFamily="@font/roboto_light"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/adView"
+        app:layout_constraintEnd_toEndOf="@+id/outline_list"
+        app:layout_constraintStart_toStartOf="@+id/outline_list"
+        app:layout_constraintTop_toTopOf="@+id/outline_list" />
 
 
 </android.support.constraint.ConstraintLayout>

@@ -47,24 +47,6 @@
         app:layout_constraintVertical_bias="0.4" />
 
 
-    <!--<com.google.android.gms.ads.AdView-->
-        <!--android:id="@+id/adView_char_list"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_marginStart="8dp"-->
-        <!--android:layout_marginLeft="8dp"-->
-        <!--android:layout_marginEnd="8dp"-->
-        <!--android:layout_marginRight="8dp"-->
-        <!--android:layout_marginBottom="8dp"-->
-        <!--app:adSize="BANNER"-->
-        <!--app:adUnitId="@string/banner_ad_unit_id"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent" />-->
-
-
     <com.robertlevonyan.views.customfloatingactionbutton.FloatingLayout
         android:id="@+id/floating_layout"
         android:layout_width="match_parent"
@@ -86,33 +68,37 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/fab_margin"
             android:drawableTint="@color/white"
-            app:fabColor="?colorPrimary"
+            app:fabColor="?colorAccent"
             app:fabElevation="10dp"
+            app:fabSizes="mini"
             app:fabIcon="@android:drawable/ic_input_add" />
 
         <com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton
             android:id="@+id/fab_add_char"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fabColor="?colorPrimary"
+            app:fabColor="?colorAccent"
             app:fabIcon="@drawable/ic_character_black"
+            app:fabSizes="mini"
             app:fabText="Add Character" />
 
         <com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton
             android:id="@+id/fab_add_story"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fabColor="?colorPrimary"
+            app:fabColor="?colorAccent"
             app:fabIcon="@drawable/ic_book_black"
+            app:fabSizes="mini"
             app:fabText="Add Story" />
 
         <com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_add_outline"
+            android:id="@+id/fab_add_outline_charlist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fabColor="?colorPrimary"
+            app:fabColor="?colorAccent"
             app:fabIcon="@drawable/ic_book_black"
-            app:fabText="Add Outline" />
+            app:fabSizes="mini"
+            app:fabText="@string/add_outline" />
 
     </com.robertlevonyan.views.customfloatingactionbutton.FloatingLayout>
 

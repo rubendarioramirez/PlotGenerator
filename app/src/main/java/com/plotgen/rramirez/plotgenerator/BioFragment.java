@@ -100,7 +100,13 @@ public class BioFragment extends Fragment {
     }
 
     public void displayPhoto() {
-        String imageToShow = Utils.getPhoto(getContext(),charID).get(0);
+        String imageToShow = "";
+        try{
+            imageToShow = Utils.getPhoto(getContext(),charID).get(0);
+        } catch (Exception e){
+            Log.d("matilda", "displayPhoto doesnt work");
+        }
+
         if (imageToShow!=null && !imageToShow.isEmpty()){
             Bitmap ThumbImage = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(imageToShow), THUMBNAIL_SIZE, THUMBNAIL_SIZE);
             bio_charimage.setImageBitmap(ThumbImage);

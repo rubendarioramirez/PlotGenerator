@@ -1,36 +1,28 @@
 package com.plotgen.rramirez.plotgenerator;
 
 
-import android.Manifest;
 import android.app.AlertDialog;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.SQLUtils;
-import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -42,8 +34,8 @@ public class Outline_detail extends Fragment {
 
     //region Declare elements
     public Boolean updateMode;
-    String projectID;
-    ArrayList<String> project_description, characters;
+    String outlineID;
+    ArrayList<String> characters;
     private FirebaseAnalytics mFirebaseAnalytics;
     private View myFragmentView;
 
@@ -51,8 +43,6 @@ public class Outline_detail extends Fragment {
     String[] listItems;
     boolean[] checkedItems;
     ArrayList<Integer> mUserItems = new ArrayList<>();
-
-    private ArrayList<String> project_list_array = new ArrayList<>();
 
     @BindView(R.id.outline_title_et)
     EditText outline_title_et;
@@ -63,11 +53,8 @@ public class Outline_detail extends Fragment {
     @BindView(R.id.outline_delete_btn)
     FloatingActionButton outline_delete_btn;
 
-    @BindView(R.id.outline_characters_btn)
-    Button outline_characters_btn;
-
     @BindView(R.id.outline_characters_selected_tv)
-    EditText outline_characters_selected_tv;
+    TextView outline_characters_selected_tv;
 
     //endregion
 
@@ -89,8 +76,14 @@ public class Outline_detail extends Fragment {
         characters = SQLUtils.getCharNamesByID(getContext(),Common.currentProject.getId());
         listItems = characters.toArray(new String[characters.size()]);
         checkedItems = new boolean[characters.size()];
+        if(!Common.outlineCreationMode){
+            updateUI();
+            outlineID = Common.currentOutlineID;
+        }
 
-        outline_characters_btn.setOnClickListener(new View.OnClickListener() {
+
+        //region Choose characters
+        outline_characters_selected_tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(getContext());
@@ -143,12 +136,17 @@ public class Outline_detail extends Fragment {
                 mDialog.show();
             }
         });
+        //endregion
 
 
         outline_submit_btn.setOnClickListener(new View.OnClickListener() {
         public void onClick(View v) {
             try {
-                saveToDB();
+                if(Common.outlineCreationMode){
+                    saveToDB();
+                } else {
+                    updateDB();
+                }
                 Toast.makeText(getContext(),"Saved", Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -156,11 +154,14 @@ public class Outline_detail extends Fragment {
         }
         });
 
-
+        if(Common.outlineCreationMode){
+            outline_delete_btn.setVisibility(View.INVISIBLE);
+        }
         outline_delete_btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 try {
-                    Toast.makeText(getContext(),"Delete button pressed", Toast.LENGTH_SHORT).show();
+                    SQLUtils.deleteOutlineFromDB(getContext(),outlineID);
+                    fragmentTransaction();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -181,27 +182,39 @@ public class Outline_detail extends Fragment {
         values.put(mySQLiteDBHelper.OUTLINE_COLUMN_PROJECT_ID, Common.currentProject.getId());
         values.put(mySQLiteDBHelper.OUTLINE_COLUMN_POSITION, "0");
         values.put(mySQLiteDBHelper.OUTLINE_COLUMN_CHARACTERS, outline_characters_selected_tv.getText().toString());
-        database.insert(mySQLiteDBHelper.CHARACTER_TABLE_OUTLINE, null, values);
+        database.insert(mySQLiteDBHelper.TABLE_OUTLINE, null, values);
         database.close();
+        fragmentTransaction();
     }
 
     //Update DB for the selected OUTLINE
     private void updateDB() {
         SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
         ContentValues values = new ContentValues();
-      // values.put(mySQLiteDBHelper.PROJECT_COLUMN_PROJECT, chapter_name_et.getText().toString());
-      //  values.put(mySQLiteDBHelper.PROJECT_COLUMN_PLOT, chapter_summary_et.getText().toString());
-        database.update(mySQLiteDBHelper.CHARACTER_TABLE_PROJECT, values, "_id = ?", new String[]{projectID});
+        values.put(mySQLiteDBHelper.OUTLINE_COLUMN_NAME, outline_title_et.getText().toString());
+        values.put(mySQLiteDBHelper.OUTLINE_COLUMN_DESCRIPTION, outline_description_et.getText().toString());
+        values.put(mySQLiteDBHelper.OUTLINE_COLUMN_PROJECT_ID, Common.currentProject.getId());
+        values.put(mySQLiteDBHelper.OUTLINE_COLUMN_POSITION, "0");
+        values.put(mySQLiteDBHelper.OUTLINE_COLUMN_CHARACTERS, outline_characters_selected_tv.getText().toString());
+        database.update(mySQLiteDBHelper.TABLE_OUTLINE, values, "_id = ?", new String[]{outlineID});
         database.close();
+        fragmentTransaction();
     }
 
 
     //Get outline selected
+    private void updateUI(){
+        ArrayList<String> currentOutline = new ArrayList<String>();
+        currentOutline = SQLUtils.getOutlineByID(getContext(),Common.currentOutlineID);
+        outline_title_et.setText(currentOutline.get(0).split("/&&/")[1]);
+        outline_description_et.setText(currentOutline.get(0).split("/&&/")[2]);
+        outline_characters_selected_tv.setText(currentOutline.get(0).split("/&&/")[3]);
+    }
 
 
 
     private void fragmentTransaction(){
-        ProjectFragment nextFragment = new ProjectFragment();
+        OutlineFragment nextFragment = new OutlineFragment();
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
         transaction.replace(R.id.flMain, nextFragment);

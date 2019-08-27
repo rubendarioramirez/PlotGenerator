@@ -10,13 +10,17 @@ public class item_project_list {
     String name;
     String genre;
     String characters;
+    String image;
 
 
-    public item_project_list(String id, String name, String genre, String characters) {
+
+
+    public item_project_list(String id, String name, String genre, String characters, String image) {
         this.id = id;
         this.name = name;
         this.genre = genre;
         this.characters = characters;
+        this.image = image;
     }
 
     public String getName() {
@@ -48,6 +52,14 @@ public class item_project_list {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
 

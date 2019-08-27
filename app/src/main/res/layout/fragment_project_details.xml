@@ -30,8 +30,8 @@
 
                 <ImageView
                     android:id="@+id/project_icon"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="250dp"
+                    android:layout_height="200dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="20sp"
                     android:src="@drawable/ic_menu_camera" />
@@ -145,7 +145,7 @@
         android:elevation="15dp"
         android:src="@android:drawable/ic_menu_save"
         app:borderWidth="0dp"
-        android:backgroundTint="?colorPrimary"
+        android:backgroundTint="?colorAccent"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -163,7 +163,7 @@
         android:layout_marginStart="8dp"
         android:elevation="15dp"
         android:src="@android:drawable/ic_menu_delete"
-        android:backgroundTint="?colorPrimary"
+        android:backgroundTint="?colorAccent"
         app:borderWidth="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         app:layout_constraintEnd_toStartOf="@+id/project_add_submit"

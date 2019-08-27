@@ -6,6 +6,7 @@ package com.plotgen.rramirez.plotgenerator.items;
 
 public class item_outline {
 
+    String outline_id;
     String outline_title;
     String outline_description;
     String outline_characters;
@@ -13,9 +14,8 @@ public class item_outline {
     public item_outline() {
     }
 
-
-
-    public item_outline(String outline_title, String outline_description, String outline_characters) {
+    public item_outline(String outline_id, String outline_title, String outline_description, String outline_characters) {
+        this.outline_id = outline_id;
         this.outline_title = outline_title;
         this.outline_description = outline_description;
         this.outline_characters = outline_characters;
@@ -44,6 +44,14 @@ public class item_outline {
 
     public void setOutline_characters(String outline_characters) {
         this.outline_characters = outline_characters;
+    }
+
+    public String getOutline_id() {
+        return outline_id;
+    }
+
+    public void setOutline_id(String outline_id) {
+        this.outline_id = outline_id;
     }
 }
 

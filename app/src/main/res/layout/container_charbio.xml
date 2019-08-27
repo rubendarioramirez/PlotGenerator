@@ -48,26 +48,26 @@ android:fitsSystemWindows="true">
             android:layout_marginRight="8dp"
             app:fabElevation="10dp"
             app:fabIcon="@android:drawable/ic_input_add"
-            app:fabColor="?colorPrimary"
+            app:fabColor="?colorAccent"
             android:drawableTint="@color/white"
-            app:fabSizes="normal" />
+            app:fabSizes="mini" />
 
         <com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton
             android:id="@+id/fab_add_challenge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fabColor="?colorPrimary"
+            app:fabColor="?colorAccent"
             app:fabIcon="@drawable/ic_character_black"
-            app:fabSizes="normal"
+            app:fabSizes="mini"
             app:fabText="@string/challenge_fab"/>
 
         <com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton
             android:id="@+id/fab_guide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fabColor="?colorPrimary"
+            app:fabColor="?colorAccent"
             app:fabIcon="@drawable/ic_book_black"
-            app:fabSizes="normal"
+            app:fabSizes="mini"
             app:fabText="@string/guides_fab"/>
 
     </com.robertlevonyan.views.customfloatingactionbutton.FloatingLayout>

@@ -22,6 +22,7 @@ public class Common {
     public static UserStory currentUserStory;
     public static Character currentCharacter;
     public static Project currentProject;
+    public static String currentOutlineID;
 
     public static Story tempStory;
     public static boolean isPAU;
@@ -29,21 +30,19 @@ public class Common {
     public static UserStory tempUserStory;
     public static boolean charCreationMode;
     public static boolean projectCreationMode;
+    public static boolean outlineCreationMode;
+
+
 
     public static int onBoarding;
     public static boolean tutorialMODE;
 
 
     //Database references
-    //public static Query currentQuery;
     public static CollectionReference currentQuery;
-    //public static FirebaseDatabase currentDatabase;
     public static FirebaseFirestore currentDatabase;
-    //public static DatabaseReference currentReference;
     public static CollectionReference currentReference;
-    //public static DatabaseReference currentCommentReference;
     public static CollectionReference currentCommentReference;
-    //public static DatabaseReference currentUserReference;
     public static CollectionReference currentUserReference;
     public static FirebaseAuth currentAuth;
     public static FirebaseUser currentFirebaseUser;
