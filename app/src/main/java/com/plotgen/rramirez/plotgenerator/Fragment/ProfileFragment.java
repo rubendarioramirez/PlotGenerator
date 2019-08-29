@@ -234,27 +234,7 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
                             return null;
                         }
                     });
-                  /*  mUserDatabase.add(new Transaction.Handler() {
-                        @NonNull
-                        @Override
-                        public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
-                            if (mutableData.hasChild(mUser.getUid())) {
-                                mutableData.child(mUser.getUid()).child("token").setValue(firebase_token);
-                            } else {
-                                mutableData.child(mUser.getUid());
-                                mutableData.child(mUser.getUid()).setValue(mUser.getUid());
-                                mutableData.child(mUser.getUid()).child("token").setValue(firebase_token);
-                            }
-                            return Transaction.success(mutableData);
-                        }
 
-                        @Override
-                        public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
-                            Log.d("Updated token", "postTransaction:onComplete:" + databaseError);
-
-                        }
-                    });
-*/
                     Utils.saveOnSharePreg(getActivity(), "notifications", "true");
                 } else {
                     final DocumentReference documentReference = mDatabase.collection("users_1").document(Common.currentUser.getUid());
@@ -270,27 +250,7 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
                             return null;
                         }
                     });
-                    //cbNotification.setChecked(true);
-                   /* mUserDatabase.add(new Transaction.Handler() {
-                        @NonNull
-                        @Override
-                        public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
-                            if (mutableData.hasChild(mUser.getUid())) {
-                                mutableData.child(mUser.getUid()).child("token").setValue("");
-                            } else {
-                                mutableData.child(mUser.getUid());
-                                mutableData.child(mUser.getUid()).setValue(mUser.getUid());
-                                mutableData.child(mUser.getUid()).child("token").setValue("");
-                            }
-                            return Transaction.success(mutableData);
-                        }
 
-                        @Override
-                        public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
-                            Log.d("Updated token", "postTransaction:onComplete:" + databaseError);
-
-                        }
-                    });*/
                     cbNotification.setButtonDrawable(R.drawable.ic_uncheck_box);
                     Utils.saveOnSharePreg(getActivity(), "notifications", "false");
                 }

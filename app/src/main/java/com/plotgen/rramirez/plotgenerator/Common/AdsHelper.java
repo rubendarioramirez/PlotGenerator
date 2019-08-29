@@ -7,6 +7,7 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.reward.RewardedVideoAd;
 import com.plotgen.rramirez.plotgenerator.R;
 
 public class AdsHelper {
@@ -16,10 +17,17 @@ public class AdsHelper {
         if (!Common.isPAU) {
             //Display the ad
             AdRequest adRequest = new AdRequest.Builder()
-                    .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
+                    .addTestDevice("DF4C0FAF4578BA24E48A081749037E54")
                     .build();
             mAdView.loadAd(adRequest);
         }
+    }
+
+    public static void loadRewardedVideoAd(RewardedVideoAd mRewardedVideoAd, Context mContext) {
+        mRewardedVideoAd.loadAd(mContext.getString(R.string.reward_ad_plot_gen),
+                new AdRequest.Builder()
+                        .addTestDevice("DF4C0FAF4578BA24E48A081749037E54")
+                        .build());
     }
 
 }

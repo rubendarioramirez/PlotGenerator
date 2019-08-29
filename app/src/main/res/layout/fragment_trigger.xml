@@ -33,11 +33,13 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:backgroundTint="?colorAccent"
+        android:tint="@color/white"
         android:elevation="15dp"
         android:foreground="@android:drawable/ic_input_add"
         android:foregroundGravity="center"
         android:src="@android:drawable/ic_input_add"
         app:borderWidth="0dp"
+        app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@+id/adView"
         app:layout_constraintEnd_toEndOf="@+id/rv_list" />
 

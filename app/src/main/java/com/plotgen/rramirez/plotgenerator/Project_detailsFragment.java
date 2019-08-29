@@ -33,6 +33,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.reward.RewardItem;
+import com.google.android.gms.ads.reward.RewardedVideoAd;
+import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -42,14 +46,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
+import com.plotgen.rramirez.plotgenerator.Common.AdsHelper;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Tutorial;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
+import com.plotgen.rramirez.plotgenerator.Fragment.PremiumFragment;
 
 
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -57,20 +64,25 @@ import butterknife.ButterKnife;
 import static android.app.Activity.RESULT_OK;
 
 
-public class Project_detailsFragment extends Fragment {
+public class Project_detailsFragment extends Fragment implements RewardedVideoAdListener {
 
     //region Declare elements
     private static final int PERMISSION_REQUEST_GALLERY = 101;
     private static final int REQUEST_CODE_GALLERY = 102;
     public Boolean updateMode;
     String project_name_text, projectID;
-    ArrayList<String> project_description;
     private FirebaseAnalytics mFirebaseAnalytics;
     private View myFragmentView;
     private String WRITE_EXTERNAL_STORAGE = Manifest.permission.WRITE_EXTERNAL_STORAGE;
     private Uri uri;
     private String filepath = "";
+
+    //Watch ad stuff
+    private RewardedVideoAd mRewardedVideoAd;
+    public int nonPauCanCreate = 0;
+
     private FirebaseDatabase mDatabase;
+
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private ArrayList<String> project_list_array = new ArrayList<>();
@@ -112,6 +124,20 @@ public class Project_detailsFragment extends Fragment {
         //Make sure the right buttons are appearing.
         setupUI();
 
+        //Non PAU stuff
+        nonPauCanCreate = Utils.getSharePref(myFragmentView.getContext(), "nonPauCanCreate", 0);
+        if (!Common.isPAU) {
+            //Rewarded ad
+            mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(myFragmentView.getContext());
+            mRewardedVideoAd.setRewardedVideoAdListener(this);
+            AdsHelper.loadRewardedVideoAd(mRewardedVideoAd, Objects.requireNonNull(getContext()));
+        } else {
+            Utils.saveOnSharePreg(myFragmentView.getContext(), "nonPauCanCreate", 1);
+            nonPauCanCreate = 1;
+        }
+
+
+
         //Make sure you can click on the pick
         project_icon_iv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,6 +157,7 @@ public class Project_detailsFragment extends Fragment {
             }
             project_list_array = getProject(this.getContext());
             if (project_list_array != null && !project_list_array.isEmpty()) {
+
                 project_name_et.setText(project_list_array.get(0));
                 String project_genre =  project_list_array.get(1);
                 project_plot_et.setText(project_list_array.get(2));
@@ -138,6 +165,7 @@ public class Project_detailsFragment extends Fragment {
                   if(project_list_array.size() >= 4 )
                     {
                     project_icon_iv.setImageURI(Uri.parse(project_list_array.get(3)));
+                    filepath = project_list_array.get(3).toString();
                     }
 
                     //Update the spinner
@@ -181,7 +209,7 @@ public class Project_detailsFragment extends Fragment {
         fab_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Common.isPAU || getProjectCreated() < 2)
+                if (Common.isPAU || getProjectCreated() < 2 || !Common.projectCreationMode || nonPauCanCreate == 1)
                 {
                     if (isEmpty(project_name_et)) {
                         Toast.makeText(getActivity(), getString(R.string.projects_empty),
@@ -191,12 +219,13 @@ public class Project_detailsFragment extends Fragment {
                             updateDB();
                         } else {
                             saveToDB(project_name_et, project_plot_et, project_genre_spinner);
+                            Utils.saveOnSharePreg(myFragmentView.getContext(), "nonPauCanCreate", 0);
                             Common.projectCreationMode = false;
                         }
                         fragmentTransaction();
                     }
                 } else {
-                    Utils.popUp(getContext(),getString((R.string.premiumOnlyPopTitle)), getString((R.string.premiumOnlyPopBody)));
+                    popUp(getContext(),getString((R.string.premiumOnlyPopTitle)), getString((R.string.premiumOnlyPopBody)));
                 }
             }
         });
@@ -438,6 +467,35 @@ public class Project_detailsFragment extends Fragment {
         transaction.commit();
     }
 
+
+    public void popUp(final Context context, String title, String message) {
+        android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("Go Premium!", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        PremiumFragment nextFragment = new PremiumFragment();
+                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
+                        transaction.replace(R.id.flMain, nextFragment);
+                        getActivity().getSupportFragmentManager().popBackStack();
+                        transaction.commit();
+                    }
+                })
+                .setNegativeButton("Watch Ad", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if (mRewardedVideoAd.isLoaded()) {
+                            mRewardedVideoAd.show();
+                        }
+                    }
+                });
+        builder.show();
+    }
+
+
+
     private void setupUI(){
         if(Common.projectCreationMode){
             fab_delete.hide();
@@ -451,5 +509,50 @@ public class Project_detailsFragment extends Fragment {
         ArrayList<String> projects = Utils.getProjects_list(getContext());
         return projects.size();
     }
+
+    @Override
+    public void onRewardedVideoAdLoaded() {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdOpened() {
+
+    }
+
+    @Override
+    public void onRewardedVideoStarted() {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdClosed() {
+        AdsHelper.loadRewardedVideoAd(mRewardedVideoAd, Objects.requireNonNull(getContext()));
+    }
+
+    @Override
+    public void onRewarded(RewardItem rewardItem) {
+        //Get the reward
+        Utils.saveOnSharePreg(getContext(), "nonPauCanCreate", 1);
+        nonPauCanCreate = 1;
+        Log.v("matilda", "Now nonPauCanCreate is:" + nonPauCanCreate);
+    }
+
+    @Override
+    public void onRewardedVideoAdLeftApplication() {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdFailedToLoad(int i) {
+
+    }
+
+    @Override
+    public void onRewardedVideoCompleted() {
+
+    }
+
+
 
 }

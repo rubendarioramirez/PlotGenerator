@@ -31,6 +31,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.plotgen.rramirez.plotgenerator.Common.AdsHelper;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Fragment.SubmitStoryFragment;
@@ -42,6 +43,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 import static android.app.Activity.RESULT_OK;
 import static android.content.ContentValues.TAG;
@@ -83,11 +85,12 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
             //Rewarded ad
             mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(myFragmentView.getContext());
             mRewardedVideoAd.setRewardedVideoAdListener(this);
-            loadRewardedVideoAd();
+            AdsHelper.loadRewardedVideoAd(mRewardedVideoAd, Objects.requireNonNull(getContext()));
         } else {
                 Utils.saveOnSharePreg(myFragmentView.getContext(), "can_submit", 1);
                 can_submit = 1;
         }
+
         ad_desc = myFragmentView.findViewById(R.id.weekly_challenge_ad_desc);
         ad_submit_btn = myFragmentView.findViewById(R.id.weekly_challenge_btn);
         btViewParticipant = myFragmentView.findViewById(R.id.weekly_challenge_list_btn);
@@ -286,13 +289,6 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
         }
     }
 
-    private void loadRewardedVideoAd() {
-        mRewardedVideoAd.loadAd(getString(R.string.reward_ad_plot_gen),
-                new AdRequest.Builder()
-                        .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
-                        .build());
-    }
-
     @Override
     public void onRewardedVideoAdLoaded() {
 
@@ -310,7 +306,7 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
 
     @Override
     public void onRewardedVideoAdClosed() {
-        loadRewardedVideoAd();
+        AdsHelper.loadRewardedVideoAd(mRewardedVideoAd,getContext());
     }
 
     @Override

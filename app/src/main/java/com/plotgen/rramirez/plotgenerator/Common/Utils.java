@@ -1,5 +1,6 @@
 package com.plotgen.rramirez.plotgenerator.Common;
 
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
 import android.content.Context;
@@ -19,6 +20,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 
+import com.plotgen.rramirez.plotgenerator.Fragment.PremiumFragment;
 import com.plotgen.rramirez.plotgenerator.R;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -593,16 +595,6 @@ public class Utils extends Fragment{
                 .setNegativeButton(context.getString(R.string.rate_cancel), null);
         builder.show();
     }
-
-
-    public static void popUp(final Context context, String title, String message) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context)
-                .setTitle(title)
-                .setMessage(message)
-                .setNeutralButton("Ok", null);
-        builder.show();
-    }
-
 
     //get image file path
     public static String getFilePath(Context context, Uri uri) throws URISyntaxException {

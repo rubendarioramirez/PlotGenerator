@@ -205,6 +205,7 @@ public class CharListFragment extends Fragment {
                 //Make the transaction
                 Bundle bundle = new Bundle();
                 bundle.putString("project_name", project_name_text);
+                Common.projectCreationMode = false;
                 //Send it to the next fragment
                 nextFragment.setArguments(bundle);
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
