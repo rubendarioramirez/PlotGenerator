@@ -67,6 +67,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -434,7 +435,7 @@ public class ProfileFragment extends Fragment implements BillingProcessor.IBilli
             if (resultCode == RESULT_OK) {
 
                 mUser = mAuth.getCurrentUser();
-                final DocumentReference documentReference = mDatabase.collection("users_1").document(Common.currentUser.getUid());
+                final DocumentReference documentReference = mDatabase.collection("users_1").document(Objects.requireNonNull(mAuth.getUid()));
                 mDatabase.runTransaction(new com.google.firebase.firestore.Transaction.Function<Void>() {
                     @Nullable
                     @Override

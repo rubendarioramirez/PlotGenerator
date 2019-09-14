@@ -23,7 +23,9 @@ import android.util.Log;
 import com.plotgen.rramirez.plotgenerator.Fragment.PremiumFragment;
 import com.plotgen.rramirez.plotgenerator.R;
 import java.net.URISyntaxException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Utils extends Fragment{
 
@@ -94,7 +96,8 @@ public class Utils extends Fragment{
     public static ArrayList<String> getProjects_list(Context context) {
         mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        Cursor cursor = sqLiteDatabase.query(mySQLiteDBHelper.TABLE_PROJECT, null, null, null, null, null, null);
+        String orderBy = "_id DESC";
+        Cursor cursor = sqLiteDatabase.query(mySQLiteDBHelper.TABLE_PROJECT, null, null, null, null, null, orderBy );
         cursor.moveToFirst();
         ArrayList<String> projects_list = new ArrayList<String>();
         String image = "";
@@ -592,7 +595,15 @@ public class Utils extends Fragment{
                         }
                     }
                 })
-                .setNegativeButton(context.getString(R.string.rate_cancel), null);
+                .setNegativeButton(context.getString(R.string.rate_cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putInt("rated", 1);
+                        editor.apply();
+                    }
+                });
         builder.show();
     }
 
@@ -694,8 +705,12 @@ public class Utils extends Fragment{
     }
 
 
-
-
+    public static String unixToString(String unix){
+        long dv = Long.valueOf(unix);
+        Date df = new java.util.Date(dv);
+        String vv = new SimpleDateFormat("dd/MM/yyyy").format(df);
+        return vv;
+    }
 
     public static boolean checkFirstTime(Context context){
         int first_time = getSharePref(context,"first_time",0);

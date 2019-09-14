@@ -55,6 +55,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -138,13 +139,12 @@ public class OfflineStoryFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((MainActivity) getActivity()).setActionBarTitle(Common.currentProject.getName());
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_offline_story, container, false);
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         setHasOptionsMenu(true);
         ButterKnife.bind(this, view);
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(getContext());
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(Objects.requireNonNull(getContext()));
 
         try {
             project_name = Common.currentProject.getName();
@@ -358,7 +358,7 @@ public class OfflineStoryFragment extends Fragment {
                     return;
                 }
 
-                if (response.getError().getErrorCode() == ErrorCodes.NO_NETWORK) {
+                if (Objects.requireNonNull(response.getError()).getErrorCode() == ErrorCodes.NO_NETWORK) {
                     Toast.makeText(getContext(), "No internet connection", Toast.LENGTH_LONG).show();
                     return;
                 }

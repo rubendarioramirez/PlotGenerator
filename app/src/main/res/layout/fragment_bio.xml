@@ -110,5 +110,19 @@
         </LinearLayout>
     </ScrollView>
 
+    <com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_bio_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:drawableTint="@color/white"
+        app:fabColor="?colorAccent"
+        app:fabElevation="10dp"
+        app:fabIcon="@android:drawable/ic_menu_edit"
+        app:fabSizes="mini"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

@@ -535,7 +535,6 @@ public class Project_detailsFragment extends Fragment implements RewardedVideoAd
         //Get the reward
         Utils.saveOnSharePreg(getContext(), "nonPauCanCreate", 1);
         nonPauCanCreate = 1;
-        Log.v("matilda", "Now nonPauCanCreate is:" + nonPauCanCreate);
     }
 
     @Override

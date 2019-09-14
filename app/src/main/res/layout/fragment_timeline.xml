@@ -1,0 +1,58 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.plotgen.rramirez.plotgenerator.OutlineFragment"
+    android:background="?android:attr/colorBackground"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/timeline_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="32dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/timeline_empty_tv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="start"
+        android:text="@string/empty_timeline"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/timeline_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/timeline_list"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add_timeline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:drawableTint="@color/white"
+        app:fabColor="?colorAccent"
+        app:fabElevation="10dp"
+        app:fabIcon="@android:drawable/ic_input_add"
+        app:fabSizes="mini"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

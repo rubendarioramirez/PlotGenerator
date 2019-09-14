@@ -22,6 +22,7 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
+import com.plotgen.rramirez.plotgenerator.Fragment.Container_charbio;
 import com.plotgen.rramirez.plotgenerator.Guides.GuideListFragment;
 
 import java.util.ArrayList;
@@ -42,7 +43,8 @@ public class BioChallengesFragment extends Fragment {
     private FirebaseAnalytics mFirebaseAnalytics;
     private String fragmentTag = BioChallengesFragment.class.getSimpleName();
     String char_name, charID, project_name, charRole;
-
+    @BindView(R.id.fab_bio_challenge)
+    com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton fabAddChallenge;
     @BindView(R.id.biochallenge_body)
     TextView biochallenge_body;
 
@@ -79,6 +81,13 @@ public class BioChallengesFragment extends Fragment {
                 biochallenge_body.setText(Html.fromHtml(challenges.toString()));
             }
 
+
+        fabAddChallenge.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                fragmentTransaction();
+            }
+        });
+
         return myFragmentView;
     }
 
@@ -87,6 +96,16 @@ public class BioChallengesFragment extends Fragment {
     public void onResume() {
         super.onResume();
         ((MainActivity) Objects.requireNonNull(getActivity())).setActionBarTitle("");
+    }
+
+
+    private void fragmentTransaction(){
+        ChallengeListFragment nextFragment = new ChallengeListFragment();
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
+        transaction.replace(R.id.flMain, nextFragment);
+        getActivity().getSupportFragmentManager().popBackStack();
+        transaction.commit();
     }
 
 }

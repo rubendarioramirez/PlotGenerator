@@ -23,6 +23,7 @@ public class Common {
     public static Character currentCharacter;
     public static Project currentProject;
     public static String currentOutlineID;
+    public static String currentTimelineID;
 
     public static Story tempStory;
     public static boolean isPAU;
@@ -31,8 +32,7 @@ public class Common {
     public static boolean charCreationMode;
     public static boolean projectCreationMode;
     public static boolean outlineCreationMode;
-
-
+    public static boolean timelineCreationMode;
 
     public static int onBoarding;
     public static boolean tutorialMODE;

@@ -1,6 +1,7 @@
 package com.plotgen.rramirez.plotgenerator;
 
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
@@ -63,6 +64,7 @@ public class Outline_detail extends Fragment {
     }
 
 
+    @SuppressLint("RestrictedApi")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -73,7 +75,11 @@ public class Outline_detail extends Fragment {
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(myFragmentView.getContext());
 
         characters = new ArrayList<String>();
-        characters = SQLUtils.getCharNamesByID(getContext(),Common.currentProject.getId());
+        try {
+            characters = SQLUtils.getCharNamesByID(getContext(),Common.currentProject.getId());
+        } catch (Exception e){
+            Toast.makeText(getContext(),"Error: Please relaunch the app or contact the developer", Toast.LENGTH_LONG).show();
+        }
         listItems = characters.toArray(new String[characters.size()]);
         checkedItems = new boolean[characters.size()];
         if(!Common.outlineCreationMode){

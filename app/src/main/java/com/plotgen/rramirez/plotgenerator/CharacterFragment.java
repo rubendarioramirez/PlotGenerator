@@ -577,7 +577,7 @@ public class CharacterFragment extends Fragment {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
         transaction.replace(R.id.flMain, nextFragment);
-        getActivity().getSupportFragmentManager().popBackStackImmediate();
+        Objects.requireNonNull(getActivity()).getSupportFragmentManager().popBackStackImmediate();
         transaction.commit();
     }
 

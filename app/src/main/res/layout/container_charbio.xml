@@ -30,6 +30,7 @@ android:fitsSystemWindows="true">
     app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
 
+    <!--
     <com.robertlevonyan.views.customfloatingactionbutton.FloatingLayout
         android:id="@+id/bio_floating_layout"
         android:layout_width="match_parent"
@@ -62,6 +63,15 @@ android:fitsSystemWindows="true">
             app:fabText="@string/challenge_fab"/>
 
         <com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_timeline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fabColor="?colorAccent"
+            app:fabIcon="@drawable/ic_book_black"
+            app:fabSizes="mini"
+            app:fabText="@string/add_timeline"/>
+
+        <com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton
             android:id="@+id/fab_guide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,6 +80,8 @@ android:fitsSystemWindows="true">
             app:fabSizes="mini"
             app:fabText="@string/guides_fab"/>
 
-    </com.robertlevonyan.views.customfloatingactionbutton.FloatingLayout>
 
+
+    </com.robertlevonyan.views.customfloatingactionbutton.FloatingLayout>
+    -->
 </android.support.design.widget.CoordinatorLayout>

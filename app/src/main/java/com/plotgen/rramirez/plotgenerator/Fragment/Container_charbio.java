@@ -38,6 +38,8 @@ import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
 import com.plotgen.rramirez.plotgenerator.Guides.GuideListFragment;
 import com.plotgen.rramirez.plotgenerator.R;
+import com.plotgen.rramirez.plotgenerator.TimelineFragment;
+import com.plotgen.rramirez.plotgenerator.Timeline_detail;
 
 import java.util.ArrayList;
 
@@ -55,10 +57,15 @@ public class Container_charbio extends Fragment {
     private FirebaseAnalytics mFirebaseAnalytics;
     private String fragmentTag = Container_charbio.class.getSimpleName();
     private ViewPager mViewPager;
+
+    /*
     @BindView(R.id.fab_add_challenge)
     com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton fabAddChallenge;
     @BindView(R.id.fab_guide)
     com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton fabCheckGuide;
+    @BindView(R.id.fab_timeline)
+    com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton fabAddTimeline;
+    */
     ArrayList<String> char_description;
     public Container_charbio() {
         // Required empty public constructor
@@ -75,41 +82,6 @@ public class Container_charbio extends Fragment {
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(getContext());
 
         char_description = new ArrayList<String>();
-
-        fabCheckGuide.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                GuideListFragment nextFragment = new GuideListFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                boolean fragmentPopped = getFragmentManager().popBackStackImmediate(fragmentTag, 0);
-                if (!fragmentPopped && getFragmentManager().findFragmentByTag(fragmentTag) == null) {
-                    transaction.addToBackStack(null);
-                }
-                Utils.changeFragment(nextFragment, transaction);
-            }
-        });
-
-        fabAddChallenge.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                try {
-                    ChallengeListFragment nextFragment = new ChallengeListFragment();
-                    //Make the transaction
-                    FragmentTransaction transaction = getFragmentManager()
-                            .beginTransaction()
-                            .setCustomAnimations(R.anim.slide_up, 0, 0, R.anim.slide_down);
-                    boolean fragmentPopped = getFragmentManager().popBackStackImmediate(fragmentTag, 0);
-                    if (!fragmentPopped && getFragmentManager().findFragmentByTag(fragmentTag) == null) {
-                        transaction.addToBackStack(null);
-                    }
-                    transaction.replace(R.id.flMain, nextFragment);
-                    transaction.commit();
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-
 
         return view;
 
@@ -138,7 +110,6 @@ public class Container_charbio extends Fragment {
         super.onResume();
         mSectionsPageAdapter = new SectionsPageAdapter(getChildFragmentManager());
 
-
         // Set up the ViewPager with the sections adapter.
         mViewPager = this.getActivity().findViewById(R.id.container_charbio);
         setupViewPager(mViewPager);
@@ -153,6 +124,7 @@ public class Container_charbio extends Fragment {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getChildFragmentManager());
         adapter.addFragment(new BioFragment(), getString(R.string.biocontainer_character));
         adapter.addFragment(new BioChallengesFragment(), getString(R.string.biocontainer_challenge));
+        adapter.addFragment(new TimelineFragment(), getString(R.string.add_timeline));
         viewPager.setAdapter(adapter);
     }
 
@@ -167,9 +139,8 @@ public class Container_charbio extends Fragment {
         if (id == R.id.menu_bio_edit) {
             //Send it to the next fragment
             try {
-                Common.charCreationMode = false;
                 //Send it to the next fragment
-                CharacterFragment nextFragment = new CharacterFragment();
+                GuideListFragment nextFragment = new GuideListFragment();
                 //Make the transaction
                 FragmentTransaction transaction = getFragmentManager()
                         .beginTransaction()

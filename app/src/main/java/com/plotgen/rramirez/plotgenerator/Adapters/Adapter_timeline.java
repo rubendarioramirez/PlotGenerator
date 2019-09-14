@@ -8,32 +8,34 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.util.Util;
-import com.plotgen.rramirez.plotgenerator.CharListFragment;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Outline_detail;
 import com.plotgen.rramirez.plotgenerator.R;
+import com.plotgen.rramirez.plotgenerator.Timeline_detail;
 import com.plotgen.rramirez.plotgenerator.items.item_outline;
-import com.plotgen.rramirez.plotgenerator.items.item_trigger;
+import com.plotgen.rramirez.plotgenerator.items.item_timeline;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by macintosh on 22/08/18.
  */
 
-public class Adapter_outline extends RecyclerView.Adapter<Adapter_outline.myViewHolder> {
+public class Adapter_timeline extends RecyclerView.Adapter<Adapter_timeline.myViewHolder> {
 
     Context mContext;
-    List<item_outline> mData;
+    List<item_timeline> mData;
 
-    public Adapter_outline(Context mContext, List<item_outline> mData) {
+    public Adapter_timeline(Context mContext, List<item_timeline> mData) {
         this.mContext = mContext;
         this.mData = mData;
     }
@@ -41,25 +43,16 @@ public class Adapter_outline extends RecyclerView.Adapter<Adapter_outline.myView
     @Override
     public myViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        View v = inflater.inflate(R.layout.outline_item, parent, false);
+        View v = inflater.inflate(R.layout.timeline_item, parent, false);
         return new myViewHolder(v,mData);
     }
 
     @Override
     public void onBindViewHolder(myViewHolder holder, int position) {
-        Collections.sort(mData, new Comparator() {
-            @Override
-            public int compare(Object o1, Object o2) {
-                item_outline p1 = (item_outline) o1;
-                item_outline p2 = (item_outline) o2;
-                Log.v("matilda", String.valueOf(p1.getOutline_position().compareToIgnoreCase(p2.getOutline_position())));
-                return p2.getOutline_position().compareToIgnoreCase(p1.getOutline_position());
-            }
-        });
-        holder.outline_title.setText(mData.get(position).getOutline_title());
-        holder.outline_description.setText(mData.get(position).getOutline_description());
-        holder.outline_characters.setText(mData.get(position).getOutline_characters());
-
+        String vv = Utils.unixToString(mData.get(position).getTimeline_date());
+        String title =  vv + " " + mData.get(position).getTimeline_title();
+        holder.timeline_title.setText(title);
+        holder.timeline_description.setText(mData.get(position).getTimeline_description());
     }
 
     @Override
@@ -68,33 +61,28 @@ public class Adapter_outline extends RecyclerView.Adapter<Adapter_outline.myView
     }
 
     public class myViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        TextView outline_title;
-        TextView outline_description;
-        TextView outline_characters;
-        List<item_outline> mData;
+        TextView timeline_title;
+        TextView timeline_description;
+        List<item_timeline> mData;
 
-        public myViewHolder(View itemView, List<item_outline> mData){
+        public myViewHolder(View itemView, List<item_timeline> mData){
             super (itemView);
-            outline_title = itemView.findViewById(R.id.outline_title);
-            outline_description = itemView.findViewById(R.id.outline_description);
-            outline_characters = itemView.findViewById(R.id.outline_characters);
-
+            timeline_title = itemView.findViewById(R.id.timeline_title);
+            timeline_description = itemView.findViewById(R.id.timeline_description);
             this.mData = mData;
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            Log.v("Matilda", "Clicked from Adapter at ID: " + mData.get(getAdapterPosition()).getOutline_id());
-            Common.currentOutlineID = mData.get(getAdapterPosition()).getOutline_id();
-            Common.outlineCreationMode = false;
+            Common.currentTimelineID = mData.get(getAdapterPosition()).getTimeline_id();
+            Common.timelineCreationMode = false;
             nextFragment(mContext);
-
         }
     }
 
     public void nextFragment(Context context){
-        Outline_detail nextFragment = new Outline_detail();
+        Timeline_detail nextFragment = new Timeline_detail();
         //Make the transaction
         AppCompatActivity activity = (AppCompatActivity) context;
         FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();

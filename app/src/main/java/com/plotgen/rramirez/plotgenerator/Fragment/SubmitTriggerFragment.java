@@ -58,50 +58,53 @@ public class SubmitTriggerFragment extends Fragment {
 
     @OnClick(R.id.btnTriggerSubmit)
     public void submitStory(View view) {
-        final String s = etTriggerStory.getText().toString();
-        mDatabase = FirebaseFirestore.getInstance();
-        mUser = Common.currentFirebaseUser;
+        if (Common.currentUser != null) {
+            final String s = etTriggerStory.getText().toString();
+            mDatabase = FirebaseFirestore.getInstance();
+            mUser = Common.currentFirebaseUser;
 
-        // Title is required
-        if (TextUtils.isEmpty(s)) {
-            etTriggerStory.setError("Required");
-            return;
-        }
-
-
-        CollectionReference collectionReference = mReference.document("0").collection("special");
-        String key = mReference.document().getId();
-        Long tsLong = System.currentTimeMillis() / 1000;
-
-        final Prompt prompt = new Prompt(key, etTriggerStory.getText().toString(), tsLong,
-                new User(Common.currentUser.getUid(),
-                        Common.currentUser.getName(),
-                        Common.currentUser.getEmail(),
-                        Common.currentUser.getPicUrl().toString()),
-                        false);
-
-        Map<String, Object> postValues = prompt.toMap();
-
-        Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put( key, postValues);
-        collectionReference.document(key).update(childUpdates);
-
-        collectionReference.document(key).set(postValues).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                Toast.makeText(getContext(), " Prompt Added", Toast.LENGTH_SHORT).show();
-
+            // Title is required
+            if (TextUtils.isEmpty(s)) {
+                etTriggerStory.setError("Required");
+                return;
             }
-        });
 
-        etTriggerStory.setText("");
 
-        //Come back to Triggers
-        TriggerFragment nextFragment = new TriggerFragment();
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        Utils.changeFragment(nextFragment, transaction);
+            CollectionReference collectionReference = mReference.document("0").collection("special");
+            String key = mReference.document().getId();
+            Long tsLong = System.currentTimeMillis() / 1000;
+
+            final Prompt prompt = new Prompt(key, etTriggerStory.getText().toString(), tsLong,
+                    new User(Common.currentUser.getUid(),
+                            Common.currentUser.getName(),
+                            Common.currentUser.getEmail(),
+                            Common.currentUser.getPicUrl().toString()),
+                    false);
+
+            Map<String, Object> postValues = prompt.toMap();
+
+            Map<String, Object> childUpdates = new HashMap<>();
+            childUpdates.put(key, postValues);
+            collectionReference.document(key).update(childUpdates);
+
+            collectionReference.document(key).set(postValues).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    Toast.makeText(getContext(), " Prompt Added", Toast.LENGTH_SHORT).show();
+
+                }
+            });
+
+            etTriggerStory.setText("");
+
+            //Come back to Triggers
+            TriggerFragment nextFragment = new TriggerFragment();
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            Utils.changeFragment(nextFragment, transaction);
+        }else {
+            Toast.makeText(getContext(),"Please login in Profile section", Toast.LENGTH_LONG).show();
+        }
     }
-
     public SubmitTriggerFragment() {
         // Required empty public constructor
     }

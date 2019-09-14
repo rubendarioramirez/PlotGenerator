@@ -76,7 +76,11 @@ public class OutlineFragment extends Fragment {
 
 
         outline_list = new ArrayList();
-        outline_list = SQLUtils.getOutlineByProjectID(getContext(), Common.currentProject.getId());
+        try {
+            outline_list = SQLUtils.getOutlineByProjectID(getContext(), Common.currentProject.getId());
+        } catch (Exception e){
+            Toast.makeText(getContext(),"Error: Please relaunch the app or contact the developer", Toast.LENGTH_LONG).show();
+        }
         if (outline_list.size() > 0){
             outline_empty_tv.setVisibility(View.INVISIBLE);
         }
@@ -120,7 +124,8 @@ public class OutlineFragment extends Fragment {
             String title = outline_list.get(i).toString().split("/&&/")[1];
             String description = outline_list.get(i).toString().split("/&&/")[2];
             String characters = outline_list.get(i).toString().split("/&&/")[3];
-            mlist.add(new item_outline(id,title, description,characters));
+            String position = outline_list.get(i).toString().split("/&&/")[4];
+            mlist.add(new item_outline(id,title, description,characters,position));
             adapter.notifyDataSetChanged();
         }
 

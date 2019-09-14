@@ -6,19 +6,17 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.sql.Date;
+
 public class mySQLiteDBHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 19;
+    private static final int DATABASE_VERSION = 20;
 
     public static final String DATABASE_NAME = "production_database";
     public static final String TABLE_CHARACTER = "character";
     public static final String TABLE_PROJECT = "projectname";
     public static final String TABLE_OUTLINE = "outline";
-
-    public static final String CHARACTER_COLUMN_ID = "_id";
-    public static final String CHARACTER_COLUMN_PROJECT = "project";
-    public static final String CHARACTER_COLUMN_PROJECT_ID = "project_id";
-    public static final String CHARACTER_COLUMN_IMAGE = "image";
+    public static final String TABLE_TIMELINE = "timeline";
 
     public static final String PROJECT_COLUMN_ID = "_id";
     public static final String PROJECT_COLUMN_PROJECT = "project";
@@ -33,7 +31,6 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
     public static final String STORY_COLUMN_STORIES = "stories";
     public static final String STORY_COLUMN_IMAGE = "image";
 
-
     public static final String OUTLINE_COLUMN_ID = "_id";
     public static final String OUTLINE_COLUMN_NAME = "name";
     public static final String OUTLINE_COLUMN_DESCRIPTION = "description";
@@ -41,8 +38,20 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
     public static final String OUTLINE_COLUMN_PROJECT_ID = "project_id";
     public static final String OUTLINE_COLUMN_POSITION = "position";
 
+    public static final String TIMELINE_COLUMN_ID = "_id";
+    public static final String TIMELINE_COLUMN_TITLE = "title";
+    public static final String TIMELINE_COLUMN_DESCRIPTION = "description";
+    public static final String TIMELINE_COLUMN_CHARACTER_ID = "character_id";
+    public static final String TIMELINE_COLUMN_POSITION = "position";
+    public static final String TIMELINE_COLUMN_DATE = "date";
+
     //Character BIO
     //region BIO Region
+    public static final String CHARACTER_COLUMN_ID = "_id";
+    public static final String CHARACTER_COLUMN_PROJECT = "project";
+    public static final String CHARACTER_COLUMN_PROJECT_ID = "project_id";
+    public static final String CHARACTER_COLUMN_IMAGE = "image";
+
     public static final String CHARACTER_COLUMN_NAME = "name";
     public static final String CHARACTER_COLUMN_NICKNAME = "nickname";
     public static final String CHARACTER_COLUMN_AGE = "age";
@@ -229,6 +238,15 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
                 OUTLINE_COLUMN_CHARACTERS + " TEXT " +
                 ")");
 
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_TIMELINE + " (" +
+                TIMELINE_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                TIMELINE_COLUMN_TITLE + " TEXT, " +
+                TIMELINE_COLUMN_DESCRIPTION + " TEXT, " +
+                TIMELINE_COLUMN_CHARACTER_ID + " TEXT, " +
+                TIMELINE_COLUMN_POSITION + " TEXT, " +
+                TIMELINE_COLUMN_DATE + " TEXT " +
+                ")");
+
     }
 
     @Override
@@ -363,10 +381,38 @@ public class mySQLiteDBHelper extends SQLiteOpenHelper {
                 }
 
                 break;
+
+
+            case 20:
+                try {
+                    sqLiteDatabase.execSQL("ALTER TABLE character ADD COLUMN birthdate TEXT");
+                } catch (SQLiteException ex) {
+                    Log.w("Matilda", "Altering: Char project id" + ex.getMessage());
+                }
+
+                try {
+                    sqLiteDatabase.execSQL("CREATE TABLE outline (_id INTEGER PRIMARY KEY AUTOINCREMENT)");
+                    sqLiteDatabase.execSQL("ALTER TABLE outline ADD COLUMN name  TEXT");
+                    sqLiteDatabase.execSQL("ALTER TABLE outline ADD COLUMN description  TEXT");
+                    sqLiteDatabase.execSQL("ALTER TABLE outline ADD COLUMN project_id  TEXT");
+                    sqLiteDatabase.execSQL("ALTER TABLE outline ADD COLUMN position  TEXT");
+                    sqLiteDatabase.execSQL("ALTER TABLE outline ADD COLUMN charactersPresent  TEXT");
+                } catch (SQLiteException ex) {
+                    Log.w("Matilda", "Altering: " + ex.getMessage());
+                }
+
+                try {
+                    sqLiteDatabase.execSQL("CREATE TABLE timeline (_id INTEGER PRIMARY KEY AUTOINCREMENT)");
+                    sqLiteDatabase.execSQL("ALTER TABLE timeline ADD COLUMN title  TEXT");
+                    sqLiteDatabase.execSQL("ALTER TABLE timeline ADD COLUMN description  TEXT");
+                    sqLiteDatabase.execSQL("ALTER TABLE timeline ADD COLUMN character_id  TEXT");
+                    sqLiteDatabase.execSQL("ALTER TABLE timeline ADD COLUMN position  TEXT");
+                    sqLiteDatabase.execSQL("ALTER TABLE timeline ADD COLUMN date  TEXT");
+                } catch (SQLiteException ex) {
+                    Log.w("Matilda", "Altering: " + ex.getMessage());
+                }
+
+                break;
             }
-
-
-
-
         }
 }

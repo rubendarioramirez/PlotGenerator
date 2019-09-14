@@ -95,7 +95,64 @@ public class SQLUtils extends Fragment {
         return projects_list;
     }
 
+    //This function to get Timeline by Character ID.
+    public static ArrayList<String> getTimelineByCharacterID(Context context, String character_id){
+        mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
+        SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
+        String query = "SELECT * FROM  " + mySQLiteDBHelper.TABLE_TIMELINE + " WHERE character_id = ?" + " ORDER BY CAST(date AS INTEGER) ASC" ;
+        ArrayList<String> timeline_list = new ArrayList<String>();
+        try {
+            Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{character_id});
+            cursor.moveToFirst();
+            while(!cursor.isAfterLast()) {
+                String timeID = cursor.getString(cursor.getColumnIndex(mySQLiteDBHelper.TIMELINE_COLUMN_ID));
+                String timeTitle = cursor.getString(cursor.getColumnIndex(mySQLiteDBHelper.TIMELINE_COLUMN_TITLE));
+                String timeDescription = cursor.getString(cursor.getColumnIndex(mySQLiteDBHelper.TIMELINE_COLUMN_DESCRIPTION));
+                String position = cursor.getString(cursor.getColumnIndex(mySQLiteDBHelper.TIMELINE_COLUMN_POSITION));
+                String date = cursor.getString(cursor.getColumnIndex(mySQLiteDBHelper.TIMELINE_COLUMN_DATE));
+                timeline_list.add(timeID + "/&&/" + timeTitle + "/&&/" + timeDescription + "/&&/" + position + "/&&/" + date);
+                cursor.moveToNext();
+            }
+            cursor.close();
+        } catch (Exception e){
+            Log.v("matilda", "Character ID is null" + e.toString());
+        }
+        sqLiteDatabase.close();
+        return timeline_list;
+    }
 
+
+    //This function to get Timeline by ID.
+    public static ArrayList<String> getTimelineByID(Context context, String outlineID){
+        mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
+        SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
+        String query = "SELECT * FROM  " + mySQLiteDBHelper.TABLE_TIMELINE + " WHERE _id = ?";
+        ArrayList<String> timeline_list = new ArrayList<String>();
+        try {
+            Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{outlineID});
+            cursor.moveToFirst();
+            while(!cursor.isAfterLast()) {
+                String outID = cursor.getString(cursor.getColumnIndex(mySQLiteDBHelper.TIMELINE_COLUMN_ID));
+                String outTitle = cursor.getString(cursor.getColumnIndex(mySQLiteDBHelper.TIMELINE_COLUMN_TITLE));
+                String outDescription = cursor.getString(cursor.getColumnIndex(mySQLiteDBHelper.TIMELINE_COLUMN_DESCRIPTION));
+                String position = cursor.getString(cursor.getColumnIndex(mySQLiteDBHelper.TIMELINE_COLUMN_POSITION));
+                String date = cursor.getString(cursor.getColumnIndex(mySQLiteDBHelper.TIMELINE_COLUMN_DATE));
+                timeline_list.add(outID + "/&&/" + outTitle + "/&&/" + outDescription + "/&&/" + position + "/&&/" + date);
+                cursor.moveToNext();
+            }
+            cursor.close();
+        } catch (Exception e){
+            Log.v("matilda", "Project ID is null" + e.toString());
+        }
+        sqLiteDatabase.close();
+        return timeline_list;
+    }
+
+    public static void deleteTimelineFromDB(Context context, String timelineID) {
+        SQLiteDatabase database = new mySQLiteDBHelper(context).getWritableDatabase();
+        database.delete(mySQLiteDBHelper.TABLE_TIMELINE, "_id = ?", new String[]{timelineID});
+        database.close();
+    }
 
 
 }

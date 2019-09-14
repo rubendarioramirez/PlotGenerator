@@ -6,6 +6,7 @@ import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -45,6 +46,9 @@ public class BioFragment extends Fragment {
     TextView intro_tv;
     @BindView(R.id.bio_charimage)
     ImageView bio_charimage;
+    @BindView(R.id.fab_bio_edit)
+    com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton fabEditCharacter;
+
 
     private String filepath = "";
 
@@ -86,6 +90,13 @@ public class BioFragment extends Fragment {
         intro_tv.setText(Html.fromHtml(bio));
         displayPhoto();
 
+        fabEditCharacter.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Common.charCreationMode = false;
+                //Send it to the next fragment
+                fragmentTransaction();
+            }
+        });
 
         Tutorial.checkTutorial(myFragmentView,getActivity());
 
@@ -116,6 +127,15 @@ public class BioFragment extends Fragment {
             bio_charimage.setImageURI(Uri.parse(defaultImagePath));
             filepath = imageToShow;
         }
+    }
+
+    private void fragmentTransaction(){
+        CharacterFragment nextFragment = new CharacterFragment();
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
+        transaction.replace(R.id.flMain, nextFragment);
+        getActivity().getSupportFragmentManager().popBackStack();
+        transaction.commit();
     }
 
 }

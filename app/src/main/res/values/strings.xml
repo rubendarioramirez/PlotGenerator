@@ -75,7 +75,7 @@
     </string-array>
 <!--endregion-->
 
-    <string name="character_tab">Character Workshop</string>
+    <string name="character_tab">Story Workshop</string>
     <string name="character_create">Create Character</string>
     <string name="character_update">Edit Character</string>
     <string name="writing_challenge_tab">Weekly writing Challenge</string>
@@ -1048,6 +1048,9 @@ In order for your character to evolve in a positive way, he has to start out wit
 
     <string name="premiumOnlyPopTitle">Project limit!</string>
     <string name="premiumOnlyPopBody">Howdy, it looks like you\'re enjoying the app a lot! However you\'ve reached the limit of projects for this free version.\n\nBut don\'t worry! You can either become a Premium user to create unlimited projects among other awesome features.\n\nOr watch an AD to proceed and create a new project.</string>
+
+    <string name="add_timeline">Timeline</string>
+    <string name="empty_timeline">If you really want to develop your character, then start by outlining his life.\nWhen he was born, where and when he studied, and so on.\nTake the time to create small bits of his story as you go.\nIt\'s the best way to know him better</string>
 
 
 </resources>
