@@ -915,7 +915,7 @@ Buat antagonis kamu melakukan tindakan yang benar-benar tercela dan jika mungkin
     </string-array>
 
     <!-- Firebase Database name  -->
-    <string name="weekly_challenge_db_name">Tantangan_Mingguan_Beta</string>
+    <string name="weekly_challenge_db_name">weekly_participants_id</string>
 
     <string name="edit_story">Edit Cerita</string>
     <string name="write_story">Tulis Cerita</string>

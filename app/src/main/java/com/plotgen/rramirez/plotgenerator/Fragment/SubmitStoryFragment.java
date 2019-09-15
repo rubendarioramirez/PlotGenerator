@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,18 +15,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.ServerTimestamp;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.MainActivity;
 import com.plotgen.rramirez.plotgenerator.Model.Story;
@@ -80,7 +72,8 @@ public class SubmitStoryFragment extends Fragment {
             return;
         }
 
-        CollectionReference collectionReference = mReference.document("posts").collection("posts");
+        //CollectionReference collectionReference = mReference.document(Common.currentWeeklyStoryTitle).collection("posts");
+        CollectionReference collectionReference = mReference;
         String key = mReference.document().getId();
         Long tsLong = System.currentTimeMillis() / 1000;
 
@@ -144,7 +137,7 @@ public class SubmitStoryFragment extends Fragment {
         });
 
         mDatabase = Common.currentDatabase;
-         mReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name));
+        mReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name)).document(Common.currentWeeklyStoryTitle).collection("posts");
       //  mReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name));
 
         if (Common.currentChallenge != null) {

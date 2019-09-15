@@ -57,7 +57,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.firestore.Transaction;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.RemoteMessage;
@@ -151,7 +150,7 @@ public class StoryDetailFragment extends Fragment {
                 etCommentText.getText().toString(),tsLong);
 
         // Push the comment, it will appear in the list
-        CollectionReference documentReference =  mDatabase.collection(getString(R.string.weekly_challenge_db_name)).document("post-comments").collection("post-comments").document(Common.currentStory.getId()).collection("Comments");
+        CollectionReference documentReference =  mDatabase.collection(getString(R.string.weekly_challenge_db_name)).document(Common.currentWeeklyStoryTitle).collection("post-comments").document(Common.currentStory.getId()).collection("Comments");
         documentReference.add(comment).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
 
             @Override
@@ -235,10 +234,10 @@ public class StoryDetailFragment extends Fragment {
 
         mDatabase = Common.currentDatabase;
 
-        mCommentReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name)).document("post-comments").collection("post-comments").document(Common.currentStory.getId()).collection("Comments");
+        mCommentReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name)).document(Common.currentWeeklyStoryTitle).collection("post-comments").document(Common.currentStory.getId()).collection("Comments");
         Query query1 = mCommentReference.orderBy("userDate", DESCENDING);
 
-        final CollectionReference collectionReference1 = mDatabase.collection(getString(R.string.weekly_challenge_db_name)).document("posts").collection("posts");
+        final CollectionReference collectionReference1 = mDatabase.collection(getString(R.string.weekly_challenge_db_name)).document(Common.currentWeeklyStoryTitle).collection("posts");
 
         ivTemplatePic.setImageResource(R.drawable.typewriter);
 
@@ -251,7 +250,6 @@ public class StoryDetailFragment extends Fragment {
         manager.setStackFromEnd(true);
         lvComments.setLayoutManager(manager);
 
-
         if (Common.currentStory.likes.containsKey(Common.currentUser.getUid())) {
             ivLoves.setImageResource(R.drawable.ic_love_red);
         } else {
@@ -261,7 +259,6 @@ public class StoryDetailFragment extends Fragment {
         ivLoves.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              //  Toast.makeText(getActivity(), "Liked", Toast.LENGTH_SHORT).show();
                 DocumentReference documentReference = collectionReference1.document(Common.currentStory.getId());
 
                 onLikeClicked(documentReference);
@@ -301,7 +298,7 @@ public class StoryDetailFragment extends Fragment {
                     // Star the post and add self to stars
                     p.likeCount = p.likeCount + 1;
                     p.likes.put(Common.currentUser.getUid(), true);
-                   // sendNotification(Common.currentUser.getName() + " liked your post", p.getUser(), p.getId());
+                    sendNotification(Common.currentUser.getName() + " liked your post", p.getUser(), p.getId());
                 }
 
                 // Set value and report transaction success
@@ -330,12 +327,16 @@ public class StoryDetailFragment extends Fragment {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                Log.v("matilda",Common.tempStory.getId());
+                Log.v("matilda",Common.tempStory.getUser().toString());
                 Toast.makeText(getActivity(), "Failed", Toast.LENGTH_SHORT).show();
                 Log.e("Failed","like failed"+e);
             }
         });
 
     }
+
+
 
     public void sendNotification(final String message, User user, final String id) {
         //String firebase_token = mUserReference.child(user.getUid()).child("token");
@@ -349,14 +350,20 @@ public class StoryDetailFragment extends Fragment {
                     AtomicInteger msgId = new AtomicInteger();
                     new Notify(to, message, id, "Weekly Challenge").execute();
                     //notifyMessage(to,message);
-                    FirebaseMessaging.getInstance().send(new RemoteMessage.Builder(to)
-                            .setMessageId(String.valueOf(msgId.get()))
-                            .addData("title", "Weekly Challenge")
-                            .addData("body", message)
-                            .build());
-                    Log.e("message", new RemoteMessage.Builder(to).setMessageId(String.valueOf(msgId.get()))
-                            .addData("title", "Weekly Challenge")
-                            .addData("body", message).toString());
+                    try{
+                        FirebaseMessaging fm = FirebaseMessaging.getInstance();
+                        fm.send(new RemoteMessage.Builder(to)
+                                .setMessageId(String.valueOf(msgId.get()))
+                                .addData("title", "Weekly Challenge")
+                                .addData("body", message)
+                                .build());
+                        Log.e("message", new RemoteMessage.Builder(to).setMessageId(String.valueOf(msgId.get()))
+                                .addData("title", "Weekly Challenge")
+                                .addData("body",  message).toString());
+                    } catch (Exception exception){
+                        Log.v("matilda",exception.toString());
+                    }
+
                 }
             }
         });

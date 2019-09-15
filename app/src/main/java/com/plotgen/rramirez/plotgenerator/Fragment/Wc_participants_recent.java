@@ -84,7 +84,7 @@ public class Wc_participants_recent extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((MainActivity) getActivity()).setActionBarTitle("Weekly Challenge Participant");
+        ((MainActivity) getActivity()).setActionBarTitle("Weekly Challenge");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_weekly_challenge, container, false);
 
@@ -98,9 +98,7 @@ public class Wc_participants_recent extends Fragment {
         mReference_recent = Common.currentReference;
         mUserReference_recent = Common.currentCommentReference;
 
-        //collectionReference_recent = mDatabase_recent.collection(getString(R.string.weekly_challenge_db_name)).document("posts").collection("posts");
-        //Query query2 = collectionReference_recent.orderBy("submitDate", Query.Direction.DESCENDING);
-        Query query2 = Common.currentQuery.orderBy("submitDate", Query.Direction.DESCENDING);
+        Query query2 = Common.currentQuery.orderBy("date", Query.Direction.ASCENDING);
 
         mAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
             @Override

@@ -80,7 +80,7 @@ public class Wc_participants_mystory extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((MainActivity) getActivity()).setActionBarTitle("Weekly Challenge Participant");
+        ((MainActivity) getActivity()).setActionBarTitle("Weekly Challenge");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_weekly_challenge, container, false);
 
@@ -106,8 +106,7 @@ public class Wc_participants_mystory extends Fragment {
         mManager.setStackFromEnd(true);
         rvWeeklyChallenge.setLayoutManager(mManager);
 
-        mReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name))
-                .document("posts").collection("posts");
+        mReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name)).document(Common.currentWeeklyStoryTitle).collection("posts");
 
         Query query = mReference;
 

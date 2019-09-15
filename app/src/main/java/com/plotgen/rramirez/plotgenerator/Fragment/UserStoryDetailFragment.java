@@ -410,29 +410,6 @@ public class UserStoryDetailFragment extends Fragment {
         inflater.inflate(R.menu.menu_edit, menu);
     }
 
-   /* @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (Common.currentUserStory != null && Common.currentUserStory.getUser() != null)
-            if (Common.currentUserStory.getUser().getUid().equals(Common.currentUser.getUid()))
-                setHasOptionsMenu(true);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item_trigger) {
-        int id = item_trigger.getItemId();
-        if (id == R.id.menu_edit) {
-            String values = Common.currentUserStory.getId() + "_" + Common.currentUserStory.getProjectName();
-
-            OfflineStoryFragment nextFragment = new OfflineStoryFragment();
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            Utils.changeFragment(nextFragment, transaction, "project_info", values);
-            transaction.addToBackStack(null);
-            return true;
-        }
-        return super.onOptionsItemSelected(item_trigger);
-    }*/
-
     @GlideModule
     public class MyAppGlideModule extends AppGlideModule {
 

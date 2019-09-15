@@ -40,20 +40,13 @@ public class Wcc_stories extends Fragment {
 
         FirebaseFirestore mDatabase = Common.currentDatabase;
 
-        FirebaseAuth mAuth = Common.currentAuth;
-        final FirebaseUser mUser = Common.currentFirebaseUser;
+        CollectionReference mReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name)).document(Common.currentWeeklyStoryTitle).collection("posts");
 
-
-        CollectionReference mReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name))
-                .document("posts").collection("posts");
-
-        CollectionReference mCommentReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name))
-                .document("post-comments").collection("post-comments");
+        CollectionReference mCommentReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name)).document(Common.currentWeeklyStoryTitle).collection("post-comments");
 
         CollectionReference mUserReference = mDatabase.collection("users_1");
 
-        CollectionReference query = mDatabase.collection(getString(R.string.weekly_challenge_db_name))
-                .document("posts").collection("posts");
+        CollectionReference query = mDatabase.collection(getString(R.string.weekly_challenge_db_name)).document(Common.currentWeeklyStoryTitle).collection("posts");
 
         Common.currentReference = mReference;
         Common.currentQuery = query;

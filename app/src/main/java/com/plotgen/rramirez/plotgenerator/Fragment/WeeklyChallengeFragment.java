@@ -87,7 +87,7 @@ public class WeeklyChallengeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((MainActivity) getActivity()).setActionBarTitle("Weekly Challenge Participant");
+        ((MainActivity) getActivity()).setActionBarTitle("Weekly Challenge");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_weekly_challenge, container, false);
 
@@ -102,8 +102,6 @@ public class WeeklyChallengeFragment extends Fragment {
         mReference = Common.currentReference;
         mCommentReference = Common.currentCommentReference;
 
-        //collectionReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name)).document("posts").collection("posts");
-        //Query query2 = collectionReference.orderBy("likeCount", Query.Direction.ASCENDING);
         Query query2 = Common.currentQuery.orderBy("likeCount", Query.Direction.ASCENDING);
 
         mAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
@@ -144,7 +142,6 @@ public class WeeklyChallengeFragment extends Fragment {
 
             @Override
             protected void onBindViewHolder(StoryViewHolder viewHolder, int position, final Story model) {
-             //   final DatabaseReference postRef = getRef(position);
                 final Story currentStory = model;
 
                 Integer i = getActivity().getIntent().getIntExtra("comments",0);
@@ -169,11 +166,11 @@ public class WeeklyChallengeFragment extends Fragment {
                     View.OnClickListener likeClickListener = new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            DocumentReference globalPostRef = collectionReference.document(model.getId());
+                            DocumentReference globalPostRef = mReference.document(model.getId());
                         }
                     };
 
-                mCommentReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name)).document("post-comments").collection("post-comments").document(model.getId()).collection("Comments");
+                mCommentReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name)).document(Common.currentWeeklyStoryTitle).collection("post-comments").document(model.getId()).collection("Comments");
 
                 viewHolder.bindToPost(model, likeClickListener, mCommentReference);
 
@@ -209,6 +206,8 @@ public class WeeklyChallengeFragment extends Fragment {
 
                 transaction.set(postRef,p);
                 documentReference.set(p);
+                Log.v("matilda", p.toString());
+                Log.v("matilda", p.getId());
                 Common.tempStory = p;
                 return null;
 

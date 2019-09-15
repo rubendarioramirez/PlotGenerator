@@ -945,7 +945,8 @@ In order for your character to evolve in a positive way, he has to start out wit
     </string-array>
 
     <!-- Firebase Database name  -->
-    <string name="weekly_challenge_db_name">Weekly_Challenge_Beta_1</string>
+    <string name="weekly_challenge_db_name">weekly_participants_en</string>
+    <!-- OLD NAME <string name="weekly_challenge_db_name">Weekly_Challenge_Beta_1</string> -->
 
     <string name="edit_story">Edit Story</string>
     <string name="write_story">Write Story</string>

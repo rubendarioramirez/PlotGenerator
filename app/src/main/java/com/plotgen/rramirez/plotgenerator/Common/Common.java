@@ -33,6 +33,7 @@ public class Common {
     public static boolean projectCreationMode;
     public static boolean outlineCreationMode;
     public static boolean timelineCreationMode;
+    public static String currentWeeklyStoryTitle;
 
     public static int onBoarding;
     public static boolean tutorialMODE;

@@ -58,7 +58,6 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
     private Button btViewParticipant;
     private FirebaseAnalytics mFirebaseAnalytics;
     private RewardedVideoAd mRewardedVideoAd;
-    //private FirebaseDatabase mDatabase;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
 
@@ -126,6 +125,10 @@ public class weeklyWriting extends Fragment implements RewardedVideoAdListener {
                     String body = documentSnapshot.getString("body");
 
                     title_tv.setText(title);
+
+                    //Set the current Weekly challenge
+                    Common.currentWeeklyStoryTitle = title;
+
                     //Parse body to get the line breaks
                     String bodyparsed = body.replace("\\n", "\n");
                     body_tv.setText(bodyparsed);

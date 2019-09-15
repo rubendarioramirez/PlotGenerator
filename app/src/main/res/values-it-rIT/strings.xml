@@ -868,7 +868,7 @@ Assicurati che le azioni dell\'antagonista siano veramente biasimevoli, se possi
     </string-array>
 
     <!-- Firebase Database name  -->
-    <string name="weekly_challenge_db_name">Challenge_Settimanale_Beta_1</string>
+    <string name="weekly_challenge_db_name">weekly_participants_it</string>
 
     <string name="edit_story">Modifica la storia</string>
     <string name="write_story">Scrivi una storia</string>

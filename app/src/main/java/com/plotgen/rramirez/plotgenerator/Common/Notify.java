@@ -68,6 +68,7 @@ public class Notify extends AsyncTask<Void, String, String> {
 
         } catch (Exception e) {
             e.printStackTrace();
+            Log.v("matilda", "notify.java: " + e.toString());
             return e.getMessage();
         }
     }

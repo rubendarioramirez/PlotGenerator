@@ -65,12 +65,12 @@ public class Story {
         this.chalenge = chalenge;
     }
 
-    public long getSubmitDate() {
+    public long getDate() {
         return date;
     }
 
-    public void setSubmitDate(long submitDate) {
-        this.date = submitDate;
+    public void setDate(long date) {
+        this.date = date;
     }
 
     public User getUser() {
