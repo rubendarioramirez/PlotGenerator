@@ -4,7 +4,7 @@ package com.plotgen.rramirez.plotgenerator.Common;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -38,7 +38,31 @@ public class SQLUtils extends Fragment {
         sqLiteDatabase.close();
         return projects_list;
     }
+    //endregion
 
+    //region Get project
+    public static ArrayList<String> getProjectByID(Context context, String id) {
+        mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
+        SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
+        String query = "SELECT * FROM  " + mySQLiteDBHelper.TABLE_PROJECT + " WHERE " + mySQLiteDBHelper.PROJECT_COLUMN_ID + " = ?";
+        Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{id});
+        cursor.moveToFirst();
+        ArrayList<String> projects = new ArrayList<String>();
+        while (!cursor.isAfterLast()) {
+            projects.add(cursor.getString(cursor.getColumnIndex("project")));
+            projects.add(cursor.getString(cursor.getColumnIndex("genre")));
+            projects.add(cursor.getString(cursor.getColumnIndex("plot")));
+            projects.add(cursor.getString(cursor.getColumnIndex("_id")));
+            if (cursor.getColumnIndex("image") != -1 && cursor.getString(cursor.getColumnIndex("image")) != null)
+                projects.add(cursor.getString(cursor.getColumnIndex("image")));
+
+            cursor.moveToNext();
+        }
+        cursor.close();
+        sqLiteDatabase.close();
+        return projects;
+    }
+    //endregion
 
     //This function to get Outline by ID.
     public static ArrayList<String> getOutlineByID(Context context, String outlineID){

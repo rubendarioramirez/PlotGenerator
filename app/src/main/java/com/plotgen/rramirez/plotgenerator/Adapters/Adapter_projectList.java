@@ -7,24 +7,30 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.material.button.MaterialButton;
 import com.plotgen.rramirez.plotgenerator.CharListFragment;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Model.Project;
+import com.plotgen.rramirez.plotgenerator.Project_detailsFragment;
 import com.plotgen.rramirez.plotgenerator.R;
 import com.plotgen.rramirez.plotgenerator.items.item_project_list;
 
 import java.util.List;
-
-import static com.plotgen.rramirez.plotgenerator.Common.Constants.THUMBNAIL_SIZE;
 
 /**
  * Created by macintosh on 22/08/18.
@@ -41,8 +47,6 @@ public class Adapter_projectList extends RecyclerView.Adapter<Adapter_projectLis
         this.mContext = mContext;
         this.mData = mData;
     }
-
-
 
     @Override
     public myViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -88,6 +92,7 @@ public class Adapter_projectList extends RecyclerView.Adapter<Adapter_projectLis
         Context mContext;
         List<item_project_list> mData;
         String projectID;
+        MaterialButton edit_project_btn;
 
         public myViewHolder(View itemView, Context mContext, List<item_project_list> mData){
             super (itemView);
@@ -95,9 +100,28 @@ public class Adapter_projectList extends RecyclerView.Adapter<Adapter_projectLis
             genre = itemView.findViewById(R.id.project_genre_lv);
             characters = itemView.findViewById(R.id.project_completion_lv);
             image = itemView.findViewById(R.id.project_list_iv);
+            edit_project_btn = itemView.findViewById(R.id.edit_project_btn);
 
             this.mContext = mContext;
             this.mData = mData;
+
+            edit_project_btn.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    if(Common.currentProject != null) {
+                        Common.currentProject = new Project(mData.get(getAdapterPosition()).getId(), mData.get(getAdapterPosition()).getName());
+                        //Send it to the next fragment
+                        Project_detailsFragment nextFragment = new Project_detailsFragment();
+                        Common.projectCreationMode = false;
+                        //Send it to the next fragment
+                        FragmentTransaction transaction = ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction();
+                        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
+                        transaction.replace(R.id.flMain, nextFragment);
+                        transaction.addToBackStack("TAG");
+                        transaction.commit();
+                    }
+                }
+            });
+
             itemView.setOnClickListener(this);
         }
 
@@ -105,8 +129,6 @@ public class Adapter_projectList extends RecyclerView.Adapter<Adapter_projectLis
         public void onClick(View view)
         {
             String clicked = mData.get(getAdapterPosition()).getName();
-            //String genre = mData.get(getAdapterPosition()).getgenre();
-            //Integer characters = Integer.valueOf(mData.get(getAdapterPosition()).getcharacters());
             projectID = mData.get(getAdapterPosition()).getId();
             Project project = new Project(projectID,clicked);
             Common.currentProject = project;

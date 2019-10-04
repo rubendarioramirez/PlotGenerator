@@ -676,11 +676,7 @@ Sometimes, the heroes lose their mentor in this stage (e.g. LOTR and Star Wars).
     <!--First challenge-->
     <string name="challenge_1_title">Challenge I</string>
     <string name="challenge_1_desc">Elevator Challenge</string>
-    <string name="challenge_1_desc_long">How does your character reacts in a crisis?\n
-    Let\'s put him on a elevator with a random stranger. It doesn\'t matter who.\n
-    Suddenly the elevator gets stuck and they\'re both trap inside.\n How does he reacts? Is he calm? Does he panic?
-    \nTake the time you need to answer.
-    \nThis exercise will allow you to reflect about your character, how he behaves in limit situations.</string>
+    <string name="challenge_1_desc_long">How does $char_name$ reacts in a crisis?\nLet\'s put him on a elevator with a random stranger.\nSuddenly the elevator gets stuck and they\'re both trap inside.\nHow does he reacts? Is he calm? Does he panic?\nThis exercise will allow you to discover how $char_name$ behaves in limit situations.</string>
     <string name="challenge_1_q1">What is his first reaction?</string>
     <string name="challenge_1_q2">Will he wait to be rescued?</string>
     <string name="challenge_1_q3">The person next to him suddenly panics. Will your character call him down? Will he panic as well?</string>
@@ -1004,13 +1000,13 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="wc_recent">Recent</string>
     <string name="wc_mystory">My story</string>
 
-    <string name="char_empty">I\'m sure you are more creative than that...</string>
+    <string name="char_empty">I\'m sure you are more creative than that…</string>
 
 
     <string name="biocontainer_character">Character</string>
     <string name="biocontainer_challenge">Challenges</string>
 
-    <string name="biocontainer_challenge_empty">This section is a bit empty. What about creating some challenges?</string>
+    <string name="biocontainer_challenge_empty">A character biography is simply not enough to discover who your character really is.\n\nPut your character under pressure and walk him through different situations to see how he reacts.</string>
 
 
     <!--region Tutorial-->
@@ -1028,11 +1024,11 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="onBoarding_4">Now you\'re getting the hang of this.\nPress the + button and choose create character</string>
     <string name="onBoarding_5">If you didn\'t yet, it\'s really time to get that coffee.\n\nHere you will create your first character. If you have no ideas, don\'t worry. Just make it random.\n\nOr a combination of it?. What about randomizing first and then freely editing what you feel it\'s needed? Go ahead and explore.\n\nAnd yes, you can edit this later.</string>
     <string name="onBoarding_6">Good work, here you will see all your characters.\n\nName, role and how developed it\'s.\n\nGo ahead, choose the character you just created to get going.</string>
-    <string name="onBoarding_7">This is your character. Here you can have a quick snapshot of him/her.\n\nBut this is far from over. You\'re just starting. Check at the + button, you will unfold guidelines to keep developing your character.\n\nBut more important you also have challenges.\n\nI would love to tell you what are those. But you better see it by yourself.</string>
+    <string name="onBoarding_7">This is your character. Here you can have a quick snapshot of him/her.\n\nBut this is far from over. You\'re just starting. At the top you will find an info button. There you can find guidelines to keep developing your character.\n\nIf you slide right, you will find challenges and timeline.\n\nI would love to tell you what are those. But you better see it by yourself.</string>
     <!--endregion Tutorial-->
 
     <string name="developmenTitle">Warning!.</string>
-    <string name="developmentDesc">Hey! Thanks for checking this feature out but its currently under development. Please try it and share your feedback, but be ready for weird problems. Yes, problems so weird that I dont dare to describe.</string>
+    <string name="developmentDesc">Hey! Thanks for checking this feature out but its currently under development. Please try it and share your feedback, but be ready for weird problems. Yes, problems so weird that I don\'t dare to describe.</string>
 
     <string name="birthdate_add_text">Birthdate</string>
 
@@ -1044,6 +1040,7 @@ In order for your character to evolve in a positive way, he has to start out wit
     <string name="add_outline">Outline</string>
     <string name="outline_share_title">Title</string>
     <string name="outline_share_characters">Characters</string>
+    <string name="outline_emptytv">Plotting your novel can be an enormous challenge. You’ve had some time to begin developing your world and your characters, your moral gray area, and central conflicts, and now you face the daunting task of putting it all together into a coherent story—and making it interesting enough to get a reader hooked.\n\nThis road map is otherwise called an outline.</string>
 
     <string name="premiumOnly">Available for premium users</string>
 
@@ -1052,6 +1049,10 @@ In order for your character to evolve in a positive way, he has to start out wit
 
     <string name="add_timeline">Timeline</string>
     <string name="empty_timeline">If you really want to develop your character, then start by outlining his life.\nWhen he was born, where and when he studied, and so on.\nTake the time to create small bits of his story as you go.\nIt\'s the best way to know him better</string>
+
+
+
+
 
 
 </resources>

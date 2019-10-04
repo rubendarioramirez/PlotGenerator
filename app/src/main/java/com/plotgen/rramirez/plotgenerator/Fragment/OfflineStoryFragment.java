@@ -8,10 +8,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.fragment.app.Fragment;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -45,7 +45,6 @@ import com.plotgen.rramirez.plotgenerator.Common.AdsHelper;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
-import com.plotgen.rramirez.plotgenerator.MainActivity;
 import com.plotgen.rramirez.plotgenerator.Model.Genre;
 import com.plotgen.rramirez.plotgenerator.Model.User;
 import com.plotgen.rramirez.plotgenerator.Model.UserStory;
@@ -168,7 +167,7 @@ public class OfflineStoryFragment extends Fragment {
 
         //publish button
         FloatingActionButton fabPublish = view.findViewById(R.id.btnPublish);
-        fabPublish.setVisibility(View.INVISIBLE);
+        //fabPublish.setVisibility(View.VISIBLE);
 
 
         fabPublish.setOnClickListener(new View.OnClickListener() {
@@ -184,7 +183,7 @@ public class OfflineStoryFragment extends Fragment {
                                     .build(),
                             RC_SIGN_IN);
                 } else {
-                    publishStory();
+                    //publishStory();
                 }
             }
         });
@@ -238,6 +237,7 @@ public class OfflineStoryFragment extends Fragment {
         return view;
     }
 
+    /*
     private void publishStory() {
         final ArrayList<String> project = Utils.getProject(this.getContext(), project_name);
         final CollectionReference mStoriesDatabase = mDatabase.collection("stories");
@@ -277,9 +277,6 @@ public class OfflineStoryFragment extends Fragment {
 
             }
         });
-
-
-
 
         myTopPostsQuery.addSnapshotListener(new EventListener<QuerySnapshot>() {
          String key = mStoriesDatabase.getId();
@@ -338,6 +335,7 @@ public class OfflineStoryFragment extends Fragment {
 
 
     }
+    */
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -349,7 +347,7 @@ public class OfflineStoryFragment extends Fragment {
             if (resultCode == RESULT_OK) {
                 // submit story to firebase
                 mUser = mAuth.getCurrentUser();
-                publishStory();
+                //publishStory();
             } else {
                 // Sign in failed
                 if (response == null) {

@@ -1,7 +1,6 @@
 package com.plotgen.rramirez.plotgenerator;
 
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
@@ -9,16 +8,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -34,7 +32,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -105,7 +102,7 @@ public class Timeline_detail extends Fragment {
         timeline_delete_btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 try {
-                    android.support.v7.app.AlertDialog.Builder alertDialogBuilder = new android.support.v7.app.AlertDialog.Builder(myFragmentView.getContext());
+                    androidx.appcompat.app.AlertDialog.Builder alertDialogBuilder = new androidx.appcompat.app.AlertDialog.Builder(myFragmentView.getContext());
                     // set prompts.xml to alertdialog builder
                     alertDialogBuilder.setTitle("Are you sure? This can't be undone");
                     // set dialog message
@@ -116,7 +113,7 @@ public class Timeline_detail extends Fragment {
                         }
                     });
                     // create alert dialog
-                    final android.support.v7.app.AlertDialog alertDialog = alertDialogBuilder.create();
+                    final androidx.appcompat.app.AlertDialog alertDialog = alertDialogBuilder.create();
                     alertDialog.show();
                 } catch (Exception e) {
                     e.printStackTrace();

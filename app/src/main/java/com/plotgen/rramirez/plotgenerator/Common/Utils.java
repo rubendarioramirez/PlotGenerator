@@ -1,6 +1,5 @@
 package com.plotgen.rramirez.plotgenerator.Common;
 
-import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
 import android.content.Context;
@@ -15,12 +14,10 @@ import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.appcompat.app.AlertDialog;
 import android.util.Log;
-
-import com.plotgen.rramirez.plotgenerator.Fragment.PremiumFragment;
 import com.plotgen.rramirez.plotgenerator.R;
 import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
@@ -69,28 +66,6 @@ public class Utils extends Fragment{
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         int result = preferences.getInt(variable, value);
         return result;
-    }
-
-    public static ArrayList<String> getProject(Context context, String project_name) {
-        mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
-        SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        String query = "SELECT * FROM  " + mySQLiteDBHelper.TABLE_PROJECT + " WHERE project = ?";
-        Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{project_name});
-        cursor.moveToFirst();
-        ArrayList<String> projects_list = new ArrayList<String>();
-        while (!cursor.isAfterLast()) {
-            projects_list.add(cursor.getString(cursor.getColumnIndex("project")));
-            projects_list.add(cursor.getString(cursor.getColumnIndex("genre")));
-            projects_list.add(cursor.getString(cursor.getColumnIndex("plot")));
-            projects_list.add(cursor.getString(cursor.getColumnIndex("_id")));
-            if (cursor.getColumnIndex("image") != -1 && cursor.getString(cursor.getColumnIndex("image")) != null)
-                projects_list.add(cursor.getString(cursor.getColumnIndex("image")));
-
-            cursor.moveToNext();
-        }
-        cursor.close();
-        sqLiteDatabase.close();
-        return projects_list;
     }
 
     public static ArrayList<String> getProjects_list(Context context) {
@@ -722,6 +697,5 @@ public class Utils extends Fragment{
             return false;
         }
     }
-
 
 }

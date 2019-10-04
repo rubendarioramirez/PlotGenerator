@@ -3,12 +3,12 @@ package com.plotgen.rramirez.plotgenerator;
 
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -188,35 +188,5 @@ public class CharListFragment extends Fragment {
 
         return myFragmentView;
     }
-
-
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.menu_charlist, menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.menu_charlist_edit) {
-            if(Common.currentProject != null) {
-                //Send it to the next fragment
-                Project_detailsFragment nextFragment = new Project_detailsFragment();
-                //Make the transaction
-                Bundle bundle = new Bundle();
-                bundle.putString("project_name", project_name_text);
-                Common.projectCreationMode = false;
-                //Send it to the next fragment
-                nextFragment.setArguments(bundle);
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left);
-                transaction.replace(R.id.flMain, nextFragment);
-                transaction.commit();
-                return true;
-            }
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
 
 }

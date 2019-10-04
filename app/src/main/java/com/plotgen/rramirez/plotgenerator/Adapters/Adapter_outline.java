@@ -1,24 +1,19 @@
 package com.plotgen.rramirez.plotgenerator.Adapters;
 
 import android.content.Context;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.util.Util;
-import com.plotgen.rramirez.plotgenerator.CharListFragment;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
-import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Outline_detail;
 import com.plotgen.rramirez.plotgenerator.R;
 import com.plotgen.rramirez.plotgenerator.items.item_outline;
-import com.plotgen.rramirez.plotgenerator.items.item_trigger;
 
 import java.util.Collections;
 import java.util.Comparator;

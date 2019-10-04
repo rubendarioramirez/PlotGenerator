@@ -6,9 +6,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,7 +67,8 @@ public class ChallengeTemplateFragment extends Fragment  {
             char_name = "rambo";
             charID = "";
         }
-        challenge_number = this.getArguments().getString("challenge_number");
+
+        challenge_number = Common.currentChallenge.getId();
 
         //region Setup all UI elements
         FloatingActionButton fab = myFragmentView.findViewById(R.id.challenge_template_submit);

@@ -3,8 +3,8 @@ package com.plotgen.rramirez.plotgenerator.Fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -150,7 +150,7 @@ public class PremiumFragment extends Fragment implements BillingProcessor.IBilli
     }
 
     @Override
-    public void onProductPurchased(@NonNull String productId, @android.support.annotation.Nullable TransactionDetails details) {
+    public void onProductPurchased(@NonNull String productId, @androidx.annotation.Nullable TransactionDetails details) {
         Toast.makeText(getContext(), "You are now a premium user", Toast.LENGTH_SHORT).show();
         Utils.setSPIAP(this.getContext(), true);
         Common.isPAU = true;
@@ -162,7 +162,7 @@ public class PremiumFragment extends Fragment implements BillingProcessor.IBilli
     }
 
     @Override
-    public void onBillingError(int errorCode, @android.support.annotation.Nullable Throwable error) {
+    public void onBillingError(int errorCode, @androidx.annotation.Nullable Throwable error) {
 
     }
 

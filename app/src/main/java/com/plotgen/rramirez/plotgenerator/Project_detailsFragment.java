@@ -13,14 +13,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.BottomSheetDialog;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,6 +48,7 @@ import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 import com.plotgen.rramirez.plotgenerator.Common.AdsHelper;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
+import com.plotgen.rramirez.plotgenerator.Common.SQLUtils;
 import com.plotgen.rramirez.plotgenerator.Common.Tutorial;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
@@ -155,7 +156,8 @@ public class Project_detailsFragment extends Fragment implements RewardedVideoAd
             } else {
                 project_name_text = "Rambo";
             }
-            project_list_array = getProject(this.getContext());
+            //project_list_array = getProject(this.getContext());
+            project_list_array = SQLUtils.getProjectByID(this.getContext(),Common.currentProject.getId());
             if (project_list_array != null && !project_list_array.isEmpty()) {
 
                 project_name_et.setText(project_list_array.get(0));
@@ -169,6 +171,7 @@ public class Project_detailsFragment extends Fragment implements RewardedVideoAd
                     }
 
                     //Update the spinner
+                    //region Genre spinner
                     if (project_genre.equals(possibleGenres[0])) {
                         project_genre_spinner.setSelection(0);
                     } else if (project_genre.equals(possibleGenres[1])) {
@@ -200,6 +203,7 @@ public class Project_detailsFragment extends Fragment implements RewardedVideoAd
                     } else if (project_genre.equals(possibleGenres[14])) {
                         project_genre_spinner.setSelection(14);
                     }
+                    //endregion
                     updateMode = true;
             }
         }
@@ -347,29 +351,6 @@ public class Project_detailsFragment extends Fragment implements RewardedVideoAd
         return true;
     }
 
-    public ArrayList<String> getProject(Context context) {
-        mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
-        SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        String query = "SELECT * FROM  " + mySQLiteDBHelper.TABLE_PROJECT + " WHERE _id = ?";
-        ArrayList<String> char_list = new ArrayList<String>();
-        try {
-            Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{projectID});
-            cursor.moveToFirst();
-            while (!cursor.isAfterLast()) {
-                char_list.add(cursor.getString(cursor.getColumnIndex("project")));
-                char_list.add(cursor.getString(cursor.getColumnIndex("genre")));
-                char_list.add(cursor.getString(cursor.getColumnIndex("plot")));
-                if (cursor.getColumnIndex("image") != -1 && cursor.getString(cursor.getColumnIndex("image")) != null)
-                    char_list.add(cursor.getString(cursor.getColumnIndex("image")));
-                cursor.moveToNext();
-            }
-            cursor.close();
-        } catch (Exception e){
-            Log.v("matilda", e.toString());
-        }
-        return char_list;
-    }
-
     private void showProfileImageDialog() {
         final BottomSheetDialog dialog = new BottomSheetDialog(myFragmentView.getContext(), R.style.bottom_dialog_theme);
         dialog.setContentView(R.layout.dialog_profile_image_selection);
@@ -469,7 +450,7 @@ public class Project_detailsFragment extends Fragment implements RewardedVideoAd
 
 
     public void popUp(final Context context, String title, String message) {
-        android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context)
+        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(context)
                 .setTitle(title)
                 .setMessage(message)
                 .setPositiveButton("Go Premium!", new DialogInterface.OnClickListener() {

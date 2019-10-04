@@ -75,7 +75,7 @@
     <string name="projects_empty">De verdad, ¿Ningún nombre para tu proyecto? Intenta de nuevo con algo mas creativo.</string>
     <string name="project_name">Nombre del proyecto</string>
     <string name="project_genre">Genero</string>
-    <string-array name="genres_array">
+    <string-array name="genres_array" tools:ignore="InconsistentArrays">
         <item>Tragedia</item>
         <item>Ciencía Ficción</item>
         <item>Fantasía</item>
@@ -117,7 +117,7 @@
     <string name="character_personality_tv">Personalidad</string>
     <string name="character_add_name">Nombre</string>
     <string name="character_add_profession">Profesion</string>
-    <string-array name="profession_array">
+    <string-array name="profession_array" tools:ignore="InconsistentArrays">
         <item>Vendedor</item>
         <item>Retirado</item>
         <item>Desempleado</item>
@@ -385,7 +385,7 @@
     </string-array>
 
 
-    <string-array name="placebirth_array">
+    <string-array name="placebirth_array" tools:ignore="InconsistentArrays">
         <item>São Paulo - Brazil</item>
         <item>Bombay - India</item>
         <item>JAKARTA - Indonesia</item>
@@ -736,7 +736,7 @@ Para que el personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="challenge_7_q1">Piensa en la decision mas importante que $char_name$ tenga que tomar. ¿Qué esta en juego en ese momento?</string>
     <string name="challenge_7_q2">Lo que esta en juego puede ser externo o interno. Piensa en las consecuencias externas de no cumplir con el objetivo. ¿Explotara el mundo? ¿Morira alguien? Por ejemplo en la pélicula \"Valiente\" la madre de la protagonista sera un oso para siempre si el hechizo no se rompe.</string>
     <string name="challenge_7_q3">Ahora considera internamente, ¿Cuales seran las consecuencias morales o psicologicas para $char_name$ si el objectivo no es alcanzado? Olvidate de los traumas, piensa en algo mas profundo. ¿Séra posible para $char_name$ sobreponerse al fracaso?</string>
-    <string name="challenge_7_q4">Finalmente, filosoficamente ¿Qué es lo que esta en juego? Si la madre de los dragones no detiene a los caminantes el mundo sera conquistado por el terror y la maldad. ¿Qué ocurriria en el caso de $char_name$\?</string>
+    <string name="challenge_7_q4">Finalmente, filosoficamente ¿Qué es lo que esta en juego? Si la madre de los dragones no detiene a los caminantes el mundo será conquistado por el terror y la maldad. ¿Qué ocurriria en el caso de $char_name$\?</string>
     <!--Challenge 8 -->
     <string name="challenge_8_title">Desafio VIII</string>
     <string name="challenge_8_desc">¿Cómo vive?</string>
@@ -861,7 +861,7 @@ Para que el personaje pueda evolucionar en una manera positiva, tiene que comenz
     </string-array>
 
     <string name="herojourney_guide_title">Joseph Campbell</string>
-    <string name="herojourney_guide_desc">El heroe de las mil caras</string>
+    <string name="herojourney_guide_desc">El héroe de las mil caras</string>
     <string name="herojourney_guide_desc_long">Hay muchas maneras de comenzar a escribir una historia. Depende enteramente de ti, sin embargo, algunas reglas al ser rotas son muy faciles de notar.\n\nDale una leida a esta guía para entender un poco mas como organizar tu historia.</string>
     <!--endregion-->
 
@@ -969,12 +969,12 @@ Para que el personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="challenge_fab">Desafíos</string>
     <string name="guides_fab">Guías</string>
 
-    <string name="char_empty">Estoy seguro que eres mas creativo que esto...</string>
+    <string name="char_empty">Estoy seguro que eres mas creativo que esto…</string>
 
     <string name="biocontainer_character">Personaje</string>
     <string name="biocontainer_challenge">Desafíos</string>
 
-    <string name="biocontainer_challenge_empty">Esta sección se ve un poco vacia.\n\n¿Por qué no creas algunos desafíos?</string>
+    <string name="biocontainer_challenge_empty">Solo con escribir la biografia de tu personaje no va a darle vida.\n\nSi realmente quieres saber quien es, cuales son sus limites y cuales son sus motivos. Entonces esta es la seccion.</string>
 
     <string name="onBoardingTitle_1">Bievenido a Auctor.</string>
     <string name="onBoardingTitle_2">Donde todo empieza.</string>
@@ -990,7 +990,7 @@ Para que el personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="onBoarding_4">Ahora le estas tomando la mano.\n\nAprieta el botón + y elije Personajes para crear el primero</string>
     <string name="onBoarding_5">Si aun no lo has hecho, ahora es cuando buscar ese café.\n\nAquí crearas a tu primer personaje. Si no tienes ideas, no te preocupes. Puedes hacerlo al azar.\n\n¿O qué te parece combinarlo? Puedes apretar el botón del dado y cuando te guste algún personaje simplemente cambia aquello que no te conforma.\n\nAdelante, pruébalo, ¡y si! Siempre puedes cambiarlo mas adelante.</string>
     <string name="onBoarding_6">Aquí veras al personaje que acabas de crear junto a los demas que hayas hecho.\n\nNombre, rol en tu historia y cuan desarrollado esta.\nAdelante, selecciona el personaje que acabas de crear para continuar.</string>
-    <string name="onBoarding_7">Este es tu personaje. Aquí puedes tener una vista rápida de quien es.\n\nPero esto esta lejos de terminarse. Chequea el botón + contiene guías para entender como desarrollar personajes.\n\nPero mas importante, también tienes desafíos.\n\nMe encantaría explicarte mas, pero creo que es mejor que lo veas por ti mismo/a.</string>
+    <string name="onBoarding_7">Este es tu personaje. Aquí puedes tener una vista rápida de quien es.\n\nPero esto esta lejos de terminarse. Arriba encontras un boton de informacion, este contiene guías para entender como desarrollar personajes, dale una mirada!\n\nSi miras a la derecha también veras desafíos y línea del tiempo.\n\nMe encantaría explicarte mas, pero creo que es mejor que lo veas por ti mismo/a.</string>
 
 
     <string name="developmenTitle">Precaucion!.</string>
@@ -1006,6 +1006,7 @@ Para que el personaje pueda evolucionar en una manera positiva, tiene que comenz
     <string name="add_outline">Escaleta</string>
     <string name="outline_share_title">Titulo</string>
     <string name="outline_share_characters">Personajes</string>
+    <string name="outline_emptytv">Escribir tu novela puede ser un gran desafío. Has tenido algo de tiempo para comenzar a desarrollar tu mundo y tus personajes, tu área gris de moral y tus conflictos centrales, y ahora te enfrentas a la desalentadora tarea de unir todo en una historia coherente, y hacerlo lo suficientemente interesante como para atraer a un lector enganchado.. Esta hoja de ruta a menudo se llama Escaleta</string>
 
     <string name="premiumOnly">Disponible para usuarios Premium</string>
 

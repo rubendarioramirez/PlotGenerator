@@ -13,8 +13,6 @@ public class item_project_list {
     String image;
 
 
-
-
     public item_project_list(String id, String name, String genre, String characters, String image) {
         this.id = id;
         this.name = name;
