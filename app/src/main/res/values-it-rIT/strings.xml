@@ -595,102 +595,175 @@ Talvolta durante questa fase l\'eroe perde la figura fisica del mentore (es. Gan
     <string name="challenge_answer_placeholder">Rispondi</string>
     <string name="challenge_nochallenge_placeholder">Ancora non hai completato nessuna challenge per questo personaggio</string>
     <string name="challenge_action_bar">Challenges</string>
-
     <!--First challenge-->
-    <string name="challenge_1_title">Challenge I</string>
-    <string name="challenge_1_desc">Challenge dell\'ascensore</string>
-    <string name="challenge_1_desc_long">Come reagisce il tuo personaggio a una situazione critica?\n
-Mettiamolo dentro un ascensore insieme a uno sconosciuto. Non importa chi.\n
-Improvvisamente l\'ascensore si blocca, intrappolando i due al suo interno.\n Come reagisce il tuo personaggio? Resta calmo? Si fa prendere dal panico?
-\nPrendi del tempo per rispondere.
-\nQuesto esercizio ti permetterà di riflettere sul tuo personaggio e su come si comporta in situazioni al limite.</string>
-    <string name="challenge_1_q1">Qual è la sua prima reazione?</string>
-    <string name="challenge_1_q2">Aspetterà di venir salvato?</string>
-    <string name="challenge_1_q3">La persona accanto a lui all\'improvviso si farà prendere dal panico. Il tuo personaggio lo sgriderà? Si impanicherà anche lui a sua volta?</string>
-    <string name="challenge_1_q4">Dopo un\'ora circa, una fessura si apre. Venite, dice una voce, ma posso soccorrervi solo uno per volta.
-\nL\'altro dovrà aspettare che arrivino altri soccorsi. Il tuo personaggio andrà per primo?</string>
+    <string-array name="challenge_1">
+        <item>challenge_1</item>
+        <item>Challenge I</item>
+        <item>Challenge dell\'ascensore</item>
+        <item>Come reagisce il tuo personaggio a una situazione critica?\n
+    Mettiamolo dentro un ascensore insieme a uno sconosciuto. Non importa chi.\n
+    Improvvisamente l\'ascensore si blocca, intrappolando i due al suo interno.\n Come reagisce il tuo personaggio? Resta calmo? Si fa prendere dal panico?
+    \nPrendi del tempo per rispondere.
+    \nQuesto esercizio ti permetterà di riflettere sul tuo personaggio e su come si comporta in situazioni al limite.</item>
+        <item>Qual è la sua prima reazione?</item>
+        <item>Aspetterà di venir salvato?</item>
+        <item>La persona accanto a lui all\'improvviso si farà prendere dal panico. Il tuo personaggio lo sgriderà? Si impanicherà anche lui a sua volta?</item>
+        <item>Dopo un\'ora circa, una fessura si apre. Venite, dice una voce, ma posso soccorrervi solo uno per volta.
+\nL\'altro dovrà aspettare che arrivino altri soccorsi. Il tuo personaggio andrà per primo?</item>
+    </string-array>
     <!--Second challenge-->
-    <string name="challenge_2_title">Challenge II</string>
-    <string name="challenge_2_desc">Cos\'è la miscredenza?</string>
-    <string name="challenge_2_desc_long">Un racconto di formazione ruota tutto intorno a fatti o eventi non veritieri (miscredenze) in cui crede il tuo personaggio. La sua vita può essere miserevole o meno. Tuttavia, queste miscredenze continuano a trapelare da sotto la superficie.
-Perché il tuo personaggio si evolva in maniera positiva, deve partire da ciò che manca nella sua vita, una ragione perché possa avvenire il cambiamento. </string>
-    <string name="challenge_2_q1">Quali sono le convinzioni errate che ha il tuo personaggio a proposito del mondo e di se stesso?</string>
-    <string name="challenge_2_q2">Questa miscredenza gli rende la vita difficile? Se sì, come?</string>
-    <string name="challenge_2_q3">Se no, si troverà a disagio durante il momento di Rottura dell\'Equilibrio o durante il primo Conflitto, a causa della miscredenza?</string>
-    <string name="challenge_2_q4">Quali sono i sintomi della miscredenza del tuo personaggio?</string>
+    <string-array name="challenge_2">
+        <item>challenge_2</item>
+        <item>Challenge II</item>
+        <item>Cos\'è la miscredenza?</item>
+        <item>Un racconto di formazione ruota tutto intorno a fatti o eventi non veritieri (miscredenze) in cui crede il tuo personaggio. La sua vita può essere miserevole o meno. Tuttavia, queste miscredenze continuano a trapelare da sotto la superficie.
+Perché il tuo personaggio si evolva in maniera positiva, deve partire da ciò che manca nella sua vita, una ragione perché possa avvenire il cambiamento.</item>
+        <item>Quali sono le convinzioni errate che ha il tuo personaggio a proposito del mondo e di se stesso?</item>
+        <item>Questa miscredenza gli rende la vita difficile? Se sì, come?</item>
+        <item>Se no, si troverà a disagio durante il momento di Rottura dell\'Equilibrio o durante il primo Conflitto, a causa della miscredenza?</item>
+        <item>Quali sono i sintomi della miscredenza del tuo personaggio?</item>
+    </string-array>
     <!--Third challenge-->
-    <string name="challenge_3_title">Challenge III</string>
-    <string name="challenge_3_desc">Antefatto - Trova il perché!</string>
-    <string name="challenge_3_desc_long">Chi sia oggigiorno il tuo personaggio è molto importante, che lavoro faccia, quali siano le sue passioni, ecc… Chi diventerà, questo è il succo del tuo racconto. È ciò che stai narrando. Quindi, a proposito del suo passato? Il suo passato è il motivo per cui il tuo personaggio è così. I suoi genitori avevano divorziato? Magari sua madre era alcol-dipendente, oppure suo fratello era morto in un tragico incidente? Gli eventi di vita ci plasmano e ci rendono chi siamo. Immergiti in questa challenge per sviluppare pienamente in tre dimensioni il tuo personaggio.</string>
-    <string name="challenge_3_q1">Descrivi brevemente i suoi parenti più stretti, madre, padre, fratelli? Sono tutti vivi? I genitori sono divorziati? Forse si tratta di una grande famiglia felice?</string>
-    <string name="challenge_3_q2">Qual è il ricordo d\'infanzia più bello?</string>
-    <string name="challenge_3_q3">Qualè invece il ricordo più brutto?</string>
-    <string name="challenge_3_q4">Aveva amici da bambino? Come lo avrebbero descritto allora? Se non aveva amici, perché?</string>
+    <string-array name="challenge_3">
+        <item>challenge_3</item>
+        <item>Challenge III</item>
+        <item>Antefatto - Trova il perché!</item>
+        <item>Chi sia oggigiorno il tuo personaggio è molto importante, che lavoro faccia, quali siano le sue passioni, ecc… Chi diventerà, questo è il succo del tuo racconto. È ciò che stai narrando. Quindi, a proposito del suo passato? Il suo passato è il motivo per cui il tuo personaggio è così. I suoi genitori avevano divorziato? Magari sua madre era alcol-dipendente, oppure suo fratello era morto in un tragico incidente? Gli eventi di vita ci plasmano e ci rendono chi siamo. Immergiti in questa challenge per sviluppare pienamente in tre dimensioni il tuo personaggio.</item>
+        <item>Describe briefly his close family, mother, father, siblings?. Are they all alive? Are the parents divorced? Happy family perhaps?</item>
+        <item>Descrivi brevemente i suoi parenti più stretti, madre, padre, fratelli? Sono tutti vivi? I genitori sono divorziati? Forse si tratta di una grande famiglia felice?</item>
+        <item>Qual è il ricordo d\'infanzia più bello?</item>
+        <item>Aveva amici da bambino? Come lo avrebbero descritto allora? Se non aveva amici, perché?</item>
+    </string-array>
+
     <!--Fourth Challenge-->
-    <string name="challenge_4_title">Challenge IV</string>
-    <string name="challenge_4_desc">Qual è il suo aspetto?</string>
-    <string name="challenge_4_desc_long">Lajos Egri sostiene che una parte della tua personalità è dovuta al tuo aspetto. Non ci credi? Immagina che il tuo personaggio fosse rimasto paralizzato da piccolo, e perciò fosse costretto a letto tutto il giorno, senza poter fare ciò che gli altri bambini facevano, tipo giocare fuori. Alla fine, avrebbe passato gran parte del suo tempo a leggere. Strano per un bambino, ma sarebbe stato l\'unico modo di vivere che il tuo personaggio conoscerebbe. Una volta adulto, sarebbe diverso dagli altri? Più intelligente forse? Scava più a fondo per scoprire come il tuo personaggio appare.</string>
-    <string name="challenge_4_q1">Rifletti un attimo. Appuntati 5 aggettivi che fisicamente descrivono il tuo personaggio.</string>
-    <string name="challenge_4_q2">Possiede delle voglie sulla pelle? Forse dei tatuaggi che lo rendono unico? </string>
-    <string name="challenge_4_q3">Ha qualche patologia? Allergie? Qualcosa che si manifesta fisicamente anche se è possibile coprirlo sotto i vestiti?</string>
-    <string name="challenge_4_q4">Tieni un attimo in considerazione la sua postura, puoi descriverla? E riguardo alle sue apparenze? È un tipo preciso? È un tipo pulito? Puoi affermare che in sostanza si tratti di una persona di bell\'aspetto?</string>
+    <string-array name="challenge_4">
+        <item>challenge_4</item>
+        <item>Challenge IV</item>
+        <item>Qual è il suo aspetto?</item>
+        <item>Lajos Egri sostiene che una parte della tua personalità è dovuta al tuo aspetto. Non ci credi? Immagina che il tuo personaggio fosse rimasto paralizzato da piccolo, e perciò fosse costretto a letto tutto il giorno, senza poter fare ciò che gli altri bambini facevano, tipo giocare fuori. Alla fine, avrebbe passato gran parte del suo tempo a leggere. Strano per un bambino, ma sarebbe stato l\'unico modo di vivere che il tuo personaggio conoscerebbe. Una volta adulto, sarebbe diverso dagli altri? Più intelligente forse? Scava più a fondo per scoprire come il tuo personaggio appare.</item>
+        <item>Rifletti un attimo. Appuntati 5 aggettivi che fisicamente descrivono il tuo personaggio.</item>
+        <item>Possiede delle voglie sulla pelle? Forse dei tatuaggi che lo rendono unico?</item>
+        <item>Ha qualche patologia? Allergie? Qualcosa che si manifesta fisicamente anche se è possibile coprirlo sotto i vestiti?</item>
+        <item>Tieni un attimo in considerazione la sua postura, puoi descriverla? E riguardo alle sue apparenze? È un tipo preciso? È un tipo pulito? Puoi affermare che in sostanza si tratti di una persona di bell\'aspetto?</item>
+    </string-array>
     <!--Fifth Challenge-->
-    <string name="challenge_5_title">Challenge V</string>
-    <string name="challenge_5_desc">Testa i limiti.</string>
-    <string name="challenge_5_desc_long">Se carbone e diamanti alla base sono composti dallo stesso elemento, perché il carbone si trova facilmente mentre i diamanti sono così rari?\n La pressione.\nLo stesso si può affermare coi personaggi, vuoi sapere se il tuo è solo un numero in mezzo a tanti o si tratta dell\'eroe che la tua storia ha bisogno? Mettiamolo un po\' sotto pressione e vediamo chi è realmente.</string>
-    <string name="challenge_5_q1">Quale sarebbe la sua reazione se un suo caro si trovasse in pericolo?</string>
-    <string name="challenge_5_q2">Sarebbe in grado di uccidere? </string>
-    <string name="challenge_5_q3">Il tuo personaggio affermerebbe che il fine giustifica i mezzi quando si tratta di proteggere una persona cara?</string>
-    <string name="challenge_5_q4">Poniamo il caso che non abbia intenzione di andare oltre per salvare la vita di una persona a cui tiene. In che modo risolverebbe la situazione, senza varcare il proprio limite?</string>
+    <string-array name="challenge_5">
+        <item>challenge_5</item>
+        <item>Challenge V</item>
+        <item>Testa i limiti.</item>
+        <item>Se carbone e diamanti alla base sono composti dallo stesso elemento, perché il carbone si trova facilmente mentre i diamanti sono così rari?\n La pressione.\nLo stesso si può affermare coi personaggi, vuoi sapere se il tuo è solo un numero in mezzo a tanti o si tratta dell\'eroe che la tua storia ha bisogno? Mettiamolo un po\' sotto pressione e vediamo chi è realmente.</item>
+        <item>Quale sarebbe la sua reazione se un suo caro si trovasse in pericolo?</item>
+        <item>Sarebbe in grado di uccidere?</item>
+        <item>Il tuo personaggio affermerebbe che il fine giustifica i mezzi quando si tratta di proteggere una persona cara?</item>
+        <item>Poniamo il caso che non abbia intenzione di andare oltre per salvare la vita di una persona a cui tiene. In che modo risolverebbe la situazione, senza varcare il proprio limite?</item>
+    </string-array>
     <!--Sixth Challenge-->
-    <string name="challenge_6_title">Challenge VI</string>
-    <string name="challenge_6_desc">Cosa c\'è nelle sue tasche?</string>
-    <string name="challenge_6_desc_long">Ciò che ti porti dietro rivela in qualche modo ciò a cui tieni. Porteresti con te qualcosa di cui non ti importa? Probabilmente no. Lo stesso vale per il tuo personaggio. Approfondisci questo aspetto per scoprire cosa c\'è nelle sue tasche, per capire a cosa tiene davvero.</string>
-    <string name="challenge_6_q1">Il tuo personaggio sta uscendo di casa. Cos\'è che prenderà e si metterà in tasca? Il portafoglio? Un mazzo di chiavi? Sono quelle della macchina? Che tipo di macchina guida?</string>
-    <string name="challenge_6_q2">Apri il portafoglio, ci trovi dentro una foto? Chi c\'è nella foto? Perché è lì? Da quanto tempo si trova lì?</string>
-    <string name="challenge_6_q3">Togligli le chiavi di tasca, osserva attentamente il portachiavi. Che cos\'è? Dove lo ha comprato? Gli è stato regalato? È il simbolo di una Nazione o una Bandiera? Che Paese è?</string>
-    <string name="challenge_6_q4">Ce l\'ha un cellulare? Ha la batteria carica o è già scarico quando è ora di andare via? Il telefono è in modalità silenziosa? Osserva attentamente, qual è l\'immagine di sfondo?</string>
-    <!--Mentor Challenge-->
-    <string name="c1_mentor_title">Challenge del mentore</string>
-    <string name="c1_mentor_desc">Conosci il tuo mentore</string>
-    <string name="c1_mentor_desc_long">I mentori sono un raro tipo di personaggio. Non tutte le storie ne possiedono una, perciò quando è presente, lo è per un motivo. Perché Yoda si prende l\'impegno di fornire insegnamenti a Luke Skywalker? Chi lo ha posto in quella palude nell\'attesa di venir trovato? Al suo discepolo fornisce solo conoscenza o anche un oggetto? Quest\'oggetto è la fonte del potere di Luke? Approfondisci questa sezione per saperne di più del tuo mentore.</string>
-    <string name="c1_mentor_q1">Perché il tuo protagonista ha biosogno di un mentore? Perché proprio questo in particolare, è davvero lui quello che serve?</string>
-    <string name="c1_mentor_q2">Il tuo mentore fornirà insegnamenti al protagonista? O lo aiuterà a ritrovare se stesso?</string>
-    <string name="c1_mentor_q3">Il potere del tuo protagonista si risveglierà grazie all\'artefatto fornito dal mentore? Se sì, che potere e che tipo di artefatto?</string>
-    <string name="c1_mentor_q4">I mentori muoiono. Come parte di qualsiasi viaggio importante, il mentore se ne deve andare un attimo prima che il protagonista sia effettivamente pronto. O forse lo è già solo che ancora non lo sa.\nIn che momento il tuo mentore lascerà la storia? Come avverrà la separazione?</string>
-    <!--Antagonist Challenge-->
-    <string name="c1_antagonist_title">Challenge dell\'antagonista</string>
-    <string name="c1_antagonist_desc">Conosci il tuo antagonista.</string>
-    <string name="c1_antagonist_desc_long">Le storie sono un gioco di potere. A nessuno interessa il viaggio del "Signor Che Tutto Può", se il tuo protagonista non affronterà qualche sorta di ostacolo che gli impedirà di ottenere ciò che vuole. Non ci sarebbe alcuna sfida, e niente sfide vuol dire niente crescita, cioè nessuna storia. Tuttavia neanche aggiungere ostacoli per il gusto di scrivere è considerata una pratica valida. Approfondisci la sezione per capire meglio chi è in realtà il tuo antagonista, e qual è il suo ruolo nella tua storia</string>
-    <string name="c1_antagonist_q1">L\'antagonista è l\'esatto opposto del tuo protagonista. Come, in questo caso?</string>
-    <string name="c1_antagonist_q2">Il tuo antagonista non è soltanto cattiveria pura, non è che voglia annientare il protagonista, a meno che questi non gli metta i bastoni tra le ruote. Quindi quale sarebbe il vero obiettivo del tuo antagonista?</string>
-    <string name="c1_antagonist_q3">Che tattiche usa per raggiungere il suo obiettivo?</string>
-    <string name="c1_antagonist_q4" translatable="false">Pensa alu modo in cui il tuo antagonista cambia durante la storia. Inizia come cattivo e finisce come cattivo? Non è il massimo delle storie, quindi no? Perciò come è durante il primo Atto, come cambia durante il terzo Arco?</string>
-    <!--Sidekick Challenge-->
-    <string name="c1_sidekick_title">Challenge della Spalla</string>
-    <string name="c1_sidekick_desc">Conosci la tua Spalla.</string>
-    <string name="c1_sidekick_desc_long">Le Spalle vengono spesso sottovalutate, ma Frodo senza l\'aiuto di Sam avrebbe comunque portato a termine il suo compito? Don Chisciotte è un personaggio completo già da sé, ma ti riesce immaginarlo mentre combatte i mulini a vento senza Sanco Panza? Le spalle hanno ragione di esistere. Trova quella della tua spalla, in questa challenge.</string>
-    <string name="c1_sidekick_q1">Perché la tua spalla decide di seguire il tuo protagonista?</string>
-    <string name="c1_sidekick_q2">Perché la causa del tuo protagonista è così potente da convincere anche la spalla a perseguirla?</string>
-    <string name="c1_sidekick_q3">Quali sono gli strumenti, o le tattiche o le armi che fornisce la tua spalla all\'eroe? Come lo protegge o lo difende?</string>
-    <string name="c1_sidekick_q4">Per alcune spalle arriva il momento di decidere se vale la pena rischiare la propria vita per il protagonsta. Qual è questo momento nella tua storia? Qual è la cosa più preziosa che la tua spalla è disposta a rischiare per l\'eroe? Si tratta della sua vita?</string>
-    <!--Stakes challenge-->
-    <string name="challenge_7_title">Challenge VII</string>
-    <string name="challenge_7_desc">Posta in gioco </string>
-    <string name="challenge_7_desc_long">Perché dobbiamo preoccuparci di $char_name$? Cosa potrebbe succedere se $gender$ non riesce nell\'impresa? Che importanza ha $char_name$ per il pubblico?</string>
-    <string name="challenge_7_q1">Pensa alla scelta più importante per $char_name$ da fare. Qual è la posta in gioco in questo caso?</string>
-    <string name="challenge_7_q2">La posta in gioco può esterna o fisica. Pensa, che conseguenze esterne ci sarebbero se l\'obiettivo della tua storia non venisse raggiunto? Esploderebbe il mondo? Morirebbe una persona? Per esempio, pensa al film \"Ribelle the Brave\", la madre di Merida resterebbe un orso per sempre se l\'incantesimo non venisse spezzato.</string>
-    <string name="challenge_7_q3">Ora considera un punto di vista interno a $char_name$, quali sarebbero le conseguenze morali o psicologiche se non raggiungesse il suo obiettivo? Lascia perdere il trauma, pensa più a fondo. Sarebbe possibile per $char_name$ riuscire a superare il fallimento?</string>
-    <string name="challenge_7_q4">In ultimo, pensa ai rischi da un punto di vista filosofico. Se la Madre dei draghi non riuscisse a fermasse l\'esercito dei non morti, il male e la distruzione avrebbero il sopravvento sul mondo. Cosa succederebbe nel caso di $char_name$</string>
+    <string-array name="challenge_6">
+        <item>challenge_6</item>
+        <item>Challenge VI</item>
+        <item>Cosa c\'è nelle sue tasche?</item>
+        <item>Ciò che ti porti dietro rivela in qualche modo ciò a cui tieni. Porteresti con te qualcosa di cui non ti importa? Probabilmente no. Lo stesso vale per il tuo personaggio. Approfondisci questo aspetto per scoprire cosa c\'è nelle sue tasche, per capire a cosa tiene davvero.</item>
+        <item>Il tuo personaggio sta uscendo di casa. Cos\'è che prenderà e si metterà in tasca? Il portafoglio? Un mazzo di chiavi? Sono quelle della macchina? Che tipo di macchina guida?</item>
+        <item>Apri il portafoglio, ci trovi dentro una foto? Chi c\'è nella foto? Perché è lì? Da quanto tempo si trova lì?</item>
+        <item>Togligli le chiavi di tasca, osserva attentamente il portachiavi. Che cos\'è? Dove lo ha comprato? Gli è stato regalato? È il simbolo di una Nazione o una Bandiera? Che Paese è?</item>
+        <item>Ce l\'ha un cellulare? Ha la batteria carica o è già scarico quando è ora di andare via? Il telefono è in modalità silenziosa? Osserva attentamente, qual è l\'immagine di sfondo?</item>
+    </string-array>
+    <!--Challenge 7-->
+    <string-array name="challenge_7">
+        <item>challenge_7</item>
+        <item>Challenge VII</item>
+        <item>Posta in gioco</item>
+        <item>Perché dobbiamo preoccuparci di $char_name$? Cosa potrebbe succedere se $gender$ non riesce nell\'impresa? Che importanza ha $char_name$ per il pubblico?</item>
+        <item>Pensa alla scelta più importante per $char_name$ da fare. Qual è la posta in gioco in questo caso?</item>
+        <item>La posta in gioco può esterna o fisica. Pensa, che conseguenze esterne ci sarebbero se l\'obiettivo della tua storia non venisse raggiunto? Esploderebbe il mondo? Morirebbe una persona? Per esempio, pensa al film \"Ribelle the Brave\", la madre di Merida resterebbe un orso per sempre se l\'incantesimo non venisse spezzato.</item>
+        <item>Ora considera un punto di vista interno a $char_name$, quali sarebbero le conseguenze morali o psicologiche se non raggiungesse il suo obiettivo? Lascia perdere il trauma, pensa più a fondo. Sarebbe possibile per $char_name$ riuscire a superare il fallimento?</item>
+        <item>In ultimo, pensa ai rischi da un punto di vista filosofico. Se la Madre dei draghi non riuscisse a fermasse l\'esercito dei non morti, il male e la distruzione avrebbero il sopravvento sul mondo. Cosa succederebbe nel caso di $char_name$</item>
+    </string-array>
 
     <!--Challenge 8 -->
-    <string name="challenge_8_title">Challenge VIII</string>
-    <string name="challenge_8_desc">Parliamo della casa</string>
-    <string name="challenge_8_desc_long">Dimmi come vivi e ti dirò chi sei.\n\nDefinisci come vive $char_name$ e dove vive.</string>
-    <string name="challenge_8_q1">$char_name$ vive in una casa o in appartamento? Si tratta di una baracca? O è un semplice monolocale? Descrivi il posto.</string>
-    <string name="challenge_8_q2">$char_name$ si trova al centro della stanza più grande, cosa si vede? Cosa c\'è alle pareti? Chi ce l\'ha messo?</string>
-    <string name="challenge_8_q3">Vai in camera, che aspetto ha? Il letto è a una piazza? È a due? Il letto è rifatto? Vedi nessuno sul letto?</string>
-    <string name="challenge_8_q4">Apri le finestre, tutte. Cosa si vede da qui? Le persone riescono a vedere $char_name$? Si sente il rumore proveniente dalla città? Quanto è rumoroso il posto?</string>
+    <string-array name="challenge_8">
+        <item>challenge_8</item>
+        <item>Challenge VIII</item>
+        <item>Parliamo della casa</item>
+        <item>Dimmi come vivi e ti dirò chi sei.\n\nDefinisci come vive $char_name$ e dove vive.</item>
+        <item>$char_name$ vive in una casa o in appartamento? Si tratta di una baracca? O è un semplice monolocale? Descrivi il posto.</item>
+        <item>$char_name$ si trova al centro della stanza più grande, cosa si vede? Cosa c\'è alle pareti? Chi ce l\'ha messo?</item>
+        <item>Vai in camera, che aspetto ha? Il letto è a una piazza? È a due? Il letto è rifatto? Vedi nessuno sul letto?</item>
+        <item>Apri le finestre, tutte. Cosa si vede da qui? Le persone riescono a vedere $char_name$? Si sente il rumore proveniente dalla città? Quanto è rumoroso il posto?</item>
+    </string-array>
+
+
+    <!--Challenge 9 -->
+    <string-array name="challenge_9">
+        <item>challenge_9</item>
+        <item>Challenge IX</item>
+        <item>L\'INCONTRO DI AJENA</item>
+        <item>Una cosa è come $char_name$ si comporta nella privacy o in una chat tra amici, ma come reagiresti se venissi ad un incontro con molte persone in cui conosci una sola persona? </item>
+        <item>Immagina che $char_name $ arrivi sul luogo della riunione e che la persona che conosci non sia ancora arrivata. Inizi a chattare con i presenti, con fiducia o rimani in silenzio a meno che qualcuno non ti parli? </item>
+        <item>Ora arriva la persona che conosci. $char_name$ lo integra nella tua conversazione o ti senti sollevato e ti attieni a quella persona per chattare finalmente con qualcuno che conosci? </item>
+        <item>Ti piace attirare l\'attenzione? $char_name$ è la vita della festa o vuole semplicemente passare inosservato?</item>
+        <item>$char_name$ è una persona del protocollo o è politicamente scorretto e non importa cosa pensano gli altri?</item>
+    </string-array>
+
+    <!--Challenge 10 -->
+    <string-array name="challenge_10">
+        <item>challenge_10</item>
+        <item>Challenge X</item>
+        <item>VACATION</item>
+        <item>Non tutti sono gestiti allo stesso modo quando affrontano un evento che sta per accadere e che ci dà lo schema di che tipo di persona abbiamo davanti. Se nel suo lavoro $char_name$ fosse stato confermato che avrebbe potuto andare in vacanza entro sei mesi, come avrebbe reagito? </item>
+        <item>Pianificheresti immediatamente un viaggio? Cerchi offerte $char_name$ e prenoti in anticipo gli alloggi? Aspetteresti fino all\'ultimo minuto per decidere cosa fare? </item>
+        <item>Se hai già pianificato l\'intero viaggio e ti manca un mese di annullamento, $char_name$ si dispererebbe per la modifica del tuo piano o cercheresti semplicemente la migliore alternativa e non avresti un problema più grande? </item>
+        <item>Se avesse aspettato fino all\'ultimo minuto per decidere cosa fare e non avesse più i biglietti, si sarebbe frustrato e sarebbe rimasto a casa o avrebbe chiesto dove fossero disponibili i biglietti e si sarebbe imbarcato nell\'avventura? </item>
+        <item>Potrebbe non piacere viaggiare. $char_name$ è una persona a cui piace stare a casa? Ti piace la tua routine? </item>
+    </string-array>
+
+    <!--Mentor Challenge-->
+    <string-array name="mentor_challenge">
+        <item>mentor_challenge</item>
+        <item>Mentor Challenge</item>
+        <item>Conosci il tuo mentore.</item>
+        <item>I mentori sono un raro tipo di personaggio. Non tutte le storie ne possiedono una, perciò quando è presente, lo è per un motivo. Perché Yoda si prende l\'impegno di fornire insegnamenti a Luke Skywalker? Chi lo ha posto in quella palude nell\'attesa di venir trovato? Al suo discepolo fornisce solo conoscenza o anche un oggetto? Quest\'oggetto è la fonte del potere di Luke? Approfondisci questa sezione per saperne di più del tuo mentore.</item>
+        <item>Perché il tuo protagonista ha biosogno di un mentore? Perché proprio questo in particolare, è davvero lui quello che serve?</item>
+        <item>Il tuo mentore fornirà insegnamenti al protagonista? O lo aiuterà a ritrovare se stesso?</item>
+        <item>Il potere del tuo protagonista si risveglierà grazie all\'artefatto fornito dal mentore? Se sì, che potere e che tipo di artefatto?</item>
+        <item>I mentori muoiono. Come parte di qualsiasi viaggio importante, il mentore se ne deve andare un attimo prima che il protagonista sia effettivamente pronto. O forse lo è già solo che ancora non lo sa.\nIn che momento il tuo mentore lascerà la storia? Come avverrà la separazione?</item>
+    </string-array>
+
+    <!--Antagonist Challenge-->
+    <string-array name="antagonist_challenge">
+        <item>antagonist_challenge</item>
+        <item>Antagonist Challenge.</item>
+        <item>Conosci il tuo antagonista.</item>
+        <item>Le storie sono un gioco di potere. A nessuno interessa il viaggio del "Signor Che Tutto Può", se il tuo protagonista non affronterà qualche sorta di ostacolo che gli impedirà di ottenere ciò che vuole. Non ci sarebbe alcuna sfida, e niente sfide vuol dire niente crescita, cioè nessuna storia. Tuttavia neanche aggiungere ostacoli per il gusto di scrivere è considerata una pratica valida. Approfondisci la sezione per capire meglio chi è in realtà il tuo antagonista, e qual è il suo ruolo nella tua storia.</item>
+        <item>L\'antagonista è l\'esatto opposto del tuo protagonista. Come, in questo caso?</item>
+        <item>Il tuo antagonista non è soltanto cattiveria pura, non è che voglia annientare il protagonista, a meno che questi non gli metta i bastoni tra le ruote. Quindi quale sarebbe il vero obiettivo del tuo antagonista?</item>
+        <item>Che tattiche usa per raggiungere il suo obiettivo?</item>
+        <item>Pensa alu modo in cui il tuo antagonista cambia durante la storia. Inizia come cattivo e finisce come cattivo? Non è il massimo delle storie, quindi no? Perciò come è durante il primo Atto, come cambia durante il terzo Arco?</item>
+    </string-array>
+
+
+    <!--Sidekick Challenge-->
+    <string-array name="sidekick_challenge">
+        <item>sidekick_challenge</item>
+        <item>Sidekick Challenge.</item>
+        <item>Conosci la tua Spalla.</item>
+        <item>Le Spalle vengono spesso sottovalutate, ma Frodo senza l\'aiuto di Sam avrebbe comunque portato a termine il suo compito? Don Chisciotte è un personaggio completo già da sé, ma ti riesce immaginarlo mentre combatte i mulini a vento senza Sanco Panza? Le spalle hanno ragione di esistere. Trova quella della tua spalla, in questa challenge.</item>
+        <item>Perché la tua spalla decide di seguire il tuo protagonista?</item>
+        <item>Perché la causa del tuo protagonista è così potente da convincere anche la spalla a perseguirla?</item>
+        <item>Quali sono gli strumenti, o le tattiche o le armi che fornisce la tua spalla all\'eroe? Come lo protegge o lo difende?</item>
+        <item>Per alcune spalle arriva il momento di decidere se vale la pena rischiare la propria vita per il protagonsta. Qual è questo momento nella tua storia? Qual è la cosa più preziosa che la tua spalla è disposta a rischiare per l\'eroe? Si tratta della sua vita?</item>
+    </string-array>
+    <!--Protagonist Challenge-->
+    <string-array name="protagonist_challenge">
+        <item>protagonist_challenge</item>
+        <item>Protagonist Challenge.</item>
+        <item>Conosci il tuo protagonista.</item>
+        <item>Il tuo protagonista è il personaggio che conta di più nella storia. È l\'asse della storia e il cui successo o fallimento conta. Raggiungerai il tuo obiettivo alla fine dell\'avventura? È importante che sia possibile entrare in empatia con il protagonista poiché se non ci interessa cosa gli succede, non ci importa di cosa succede nella storia. </item>
+        <item>Cosa devi fare? Qual è l\'aspettativa della storia? La risposta a questa domanda dovrebbe essere interrogata: Harry Potter può sconfiggere Voldemort? </item>
+        <item>Cosa lo mobilita? Qual è il motivo per cui vuoi raggiungere il tuo obiettivo? </item>
+        <item>Possiamo identificarci con i loro motivi? Ci fa desiderare che tu abbia successo? Se non ci interessa, allora dovremmo ripensare questi motivi. </item>
+        <item>Hai alleati? Chi sono i tuoi avversari? </item>
+    </string-array>
     <!--endregion-->
 
 

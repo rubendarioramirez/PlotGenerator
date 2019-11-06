@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.fragment.app.Fragment;
 import android.text.Html;
@@ -31,29 +31,15 @@ import com.google.android.gms.ads.AdView;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.MutableData;
-import com.google.firebase.database.Transaction;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.plotgen.rramirez.plotgenerator.Common.AdsHelper;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
-import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
-import com.plotgen.rramirez.plotgenerator.Model.Genre;
-import com.plotgen.rramirez.plotgenerator.Model.User;
-import com.plotgen.rramirez.plotgenerator.Model.UserStory;
+import com.plotgen.rramirez.plotgenerator.Common.dBHelper;
 import com.plotgen.rramirez.plotgenerator.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -97,16 +83,16 @@ public class OfflineStoryFragment extends Fragment {
     }
 
     public void saveStoryToDB() {
-        SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
+        SQLiteDatabase database = new dBHelper(this.getContext()).getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(mySQLiteDBHelper.STORY_COLUMN_PROJECT, project_name);
-        values.put(mySQLiteDBHelper.STORY_COLUMN_PROJECT_ID, project_id);
-        values.put(mySQLiteDBHelper.STORY_COLUMN_STORIES, mStory);
+        values.put(dBHelper.STORY_COLUMN_PROJECT, project_name);
+        values.put(dBHelper.STORY_COLUMN_PROJECT_ID, project_id);
+        values.put(dBHelper.STORY_COLUMN_STORIES, mStory);
 
         if (isUpdate)
-            database.update(mySQLiteDBHelper.CHARACTER_TABLE_STORY, values, "project_id = ?", new String[]{project_id});
+            database.update(dBHelper.CHARACTER_TABLE_STORY, values, "project_id = ?", new String[]{project_id});
         else
-            database.insert(mySQLiteDBHelper.CHARACTER_TABLE_STORY, null, values);
+            database.insert(dBHelper.CHARACTER_TABLE_STORY, null, values);
     }
 
     @OnClick(R.id.formatBold)
@@ -368,9 +354,9 @@ public class OfflineStoryFragment extends Fragment {
     }
 
     private String getStoryFromDB(Context context, String project_id) {
-        mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
+        dBHelper myhelper = new dBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_STORY + " WHERE project_id = ?";
+        String query = "SELECT * FROM  " + dBHelper.CHARACTER_TABLE_STORY + " WHERE project_id = ?";
         String s = "";
         ArrayList<String> story_list = new ArrayList<String>();
         try {

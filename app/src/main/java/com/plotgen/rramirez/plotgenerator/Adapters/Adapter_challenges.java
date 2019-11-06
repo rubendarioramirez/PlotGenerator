@@ -48,7 +48,6 @@ public class Adapter_challenges extends RecyclerView.Adapter<Adapter_challenges.
     }
 
 
-
     @Override
     public myViewHolder_heroJourney onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mContext);

@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Build;
@@ -51,7 +50,7 @@ import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.SQLUtils;
 import com.plotgen.rramirez.plotgenerator.Common.Tutorial;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
-import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
+import com.plotgen.rramirez.plotgenerator.Common.dBHelper;
 import com.plotgen.rramirez.plotgenerator.Fragment.PremiumFragment;
 
 
@@ -156,7 +155,6 @@ public class Project_detailsFragment extends Fragment implements RewardedVideoAd
             } else {
                 project_name_text = "Rambo";
             }
-            //project_list_array = getProject(this.getContext());
             project_list_array = SQLUtils.getProjectByID(this.getContext(),Common.currentProject.getId());
             if (project_list_array != null && !project_list_array.isEmpty()) {
 
@@ -166,8 +164,8 @@ public class Project_detailsFragment extends Fragment implements RewardedVideoAd
                 String[] possibleGenres = getResources().getStringArray(R.array.genres_array);
                   if(project_list_array.size() >= 4 )
                     {
-                    project_icon_iv.setImageURI(Uri.parse(project_list_array.get(3)));
-                    filepath = project_list_array.get(3).toString();
+                    project_icon_iv.setImageURI(Uri.parse(project_list_array.get(4)));
+                    filepath = project_list_array.get(4).toString();
                     }
 
                     //Update the spinner
@@ -274,13 +272,13 @@ public class Project_detailsFragment extends Fragment implements RewardedVideoAd
 
 
     private void saveToDB(TextView project_name_et, TextView project_plot_et, Spinner project_genre_spinner) {
-        SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
+        SQLiteDatabase database = new dBHelper(this.getContext()).getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(mySQLiteDBHelper.PROJECT_COLUMN_PROJECT, project_name_et.getText().toString());
-        values.put(mySQLiteDBHelper.PROJECT_COLUMN_GENRE, project_genre_spinner.getSelectedItem().toString());
-        values.put(mySQLiteDBHelper.PROJECT_COLUMN_PLOT, project_plot_et.getText().toString());
-        values.put(mySQLiteDBHelper.PROJECT_COLUMN_IMAGE, filepath);
-        long newRowId = database.insert(mySQLiteDBHelper.TABLE_PROJECT, null, values);
+        values.put(dBHelper.PROJECT_COLUMN_PROJECT, project_name_et.getText().toString());
+        values.put(dBHelper.PROJECT_COLUMN_GENRE, project_genre_spinner.getSelectedItem().toString());
+        values.put(dBHelper.PROJECT_COLUMN_PLOT, project_plot_et.getText().toString());
+        values.put(dBHelper.PROJECT_COLUMN_IMAGE, filepath);
+        long newRowId = database.insert(dBHelper.TABLE_PROJECT, null, values);
 
         //Log challenges updated
         Bundle params = new Bundle();
@@ -291,13 +289,13 @@ public class Project_detailsFragment extends Fragment implements RewardedVideoAd
     }
 
     private void updateDB() {
-        SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
+        SQLiteDatabase database = new dBHelper(this.getContext()).getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(mySQLiteDBHelper.PROJECT_COLUMN_PROJECT, project_name_et.getText().toString());
-        values.put(mySQLiteDBHelper.PROJECT_COLUMN_GENRE, project_genre_spinner.getSelectedItem().toString());
-        values.put(mySQLiteDBHelper.PROJECT_COLUMN_PLOT, project_plot_et.getText().toString());
-        values.put(mySQLiteDBHelper.PROJECT_COLUMN_IMAGE, filepath);
-        database.update(mySQLiteDBHelper.TABLE_PROJECT, values, "_id = ?", new String[]{projectID});
+        values.put(dBHelper.PROJECT_COLUMN_PROJECT, project_name_et.getText().toString());
+        values.put(dBHelper.PROJECT_COLUMN_GENRE, project_genre_spinner.getSelectedItem().toString());
+        values.put(dBHelper.PROJECT_COLUMN_PLOT, project_plot_et.getText().toString());
+        values.put(dBHelper.PROJECT_COLUMN_IMAGE, filepath);
+        database.update(dBHelper.TABLE_PROJECT, values, "_id = ?", new String[]{projectID});
         database.close();
     }
 

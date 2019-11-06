@@ -655,100 +655,172 @@ Terkadang, pelaku utama kehilangan mentor mereka di tahap ini (contohnya, LOTR d
     <string name="challenge_action_bar">Tantangan</string>
 
     <!--First challenge-->
-    <string name="challenge_1_title">Tantangan I</string>
-    <string name="challenge_1_desc">Tantangan Elevator</string>
-    <string name="challenge_1_desc_long">Bagaimana karakter kamu bereaksi dalam keadaan krisis?\n
-Mari kita menaruh dia di dalam elevator dengan orang asing. Tidak masalah siapa.\n
-Tiba-tiba elevator macet dan mereka berdua terperangkap di dalam.\n Bagaimana dia bereaksi? Apakah dia tenang? Apakah dia panik?
-\nLuangkan waktu yang kamu butuhkan untuk menjawab.
-\nLatihan ini akan memungkinkan kamu untuk merefleksikan karakter kamu, bagaimana dia berperilaku dalam situasi terbatas.</string>
-    <string name="challenge_1_q1">Apa reaksi pertamanya?</string>
-    <string name="challenge_1_q2">Apakah dia menunggu untuk diselamatkan?</string>
-    <string name="challenge_1_q3">Orang di sebelahnya tiba-tiba panik. Apakah karakter kamu akan menenangkannya? Apakah dia akan panik juga?</string>
-    <string name="challenge_1_q4">Setelah lebih dari satu jam terperangkap di elevator, tiba-tiba ada celah terbuka. Ayo, kata suara itu, tapi aku hanya bisa menyelamatkan satu
-\nyang satunya harus menunggu sampai lebih banyak bantuan datang. Akankah karakter kamu duluan?</string>
+    <string-array name="challenge_1">
+        <item>challenge_1</item>
+        <item>Tantangan I</item>
+        <item>Tantangan Elevator</item>
+        <item>Bagaimana karakter kamu bereaksi dalam keadaan krisis? Mari kita menaruh dia di dalam elevator dengan orang asing. Tidak masalah siapa. Tiba-tiba elevator macet dan mereka berdua terperangkap di dalam.\n Bagaimana dia bereaksi? Apakah dia tenang? Apakah dia panik? Luangkan waktu yang kamu butuhkan untuk menjawab. Latihan ini akan memungkinkan kamu untuk merefleksikan karakter kamu, bagaimana dia berperilaku dalam situasi terbatas.</item>
+        <item>Apa reaksi pertamanya?</item>
+        <item>Apakah dia menunggu untuk diselamatkan?</item>
+        <item>Orang di sebelahnya tiba-tiba panik. Apakah karakter kamu akan menenangkannya? Apakah dia akan panik juga?</item>
+        <item>Setelah lebih dari satu jam terperangkap di elevator, tiba-tiba ada celah terbuka. Ayo, kata suara itu, tapi aku hanya bisa menyelamatkan satuyang satunya harus menunggu sampai lebih banyak bantuan datang. Akankah karakter kamu duluan?</item>
+    </string-array>
     <!--Second challenge-->
-    <string name="challenge_2_title">Tantangan II</string>
-    <string name="challenge_2_desc">Apa kebohongannya?</string>
-    <string name="challenge_2_desc_long">Perubahan alur adalah tentang kebohongan yang dipercayai karakter kamu. Hidupnya mungkin mengerikan, atau hidupnya mungkin tampak sangat hebat. Tapi, bernanah di bawah permukaan adalah kebohongan.
-Agar karakter kamu dapat berkembang secara positif, ia harus memulai dengan sesuatu yang kurang dalam hidupnya, alasan yang membuat perubahan itu diperlukan. </string>
-    <string name="challenge_2_q1">Kesalahpahaman apa yang dimiliki protagonis kamu tentang dirinya atau dunia?</string>
-    <string name="challenge_2_q2">Apakah kebohongan tersebut membuat hidupnya sengsara ketika cerita berjalan? Jika ya, bagaimana bisa?</string>
-    <string name="challenge_2_q3">Jika tidak, apakah peristiwa itu dan atau Poin Plot Pertama mulai membuatnya tidak nyaman karena kebohongannya?</string>
-    <string name="challenge_2_q4">Apa saja gejala kebohongan karakter kamu?</string>
+    <string-array name="challenge_2">
+        <item>challenge_2</item>
+        <item>Desafio II</item>
+        <item>Apa kebohongannya?</item>
+        <item>Perubahan alur adalah tentang kebohongan yang dipercayai karakter kamu. Hidupnya mungkin mengerikan, atau hidupnya mungkin tampak sangat hebat. Tapi, bernanah di bawah permukaan adalah kebohongan. Agar karakter kamu dapat berkembang secara positif, ia harus memulai dengan sesuatu yang kurang dalam hidupnya, alasan yang membuat perubahan itu diperlukan. </item>
+        <item>Kesalahpahaman apa yang dimiliki protagonis kamu tentang dirinya atau dunia?</item>
+        <item>Apakah kebohongan tersebut membuat hidupnya sengsara ketika cerita berjalan? Jika ya, bagaimana bisa?</item>
+        <item>Jika tidak, apakah peristiwa itu dan atau Poin Plot Pertama mulai membuatnya tidak nyaman karena kebohongannya?</item>
+        <item>Apa saja gejala kebohongan karakter kamu?</item>
+    </string-array>
+
     <!--Third challenge-->
-    <string name="challenge_3_title">Tantangan III</string>
-    <string name="challenge_3_desc">Latar Belakang - Temukan alasannya!</string>
-    <string name="challenge_3_desc_long">Siapa karakter kamu hari ini sangatlah penting, apa pekerjaannya, apa hasratnya, dan lain-lain. Siapa dia nanti adalah daging cerita kamu. Itu lah yang kamu ceritakan. Jadi bagaimana dengan masa lalunya? Masa lalunya adalah mengapa dia seperti ini. Apakah orang tuanya bercerai? Mungkin ibunya seorang pecandu alkohol, apakah saudaranya meninggal dalam kecelakaan tragis? Peristiwa kehidupan membentuk siapa diri kita. Gali lebih dalam tantangan ini untuk mengembangkan karakter tiga dimensi kamu sepenuhnya.</string>
-    <string name="challenge_3_q1">Jelaskan secara singkat keluarga dekatnya, ibu, ayah, saudara kandungnya! Apakah mereka semua hidup? Apakah orang tuanya bercerai? Atau mungkin keluarga yang bahagia?</string>
-    <string name="challenge_3_q2">Apa kenangan terbaik masa kecilnya?</string>
-    <string name="challenge_3_q3">Apa kenangan terburuk masa kecilnya?</string>
-    <string name="challenge_3_q4">Apakah dia punya teman ketika dia masih kecil? Bagaimana teman-temannya saat itu akan menggambarkan dirinya? Jika dia tidak punya teman, mengapa begitu?</string>
+    <string-array name="challenge_3">
+        <item>challenge_3</item>
+        <item>Desafio III</item>
+        <item>Latar Belakang - Temukan alasannya!</item>
+        <item>Siapa karakter kamu hari ini sangatlah penting, apa pekerjaannya, apa hasratnya, dan lain-lain. Siapa dia nanti adalah daging cerita kamu. Itu lah yang kamu ceritakan. Jadi bagaimana dengan masa lalunya? Masa lalunya adalah mengapa dia seperti ini. Apakah orang tuanya bercerai? Mungkin ibunya seorang pecandu alkohol, apakah saudaranya meninggal dalam kecelakaan tragis? Peristiwa kehidupan membentuk siapa diri kita. Gali lebih dalam tantangan ini untuk mengembangkan karakter tiga dimensi kamu sepenuhnya.</item>
+        <item>Jelaskan secara singkat keluarga dekatnya, ibu, ayah, saudara kandungnya! Apakah mereka semua hidup? Apakah orang tuanya bercerai? Atau mungkin keluarga yang bahagia?</item>
+        <item>Apa kenangan terbaik masa kecilnya?</item>
+        <item>Apa kenangan terburuk masa kecilnya?</item>
+        <item>Apakah dia punya teman ketika dia masih kecil? Bagaimana teman-temannya saat itu akan menggambarkan dirinya? Jika dia tidak punya teman, mengapa begitu?</item>
+    </string-array>
+
     <!--Fourth Challenge-->
-    <string name="challenge_4_title">Tantangan IV</string>
-    <string name="challenge_4_desc">Bagaimana penampilannya?</string>
-    <string name="challenge_4_desc_long">Lajos Egri mengatakan bagian dari siapa dirimu, itu karena bagaimana penampilanmu. kamu tidak percaya? Bayangkan karakter kamu lumpuh ketika dia masih kecil, karena itu dia sepanjang hari di tempat tidurnya, jadi dia tidak bisa berbuat banyak seperti anak-anak yang lain, seperti bermain di luar. Pada akhirnya dia menghabiskan sebagian besar waktunya membaca dan mempelajari hal-hal baru. Aneh untuk anak normal, tetapi satu-satunya kehidupan yang diketahui karakter kamu. Apakah dia akan berbeda dari orang dewasa yang lain ketika dia dewasa? Mungkin sedikit lebih pintar? Gali lebih dalam untuk mengetahui bagaimana karakter kamu terlihat.</string>
-    <string name="challenge_4_q1">Luangkan waktu sejenak untuk merenung. Catat 5 kata sifat yang akan menggambarkan karakter kamu secara fisik!</string>
-    <string name="challenge_4_q2">Apakah dia memiliki tkamu lahir? Mungkin tato yang akan membuatnya unik?</string>
-    <string name="challenge_4_q3">Adakah kondisi medis? Alergi? Sesuatu yang bermanifestasi secara fisik bahkan jika dia menyembunyikannya di balik pakaiannya?</string>
-    <string name="challenge_4_q4">Pertimbangkan posturnya, bisakah kamu menggambarkannya? Dan juga, bagaimana dengan penampilannya? Apakah dia bersih? Apakah dia rapi? Akankah kamu mengatakan bahwa dia tampan secara keseluruhan?</string>
+    <string-array name="challenge_4">
+        <item>challenge_4</item>
+        <item>Desafio IV</item>
+        <item>Bagaimana penampilannya?</item>
+        <item>Lajos Egri mengatakan bagian dari siapa dirimu, itu karena bagaimana penampilanmu. kamu tidak percaya? Bayangkan karakter kamu lumpuh ketika dia masih kecil, karena itu dia sepanjang hari di tempat tidurnya, jadi dia tidak bisa berbuat banyak seperti anak-anak yang lain, seperti bermain di luar. Pada akhirnya dia menghabiskan sebagian besar waktunya membaca dan mempelajari hal-hal baru. Aneh untuk anak normal, tetapi satu-satunya kehidupan yang diketahui karakter kamu. Apakah dia akan berbeda dari orang dewasa yang lain ketika dia dewasa? Mungkin sedikit lebih pintar? Gali lebih dalam untuk mengetahui bagaimana karakter kamu terlihat.</item>
+        <item>Luangkan waktu sejenak untuk merenung. Catat 5 kata sifat yang akan menggambarkan karakter kamu secara fisik!</item>
+        <item>Apakah dia memiliki tkamu lahir? Mungkin tato yang akan membuatnya unik?</item>
+        <item>Adakah kondisi medis? Alergi? Sesuatu yang bermanifestasi secara fisik bahkan jika dia menyembunyikannya di balik pakaiannya?</item>
+        <item>Pertimbangkan posturnya, bisakah kamu menggambarkannya? Dan juga, bagaimana dengan penampilannya? Apakah dia bersih? Apakah dia rapi? Akankah kamu mengatakan bahwa dia tampan secara keseluruhan?</item>
+    </string-array>
+
     <!--Fifth Challenge-->
-    <string name="challenge_5_title">Tantangan V</string>
-    <string name="challenge_5_desc">Uji batasnya.</string>
-    <string name="challenge_5_desc_long">Jika batu bara dan berlian pada dasarnya adalah hal yang sama, apa yang membuat batu bara sangat umum dan berlian begitu langka?\n Tekanan.\nHal ini sama dalam karakter, apakah kamu ingin tahu apakah karakter kamu hanyalah seorang yang berada di tengah kerumunan atau apakah dia pahlawan unik yang dibutuhkan cerita kamu? Mari kita berikan tekanan padanya dan cari tahu siapa dia sebenarnya.</string>
-    <string name="challenge_5_q1">Bagaimana dia akan bereaksi jika seseorang yang dia sayangi berada dalam bahaya?</string>
-    <string name="challenge_5_q2">Apakah dia sanggup membunuh? </string>
-    <string name="challenge_5_q3">Akankah karakter kamu menghalalkan segala cara ketika itu tentang melindungi orang yang dicintai?</string>
-    <string name="challenge_5_q4">Katakanlah dia tidak berani melewati batas kemampuannya sendiri untuk menyelamatkan nyawa orang yang dia sayangi. Apa yang ada dalam batas/perbatasan yang akan dia lakukan untuk menyelesaikan situasi tersebut?</string>
+    <string-array name="challenge_5">
+        <item>challenge_5</item>
+        <item>Desafio V</item>
+        <item>Uji batasnya.</item>
+        <item>Jika batu bara dan berlian pada dasarnya adalah hal yang sama, apa yang membuat batu bara sangat umum dan berlian begitu langka?\n Tekanan.\nHal ini sama dalam karakter, apakah kamu ingin tahu apakah karakter kamu hanyalah seorang yang berada di tengah kerumunan atau apakah dia pahlawan unik yang dibutuhkan cerita kamu? Mari kita berikan tekanan padanya dan cari tahu siapa dia sebenarnya.</item>
+        <item>Bagaimana dia akan bereaksi jika seseorang yang dia sayangi berada dalam bahaya?</item>
+        <item>Apakah dia sanggup membunuh?</item>
+        <item>Akankah karakter kamu menghalalkan segala cara ketika itu tentang melindungi orang yang dicintai?</item>
+        <item>Katakanlah dia tidak berani melewati batas kemampuannya sendiri untuk menyelamatkan nyawa orang yang dia sayangi. Apa yang ada dalam batas/perbatasan yang akan dia lakukan untuk menyelesaikan situasi tersebut?</item>
+    </string-array>
+
     <!--Sixth Challenge-->
-    <string name="challenge_6_title">Tantangan VI</string>
-    <string name="challenge_6_desc">Apa yang ada di sakunya?</string>
-    <string name="challenge_6_desc_long">Apa pun yang kamu bawa bersama kamu, berbicara dengan cara tentang apa yang kamu peduli. Apakah kamu akan membawa sesuatu yang tidak kamu pedulikan? kamu mungkin tidak akan. Sama halnya dengan karakter kamu. Gali lebih dalam untuk menemukan apa yang dia miliki di sakunya, temukan apa yang benar-benar dia pedulikan.</string>
-    <string name="challenge_6_q1">Karakter kamu akan meninggalkan rumah. Apa yang akan dia ambil dan masukkan ke dalam sakunya? Dompet? Kunci? Apakan itu kunci mobil? Mobil apa yang dia miliki?</string>
-    <string name="challenge_6_q2">Buka dompet, apakah ada foto? Siapa yang ada dalam foto? Kenapa ada di sana? Sejak kapan?</string>
-    <string name="challenge_6_q3">Ambil kunci dari sakunya, perhatikan dengan hati-hati gantungan kunci. Apa itu? Di mana dia mendapatkannya? Apakah itu hadiah? Apakah itu ikon atau bendera negara? Negara mana?</string>
-    <string name="challenge_6_q4">Apakah dia membawa ponsel? Apakah ada baterai? Atau selalu hampir kosong ketika saatnya untuk pergi? Apakah ponsel dalam mode hening? Lihatlah lebih dekat, apa wallpaper teleponnya?</string>
-    <!--Mentor Challenge-->
-    <string name="c1_mentor_title">Tantangan Mentor</string>
-    <string name="c1_mentor_desc">Kenali mentor kamu.</string>
-    <string name="c1_mentor_desc_long">Mentor adalah tipe karakter yang langka. Tidak semua cerita memilikinya, tetapi ketika ada, itu pasti karena ada suatu alasan. \nApa motif Yoda untuk mengajar Luke Skywalker? Siapa yang menempatkannya di rawa menunggu untuk ditemukan? Apakah dia hanya menawarkan pengetahuan atau juga sebuah artefak? Apakah artefak ini sumber kekuatan Luke? Gali lebih dalam untuk mencari tahu tentang mentor kamu.</string>
-    <string name="c1_mentor_q1">Mengapa protagonis kamu membutuhkan seorang mentor? Mengapa yang satu ini akan persis apa yang dia butuhkan?</string>
-    <string name="c1_mentor_q2">Akankah mentor memberikan pengetahuan kepada protagonis? Atau dia akan membantu protagonis menemukannya sendiri?</string>
-    <string name="c1_mentor_q3">Apakah kekuatan protagonis kamu akan dibuka oleh artefak yang diberikan oleh mentor? Jika demikian, kekuatan apa dan artefak yang mana?</string>
-    <string name="c1_mentor_q4">Mentor mati. Sebagai bagian dari perjalanan yang dramatis, mentor biasanya harus pergi sedikit sebelum protagonis benar-benar siap. Atau mungkin dia sudah siap tetapi dia belum mengetahuinya.\nPada saat kapan mentor kamu akan pergi atau mati? Bagaimana hal itu akan terjadi?</string>
-    <!--Antagonist Challenge-->
-    <string name="c1_antagonist_title">Tantangan Antagonis</string>
-    <string name="c1_antagonist_desc">Kenali Antagonis kamu.</string>
-    <string name="c1_antagonist_desc_long">Cerita adalah permainan kekuasaan. Tidak ada yang peduli dengan perjalanan "Tuan, saya bisa melakukan segalanya", jika protagonis kamu tidak menghadapi semacam rintangan yang mencegahnya untuk mendapatkan apa yang diinginkannya, maka tidak ada tantangan, dan tidak ada tantangan berarti tidak ada pertumbuhan, yang berlanjut kepada tidak ada cerita sama sekali. Namun, menambahkan hambatan demi cerita juga bukan praktik yang baik. Gali lebih dalam untuk memahami siapa sebenarnya tokoh antagonis kamu, dan apa peran dia sebenarnya dalam kisah kamu.</string>
-    <string name="c1_antagonist_q1">Antagonis adalah kebalikan dari protagonis kamu. Bagaimana bisa?</string>
-    <string name="c1_antagonist_q2">Antagonis kamu bukan hanya jahat, ia tidak ingin menghancurkan protagonis, kecuali dia menghalanginya. Jadi apa tujuan utama Antagonis kamu?</string>
-    <string name="c1_antagonist_q3">Apa taktik yang dia gunakan untuk mencapai tujuannya?</string>
-    <string name="c1_antagonist_q4" translatable="false">Pikirkan tentang perubahan alur dari antagonis kamu. Apakah dia memulai dengan jahat atau berakhir dengan jahat? Bukan alur yang bagus, maka tidak? Jadi bagaimana dia di alur pertama, bagaimana dia di alur ketiga?</string>
-    <!--Sidekick Challenge-->
-    <string name="c1_sidekick_title">Tantangan Pendamping</string>
-    <string name="c1_sidekick_desc">Kenali Pendamping kamu.</string>
-    <string name="c1_sidekick_desc_long">Pendamping sering dianggap remeh, tapi bisakah Frodo mencapai tujuannya tanpa Sam? Don Quixote adalah karakternya sendiri, tetapi dapatkah kamu bayangkan jika dia melawan kincir angin tanpa Sancho Panza? Pendamping punya alasan untuk hidup. Temukan alasan pendamping kamu dalam tantangan ini.</string>
-    <string name="c1_sidekick_q1">Kenapa pendamping kamu memutuskan untuk mengikuti protagonis kamu?</string>
-    <string name="c1_sidekick_q2">Mengapa tujuan protagonis kamu begitu kuat sehingga pedamping kamu memutuskan untuk mengejar tujuan itu juga?</string>
-    <string name="c1_sidekick_q3">Apa alat, taktik, atau senjata yang diberikan pendamping kamu kepada protagonis kamu? Bagaimana dia melindunginya atau membelanya?</string>
-    <string name="c1_sidekick_q4">Beberapa pendamping memiliki momen ketika mereka harus memutuskan, apakah sang protagonis senilai dengan nyawa mereka sendiri. Bagaimana dengan kamu? Apa hal yang paling berisiko yang dilakukan pendamping kamu untuk protagonis kamu? Mungkinkan itu nyawanya?</string>
-    <!--Stakes challenge-->
-    <string name="challenge_7_title">Tantangan VII</string>
-    <string name="challenge_7_desc">Taruhannya.</string>
-    <string name="challenge_7_desc_long">Mengapa kita peduli dengan $char_name$? Apa yang bisa terjadi jika $gender$ tidak berhasil? Seberapa penting $char_name$ untuk para pembaca?</string>
-    <string name="challenge_7_q1">Pikirkan tentang pilihan paling penting yang harus dibuat $char_name$. Apa yang dipertaruhkan saat itu?</string>
-    <string name="challenge_7_q2">Taruhannya bisa eksternal atau fisik. Pikirkan konsekuensi eksternal yang akan kita lihat jika tujuannya tidak tercapai? Akankah dunia meledak? Seseorang akan mati? Misalnya dalam film \"Berani\" ibu dari protagonis akan selamanya menjadi beruang jika mantranya tidak musnah.</string>
-    <string name="challenge_7_q3">Sekarang pertimbangkan secara internal, apa yang akan menjadi moralnya, atau konsekuensi psikologis untuk $char_name$ jika tujuannya tidak terpenuhi? Lupakan tentang trauma, dan pikirkan lebih mendalam. Mungkinkah $char_name$ untuk mengatasi kegagalannya?</string>
-    <string name="challenge_7_q4">Terakhir, apa taruhan filosofisnya? Jika \"mother of Dragons\" tidak menghentikan \"walkers\", kejahatan dan kehancuran akan mengambil alih dunia. Apa yang akan terjadi dalam kasus $char_name$?</string>
+    <string-array name="challenge_6">
+        <item>challenge_6</item>
+        <item>Desafio VI</item>
+        <item>Apa yang ada di sakunya?</item>
+        <item>Apa pun yang kamu bawa bersama kamu, berbicara dengan cara tentang apa yang kamu peduli. Apakah kamu akan membawa sesuatu yang tidak kamu pedulikan? kamu mungkin tidak akan. Sama halnya dengan karakter kamu. Gali lebih dalam untuk menemukan apa yang dia miliki di sakunya, temukan apa yang benar-benar dia pedulikan.</item>
+        <item>Karakter kamu akan meninggalkan rumah. Apa yang akan dia ambil dan masukkan ke dalam sakunya? Dompet? Kunci? Apakan itu kunci mobil? Mobil apa yang dia miliki?</item>
+        <item>Buka dompet, apakah ada foto? Siapa yang ada dalam foto? Kenapa ada di sana? Sejak kapan?</item>
+        <item>Ambil kunci dari sakunya, perhatikan dengan hati-hati gantungan kunci. Apa itu? Di mana dia mendapatkannya? Apakah itu hadiah? Apakah itu ikon atau bendera negara? Negara mana?</item>
+        <item>Apakah dia membawa ponsel? Apakah ada baterai? Atau selalu hampir kosong ketika saatnya untuk pergi? Apakah ponsel dalam mode hening? Lihatlah lebih dekat, apa wallpaper teleponnya?</item>
+    </string-array>
+
+    <!--Seventh challenge-->
+    <string-array name="challenge_7">
+        <item>challenge_7</item>
+        <item>Challenge VII</item>
+        <item>Taruhannya.</item>
+        <item>Mengapa kita peduli dengan $char_name$? Apa yang bisa terjadi jika $gender$ tidak berhasil? Seberapa penting $char_name$ untuk para pembaca?</item>
+        <item>Pikirkan tentang pilihan paling penting yang harus dibuat $char_name$. Apa yang dipertaruhkan saat itu?</item>
+        <item>Taruhannya bisa eksternal atau fisik. Pikirkan konsekuensi eksternal yang akan kita lihat jika tujuannya tidak tercapai? Akankah dunia meledak? Seseorang akan mati? Misalnya dalam film \"Berani\" ibu dari protagonis akan selamanya menjadi beruang jika mantranya tidak musnah.</item>
+        <item>Sekarang pertimbangkan secara internal, apa yang akan menjadi moralnya, atau konsekuensi psikologis untuk $char_name$ jika tujuannya tidak terpenuhi? Lupakan tentang trauma, dan pikirkan lebih mendalam. Mungkinkah $char_name$ untuk mengatasi kegagalannya?</item>
+        <item>Terakhir, apa taruhan filosofisnya? Jika \"mother of Dragons\" tidak menghentikan \"walkers\", kejahatan dan kehancuran akan mengambil alih dunia. Apa yang akan terjadi dalam kasus $char_name$?</item>
+    </string-array>
 
     <!--Challenge 8 -->
-    <string name="challenge_8_title">Tantangan VIII</string>
-    <string name="challenge_8_desc">Bagaimana dengan rumah?</string>
-    <string name="challenge_8_desc_long">Ceritakan bagaimana kamu hidup dan saya akan memberi tahu kamu siapa diri kamu.\n\nUraikan bagaimana $char_name$ tinggal dan di mana.</string>
-    <string name="challenge_8_q1">Apakah $char_name$ tinggal di rumah atau apartemen? Apakah itu gudang? Atau hanya sebuah kamar? Jelaskan tempat itu.</string>
-    <string name="challenge_8_q2">$char_name$ berdiri di tengah ruangan terbesar, apa yang bisa dilihat? Apa yang ada di dinding? Siapa yang menaruh itu di sana?</string>
-    <string name="challenge_8_q3">Pergi ke kamar tidur, bagaimana? Apakah itu tempat tidur untuk 2 orang? Apakah itu untuk satu orang? Apakah tempat tidurnya rapi? Apakah kamu melihat seseorang di tempat tidur?</string>
-    <string name="challenge_8_q4">Buka semua jendelanya. Apa yang $char_name$ lihat dari sana? Bisakah orang melihatnya? Bisakah suara dari jalan terdengar? Seberapa berisiknya tempat itu?</string>
+    <string-array name="challenge_8">
+        <item>challenge_8</item>
+        <item>Challenge VIII</item>
+        <item>Bagaimana dengan rumah?</item>
+        <item>Ceritakan bagaimana kamu hidup dan saya akan memberi tahu kamu siapa diri kamu.\n\nUraikan bagaimana $char_name$ tinggal dan di mana.</item>
+        <item>Apakah $char_name$ tinggal di rumah atau apartemen? Apakah itu gudang? Atau hanya sebuah kamar? Jelaskan tempat itu.</item>
+        <item>$char_name$ berdiri di tengah ruangan terbesar, apa yang bisa dilihat? Apa yang ada di dinding? Siapa yang menaruh itu di sana?</item>
+        <item>Pergi ke kamar tidur, bagaimana? Apakah itu tempat tidur untuk 2 orang? Apakah itu untuk satu orang? Apakah tempat tidurnya rapi? Apakah kamu melihat seseorang di tempat tidur?</item>
+        <item>Buka semua jendelanya. Apa yang $char_name$ lihat dari sana? Bisakah orang melihatnya? Bisakah suara dari jalan terdengar? Seberapa berisiknya tempat itu?</item>
+    </string-array>
+
+    <!--Challenge 9 -->
+    <string-array name="challenge_9">
+        <item>challenge_9</item>
+        <item>Challenge IX</item>
+        <item>RAPAT</item>
+        <item>Satu hal adalah bagaimana $char_name$ berperilaku dalam privasi, atau dalam obrolan di antara teman-teman, tetapi bagaimana Anda akan bereaksi jika Anda datang ke pertemuan dengan banyak orang di mana Anda hanya mengenal satu orang? </item>
+        <item>Bayangkan $char_name$ tiba di tempat rapat dan orang yang Anda kenal belum tiba. Apakah Anda mulai berbicara dengan mereka yang hadir, dengan percaya diri atau apakah Anda tetap diam kecuali seseorang berbicara kepada Anda? </item>
+        <item>Sekarang datang orang yang kamu kenal. Apakah $char_name$ mengintegrasikannya ke dalam percakapan Anda atau merasa lega dan tetap berpegang pada orang itu untuk akhirnya mengobrol dengan seseorang yang Anda kenal? </item>
+        <item>Apakah Anda ingin mendapat perhatian? Apakah $char_name$ masa pakai pesta atau hanya ingin diketahui orang saja? </item>
+        <item>Apakah $char_name$ orang protokol atau secara politis salah dan tidak peduli apa yang dipikirkan orang lain? </item>
+    </string-array>
+
+    <!--Challenge 10 -->
+    <string-array name="challenge_10">
+        <item>challenge_10</item>
+        <item>Challenge X</item>
+        <item>LIBURAN</item>
+        <item>Tidak semua orang ditangani dengan cara yang sama ketika menghadapi peristiwa yang akan terjadi dan memberi kita pola orang seperti apa yang kita miliki di masa depan. Jika $char_name$ dikonfirmasi dalam karyanya bahwa ia dapat berlibur dalam waktu enam bulan, bagaimana dia akan bereaksi? </item>
+        <item>Apakah Anda akan segera merencanakan perjalanan? Apakah Anda mencari penawaran $char_name$ dan memesan akomodasi di muka? Apakah Anda menunggu hingga menit terakhir untuk memutuskan apa yang harus dilakukan? </item>
+        <item>Jika Anda sudah merencanakan seluruh perjalanan dan kehilangan satu bulan Anda dibatalkan, apakah $char_name$ putus asa atas modifikasi rencana Anda atau apakah Anda hanya mencari alternatif terbaik dan Anda tidak akan memiliki masalah yang lebih besar? </item>
+        <item>Jika dia menunggu sampai menit terakhir untuk memutuskan apa yang harus dilakukan dan dia tidak lagi mendapatkan tiket, apakah dia akan frustrasi dan tinggal di rumah atau bertanya di mana ada tiket yang tersedia dan memulai petualangan? </item>
+        <item>Anda mungkin tidak suka bepergian. Apakah $char_name$ orang yang suka tinggal di rumah? Apakah Anda menikmati rutinitas Anda? </item>
+    </string-array>
+
+    <!--Mentor Challenge-->
+    <string-array name="mentor_challenge">
+        <item>mentor_challenge</item>
+        <item>Mentor Challenge</item>
+        <item>Kenali mentor kamu.</item>
+        <item>Mentor adalah tipe karakter yang langka. Tidak semua cerita memilikinya, tetapi ketika ada, itu pasti karena ada suatu alasan. \nApa motif Yoda untuk mengajar Luke Skywalker? Siapa yang menempatkannya di rawa menunggu untuk ditemukan? Apakah dia hanya menawarkan pengetahuan atau juga sebuah artefak? Apakah artefak ini sumber kekuatan Luke? Gali lebih dalam untuk mencari tahu tentang mentor kamu.</item>
+        <item>Mengapa protagonis kamu membutuhkan seorang mentor? Mengapa yang satu ini akan persis apa yang dia butuhkan?</item>
+        <item>Akankah mentor memberikan pengetahuan kepada protagonis? Atau dia akan membantu protagonis menemukannya sendiri?</item>
+        <item>Apakah kekuatan protagonis kamu akan dibuka oleh artefak yang diberikan oleh mentor? Jika demikian, kekuatan apa dan artefak yang mana?</item>
+        <item>Mentor mati. Sebagai bagian dari perjalanan yang dramatis, mentor biasanya harus pergi sedikit sebelum protagonis benar-benar siap. Atau mungkin dia sudah siap tetapi dia belum mengetahuinya.\nPada saat kapan mentor kamu akan pergi atau mati? Bagaimana hal itu akan terjadi?</item>
+    </string-array>
+
+    <!--Antagonist Challenge-->
+    <string-array name="antagonist_challenge">
+        <item>antagonist_challenge</item>
+        <item>Antagonist Challenge.</item>
+        <item>Kenali Antagonis kamu.</item>
+        <item>Cerita adalah permainan kekuasaan. Tidak ada yang peduli dengan perjalanan "Tuan, saya bisa melakukan segalanya", jika protagonis kamu tidak menghadapi semacam rintangan yang mencegahnya untuk mendapatkan apa yang diinginkannya, maka tidak ada tantangan, dan tidak ada tantangan berarti tidak ada pertumbuhan, yang berlanjut kepada tidak ada cerita sama sekali. Namun, menambahkan hambatan demi cerita juga bukan praktik yang baik. Gali lebih dalam untuk memahami siapa sebenarnya tokoh antagonis kamu, dan apa peran dia sebenarnya dalam kisah kamu.</item>
+        <item>Antagonis adalah kebalikan dari protagonis kamu. Bagaimana bisa?</item>
+        <item>Antagonis kamu bukan hanya jahat, ia tidak ingin menghancurkan protagonis, kecuali dia menghalanginya. Jadi apa tujuan utama Antagonis kamu?</item>
+        <item>Apa taktik yang dia gunakan untuk mencapai tujuannya?</item>
+        <item>Pikirkan tentang perubahan alur dari antagonis kamu. Apakah dia memulai dengan jahat atau berakhir dengan jahat? Bukan alur yang bagus, maka tidak? Jadi bagaimana dia di alur pertama, bagaimana dia di alur ketiga?</item>
+    </string-array>
+
+    <!--Sidekick Challenge-->
+    <string-array name="sidekick_challenge">
+        <item>sidekick_challenge</item>
+        <item>Sidekick Challenge.</item>
+        <item>Kenali Pendamping kamu.</item>
+        <item>Pendamping sering dianggap remeh, tapi bisakah Frodo mencapai tujuannya tanpa Sam? Don Quixote adalah karakternya sendiri, tetapi dapatkah kamu bayangkan jika dia melawan kincir angin tanpa Sancho Panza? Pendamping punya alasan untuk hidup. Temukan alasan pendamping kamu dalam tantangan ini.</item>
+        <item>Kenapa pendamping kamu memutuskan untuk mengikuti protagonis kamu?</item>
+        <item>Mengapa tujuan protagonis kamu begitu kuat sehingga pedamping kamu memutuskan untuk mengejar tujuan itu juga?</item>
+        <item>Apa alat, taktik, atau senjata yang diberikan pendamping kamu kepada protagonis kamu? Bagaimana dia melindunginya atau membelanya?</item>
+        <item>Beberapa pendamping memiliki momen ketika mereka harus memutuskan, apakah sang protagonis senilai dengan nyawa mereka sendiri. Bagaimana dengan kamu? Apa hal yang paling berisiko yang dilakukan pendamping kamu untuk protagonis kamu? Mungkinkan itu nyawanya?</item>
+    </string-array>
+
+    <!--Protagonist Challenge-->
+    <string-array name="protagonist_challenge">
+        <item>protagonist_challenge</item>
+        <item>Protagonist Challenge.</item>
+        <item>Kenali protagonisn kamu.</item>
+        <item>Protagonis Anda adalah karakter yang paling penting dalam cerita. Ini adalah poros cerita dan yang keberhasilan atau kegagalannya penting. Apakah Anda akan mencapai tujuan Anda di akhir petualangan? Penting untuk berempati dengan protagonis karena jika kita tidak peduli dengan apa yang terjadi padanya, kita tidak akan peduli dengan apa yang terjadi dalam cerita.</item>
+        <item>Apa yang harus kamu lakukan? Apa harapan dari cerita itu? Jawaban atas pertanyaan ini harus dijawab secara interogatif: Dapatkah Harry Potter mengalahkan Voldemort?</item>
+        <item>Apa yang memobilisasi itu? Apa alasan mengapa Anda ingin mencapai tujuan Anda?</item>
+        <item>Bisakah kita mengidentifikasi motif mereka? Apakah itu membuat kami ingin Anda sukses? Jika kita tidak peduli, maka kita harus memikirkan kembali motif itu.</item>
+        <item>Apakah Anda punya sekutu? Siapa lawanmu?</item>
+    </string-array>
+
 
     <!--GUIDE ROLES-->
     <string name="roles_title">Peran karakter yang khas</string>

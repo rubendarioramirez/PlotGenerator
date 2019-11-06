@@ -673,97 +673,171 @@ Sometimes, the heroes lose their mentor in this stage (e.g. LOTR and Star Wars).
     <string name="challenge_nochallenge_placeholder">You have no challenges yet for this character.</string>
     <string name="challenge_action_bar">Challenges</string>
 
+    <string name="recommendedAct1">Act I</string>
+    <string name="recommendedAct2">Act II</string>
+    <string name="recommendedAct3">Act III</string>
+
+    <string name="challengeFirstTimePopUpTitle">Life is either a daring adventure or nothing at all.</string>
+    <string name="challengeFirstTimePopUpBody">Writing your story is a journey not a goal.\n\nYou won\'t know all about your character until you walk with him through the obstacles he faces, the limits he pushes and the moral questions he has to answer.\n\nChallenges in this section will help you find the answers and dive into your character personality, one step at a time.</string>
+
     <!--First challenge-->
-    <string name="challenge_1_title">Challenge I</string>
-    <string name="challenge_1_desc">Elevator Challenge</string>
-    <string name="challenge_1_desc_long">How does $char_name$ reacts in a crisis?\nLet\'s put him on a elevator with a random stranger.\nSuddenly the elevator gets stuck and they\'re both trap inside.\nHow does he reacts? Is he calm? Does he panic?\nThis exercise will allow you to discover how $char_name$ behaves in limit situations.</string>
-    <string name="challenge_1_q1">What is his first reaction?</string>
-    <string name="challenge_1_q2">Will he wait to be rescued?</string>
-    <string name="challenge_1_q3">The person next to him suddenly panics. Will your character call him down? Will he panic as well?</string>
-    <string name="challenge_1_q4">After more than an hour trapped in the elevator suddendly there is a slit open. Come, says the voice, but I can take only one
-        \nthe other should wait until more help comes. Will your character goes first?</string>
+    <string-array name="challenge_1">
+    <item>challenge_1</item>
+    <item>Challenge I</item>
+    <item>Elevator Challenge</item>
+    <item>How does $char_name$ reacts in a crisis?\nLet\'s put him in a elevator with a random stranger.\nSuddenly the elevator gets stuck and they\'re both trap inside.\nHow does he reacts? Is he calm? Does he panic?\nThis exercise will allow you to discover how $char_name$ behaves in limit situations.</item>
+    <item>What is his first reaction?</item>
+    <item>Will he wait to be rescued?</item>
+    <item>The person next to him suddenly panics. Will your character call him down? Will he panic as well?</item>
+    <item>After more than an hour trapped in the elevator suddendly there is a slit open. Come, says the voice, but I can take only one\nthe other should wait until more help comes. Will your character goes first?</item>
+    </string-array>
     <!--Second challenge-->
-    <string name="challenge_2_title">Challenge II</string>
-    <string name="challenge_2_desc">What\'s the lie?</string>
-    <string name="challenge_2_desc_long">The Change Arc is all about the Lie Your Character Believes. His life may be horrible, or his life may seem pretty great. But, festering under the surface, is the Lie.
-In order for your character to evolve in a positive way, he has to start out with something lacking in his life, some reason that makes the change necessary. </string>
-    <string name="challenge_2_q1">What misconception does your protagonist have about himself or the world?</string>
-    <string name="challenge_2_q2">Is the Lie making his life miserable when the story opens? If so, how?</string>
-    <string name="challenge_2_q3">If not, will the Inciting Event and/or the First Plot Point begin to make him uncomfortable as a result of his Lie?</string>
-    <string name="challenge_2_q4">What are the symptoms of your character’s Lie?</string>
+    <string-array name="challenge_2">
+    <item>challenge_2</item>
+    <item>Challenge II</item>
+    <item>What\'s the lie?</item>
+    <item>The Change Arc is all about the Lie Your Character Believes. His life may be horrible, or his life may seem pretty great. But, festering under the surface, is the Lie.
+    In order for your character to evolve in a positive way, he has to start out with something lacking in his life, some reason that makes the change necessary. </item>
+    <item>What misconception does your protagonist have about himself or the world?</item>
+    <item>Is the Lie making his life miserable when the story opens? If so, how?</item>
+    <item>If not, will the Inciting Event and/or the First Plot Point begin to make him uncomfortable as a result of his Lie?</item>
+    <item>What are the symptoms of your character’s lie?</item>
+    </string-array>
     <!--Third challenge-->
-    <string name="challenge_3_title">Challenge III</string>
-    <string name="challenge_3_desc">Backstory - Find the why!</string>
-    <string name="challenge_3_desc_long">Who is your character today is very important, what\'s his job, what\'s his passion, etc. Who will he be is the meat of your story. That\'s what you\'re telling it. So what about his past? His past is why he is like this. Were his parents divorce? Perhaps his mother was an alcoholic, did his brother died in a tragic accident? Life events shape who we are. Dive in this challenge to fully develop your three-dimensional character.</string>
-    <string name="challenge_3_q1">Describe briefly his close family, mother, father, siblings?. Are they all alive? Are the parents divorced? Happy family perhaps?</string>
-    <string name="challenge_3_q2">What\'s his best childhood memory?</string>
-    <string name="challenge_3_q3">What\'s his worst childhood memory?</string>
-    <string name="challenge_3_q4">Did he had any friends when he was a child? How his friends back them will describe him? If he had no friends, why was it?</string>
+    <string-array name="challenge_3">
+    <item>challenge_3</item>
+    <item>Challenge III</item>
+    <item>Backstory - Find the why!</item>
+    <item>Who is your character today is very important, what\'s his job, what\'s his passion, etc. Who will he be is the meat of your story. That\'s what you\'re telling it. So what about his past? His past is why he is like this. Were his parents divorce? Perhaps his mother was an alcoholic, did his brother died in a tragic accident? Life events shape who we are.</item>
+    <item>Describe briefly his close family, mother, father, siblings?. Are they all alive? Are the parents divorced? Happy family perhaps?</item>
+    <item>What\'s his best childhood memory?</item>
+    <item>What\'s his worst childhood memory?</item>
+    <item>Did he had any friends when he was a child? How his friends back them will describe him? If he had no friends, why was it?</item>
+    </string-array>
     <!--Fourth Challenge-->
-    <string name="challenge_4_title">Challenge IV</string>
-    <string name="challenge_4_desc">How he looks?</string>
-    <string name="challenge_4_desc_long">Lajos Egri said that part of who you are, it\'s due to how you look. You don\'t believe it? Imagine your character was paralyzed when he was a kid, because of that he was all day long in his bed, so he couldn\'t do much as other kids, like playing outside. At the end he spent most of his time reading and learning new stuff. Odd for a normal kid, but the only life your character knew. Will he be different than other adults when he grows up? A bit smarter perhaps? Dive in to discover how your character looks like</string>
-    <string name="challenge_4_q1">Take a moment to reflect. Jot down 5 adjectives that will describe your character physically</string>
-    <string name="challenge_4_q2">Does he has any birth mark? Tattoos perhaps that will make him unique? </string>
-    <string name="challenge_4_q3">There is any medical condition? Allergies? Something that manifest physically even if he can hide under his clothes?</string>
-    <string name="challenge_4_q4">Consider his posture a little bit, can you describe it? Also, what about his appearance? Is he neat? Is he tidy? Will you say he is overall good looking?</string>
+    <string-array name="challenge_4">
+    <item>challenge_4</item>
+    <item>Challenge IV</item>
+    <item>How he looks?</item>
+    <item>Lajos Egri said that part of who you are, it\'s due to how you look. Dive in to discover how your character looks like</item>
+    <item>Take a moment to reflect. Jot down 5 adjectives that will describe your character physically</item>
+    <item>Does he has any birth mark? Tattoos perhaps that will make him unique? </item>
+    <item>There is any medical condition? Allergies? Something that manifest physically even if he can hide under his clothes?</item>
+    <item>Consider his posture a little bit, can you describe it? Also, what about his appearance? Is he neat? Is he tidy? Will you say he is overall good looking?</item>
+    </string-array>
     <!--Fifth Challenge-->
-    <string name="challenge_5_title">Challenge V</string>
-    <string name="challenge_5_desc">Test the limits.</string>
-    <string name="challenge_5_desc_long">If coal and diamonds are basically the same thing, what make the coal so common and the diamond so rare?\n Pressure.\nSame is true in characters, do you want to know if your character is just one more in the crowd or is he the unique hero your story needs? Let\'s put pressure on him and find out who he really is.</string>
-    <string name="challenge_5_q1">How would he react if someone he cares about is in danger?</string>
-    <string name="challenge_5_q2">Will he be able to kill? </string>
-    <string name="challenge_5_q3">Will your character say that the end justify the means when it\'s about protecting a loved one?</string>
-    <string name="challenge_5_q4">Let\'s says he doesn\'t dare to cross his own limits to save the life a person he cares. What within his limits/boundaries will he do to solve the situation?</string>
+    <string-array name="challenge_5">
+    <item>challenge_5</item>
+    <item>Challenge V</item>
+    <item>Test the limits.</item>
+    <item>If coal and diamonds are basically the same thing, what make the coal so common and the diamond so rare? Pressure.\nSame is true in characters, do you want to know if your character is just one more in the crowd or is he the unique hero your story needs? Let\'s put pressure on him and find out who he really is.</item>
+    <item>How would he react if someone he cares about is in danger?</item>
+    <item>Will he be able to kill? </item>
+    <item>Will your character say that the end justify the means when it\'s about protecting a loved one?</item>
+    <item>Let\'s says he doesn\'t dare to cross his own limits to save the life a person he cares. What within his limits/boundaries will he do to solve the situation?</item>
+    </string-array>
     <!--Sixth Challenge-->
-    <string name="challenge_6_title">Challenge VI</string>
-    <string name="challenge_6_desc">What\'s in the pockets?</string>
-    <string name="challenge_6_desc_long">Whatever you carry with you, speaks in a way about what you care. Will you carry something you don\'t care? You probably won\'t. Same it\'s true for your character. Dive in to discover what he/she has in the pockets, discover what he/she really cares about</string>
-    <string name="challenge_6_q1">Your character it\s about to leave the house. What will he/she take and put in his pockets? Wallet? Keys? It\'s a car key? What car does she/he has?</string>
-    <string name="challenge_6_q2">Open the wallet, is there a picture? Who is in the picture? Why it\'s there? Since when?</string>
-    <string name="challenge_6_q3">Take the keys from his/her pocket, look carefully at the key chain. What is it? Where he/she got it? Was it a gift? Is it a country icon or flag? Which country?</string>
-    <string name="challenge_6_q4">Does he/she carry a cellphone? Does it has battery? or it\'s always nearly empty when it\'s time to leave? Is the phone in silent mode? Look closer, what\'s the phone wall paper?</string>
+    <string-array name="challenge_6">
+    <item>challenge_6</item>
+    <item>Challenge VI</item>
+    <item>What\'s in the pockets?</item>
+    <item>Whatever you carry with you, speaks in a way about what you care. Will you carry something you don\'t care? You probably won\'t. Same it\'s true for your character. Dive in to discover what he/she has in the pockets, discover what he/she really cares about</item>
+    <item>Your character it\s about to leave the house. What will he/she take and put in his pockets? Wallet? Keys? It\'s a car key? What car does she/he has?</item>
+    <item>Open the wallet, is there a picture? Who is in the picture? Why it\'s there? Since when?</item>
+    <item>Take the keys from his/her pocket, look carefully at the key chain. What is it? Where he/she got it? Was it a gift? Is it a country icon or flag? Which country?</item>
+    <item>Does he/she carry a cellphone? Does it has battery? or it\'s always nearly empty when it\'s time to leave? Is the phone in silent mode? Look closer, what\'s the phone wall paper?</item>
+    </string-array>
     <!--Mentor Challenge-->
-    <string name="c1_mentor_title">Mentor Challenge</string>
-    <string name="c1_mentor_desc">Know your mentor.</string>
-    <string name="c1_mentor_desc_long">Mentors are a rare type of characters. Not all the stories has one, but when they do, it has to be for a reason.\nWhat was Yoda motive to teach Luke Skywalker? Who put him on that swamp waiting to be discover? Did he only offered knowledge or also an artifact? Was this artifact the source of Luke\'s power? Dive in to find out about your mentor.</string>
-    <string name="c1_mentor_q1">Why your protagonist needs a mentor? Why this particular one, will be exactly what he needs?</string>
-    <string name="c1_mentor_q2">Will the mentor give knowledge to the protagonist? Or he will help him to discover himself?</string>
-    <string name="c1_mentor_q3">Will your protagonist power be unlocked by an artifact given by the mentor? If so, which power and which artifact?</string>
-    <string name="c1_mentor_q4">Mentors die. As part of any dramatic journey, the mentor usually has to go a bit before the protagonist is actually ready. Or perhaps he is but he doesn\'t know it yet.\nAt which moment your mentor will leave or die? How will that be?</string>
+    <string-array name="mentor_challenge">
+    <item>mentor_challenge</item>
+    <item>Mentor Challenge</item>
+    <item>Know your mentor.</item>
+    <item>Mentors are a rare type of characters. Not all the stories has one, but when they do, it has to be for a reason.\nWhat was Yoda motive to teach Luke Skywalker? Who put him on that swamp waiting to be discover? Did he only offered knowledge or also an artifact? Was this artifact the source of Luke\'s power?</item>
+    <item>Why your protagonist needs a mentor? Why this particular one, will be exactly what he needs?</item>
+    <item>Will the mentor give knowledge to the protagonist? Or he will help him to discover himself?</item>
+    <item>Will your protagonist power be unlocked by an artifact given by the mentor? If so, which power and which artifact?</item>
+    <item>Mentors die. As part of any dramatic journey, the mentor usually has to go a bit before the protagonist is actually ready. Or perhaps he is but he doesn\'t know it yet.\nAt which moment your mentor will leave or die? How will that be?</item>
+    </string-array>
     <!--Antagonist Challenge-->
-    <string name="c1_antagonist_title">Antagonist Challenge</string>
-    <string name="c1_antagonist_desc">Know your Antagonist.</string>
-    <string name="c1_antagonist_desc_long">Stories are a power play. Nobody cares about the journey of "Mr I can do everything", if your protagonist is not facing some sort of obstacle that prevent him to get what he wants, then there is no challenge, and no challenge means no growth, which resumes to no story at all. However just adding obstacles for the sake of story is not a good practice either. Dig in to understand better who your antagonist really is, and what\'s his real role on your story</string>
-    <string name="c1_antagonist_q1">The antagonist is the exact opposite of your protagonist. How in this case?</string>
-    <string name="c1_antagonist_q2">Your Antagonist is not just evil, he doesn\'t want to destroy the protagonist, unless this one gets on his way. So what is your Antagonist\'s ultimate goal?</string>
-    <string name="c1_antagonist_q3">What are the tactics he uses to reach his goals?</string>
-    <string name="c1_antagonist_q4" translatable="false">Think about the arc of change of your Antagonist. Does he start bad and ends bad? Not a great arc, then no? So how he is in Act 1, how he is in Act 3?</string>
+    <string-array name="antagonist_challenge">
+        <item>antagonist_challenge</item>
+        <item>Antagonist Challenge.</item>
+        <item>Know your Antagonist.</item>
+        <item>Stories are a power play. Nobody cares about the journey of "Mr I can do everything", if your protagonist is not facing some sort of obstacle that prevent him to get what he wants, then there is no challenge, and no challenge means no growth, which resumes to no story at all. However just adding obstacles for the sake of story is not a good practice either. Dig in to understand better who your antagonist really is, and what\'s his real role on your story.</item>
+        <item>The antagonist is the exact opposite of your protagonist. How in this case?</item>
+        <item>Your Antagonist is not just evil, he doesn\'t want to destroy the protagonist, unless this one gets on his way. So what is your Antagonist\'s ultimate goal?</item>
+        <item>What are the tactics he uses to reach his goals?</item>
+        <item>Think about the arc of change of your Antagonist. Does he start bad and ends bad? Not a great arc, then no? So how he is in Act 1, how he is in Act 3?</item>
+    </string-array>
     <!--Sidekick Challenge-->
-    <string name="c1_sidekick_title">Sidekick Challenge</string>
-    <string name="c1_sidekick_desc">Know your Sidekick.</string>
-    <string name="c1_sidekick_desc_long">Sidekicks are often underestimated, But could Frodo reach his goal without Sam? Don Quixote was a complete character on his own, but can you imagine him fighting the windmills without Sancho Panza? Sidekicks have a reason to exist. Find your sidekick reason on this challenge.</string>
-    <string name="c1_sidekick_q1">Why your sidekick decides to follow your protagonist?</string>
-    <string name="c1_sidekick_q2">Why the goals of your protagonist are so strong that your sidekick decides to pursue them as well?</string>
-    <string name="c1_sidekick_q3">What are the tools, tactics or weapons that your sidekick provides to your protagonist? How he protects him or defend him?</string>
-    <string name="c1_sidekick_q4">Some sidekicks had a moment when they have to decide, if the protagonist worth their own lives. What\'s the case in yours? What\'s the most precious thing your sidekick will risk for your protagonist? Will be his life?</string>
-    <!--Stakes challenge-->
-    <string name="challenge_7_title">Challenge VII</string>
-    <string name="challenge_7_desc">Stakes</string>
-    <string name="challenge_7_desc_long">Why do we care about $char_name$? What could happen if $gender$ doesn\'t succeed? How important is $char_name$ for the audience?</string>
-    <string name="challenge_7_q1">Think about the most important choice that $char_name$ will have to make. What is at stake at that moment?</string>
-    <string name="challenge_7_q2">Stakes can be external or physical. Think about what external consequences we will see if the objective is not reached? Will the world explode? A person will die? For instance in the movie \"Brave\" the mother of the protagonist will be forever a bear if the spell is not broken.</string>
-    <string name="challenge_7_q3">Now consider internally, what will be the moral, or psychological consequences for $char_name$ if the objective is not met? Forget about trauma, think deeper. Will be possible for $char_name$ to overcome the failure?</string>
-    <string name="challenge_7_q4">Lastly what are the philosophical stakes? If the mother of Dragons doesn\'t stop the walkers, the evil and destruction will take over the world. What will happen in $char_name$\'s case?</string>
+    <string-array name="sidekick_challenge">
+        <item>sidekick_challenge</item>
+        <item>Sidekick Challenge.</item>
+        <item>Know your Sidekick.</item>
+        <item>Sidekicks are often underestimated, But could Frodo reach his goal without Sam? Don Quixote was a complete character on his own, but can you imagine him fighting the windmills without Sancho Panza? Sidekicks have a reason to exist. Find your sidekick reason on this challenge.</item>
+        <item>Why your sidekick decides to follow your protagonist?</item>
+        <item>Why the goals of your protagonist are so strong that your sidekick decides to pursue them as well?</item>
+        <item>What are the tools, tactics or weapons that your sidekick provides to your protagonist? How he protects him or defend him?</item>
+        <item>Some sidekicks had a moment when they have to decide, if the protagonist worth their own lives. What\'s the case in yours? What\'s the most precious thing your sidekick will risk for your protagonist? Will be his life?</item>
+    </string-array>
+    <!--Protagonist Challenge-->
+    <string-array name="protagonist_challenge">
+        <item>protagonist_challenge</item>
+        <item>Protagonist Challenge.</item>
+        <item>Know your protagonist.</item>
+        <item>Your protagonist is the character that matters most in the story. It is the axis of the story and whose success or failure matters. Will you achieve your goal at the end of the adventure? It is important that it is possible to empathize with the protagonist since if we do not care what happens to him, we will not care what happens in the story.</item>
+        <item>What do you have to do? What is the expectation of the story? The answer to this question should be answered interrogatively: Can Harry Potter defeat Voldemort?</item>
+        <item>What mobilizes it? What is the reason why you want to achieve your goal?</item>
+        <item>Can we identify with their motives? Does it make us want you to succeed? If we don\'t care, then we should rethink those reasons.</item>
+        <item>Do you have allies? Who are your opponents?</item>
+    </string-array>
+    <!--Challenge 7-->
+    <string-array name="challenge_7">
+        <item>challenge_7</item>
+        <item>Challenge VII</item>
+        <item>Stakes</item>
+        <item>Why do we care about $char_name$? What could happen if $gender$ doesn\'t succeed? How important is $char_name$ for the audience?</item>
+        <item>Think about the most important choice that $char_name$ will have to make. What is at stake at that moment?</item>
+        <item>Stakes can be external or physical. Think about what external consequences we will see if the objective is not reached? Will the world explode? A person will die? For instance in the movie \"Brave\" the mother of the protagonist will be forever a bear if the spell is not broken.</item>
+        <item>Now consider internally, what will be the moral, or psychological consequences for $char_name$ if the objective is not met? Forget about trauma, think deeper. Will be possible for $char_name$ to overcome the failure?</item>
+        <item>Lastly what are the philosophical stakes? If the mother of Dragons doesn\'t stop the walkers, the evil and destruction will take over the world. What will happen in $char_name$\'s case?</item>
+    </string-array>
 
     <!--Challenge 8 -->
-    <string name="challenge_8_title">Challenge VIII</string>
-    <string name="challenge_8_desc">What about the house?</string>
-    <string name="challenge_8_desc_long">Tell me how you live and I will tell you who you are.\n\nElaborate how $char_name$ lives and where.</string>
-    <string name="challenge_8_q1">Does $char_name$ live in a house or an apartment? It\'s a barn? Or just a room? Describe the place.</string>
-    <string name="challenge_8_q2">$char_name$ stands in the middle of the biggest room, what can be seen? What\'s on the walls? Who put that there?.</string>
-    <string name="challenge_8_q3">Go to the bedroom, how is it? Is it a double size bed? Is it a single one? Is the bed tidy? do you see anybody on the bed?</string>
-    <string name="challenge_8_q4">Open the windows, all of them. What does $char_name$ see from there? Can people see him? Can the noise from the street be heard? How noisy it\'s the place?</string>
+    <string-array name="challenge_8">
+        <item>challenge_8</item>
+        <item>Challenge VIII</item>
+        <item>How he lives?</item>
+        <item>Tell me how you live and I will tell you who you are.\n\nElaborate how $char_name$ lives and where.</item>
+        <item>Does $char_name$ live in a house or an apartment? It\'s a barn? Or just a room? Describe the place.</item>
+        <item>$char_name$ stands in the middle of the biggest room, what can be seen? What\'s on the walls? Who put that there?.</item>
+        <item>Go to the bedroom, how is it? Is it a double size bed? Is it a single one? Is the bed tidy? do you see anybody on the bed?</item>
+        <item>Open the windows, all of them. What does $char_name$ see from there? Can people see him? Can the noise from the street be heard? How noisy it\'s the place?</item>
+    </string-array>
+
+    <!--Challenge 9 -->
+    <string-array name="challenge_9">
+        <item>challenge_9</item>
+        <item>Challenge IX</item>
+        <item>Crowded meeting</item>
+        <item>One thing is how $char_name$ behaves when he is by himself or in a chat among friends, but how would $char_name$ react if arrives to a gathering where he knows just one person.</item>
+        <item>Imagine that $char_name$  arrives to the place and the only person he knows is not yet there. Will he initiate a conversation with the other guests or he will just wait in silence?</item>
+        <item>Now, finally the person he knows it\'s there. $char_name$ will include his friend into the conversation or he will be happy that finally there is somebody to talk to.</item>
+        <item>Does he likes to be the center of attention? Is $char_name$ extrovert or he just want survive another social gathering?</item>
+        <item>Is $char_name$ a polite and proper person, or he is politically incorrect and doesn\'t really care what people thinks about him.</item>
+    </string-array>
+
+    <!--Challenge 10 -->
+    <string-array name="challenge_10">
+        <item>challenge_10</item>
+        <item>Challenge X</item>
+        <item>Holidays</item>
+        <item>Not everybody reacts the same way in front of the same situation. If $char_name$  gets confirmation on his job that he can takes holidays in six months, How would he react?</item>
+        <item>Will he inmediately start planning the holidays? Will $char_name$ look for offers and accommodations? Or he will wait to the last moment to decide what to do?</item>
+        <item>If he did all the planning and a few days before the trip his flight is cancelled Will $char_name$ be desperate or he will relax and find another solution?</item>
+        <item>If he waits until the last moment, what will he do?</item>
+        <item>Maybe he doesn\'t like to travel. Is $char_name$ a person that enjoys routine and wants to stay at home?</item>
+    </string-array>
     <!--endregion-->
 
 

@@ -42,7 +42,7 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Tutorial;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
-import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
+import com.plotgen.rramirez.plotgenerator.Common.dBHelper;
 
 import org.apache.commons.lang3.text.WordUtils;
 
@@ -442,31 +442,31 @@ public class CharacterFragment extends Fragment {
 
     private void saveToDB() {
         Common.charCreationMode = false;
-        SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
+        SQLiteDatabase database = new dBHelper(this.getContext()).getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_NAME, nameEditText.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PROJECT_ID, project_id);
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_JOB, profession_edit_text.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_HEIGHT, height_et.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_HAIRCOLOR, hair_color_et.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_EYECOLOR, eye_color_et.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_BODYBUILD, bodybuild_et.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_BIRTHDATE, birthdate_edit_text.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_DESIRE, desire_edit_text.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_AGE, age_edit_text.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_GENDER, gender_spinner.getSelectedItem().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_ROLE, role_spinner.getSelectedItem().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_DEFMOMENT, defmoment_edit_text.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_NEED, need_edit_text.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PLACEBIRTH, placebirth_edit_text.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PROJECT, project_name);
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_TRAIT1, trait_edit_text.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_TRAIT2, trait2_edit_text.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_TRAIT3, trait3_edit_text.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_ENOTES, notes_edit_text.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PHRASE, phrase_et.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_IMAGE, filepath);
-        database.insert(mySQLiteDBHelper.TABLE_CHARACTER, null, values);
+        values.put(dBHelper.CHARACTER_COLUMN_NAME, nameEditText.getText().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_PROJECT_ID, project_id);
+        values.put(dBHelper.CHARACTER_COLUMN_JOB, profession_edit_text.getText().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_HEIGHT, height_et.getText().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_HAIRCOLOR, hair_color_et.getText().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_EYECOLOR, eye_color_et.getText().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_BODYBUILD, bodybuild_et.getText().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_BIRTHDATE, birthdate_edit_text.getText().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_DESIRE, desire_edit_text.getText().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_AGE, age_edit_text.getText().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_GENDER, gender_spinner.getSelectedItem().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_ROLE, role_spinner.getSelectedItem().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_DEFMOMENT, defmoment_edit_text.getText().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_NEED, need_edit_text.getText().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_PLACEBIRTH, placebirth_edit_text.getText().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_PROJECT, project_name);
+        values.put(dBHelper.CHARACTER_COLUMN_TRAIT1, trait_edit_text.getText().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_TRAIT2, trait2_edit_text.getText().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_TRAIT3, trait3_edit_text.getText().toString());
+        values.put(dBHelper.CHAR_ENOTES, notes_edit_text.getText().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_PHRASE, phrase_et.getText().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_IMAGE, filepath);
+        database.insert(dBHelper.TABLE_CHARACTER, null, values);
         database.close();
         //Log challenges updated
         Bundle params = new Bundle();
@@ -477,8 +477,8 @@ public class CharacterFragment extends Fragment {
     }
 
     private void deleteFromDB(String char_id) {
-        SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
-        database.delete(mySQLiteDBHelper.TABLE_CHARACTER, "_id = ?", new String[]{char_id});
+        SQLiteDatabase database = new dBHelper(this.getContext()).getWritableDatabase();
+        database.delete(dBHelper.TABLE_CHARACTER, "_id = ?", new String[]{char_id});
         //Log challenges updated
         Bundle params = new Bundle();
         params.putString("Character", "deleted");
@@ -498,39 +498,39 @@ public class CharacterFragment extends Fragment {
 
     private void updateDB() {
         Common.charCreationMode = false;
-        SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
+        SQLiteDatabase database = new dBHelper(this.getContext()).getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_NAME, nameEditText.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_JOB, profession_edit_text.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_HEIGHT, height_et.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_HAIRCOLOR, hair_color_et.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_EYECOLOR, eye_color_et.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_BODYBUILD, bodybuild_et.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_BIRTHDATE, birthdate_edit_text.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_DESIRE, desire_edit_text.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_AGE, age_edit_text.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_GENDER, gender_spinner.getSelectedItem().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_ROLE, role_spinner.getSelectedItem().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_DEFMOMENT, defmoment_edit_text.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_NEED, need_edit_text.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PLACEBIRTH, placebirth_edit_text.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_TRAIT1, trait_edit_text.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_TRAIT2, trait2_edit_text.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_TRAIT3, trait3_edit_text.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_ENOTES, notes_edit_text.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PHRASE, phrase_et.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_PHRASE, phrase_et.getText().toString());
-        values.put(mySQLiteDBHelper.CHARACTER_COLUMN_IMAGE, filepath);
-        database.update(mySQLiteDBHelper.TABLE_CHARACTER, values, "_id = ?", new String[]{Common.currentCharacter.getId()});
+        values.put(dBHelper.CHARACTER_COLUMN_NAME, nameEditText.getText().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_JOB, profession_edit_text.getText().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_HEIGHT, height_et.getText().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_HAIRCOLOR, hair_color_et.getText().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_EYECOLOR, eye_color_et.getText().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_BODYBUILD, bodybuild_et.getText().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_BIRTHDATE, birthdate_edit_text.getText().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_DESIRE, desire_edit_text.getText().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_AGE, age_edit_text.getText().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_GENDER, gender_spinner.getSelectedItem().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_ROLE, role_spinner.getSelectedItem().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_DEFMOMENT, defmoment_edit_text.getText().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_NEED, need_edit_text.getText().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_PLACEBIRTH, placebirth_edit_text.getText().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_TRAIT1, trait_edit_text.getText().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_TRAIT2, trait2_edit_text.getText().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_TRAIT3, trait3_edit_text.getText().toString());
+        values.put(dBHelper.CHAR_ENOTES, notes_edit_text.getText().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_PHRASE, phrase_et.getText().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_PHRASE, phrase_et.getText().toString());
+        values.put(dBHelper.CHARACTER_COLUMN_IMAGE, filepath);
+        database.update(dBHelper.TABLE_CHARACTER, values, "_id = ?", new String[]{Common.currentCharacter.getId()});
         //Make sure you can't come back here
         database.close();
         fragmentTransition();
     }
 
     public ArrayList<String> getDescription(Context context, String char_name) {
-        mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
+        dBHelper myhelper = new dBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        String query = "SELECT * FROM  " + mySQLiteDBHelper.TABLE_CHARACTER + " WHERE name = ?";
+        String query = "SELECT * FROM  " + dBHelper.TABLE_CHARACTER + " WHERE name = ?";
         ArrayList<String> char_list = new ArrayList<String>();
         try{
         Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{char_name});

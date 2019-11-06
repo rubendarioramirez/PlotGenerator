@@ -101,7 +101,7 @@ public class CharListFragment extends Fragment {
                 if (completionCheck>=100){
                     completion = "100";
                 } else {
-                 completion = String.valueOf(challengesDone*100/TOTAL_CHALLENGES);
+                   completion = String.valueOf(challengesDone*100/TOTAL_CHALLENGES);
                 }
                 String defaultImagePath = "android.resource://com.plotgen.rramirez.plotgenerator/drawable/ic_menu_camera";
                 String image = "";

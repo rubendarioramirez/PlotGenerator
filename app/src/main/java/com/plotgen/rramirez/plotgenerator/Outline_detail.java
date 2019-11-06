@@ -20,7 +20,7 @@ import android.widget.Toast;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.SQLUtils;
-import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
+import com.plotgen.rramirez.plotgenerator.Common.dBHelper;
 
 import java.util.ArrayList;
 
@@ -178,28 +178,28 @@ public class Outline_detail extends Fragment {
 
     //Save DB for the selected OUTLINE
     private void saveToDB() {
-        SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
+        SQLiteDatabase database = new dBHelper(this.getContext()).getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(mySQLiteDBHelper.OUTLINE_COLUMN_NAME, outline_title_et.getText().toString());
-        values.put(mySQLiteDBHelper.OUTLINE_COLUMN_DESCRIPTION, outline_description_et.getText().toString());
-        values.put(mySQLiteDBHelper.OUTLINE_COLUMN_PROJECT_ID, Common.currentProject.getId());
-        values.put(mySQLiteDBHelper.OUTLINE_COLUMN_POSITION, "0");
-        values.put(mySQLiteDBHelper.OUTLINE_COLUMN_CHARACTERS, outline_characters_selected_tv.getText().toString());
-        database.insert(mySQLiteDBHelper.TABLE_OUTLINE, null, values);
+        values.put(dBHelper.OUTLINE_COLUMN_NAME, outline_title_et.getText().toString());
+        values.put(dBHelper.OUTLINE_COLUMN_DESCRIPTION, outline_description_et.getText().toString());
+        values.put(dBHelper.OUTLINE_COLUMN_PROJECT_ID, Common.currentProject.getId());
+        values.put(dBHelper.OUTLINE_COLUMN_POSITION, "0");
+        values.put(dBHelper.OUTLINE_COLUMN_CHARACTERS, outline_characters_selected_tv.getText().toString());
+        database.insert(dBHelper.TABLE_OUTLINE, null, values);
         database.close();
         fragmentTransaction();
     }
 
     //Update DB for the selected OUTLINE
     private void updateDB() {
-        SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
+        SQLiteDatabase database = new dBHelper(this.getContext()).getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(mySQLiteDBHelper.OUTLINE_COLUMN_NAME, outline_title_et.getText().toString());
-        values.put(mySQLiteDBHelper.OUTLINE_COLUMN_DESCRIPTION, outline_description_et.getText().toString());
-        values.put(mySQLiteDBHelper.OUTLINE_COLUMN_PROJECT_ID, Common.currentProject.getId());
-        values.put(mySQLiteDBHelper.OUTLINE_COLUMN_POSITION, "0");
-        values.put(mySQLiteDBHelper.OUTLINE_COLUMN_CHARACTERS, outline_characters_selected_tv.getText().toString());
-        database.update(mySQLiteDBHelper.TABLE_OUTLINE, values, "_id = ?", new String[]{outlineID});
+        values.put(dBHelper.OUTLINE_COLUMN_NAME, outline_title_et.getText().toString());
+        values.put(dBHelper.OUTLINE_COLUMN_DESCRIPTION, outline_description_et.getText().toString());
+        values.put(dBHelper.OUTLINE_COLUMN_PROJECT_ID, Common.currentProject.getId());
+        values.put(dBHelper.OUTLINE_COLUMN_POSITION, "0");
+        values.put(dBHelper.OUTLINE_COLUMN_CHARACTERS, outline_characters_selected_tv.getText().toString());
+        database.update(dBHelper.TABLE_OUTLINE, values, "_id = ?", new String[]{outlineID});
         database.close();
         fragmentTransaction();
     }

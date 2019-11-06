@@ -44,14 +44,6 @@ public class Container_charbio extends Fragment {
     private String fragmentTag = Container_charbio.class.getSimpleName();
     private ViewPager mViewPager;
 
-    /*
-    @BindView(R.id.fab_add_challenge)
-    com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton fabAddChallenge;
-    @BindView(R.id.fab_guide)
-    com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton fabCheckGuide;
-    @BindView(R.id.fab_timeline)
-    com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton fabAddTimeline;
-    */
     ArrayList<String> char_description;
     public Container_charbio() {
         // Required empty public constructor
@@ -145,7 +137,7 @@ public class Container_charbio extends Fragment {
                 if(Common.isPAU)
                 {
                     String bio = Utils.generateBIO(getContext(),Common.currentCharacter.getId());
-                    StringBuffer challenges = Utils.generateChallenges(getContext(),Common.currentCharacter.getId());
+                    StringBuffer challenges = Utils.generateChallengesDeprecated(getContext(),Common.currentCharacter.getId());
                     String body = bio + "<BR><BR>" + challenges;
                     SHARE(body, Common.currentCharacter.getName());
                 } else

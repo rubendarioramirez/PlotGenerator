@@ -48,4 +48,26 @@ public class Common {
     public static FirebaseAuth currentAuth;
     public static FirebaseUser currentFirebaseUser;
 
+    public static String characterProject(){
+        if(currentCharacter !=null) {
+            return currentCharacter.getProject_name();
+        }
+        return "";
+    }
+
+    public static String characterName(){
+        if(currentCharacter !=null) {
+            return currentCharacter.getName();
+        }
+        return "";
+    }
+
+    public static String characterID(){
+        if(currentCharacter !=null) {
+            return currentCharacter.getId();
+        }
+        return "";
+    }
+
+
 }

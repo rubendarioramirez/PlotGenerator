@@ -12,14 +12,19 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.plotgen.rramirez.plotgenerator.Common.CharacterUtils;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
+import com.plotgen.rramirez.plotgenerator.Common.SQLUtils;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.opencensus.metrics.LongGauge;
 
 
 /**
@@ -64,11 +69,28 @@ public class BioChallengesFragment extends Fragment {
         }
 
 
-        StringBuffer challenges = Utils.generateChallenges(getContext(),charID);
-            if(Html.fromHtml(challenges.toString()).toString().equals("")){
+        //Get answers and titles
+        ArrayList challengeTitles = Utils.getAllChallengesTitlesbyID(getContext(),charID);
+        StringBuffer sb = new StringBuffer();
+        for(int i = 0; i<challengeTitles.size();i++){
+            int resourceID = this.getResources().getIdentifier(challengeTitles.get(i).toString(), "array",getActivity().getPackageName());
+            String[] myResArray = getResources().getStringArray(resourceID);
+            List<String> questionTitles = Arrays.asList(myResArray);
+            //Get answers
+            ArrayList challengeAnswers = Utils.getChallengeByID(getContext(),challengeTitles.get(i).toString(),charID);
+            //Get the title of the challenge.
+            sb.append("<br><b><font color='red'>" + questionTitles.get(2) + "</font></b>");
+            for (int x = 4; x < questionTitles.size(); x++) {
+            sb.append("<br><b>" + CharacterUtils.addCharNameOnChallenge(questionTitles.get(x), getContext()) + "</b>");
+            sb.append("<br><br>" + challengeAnswers.get(x - 4) + "<br>");
+            }
+
+        }
+
+            if(sb.toString().equals("")){
                 biochallenge_body.setText(getString(R.string.biocontainer_challenge_empty));
             } else {
-                biochallenge_body.setText(Html.fromHtml(challenges.toString()));
+                biochallenge_body.setText(Html.fromHtml(sb.toString()));
             }
 
 

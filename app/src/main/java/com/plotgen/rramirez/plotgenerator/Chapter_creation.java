@@ -21,7 +21,7 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
-import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
+import com.plotgen.rramirez.plotgenerator.Common.dBHelper;
 
 import java.util.ArrayList;
 
@@ -77,30 +77,30 @@ public class Chapter_creation extends Fragment {
 
 
     private void saveToDB() {
-        SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
+        SQLiteDatabase database = new dBHelper(this.getContext()).getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(mySQLiteDBHelper.PROJECT_COLUMN_PROJECT, chapter_name_et.getText().toString());
-        values.put(mySQLiteDBHelper.PROJECT_COLUMN_PLOT, chapter_summary_et.getText().toString());
-        database.insert(mySQLiteDBHelper.TABLE_PROJECT, null, values);
+        values.put(dBHelper.PROJECT_COLUMN_PROJECT, chapter_name_et.getText().toString());
+        values.put(dBHelper.PROJECT_COLUMN_PLOT, chapter_summary_et.getText().toString());
+        database.insert(dBHelper.TABLE_PROJECT, null, values);
         database.close();
 
     }
 
     private void updateDB() {
-        SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
+        SQLiteDatabase database = new dBHelper(this.getContext()).getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(mySQLiteDBHelper.PROJECT_COLUMN_PROJECT, chapter_name_et.getText().toString());
-        values.put(mySQLiteDBHelper.PROJECT_COLUMN_PLOT, chapter_summary_et.getText().toString());
-        values.put(mySQLiteDBHelper.PROJECT_COLUMN_IMAGE, filepath);
-        database.update(mySQLiteDBHelper.TABLE_PROJECT, values, "_id = ?", new String[]{projectID});
+        values.put(dBHelper.PROJECT_COLUMN_PROJECT, chapter_name_et.getText().toString());
+        values.put(dBHelper.PROJECT_COLUMN_PLOT, chapter_summary_et.getText().toString());
+        values.put(dBHelper.PROJECT_COLUMN_IMAGE, filepath);
+        database.update(dBHelper.TABLE_PROJECT, values, "_id = ?", new String[]{projectID});
         database.close();
     }
 
 
     public ArrayList<String> getProject(Context context) {
-        mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
+        dBHelper myhelper = new dBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        String query = "SELECT * FROM  " + mySQLiteDBHelper.TABLE_PROJECT + " WHERE _id = ?";
+        String query = "SELECT * FROM  " + dBHelper.TABLE_PROJECT + " WHERE _id = ?";
         ArrayList<String> char_list = new ArrayList<String>();
         try {
             Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{projectID});

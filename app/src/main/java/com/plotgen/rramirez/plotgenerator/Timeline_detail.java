@@ -23,7 +23,7 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.SQLUtils;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
-import com.plotgen.rramirez.plotgenerator.Common.mySQLiteDBHelper;
+import com.plotgen.rramirez.plotgenerator.Common.dBHelper;
 import com.plotgen.rramirez.plotgenerator.Fragment.Container_charbio;
 
 import java.text.DateFormat;
@@ -164,30 +164,30 @@ public class Timeline_detail extends Fragment {
 
     //Save DB for the selected OUTLINE
     private void saveToDB() {
-        SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
+        SQLiteDatabase database = new dBHelper(this.getContext()).getWritableDatabase();
         ContentValues values = new ContentValues();
         String title = timeline_title_et.getText().toString();
-        values.put(mySQLiteDBHelper.TIMELINE_COLUMN_TITLE, title);
-        values.put(mySQLiteDBHelper.TIMELINE_COLUMN_DESCRIPTION, timeline_description_et.getText().toString());
-        values.put(mySQLiteDBHelper.TIMELINE_COLUMN_CHARACTER_ID, Common.currentCharacter.getId());
-        values.put(mySQLiteDBHelper.TIMELINE_COLUMN_POSITION, "0");
-        values.put(mySQLiteDBHelper.TIMELINE_COLUMN_DATE, unixDate.getTime());
-        database.insert(mySQLiteDBHelper.TABLE_TIMELINE, null, values);
+        values.put(dBHelper.TIMELINE_COLUMN_TITLE, title);
+        values.put(dBHelper.TIMELINE_COLUMN_DESCRIPTION, timeline_description_et.getText().toString());
+        values.put(dBHelper.TIMELINE_COLUMN_CHARACTER_ID, Common.currentCharacter.getId());
+        values.put(dBHelper.TIMELINE_COLUMN_POSITION, "0");
+        values.put(dBHelper.TIMELINE_COLUMN_DATE, unixDate.getTime());
+        database.insert(dBHelper.TABLE_TIMELINE, null, values);
         database.close();
         fragmentTransaction();
     }
 
     //Update DB for the selected OUTLINE
     private void updateDB() {
-        SQLiteDatabase database = new mySQLiteDBHelper(this.getContext()).getWritableDatabase();
+        SQLiteDatabase database = new dBHelper(this.getContext()).getWritableDatabase();
         ContentValues values = new ContentValues();
         String title = timeline_title_et.getText().toString();
-        values.put(mySQLiteDBHelper.TIMELINE_COLUMN_TITLE, title);
-        values.put(mySQLiteDBHelper.TIMELINE_COLUMN_DESCRIPTION, timeline_description_et.getText().toString());
-        values.put(mySQLiteDBHelper.TIMELINE_COLUMN_CHARACTER_ID, Common.currentCharacter.getId());
-        values.put(mySQLiteDBHelper.TIMELINE_COLUMN_POSITION, "0");
-        values.put(mySQLiteDBHelper.TIMELINE_COLUMN_DATE, unixUpdate);
-        database.update(mySQLiteDBHelper.TABLE_TIMELINE, values, "_id = ?", new String[]{timelineID});
+        values.put(dBHelper.TIMELINE_COLUMN_TITLE, title);
+        values.put(dBHelper.TIMELINE_COLUMN_DESCRIPTION, timeline_description_et.getText().toString());
+        values.put(dBHelper.TIMELINE_COLUMN_CHARACTER_ID, Common.currentCharacter.getId());
+        values.put(dBHelper.TIMELINE_COLUMN_POSITION, "0");
+        values.put(dBHelper.TIMELINE_COLUMN_DATE, unixUpdate);
+        database.update(dBHelper.TABLE_TIMELINE, values, "_id = ?", new String[]{timelineID});
         database.close();
         Toast.makeText(getContext(),"Updated", Toast.LENGTH_LONG).show();
         fragmentTransaction();

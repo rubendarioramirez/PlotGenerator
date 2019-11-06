@@ -69,10 +69,10 @@ public class Utils extends Fragment{
     }
 
     public static ArrayList<String> getProjects_list(Context context) {
-        mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
+        dBHelper myhelper = new dBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
         String orderBy = "_id DESC";
-        Cursor cursor = sqLiteDatabase.query(mySQLiteDBHelper.TABLE_PROJECT, null, null, null, null, null, orderBy );
+        Cursor cursor = sqLiteDatabase.query(dBHelper.TABLE_PROJECT, null, null, null, null, null, orderBy );
         cursor.moveToFirst();
         ArrayList<String> projects_list = new ArrayList<String>();
         String image = "";
@@ -93,9 +93,9 @@ public class Utils extends Fragment{
 
     //This function to get projects by ID onces everybody saved the id.
     public static ArrayList<String> getCharListByID(Context context, String project_id){
-        mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
+        dBHelper myhelper = new dBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        String query = "SELECT * FROM  " + mySQLiteDBHelper.TABLE_CHARACTER + " WHERE project_id = ?";
+        String query = "SELECT * FROM  " + dBHelper.TABLE_CHARACTER + " WHERE project_id = ?";
         ArrayList<String> projects_list = new ArrayList<String>();
         try {
             Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{project_id});
@@ -119,9 +119,9 @@ public class Utils extends Fragment{
     }
 
     public static ArrayList<String> getBIO(Context context, String charID) {
-        mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
+        dBHelper myhelper = new dBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        String query = "SELECT * FROM  " + mySQLiteDBHelper.TABLE_CHARACTER + " WHERE _id = ?";
+        String query = "SELECT * FROM  " + dBHelper.TABLE_CHARACTER + " WHERE _id = ?";
         ArrayList<String> char_list = new ArrayList<String>();
         try {
             Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{charID});
@@ -160,9 +160,9 @@ public class Utils extends Fragment{
 
 
     public static ArrayList<String> getChallenges(Context context, String charID) {
-        mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
+        dBHelper myhelper = new dBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        String query = "SELECT * FROM  " + mySQLiteDBHelper.TABLE_CHARACTER + " WHERE _id = ?";
+        String query = "SELECT * FROM  " + dBHelper.TABLE_CHARACTER + " WHERE _id = ?";
         ArrayList<String> char_list = new ArrayList<String>();
         try {
             Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{charID});
@@ -238,7 +238,7 @@ public class Utils extends Fragment{
     }
 
 
-    public static StringBuffer generateChallenges(Context context, String charID) {
+    public static StringBuffer generateChallengesDeprecated(Context context, String charID) {
         ArrayList<String> char_description = new ArrayList<String>();
         char_description = getChallenges(context,charID);
         StringBuffer sb = new StringBuffer();
@@ -405,10 +405,66 @@ public class Utils extends Fragment{
             return sb;
         }
 
-    public static ArrayList<String> getPhoto(Context context, String charID) {
-        mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
+
+
+    public static ArrayList<String> getChallengeByID(Context context, String challengeID,String charID){
+        dBHelper myhelper = new dBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        String query = "SELECT * FROM  " + mySQLiteDBHelper.TABLE_CHARACTER + " WHERE _id = ?";
+        String query = "SELECT * FROM  " + dBHelper.TABLE_CHALLENGE + " WHERE challengeID = ? AND characterID = ?";
+        Cursor cursor = sqLiteDatabase.rawQuery(query,new String[]{challengeID,charID});
+        cursor.moveToFirst();
+        ArrayList<String> challenge_list = new ArrayList<String>();
+        while(!cursor.isAfterLast()) {
+            //First challenge
+            challenge_list.add(cursor.getString(cursor.getColumnIndex("q1")));
+            challenge_list.add(cursor.getString(cursor.getColumnIndex("q2")));
+            challenge_list.add(cursor.getString(cursor.getColumnIndex("q3")));
+            challenge_list.add(cursor.getString(cursor.getColumnIndex("q4")));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return challenge_list;
+    }
+
+    public static ArrayList<String> getAllChallengesByCharID(Context context,String charID){
+        dBHelper myhelper = new dBHelper(context);
+        SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
+        String query = "SELECT * FROM  " + dBHelper.TABLE_CHALLENGE + " WHERE characterID = ?";
+        Cursor cursor = sqLiteDatabase.rawQuery(query,new String[]{charID});
+        cursor.moveToFirst();
+        ArrayList<String> challenge_list = new ArrayList<String>();
+        while(!cursor.isAfterLast()) {
+            challenge_list.add(cursor.getString(cursor.getColumnIndex("challengeID")));
+            challenge_list.add(cursor.getString(cursor.getColumnIndex("q1")));
+            challenge_list.add(cursor.getString(cursor.getColumnIndex("q2")));
+            challenge_list.add(cursor.getString(cursor.getColumnIndex("q3")));
+            challenge_list.add(cursor.getString(cursor.getColumnIndex("q4")));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return challenge_list;
+    }
+
+    public static ArrayList<String> getAllChallengesTitlesbyID(Context context,String charID){
+        dBHelper myhelper = new dBHelper(context);
+        SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
+        String query = "SELECT * FROM  " + dBHelper.TABLE_CHALLENGE + " WHERE characterID = ?";
+        Cursor cursor = sqLiteDatabase.rawQuery(query,new String[]{charID});
+        cursor.moveToFirst();
+        ArrayList<String> challenge_list = new ArrayList<String>();
+        while(!cursor.isAfterLast()) {
+            challenge_list.add(cursor.getString(cursor.getColumnIndex("challengeID")));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return challenge_list;
+    }
+
+
+    public static ArrayList<String> getPhoto(Context context, String charID) {
+        dBHelper myhelper = new dBHelper(context);
+        SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
+        String query = "SELECT * FROM  " + dBHelper.TABLE_CHARACTER + " WHERE _id = ?";
         ArrayList<String> char_list = new ArrayList<String>();
         try {
             Cursor cursor = sqLiteDatabase.rawQuery(query, new String[]{charID});
@@ -469,13 +525,13 @@ public class Utils extends Fragment{
             bio_text.append(context.getString(R.string.bodybuild_bio) + " " + bodybuild + "<br>");
 
 
-            if (gender.equals("Masculino") || gender.equals("Male") || gender.equals("Pria")) {
+            if (gender.equals(context.getResources().getString(R.string.gender_male))) {
                 bio_text.append(context.getString(R.string.male_desire_bio) + " " + desire + "<br>");
                 bio_text.append(context.getString(R.string.male_need_bio) + " " + need + "?<br>");
                 bio_text.append(context.getString(R.string.male_moment_bio) + " " + moment + "<br>");
                 bio_text.append(context.getString(R.string.male_trait_bio) + " " + trait1 + ", " + trait2 + ", " + trait3 + "<br><br>");
                 bio_text.append(context.getString(R.string.male_phrase_bio) + "<br> " + phrase + "<br><br>");
-            } else if (gender.equals("Femenino") || gender.equals("Female") || gender.equals("Wanita")) {
+            } else if (gender.equals(context.getResources().getString(R.string.gender_female))) {
                 bio_text.append(context.getString(R.string.female_desire_bio) + " " + desire + "<br>");
                 bio_text.append(context.getString(R.string.female_need_bio) + " " + need + "?<br>");
                 bio_text.append(context.getString(R.string.female_moment_bio) + " " + moment + "<br>");
@@ -497,9 +553,9 @@ public class Utils extends Fragment{
     }
 
     public static Boolean isHaveStoryFromDB(Context context, String project_id) {
-        mySQLiteDBHelper myhelper = new mySQLiteDBHelper(context);
+        dBHelper myhelper = new dBHelper(context);
         SQLiteDatabase sqLiteDatabase = myhelper.getWritableDatabase();
-        String query = "SELECT * FROM  " + mySQLiteDBHelper.CHARACTER_TABLE_STORY + " WHERE project_id = ?";
+        String query = "SELECT * FROM  " + dBHelper.CHARACTER_TABLE_STORY + " WHERE project_id = ?";
         ArrayList<String> story_list = new ArrayList<String>();
         String s = "";
         try {
@@ -526,8 +582,8 @@ public class Utils extends Fragment{
 
 
     public static void deleteFromDB(Context context, String projectID) {
-        SQLiteDatabase database = new mySQLiteDBHelper(context).getWritableDatabase();
-        database.delete(mySQLiteDBHelper.TABLE_PROJECT, "_id = ?", new String[]{projectID});
+        SQLiteDatabase database = new dBHelper(context).getWritableDatabase();
+        database.delete(dBHelper.TABLE_PROJECT, "_id = ?", new String[]{projectID});
         database.close();
     }
 

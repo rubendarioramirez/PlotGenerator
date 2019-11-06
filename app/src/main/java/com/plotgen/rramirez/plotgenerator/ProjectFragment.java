@@ -70,7 +70,6 @@ public class ProjectFragment extends Fragment {
                 if (project_list_array.get(i).split("/&&/").length >= 4){
                     image = project_list_array.get(i).split("/&&/")[3];
                 }
-                Log.v("matilda", image);
                 mlist.add(new item_project_list(id, name, genre, characters, image));
                 }
             }
