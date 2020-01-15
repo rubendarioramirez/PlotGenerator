@@ -22,6 +22,7 @@ import com.google.android.gms.appinvite.AppInviteInvitation;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.plotgen.rramirez.plotgenerator.BioChallengesFragment;
 import com.plotgen.rramirez.plotgenerator.BioFragment;
+import com.plotgen.rramirez.plotgenerator.Common.CharacterUtils;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Guides.GuideListFragment;
@@ -29,6 +30,8 @@ import com.plotgen.rramirez.plotgenerator.R;
 import com.plotgen.rramirez.plotgenerator.TimelineFragment;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import butterknife.ButterKnife;
 
@@ -136,9 +139,26 @@ public class Container_charbio extends Fragment {
             try {
                 if(Common.isPAU)
                 {
+                    //Get answers and titles
+                    String charID = Common.currentCharacter.getId();
+                    ArrayList challengeTitles = Utils.getAllChallengesTitlesbyID(getContext(),charID);
+                    StringBuffer sb = new StringBuffer();
+                    for(int i = 0; i<challengeTitles.size();i++){
+                        int resourceID = this.getResources().getIdentifier(challengeTitles.get(i).toString(), "array",getActivity().getPackageName());
+                        String[] myResArray = getResources().getStringArray(resourceID);
+                        List<String> questionTitles = Arrays.asList(myResArray);
+                        //Get answers
+                        ArrayList challengeAnswers = Utils.getChallengeByID(getContext(),challengeTitles.get(i).toString(),charID);
+                        //Get the title of the challenge.
+                        sb.append("<br><b><font color='red'>" + questionTitles.get(2) + "</font></b>");
+                        for (int x = 4; x < questionTitles.size(); x++) {
+                            sb.append("<br><b>" + CharacterUtils.addCharNameOnChallenge(questionTitles.get(x), getContext()) + "</b>");
+                            sb.append("<br><br>" + challengeAnswers.get(x - 4) + "<br>");
+                        }
+
+                    }
                     String bio = Utils.generateBIO(getContext(),Common.currentCharacter.getId());
-                    StringBuffer challenges = Utils.generateChallengesDeprecated(getContext(),Common.currentCharacter.getId());
-                    String body = bio + "<BR><BR>" + challenges;
+                    String body = bio + "<BR><BR>" + sb.toString();
                     SHARE(body, Common.currentCharacter.getName());
                 } else
                 {
