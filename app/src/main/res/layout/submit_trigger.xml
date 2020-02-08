@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="60dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/bg_rectangle_edittext"
             android:fontFamily="@font/roboto_light"
             android:hint="@string/promptHint"
@@ -49,6 +49,14 @@
             app:met_floatingLabel="highlight"
             app:met_floatingLabelText="Prompt"
             app:met_textColor="?android:attr/textColorSecondary" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/triggers_submit_disclaimer"
+            android:textColor="@color/color_trigger_1"
+            android:textSize="12sp"/>
 
 
     </LinearLayout>

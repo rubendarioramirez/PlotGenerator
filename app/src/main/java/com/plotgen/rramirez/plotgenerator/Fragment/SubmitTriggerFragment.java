@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,6 +65,11 @@ public class SubmitTriggerFragment extends Fragment {
             // Title is required
             if (TextUtils.isEmpty(s)) {
                 etTriggerStory.setError("Required");
+                return;
+            }
+
+            if(s.length() > 120){
+                etTriggerStory.setError(s.length() + "/120. Please use less than 120 characters");
                 return;
             }
 
