@@ -153,7 +153,7 @@ public class OfflineStoryFragment extends Fragment {
 
         //publish button
         FloatingActionButton fabPublish = view.findViewById(R.id.btnPublish);
-        //fabPublish.setVisibility(View.VISIBLE);
+        fabPublish.setVisibility(View.INVISIBLE);
 
 
         fabPublish.setOnClickListener(new View.OnClickListener() {

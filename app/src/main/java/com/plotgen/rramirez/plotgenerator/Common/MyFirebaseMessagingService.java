@@ -13,28 +13,17 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
 
-        String title = remoteMessage.getNotification().getTitle();
-        String body = remoteMessage.getNotification().getBody();
-        Gson gson = new GsonBuilder().serializeNulls().create();
+        String title = remoteMessage.getData().get("title");
+        String body = remoteMessage.getData().get("body");
+
+        Log.v("matilda", "Data is " + remoteMessage.getData().get("title"));
 
         if(Utils.getStringSharePref(getApplicationContext(),"notifications").equalsIgnoreCase("true")) {
-            if (remoteMessage.getData() != null) {
-                if (Objects.requireNonNull(remoteMessage.getData().get("tag")).equalsIgnoreCase("post")) {
-                    String tag = remoteMessage.getData().get("tag");
-                    String id = remoteMessage.getData().get("id");
-                    MyNotificationManager.getInstance(getApplicationContext())
-                            .displayNotification(title, body, tag, id);
-                    Log.e("remote message", remoteMessage.getData().toString());
-                } else {
-                    MyNotificationManager.getInstance(getApplicationContext())
-                            .displayNotification(title, body);
-                }
-            } else {
-                MyNotificationManager.getInstance(getApplicationContext())
-                        .displayNotification(title, body);
-            }
-        }
+        MyNotificationManager.getInstance(getApplicationContext())
 
+                .displayNotification(title, body);
+
+        }
     }
 
     @Override

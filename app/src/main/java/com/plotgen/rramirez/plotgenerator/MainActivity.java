@@ -49,6 +49,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.ironsource.mediationsdk.IronSource;
@@ -65,6 +66,7 @@ import com.plotgen.rramirez.plotgenerator.Model.User;
 import com.plotgen.rramirez.plotgenerator.Model.UserStory;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
 
@@ -97,10 +99,13 @@ public class MainActivity extends AppCompatActivity
 
         IronSource.init(this, "92412865");
 
-        //IntegrationHelper.validateIntegration(this);
 
-        //MediationTestSuite.launch(MainActivity.this, "ca-app-pub-6696437403163667~6953226633");
 
+        if (Locale.getDefault().getDisplayLanguage().equals("español")) {
+            FirebaseMessaging.getInstance().subscribeToTopic("newChallenge_es");
+        } else {
+            FirebaseMessaging.getInstance().subscribeToTopic("newChallenge_en");
+        }
 
 
         // Load an Interstitial Ad
