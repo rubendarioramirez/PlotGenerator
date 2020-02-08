@@ -14,12 +14,17 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.reward.RewardItem;
+import com.google.android.gms.ads.reward.RewardedVideoAd;
+import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.plotgen.rramirez.plotgenerator.Common.AdsHelper;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.MainActivity;
@@ -31,15 +36,20 @@ import com.plotgen.rramirez.plotgenerator.TriggerFragment;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+
+
+
+
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SubmitTriggerFragment extends Fragment {
+public class SubmitTriggerFragment extends Fragment implements RewardedVideoAdListener {
 
 
     @BindView(R.id.etTriggerStory)
@@ -54,6 +64,9 @@ public class SubmitTriggerFragment extends Fragment {
     private CollectionReference mReference;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    private RewardedVideoAd mRewardedVideoAd;
+    public int can_submit = 0;
 
     @OnClick(R.id.btnTriggerSubmit)
     public void submitStory(View view) {
@@ -73,39 +86,47 @@ public class SubmitTriggerFragment extends Fragment {
                 return;
             }
 
+            if(can_submit == 0){
+                if (mRewardedVideoAd.isLoaded()) {
+                    mRewardedVideoAd.show();
+                    }
+                can_submit = 1;
+                return;
+            }
+                    CollectionReference collectionReference = mReference.document("0").collection("special");
+                    String key = mReference.document().getId();
+                    Long tsLong = System.currentTimeMillis() / 1000;
 
-            CollectionReference collectionReference = mReference.document("0").collection("special");
-            String key = mReference.document().getId();
-            Long tsLong = System.currentTimeMillis() / 1000;
+                    final Prompt prompt = new Prompt(key, etTriggerStory.getText().toString(), tsLong,
+                            new User(Common.currentUser.getUid(),
+                                    Common.currentUser.getName(),
+                                    Common.currentUser.getEmail(),
+                                    Common.currentUser.getPicUrl().toString()),
+                            false);
 
-            final Prompt prompt = new Prompt(key, etTriggerStory.getText().toString(), tsLong,
-                    new User(Common.currentUser.getUid(),
-                            Common.currentUser.getName(),
-                            Common.currentUser.getEmail(),
-                            Common.currentUser.getPicUrl().toString()),
-                    false);
+                    Map<String, Object> postValues = prompt.toMap();
 
-            Map<String, Object> postValues = prompt.toMap();
+                    Map<String, Object> childUpdates = new HashMap<>();
+                    childUpdates.put(key, postValues);
+                    collectionReference.document(key).update(childUpdates);
 
-            Map<String, Object> childUpdates = new HashMap<>();
-            childUpdates.put(key, postValues);
-            collectionReference.document(key).update(childUpdates);
+                    collectionReference.document(key).set(postValues).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            Toast.makeText(getContext(), " Prompt Added", Toast.LENGTH_SHORT).show();
 
-            collectionReference.document(key).set(postValues).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    Toast.makeText(getContext(), " Prompt Added", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
+                    etTriggerStory.setText("");
+                    Utils.saveOnSharePreg(getContext(), "can_submit_trigger", 0);
+
+                    //Come back to Triggers
+                    TriggerFragment nextFragment = new TriggerFragment();
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    Utils.changeFragment(nextFragment, transaction);
                 }
-            });
-
-            etTriggerStory.setText("");
-
-            //Come back to Triggers
-            TriggerFragment nextFragment = new TriggerFragment();
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            Utils.changeFragment(nextFragment, transaction);
-        }else {
+        else {
             Toast.makeText(getContext(),"Please login in Profile section", Toast.LENGTH_LONG).show();
         }
     }
@@ -126,6 +147,18 @@ public class SubmitTriggerFragment extends Fragment {
 
         mAuth = Common.currentAuth;
         mUser = Common.currentFirebaseUser;
+        can_submit = Utils.getSharePref(getContext(), "can_submit_trigger", 0);
+
+        if (!Common.isPAU) {
+            //Rewarded ad
+            mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(getContext());
+            mRewardedVideoAd.setRewardedVideoAdListener(this);
+            AdsHelper.loadRewardedVideoAd(mRewardedVideoAd, Objects.requireNonNull(getContext()));
+        } else {
+            Utils.saveOnSharePreg(getContext(), "can_submit_trigger", 1);
+            can_submit = 1;
+        }
+
 
         mAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
             @Override
@@ -148,6 +181,48 @@ public class SubmitTriggerFragment extends Fragment {
         if (mUser != null) {
             Common.currentUser = new User(mUser.getUid(), mUser.getDisplayName(), mUser.getEmail(), mUser.getPhotoUrl().toString(), mUser.getPhotoUrl());
         }
+    }
+
+    @Override
+    public void onRewardedVideoAdLoaded() {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdOpened() {
+
+    }
+
+    @Override
+    public void onRewardedVideoStarted() {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdClosed() {
+        AdsHelper.loadRewardedVideoAd(mRewardedVideoAd,getContext());
+    }
+
+    @Override
+    public void onRewarded(RewardItem rewardItem) {
+        //Get the reward
+        Utils.saveOnSharePreg(getContext(), "can_submit_trigger", 1);
+
+    }
+
+    @Override
+    public void onRewardedVideoAdLeftApplication() {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdFailedToLoad(int i) {
+
+    }
+
+    @Override
+    public void onRewardedVideoCompleted() {
+
     }
 
 }
