@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,10 @@ import android.widget.TextView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -38,6 +43,8 @@ public class DiscoverFragment extends Fragment {
     @BindView(R.id.empty_project_tv)
     TextView emptyGenreTv;
 
+
+    private InterstitialAd mInterstitialAd;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private LinearLayoutManager mManager;
@@ -67,6 +74,29 @@ public class DiscoverFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_discover, container, false);
 
         ButterKnife.bind(this, view);
+
+
+        if (!Common.isPAU) {
+            //Init the ads
+            MobileAds.initialize(view.getContext(), getString(R.string.ad_account_id));
+            //Interstitial
+            mInterstitialAd = new InterstitialAd(view.getContext());
+            mInterstitialAd.setAdUnitId(getString(R.string.interstitial_plot_gen));
+            mInterstitialAd.loadAd(new AdRequest.Builder()
+                    .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
+                    .build());
+            mInterstitialAd.setAdListener(new AdListener() {
+                @Override
+                public void onAdClosed() {
+                    // Load the next interstitial.
+                    mInterstitialAd.loadAd(new AdRequest.Builder()
+                            .addTestDevice("E230AE087E1D0E7FB2304943F378CD64")
+                            .build());
+
+                }
+
+            });
+        }
 
         // Set up Layout Manager, reverse layout
         mManager = new LinearLayoutManager(getActivity());
@@ -100,6 +130,7 @@ public class DiscoverFragment extends Fragment {
                 LayoutInflater inflater = LayoutInflater.from(parent.getContext());
                 return new OfflineStoryViewHolder(inflater.inflate(
                         R.layout.item_user_story, parent, false));
+
             }
             @Override
             protected void onBindViewHolder(@NonNull OfflineStoryViewHolder holder, int position, @NonNull final Story model) {
@@ -110,6 +141,13 @@ public class DiscoverFragment extends Fragment {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        if (!Common.isPAU) {
+                            if (mInterstitialAd.isLoaded()) {
+                                    mInterstitialAd.show();
+                            } else {
+                                Log.d("TAG", "The interstitial wasn't loaded yet.");
+                            }
+                        }
                         //Common.currentUserStory = model;
                         Common.currentStory = model;
                         UserStoryDetailFragment nextFragment = new UserStoryDetailFragment();
