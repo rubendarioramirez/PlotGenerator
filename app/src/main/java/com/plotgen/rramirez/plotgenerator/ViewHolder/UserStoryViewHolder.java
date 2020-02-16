@@ -117,4 +117,7 @@ public class UserStoryViewHolder extends RecyclerView.ViewHolder {
 
         itemStoryLayout.removeAllViewsInLayout();
     }
+
+    public void bindToPost(DocumentReference document) {
+    }
 }

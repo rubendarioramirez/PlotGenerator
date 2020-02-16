@@ -56,9 +56,11 @@ import com.ironsource.mediationsdk.IronSource;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Constants;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
+import com.plotgen.rramirez.plotgenerator.Fragment.DiscoverFragment;
 import com.plotgen.rramirez.plotgenerator.Fragment.PremiumFragment;
 import com.plotgen.rramirez.plotgenerator.Fragment.ProfileFragment;
 import com.plotgen.rramirez.plotgenerator.Fragment.StoryDetailFragment;
+import com.plotgen.rramirez.plotgenerator.Fragment.StoryFragment;
 import com.plotgen.rramirez.plotgenerator.Fragment.UserStoryDetailFragment;
 import com.plotgen.rramirez.plotgenerator.Fragment.weekly_challenge_container;
 import com.plotgen.rramirez.plotgenerator.Model.Story;
@@ -486,12 +488,12 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item_trigger clicks here.
         int id = item.getItemId();
-        /*if (id == R.id.nav_discover) {
+        if (id == R.id.nav_discover) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.flMain, new DiscoverFragment());
             mFirebaseAnalytics.setCurrentScreen(this, ft.getClass().getSimpleName(), ft.getClass().getSimpleName());
             ft.commit();
-        }*/
+        }
         if (id == R.id.nav_trigger) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.flMain, new TriggerFragment());

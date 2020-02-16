@@ -17,10 +17,6 @@ public class UserStory {
     private long submitDate;
     private User user;
 
-    public UserStory(String key, String project_name, String project_id, String s, String s1, String mStory, Long tsLong, User user) {
-
-    }
-
     public UserStory(String key, String project_name, String project_id, String genre, String plot, String story, String lang, Long tsLong, User user) {
         this.id = key;
         this.title = project_name;

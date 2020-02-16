@@ -108,7 +108,7 @@ public class Adapter_projectList extends RecyclerView.Adapter<Adapter_projectLis
             edit_project_btn.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     if(Common.currentProject != null) {
-                        Common.currentProject = new Project(mData.get(getAdapterPosition()).getId(), mData.get(getAdapterPosition()).getName());
+                        Common.currentProject = new Project(mData.get(getAdapterPosition()).getId(), mData.get(getAdapterPosition()).getName(), mData.get(getAdapterPosition()).getgenre());
                         //Send it to the next fragment
                         Project_detailsFragment nextFragment = new Project_detailsFragment();
                         Common.projectCreationMode = false;
@@ -130,7 +130,7 @@ public class Adapter_projectList extends RecyclerView.Adapter<Adapter_projectLis
         {
             String clicked = mData.get(getAdapterPosition()).getName();
             projectID = mData.get(getAdapterPosition()).getId();
-            Project project = new Project(projectID,clicked);
+            Project project = new Project(projectID,clicked,mData.get(getAdapterPosition()).getgenre());
             Common.currentProject = project;
             nextFragment(mContext);
         }

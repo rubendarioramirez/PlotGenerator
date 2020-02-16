@@ -13,15 +13,19 @@ public class Genre {
     private String genre;
     private String uid;
     private String id;
+    private String title;
 
     public Genre() {
     }
 
-    public Genre(String uid, String key, String genre, String id) {
+
+
+    public Genre(String uid, String key, String genre, String id, String title) {
         this.uid = uid;
         this.id = key;
         this.genre = genre;
         this.project_id = id;
+        this.title = title;
     }
 
     public String getGenre() {
@@ -56,12 +60,21 @@ public class Genre {
         this.uid = uid;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     @Exclude
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
         result.put("uid", uid);
         result.put("id", id);
         result.put("project_id", project_id);
+        result.put("title", title);
         return result;
     }
 }

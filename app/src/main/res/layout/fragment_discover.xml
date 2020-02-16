@@ -8,7 +8,7 @@
     tools:context=".Fragment.DiscoverFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_genre_list"
+        android:id="@+id/rv_stories_list"
         android:layout_alignParentTop="true"
         android:dividerHeight="2dp"
         android:divider="@android:color/transparent"

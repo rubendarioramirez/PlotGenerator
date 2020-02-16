@@ -3,10 +3,14 @@ package com.plotgen.rramirez.plotgenerator.Model;
 public class Project {
     private String id;
     private String name;
+    private String genre;
 
-    public Project(String id, String name) {
+
+
+    public Project(String id, String name, String genre) {
         this.id = id;
         this.name = name;
+        this.genre = genre;
     }
 
     public String getId() {
@@ -23,6 +27,14 @@ public class Project {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
 }

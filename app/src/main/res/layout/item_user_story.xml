@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/itemStoryLayout">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        card_view:cardCornerRadius="10dp"
+        card_view:cardBackgroundColor="?android:attr/colorBackground">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivUser"
+                    android:layout_margin="8dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:id="@+id/tvUser"
+                    android:layout_margin="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/roboto_lightitalic"
+                    android:text="Joe Higashi"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textColor="?android:attr/textColorPrimary"/>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/ivTemplatePic"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fatal Fury 2018"
+                    android:textStyle="bold"
+                    android:layout_margin="4dp"
+                    android:fontFamily="@font/roboto_lightitalic"
+                    android:textSize="20sp"
+                    android:textColor="?android:attr/textColorPrimary"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvGenre"
+                    android:layout_margin="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/typewcond_regular"
+                    android:text="Historical"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="?android:attr/textColorSecondary"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvStory"
+                    android:layout_margin="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="Lorem Ipsum Dolor Sit Amet, The Quick Brown Lazy Fox Jump Out Over The Fence"
+                    android:textSize="18sp"
+                    android:textColor="?android:attr/textColorSecondary"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

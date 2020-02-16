@@ -1,6 +1,7 @@
 package com.plotgen.rramirez.plotgenerator.Fragment;
 
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +11,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.fragment.app.Fragment;
 import android.text.Html;
@@ -31,15 +34,22 @@ import com.google.android.gms.ads.AdView;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.plotgen.rramirez.plotgenerator.Common.AdsHelper;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.Common.dBHelper;
+import com.plotgen.rramirez.plotgenerator.Model.Genre;
+import com.plotgen.rramirez.plotgenerator.Model.Story;
+import com.plotgen.rramirez.plotgenerator.Model.User;
+import com.plotgen.rramirez.plotgenerator.Model.UserStory;
 import com.plotgen.rramirez.plotgenerator.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -75,6 +85,7 @@ public class OfflineStoryFragment extends Fragment {
     private FirebaseFirestore mDatabase;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
+    private CollectionReference mReference;
 
     private FirebaseAnalytics mFirebaseAnalytics;
 
@@ -121,6 +132,7 @@ public class OfflineStoryFragment extends Fragment {
 
     }
 
+    @SuppressLint("RestrictedApi")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -140,6 +152,10 @@ public class OfflineStoryFragment extends Fragment {
 
         mDatabase = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
+        mDatabase = Common.currentDatabase;
+        //mReference = mDatabase.collection("stories").document("crime").collection("chapter_1");
+        mReference = mDatabase.collection("stories");
+
 
         mUser = mAuth.getCurrentUser();
 
@@ -153,7 +169,7 @@ public class OfflineStoryFragment extends Fragment {
 
         //publish button
         FloatingActionButton fabPublish = view.findViewById(R.id.btnPublish);
-        fabPublish.setVisibility(View.INVISIBLE);
+        fabPublish.setVisibility(View.VISIBLE);
 
 
         fabPublish.setOnClickListener(new View.OnClickListener() {
@@ -169,8 +185,32 @@ public class OfflineStoryFragment extends Fragment {
                                     .build(),
                             RC_SIGN_IN);
                 } else {
-                    //publishStory();
+                    mDatabase = FirebaseFirestore.getInstance();
+                    mUser = Common.currentFirebaseUser;
+                    CollectionReference collectionReference = mReference;
+                    String key = mReference.document().getId();
+
+                    Long tsLong = System.currentTimeMillis() / 1000;
+                    Story story = new Story(key, project_name, project_id,
+                            Common.currentProject.getGenre(), mStory, tsLong,
+                            new User(Common.currentUser.getUid(),
+                                    Common.currentUser.getName(),
+                                    Common.currentUser.getEmail(),
+                                    Common.currentUser.getPicUrl().toString()));
+
+                    Map<String, Object> storyValues = story.toMap();
+
+
+                    collectionReference.document(Common.currentUser.getEmail()).set(storyValues).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            Toast.makeText(getContext(), " Story Added", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+
                 }
+
             }
         });
 

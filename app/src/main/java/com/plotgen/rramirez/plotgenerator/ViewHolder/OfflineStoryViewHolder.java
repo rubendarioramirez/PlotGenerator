@@ -1,13 +1,12 @@
 package com.plotgen.rramirez.plotgenerator.ViewHolder;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.text.Html;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -25,7 +24,7 @@ import javax.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class StoryViewHolder extends RecyclerView.ViewHolder {
+public class OfflineStoryViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.tvTitle)
     public TextView tvTitle;
@@ -35,20 +34,14 @@ public class StoryViewHolder extends RecyclerView.ViewHolder {
     public TextView tvStory;
     @BindView(R.id.tvUser)
     public TextView tvUser;
-    @BindView(R.id.tvLoves)
-    public TextView tvLoves;
-    @BindView(R.id.tvComments)
-    public TextView tvComments;
     @BindView(R.id.ivTemplatePic)
     public ImageView ivTemplatePic;
     @BindView(R.id.ivUser)
     public ImageView ivUser;
-    @BindView(R.id.ivLoves)
-    public ImageView ivLoves;
     @BindView(R.id.itemStoryLayout)
     public RelativeLayout itemStoryLayout;
 
-    public StoryViewHolder(View itemView) {
+    public OfflineStoryViewHolder(View itemView) {
         super(itemView);
 
         ButterKnife.bind(this, itemView);
@@ -67,20 +60,7 @@ public class StoryViewHolder extends RecyclerView.ViewHolder {
         tvTitle.setText(story.getTitle());
         tvGenre.setText(story.getGenre());
         tvStory.setText(story.getChalenge());
-        tvLoves.setText(String.valueOf(story.getLikeCount()));
-        ivLoves.setOnClickListener(likeClickListener);
 
-
-        commentRef.addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                int commentCount = 0;
-                for (DocumentSnapshot commentData : queryDocumentSnapshots.getDocuments()) {
-                    commentCount++;
-                }
-                tvComments.setText(String.valueOf(commentCount));
-            }
-        });
 
     }
 
@@ -94,5 +74,10 @@ public class StoryViewHolder extends RecyclerView.ViewHolder {
         ivTemplatePic.setImageResource(R.drawable.typewriter);
         tvTitle.setText(document.getId());
         tvStory.setText(Html.fromHtml(story.getChalenge()));
+        tvGenre.setText(story.getGenre());
+        Glide.with(itemView.getContext())
+                .load(story.getUser().getUriString())
+                .apply(RequestOptions.circleCropTransform())
+                .into(ivUser);
     }
 }

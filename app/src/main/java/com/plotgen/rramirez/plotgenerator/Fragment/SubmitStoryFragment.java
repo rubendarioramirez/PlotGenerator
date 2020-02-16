@@ -136,7 +136,6 @@ public class SubmitStoryFragment extends Fragment {
 
         mDatabase = Common.currentDatabase;
         mReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name)).document(Common.currentWeeklyStoryTitle).collection("posts");
-      //  mReference = mDatabase.getReference().child(getString(R.string.weekly_challenge_db_name));
 
         if (Common.currentChallenge != null) {
             etTitle.setText(Common.currentChallenge.getName());

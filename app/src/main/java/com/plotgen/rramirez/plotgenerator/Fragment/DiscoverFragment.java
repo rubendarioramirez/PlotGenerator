@@ -1,5 +1,6 @@
 package com.plotgen.rramirez.plotgenerator.Fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -22,16 +23,16 @@ import com.google.firebase.firestore.Query;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
 import com.plotgen.rramirez.plotgenerator.MainActivity;
-import com.plotgen.rramirez.plotgenerator.Model.Genre;
+import com.plotgen.rramirez.plotgenerator.Model.Story;
 import com.plotgen.rramirez.plotgenerator.R;
-import com.plotgen.rramirez.plotgenerator.ViewHolder.GenreViewHolder;
+import com.plotgen.rramirez.plotgenerator.ViewHolder.OfflineStoryViewHolder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class DiscoverFragment extends Fragment {
 
-    @BindView(R.id.rv_genre_list)
+    @BindView(R.id.rv_stories_list)
     RecyclerView rvGenre;
 
     @BindView(R.id.empty_project_tv)
@@ -42,8 +43,8 @@ public class DiscoverFragment extends Fragment {
     private LinearLayoutManager mManager;
     private FirebaseFirestore mDatabase;
     private CollectionReference mReference;
-    private FirestoreRecyclerOptions<Genre> options;
-    private FirestoreRecyclerAdapter<Genre, GenreViewHolder> mAdapter;
+    private FirestoreRecyclerOptions<Story> options;
+    private FirestoreRecyclerAdapter<Story, OfflineStoryViewHolder> mAdapter;
 
     @Override
     public void onStart() {
@@ -57,6 +58,7 @@ public class DiscoverFragment extends Fragment {
         mAdapter.stopListening();
     }
 
+    @SuppressLint("WrongConstant")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -80,9 +82,9 @@ public class DiscoverFragment extends Fragment {
 
         mReference = mDatabase.collection("stories");
 
-        Query myTopPostsQuery = mReference.orderBy("genre");
-        options = new FirestoreRecyclerOptions.Builder<Genre>()
-                .setQuery(myTopPostsQuery, Genre.class)
+        Query myTopPostsQuery = mReference.orderBy("date").limit(5);
+        options = new FirestoreRecyclerOptions.Builder<Story>()
+                .setQuery(myTopPostsQuery, Story.class)
                 .build();
         populateDiscoverGenre();
 
@@ -90,32 +92,33 @@ public class DiscoverFragment extends Fragment {
     }
 
     private void populateDiscoverGenre() {
-        mAdapter = new FirestoreRecyclerAdapter<Genre, GenreViewHolder>(options) {
+        mAdapter = new FirestoreRecyclerAdapter<Story, OfflineStoryViewHolder>(options) {
+
             @NonNull
             @Override
-            public GenreViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            public OfflineStoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-                return new GenreViewHolder(inflater.inflate(
-                        R.layout.story_genre, parent, false));
+                return new OfflineStoryViewHolder(inflater.inflate(
+                        R.layout.item_user_story, parent, false));
             }
             @Override
-            protected void onBindViewHolder(@NonNull GenreViewHolder holder, int position, @NonNull final Genre model) {
+            protected void onBindViewHolder(@NonNull OfflineStoryViewHolder holder, int position, @NonNull final Story model) {
               //  final DatabaseReference postRef = getRef(position);
-                final Genre genre = model;
+                final Story story = model;
                 holder.setIsRecyclable(false);
                 //Log.e("reff", mReference.document("genre").collection(model.getGenre()).getId() + "  ");
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                           Common.currentGenre = genre;
-                     //   Common.currentGenre = mReference.document("genre").collection(model.getGenre()).getId();
-                        StoryFragment nextFragment = new StoryFragment();
+                        //Common.currentUserStory = model;
+                        Common.currentStory = model;
+                        UserStoryDetailFragment nextFragment = new UserStoryDetailFragment();
                         FragmentTransaction transaction = getFragmentManager().beginTransaction();
                         Utils.changeFragment(nextFragment, transaction);
                         transaction.addToBackStack(null);
                     }
                 });
-                holder.bindToPost(mReference.document(model.getId()));
+                holder.bindToPost(mReference.document(model.getTitle()), story);
             }
         };
         rvGenre.setAdapter(mAdapter);
