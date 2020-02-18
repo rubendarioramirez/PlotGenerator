@@ -14,6 +14,8 @@ import androidx.annotation.NonNull;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import android.text.Html;
 import android.util.Log;
@@ -35,7 +37,11 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.plotgen.rramirez.plotgenerator.Common.AdsHelper;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Utils;
@@ -45,12 +51,13 @@ import com.plotgen.rramirez.plotgenerator.Model.Story;
 import com.plotgen.rramirez.plotgenerator.Model.User;
 import com.plotgen.rramirez.plotgenerator.Model.UserStory;
 import com.plotgen.rramirez.plotgenerator.R;
-
+import com.google.firebase.firestore.EventListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.Executor;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -153,7 +160,6 @@ public class OfflineStoryFragment extends Fragment {
         mDatabase = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
         mDatabase = Common.currentDatabase;
-        //mReference = mDatabase.collection("stories").document("crime").collection("chapter_1");
         mReference = mDatabase.collection("stories");
 
 
@@ -169,8 +175,24 @@ public class OfflineStoryFragment extends Fragment {
 
         //publish button
         FloatingActionButton fabPublish = view.findViewById(R.id.btnPublish);
-        fabPublish.setVisibility(View.VISIBLE);
+        fabPublish.setVisibility(View.INVISIBLE);
 
+
+        DocumentReference mDocRef;
+        if(mUser != null){
+            String email = mUser.getEmail();
+            mDocRef = FirebaseFirestore.getInstance().document("writers/" + email);
+            mDocRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                @Override
+                public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                    if (documentSnapshot.exists()) {
+                        Boolean publisher = documentSnapshot.getBoolean("publisher");
+                        if(publisher)
+                            fabPublish.setVisibility(View.VISIBLE);
+                    }
+                }
+            });
+        }
 
         fabPublish.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,7 +218,7 @@ public class OfflineStoryFragment extends Fragment {
                             new User(Common.currentUser.getUid(),
                                     Common.currentUser.getName(),
                                     Common.currentUser.getEmail(),
-                                    Common.currentUser.getPicUrl().toString()));
+                                    Common.currentUser.getPicUrl().toString()), 0);
 
                     Map<String, Object> storyValues = story.toMap();
 

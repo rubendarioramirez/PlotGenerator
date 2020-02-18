@@ -134,10 +134,8 @@ public class DiscoverFragment extends Fragment {
             }
             @Override
             protected void onBindViewHolder(@NonNull OfflineStoryViewHolder holder, int position, @NonNull final Story model) {
-              //  final DatabaseReference postRef = getRef(position);
                 final Story story = model;
                 holder.setIsRecyclable(false);
-                //Log.e("reff", mReference.document("genre").collection(model.getGenre()).getId() + "  ");
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

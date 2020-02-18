@@ -83,9 +83,7 @@ public class MainActivity extends AppCompatActivity
     private InterstitialAd mInterstitialAd;
     private FirebaseAnalytics mFirebaseAnalytics;
     private FirebaseUser mUser;
-    //private FirebaseDatabase mDatabase;
     private  FirebaseFirestore mDatabase;
-    //private DatabaseReference mUserDatabase;
     private CollectionReference mUserDatabase;
     private String firebase_token;
     private FirebaseAuth mAuth;
@@ -100,14 +98,6 @@ public class MainActivity extends AppCompatActivity
         AppLovinSdk.initializeSdk(this.getApplicationContext());
 
         IronSource.init(this, "92412865");
-
-
-
-        if (Locale.getDefault().getDisplayLanguage().equals("español")) {
-            FirebaseMessaging.getInstance().subscribeToTopic("newChallenge_es");
-        } else {
-            FirebaseMessaging.getInstance().subscribeToTopic("newChallenge_en");
-        }
 
 
         // Load an Interstitial Ad
@@ -271,6 +261,12 @@ public class MainActivity extends AppCompatActivity
         if (Common.isPAU)
             hideItem();
 
+        if (Locale.getDefault().getDisplayLanguage().equals("español")) {
+            FirebaseMessaging.getInstance().subscribeToTopic("newChallenge_es");
+        } else {
+            FirebaseMessaging.getInstance().subscribeToTopic("newChallenge_en");
+            hideDiscovery();
+        }
 
 
 
@@ -625,6 +621,12 @@ public class MainActivity extends AppCompatActivity
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         Menu nav_Menu = navigationView.getMenu();
         nav_Menu.findItem(R.id.premium).setVisible(false);
+    }
+    private void hideDiscovery()
+    {
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        Menu nav_Menu = navigationView.getMenu();
+        nav_Menu.findItem(R.id.nav_discover).setVisible(false);
     }
 
     protected void onResume() {

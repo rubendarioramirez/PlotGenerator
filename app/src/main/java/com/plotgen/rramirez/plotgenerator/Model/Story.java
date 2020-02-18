@@ -16,6 +16,7 @@ public class Story {
     private long date;
     private User user;
     private String story;
+    private int viewCount;
 
     public int likeCount = 0;
     public Map<String, Boolean> likes = new HashMap<>();
@@ -23,7 +24,8 @@ public class Story {
     public Story() {
     }
 
-    public Story(String id, String title,String story, String genre, String chalenge, long date, User user) {
+
+    public Story(String id, String title, String story, String genre, String chalenge, long date, User user, int viewCount) {
         this.id = id;
         this.title = title;
         this.genre = genre;
@@ -31,6 +33,7 @@ public class Story {
         this.date = date;
         this.user = user;
         this.story = story;
+        this.viewCount = viewCount;
     }
 
     public String getId() {
@@ -97,6 +100,14 @@ public class Story {
         this.story = story;
     }
 
+    public int getViewCount() {
+        return viewCount;
+    }
+
+    public void setViewCount(int viewCount) {
+        this.viewCount = viewCount;
+    }
+
     @Exclude
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
@@ -108,6 +119,7 @@ public class Story {
         result.put("date", date);
         result.put("likeCount", likeCount);
         result.put("likes", likes);
+        result.put("viewCount", viewCount);
 
         return result;
     }

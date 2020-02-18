@@ -46,20 +46,26 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.SetOptions;
+import com.google.firebase.firestore.Transaction;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.RemoteMessage;
 import com.google.firebase.storage.StorageReference;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
 import com.plotgen.rramirez.plotgenerator.Common.Notify;
 import com.plotgen.rramirez.plotgenerator.Model.Comment;
+import com.plotgen.rramirez.plotgenerator.Model.Story;
 import com.plotgen.rramirez.plotgenerator.Model.User;
 import com.plotgen.rramirez.plotgenerator.R;
 import com.plotgen.rramirez.plotgenerator.ViewHolder.CommentViewHolder;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import butterknife.BindView;
@@ -87,13 +93,7 @@ public class UserStoryDetailFragment extends Fragment {
     TextView tvStory;
 
 
-    //FirestoreRecyclerAdapter_LifecycleAdapter adapter;
-    FirestoreRecyclerAdapter<Comment, CommentViewHolder> adapter;
-    FirestoreRecyclerOptions<Comment> options;
-
-    private CollectionReference mCommentReference;
     private DocumentReference mReference;
-    private CollectionReference mUserReference;
 
     public UserStoryDetailFragment() {
         // Required empty public constructor
@@ -108,7 +108,6 @@ public class UserStoryDetailFragment extends Fragment {
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         ButterKnife.bind(this, view);
-        Common.currentUserReference = mUserReference;
 
         FirebaseFirestore mDatabase = FirebaseFirestore.getInstance();
         mReference = mDatabase.collection("stories").document(Common.currentStory.getUser().getEmail());
@@ -124,6 +123,7 @@ public class UserStoryDetailFragment extends Fragment {
             tvStory.setText(Html.fromHtml(Common.currentStory.getChalenge()));
         }
 
+        mReference.update("viewCount", FieldValue.increment(1));
 
         return view;
     }
@@ -160,17 +160,6 @@ public class UserStoryDetailFragment extends Fragment {
             return s;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-//        adapter.startListening();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-  //      adapter.stopListening();
-    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
