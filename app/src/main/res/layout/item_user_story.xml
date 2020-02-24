@@ -102,6 +102,38 @@
                     android:textColor="?android:attr/textColorSecondary"/>
 
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivLoves"
+                    android:layout_margin="8dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_love_outline"/>
+
+                <TextView
+                    android:id="@+id/tvLovesUserStory"
+                    android:layout_margin="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:gravity="center"
+                    android:text="9999"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:fontFamily="@font/typewcond_regular"/>
+
+                <TextView
+                    android:layout_margin="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:gravity="center"
+                    android:text="@string/likes"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:fontFamily="@font/typewcond_regular"/>
+
+            </LinearLayout>
 
 
         </LinearLayout>

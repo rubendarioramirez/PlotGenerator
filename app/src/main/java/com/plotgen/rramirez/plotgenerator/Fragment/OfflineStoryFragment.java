@@ -57,6 +57,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 import java.util.concurrent.Executor;
 
 import butterknife.BindView;
@@ -222,8 +223,8 @@ public class OfflineStoryFragment extends Fragment {
 
                     Map<String, Object> storyValues = story.toMap();
 
-
-                    collectionReference.document(Common.currentUser.getEmail()).set(storyValues).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    String publishTitle = createTransactionID() + Common.currentUser.getEmail();
+                    collectionReference.document(publishTitle).set(storyValues).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             Toast.makeText(getContext(), " Story Added", Toast.LENGTH_SHORT).show();
@@ -284,106 +285,6 @@ public class OfflineStoryFragment extends Fragment {
 
         return view;
     }
-
-    /*
-    private void publishStory() {
-        final ArrayList<String> project = Utils.getProject(this.getContext(), project_name);
-        final CollectionReference mStoriesDatabase = mDatabase.collection("stories");
-        String key = mStoriesDatabase.getId();
-
-        Long tsLong = System.currentTimeMillis() / 1000;
-        UserStory story = new UserStory(key, project_name, project_id,
-                project.get(1), project.get(2), mStory, tsLong,
-                new User(Common.currentUser.getUid(),
-                        Common.currentUser.getName(),
-                        Common.currentUser.getEmail(),
-                        Common.currentUser.getPicUrl().toString()));
-
-        Genre genre = new Genre(Common.currentUser.getUid(), key, project.get(1), project_id);
-        Map<String, Object> genreValues = genre.toMap();
-        Map<String, Object> storyValues = story.toMap();
-        mStoriesDatabase.add(storyValues);
-
-        Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put(key, storyValues);
-        childUpdates.put("genre" + project.get(1) + key, genreValues);
-
-        mStoriesDatabase.document().update(childUpdates);
-
-        Query myTopPostsQuery = mStoriesDatabase;
-
-
-        mStoriesDatabase.add(new Transaction.Handler() {
-            @NonNull
-            @Override
-            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
-                return Transaction.success(mutableData);
-            }
-
-            @Override
-            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
-
-            }
-        });
-
-        myTopPostsQuery.addSnapshotListener(new EventListener<QuerySnapshot>() {
-         String key = mStoriesDatabase.getId();
-            @Override
-            public void onEvent(@javax.annotation.Nullable QuerySnapshot queryDocumentSnapshots, @javax.annotation.Nullable FirebaseFirestoreException e) {
-                if (!queryDocumentSnapshots.isEmpty())
-                {
-                  //  String key = queryDocumentSnapshots.key();
-                    Long tsLong = System.currentTimeMillis() / 1000;
-                    UserStory story = new UserStory(key, project_name, project_id,
-                            project.get(1), project.get(2), mStory, tsLong,
-                            new User(Common.currentUser.getUid(),
-                                    Common.currentUser.getName(),
-                                    Common.currentUser.getEmail(),
-                                    Common.currentUser.getPicUrl().toString()));
-
-                    Genre genre = new Genre(Common.currentUser.getUid(), key, project.get(1), project_id);
-                    Map<String, Object> genreValues = genre.toMap();
-                    Map<String, Object> storyValues = story.toMap();
-                    mStoriesDatabase.add(storyValues);
-
-                    Map<String, Object> childUpdates = new HashMap<>();
-                    childUpdates.put(key, storyValues);
-                    childUpdates.put("/genre/" + project.get(1) + "/" + key, genreValues);
-
-                    mStoriesDatabase.document().update(childUpdates);
-
-                } else {
-                    //  String key = mStoriesDatabase.push().getKey();
-                    String key = mUser.getUid().concat("_" + project_id);
-                    Long tsLong = System.currentTimeMillis() / 1000;
-
-                    UserStory story = new UserStory(key, project_name, project_id,
-                            project.get(1), project.get(2), mStory, tsLong,
-                            new User(Common.currentUser.getUid(),
-                                    Common.currentUser.getName(),
-                                    Common.currentUser.getEmail(),
-                                    Common.currentUser.getPicUrl().toString()));
-
-                    Genre genre = new Genre(Common.currentUser.getUid(), key, project.get(1), project_id);
-                    Map<String, Object> genreValues = genre.toMap();
-                    Map<String, Object> storyValues = story.toMap();
-
-                    Map<String, Object> childUpdates = new HashMap<>();
-                    childUpdates.put(key, storyValues);
-                    childUpdates.put("/genre/" + project.get(1) + "/" + key, genreValues);
-
-                    mStoriesDatabase.document().update(childUpdates);
-                }
-            }
-
-
-
-
-        });
-
-
-    }
-    */
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -490,4 +391,9 @@ public class OfflineStoryFragment extends Fragment {
             params.putString("Share", "completed");
             mFirebaseAnalytics.logEvent("share_completed", params);
         }
+
+        public String createTransactionID(){
+        return UUID.randomUUID().toString().replaceAll("-", "").toUpperCase();
+    }
+
 }

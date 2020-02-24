@@ -92,7 +92,13 @@ public class UserStoryDetailFragment extends Fragment {
     @BindView(R.id.tvStory)
     TextView tvStory;
 
+    @BindView(R.id.tvLoves)
+    TextView tvLoves;
 
+    @BindView(R.id.ivLoves)
+    ImageView ivLoves;
+
+    private FirebaseFirestore mDatabase;
     private DocumentReference mReference;
 
     public UserStoryDetailFragment() {
@@ -106,6 +112,8 @@ public class UserStoryDetailFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_user_story_detail, container, false);
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        mDatabase = FirebaseFirestore.getInstance();
+        mDatabase = Common.currentDatabase;
 
         ButterKnife.bind(this, view);
 
@@ -123,7 +131,19 @@ public class UserStoryDetailFragment extends Fragment {
             tvStory.setText(Html.fromHtml(Common.currentStory.getChalenge()));
         }
 
-        mReference.update("viewCount", FieldValue.increment(1));
+        if (Common.currentStory.likes.containsKey(Common.currentUser.getEmail())) {
+            ivLoves.setImageResource(R.drawable.ic_love_red);
+        } else {
+            ivLoves.setImageResource(R.drawable.ic_love_outline);
+        }
+        ivLoves.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onLikeClicked(Common.currentDocumentReference);
+            }
+        });
+
+        tvLoves.setText(String.valueOf(Common.currentStory.getLikeCount()));
 
         return view;
     }
@@ -177,4 +197,59 @@ public class UserStoryDetailFragment extends Fragment {
                     new FirebaseImageLoader.Factory());
         }
     }
+
+    private void onLikeClicked(final DocumentReference documentReference1) {
+
+        mDatabase.runTransaction(new Transaction.Function<Void>() {
+            @Nullable
+            @Override
+            public Void apply(@NonNull Transaction transaction) throws FirebaseFirestoreException {
+
+                Story p = transaction.get(documentReference1).toObject(Story.class);
+
+                if (p.likes.containsKey(Common.currentUser.getEmail())) {
+                    // Unstar the post and remove self from stars
+                    p.likeCount = p.likeCount - 1;
+                    p.likes.remove(Common.currentUser.getEmail());
+                } else {
+                    // Star the post and add self to stars
+                    p.likeCount = p.likeCount + 1;
+                    p.likes.put(Common.currentUser.getEmail(), true);
+                }
+
+                // Set value and report transaction success
+
+                transaction.set(documentReference1,p);
+                // documentReference.set(p);
+                Common.tempStory = p;
+                return null;
+
+            }
+        }).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (Common.tempStory.likes.containsKey(Common.currentUser.getEmail())) {
+                            ivLoves.setImageResource(R.drawable.ic_love_red);
+                        } else {
+                            ivLoves.setImageResource(R.drawable.ic_love_outline);
+                        }
+                        tvLoves.setText(String.valueOf(Common.tempStory.getLikeCount()));
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.v("matilda",Common.tempStory.getId());
+                Log.v("matilda",Common.tempStory.getUser().toString());
+                Toast.makeText(getActivity(), "Failed", Toast.LENGTH_SHORT).show();
+                Log.e("Failed","like failed"+e);
+            }
+        });
+
+    }
+
 }

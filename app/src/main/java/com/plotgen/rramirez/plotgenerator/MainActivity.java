@@ -212,20 +212,18 @@ public class MainActivity extends AppCompatActivity
             });
         }
 
-        if (FirebaseInstanceId.getInstance() != null) {
-            FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(MainActivity.this,
-                    new OnSuccessListener<InstanceIdResult>() {
-                @Override
-                public void onSuccess(InstanceIdResult instanceIdResult) {
-                    if (instanceIdResult != null) {
-                        firebase_token = instanceIdResult.getToken();
-                        if (!firebase_token.equals(""))
-                            Utils.saveOnSharePreg(getApplicationContext(), "firebase_token", firebase_token);
-                        Log.d("This app", "Refreshed token: " + firebase_token);
-                    }
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(MainActivity.this,
+                new OnSuccessListener<InstanceIdResult>() {
+            @Override
+            public void onSuccess(InstanceIdResult instanceIdResult) {
+                if (instanceIdResult != null) {
+                    firebase_token = instanceIdResult.getToken();
+                    if (!firebase_token.equals(""))
+                        Utils.saveOnSharePreg(getApplicationContext(), "firebase_token", firebase_token);
+                    Log.d("This app", "Refreshed token: " + firebase_token);
                 }
-            });
-        }
+            }
+        });
 
         // Obtain the FirebaseAnalytics instance.
         if (mUser != null) {

@@ -36,6 +36,14 @@ public class Story {
         this.viewCount = viewCount;
     }
 
+    public Map<String, Boolean> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Map<String, Boolean> likes) {
+        this.likes = likes;
+    }
+
     public String getId() {
         return id;
     }

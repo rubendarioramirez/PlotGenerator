@@ -129,6 +129,7 @@ public class Wc_participants_recent extends Fragment {
                 //   final DatabaseReference postRef = getRef(position);
                 final Story currentStory = model;
 
+
                 Integer i = getActivity().getIntent().getIntExtra("comments",0);
                 viewHolder.setIsRecyclable(false);
 

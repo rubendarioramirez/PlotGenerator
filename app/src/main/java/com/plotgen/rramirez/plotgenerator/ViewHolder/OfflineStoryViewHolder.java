@@ -40,6 +40,10 @@ public class OfflineStoryViewHolder extends RecyclerView.ViewHolder {
     public ImageView ivUser;
     @BindView(R.id.itemStoryLayout)
     public RelativeLayout itemStoryLayout;
+    @BindView(R.id.tvLovesUserStory)
+    public TextView tvLoves;
+    @BindView(R.id.ivLoves)
+    public ImageView ivLoves;
 
     public OfflineStoryViewHolder(View itemView) {
         super(itemView);
@@ -47,8 +51,7 @@ public class OfflineStoryViewHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
-    public void bindToPost(Story story, View.OnClickListener likeClickListener,
-                           CollectionReference commentRef) {
+    public void bindToPost(Story story, View.OnClickListener likeClickListener) {
 
         Glide.with(itemView.getContext())
                 .load(story.getUser().getUriString())
@@ -59,7 +62,9 @@ public class OfflineStoryViewHolder extends RecyclerView.ViewHolder {
         tvUser.setText(story.getUser().getName());
         tvTitle.setText(story.getTitle());
         tvGenre.setText(story.getGenre());
-        tvStory.setText(story.getChalenge());
+        tvStory.setText(Html.fromHtml(story.getChalenge()));
+        tvLoves.setText(String.valueOf(story.getLikeCount()));
+        ivLoves.setOnClickListener(likeClickListener);
 
 
     }

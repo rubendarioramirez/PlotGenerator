@@ -2,10 +2,8 @@ package com.plotgen.rramirez.plotgenerator.Common;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.plotgen.rramirez.plotgenerator.Model.Challenge;
 import com.plotgen.rramirez.plotgenerator.Model.Character;
@@ -43,6 +41,7 @@ public class Common {
     public static CollectionReference currentQuery;
     public static FirebaseFirestore currentDatabase;
     public static CollectionReference currentReference;
+    public static DocumentReference currentDocumentReference;
     public static CollectionReference currentCommentReference;
     public static CollectionReference currentUserReference;
     public static FirebaseAuth currentAuth;

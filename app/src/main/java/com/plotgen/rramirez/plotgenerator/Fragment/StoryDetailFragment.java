@@ -216,17 +216,13 @@ public class StoryDetailFragment extends Fragment {
         mDatabase = Common.currentDatabase;
         mCommentReference = Common.currentCommentReference;
         mUserReference = Common.currentUserReference;
-        //Query query = Common.currentQuery.orderBy("likeCount");
-
 
         ButterKnife.bind(this, view);
-
-        mDatabase = Common.currentDatabase;
 
         mCommentReference = mDatabase.collection(getString(R.string.weekly_challenge_db_name)).document(Common.currentWeeklyStoryTitle).collection("post-comments").document(Common.currentStory.getId()).collection("Comments");
         Query query1 = mCommentReference.orderBy("userDate", DESCENDING);
 
-        final CollectionReference collectionReference1 = mDatabase.collection(getString(R.string.weekly_challenge_db_name)).document(Common.currentWeeklyStoryTitle).collection("posts");
+        CollectionReference collectionReference1 = mDatabase.collection(getString(R.string.weekly_challenge_db_name)).document(Common.currentWeeklyStoryTitle).collection("posts");
 
         ivTemplatePic.setImageResource(R.drawable.typewriter);
 
@@ -269,7 +265,6 @@ public class StoryDetailFragment extends Fragment {
 
 
     private void onLikeClicked(final DocumentReference documentReference1) {
-        final DocumentReference documentReference = documentReference1.collection("likes").document();
 
         mDatabase.runTransaction(new Transaction.Function<Void>() {
             @Nullable
@@ -277,7 +272,6 @@ public class StoryDetailFragment extends Fragment {
             public Void apply(@NonNull Transaction transaction) throws FirebaseFirestoreException {
 
                 Story p = transaction.get(documentReference1).toObject(Story.class);
-
 
                 if (p.likes.containsKey(Common.currentUser.getUid())) {
                     // Unstar the post and remove self from stars
