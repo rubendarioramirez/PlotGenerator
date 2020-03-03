@@ -219,7 +219,7 @@ public class OfflineStoryFragment extends Fragment {
                             new User(Common.currentUser.getUid(),
                                     Common.currentUser.getName(),
                                     Common.currentUser.getEmail(),
-                                    Common.currentUser.getPicUrl().toString()), 0);
+                                    Common.currentUser.getPicUrl().toString()), 0, true);
 
                     Map<String, Object> storyValues = story.toMap();
 

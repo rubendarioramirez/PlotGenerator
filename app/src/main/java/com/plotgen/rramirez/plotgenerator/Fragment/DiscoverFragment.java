@@ -35,6 +35,8 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.firestore.Transaction;
 import com.plotgen.rramirez.plotgenerator.Common.Common;
@@ -128,10 +130,12 @@ public class DiscoverFragment extends Fragment {
 
         mUser = mAuth.getCurrentUser();
 
-        Query myTopPostsQuery = mReference.orderBy("date");
+        Query myTopPostsQuery = mReference.whereEqualTo("published", true).orderBy("date");
         options = new FirestoreRecyclerOptions.Builder<Story>()
                 .setQuery(myTopPostsQuery, Story.class)
                 .build();
+
+
         populateDiscoverGenre();
 
         return view;
@@ -163,6 +167,7 @@ public class DiscoverFragment extends Fragment {
                     holder.ivLoves.setImageResource(R.drawable.ic_love_outline);
                 }
 
+                Log.v("matilda", "Published is " + model.isPublished());
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
