@@ -81,7 +81,7 @@ public class SubmitStoryFragment extends Fragment {
                 new User(Common.currentUser.getUid(),
                         Common.currentUser.getName(),
                         Common.currentUser.getEmail(),
-                        Common.currentUser.getPicUrl().toString()),0, false);
+                        Common.currentUser.getPicUrl().toString()),0, false, Common.currentLanguage);
 
         Map<String, Object> postValues = story.toMap();
 

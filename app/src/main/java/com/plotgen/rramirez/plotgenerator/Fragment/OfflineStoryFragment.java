@@ -2,8 +2,11 @@ package com.plotgen.rramirez.plotgenerator.Fragment;
 
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -94,6 +97,7 @@ public class OfflineStoryFragment extends Fragment {
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private CollectionReference mReference;
+    private Boolean admin;
 
     private FirebaseAnalytics mFirebaseAnalytics;
 
@@ -188,12 +192,18 @@ public class OfflineStoryFragment extends Fragment {
                 public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
                     if (documentSnapshot.exists()) {
                         Boolean publisher = documentSnapshot.getBoolean("publisher");
+                        admin = documentSnapshot.getBoolean("admin");
+                        if(admin){
+                            chooseLanguage();
+                        }
                         if(publisher)
                             fabPublish.setVisibility(View.VISIBLE);
                     }
                 }
             });
         }
+
+
 
         fabPublish.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -219,7 +229,7 @@ public class OfflineStoryFragment extends Fragment {
                             new User(Common.currentUser.getUid(),
                                     Common.currentUser.getName(),
                                     Common.currentUser.getEmail(),
-                                    Common.currentUser.getPicUrl().toString()), 0, true);
+                                    Common.currentUser.getPicUrl().toString()), 0, true, Common.currentLanguage);
 
                     Map<String, Object> storyValues = story.toMap();
 
@@ -231,7 +241,6 @@ public class OfflineStoryFragment extends Fragment {
 
                         }
                     });
-
                 }
 
             }
@@ -396,4 +405,17 @@ public class OfflineStoryFragment extends Fragment {
         return UUID.randomUUID().toString().replaceAll("-", "").toUpperCase();
     }
 
+
+    public void chooseLanguage() {
+        String[] languages = {"en", "es"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Choose Language")
+                .setItems(languages, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Common.currentLanguage = languages[which];
+                        Toast.makeText(getContext(), "Story language will be " + Common.currentLanguage, Toast.LENGTH_LONG).show();
+                    }
+                });
+        builder.show();
+    }
 }

@@ -1099,4 +1099,6 @@ A veces, el héroe puede incluso perder a su mentor en esta etapa (Ejemplo: LOTR
 
     <string name="triggers_submit_disclaimer">Los disparadores creativos se actualizan una vez a la semana de forma aleatoria. Gracias por contribuir con esta comunidad de escritores!</string>
     <string name="discover">¿Quién es Alan Frixto?</string>
+
+    <string name="login_first">Debes iniciar sesion para realizar esta accion</string>
 </resources>

@@ -80,7 +80,6 @@
     <string name="character_update">Edit Character</string>
     <string name="writing_challenge_tab">Weekly writing Challenge</string>
 
-    <string name="discover">Discover</string>
     <!--HOME Strings-->
     <string name="home_title">The only thing that one\n really knows about human nature\n is that it changes.\n      Oscar Wilde</string>
     <string name="home_tab">Home</string>
@@ -1126,8 +1125,8 @@ Sometimes, the heroes lose their mentor in this stage (e.g. LOTR and Star Wars).
 
     <string name="triggers_submit_disclaimer">Creative triggers updates once a week in a random way. Thanks for contributing with this ever growing community of writers.</string>
 
-
-
+    <string name="discover">Who is Alan Frixto?</string>
+    <string name="login_first">You must be logged in to perform this action</string>
 
 
 </resources>

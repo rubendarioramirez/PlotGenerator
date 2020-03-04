@@ -131,11 +131,16 @@ public class UserStoryDetailFragment extends Fragment {
             tvStory.setText(Html.fromHtml(Common.currentStory.getChalenge()));
         }
 
-        if (Common.currentStory.likes.containsKey(Common.currentUser.getEmail())) {
-            ivLoves.setImageResource(R.drawable.ic_love_red);
+        if (Common.currentUser != null) {
+            if (Common.currentStory.likes.containsKey(Common.currentUser.getEmail())) {
+                ivLoves.setImageResource(R.drawable.ic_love_red);
+            } else {
+                ivLoves.setImageResource(R.drawable.ic_love_outline);
+            }
         } else {
             ivLoves.setImageResource(R.drawable.ic_love_outline);
         }
+
         ivLoves.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -199,57 +204,58 @@ public class UserStoryDetailFragment extends Fragment {
     }
 
     private void onLikeClicked(final DocumentReference documentReference1) {
+        if (Common.currentUser != null) {
+            mDatabase.runTransaction(new Transaction.Function<Void>() {
+                @Nullable
+                @Override
+                public Void apply(@NonNull Transaction transaction) throws FirebaseFirestoreException {
 
-        mDatabase.runTransaction(new Transaction.Function<Void>() {
-            @Nullable
-            @Override
-            public Void apply(@NonNull Transaction transaction) throws FirebaseFirestoreException {
+                    Story p = transaction.get(documentReference1).toObject(Story.class);
 
-                Story p = transaction.get(documentReference1).toObject(Story.class);
-
-                if (p.likes.containsKey(Common.currentUser.getEmail())) {
-                    // Unstar the post and remove self from stars
-                    p.likeCount = p.likeCount - 1;
-                    p.likes.remove(Common.currentUser.getEmail());
-                } else {
-                    // Star the post and add self to stars
-                    p.likeCount = p.likeCount + 1;
-                    p.likes.put(Common.currentUser.getEmail(), true);
-                }
-
-                // Set value and report transaction success
-
-                transaction.set(documentReference1,p);
-                // documentReference.set(p);
-                Common.tempStory = p;
-                return null;
-
-            }
-        }).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (Common.tempStory.likes.containsKey(Common.currentUser.getEmail())) {
-                            ivLoves.setImageResource(R.drawable.ic_love_red);
-                        } else {
-                            ivLoves.setImageResource(R.drawable.ic_love_outline);
-                        }
-                        tvLoves.setText(String.valueOf(Common.tempStory.getLikeCount()));
+                    if (p.likes.containsKey(Common.currentUser.getEmail())) {
+                        // Unstar the post and remove self from stars
+                        p.likeCount = p.likeCount - 1;
+                        p.likes.remove(Common.currentUser.getEmail());
+                    } else {
+                        // Star the post and add self to stars
+                        p.likeCount = p.likeCount + 1;
+                        p.likes.put(Common.currentUser.getEmail(), true);
                     }
-                });
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.v("matilda",Common.tempStory.getId());
-                Log.v("matilda",Common.tempStory.getUser().toString());
-                Toast.makeText(getActivity(), "Failed", Toast.LENGTH_SHORT).show();
-                Log.e("Failed","like failed"+e);
-            }
-        });
 
+                    // Set value and report transaction success
+
+                    transaction.set(documentReference1, p);
+                    // documentReference.set(p);
+                    Common.tempStory = p;
+                    return null;
+
+                }
+            }).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (Common.tempStory.likes.containsKey(Common.currentUser.getEmail())) {
+                                ivLoves.setImageResource(R.drawable.ic_love_red);
+                            } else {
+                                ivLoves.setImageResource(R.drawable.ic_love_outline);
+                            }
+                            tvLoves.setText(String.valueOf(Common.tempStory.getLikeCount()));
+                        }
+                    });
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.v("matilda", Common.tempStory.getId());
+                    Log.v("matilda", Common.tempStory.getUser().toString());
+                    Toast.makeText(getActivity(), "Failed", Toast.LENGTH_SHORT).show();
+                    Log.e("Failed", "like failed" + e);
+                }
+            });
+        } else {
+            Toast.makeText(getContext(), getString(R.string.login_first), Toast.LENGTH_LONG).show();
+        }
     }
-
 }

@@ -263,7 +263,7 @@ public class MainActivity extends AppCompatActivity
             FirebaseMessaging.getInstance().subscribeToTopic("newChallenge_es");
         } else {
             FirebaseMessaging.getInstance().subscribeToTopic("newChallenge_en");
-            hideDiscovery();
+            //hideDiscovery();
         }
 
 
@@ -342,10 +342,23 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        updateUI();
 
+
+
+
+
+        updateUI();
+        getAppLanguage();
         System.gc();
 
+    }
+
+    private void getAppLanguage(){
+        if (Locale.getDefault().getDisplayLanguage().equals("español")) {
+            Common.currentLanguage = "es";
+        } else {
+            Common.currentLanguage = "en";
+        }
     }
 
     private void openUserStoryFragment(final String id) {

@@ -22,6 +22,7 @@ public class Common {
     public static Project currentProject;
     public static String currentOutlineID;
     public static String currentTimelineID;
+    public static String currentLanguage;
 
     public static Story tempStory;
     public static boolean isPAU;

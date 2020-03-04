@@ -1,6 +1,7 @@
 package com.plotgen.rramirez.plotgenerator.Fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.auth.ErrorCodes;
+import com.firebase.ui.auth.IdpResponse;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.ads.AdListener;
@@ -48,10 +51,15 @@ import com.plotgen.rramirez.plotgenerator.ViewHolder.OfflineStoryViewHolder;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static android.app.Activity.RESULT_OK;
+import static android.content.ContentValues.TAG;
 
 public class DiscoverFragment extends Fragment {
 
@@ -69,7 +77,6 @@ public class DiscoverFragment extends Fragment {
     private CollectionReference mReference;
     private FirestoreRecyclerOptions<Story> options;
     private FirestoreRecyclerAdapter<Story, OfflineStoryViewHolder> mAdapter;
-
 
     @Override
     public void onStart() {
@@ -130,7 +137,7 @@ public class DiscoverFragment extends Fragment {
 
         mUser = mAuth.getCurrentUser();
 
-        Query myTopPostsQuery = mReference.whereEqualTo("published", true).orderBy("date");
+        Query myTopPostsQuery = mReference.whereEqualTo("published", true).whereEqualTo("language",Common.currentLanguage).orderBy("date");
         options = new FirestoreRecyclerOptions.Builder<Story>()
                 .setQuery(myTopPostsQuery, Story.class)
                 .build();
@@ -157,17 +164,21 @@ public class DiscoverFragment extends Fragment {
                 final Story story = model;
                 String id = mAdapter.getSnapshots().getSnapshot(position).getId();
                 DocumentReference documentReference = mReference.document(id);
-
                 holder.setIsRecyclable(false);
 
+
                 //Make the likes beautiful
-                if(model.getLikes().containsKey(Common.currentUser.getEmail())) {
-                    holder.ivLoves.setImageResource(R.drawable.ic_love_red);
+                if(Common.currentUser != null){
+                    if(model.getLikes().containsKey(Common.currentUser.getEmail())) {
+                        holder.ivLoves.setImageResource(R.drawable.ic_love_red);
+                    } else {
+                        holder.ivLoves.setImageResource(R.drawable.ic_love_outline);
+                    }
                 } else {
                     holder.ivLoves.setImageResource(R.drawable.ic_love_outline);
                 }
 
-                Log.v("matilda", "Published is " + model.isPublished());
+
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -201,69 +212,60 @@ public class DiscoverFragment extends Fragment {
     }
 
 public void onLikeClick(DocumentReference documentReference1, OfflineStoryViewHolder holder){
-    mDatabase.runTransaction(new Transaction.Function<Void>() {
-        @Nullable
-        @Override
-        public Void apply(@NonNull Transaction transaction) throws FirebaseFirestoreException {
-
-            Story p = transaction.get(documentReference1).toObject(Story.class);
-
-            if (p.likes.containsKey(Common.currentUser.getEmail())) {
-                // Unstar the post and remove self from stars
-                p.likeCount = p.likeCount - 1;
-                p.likes.remove(Common.currentUser.getEmail());
-            } else {
-                // Star the post and add self to stars
-                p.likeCount = p.likeCount + 1;
-                p.likes.put(Common.currentUser.getEmail(), true);
-            }
-
-            transaction.set(documentReference1,p);
-            // documentReference.set(p);
-            Common.tempStory = p;
-            return null;
-
-        }
-    }).addOnSuccessListener(new OnSuccessListener<Void>() {
-        @Override
-        public void onSuccess(Void aVoid) {
-            getActivity().runOnUiThread(new Runnable() {
+        if(Common.currentUser != null){
+            mDatabase.runTransaction(new Transaction.Function<Void>() {
+                @Nullable
                 @Override
-                public void run() {
-                    if (Common.tempStory.likes.containsKey(Common.currentUser.getEmail())) {
-                        holder.ivLoves.setImageResource(R.drawable.ic_love_red);
+                public Void apply(@NonNull Transaction transaction) throws FirebaseFirestoreException {
+
+                    Story p = transaction.get(documentReference1).toObject(Story.class);
+
+                    if (p.likes.containsKey(Common.currentUser.getEmail())) {
+                        // Unstar the post and remove self from stars
+                        p.likeCount = p.likeCount - 1;
+                        p.likes.remove(Common.currentUser.getEmail());
                     } else {
-                        holder.ivLoves.setImageResource(R.drawable.ic_love_outline);
+                        // Star the post and add self to stars
+                        p.likeCount = p.likeCount + 1;
+                        p.likes.put(Common.currentUser.getEmail(), true);
                     }
-                    holder.tvLoves.setText(String.valueOf(Common.tempStory.getLikeCount()));
+
+                    transaction.set(documentReference1,p);
+                    // documentReference.set(p);
+                    Common.tempStory = p;
+                    return null;
 
                 }
+            }).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (Common.tempStory.likes.containsKey(Common.currentUser.getEmail())) {
+                                holder.ivLoves.setImageResource(R.drawable.ic_love_red);
+                            } else {
+                                holder.ivLoves.setImageResource(R.drawable.ic_love_outline);
+                            }
+                            holder.tvLoves.setText(String.valueOf(Common.tempStory.getLikeCount()));
+
+                        }
+                    });
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.v("matilda",Common.tempStory.getId());
+                    Log.v("matilda",Common.tempStory.getUser().toString());
+                    Toast.makeText(getActivity(), "Failed", Toast.LENGTH_SHORT).show();
+                    Log.e("Failed","like failed"+e);
+                }
             });
+        } else {
+            Toast.makeText(getContext(), getString(R.string.login_first), Toast.LENGTH_LONG).show();
         }
-    }).addOnFailureListener(new OnFailureListener() {
-        @Override
-        public void onFailure(@NonNull Exception e) {
-            Log.v("matilda",Common.tempStory.getId());
-            Log.v("matilda",Common.tempStory.getUser().toString());
-            Toast.makeText(getActivity(), "Failed", Toast.LENGTH_SHORT).show();
-            Log.e("Failed","like failed"+e);
         }
-    });
-    }
+
 }
 
-/*
-    if(!model.getLikes().containsKey(Common.currentUser.getEmail())){
-        mReference.document(model.getUser().getEmail() + "_" + model.getTitle()).update("likeCount", FieldValue.increment(1));
-        Map<String, Object> data = new HashMap<>();
-        data.put(model.getUser().getEmail(), true);
-        mReference.document(model.getUser().getEmail() + "_" + model.getTitle()).update("likes", data);
-    } else {
-        Map<String, Object> deleteLike = new HashMap<>();
-        deleteLike.put("likes", FieldValue.delete());
-        mReference.document(model.getUser().getEmail() + "_" + model.getTitle()).update(deleteLike);
-        mReference.document(model.getUser().getEmail() + "_" + model.getTitle()).update("likeCount", FieldValue.increment(-1));
 
-    }
-}
-*/

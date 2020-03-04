@@ -15,7 +15,7 @@ public class Story {
     private String chalenge;
     private long date;
     private User user;
-    private String story;
+    private String story, language;
     private int viewCount;
     private boolean published;
 
@@ -26,7 +26,9 @@ public class Story {
     }
 
 
-    public Story(String id, String title, String story, String genre, String chalenge, long date, User user, int viewCount, boolean published) {
+
+
+    public Story(String id, String title, String story, String genre, String chalenge, long date, User user, int viewCount, boolean published, String language) {
         this.id = id;
         this.title = title;
         this.genre = genre;
@@ -36,6 +38,7 @@ public class Story {
         this.story = story;
         this.viewCount = viewCount;
         this.published = published;
+        this.language = language;
     }
 
     public Map<String, Boolean> getLikes() {
@@ -127,6 +130,13 @@ public class Story {
         this.published = published;
     }
 
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
     @Exclude
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
@@ -140,6 +150,7 @@ public class Story {
         result.put("likes", likes);
         result.put("viewCount", viewCount);
         result.put("published", published);
+        result.put("language", language);
 
         return result;
     }
